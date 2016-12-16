@@ -305,13 +305,26 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     private Context mContext;
     private AccountManager mAccountManager;
+    private DeviceLocalAccountLocator mLocalAccountLocator;
     private AccountTypeProvider mTypeProvider;
     private ListeningExecutorService mExecutor;
     private Executor mMainThreadExecutor;
 
     private AccountType mFallbackAccountType;
 
-    private ListenableFuture<AccountTypeProvider> mLoadingFuture;
+    private ListenableFuture<List<AccountWithDataSet>> mLocalAccountsFuture;
+    private ListenableFuture<AccountTypeProvider> mAccountTypesFuture;
+
+    private FutureCallback<Object> mAccountsUpdateCallback = new FutureCallback<Object>() {
+        @Override
+        public void onSuccess(@Nullable Object result) {
+            onAccountsUpdatedInternal();
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+        }
+    };
 
     private final Handler mMainThreadHandler = new Handler(Looper.getMainLooper());
 
@@ -327,6 +340,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     public AccountTypeManagerImpl(Context context) {
         mContext = context;
+        mLocalAccountLocator = DeviceLocalAccountLocator.create(context);
         mTypeProvider = new AccountTypeProvider(context);
         mFallbackAccountType = new FallbackAccountType(context);
 
@@ -368,12 +382,12 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
                         @Override
                         public void onChange(boolean selfChange) {
-                            // TODO: update device local account types
+                            reloadLocalAccounts();
                         }
 
                         @Override
                         public void onChange(boolean selfChange, Uri uri) {
-                            // TODO: update device local account types
+                            reloadLocalAccounts();
                         }
                     });
         }
@@ -397,36 +411,44 @@ class AccountTypeManagerImpl extends AccountTypeManager
     }
 
     private synchronized void startLoadingIfNeeded() {
-        if (mTypeProvider == null && mLoadingFuture == null) {
+        if (mTypeProvider == null && mAccountTypesFuture == null) {
             reloadAccountTypes();
+        }
+        if (mLocalAccountsFuture == null) {
+            reloadLocalAccounts();
         }
     }
 
     private void loadAccountTypes() {
         mTypeProvider = new AccountTypeProvider(mContext);
 
-        mLoadingFuture = mExecutor.submit(new Callable<AccountTypeProvider>() {
+        mAccountTypesFuture = mExecutor.submit(new Callable<AccountTypeProvider>() {
             @Override
             public AccountTypeProvider call() throws Exception {
                 // This will request the AccountType for each Account
-                getAllAccounts(mTypeProvider);
+                getAccountsFromProvider(mTypeProvider);
                 return mTypeProvider;
             }
         });
     }
 
-    private void reloadAccountTypes() {
+    private synchronized void reloadAccountTypes() {
         loadAccountTypes();
-        Futures.addCallback(mLoadingFuture, new FutureCallback<AccountTypeProvider>() {
-            @Override
-            public void onSuccess(AccountTypeProvider result) {
-                onAccountsUpdatedInternal();
-            }
+        Futures.addCallback(mAccountTypesFuture, mAccountsUpdateCallback, mMainThreadExecutor);
+    }
 
+    private synchronized void loadLocalAccounts() {
+        mLocalAccountsFuture = mExecutor.submit(new Callable<List<AccountWithDataSet>>() {
             @Override
-            public void onFailure(Throwable t) {
+            public List<AccountWithDataSet> call() throws Exception {
+                return mLocalAccountLocator.getDeviceLocalAccounts();
             }
-        }, mMainThreadExecutor);
+        });
+    }
+
+    private void reloadLocalAccounts() {
+        loadLocalAccounts();
+        Futures.addCallback(mLocalAccountsFuture, mAccountsUpdateCallback, mMainThreadExecutor);
     }
 
     /**
@@ -435,42 +457,71 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     @Override
     public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
-        return contactWritableOnly ? filterAccountsByType(writableFilter()) : getAllAccounts();
+        final Predicate<AccountType> filter = contactWritableOnly ?
+                writableFilter() : Predicates.<AccountType>alwaysTrue();
+        // TODO: Shouldn't have a synchronous version for getting all accounts
+        return Futures.getUnchecked(filterAccountsByTypeAsync(filter));
     }
 
     @Override
     public List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter) {
-        return new ArrayList<>(Collections2.filter(getAllAccounts(), filter));
+        // TODO: Shouldn't have a synchronous version for getting all accounts
+        return Futures.getUnchecked(filterAccountsAsync(filter));
     }
 
     @Override
     public ListenableFuture<List<AccountWithDataSet>> getAllAccountsAsync() {
         startLoadingIfNeeded();
-        return Futures.transform(Futures.nonCancellationPropagating(mLoadingFuture),
-                new Function<AccountTypeProvider, List<AccountWithDataSet>>() {
-                    @Override
-                    public List<AccountWithDataSet> apply(AccountTypeProvider input) {
-                        return getAllAccounts(input);
-                    }
-                });
+        return filterAccountsAsync(Predicates.<AccountWithDataSet>alwaysTrue());
     }
 
     @Override
     public ListenableFuture<List<AccountWithDataSet>> filterAccountsByTypeAsync(
             final Predicate<AccountType> typeFilter) {
+        // Ensure that mTypeProvider is initialized so that the reference will be the same
+        // here as in the call to filterAccountsAsync
         startLoadingIfNeeded();
-        return Futures.transform(Futures.nonCancellationPropagating(mLoadingFuture),
-                new Function<AccountTypeProvider, List<AccountWithDataSet>>() {
-                    @Override
-                    public List<AccountWithDataSet> apply(AccountTypeProvider provider) {
-                        final List<AccountWithDataSet> accounts = getAllAccounts(provider);
-                        return new ArrayList<>(Collections2.filter(accounts, adaptTypeFilter(
-                                Predicates.and(Predicates.notNull(), writableFilter()), provider)));
-                    }
-                });
+        return filterAccountsAsync(adaptTypeFilter(typeFilter, mTypeProvider));
     }
 
-    private List<AccountWithDataSet> getAllAccounts(AccountTypeProvider cache) {
+    private ListenableFuture<List<AccountWithDataSet>> filterAccountsAsync(
+            final Predicate<AccountWithDataSet> filter) {
+        startLoadingIfNeeded();
+        final ListenableFuture<List<AccountWithDataSet>> accountsFromTypes =
+                Futures.transform(Futures.nonCancellationPropagating(mAccountTypesFuture),
+                        new Function<AccountTypeProvider, List<AccountWithDataSet>>() {
+                            @Override
+                            public List<AccountWithDataSet> apply(AccountTypeProvider provider) {
+                                return getAccountsFromProvider(provider);
+                            }
+                        });
+
+        final ListenableFuture<List<List<AccountWithDataSet>>> all =
+                Futures.successfulAsList(accountsFromTypes, mLocalAccountsFuture);
+
+        return Futures.transform(all, new Function<List<List<AccountWithDataSet>>,
+                List<AccountWithDataSet>>() {
+            @Nullable
+            @Override
+            public List<AccountWithDataSet> apply(@Nullable List<List<AccountWithDataSet>> input) {
+                // The first result list is from the account types. Check if there is a Google
+                // account in this list and if there is exclude the null account
+                final Predicate<AccountWithDataSet> appliedFilter =
+                        hasWritableGoogleAccount(input.get(0)) ?
+                                Predicates.and(nonNullAccountFilter(), filter) :
+                                filter;
+                List<AccountWithDataSet> result = new ArrayList<>();
+                for (List<AccountWithDataSet> list : input) {
+                    if (list != null) {
+                        result.addAll(Collections2.filter(list, appliedFilter));
+                    }
+                }
+                return result;
+            }
+        });
+    }
+
+    private List<AccountWithDataSet> getAccountsFromProvider(AccountTypeProvider cache) {
         final List<AccountWithDataSet> result = new ArrayList<>();
         final Account[] accounts = mAccountManager.getAccounts();
         for (Account account : accounts) {
@@ -482,18 +533,17 @@ class AccountTypeManagerImpl extends AccountTypeManager
         return result;
     }
 
-    private List<AccountWithDataSet> getAllAccounts() {
-        return getAllAccounts(mTypeProvider);
-    }
-
-    private List<AccountWithDataSet> filterAccountsByType(final Predicate<AccountType> typeFilter) {
-        return getAccounts(new Predicate<AccountWithDataSet>() {
-            @Override
-            public boolean apply(@Nullable AccountWithDataSet input) {
-                final AccountType type = mTypeProvider.getTypeForAccount(input);
-                return type != null && typeFilter.apply(type);
+    private boolean hasWritableGoogleAccount(List<AccountWithDataSet> accounts) {
+        if (accounts == null) {
+            return false;
+        }
+        AccountType type;
+        for (AccountWithDataSet account : accounts) {
+            if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet ==  null) {
+                return true;
             }
-        });
+        }
+        return false;
     }
 
 
@@ -501,12 +551,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
      * Return the list of all known, group writable {@link AccountWithDataSet}'s.
      */
     public List<AccountWithDataSet> getGroupWritableAccounts() {
-        return filterAccountsByType(new Predicate<AccountType>() {
-            @Override
-            public boolean apply(AccountType accountType) {
-                return accountType.isGroupMembershipEditable();
-            }
-        });
+        return Futures.getUnchecked(filterAccountsByTypeAsync(groupWritableFilter()));
     }
 
     /**

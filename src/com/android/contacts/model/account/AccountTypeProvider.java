@@ -95,6 +95,16 @@ public class AccountTypeProvider {
      * </p>
      */
     public List<AccountType> getAccountTypes(String accountType) {
+        // ConcurrentHashMap doesn't support null keys
+        if (accountType == null) {
+            AccountType type = mLocalAccountTypeFactory.getAccountType(accountType);
+            // Just in case the DeviceLocalAccountTypeFactory doesn't handle the null type
+            if (type == null) {
+                type = new FallbackAccountType(mContext);
+            }
+            return Collections.singletonList(type);
+        }
+
         List<AccountType> types = mCache.get(accountType);
         if (types == null) {
             types = loadTypes(accountType);

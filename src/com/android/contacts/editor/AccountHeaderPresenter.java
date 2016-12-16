@@ -137,11 +137,7 @@ public class AccountHeaderPresenter {
 
         final String accountLabel = getAccountLabel(account);
 
-        // Either the account header or selector should be shown, not both.
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(mContext).getAccounts(true);
-
-        if (accounts.size() > 1) {
+        if (mAccounts.size() > 1) {
             addAccountSelector(accountLabel);
         } else {
             addAccountHeader(accountLabel);
@@ -185,9 +181,7 @@ public class AccountHeaderPresenter {
     private void showPopup() {
         final ListPopupWindow popup = new ListPopupWindow(mContext);
         final AccountsListAdapter adapter =
-                new AccountsListAdapter(mContext,
-                        AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE,
-                        mCurrentAccount);
+                new AccountsListAdapter(mContext, mAccounts, mCurrentAccount);
         popup.setWidth(mAccountHeaderContainer.getWidth());
         popup.setAnchorView(mAccountHeaderContainer);
         popup.setAdapter(adapter);
