@@ -420,6 +420,13 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         return false;
     }
 
+    public boolean shouldShowSyncState() {
+        return (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT)
+                || filterType == ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS
+                || filterType == ContactListFilter.FILTER_TYPE_CUSTOM
+                || filterType == ContactListFilter.FILTER_TYPE_DEFAULT;
+    }
+
     /**
      * Returns the Google accounts (see {@link #isGoogleAccountType) for this ContactListFilter.
      */
