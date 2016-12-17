@@ -28,12 +28,15 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.Directory;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
@@ -978,6 +981,15 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         // Debug options need to be visible even in search mode.
         makeMenuItemVisible(menu, R.id.export_database, mEnableDebugMenuOptions &&
                 hasExportIntentHandler());
+
+        // Light tint the icons for normal mode, dark tint for search or selection mode.
+        for (int i = 0; i < menu.size(); ++i) {
+            final Drawable icon = menu.getItem(i).getIcon();
+            if (icon != null && !isSearchOrSelectionMode) {
+                icon.mutate().setColorFilter(ContextCompat.getColor(getContext(),
+                        R.color.actionbar_icon_color), PorterDuff.Mode.SRC_ATOP);
+            }
+        }
     }
 
     private void makeMenuItemVisible(Menu menu, int itemId, boolean visible) {

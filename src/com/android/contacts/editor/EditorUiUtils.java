@@ -157,32 +157,37 @@ public class EditorUiUtils {
     public static Drawable getMimeTypeDrawable(Context context, String mimeType) {
         switch (mimeType) {
             case StructuredName.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_person_black_24dp);
+                return context.getResources().getDrawable(R.drawable.quantum_ic_person_vd_theme_24);
             case StructuredPostal.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_place_24dp);
+                return context.getResources().getDrawable(R.drawable.quantum_ic_place_vd_theme_24);
             case SipAddress.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_dialer_sip_black_24dp);
+                return context.getResources().getDrawable(
+                        R.drawable.quantum_ic_dialer_sip_vd_theme_24);
             case Phone.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_phone_24dp);
+                return context.getResources().getDrawable(R.drawable.quantum_ic_phone_vd_theme_24);
             case Im.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_message_24dp);
+                return context.getResources().getDrawable(
+                        R.drawable.quantum_ic_message_vd_theme_24);
             case Event.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_event_24dp);
+                return context.getResources().getDrawable(R.drawable.quantum_ic_event_vd_theme_24);
             case Email.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_email_24dp);
+                return context.getResources().getDrawable(R.drawable.quantum_ic_email_vd_theme_24);
             case Website.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_public_black_24dp);
+                return context.getResources().getDrawable(R.drawable.quantum_ic_public_vd_theme_24);
             case Photo.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_camera_alt_black_24dp);
+                return context.getResources().getDrawable(
+                        R.drawable.quantum_ic_camera_alt_vd_theme_24);
             case GroupMembership.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_menu_label);
+                return context.getResources().getDrawable(R.drawable.quantum_ic_label_vd_theme_24);
             case Organization.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_business_black_24dp);
+                return context.getResources().getDrawable(
+                        R.drawable.quantum_ic_business_vd_theme_24);
             case Note.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.ic_insert_comment_black_24dp);
+                return context.getResources().getDrawable(
+                        R.drawable.quantum_ic_insert_comment_vd_theme_24);
             case Relation.CONTENT_ITEM_TYPE:
                 return context.getResources().getDrawable(
-                        R.drawable.ic_circles_extended_black_24dp);
+                        R.drawable.quantum_ic_circles_ext_vd_theme_24);
             default:
                 return null;
         }

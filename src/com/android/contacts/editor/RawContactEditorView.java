@@ -619,7 +619,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         primary = mCurrentRawContactDelta.getPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
         final String name = primary != null ? primary.getAsString(StructuredName.DISPLAY_NAME) :
             getContext().getString(R.string.missing_name);
-        final Drawable nameDrawable = context.getDrawable(R.drawable.ic_person_24dp);
+        final Drawable nameDrawable = context.getDrawable(R.drawable.quantum_ic_person_vd_theme_24);
         final String nameContentDescription = res.getString(R.string.header_name_entry);
         bindData(nameDrawable, nameContentDescription, name, /* type */ null,
                 /* isFirstEntry */ true);
@@ -627,7 +627,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         // Phones
         final ArrayList<ValuesDelta> phones = mCurrentRawContactDelta
                 .getMimeEntries(Phone.CONTENT_ITEM_TYPE);
-        final Drawable phoneDrawable = context.getDrawable(R.drawable.ic_phone_24dp);
+        final Drawable phoneDrawable = context.getDrawable(R.drawable.quantum_ic_phone_vd_theme_24);
         final String phoneContentDescription = res.getString(R.string.header_phone_entry);
         if (phones != null) {
             boolean isFirstPhoneBound = true;
@@ -653,7 +653,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         // Emails
         final ArrayList<ValuesDelta> emails = mCurrentRawContactDelta
                 .getMimeEntries(Email.CONTENT_ITEM_TYPE);
-        final Drawable emailDrawable = context.getDrawable(R.drawable.ic_email_24dp);
+        final Drawable emailDrawable = context.getDrawable(R.drawable.quantum_ic_email_vd_theme_24);
         final String emailContentDescription = res.getString(R.string.header_email_entry);
         if (emails != null) {
             boolean isFirstEmailBound = true;

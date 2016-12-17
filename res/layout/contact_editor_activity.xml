@@ -29,7 +29,7 @@
         android:background="?android:attr/colorPrimary"
         android:elevation="4dp"
         android:navigationContentDescription="@string/cancel_button_content_description"
-        android:navigationIcon="@drawable/ic_close_dk"
+        android:navigationIcon="@drawable/quantum_ic_close_vd_theme_24"
         android:title="@string/contact_editor_title_existing_contact" />
 
 </LinearLayout>

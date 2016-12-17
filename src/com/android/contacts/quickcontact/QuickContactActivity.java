@@ -1375,7 +1375,7 @@ public class QuickContactActivity extends ContactsActivity {
      */
     private void initializeNoContactDetailCard(boolean areAllRawContactsSimAccounts) {
         final Drawable phoneIcon = getResources().getDrawable(
-                R.drawable.ic_phone_24dp).mutate();
+                R.drawable.quantum_ic_phone_vd_theme_24).mutate();
         final Entry phonePromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 phoneIcon, getString(R.string.quickcontact_add_phone_number),
                 /* subHeader = */ null, /* subHeaderIcon = */ null, /* text = */ null,
@@ -1388,7 +1388,7 @@ public class QuickContactActivity extends ContactsActivity {
                 /* thirdContentDescription = */ null,
                 /* thirdAction = */ Entry.ACTION_NONE,
                 /* thirdExtras = */ null,
-                R.drawable.ic_phone_24dp);
+                R.drawable.quantum_ic_phone_vd_theme_24);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
         promptEntries.add(new ArrayList<Entry>(1));
@@ -1396,7 +1396,7 @@ public class QuickContactActivity extends ContactsActivity {
 
         if (!areAllRawContactsSimAccounts) {
             final Drawable emailIcon = getResources().getDrawable(
-                    R.drawable.ic_email_24dp).mutate();
+                    R.drawable.quantum_ic_email_vd_theme_24).mutate();
             final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                     emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
                     /* subHeaderIcon = */ null,
@@ -1407,7 +1407,7 @@ public class QuickContactActivity extends ContactsActivity {
                     /* EntryContextMenuInfo = */ null, /* thirdIcon = */ null,
                     /* thirdIntent = */ null, /* thirdContentDescription = */ null,
                     /* thirdAction = */ Entry.ACTION_NONE, /* thirdExtras = */ null,
-                    R.drawable.ic_email_24dp);
+                    R.drawable.quantum_ic_email_vd_theme_24);
 
             promptEntries.add(new ArrayList<Entry>(1));
             promptEntries.get(1).add(emailPromptEntry);
@@ -1725,8 +1725,8 @@ public class QuickContactActivity extends ContactsActivity {
                 primaryContentDescription.append(header);
                 phoneContentDescription = com.android.contacts.util.ContactDisplayUtils
                         .getTelephoneTtsSpannable(primaryContentDescription.toString(), header);
-                icon = res.getDrawable(R.drawable.ic_phone_24dp);
-                iconResourceId = R.drawable.ic_phone_24dp;
+                iconResourceId = R.drawable.quantum_ic_phone_vd_theme_24;
+                icon = res.getDrawable(iconResourceId);
                 if (PhoneCapabilityTester.isPhone(context)) {
                     intent = CallUtil.getCallIntent(phone.getNumber());
                     intent.putExtra(EXTRA_ACTION_TYPE, ActionType.CALL);
@@ -1735,7 +1735,7 @@ public class QuickContactActivity extends ContactsActivity {
                         Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phone.getNumber(), null));
                 alternateIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.SMS);
 
-                alternateIcon = res.getDrawable(R.drawable.ic_message_24dp_mirrored);
+                alternateIcon = res.getDrawable(R.drawable.quantum_ic_message_vd_theme_24);
                 alternateContentDescription.append(res.getString(R.string.sms_custom, header));
                 smsContentDescription = com.android.contacts.util.ContactDisplayUtils
                         .getTelephoneTtsSpannable(alternateContentDescription.toString(), header);
@@ -1746,7 +1746,7 @@ public class QuickContactActivity extends ContactsActivity {
                 boolean isVideoEnabled = (videoCapability & CallUtil.VIDEO_CALLING_ENABLED) != 0;
 
                 if (CallUtil.isCallWithSubjectSupported(context)) {
-                    thirdIcon = res.getDrawable(R.drawable.ic_call_note_white_24dp);
+                    thirdIcon = res.getDrawable(R.drawable.quantum_ic_perm_phone_msg_vd_theme_24);
                     thirdAction = Entry.ACTION_CALL_WITH_SUBJECT;
                     thirdContentDescription =
                             res.getString(R.string.call_with_a_note);
@@ -1773,7 +1773,7 @@ public class QuickContactActivity extends ContactsActivity {
                     boolean isPresent = (carrierPresence & Phone.CARRIER_PRESENCE_VT_CAPABLE) != 0;
 
                     if ((isPresenceEnabled && isPresent) || !isPresenceEnabled) {
-                        thirdIcon = res.getDrawable(R.drawable.ic_videocam);
+                        thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
                         thirdAction = Entry.ACTION_INTENT;
                         thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
                                 CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
@@ -1801,8 +1801,8 @@ public class QuickContactActivity extends ContactsActivity {
                     primaryContentDescription.append(text).append(" ");
                 }
                 primaryContentDescription.append(header);
-                icon = res.getDrawable(R.drawable.ic_email_24dp);
-                iconResourceId = R.drawable.ic_email_24dp;
+                iconResourceId = R.drawable.quantum_ic_email_vd_theme_24;
+                icon = res.getDrawable(iconResourceId);
             }
         } else if (dataItem instanceof StructuredPostalDataItem) {
             StructuredPostalDataItem postal = (StructuredPostalDataItem) dataItem;
@@ -1824,11 +1824,11 @@ public class QuickContactActivity extends ContactsActivity {
                 alternateIntent =
                         StructuredPostalUtils.getViewPostalAddressDirectionsIntent(postalAddress);
                 alternateIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.DIRECTIONS);
-                alternateIcon = res.getDrawable(R.drawable.ic_directions_24dp);
+                alternateIcon = res.getDrawable(R.drawable.quantum_ic_directions_vd_theme_24);
                 alternateContentDescription.append(res.getString(
                         R.string.content_description_directions)).append(" ").append(header);
-                icon = res.getDrawable(R.drawable.ic_place_24dp);
-                iconResourceId = R.drawable.ic_place_24dp;
+                iconResourceId = R.drawable.quantum_ic_place_vd_theme_24;
+                icon = res.getDrawable(iconResourceId);
             }
         } else if (dataItem instanceof SipAddressDataItem) {
             final SipAddressDataItem sip = (SipAddressDataItem) dataItem;
@@ -1851,8 +1851,8 @@ public class QuickContactActivity extends ContactsActivity {
                     primaryContentDescription.append(text).append(" ");
                 }
                 primaryContentDescription.append(header);
-                icon = res.getDrawable(R.drawable.ic_dialer_sip_black_24dp);
-                iconResourceId = R.drawable.ic_dialer_sip_black_24dp;
+                iconResourceId = R.drawable.quantum_ic_dialer_sip_vd_theme_24;
+                icon = res.getDrawable(iconResourceId);
             }
         } else if (dataItem instanceof StructuredNameDataItem) {
             // If the name is already set and this is not the super primary value then leave the
@@ -1885,8 +1885,9 @@ public class QuickContactActivity extends ContactsActivity {
                     // If a secondDataItem is available, use it to build an entry with
                     // alternate actions
                     if (secondDataItem != null) {
-                        icon = res.getDrawable(R.drawable.ic_hangout_24dp);
-                        alternateIcon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
+                        icon = res.getDrawable(R.drawable.quantum_ic_hangout_vd_theme_24);
+                        alternateIcon = res.getDrawable(
+                                R.drawable.quantum_ic_hangout_video_vd_theme_24);
                         final HangoutsDataItemModel itemModel =
                                 new HangoutsDataItemModel(intent, alternateIntent,
                                         dataItem, secondDataItem, alternateContentDescription,
@@ -1900,9 +1901,9 @@ public class QuickContactActivity extends ContactsActivity {
                         text = itemModel.text;
                     } else {
                         if (HANGOUTS_DATA_5_VIDEO.equals(intent.getDataString())) {
-                            icon = res.getDrawable(R.drawable.ic_hangout_video_24dp);
+                            icon = res.getDrawable(R.drawable.quantum_ic_hangout_video_vd_theme_24);
                         } else {
-                            icon = res.getDrawable(R.drawable.ic_hangout_24dp);
+                            icon = res.getDrawable(R.drawable.quantum_ic_hangout_vd_theme_24);
                         }
                     }
                 } else {
@@ -2480,8 +2481,8 @@ public class QuickContactActivity extends ContactsActivity {
                 Trace.endSection();
                 Trace.beginSection("initialize permission explanation card");
 
-                final Drawable historyIcon = VectorDrawableCompat.create(
-                        getResources(), R.drawable.ic_history_24dp, null);
+                final Drawable historyIcon = getResources().getDrawable(
+                        R.drawable.quantum_ic_history_vd_theme_24);
 
                 final Entry permissionExplanationEntry = new Entry(CARD_ENTRY_ID_REQUEST_PERMISSION,
                         historyIcon, getString(R.string.permission_explanation_header),
@@ -2493,7 +2494,7 @@ public class QuickContactActivity extends ContactsActivity {
                         /* isEditable = */ false, /* EntryContextMenuInfo = */ null,
                         /* thirdIcon = */ null, /* thirdIntent = */ null,
                         /* thirdContentDescription = */ null, /* thirdAction = */ Entry.ACTION_NONE,
-                        /* thirdExtras = */ null, R.drawable.ic_history_24dp);
+                        /* thirdExtras = */ null, R.drawable.quantum_ic_history_vd_theme_24);
 
                 final List<List<Entry>> permissionExplanationEntries = new ArrayList<>();
                 permissionExplanationEntries.add(new ArrayList<Entry>());
@@ -2705,10 +2706,10 @@ public class QuickContactActivity extends ContactsActivity {
             editMenuItem.setVisible(true);
             if (DirectoryContactUtil.isDirectoryContact(mContactData) || InvisibleContactUtil
                     .isInvisibleAndAddable(mContactData, this)) {
-                editMenuItem.setIcon(R.drawable.ic_person_add_tinted_24dp);
+                editMenuItem.setIcon(R.drawable.quantum_ic_person_add_vd_theme_24);
                 editMenuItem.setTitle(R.string.menu_add_contact);
             } else if (isContactEditable()) {
-                editMenuItem.setIcon(R.drawable.ic_create_24dp);
+                editMenuItem.setIcon(R.drawable.quantum_ic_create_vd_theme_24);
                 editMenuItem.setTitle(R.string.menu_editContact);
             } else {
                 editMenuItem.setVisible(false);

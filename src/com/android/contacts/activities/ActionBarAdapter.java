@@ -38,6 +38,7 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.SearchView.OnCloseListener;
@@ -152,7 +153,9 @@ public class ActionBarAdapter implements OnCloseListener {
         mSearchView = (EditText) mSearchContainer.findViewById(R.id.search_view);
         mSearchView.setHint(mActivity.getString(mSearchHintResId));
         mSearchView.addTextChangedListener(new SearchTextWatcher());
-        mSearchContainer.findViewById(R.id.search_back_button).setOnClickListener(
+        final ImageButton searchBackButton = (ImageButton) mSearchContainer
+                .findViewById(R.id.search_back_button);
+        searchBackButton.setOnClickListener(
                 new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,6 +164,7 @@ public class ActionBarAdapter implements OnCloseListener {
                 }
             }
         });
+        searchBackButton.getDrawable().setAutoMirrored(true);
 
         mClearSearchView = mSearchContainer.findViewById(R.id.search_close_button);
         mClearSearchView.setOnClickListener(
@@ -331,7 +335,7 @@ public class ActionBarAdapter implements OnCloseListener {
             newFlags |= ActionBar.DISPLAY_SHOW_TITLE;
             mToolbar.setContentInsetsRelative(mMaxToolbarContentInsetStart,
                     mToolbar.getContentInsetEnd());
-            mToolbar.setNavigationIcon(R.drawable.ic_menu_hamburger);
+            mToolbar.setNavigationIcon(R.drawable.quantum_ic_menu_vd_theme_24);
         } else {
             mToolbar.setNavigationIcon(null);
         }

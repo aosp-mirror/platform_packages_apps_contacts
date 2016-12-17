@@ -294,11 +294,11 @@ public class ShortcutIntentBuilder {
             // Make the URI a direct tel: URI so that it will always continue to work
             phoneUri = Uri.fromParts(PhoneAccount.SCHEME_TEL, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
-                    R.drawable.ic_call);
+                    R.drawable.quantum_ic_phone_vd_theme_24);
         } else {
             phoneUri = Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phoneNumber, null);
             bitmap = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
-                    R.drawable.ic_message_24dp_mirrored);
+                    R.drawable.quantum_ic_message_vd_theme_24);
         }
 
         Intent shortcutIntent = new Intent(shortcutAction, phoneUri);

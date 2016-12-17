@@ -127,7 +127,7 @@
                     android:id="@+id/history_button"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_history_white_drawable_24dp"
+                    android:src="@drawable/quantum_ic_history_vd_theme_24"
                     android:tint="@color/call_subject_history_icon"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true" />

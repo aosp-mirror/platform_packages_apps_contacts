@@ -32,7 +32,7 @@
             android:elevation="3dp"
             android:theme="@style/LightToolbarThemeOverlay"
             app:navigationContentDescription="@string/sim_import_cancel_content_description"
-            app:navigationIcon="@drawable/ic_close_24dp"
+            app:navigationIcon="@drawable/quantum_ic_close_vd_theme_24"
             app:title="@string/sim_import_title_none_selected">
 
             <Button
@@ -94,7 +94,7 @@
                 android:minHeight="0dp"
                 android:minWidth="0dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:src="@drawable/quantum_ic_arrow_drop_down_vd_theme_24"
                 android:tint="?android:textColorSecondary"
                 android:visibility="gone"/>
         </LinearLayout>

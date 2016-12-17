@@ -394,7 +394,7 @@ public class ContactListItemView extends ViewGroup
             }
             mVideoCallIcon.setContentDescription(getContext().getString(
                     R.string.description_search_video_call));
-            mVideoCallIcon.setImageResource(R.drawable.ic_search_video_call);
+            mVideoCallIcon.setImageResource(R.drawable.quantum_ic_videocam_vd_theme_24);
             mVideoCallIcon.setScaleType(ScaleType.CENTER);
             mVideoCallIcon.setVisibility(View.VISIBLE);
             mVideoCallIcon.setOnClickListener(new OnClickListener() {
@@ -1031,7 +1031,8 @@ public class ContactListItemView extends ViewGroup
         mHeaderView = new ImageView(getContext());
         final ImageView headerImageView = (ImageView) mHeaderView;
         headerImageView.setImageDrawable(
-                getResources().getDrawable(R.drawable.ic_material_star, getContext().getTheme()));
+                getResources().getDrawable(R.drawable.quantum_ic_star_vd_theme_24,
+                        getContext().getTheme()));
         headerImageView.setImageTintList(ColorStateList.valueOf(getResources()
                 .getColor(R.color.material_star_pink)));
         headerImageView.setContentDescription(
@@ -1338,7 +1339,7 @@ public class ContactListItemView extends ViewGroup
             final int position) {
         if (mDeleteImageButton == null) {
             mDeleteImageButton = new AppCompatImageButton(getContext());
-            mDeleteImageButton.setImageResource(R.drawable.ic_cancel_black_24dp);
+            mDeleteImageButton.setImageResource(R.drawable.quantum_ic_cancel_vd_theme_24);
             mDeleteImageButton.setScaleType(ScaleType.CENTER);
             mDeleteImageButton.setBackgroundColor(Color.TRANSPARENT);
             mDeleteImageButton.setContentDescription(
