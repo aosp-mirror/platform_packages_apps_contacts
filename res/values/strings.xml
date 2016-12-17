@@ -52,6 +52,9 @@
     <!-- Entry that prompts user to select a newly created contact.  [CHAR LIMIT=30] -->
     <string name="header_entry_contact_list_adapter_header_title">Create new contact</string>
 
+    <!-- Hint text in the search box when the user hits the Search key while in the contacts app -->
+    <string name="searchHint">Search contacts</string>
+
     <!-- Menu item used to add a star to a contact, which makes that contact show up at the top of favorites -->
     <string name="menu_addStar">Add to favorites</string>
 
@@ -344,6 +347,9 @@
     <!-- Dialog message when prompting before creating a contact. Includes
          the email address, e.g. "Add xyz@foo.com to contacts?" -->
     <string name="add_contact_dlg_message_fmt">Add \"<xliff:g id="email">%s</xliff:g>\" to contacts?</string>
+
+    <!-- The string used to describe Contacts as a searchable item within system search settings. -->
+    <string name="search_settings_description">Names of your contacts</string>
 
     <!-- Content description for the transparent views around the visible section of QuickContacts.
          Clicking this view causes Quick Contacts to close. [CHAR LIMIT=NONE] -->
