@@ -42,6 +42,7 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
@@ -113,53 +114,33 @@ public class AccountFilterUtil {
     public static class FilterLoader extends ListenableFutureLoader<List<ContactListFilter>> {
         private AccountTypeManager mAccountTypeManager;
         private DeviceLocalAccountTypeFactory mDeviceLocalFactory;
-        private LocalBroadcastManager mLocalBroadcastManager;
-        private BroadcastReceiver mReceiver;
 
         public FilterLoader(Context context) {
-            super(context);
+            super(context, new IntentFilter(AccountTypeManager.BROADCAST_ACCOUNTS_CHANGED));
             mAccountTypeManager = AccountTypeManager.getInstance(context);
             mDeviceLocalFactory = ObjectFactory.getDeviceLocalAccountTypeFactory(context);
-            mLocalBroadcastManager = LocalBroadcastManager.getInstance(context);
         }
 
-        @Override
-        protected void onStartLoading() {
-            super.onStartLoading();
-            if (mReceiver == null) {
-                mReceiver = new ForceLoadReceiver();
-                mLocalBroadcastManager.registerReceiver(mReceiver,
-                        new IntentFilter(AccountTypeManager.BROADCAST_ACCOUNTS_CHANGED));
-            }
-        }
-
-        @Override
-        protected void onReset() {
-            super.onReset();
-            if (mReceiver != null) {
-                mLocalBroadcastManager.unregisterReceiver(mReceiver);
-            }
-        }
 
         @Override
         protected ListenableFuture<List<ContactListFilter>> loadData() {
-            return Futures.transform(mAccountTypeManager.filterAccountsByTypeAsync(
+            return Futures.transform(mAccountTypeManager.filterAccountsAsync(
                     AccountTypeManager.writableFilter()),
-                    new Function<List<AccountWithDataSet>, List<ContactListFilter>>() {
+                    new Function<List<AccountInfo>, List<ContactListFilter>>() {
                         @Override
-                        public List<ContactListFilter> apply(List<AccountWithDataSet> input) {
+                        public List<ContactListFilter> apply(List<AccountInfo> input) {
                             return getFiltersForAccounts(input);
                         }
                     }, ContactsExecutors.getDefaultThreadPoolExecutor());
         }
 
-        private List<ContactListFilter> getFiltersForAccounts(List<AccountWithDataSet> accounts) {
-            final ArrayList<ContactListFilter> accountFilters = Lists.newArrayList();
-            AccountTypeManager.sortAccounts(getDefaultAccount(getContext()), accounts);
+        private List<ContactListFilter> getFiltersForAccounts(List<AccountInfo> accounts) {
+            final ArrayList<ContactListFilter> accountFilters = new ArrayList<>();
+            AccountInfo.sortAccounts(getDefaultAccount(getContext()), accounts);
 
-            for (AccountWithDataSet account : accounts) {
-                final AccountType accountType =
-                        mAccountTypeManager.getAccountType(account.type, account.dataSet);
+            for (AccountInfo accountInfo : accounts) {
+                final AccountType accountType = accountInfo.getType();
+                final AccountWithDataSet account = accountInfo.getAccount();
                 if ((accountType.isExtension() ||
                         DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
                                 mDeviceLocalFactory, account.type)) &&
@@ -178,9 +159,7 @@ public class AccountFilterUtil {
                 }
             }
 
-            final ArrayList<ContactListFilter> result = Lists.newArrayList();
-            result.addAll(accountFilters);
-            return result;
+            return accountFilters;
         }
     }
 

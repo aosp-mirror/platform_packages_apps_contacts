@@ -18,6 +18,7 @@ package com.android.contacts.test.mocks;
 import android.accounts.Account;
 
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.account.AccountWithDataSet;
@@ -70,19 +71,18 @@ public class MockAccountTypeManager extends AccountTypeManager {
     }
 
     @Override
-    public List<AccountWithDataSet> getAccounts(Predicate<AccountWithDataSet> filter) {
-        return Lists.newArrayList(Collections2.filter(Arrays.asList(mAccounts), filter));
+    public ListenableFuture<List<AccountInfo>> getAccountsAsync() {
+        throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
-    public ListenableFuture<List<AccountWithDataSet>> getAllAccountsAsync() {
-        return Futures.immediateFuture(Arrays.asList(mAccounts));
+    public ListenableFuture<List<AccountInfo>> filterAccountsAsync(Predicate<AccountInfo> filter) {
+        throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
-    public ListenableFuture<List<AccountWithDataSet>> filterAccountsByTypeAsync(
-            Predicate<AccountType> type) {
-        return Futures.immediateFuture(Arrays.asList(mAccounts));
+    public AccountInfo getAccountInfoForAccount(AccountWithDataSet account) {
+        throw new UnsupportedOperationException("not implemented");
     }
 
     @Override

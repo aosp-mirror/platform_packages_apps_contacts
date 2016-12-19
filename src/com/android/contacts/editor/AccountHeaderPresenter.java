@@ -26,9 +26,7 @@ import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
 import com.android.contacts.R;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountDisplayInfo;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.UiClosables;
@@ -56,9 +54,8 @@ public class AccountHeaderPresenter {
     }
 
     private final Context mContext;
-    private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
 
-    private List<AccountWithDataSet> mAccounts;
+    private List<AccountInfo> mAccounts;
     private AccountWithDataSet mCurrentAccount;
 
     // Account header
@@ -100,19 +97,18 @@ public class AccountHeaderPresenter {
         updateDisplayedAccount();
     }
 
-    public void setAccounts(List<AccountWithDataSet> accounts) {
+    public void setAccounts(List<AccountInfo> accounts) {
         mAccounts = accounts;
-        mAccountDisplayInfoFactory = new AccountDisplayInfoFactory(mContext, accounts);
         // If the current account was removed just switch to the next one in the list.
-        if (mCurrentAccount != null && !mAccounts.contains(mCurrentAccount)) {
-            mCurrentAccount = mAccounts.isEmpty() ? null : accounts.get(0);
+        if (mCurrentAccount != null && !AccountInfo.contains(mAccounts, mCurrentAccount)) {
+            mCurrentAccount = mAccounts.isEmpty() ? null : accounts.get(0).getAccount();
             mObserver.onChange(this);
         }
         updateDisplayedAccount();
     }
 
     public AccountWithDataSet getCurrentAccount() {
-        return mCurrentAccount;
+        return mCurrentAccount != null ? mCurrentAccount : null;
     }
 
     public void onSaveInstanceState(Bundle outState) {
@@ -132,10 +128,7 @@ public class AccountHeaderPresenter {
         if (mCurrentAccount == null) return;
         if (mAccounts == null) return;
 
-        final AccountDisplayInfo account =
-                mAccountDisplayInfoFactory.getAccountDisplayInfo(mCurrentAccount);
-
-        final String accountLabel = getAccountLabel(account);
+        final String accountLabel = getAccountLabel(mCurrentAccount);
 
         if (mAccounts.size() > 1) {
             addAccountSelector(accountLabel);
@@ -157,10 +150,10 @@ public class AccountHeaderPresenter {
             mAccountHeaderType.setText(selectorTitle);
         }
 
+        final AccountInfo accountInfo = AccountInfo.getAccount(mAccounts, mCurrentAccount);
+
         // Set the icon
-        final AccountDisplayInfo displayInfo = mAccountDisplayInfoFactory
-                .getAccountDisplayInfo(mCurrentAccount);
-        mAccountHeaderIcon.setImageDrawable(displayInfo.getIcon());
+        mAccountHeaderIcon.setImageDrawable(accountInfo.getIcon());
 
         // Set the content description
         mAccountHeaderContainer.setContentDescription(
@@ -217,8 +210,8 @@ public class AccountHeaderPresenter {
         mAccountHeaderContainer.setOnClickListener(listener);
     }
 
-    private String getAccountLabel(AccountDisplayInfo account) {
-        // TODO: if used from editor this would need to be different if editing the user's profile.
-        return account.getNameLabel().toString();
+    private String getAccountLabel(AccountWithDataSet account) {
+        final AccountInfo accountInfo = AccountInfo.getAccount(mAccounts, account);
+        return accountInfo != null ? accountInfo.getNameLabel().toString() : null;
     }
 }

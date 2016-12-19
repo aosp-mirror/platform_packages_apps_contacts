@@ -18,8 +18,10 @@ package com.android.contacts.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.LoaderManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Loader;
 import android.os.Bundle;
 import android.provider.ContactsContract.Intents;
 import android.view.View;
@@ -33,10 +35,13 @@ import android.widget.TextView;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.ImplicitIntentsUtil;
+import com.google.common.util.concurrent.Futures;
 
 import java.util.List;
 
@@ -48,7 +53,8 @@ import java.util.List;
  * the new contact in. If the activity result doesn't contain intent data, then there is no
  * account for this contact.
  */
-public class ContactEditorAccountsChangedActivity extends Activity {
+public class ContactEditorAccountsChangedActivity extends Activity
+        implements LoaderManager.LoaderCallbacks<List<AccountInfo>> {
 
     private static final String TAG = ContactEditorAccountsChangedActivity.class.getSimpleName();
 
@@ -95,10 +101,30 @@ public class ContactEditorAccountsChangedActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mEditorUtils = ContactEditorUtils.create(this);
-        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this).
-                getAccounts(true);
+        getLoaderManager().initLoader(0, null, this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SUBACTIVITY_ADD_NEW_ACCOUNT) {
+            // If the user canceled the account setup process, then keep this activity visible to
+            // the user.
+            if (resultCode != RESULT_OK) {
+                return;
+            }
+            // Subactivity was successful, so pass the result back and finish the activity.
+            AccountWithDataSet account = mEditorUtils.getCreatedAccount(resultCode, data);
+            if (account == null) {
+                setResult(resultCode);
+                finish();
+                return;
+            }
+            saveAccountAndReturnResult(account);
+        }
+    }
+
+    private void updateDisplayedAccounts(List<AccountInfo> accounts) {
         final int numAccounts = accounts.size();
         if (numAccounts < 0) {
             throw new IllegalStateException("Cannot have a negative number of accounts");
@@ -123,7 +149,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
                     AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
             accountListView.setAdapter(mAccountListAdapter);
             accountListView.setOnItemClickListener(mAccountListItemClickListener);
-        } else if (numAccounts == 1 && !accounts.get(0).isNullAccount()) {
+        } else if (numAccounts == 1 && !accounts.get(0).getAccount().isNullAccount()) {
             // If the user has 1 writable account we will just show the user a message with 2
             // possible action buttons.
             view = View.inflate(this,
@@ -133,9 +159,9 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             final Button leftButton = (Button) view.findViewById(R.id.left_button);
             final Button rightButton = (Button) view.findViewById(R.id.right_button);
 
-            final AccountWithDataSet account = accounts.get(0);
+            final AccountInfo accountInfo = accounts.get(0);
             textView.setText(getString(R.string.contact_editor_prompt_one_account,
-                    account.name));
+                    accountInfo.getNameLabel()));
 
             // This button allows the user to add a new account to the device and return to
             // this app afterwards.
@@ -148,7 +174,7 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             rightButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveAccountAndReturnResult(account);
+                    saveAccountAndReturnResult(accountInfo.getAccount());
                 }
             });
         } else {
@@ -183,6 +209,9 @@ public class ContactEditorAccountsChangedActivity extends Activity {
             rightButton.setOnClickListener(mAddAccountClickListener);
         }
 
+        if (mDialog != null && mDialog.isShowing()) {
+            mDialog.dismiss();
+        }
         mDialog = new AlertDialog.Builder(this)
                 .setView(view)
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -195,25 +224,6 @@ public class ContactEditorAccountsChangedActivity extends Activity {
         mDialog.show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == SUBACTIVITY_ADD_NEW_ACCOUNT) {
-            // If the user canceled the account setup process, then keep this activity visible to
-            // the user.
-            if (resultCode != RESULT_OK) {
-                return;
-            }
-            // Subactivity was successful, so pass the result back and finish the activity.
-            AccountWithDataSet account = mEditorUtils.getCreatedAccount(resultCode, data);
-            if (account == null) {
-                setResult(resultCode);
-                finish();
-                return;
-            }
-            saveAccountAndReturnResult(account);
-        }
-    }
-
     private void saveAccountAndReturnResult(AccountWithDataSet account) {
         // Save this as the default account
         mEditorUtils.saveDefaultAccount(account);
@@ -223,5 +233,19 @@ public class ContactEditorAccountsChangedActivity extends Activity {
         intent.putExtra(Intents.Insert.EXTRA_ACCOUNT, account);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    @Override
+    public Loader<List<AccountInfo>> onCreateLoader(int id, Bundle args) {
+        return new AccountsLoader(this, AccountTypeManager.writableFilter());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<AccountInfo>> loader, List<AccountInfo> data) {
+        updateDisplayedAccounts(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<AccountInfo>> loader) {
     }
 }
