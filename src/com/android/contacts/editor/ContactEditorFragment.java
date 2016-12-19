@@ -130,7 +130,7 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_DISABLE_DELETE_MENU_OPTION = "disableDeleteMenuOption";
     private static final String KEY_NEW_LOCAL_PROFILE = "newLocalProfile";
     private static final String KEY_MATERIAL_PALETTE = "materialPalette";
-
+    private static final String KEY_ACCOUNT = "saveToAccount";
     private static final String KEY_VIEW_ID_GENERATOR = "viewidgenerator";
 
     private static final String KEY_RAW_CONTACTS = "rawContacts";
@@ -160,8 +160,6 @@ public class ContactEditorFragment extends Fragment implements
 
     protected static final int REQUEST_CODE_JOIN = 0;
     protected static final int REQUEST_CODE_ACCOUNTS_CHANGED = 1;
-
-    private static final int CURRENT_API_VERSION = android.os.Build.VERSION.SDK_INT;
 
     /**
      * An intent extra that forces the editor to add the edited contact
@@ -473,7 +471,7 @@ public class ContactEditorFragment extends Fragment implements
             mDisableDeleteMenuOption = savedState.getBoolean(KEY_DISABLE_DELETE_MENU_OPTION);
             mNewLocalProfile = savedState.getBoolean(KEY_NEW_LOCAL_PROFILE);
             mMaterialPalette = savedState.getParcelable(KEY_MATERIAL_PALETTE);
-
+            mAccountWithDataSet = savedState.getParcelable(KEY_ACCOUNT);
             mRawContacts = ImmutableList.copyOf(savedState.<RawContact>getParcelableArrayList(
                     KEY_RAW_CONTACTS));
             // NOTE: mGroupMetaData is not saved/restored
@@ -603,7 +601,7 @@ public class ContactEditorFragment extends Fragment implements
         outState.putBoolean(KEY_NEW_CONTACT_READY, mNewContactDataReady);
         outState.putBoolean(KEY_IS_EDIT, mIsEdit);
         outState.putBoolean(KEY_EXISTING_CONTACT_READY, mExistingContactDataReady);
-
+        outState.putParcelable(KEY_ACCOUNT, mAccountWithDataSet);
         outState.putBoolean(KEY_IS_USER_PROFILE, mIsUserProfile);
 
         outState.putBoolean(KEY_ENABLED, mEnabled);
