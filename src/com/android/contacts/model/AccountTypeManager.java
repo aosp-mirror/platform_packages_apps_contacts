@@ -52,6 +52,7 @@ import com.android.contacts.util.concurrent.ContactsExecutors;
 import com.android.contactsbind.experiments.Flags;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Function;
+import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
@@ -333,34 +334,38 @@ public abstract class AccountTypeManager {
 class AccountTypeManagerImpl extends AccountTypeManager
         implements OnAccountsUpdateListener, SyncStatusObserver {
 
-    private Context mContext;
-    private AccountManager mAccountManager;
-    private DeviceLocalAccountLocator mLocalAccountLocator;
+    private final Context mContext;
+    private final AccountManager mAccountManager;
+    private final DeviceLocalAccountLocator mLocalAccountLocator;
+    private final Executor mMainThreadExecutor;
+    private final ListeningExecutorService mExecutor;
     private AccountTypeProvider mTypeProvider;
-    private ListeningExecutorService mExecutor;
-    private Executor mMainThreadExecutor;
 
-    private AccountType mFallbackAccountType;
+    private final AccountType mFallbackAccountType;
 
     private ListenableFuture<List<AccountWithDataSet>> mLocalAccountsFuture;
     private ListenableFuture<AccountTypeProvider> mAccountTypesFuture;
 
-    private FutureCallback<Object> mAccountsUpdateCallback = new FutureCallback<Object>() {
-        @Override
-        public void onSuccess(@Nullable Object result) {
-            onAccountsUpdatedInternal();
-        }
-
-        @Override
-        public void onFailure(Throwable t) {
-        }
-    };
+    private List<AccountWithDataSet> mLocalAccounts = new ArrayList<>();
+    private List<AccountWithDataSet> mAccountManagerAccounts = new ArrayList<>();
 
     private final Handler mMainThreadHandler = new Handler(Looper.getMainLooper());
+
+    private final Function<AccountTypeProvider, List<AccountWithDataSet>> mAccountsExtractor =
+            new Function<AccountTypeProvider, List<AccountWithDataSet>>() {
+                @Nullable
+                @Override
+                public List<AccountWithDataSet> apply(@Nullable AccountTypeProvider typeProvider) {
+                    return getAccountsWithDataSets(mAccountManager.getAccounts(), typeProvider);
+                }
+            };
+
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            // Don't use reloadAccountTypesIfNeeded when packages change in case a contacts.xml
+            // was updated.
             reloadAccountTypes();
         }
     };
@@ -426,15 +431,26 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     @Override
     public void onStatusChanged(int which) {
-        reloadAccountTypes();
+        reloadAccountTypesIfNeeded();
     }
 
     /* This notification will arrive on the UI thread */
     public void onAccountsUpdated(Account[] accounts) {
-        onAccountsUpdatedInternal();
+        maybeNotifyAccountsUpdated(mAccountManagerAccounts,
+                getAccountsWithDataSets(accounts, mTypeProvider));
     }
 
-    private void onAccountsUpdatedInternal() {
+    private void maybeNotifyAccountsUpdated(List<AccountWithDataSet> current,
+            List<AccountWithDataSet> update) {
+        if (Objects.equal(current, update)) {
+            return;
+        }
+        current.clear();
+        current.addAll(update);
+        notifyAccountsChanged();
+    }
+
+    private void notifyAccountsChanged() {
         ContactListFilterController.getInstance(mContext).checkFilterValidity(true);
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(
                 new Intent(BROADCAST_ACCOUNTS_CHANGED));
@@ -442,29 +458,53 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     private synchronized void startLoadingIfNeeded() {
         if (mTypeProvider == null && mAccountTypesFuture == null) {
-            reloadAccountTypes();
+            reloadAccountTypesIfNeeded();
         }
         if (mLocalAccountsFuture == null) {
             reloadLocalAccounts();
         }
     }
 
-    private void loadAccountTypes() {
+    private synchronized void loadAccountTypes() {
         mTypeProvider = new AccountTypeProvider(mContext);
 
         mAccountTypesFuture = mExecutor.submit(new Callable<AccountTypeProvider>() {
             @Override
             public AccountTypeProvider call() throws Exception {
-                // This will request the AccountType for each Account
-                getAccountsFromProvider(mTypeProvider);
+                // This will request the AccountType for each Account forcing them to be loaded
+                getAccountsWithDataSets(mAccountManager.getAccounts(), mTypeProvider);
                 return mTypeProvider;
             }
         });
     }
 
+    private FutureCallback<List<AccountWithDataSet>> newAccountsUpdatedCallback(
+            final List<AccountWithDataSet> currentAccounts) {
+        return new FutureCallback<List<AccountWithDataSet>>() {
+            @Override
+            public void onSuccess(List<AccountWithDataSet> result) {
+                maybeNotifyAccountsUpdated(currentAccounts, result);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+            }
+        };
+    }
+
+    private synchronized void reloadAccountTypesIfNeeded() {
+        if (mTypeProvider == null || mTypeProvider.shouldUpdate(
+                mAccountManager.getAuthenticatorTypes(), ContentResolver.getSyncAdapterTypes())) {
+            reloadAccountTypes();
+        }
+    }
+
     private synchronized void reloadAccountTypes() {
         loadAccountTypes();
-        Futures.addCallback(mAccountTypesFuture, mAccountsUpdateCallback, mMainThreadExecutor);
+        Futures.addCallback(
+                Futures.transform(mAccountTypesFuture, mAccountsExtractor),
+                newAccountsUpdatedCallback(mAccountManagerAccounts),
+                mMainThreadExecutor);
     }
 
     private synchronized void loadLocalAccounts() {
@@ -476,9 +516,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
         });
     }
 
-    private void reloadLocalAccounts() {
+    private synchronized void reloadLocalAccounts() {
         loadLocalAccounts();
-        Futures.addCallback(mLocalAccountsFuture, mAccountsUpdateCallback, mMainThreadExecutor);
+        Futures.addCallback(mLocalAccountsFuture, newAccountsUpdatedCallback(mLocalAccounts),
+                mMainThreadExecutor);
     }
 
     /**
@@ -499,52 +540,44 @@ class AccountTypeManagerImpl extends AccountTypeManager
         return getAllAccountsAsyncInternal();
     }
 
-    private ListenableFuture<List<AccountInfo>> getAllAccountsAsyncInternal() {
+    private synchronized ListenableFuture<List<AccountInfo>> getAllAccountsAsyncInternal() {
         startLoadingIfNeeded();
         final AccountTypeProvider typeProvider = mTypeProvider;
-        final ListenableFuture<List<AccountInfo>> accountsFromTypes =
-                Futures.transform(Futures.nonCancellationPropagating(mAccountTypesFuture),
-                        new Function<AccountTypeProvider, List<AccountInfo>>() {
-                            @Override
-                            public List<AccountInfo> apply(AccountTypeProvider provider) {
-                                return getAccountsFromProvider(provider);
-                            }
-                        });
+        final ListenableFuture<List<List<AccountWithDataSet>>> all =
+                Futures.nonCancellationPropagating(
+                        Futures.successfulAsList(
+                                Futures.transform(mAccountTypesFuture, mAccountsExtractor),
+                                mLocalAccountsFuture));
 
-        final ListenableFuture<List<AccountInfo>> localAccountsInfo =
-                Futures.transform(mLocalAccountsFuture, new Function<List<AccountWithDataSet>,
-                        List<AccountInfo>>() {
-                    @Nullable
-                    @Override
-                    public List<AccountInfo> apply(@Nullable List<AccountWithDataSet> input) {
-                        final List<AccountInfo> result = new ArrayList<>();
-                        for (AccountWithDataSet account : input) {
-                            final AccountType type = typeProvider.getTypeForAccount(account);
-                            result.add(type.wrapAccount(mContext, account));
-                        }
-                        return result;
-                    }
-                });
-
-        final ListenableFuture<List<List<AccountInfo>>> all =
-                Futures.successfulAsList(accountsFromTypes, localAccountsInfo);
-
-        return Futures.transform(all, new Function<List<List<AccountInfo>>,
+        return Futures.transform(all, new Function<List<List<AccountWithDataSet>>,
                 List<AccountInfo>>() {
+            @Nullable
             @Override
-            public List<AccountInfo> apply(List<List<AccountInfo>> input) {
+            public List<AccountInfo> apply(@Nullable List<List<AccountWithDataSet>> input) {
                 // input.get(0) contains accounts from AccountManager
                 // input.get(1) contains device local accounts
                 Preconditions.checkArgument(input.size() == 2,
                         "List should have exactly 2 elements");
 
-                final List<AccountInfo> result = new ArrayList<>(input.get(0));
-                // Check if there is a Google account in this list and if there is exclude the null
-                // account
-                if (hasWritableGoogleAccount(input.get(0))) {
-                    result.addAll(Collections2.filter(input.get(1), nonNullAccountFilter()));
-                } else {
-                    result.addAll(input.get(1));
+                final List<AccountInfo> result = new ArrayList<>();
+                boolean hasWritableGoogleAccount = false;
+                for (AccountWithDataSet account : input.get(0)) {
+                    hasWritableGoogleAccount = hasWritableGoogleAccount ||
+                            (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) &&
+                                    account.dataSet == null);
+
+                    result.add(
+                            typeProvider.getTypeForAccount(account).wrapAccount(mContext, account));
+                }
+
+                for (AccountWithDataSet account : input.get(1)) {
+                    // Exclude the null account if a writable Google account exists because null
+                    // account contacts are automatically converted to Google contacts in this case
+                    if (hasWritableGoogleAccount && account.isNullAccount()) {
+                        continue;
+                    }
+                    result.add(
+                            typeProvider.getTypeForAccount(account).wrapAccount(mContext, account));
                 }
                 AccountInfo.sortAccounts(null, result);
                 return result;
@@ -573,30 +606,17 @@ class AccountTypeManagerImpl extends AccountTypeManager
         return type.wrapAccount(mContext, account);
     }
 
-    private List<AccountInfo> getAccountsFromProvider(AccountTypeProvider typeProvider) {
-        final List<AccountInfo> result = new ArrayList<>();
-        final Account[] accounts = mAccountManager.getAccounts();
+    private List<AccountWithDataSet> getAccountsWithDataSets(Account[] accounts,
+            AccountTypeProvider typeProvider) {
+        List<AccountWithDataSet> result = new ArrayList<>();
         for (Account account : accounts) {
             final List<AccountType> types = typeProvider.getAccountTypes(account.type);
             for (AccountType type : types) {
-                result.add(type.wrapAccount(mContext,
-                        new AccountWithDataSet(account.name, account.type, type.dataSet)));
+                result.add(new AccountWithDataSet(
+                        account.name, account.type, type.dataSet));
             }
         }
         return result;
-    }
-
-    private boolean hasWritableGoogleAccount(List<AccountInfo> accounts) {
-        if (accounts == null) {
-            return false;
-        }
-        for (AccountInfo info : accounts) {
-            AccountWithDataSet account = info.getAccount();
-            if (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) && account.dataSet ==  null) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
