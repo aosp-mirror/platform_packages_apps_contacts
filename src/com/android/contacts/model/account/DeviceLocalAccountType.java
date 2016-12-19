@@ -34,4 +34,13 @@ public class DeviceLocalAccountType extends FallbackAccountType {
     public boolean isGroupMembershipEditable() {
         return mGroupsEditable;
     }
+
+    @Override
+    public AccountInfo wrapAccount(Context context, AccountWithDataSet account) {
+        // Use the "Device" type label for the name as well because on OEM phones the "name" is
+        // not always user-friendly
+        return new AccountInfo(
+                new AccountDisplayInfo(account, getDisplayLabel(context), getDisplayLabel(context),
+                        getDisplayIcon(context), true), this);
+    }
 }

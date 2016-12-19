@@ -47,6 +47,7 @@ import com.android.contacts.editor.AccountHeaderPresenter;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.concurrent.ContactsExecutors;
@@ -258,15 +259,15 @@ public class SimImportFragment extends Fragment
     public void onLoaderReset(Loader<LoaderResult> loader) {
     }
 
-    private void restoreAdapterSelectedStates(List<AccountWithDataSet> accounts) {
+    private void restoreAdapterSelectedStates(List<AccountInfo> accounts) {
         if (mSavedInstanceState == null) {
             return;
         }
 
-        for (AccountWithDataSet account : accounts) {
+        for (AccountInfo account : accounts) {
             final long[] selections = mSavedInstanceState.getLongArray(
-                    account.stringify() + KEY_SUFFIX_SELECTED_IDS);
-            mPerAccountCheckedIds.put(account, selections);
+                    account.getAccount().stringify() + KEY_SUFFIX_SELECTED_IDS);
+            mPerAccountCheckedIds.put(account.getAccount(), selections);
         }
         mSavedInstanceState = null;
     }
@@ -446,10 +447,8 @@ public class SimImportFragment extends Fragment
         private AccountTypeManager mAccountTypeManager;
         private final int mSubscriptionId;
 
-        private BroadcastReceiver mReceiver;
-
         public SimContactLoader(Context context, int subscriptionId) {
-            super(context);
+            super(context, new IntentFilter(AccountTypeManager.BROADCAST_ACCOUNTS_CHANGED));
             mDao = SimContactDao.create(context);
             mAccountTypeManager = AccountTypeManager.getInstance(getContext());
             mSubscriptionId = subscriptionId;
@@ -459,7 +458,7 @@ public class SimImportFragment extends Fragment
         protected ListenableFuture<LoaderResult> loadData() {
             final ListenableFuture<List<Object>> future = Futures.<Object>allAsList(
                     mAccountTypeManager
-                            .filterAccountsByTypeAsync(AccountTypeManager.writableFilter()),
+                            .filterAccountsAsync(AccountTypeManager.writableFilter()),
                     ContactsExecutors.getSimReadExecutor().<Object>submit(
                             new Callable<Object>() {
                         @Override
@@ -470,7 +469,7 @@ public class SimImportFragment extends Fragment
             return Futures.transform(future, new Function<List<Object>, LoaderResult>() {
                 @Override
                 public LoaderResult apply(List<Object> input) {
-                    final List<AccountWithDataSet> accounts = (List<AccountWithDataSet>) input.get(0);
+                    final List<AccountInfo> accounts = (List<AccountInfo>) input.get(0);
                     final LoaderResult simLoadResult = (LoaderResult) input.get(1);
                     simLoadResult.accounts = accounts;
                     return simLoadResult;
@@ -490,26 +489,10 @@ public class SimImportFragment extends Fragment
             result.accountsMap = mDao.findAccountsOfExistingSimContacts(result.contacts);
             return result;
         }
-
-        @Override
-        protected void onStartLoading() {
-            super.onStartLoading();
-            if (mReceiver == null) {
-                mReceiver = new ForceLoadReceiver();
-                LocalBroadcastManager.getInstance(getContext()).registerReceiver(mReceiver,
-                        new IntentFilter(AccountTypeManager.BROADCAST_ACCOUNTS_CHANGED));
-            }
-        }
-
-        @Override
-        protected void onReset() {
-            super.onReset();
-            LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mReceiver);
-        }
     }
 
     public static class LoaderResult {
-        public List<AccountWithDataSet> accounts;
+        public List<AccountInfo> accounts;
         public ArrayList<SimContact> contacts;
         public Map<AccountWithDataSet, Set<SimContact>> accountsMap;
     }

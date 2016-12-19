@@ -31,7 +31,9 @@ import android.widget.EditText;
 import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
 
+import com.google.common.base.Preconditions;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -180,6 +182,21 @@ public abstract class AccountType {
     public CharSequence getDisplayLabel(Context context) {
         // Note this resource is defined in the sync adapter package, not resourcePackageName.
         return getResourceText(context, syncAdapterPackageName, titleRes, accountType);
+    }
+
+    /**
+     * Creates an {@link AccountInfo} for the specified account with the same type
+     *
+     * <p>The {@link AccountWithDataSet#type} must match {@link #accountType} of this instance</p>
+     */
+    public AccountInfo wrapAccount(Context context, AccountWithDataSet account) {
+        Preconditions.checkArgument(Objects.equal(account.type, accountType),
+                "Account types must match: account.type=%s but accountType=%s",
+                account.type, accountType);
+
+        return new AccountInfo(
+                new AccountDisplayInfo(account, account.name,
+                        getDisplayLabel(context), getDisplayIcon(context), false), this);
     }
 
     /**

@@ -23,13 +23,13 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.app.ProgressDialog;
-import android.content.AsyncTaskLoader;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
@@ -59,22 +59,26 @@ import android.widget.TextView;
 import com.android.contacts.R;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.ValuesDelta;
-import com.android.contacts.model.account.AccountDisplayInfo;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
-import com.android.contacts.model.account.AccountType;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.util.EmptyService;
 import com.android.contacts.util.LocalizedNameResolver;
 import com.android.contacts.util.WeakAsyncTask;
-
+import com.android.contacts.util.concurrent.ContactsExecutors;
+import com.android.contacts.util.concurrent.ListenableFutureLoader;
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Shows a list of all available {@link Groups} available, letting the user
@@ -128,38 +132,38 @@ public class CustomContactListFilterActivity extends Activity implements
         }
     }
 
-    public static class CustomFilterConfigurationLoader extends AsyncTaskLoader<AccountSet> {
+    public static class CustomFilterConfigurationLoader extends ListenableFutureLoader<AccountSet> {
 
-        private AccountSet mAccountSet;
+        private AccountTypeManager mAccountTypeManager;
 
         public CustomFilterConfigurationLoader(Context context) {
-            super(context);
+            super(context, new IntentFilter(AccountTypeManager.BROADCAST_ACCOUNTS_CHANGED));
+            mAccountTypeManager = AccountTypeManager.getInstance(context);
         }
 
         @Override
-        public AccountSet loadInBackground() {
-            Context context = getContext();
-            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(context);
+        public ListenableFuture<AccountSet> loadData() {
+            return Futures.transform(mAccountTypeManager.getAccountsAsync(),
+                    new Function<List<AccountInfo>, AccountSet>() {
+                @Nullable
+                @Override
+                public AccountSet apply(@Nullable List<AccountInfo> input) {
+                    return createAccountSet(input);
+                }
+            }, ContactsExecutors.getDefaultThreadPoolExecutor());
+        }
+
+        private AccountSet createAccountSet(List<AccountInfo> sourceAccounts) {
+            final Context context = getContext();
             final ContentResolver resolver = context.getContentResolver();
 
             final AccountSet accounts = new AccountSet();
 
             // Don't include the null account because it doesn't support writing to
             // ContactsContract.Settings
-            final List<AccountWithDataSet> sourceAccounts = accountTypes.getAccounts(
-                    AccountTypeManager.nonNullAccountFilter());
-            final AccountDisplayInfoFactory displayableAccountFactory =
-                    new AccountDisplayInfoFactory(context, sourceAccounts);
-            for (AccountWithDataSet account : sourceAccounts) {
-                final AccountType accountType = accountTypes.getAccountTypeForAccount(account);
-                if (accountType.isExtension() && !account.hasData(context)) {
-                    // Extension with no data -- skip.
-                    continue;
-                }
-
-                AccountDisplay accountDisplay =
-                        new AccountDisplay(resolver, account.name, account.type, account.dataSet,
-                                displayableAccountFactory.getAccountDisplayInfo(account));
+            for (AccountInfo info : sourceAccounts) {
+                final AccountWithDataSet account = info.getAccount();
+                final AccountDisplay accountDisplay = new AccountDisplay(resolver, info);
 
                 final Uri.Builder groupsUri = Groups.CONTENT_URI.buildUpon()
                         .appendQueryParameter(Groups.ACCOUNT_NAME, account.name)
@@ -196,41 +200,6 @@ public class CustomContactListFilterActivity extends Activity implements
             }
 
             return accounts;
-        }
-
-        @Override
-        public void deliverResult(AccountSet cursor) {
-            if (isReset()) {
-                return;
-            }
-
-            mAccountSet = cursor;
-
-            if (isStarted()) {
-                super.deliverResult(cursor);
-            }
-        }
-
-        @Override
-        protected void onStartLoading() {
-            if (mAccountSet != null) {
-                deliverResult(mAccountSet);
-            }
-            if (takeContentChanged() || mAccountSet == null) {
-                forceLoad();
-            }
-        }
-
-        @Override
-        protected void onStopLoading() {
-            cancelLoad();
-        }
-
-        @Override
-        protected void onReset() {
-            super.onReset();
-            onStopLoading();
-            mAccountSet = null;
         }
     }
 
@@ -479,7 +448,7 @@ public class CustomContactListFilterActivity extends Activity implements
         public final String mName;
         public final String mType;
         public final String mDataSet;
-        public final AccountDisplayInfo mAccountDisplayInfo;
+        public final AccountInfo mAccountInfo;
 
         public GroupDelta mUngrouped;
         public ArrayList<GroupDelta> mSyncedGroups = Lists.newArrayList();
@@ -497,12 +466,11 @@ public class CustomContactListFilterActivity extends Activity implements
          * Build an {@link AccountDisplay} covering all {@link Groups} under the
          * given {@link AccountWithDataSet}.
          */
-        public AccountDisplay(ContentResolver resolver, String accountName, String accountType,
-                String dataSet, AccountDisplayInfo displayableInfo) {
-            mName = accountName;
-            mType = accountType;
-            mDataSet = dataSet;
-            mAccountDisplayInfo = displayableInfo;
+        public AccountDisplay(ContentResolver resolver, AccountInfo accountInfo) {
+            mName = accountInfo.getAccount().name;
+            mType = accountInfo.getAccount().type;
+            mDataSet = accountInfo.getAccount().dataSet;
+            mAccountInfo = accountInfo;
         }
 
         /**
@@ -616,11 +584,11 @@ public class CustomContactListFilterActivity extends Activity implements
 
             final AccountDisplay account = (AccountDisplay)this.getGroup(groupPosition);
 
-            text1.setText(account.mAccountDisplayInfo.getNameLabel());
-            text1.setVisibility(!account.mAccountDisplayInfo.isDeviceAccount()
-                    || account.mAccountDisplayInfo.hasDistinctName()
+            text1.setText(account.mAccountInfo.getNameLabel());
+            text1.setVisibility(!account.mAccountInfo.isDeviceAccount()
+                    || account.mAccountInfo.hasDistinctName()
                     ? View.VISIBLE : View.GONE);
-            text2.setText(account.mAccountDisplayInfo.getTypeLabel());
+            text2.setText(account.mAccountInfo.getTypeLabel());
 
             final int textColor = mContext.getResources().getColor(isExpanded
                     ? R.color.dialtacts_theme_color

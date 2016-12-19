@@ -18,7 +18,9 @@ package com.android.contacts.util.concurrent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.Loader;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.common.util.concurrent.FutureCallback;
@@ -38,9 +40,14 @@ import java.util.concurrent.Executor;
 public abstract class ListenableFutureLoader<D> extends Loader<D> {
     private static final String TAG = "FutureLoader";
 
+    private final IntentFilter mReloadFilter;
+    private final Executor mUiExecutor;
+    private final LocalBroadcastManager mLocalBroadcastManager;
+
     private ListenableFuture<D> mFuture;
     private D mLoadedData;
-    private Executor mUiExecutor;
+
+    private BroadcastReceiver mReceiver;
 
     /**
      * Stores away the application context associated with context.
@@ -53,12 +60,23 @@ public abstract class ListenableFutureLoader<D> extends Loader<D> {
      * @param context used to retrieve the application context.
      */
     public ListenableFutureLoader(Context context) {
+        this(context, null);
+    }
+
+    public ListenableFutureLoader(Context context, IntentFilter reloadBroadcastFilter) {
         super(context);
         mUiExecutor = ContactsExecutors.newUiThreadExecutor();
+        mReloadFilter = reloadBroadcastFilter;
+        mLocalBroadcastManager = LocalBroadcastManager.getInstance(context);
     }
 
     @Override
     protected void onStartLoading() {
+        if (mReloadFilter != null && mReceiver == null) {
+            mReceiver = new ForceLoadReceiver();
+            mLocalBroadcastManager.registerReceiver(mReceiver, mReloadFilter);
+        }
+
         if (mLoadedData != null) {
             deliverResult(mLoadedData);
         }
@@ -105,6 +123,9 @@ public abstract class ListenableFutureLoader<D> extends Loader<D> {
     protected void onReset() {
         mFuture = null;
         mLoadedData = null;
+        if (mReceiver != null) {
+            mLocalBroadcastManager.unregisterReceiver(mReceiver);
+        }
     }
 
     protected abstract ListenableFuture<D> loadData();
