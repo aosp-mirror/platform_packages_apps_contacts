@@ -1222,8 +1222,11 @@ public class ContactEditorFragment extends Fragment implements
                 .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
         final ValuesDelta readNameDelta = readOnly
                 .getSuperPrimaryEntry(StructuredName.CONTENT_ITEM_TYPE);
-        writeNameDelta.copyStructuredNameFieldsFrom(readNameDelta);
         mCopyReadOnlyName = false;
+        if (writeNameDelta == null || readNameDelta == null) {
+            return;
+        }
+        writeNameDelta.copyStructuredNameFieldsFrom(readNameDelta);
     }
 
     /**
