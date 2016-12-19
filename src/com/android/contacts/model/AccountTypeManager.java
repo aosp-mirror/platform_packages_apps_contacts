@@ -429,7 +429,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         reloadAccountTypes();
     }
 
-    /* This notification will arrive on the background thread */
+    /* This notification will arrive on the UI thread */
     public void onAccountsUpdated(Account[] accounts) {
         onAccountsUpdatedInternal();
     }

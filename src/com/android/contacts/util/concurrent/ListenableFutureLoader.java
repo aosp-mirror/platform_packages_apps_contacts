@@ -94,8 +94,10 @@ public abstract class ListenableFutureLoader<D> extends Loader<D> {
         Futures.addCallback(mFuture, new FutureCallback<D>() {
             @Override
             public void onSuccess(D result) {
+                if (mLoadedData == null || !isSameData(mLoadedData, result)) {
+                    deliverResult(result);
+                }
                 mLoadedData = result;
-                deliverResult(mLoadedData);
                 commitContentChanged();
             }
 
@@ -129,6 +131,21 @@ public abstract class ListenableFutureLoader<D> extends Loader<D> {
     }
 
     protected abstract ListenableFuture<D> loadData();
+
+    /**
+     * Returns whether the newly loaded data is the same as the cached value
+     *
+     * <p>This allows subclasses to suppress delivering results when the data hasn't
+     * actually changed. By default it will always return false.
+     * </p>
+     */
+    protected boolean isSameData(D previousData, D newData) {
+        return false;
+    }
+
+    public final D getLoadedData() {
+        return mLoadedData;
+    }
 
     public class ForceLoadReceiver extends BroadcastReceiver {
         @Override
