@@ -89,9 +89,15 @@ public class SimContactDaoImpl extends SimContactDao {
     private final TelephonyManager mTelephonyManager;
 
     public SimContactDaoImpl(Context context) {
+        this(context, context.getContentResolver(),
+                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE));
+    }
+
+    public SimContactDaoImpl(Context context, ContentResolver resolver,
+            TelephonyManager telephonyManager) {
         mContext = context;
-        mResolver = context.getContentResolver();
-        mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        mResolver = resolver;
+        mTelephonyManager = telephonyManager;
     }
 
     public Context getContext() {
