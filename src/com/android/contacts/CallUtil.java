@@ -116,13 +116,6 @@ public class CallUtil {
     }
 
     /**
-     * @return Uri that directly dials a user's voicemail inbox.
-     */
-    public static Uri getVoicemailUri() {
-        return Uri.fromParts(PhoneAccount.SCHEME_VOICEMAIL, "", null);
-    }
-
-    /**
      * Determines if video calling is available, and if so whether presence checking is available
      * as well.
      *
@@ -166,20 +159,9 @@ public class CallUtil {
             return VIDEO_CALLING_DISABLED;
         } catch (SecurityException e) {
             FeedbackHelper.sendFeedback(context, TAG,
-                    "Security exception when querying intent activities", e);
+                    "Security exception when getting call capable phone accounts", e);
             return VIDEO_CALLING_DISABLED;
         }
-    }
-
-    /**
-     * Determines if one of the call capable phone accounts defined supports video calling.
-     *
-     * @param context The context.
-     * @return {@code true} if one of the call capable phone accounts supports video calling,
-     *      {@code false} otherwise.
-     */
-    public static boolean isVideoEnabled(Context context) {
-        return (getVideoCallingAvailability(context) & VIDEO_CALLING_ENABLED) != 0;
     }
 
     /**
@@ -201,13 +183,20 @@ public class CallUtil {
             return false;
         }
 
-        List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
-        for (PhoneAccountHandle accountHandle : accountHandles) {
-            PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
-            if (account != null && account.hasCapabilities(PhoneAccount.CAPABILITY_CALL_SUBJECT)) {
-                return true;
+        try {
+            List<PhoneAccountHandle> accountHandles = telecommMgr.getCallCapablePhoneAccounts();
+            for (PhoneAccountHandle accountHandle : accountHandles) {
+                PhoneAccount account = telecommMgr.getPhoneAccount(accountHandle);
+                if (account != null && account.hasCapabilities(PhoneAccount.CAPABILITY_CALL_SUBJECT)) {
+                    return true;
+                }
             }
+            return false;
+        } catch (SecurityException e) {
+            FeedbackHelper.sendFeedback(context, TAG,
+                    "Security exception when getting call capable phone accounts", e);
+            return false;
         }
-        return false;
+
     }
 }
