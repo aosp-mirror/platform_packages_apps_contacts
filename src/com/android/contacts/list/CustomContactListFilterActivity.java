@@ -934,15 +934,14 @@ public class CustomContactListFilterActivity extends Activity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                confirmFinish();
-                return true;
-            case R.id.menu_save:
-                this.doSaveAction();
-                return true;
-            default:
-                break;
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            confirmFinish();
+            return true;
+        } else if (id == R.id.menu_save) {
+            this.doSaveAction();
+            return true;
+        } else {
         }
         return super.onOptionsItemSelected(item);
     }

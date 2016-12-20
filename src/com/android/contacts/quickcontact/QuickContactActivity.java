@@ -2757,137 +2757,128 @@ public class QuickContactActivity extends ContactsActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_star:
-                // Make sure there is a contact
-                if (mContactData != null) {
-                    // Read the current starred value from the UI instead of using the last
-                    // loaded state. This allows rapid tapping without writing the same
-                    // value several times
-                    final boolean isStarred = item.isChecked();
-                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                            isStarred ? ActionType.UNSTAR : ActionType.STAR,
+        final int id = item.getItemId();
+        if (id == R.id.menu_star) {// Make sure there is a contact
+            if (mContactData != null) {
+                // Read the current starred value from the UI instead of using the last
+                // loaded state. This allows rapid tapping without writing the same
+                // value several times
+                final boolean isStarred = item.isChecked();
+                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                        isStarred ? ActionType.UNSTAR : ActionType.STAR,
                             /* thirdPartyAction */ null);
-                    toggleStar(item, isStarred);
-                }
-                return true;
-            case R.id.menu_edit:
-                if (DirectoryContactUtil.isDirectoryContact(mContactData)) {
-                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                            ActionType.ADD, /* thirdPartyAction */ null);
-
-                    // This action is used to launch the contact selector, with the option of
-                    // creating a new contact. Creating a new contact is an INSERT, while selecting
-                    // an exisiting one is an edit. The fields in the edit screen will be
-                    // prepopulated with data.
-
-                    final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                    intent.setType(Contacts.CONTENT_ITEM_TYPE);
-
-                    ArrayList<ContentValues> values = mContactData.getContentValues();
-
-                    // Only pre-fill the name field if the provided display name is an nickname
-                    // or better (e.g. structured name, nickname)
-                    if (mContactData.getDisplayNameSource() >= DisplayNameSources.NICKNAME) {
-                        intent.putExtra(Intents.Insert.NAME, mContactData.getDisplayName());
-                    } else if (mContactData.getDisplayNameSource()
-                            == DisplayNameSources.ORGANIZATION) {
-                        // This is probably an organization. Instead of copying the organization
-                        // name into a name entry, copy it into the organization entry. This
-                        // way we will still consider the contact an organization.
-                        final ContentValues organization = new ContentValues();
-                        organization.put(Organization.COMPANY, mContactData.getDisplayName());
-                        organization.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
-                        values.add(organization);
-                    }
-
-                    // Last time used and times used are aggregated values from the usage stat
-                    // table. They need to be removed from data values so the SQL table can insert
-                    // properly
-                    for (ContentValues value : values) {
-                        value.remove(Data.LAST_TIME_USED);
-                        value.remove(Data.TIMES_USED);
-                    }
-                    intent.putExtra(Intents.Insert.DATA, values);
-
-                    // If the contact can only export to the same account, add it to the intent.
-                    // Otherwise the ContactEditorFragment will show a dialog for selecting
-                    // an account.
-                    if (mContactData.getDirectoryExportSupport() ==
-                            Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
-                        intent.putExtra(Intents.Insert.EXTRA_ACCOUNT,
-                                new Account(mContactData.getDirectoryAccountName(),
-                                        mContactData.getDirectoryAccountType()));
-                        intent.putExtra(Intents.Insert.EXTRA_DATA_SET,
-                                mContactData.getRawContacts().get(0).getDataSet());
-                    }
-
-                    // Add this flag to disable the delete menu option on directory contact joins
-                    // with local contacts. The delete option is ambiguous when joining contacts.
-                    intent.putExtra(
-                            ContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
-                            true);
-
-                    intent.setPackage(getPackageName());
-                    startActivityForResult(intent, REQUEST_CODE_CONTACT_SELECTION_ACTIVITY);
-                } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
-                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                            ActionType.ADD, /* thirdPartyAction */ null);
-                    InvisibleContactUtil.addToDefaultGroup(mContactData, this);
-                } else if (isContactEditable()) {
-                    Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                            ActionType.EDIT, /* thirdPartyAction */ null);
-                    editContact();
-                }
-                return true;
-            case R.id.menu_join:
-                return doJoinContactAction();
-            case R.id.menu_linked_contacts:
-                return showRawContactPickerDialog();
-            case R.id.menu_delete:
+                toggleStar(item, isStarred);
+            }
+        } else if (id == R.id.menu_edit) {
+            if (DirectoryContactUtil.isDirectoryContact(mContactData)) {
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                        ActionType.REMOVE, /* thirdPartyAction */ null);
-                if (isContactEditable()) {
-                    deleteContact();
+                        ActionType.ADD, /* thirdPartyAction */ null);
+
+                // This action is used to launch the contact selector, with the option of
+                // creating a new contact. Creating a new contact is an INSERT, while selecting
+                // an exisiting one is an edit. The fields in the edit screen will be
+                // prepopulated with data.
+
+                final Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                intent.setType(Contacts.CONTENT_ITEM_TYPE);
+
+                ArrayList<ContentValues> values = mContactData.getContentValues();
+
+                // Only pre-fill the name field if the provided display name is an nickname
+                // or better (e.g. structured name, nickname)
+                if (mContactData.getDisplayNameSource() >= DisplayNameSources.NICKNAME) {
+                    intent.putExtra(Intents.Insert.NAME, mContactData.getDisplayName());
+                } else if (mContactData.getDisplayNameSource()
+                        == DisplayNameSources.ORGANIZATION) {
+                    // This is probably an organization. Instead of copying the organization
+                    // name into a name entry, copy it into the organization entry. This
+                    // way we will still consider the contact an organization.
+                    final ContentValues organization = new ContentValues();
+                    organization.put(Organization.COMPANY, mContactData.getDisplayName());
+                    organization.put(Data.MIMETYPE, Organization.CONTENT_ITEM_TYPE);
+                    values.add(organization);
                 }
-                return true;
-            case R.id.menu_share:
-                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                        ActionType.SHARE, /* thirdPartyAction */ null);
-                if (isContactShareable()) {
-                    shareContact();
+
+                // Last time used and times used are aggregated values from the usage stat
+                // table. They need to be removed from data values so the SQL table can insert
+                // properly
+                for (ContentValues value : values) {
+                    value.remove(Data.LAST_TIME_USED);
+                    value.remove(Data.TIMES_USED);
                 }
-                return true;
-            case R.id.menu_create_contact_shortcut:
-                Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                        ActionType.SHORTCUT, /* thirdPartyAction */ null);
-                if (isShortcutCreatable()) {
-                    createLauncherShortcutWithContact();
+                intent.putExtra(Intents.Insert.DATA, values);
+
+                // If the contact can only export to the same account, add it to the intent.
+                // Otherwise the ContactEditorFragment will show a dialog for selecting
+                // an account.
+                if (mContactData.getDirectoryExportSupport() ==
+                        Directory.EXPORT_SUPPORT_SAME_ACCOUNT_ONLY) {
+                    intent.putExtra(Intents.Insert.EXTRA_ACCOUNT,
+                            new Account(mContactData.getDirectoryAccountName(),
+                                    mContactData.getDirectoryAccountType()));
+                    intent.putExtra(Intents.Insert.EXTRA_DATA_SET,
+                            mContactData.getRawContacts().get(0).getDataSet());
                 }
-                return true;
-            case R.id.menu_set_ringtone:
-                doPickRingtone();
-                return true;
-            case R.id.menu_send_to_voicemail:
-                // Update state and save
-                mSendToVoicemailState = !mSendToVoicemailState;
-                item.setTitle(mSendToVoicemailState
-                        ? R.string.menu_unredirect_calls_to_vm
-                        : R.string.menu_redirect_calls_to_vm);
-                final Intent intent = ContactSaveService.createSetSendToVoicemail(
-                        this, mLookupUri, mSendToVoicemailState);
-                this.startService(intent);
-                return true;
-            case R.id.menu_help:
+
+                // Add this flag to disable the delete menu option on directory contact joins
+                // with local contacts. The delete option is ambiguous when joining contacts.
+                intent.putExtra(
+                        ContactEditorFragment.INTENT_EXTRA_DISABLE_DELETE_MENU_OPTION,
+                        true);
+
+                intent.setPackage(getPackageName());
+                startActivityForResult(intent, REQUEST_CODE_CONTACT_SELECTION_ACTIVITY);
+            } else if (InvisibleContactUtil.isInvisibleAndAddable(mContactData, this)) {
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                        ActionType.HELP, /* thirdPartyAction */ null);
-                HelpUtils.launchHelpAndFeedbackForContactScreen(this);
-                return true;
-            default:
+                        ActionType.ADD, /* thirdPartyAction */ null);
+                InvisibleContactUtil.addToDefaultGroup(mContactData, this);
+            } else if (isContactEditable()) {
                 Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
-                        ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
-                return super.onOptionsItemSelected(item);
+                        ActionType.EDIT, /* thirdPartyAction */ null);
+                editContact();
+            }
+        } else if (id == R.id.menu_join) {
+            return doJoinContactAction();
+        } else if (id == R.id.menu_linked_contacts) {
+            return showRawContactPickerDialog();
+        } else if (id == R.id.menu_delete) {
+            Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                    ActionType.REMOVE, /* thirdPartyAction */ null);
+            if (isContactEditable()) {
+                deleteContact();
+            }
+        } else if (id == R.id.menu_share) {
+            Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                    ActionType.SHARE, /* thirdPartyAction */ null);
+            if (isContactShareable()) {
+                shareContact();
+            }
+        } else if (id == R.id.menu_create_contact_shortcut) {
+            Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                    ActionType.SHORTCUT, /* thirdPartyAction */ null);
+            if (isShortcutCreatable()) {
+                createLauncherShortcutWithContact();
+            }
+        } else if (id == R.id.menu_set_ringtone) {
+            doPickRingtone();
+        } else if (id == R.id.menu_send_to_voicemail) {// Update state and save
+            mSendToVoicemailState = !mSendToVoicemailState;
+            item.setTitle(mSendToVoicemailState
+                    ? R.string.menu_unredirect_calls_to_vm
+                    : R.string.menu_redirect_calls_to_vm);
+            final Intent intent = ContactSaveService.createSetSendToVoicemail(
+                    this, mLookupUri, mSendToVoicemailState);
+            this.startService(intent);
+        } else if (id == R.id.menu_help) {
+            Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                    ActionType.HELP, /* thirdPartyAction */ null);
+            HelpUtils.launchHelpAndFeedbackForContactScreen(this);
+        } else {
+            Logger.logQuickContactEvent(mReferrer, mContactType, CardType.UNKNOWN_CARD,
+                    ActionType.UNKNOWN_ACTION, /* thirdPartyAction */ null);
+            return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
     private boolean showRawContactPickerDialog() {

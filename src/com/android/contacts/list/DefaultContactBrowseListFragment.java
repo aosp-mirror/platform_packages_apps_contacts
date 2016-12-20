@@ -1014,43 +1014,36 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
             return false;
         }
 
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                // The home icon on the action bar is pressed
-                if (mActionBarAdapter.isUpShowing()) {
-                    // "UP" icon press -- should be treated as "back".
-                    mActivity.onBackPressed();
-                }
-                return true;
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            if (mActionBarAdapter.isUpShowing()) {
+                // "UP" icon press -- should be treated as "back".
+                mActivity.onBackPressed();
             }
-            case R.id.menu_search: {
-                if (!mActionBarAdapter.isSelectionMode()) {
-                    mActionBarAdapter.setSearchMode(true);
-                }
-                return true;
+            return true;
+        } else if (id == R.id.menu_search) {
+            if (!mActionBarAdapter.isSelectionMode()) {
+                mActionBarAdapter.setSearchMode(true);
             }
-            case R.id.menu_share: {
-                shareSelectedContacts();
-                return true;
-            }
-            case R.id.menu_join: {
-                Logger.logListEvent(ListEvent.ActionType.LINK,
+            return true;
+        } else if (id == R.id.menu_share) {
+            shareSelectedContacts();
+            return true;
+        } else if (id == R.id.menu_join) {
+            Logger.logListEvent(ListEvent.ActionType.LINK,
                         /* listType */ getListTypeIncludingSearch(),
                         /* count */ getAdapter().getCount(), /* clickedIndex */ -1,
                         /* numSelected */ getAdapter().getSelectedContactIds().size());
-                joinSelectedContacts();
-                return true;
-            }
-            case R.id.menu_delete: {
-                deleteSelectedContacts();
-                return true;
-            }
-            case R.id.export_database: {
-                final Intent intent = new Intent("com.android.providers.contacts.DUMP_DATABASE");
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                ImplicitIntentsUtil.startActivityOutsideApp(getContext(), intent);
-                return true;
-            }
+            joinSelectedContacts();
+            return true;
+        } else if (id == R.id.menu_delete) {
+            deleteSelectedContacts();
+            return true;
+        } else if (id == R.id.export_database) {
+            final Intent intent = new Intent("com.android.providers.contacts.DUMP_DATABASE");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            ImplicitIntentsUtil.startActivityOutsideApp(getContext(), intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

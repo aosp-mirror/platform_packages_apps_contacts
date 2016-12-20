@@ -784,19 +784,19 @@ public class ContactEditorFragment extends Fragment implements
             return true;
         }
 
-        switch (item.getItemId()) {
-            case R.id.menu_save:
-                return save(SaveMode.CLOSE);
-            case R.id.menu_delete:
-                if (mListener != null) mListener.onDeleteRequested(mLookupUri);
-                return true;
-            case R.id.menu_split:
-                return doSplitContactAction();
-            case R.id.menu_join:
-                return doJoinContactAction();
-            case R.id.menu_help:
-                HelpUtils.launchHelpAndFeedbackForContactScreen(getActivity());
-                return true;
+        final int id = item.getItemId();
+        if (id == R.id.menu_save) {
+            return save(SaveMode.CLOSE);
+        } else if (id == R.id.menu_delete) {
+            if (mListener != null) mListener.onDeleteRequested(mLookupUri);
+            return true;
+        } else if (id == R.id.menu_split) {
+            return doSplitContactAction();
+        } else if (id == R.id.menu_join) {
+            return doJoinContactAction();
+        } else if (id == R.id.menu_help) {
+            HelpUtils.launchHelpAndFeedbackForContactScreen(getActivity());
+            return true;
         }
 
         return false;

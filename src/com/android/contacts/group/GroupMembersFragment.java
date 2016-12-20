@@ -461,57 +461,43 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                mActivity.onBackPressed();
-                return true;
-            }
-            case R.id.menu_add: {
-                startGroupAddMemberActivity();
-                return true;
-            }
-            case R.id.menu_multi_send_email: {
-                final long[] ids = mActionBarAdapter.isSelectionMode()
-                        ? getAdapter().getSelectedContactIdsArray()
-                        : GroupUtil.convertStringSetToLongArray(mGroupMemberContactIds);
-                sendToGroup(ids, ContactsUtils.SCHEME_MAILTO,
-                        getString(R.string.menu_sendEmailOption));
-                return true;
-            }
-            case R.id.menu_multi_send_message: {
-                final long[] ids = mActionBarAdapter.isSelectionMode()
-                        ? getAdapter().getSelectedContactIdsArray()
-                        : GroupUtil.convertStringSetToLongArray(mGroupMemberContactIds);
-                sendToGroup(ids, ContactsUtils.SCHEME_SMSTO,
-                        getString(R.string.menu_sendMessageOption));
-                return true;
-            }
-            case R.id.menu_rename_group: {
-                GroupNameEditDialogFragment.newInstanceForUpdate(
-                        new AccountWithDataSet(mGroupMetaData.accountName,
-                                mGroupMetaData.accountType, mGroupMetaData.dataSet),
-                        GroupUtil.ACTION_UPDATE_GROUP, mGroupMetaData.groupId,
-                        mGroupMetaData.groupName).show(getFragmentManager(),
-                        TAG_GROUP_NAME_EDIT_DIALOG);
-                return true;
-            }
-            case R.id.menu_delete_group: {
-                deleteGroup();
-                return true;
-            }
-            case R.id.menu_edit_group: {
-                mIsEditMode = true;
-                mActionBarAdapter.setSelectionMode(true);
-                displayDeleteButtons(true);
-                return true;
-            }
-            case R.id.menu_remove_from_group: {
-                logListEvent();
-                removeSelectedContacts();
-                return true;
-            }
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            mActivity.onBackPressed();
+        } else if (id == R.id.menu_add) {
+            startGroupAddMemberActivity();
+        } else if (id == R.id.menu_multi_send_email) {
+            final long[] ids = mActionBarAdapter.isSelectionMode()
+                    ? getAdapter().getSelectedContactIdsArray()
+                    : GroupUtil.convertStringSetToLongArray(mGroupMemberContactIds);
+            sendToGroup(ids, ContactsUtils.SCHEME_MAILTO,
+                    getString(R.string.menu_sendEmailOption));
+        } else if (id == R.id.menu_multi_send_message) {
+            final long[] ids = mActionBarAdapter.isSelectionMode()
+                    ? getAdapter().getSelectedContactIdsArray()
+                    : GroupUtil.convertStringSetToLongArray(mGroupMemberContactIds);
+            sendToGroup(ids, ContactsUtils.SCHEME_SMSTO,
+                    getString(R.string.menu_sendMessageOption));
+        } else if (id == R.id.menu_rename_group) {
+            GroupNameEditDialogFragment.newInstanceForUpdate(
+                    new AccountWithDataSet(mGroupMetaData.accountName,
+                            mGroupMetaData.accountType, mGroupMetaData.dataSet),
+                    GroupUtil.ACTION_UPDATE_GROUP, mGroupMetaData.groupId,
+                    mGroupMetaData.groupName).show(getFragmentManager(),
+                    TAG_GROUP_NAME_EDIT_DIALOG);
+        } else if (id == R.id.menu_delete_group) {
+            deleteGroup();
+        } else if (id == R.id.menu_edit_group) {
+            mIsEditMode = true;
+            mActionBarAdapter.setSelectionMode(true);
+            displayDeleteButtons(true);
+        } else if (id == R.id.menu_remove_from_group) {
+            logListEvent();
+            removeSelectedContacts();
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     private void removeSelectedContacts() {
