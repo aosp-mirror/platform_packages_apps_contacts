@@ -468,7 +468,12 @@ public class ContactEditorActivity extends ContactsActivity implements
      */
     public void changePhoto(int photoMode) {
         mPhotoMode = photoMode;
-        PhotoSourceDialogFragment.show(this, mPhotoMode);
+        // This method is called from an onClick handler in the PhotoEditorView. It's possible for
+        // onClick methods to run after onSaveInstanceState is called for the activity, so check
+        // if it's safe to commit transactions before trying.
+        if (isSafeToCommitTransactions()) {
+            PhotoSourceDialogFragment.show(this, mPhotoMode);
+        }
     }
 
     public Toolbar getToolbar() {
