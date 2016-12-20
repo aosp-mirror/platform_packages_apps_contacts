@@ -76,8 +76,10 @@ import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.quickcontact.InvisibleContactUtil;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -95,6 +97,7 @@ import com.google.common.collect.Lists;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -114,6 +117,7 @@ public class ContactEditorFragment extends Fragment implements
 
     private static final int LOADER_CONTACT = 1;
     private static final int LOADER_GROUPS = 2;
+    private static final int LOADER_ACCOUNTS = 3;
 
     private static final String KEY_PHOTO_RAW_CONTACT_ID = "photo_raw_contact_id";
     private static final String KEY_UPDATED_PHOTOS = "updated_photos";
@@ -342,6 +346,7 @@ public class ContactEditorFragment extends Fragment implements
     // Whether to show the new contact blank form and if it's corresponding delta is ready.
     protected boolean mHasNewContact;
     protected AccountWithDataSet mAccountWithDataSet;
+    protected List<AccountInfo> mWritableAccounts = Collections.emptyList();
     protected boolean mNewContactDataReady;
     protected boolean mNewContactAccountChanged;
 
@@ -429,6 +434,48 @@ public class ContactEditorFragment extends Fragment implements
                 public void onLoaderReset(Loader<Cursor> loader) {
                 }
             };
+
+    protected LoaderManager.LoaderCallbacks<List<AccountInfo>> mAccountsLoaderListener =
+            new LoaderManager.LoaderCallbacks<List<AccountInfo>>() {
+                @Override
+                public Loader<List<AccountInfo>> onCreateLoader(int id, Bundle args) {
+                    return new AccountsLoader(getActivity(), AccountTypeManager.writableFilter());
+                }
+
+                @Override
+                public void onLoadFinished(
+                        Loader<List<AccountInfo>> loader, List<AccountInfo> data) {
+                    mWritableAccounts = data;
+
+                    final RawContactEditorView view = getContent();
+                    if (view == null) {
+                        return;
+                    }
+                    view.setAccounts(data);
+                    if (mAccountWithDataSet == null && view.getCurrentRawContactDelta() == null) {
+                        return;
+                    }
+
+                    final AccountWithDataSet account = mAccountWithDataSet != null
+                            ? mAccountWithDataSet
+                            : view.getCurrentRawContactDelta().getAccountWithDataSet();
+
+                    // The current account was removed
+                    if (!AccountInfo.contains(data, account) && !data.isEmpty()) {
+                        if (isReadyToBindEditors()) {
+                            onRebindEditorsForNewContact(getContent().getCurrentRawContactDelta(),
+                                    account, data.get(0).getAccount());
+                        } else {
+                            mAccountWithDataSet = data.get(0).getAccount();
+                        }
+                    }
+                }
+
+                @Override
+                public void onLoaderReset(Loader<List<AccountInfo>> loader) {
+                }
+            };
+
 
     private long mPhotoRawContactId;
     private Bundle mUpdatedPhotos = new Bundle();
@@ -519,6 +566,10 @@ public class ContactEditorFragment extends Fragment implements
         super.onActivityCreated(savedInstanceState);
 
         validateAction(mAction);
+
+        if (!Intent.ACTION_EDIT.equals(mAction)) {
+            getLoaderManager().initLoader(LOADER_ACCOUNTS, null, mAccountsLoaderListener);
+        }
 
         if (mState.isEmpty()) {
             // The delta list may not have finished loading before orientation change happens.
