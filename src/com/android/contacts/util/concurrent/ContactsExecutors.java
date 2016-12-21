@@ -25,6 +25,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Provides some common executors for use with {@link Futures}
@@ -170,15 +171,15 @@ public class ContactsExecutors {
             RunnableScheduledFuture<T> {
 
         private final Handler mHandler;
-        private final TimeUnit mUnit;
-        private final long mDelay;
+        private final long mDelayMillis;
         private final Callable<T> mTask;
         private final SettableFuture<T> mDelegate = SettableFuture.create();
 
+        private final AtomicLong mStart = new AtomicLong(-1);
+
         private HandlerFuture(Handler handler, long delay, TimeUnit timeUnit, Callable<T> task) {
             mHandler = handler;
-            mUnit = timeUnit;
-            mDelay = delay;
+            mDelayMillis = timeUnit.toMillis(delay);
             mTask = task;
         }
 
@@ -189,12 +190,18 @@ public class ContactsExecutors {
 
         @Override
         public long getDelay(TimeUnit unit) {
-            return unit.convert(mDelay, mUnit);
+            long start = mStart.get();
+            if (start < 0) {
+                return mDelayMillis;
+            }
+            long remaining = mDelayMillis - (System.currentTimeMillis() - start);
+            return TimeUnit.MILLISECONDS.convert(remaining, unit);
         }
 
         @Override
         public int compareTo(Delayed o) {
-            return Long.compare(mDelay, o.getDelay(mUnit));
+            return Long.compare(getDelay(TimeUnit.MILLISECONDS),
+                    o.getDelay(TimeUnit.MILLISECONDS));
         }
 
         @Override
@@ -210,6 +217,10 @@ public class ContactsExecutors {
 
         @Override
         public void run() {
+            if (!mStart.compareAndSet(-1, System.currentTimeMillis())) {
+                // Already started
+                return;
+            }
             try {
                 mDelegate.set(mTask.call());
             } catch (Exception e) {
