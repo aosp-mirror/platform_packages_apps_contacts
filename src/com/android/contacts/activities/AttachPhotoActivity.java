@@ -53,7 +53,9 @@ import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -79,6 +81,8 @@ public class AttachPhotoActivity extends ContactsActivity {
     private Uri mCroppedPhotoUri;
 
     private ContentResolver mContentResolver;
+
+    private ListenableFuture<List<AccountInfo>> mAccountsFuture;
 
     // Height and width (in pixels) to request for the photo - queried from the provider.
     private static int mPhotoDim;
@@ -127,6 +131,10 @@ public class AttachPhotoActivity extends ContactsActivity {
                 }
             }
         }
+
+        // Start loading accounts in case they are needed.
+        mAccountsFuture = AccountTypeManager.getInstance(this).filterAccountsAsync(
+                AccountTypeManager.writableFilter());
     }
 
     @Override
@@ -344,11 +352,19 @@ public class AttachPhotoActivity extends ContactsActivity {
     }
 
     private void selectAccountAndCreateContact() {
+        Preconditions.checkNotNull(mAccountsFuture, "Accounts future must be initialized first");
         // If there is no default account or the accounts have changed such that we need to
         // prompt the user again, then launch the account prompt.
         final ContactEditorUtils editorUtils = ContactEditorUtils.create(this);
-        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
-                .getAccounts(true);
+
+        // Technically this could block but in reality this method won't be called until the user
+        // presses the save button which should allow plenty of time for the accounts to
+        // finish loading. Note also that this could be stale if the accounts have changed since
+        // we requested them but that's OK since ContactEditorAccountsChangedActivity will reload
+        // the accounts
+        final List<AccountInfo> accountInfos = Futures.getUnchecked(mAccountsFuture);
+
+        final List<AccountWithDataSet> accounts = AccountInfo.extractAccounts(accountInfos);
         if (editorUtils.shouldShowAccountChangedNotification(accounts)) {
             Intent intent = new Intent(this, ContactEditorAccountsChangedActivity.class);
             startActivityForResult(intent, REQUEST_PICK_DEFAULT_ACCOUNT_FOR_NEW_CONTACT);
