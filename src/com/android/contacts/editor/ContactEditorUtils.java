@@ -27,17 +27,10 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferences;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Sets;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Utility methods for the "account changed" notification in the new contact creation flow.
@@ -46,16 +39,9 @@ public class ContactEditorUtils {
     private static final String TAG = "ContactEditorUtils";
 
     private final ContactsPreferences mContactsPrefs;
-    private final AccountTypeManager mAccountTypes;
 
     private ContactEditorUtils(Context context) {
-        this(context, AccountTypeManager.getInstance(context));
-    }
-
-    @VisibleForTesting
-    ContactEditorUtils(Context context, AccountTypeManager accountTypes) {
         mContactsPrefs = new ContactsPreferences(context);
-        mAccountTypes = accountTypes;
     }
 
     public static ContactEditorUtils create(Context context) {
@@ -94,10 +80,6 @@ public class ContactEditorUtils {
         mContactsPrefs.clearDefaultAccount();
     }
 
-    private List<AccountWithDataSet> getWritableAccounts() {
-        return mAccountTypes.getAccounts(true);
-    }
-
     /**
      * Saves the default account, which can later be obtained with {@link #getOnlyOrDefaultAccount}.
      *
@@ -121,8 +103,8 @@ public class ContactEditorUtils {
      *
      * Also note that the returned account may have been removed already.
      */
-    public AccountWithDataSet getOnlyOrDefaultAccount() {
-        final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
+    public AccountWithDataSet getOnlyOrDefaultAccount(
+            List<AccountWithDataSet> currentWritableAccounts) {
         if (currentWritableAccounts.size() == 1) {
             return currentWritableAccounts.get(0);
         }
@@ -130,15 +112,14 @@ public class ContactEditorUtils {
         return mContactsPrefs.getDefaultAccount();
     }
 
-    public boolean shouldShowAccountChangedNotification() {
-        return mContactsPrefs.shouldShowAccountChangedNotification(getWritableAccounts());
+    public boolean shouldShowAccountChangedNotification(List<AccountWithDataSet> writableAccounts) {
+        return mContactsPrefs.shouldShowAccountChangedNotification(writableAccounts);
     }
 
     /**
      * Sets the only non-device account to be default if it is not already.
      */
-    public void maybeUpdateDefaultAccount() {
-        final List<AccountWithDataSet> currentWritableAccounts = getWritableAccounts();
+    public void maybeUpdateDefaultAccount(List<AccountWithDataSet> currentWritableAccounts) {
         if (currentWritableAccounts.size() == 1) {
             final AccountWithDataSet onlyAccount = currentWritableAccounts.get(0);
             if (!onlyAccount.isNullAccount()
