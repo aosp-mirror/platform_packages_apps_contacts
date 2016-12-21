@@ -301,20 +301,18 @@ public class GroupMemberPickerFragment extends
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                final Activity activity = getActivity();
-                if (activity != null) {
-                    activity.onBackPressed();
-                }
-                return true;
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            final Activity activity = getActivity();
+            if (activity != null) {
+                activity.onBackPressed();
             }
-            case R.id.menu_select: {
-                if (mListener != null) {
-                    mListener.onSelectGroupMembers();
-                }
-                return true;
+            return true;
+        } else if (id == R.id.menu_select) {
+            if (mListener != null) {
+                mListener.onSelectGroupMembers();
             }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

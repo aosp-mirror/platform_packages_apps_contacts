@@ -144,11 +144,10 @@ public class EventFieldEditorView extends LabeledEditorView {
     public Dialog createDialog(Bundle bundle) {
         if (bundle == null) throw new IllegalArgumentException("bundle must not be null");
         int dialogId = bundle.getInt(DIALOG_ID_KEY);
-        switch (dialogId) {
-            case R.id.dialog_event_date_picker:
-                return createDatePickerDialog();
-            default:
-                return super.createDialog(bundle);
+        if (dialogId == R.id.dialog_event_date_picker) {
+            return createDatePickerDialog();
+        } else {
+            return super.createDialog(bundle);
         }
     }
 

@@ -172,18 +172,17 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Go back to previous screen, intending "cancel"
-                setResult(RESULT_CANCELED);
-                onBackPressed();
-                return true;
-            case R.id.menu_search:
-                mIsSearchMode = !mIsSearchMode;
-                configureSearchMode();
-                return true;
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {// Go back to previous screen, intending "cancel"
+            setResult(RESULT_CANCELED);
+            onBackPressed();
+        } else if (id == R.id.menu_search) {
+            mIsSearchMode = !mIsSearchMode;
+            configureSearchMode();
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
@@ -631,11 +630,9 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
 
     @Override
     public void onFocusChange(View view, boolean hasFocus) {
-        switch (view.getId()) {
-            case R.id.search_view: {
-                if (hasFocus) {
-                    mActionBarAdapter.setFocusOnSearchView();
-                }
+        if (view.getId() == R.id.search_view) {
+            if (hasFocus) {
+                mActionBarAdapter.setFocusOnSearchView();
             }
         }
     }
@@ -654,11 +651,8 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.floating_action_button: {
-                startCreateNewContactActivity();
-                break;
-            }
+        if (view.getId() == R.id.floating_action_button) {
+            startCreateNewContactActivity();
         }
     }
 
