@@ -439,11 +439,6 @@
 
     <!-- The message in a confirmation dialog shown when the user selects a
         contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
-    <string name="aggregation_suggestion_join_dialog_message">Link
-        the current contact with the selected contact?</string>
-
-    <!-- The message in a confirmation dialog shown when the user selects a
-        contact aggregation suggestion in Contact editor. [CHAR LIMIT=512]-->
     <string name="aggregation_suggestion_edit_dialog_message">Switch to editing
         the selected contact? Information you entered so far will be copied.</string>
 
