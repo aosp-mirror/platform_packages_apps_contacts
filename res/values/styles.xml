@@ -15,12 +15,10 @@
 -->
 <resources>
 
-    <style name="EditorActivityTheme" parent="@style/PeopleTheme">
-        <item name="android:listViewStyle">@style/ListViewStyle</item>
-        <item name="android:actionBarStyle">@style/EditorActionBarStyle</item>
-        <item name="android:colorButtonNormal">@color/background_primary</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="EditorActivityTheme" parent="@style/PeopleActivityTheme">
+        <item name="actionBarStyle">@style/EditorActionBarStyle</item>
+        <item name="colorButtonNormal">@color/background_primary</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="Theme.QuickContact" parent="@style/PeopleTheme">
@@ -208,7 +206,7 @@
         <item name="icon">@android:color/transparent</item>
     </style>
 
-    <style name="EditorActionBarStyle" parent="@style/ContactsActionBarStyle">
+    <style name="EditorActionBarStyle" parent="@style/ContactsToolbarStyle">
         <item name="android:contentInsetStart">72dp</item>
         <item name="android:contentInsetStartWithNavigation">72dp</item>
         <item name="android:titleTextAppearance">@style/ContactsActionBarTitleText</item>
@@ -263,10 +261,6 @@
     <!-- Toolbar navigation button. -->
     <style name="ContactToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="android:tint">@color/action_bar_button_text_color</item>
-    </style>
-
-    <style name="ListViewDropdownStyle" parent="@android:style/Widget.ListView.DropDown">
-        <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
     <style name="ContactPickerTheme" parent="PeopleActivityTheme">
