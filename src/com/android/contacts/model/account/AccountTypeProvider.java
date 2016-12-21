@@ -205,7 +205,7 @@ public class AccountTypeProvider {
                         + " attribute");
                 continue;
             }
-            if (Objects.equal(extensionType.accountType, type)) {
+            if (!Objects.equal(extensionType.accountType, type)) {
                 Log.w(TAG, "Skipping extension package " + extensionPackage + " because"
                         + " the account type + " + extensionType.accountType +
                         " doesn't match expected type " + type);
