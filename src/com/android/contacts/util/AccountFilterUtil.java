@@ -197,9 +197,8 @@ public class AccountFilterUtil {
             intent.putExtra(Intents.Insert.EXTRA_ACCOUNT, account);
             intent.putExtra(Intents.Insert.EXTRA_DATA_SET, filter.dataSet);
         } else if (isDeviceContactsFilter(filter)) {
-            // It's OK to add this even though it's an implicit intent. If a different app
-            // receives the intent it should just ignore the flag.
-            intent.putExtra(ContactEditorActivity.EXTRA_SAVE_TO_DEVICE_FLAG, true);
+            intent.putExtra(ContactEditorActivity.EXTRA_ACCOUNT_WITH_DATA_SET,
+                    filter.toAccountWithDataSet());
         }
 
         try {

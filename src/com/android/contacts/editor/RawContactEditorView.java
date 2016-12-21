@@ -451,8 +451,9 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         mHasNewContact = hasNewContact;
         mIsUserProfile = isUserProfile;
         mPrimaryAccount = primaryAccount;
-        if (mPrimaryAccount == null) {
-            mPrimaryAccount = ContactEditorUtils.create(getContext()).getOnlyOrDefaultAccount();
+        if (mPrimaryAccount == null && mAccounts != null) {
+            mPrimaryAccount = ContactEditorUtils.create(getContext())
+                    .getOnlyOrDefaultAccount(AccountInfo.extractAccounts(mAccounts));
         }
         vlog("state: primary " + mPrimaryAccount);
 
