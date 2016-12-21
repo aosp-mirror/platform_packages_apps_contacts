@@ -126,9 +126,9 @@ public class SimImportFragment extends Fragment
         if (savedInstanceState != null) {
             mAccountHeaderPresenter.onRestoreInstanceState(savedInstanceState);
         } else {
-            final AccountWithDataSet currentDefaultAccount = AccountWithDataSet
-                    .getDefaultOrBestFallback(mPreferences, mAccountTypeManager);
-            mAccountHeaderPresenter.setCurrentAccount(currentDefaultAccount);
+            // Default may be null in which case the first account in the list will be selected
+            // after they are loaded.
+            mAccountHeaderPresenter.setCurrentAccount(mPreferences.getDefaultAccount());
         }
         mAccountHeaderPresenter.setObserver(new AccountHeaderPresenter.Observer() {
             @Override
@@ -173,6 +173,9 @@ public class SimImportFragment extends Fragment
 
     private void rememberSelectionsForCurrentAccount() {
         final AccountWithDataSet current = mAdapter.getAccount();
+        if (current == null) {
+            return;
+        }
         final long[] ids = mListView.getCheckedItemIds();
         Arrays.sort(ids);
         mPerAccountCheckedIds.put(current, ids);

@@ -392,12 +392,16 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
         }
     }
 
+    public boolean isSyncable() {
+        return isGoogleAccountType() && filterType == FILTER_TYPE_ACCOUNT;
+    }
+
     /**
      * Returns true if this ContactListFilter contains at least one Google account.
      * (see {@link #isGoogleAccountType)
      */
     public boolean isSyncable(List<AccountWithDataSet> accounts) {
-        if (isGoogleAccountType() && filterType == ContactListFilter.FILTER_TYPE_ACCOUNT) {
+        if (isSyncable()) {
             return true;
         }
         // Since we don't know which group is selected until the actual contacts loading, we

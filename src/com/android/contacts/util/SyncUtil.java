@@ -22,6 +22,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.ContactsContract;
 
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
 
@@ -69,6 +70,10 @@ public final class SyncUtil {
             return false;
         }
         return ContentResolver.getIsSyncable(account, ContactsContract.AUTHORITY) <= 0;
+    }
+
+    public static final boolean hasSyncableAccount(AccountTypeManager accountTypeManager) {
+        return !accountTypeManager.getWritableGoogleAccounts().isEmpty();
     }
 
     public static boolean isAlertVisible(Context context, Account account, int reason) {

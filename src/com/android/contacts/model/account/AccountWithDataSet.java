@@ -254,30 +254,5 @@ public class AccountWithDataSet implements Parcelable {
 
         return ret;
     }
-
-    public static AccountWithDataSet getDefaultOrBestFallback(ContactsPreferences preferences,
-            AccountTypeManager accountTypeManager) {
-        if (preferences.isDefaultAccountSet()) {
-            final AccountWithDataSet account = preferences.getDefaultAccount();
-            if (accountTypeManager.isWritable(account)) {
-                return account;
-            }
-        }
-        final List<AccountWithDataSet> accounts = accountTypeManager
-                .getAccounts(/* writableOnly */ true);
-
-        if (accounts.isEmpty()) {
-            return AccountWithDataSet.getNullAccount();
-        }
-
-        // Return the first google account
-        for (AccountWithDataSet account : accounts) {
-            if (GoogleAccountType.ACCOUNT_TYPE.equals(account) && account.dataSet == null) {
-                return account;
-            }
-        }
-        // Arbitrarily return the first writable account
-        return accounts.get(0);
-    }
 }
 

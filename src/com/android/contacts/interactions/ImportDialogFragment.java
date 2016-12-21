@@ -43,11 +43,16 @@ import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
+import com.android.contacts.model.account.AccountInfo;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * An dialog invoked to import/export contacts.
@@ -64,6 +69,8 @@ public class ImportDialogFragment extends DialogFragment {
 
     private boolean mSimOnly = false;
     private SimContactDao mSimDao;
+
+    private Future<List<AccountInfo>> mAccountsFuture;
 
     /** Preferred way to show this dialog */
     public static void show(FragmentManager fragmentManager) {
@@ -97,6 +104,15 @@ public class ImportDialogFragment extends DialogFragment {
         final Bundle args = getArguments();
         mSimOnly = args != null && args.getBoolean(EXTRA_SIM_ONLY, false);
         mSimDao = SimContactDao.create(getContext());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Start loading the accounts. This is done in onResume in case they were refreshed.
+        mAccountsFuture = AccountTypeManager.getInstance(getActivity()).filterAccountsAsync(
+                AccountTypeManager.writableFilter());
     }
 
     @Override
@@ -240,12 +256,16 @@ public class ImportDialogFragment extends DialogFragment {
      * Handle "import from SD".
      */
     private void handleImportRequest(int resId, int subscriptionId) {
+        // Get the accounts. Because this only happens after a user action this should pretty
+        // much never block since it will usually be at least several seconds before the user
+        // interacts with the view
+        final List<AccountWithDataSet> accountList = AccountInfo.extractAccounts(
+                Futures.getUnchecked(mAccountsFuture));
+
         // There are three possibilities:
         // - more than one accounts -> ask the user
         // - just one account -> use the account without asking the user
         // - no account -> use phone-local storage without asking the user
-        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(getActivity());
-        final List<AccountWithDataSet> accountList = accountTypes.getAccounts(true);
         final int size = accountList.size();
         if (size > 1) {
             // Send over to the account selector
