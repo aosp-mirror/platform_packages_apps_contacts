@@ -23,13 +23,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.QuickContact;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toolbar;
 
+import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsActivity;
 import com.android.contacts.DynamicShortcuts;
 import com.android.contacts.R;
 import com.android.contacts.common.activity.RequestPermissionsActivity;
@@ -48,7 +48,7 @@ import java.util.ArrayList;
 /**
  * Contact editor with only the most important fields displayed initially.
  */
-public class ContactEditorActivity extends ContactsActivity implements
+public class ContactEditorActivity extends AppCompatContactsActivity implements
         PhotoSourceDialogFragment.Listener,
         DialogManager.DialogShowingViewActivity {
     private static final String TAG = "ContactEditorActivity";
@@ -347,6 +347,7 @@ public class ContactEditorActivity extends ContactsActivity implements
 
         setContentView(R.layout.contact_editor_activity);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         if (Intent.ACTION_EDIT.equals(action)) {
             mActionBarTitleResId = R.string.contact_editor_title_existing_contact;
         } else {
@@ -355,7 +356,6 @@ public class ContactEditorActivity extends ContactsActivity implements
         mToolbar.setTitle(mActionBarTitleResId);
         // Set activity title for Talkback
         setTitle(mActionBarTitleResId);
-        setActionBar(mToolbar);
 
         if (savedState == null) {
             // Create the editor and photo selection fragments
