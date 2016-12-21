@@ -77,18 +77,16 @@ public class MultiSelectEmailAddressesListFragment
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.menu_send: {
-                final String scheme = getActivity().getIntent().getStringExtra(
-                        UiIntentActions.SELECTION_SEND_SCHEME);
-                final String title= getActivity().getIntent().getStringExtra(
-                        UiIntentActions.SELECTION_SEND_TITLE);
-                final List<String> items = GroupUtil.getSendToDataForIds(
-                        getActivity(), getAdapter().getSelectedContactIdsArray(), scheme);
-                final String list = TextUtils.join(",", items);
-                GroupUtil.startSendToSelectionActivity(this, list, scheme, title);
-                return true;
-            }
+        if (item.getItemId() == R.id.menu_send) {
+            final String scheme = getActivity().getIntent().getStringExtra(
+                    UiIntentActions.SELECTION_SEND_SCHEME);
+            final String title = getActivity().getIntent().getStringExtra(
+                    UiIntentActions.SELECTION_SEND_TITLE);
+            final List<String> items = GroupUtil.getSendToDataForIds(
+                    getActivity(), getAdapter().getSelectedContactIdsArray(), scheme);
+            final String list = TextUtils.join(",", items);
+            GroupUtil.startSendToSelectionActivity(this, list, scheme, title);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
