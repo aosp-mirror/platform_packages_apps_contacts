@@ -66,6 +66,7 @@ public class SimImportActivityTest {
     private Instrumentation mInstrumentation;
     private FakeSimContactDao mDao;
     private AccountsTestHelper mAccountHelper;
+    private Activity mActivity;
 
     @Before
     public void setUp() throws Exception {
@@ -87,6 +88,10 @@ public class SimImportActivityTest {
         SimContactDao.setFactoryForTest(SimContactDao.DEFAULT_FACTORY);
         mAccountHelper.cleanup();
         AccountTypeManager.setInstanceForTest(null);
+        if (mActivity != null) {
+            mActivity.finish();
+            mInstrumentation.waitForIdleSync();
+        }
     }
 
     @Test
@@ -96,10 +101,12 @@ public class SimImportActivityTest {
                         new SimContact(2, "Sim Two", null),
                         new SimContact(3, null, "5550103")
                 );
-        mInstrumentation.startActivitySync(new Intent(mContext, SimImportActivity.class)
+        mActivity = mInstrumentation.startActivitySync(new Intent(mContext, SimImportActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
         mDevice.waitForIdle();
+
+        assertTrue(mDevice.wait(Until.hasObject(By.text("Sim One")), TIMEOUT));
 
         assertTrue(mDevice.hasObject(By.text("Sim One")));
         assertTrue(mDevice.hasObject(By.text("Sim Two")));
@@ -115,24 +122,24 @@ public class SimImportActivityTest {
 
         mDevice.waitForIdle();
 
-        assertTrue(mDevice.hasObject(By.textStartsWith("No contacts")));
+        assertTrue(mDevice.wait(Until.hasObject(By.textStartsWith("No contacts")), TIMEOUT));
     }
 
     @Test
     public void smokeRotateInEmptyState() {
         mDao.addSim(someSimCard());
 
-        final Activity activity = mInstrumentation.startActivitySync(
+        mActivity = mInstrumentation.startActivitySync(
                 new Intent(mContext, SimImportActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
         assertTrue(mDevice.wait(Until.hasObject(By.textStartsWith("No contacts")), TIMEOUT));
 
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         mDevice.waitForIdle();
 
-        assertTrue(mDevice.hasObject(By.textStartsWith("No contacts")));
+        assertTrue(mDevice.wait(Until.hasObject(By.textStartsWith("No contacts")), TIMEOUT));
     }
 
     @Test
@@ -140,17 +147,17 @@ public class SimImportActivityTest {
         mDao.addSim(someSimCard(), new SimContact(1, "Name One", "5550101"),
                 new SimContact(2, "Name Two", "5550102"));
 
-        final Activity activity = mInstrumentation.startActivitySync(
+        mActivity = mInstrumentation.startActivitySync(
                 new Intent(mContext, SimImportActivity.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
         assertTrue(mDevice.wait(Until.hasObject(By.textStartsWith("Name One")), TIMEOUT));
 
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         mDevice.waitForIdle();
 
-        assertTrue(mDevice.hasObject(By.textStartsWith("Name One")));
+        assertTrue(mDevice.wait(Until.hasObject(By.textStartsWith("Name One")), TIMEOUT));
     }
 
 
@@ -175,7 +182,7 @@ public class SimImportActivityTest {
                 new SimContact(5, "Skip Five", "5550105"),
                 new SimContact(6, "Import Six", "5550106"));
 
-        final Activity activity = mInstrumentation.startActivitySync(
+        mActivity = mInstrumentation.startActivitySync(
                 new Intent(mContext, SimImportActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
@@ -187,13 +194,14 @@ public class SimImportActivityTest {
 
         mDevice.findObject(By.text("Skip Two")).click();
         mDevice.findObject(By.text("Skip Five")).click();
+        mDevice.waitForIdle();
 
         assertTrue(mDevice.hasObject(By.text("Skip Two").checked(false)));
         assertTrue(mDevice.hasObject(By.text("Skip Five").checked(false)));
 
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mDevice.wait(Until.hasObject(By.text("Import One")), TIMEOUT);
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         mDevice.wait(Until.hasObject(By.text("Import One")), TIMEOUT);
 
         mDevice.findObject(By.text("IMPORT").clickable(true)).click();
