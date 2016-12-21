@@ -60,13 +60,13 @@ public class ContactEditorActivity extends ContactsActivity implements
     public static final int RESULT_CODE_EDITED = 4;
 
     /**
-     * The contact will be saved to the device local account when this is set for an insert. This
+     * The contact will be saved to this account when this is set for an insert. This
      * is necessary because {@link android.accounts.Account} cannot be created with null values
      * for the name and type and an Account is needed for
      * {@link android.provider.ContactsContract.Intents.Insert#EXTRA_ACCOUNT}
      */
-    public static final String EXTRA_SAVE_TO_DEVICE_FLAG =
-            "com.android.contacts.SAVE_TO_DEVICE_FLAG";
+    public static final String EXTRA_ACCOUNT_WITH_DATA_SET =
+            "com.android.contacts.ACCOUNT_WITH_DATA_SET";
 
     private static final String TAG_EDITOR_FRAGMENT = "editor_fragment";
 

@@ -42,15 +42,18 @@ import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorUtils;
+import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.Contact;
 import com.android.contacts.model.ContactLoader;
 import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.ValuesDelta;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.ContactPhotoUtils;
+import com.google.common.util.concurrent.Futures;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -344,13 +347,15 @@ public class AttachPhotoActivity extends ContactsActivity {
         // If there is no default account or the accounts have changed such that we need to
         // prompt the user again, then launch the account prompt.
         final ContactEditorUtils editorUtils = ContactEditorUtils.create(this);
-        if (editorUtils.shouldShowAccountChangedNotification()) {
+        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
+                .getAccounts(true);
+        if (editorUtils.shouldShowAccountChangedNotification(accounts)) {
             Intent intent = new Intent(this, ContactEditorAccountsChangedActivity.class);
             startActivityForResult(intent, REQUEST_PICK_DEFAULT_ACCOUNT_FOR_NEW_CONTACT);
         } else {
             // Otherwise, there should be a default account. Then either create a null contact
             // (if default account is null) or create a contact with the specified account.
-            final AccountWithDataSet targetAccount = editorUtils.getOnlyOrDefaultAccount();
+            final AccountWithDataSet targetAccount = editorUtils.getOnlyOrDefaultAccount(accounts);
             createNewRawContact(targetAccount);
         }
     }
