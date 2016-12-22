@@ -230,13 +230,16 @@ public class AccountFilterUtil {
     }
 
     private static String getActionBarTitleForAccount(Context context, ContactListFilter filter) {
-        final AccountDisplayInfoFactory factory =
-                AccountDisplayInfoFactory.forAllAccounts(context);
-        final AccountDisplayInfo account = factory.getAccountDisplayInfoFor(filter);
-        if (account.hasGoogleAccountType()) {
+        final AccountInfo info = AccountTypeManager.getInstance(context)
+                .getAccountInfoForAccount(filter.toAccountWithDataSet());
+        if (info == null) {
+            return context.getString(R.string.contactsList);
+        }
+
+        if (info.hasGoogleAccountType()) {
             return context.getString(R.string.title_from_google);
         }
-        return account.withFormattedName(context, R.string.title_from_other_accounts)
-                .getNameLabel().toString();
+        return context.getString(R.string.title_from_other_accounts,
+                info.getNameLabel().toString());
     }
 }

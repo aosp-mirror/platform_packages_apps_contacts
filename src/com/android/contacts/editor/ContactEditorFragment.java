@@ -111,7 +111,8 @@ public class ContactEditorFragment extends Fragment implements
         JoinContactConfirmationDialogFragment.Listener,
         AggregationSuggestionEngine.Listener, AggregationSuggestionView.Listener,
         CancelEditDialogFragment.Listener,
-        RawContactEditorView.Listener, PhotoEditorView.Listener {
+        RawContactEditorView.Listener, PhotoEditorView.Listener,
+        AccountsLoader.AccountsListener {
 
     static final String TAG = "ContactEditor";
 
@@ -435,52 +436,6 @@ public class ContactEditorFragment extends Fragment implements
                 }
             };
 
-    protected LoaderManager.LoaderCallbacks<List<AccountInfo>> mAccountsLoaderListener =
-            new LoaderManager.LoaderCallbacks<List<AccountInfo>>() {
-                @Override
-                public Loader<List<AccountInfo>> onCreateLoader(int id, Bundle args) {
-                    return new AccountsLoader(getActivity(), AccountTypeManager.writableFilter());
-                }
-
-                @Override
-                public void onLoadFinished(
-                        Loader<List<AccountInfo>> loader, List<AccountInfo> data) {
-                    mWritableAccounts = data;
-                    // The user may need to select a new account to save to
-                    if (mAccountWithDataSet == null && mHasNewContact) {
-                        selectAccountAndCreateContact();
-                    }
-
-                    final RawContactEditorView view = getContent();
-                    if (view == null) {
-                        return;
-                    }
-                    view.setAccounts(data);
-                    if (mAccountWithDataSet == null && view.getCurrentRawContactDelta() == null) {
-                        return;
-                    }
-
-                    final AccountWithDataSet account = mAccountWithDataSet != null
-                            ? mAccountWithDataSet
-                            : view.getCurrentRawContactDelta().getAccountWithDataSet();
-
-                    // The current account was removed
-                    if (!AccountInfo.contains(data, account) && !data.isEmpty()) {
-                        if (isReadyToBindEditors()) {
-                            onRebindEditorsForNewContact(getContent().getCurrentRawContactDelta(),
-                                    account, data.get(0).getAccount());
-                        } else {
-                            mAccountWithDataSet = data.get(0).getAccount();
-                        }
-                    }
-                }
-
-                @Override
-                public void onLoaderReset(Loader<List<AccountInfo>> loader) {
-                }
-            };
-
-
     private long mPhotoRawContactId;
     private Bundle mUpdatedPhotos = new Bundle();
 
@@ -611,7 +566,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         if (mHasNewContact) {
-            getLoaderManager().initLoader(LOADER_ACCOUNTS, null, mAccountsLoaderListener);
+            AccountsLoader.loadAccounts(this, LOADER_ACCOUNTS, AccountTypeManager.writableFilter());
         }
     }
 
@@ -716,6 +671,38 @@ public class ContactEditorFragment extends Fragment implements
                         Intents.Insert.EXTRA_ACCOUNT);
                 createContact(account);
                 break;
+            }
+        }
+    }
+
+    @Override
+    public void onAccountsLoaded(List<AccountInfo> data) {
+        mWritableAccounts = data;
+        // The user may need to select a new account to save to
+        if (mAccountWithDataSet == null && mHasNewContact) {
+            selectAccountAndCreateContact();
+        }
+
+        final RawContactEditorView view = getContent();
+        if (view == null) {
+            return;
+        }
+        view.setAccounts(data);
+        if (mAccountWithDataSet == null && view.getCurrentRawContactDelta() == null) {
+            return;
+        }
+
+        final AccountWithDataSet account = mAccountWithDataSet != null
+                ? mAccountWithDataSet
+                : view.getCurrentRawContactDelta().getAccountWithDataSet();
+
+        // The current account was removed
+        if (!AccountInfo.contains(data, account) && !data.isEmpty()) {
+            if (isReadyToBindEditors()) {
+                onRebindEditorsForNewContact(getContent().getCurrentRawContactDelta(),
+                        account, data.get(0).getAccount());
+            } else {
+                mAccountWithDataSet = data.get(0).getAccount();
             }
         }
     }

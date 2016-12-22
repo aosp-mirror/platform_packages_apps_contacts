@@ -36,6 +36,7 @@ import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountInfo;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountsListAdapter;
@@ -54,7 +55,7 @@ import java.util.List;
  * account for this contact.
  */
 public class ContactEditorAccountsChangedActivity extends Activity
-        implements LoaderManager.LoaderCallbacks<List<AccountInfo>> {
+        implements AccountsLoader.AccountsListener {
 
     private static final String TAG = ContactEditorAccountsChangedActivity.class.getSimpleName();
 
@@ -102,7 +103,7 @@ public class ContactEditorAccountsChangedActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mEditorUtils = ContactEditorUtils.create(this);
-        getLoaderManager().initLoader(0, null, this);
+        AccountsLoader.loadAccounts(this, 0, AccountTypeManager.writableFilter());
     }
 
     @Override
@@ -236,16 +237,7 @@ public class ContactEditorAccountsChangedActivity extends Activity
     }
 
     @Override
-    public Loader<List<AccountInfo>> onCreateLoader(int id, Bundle args) {
-        return new AccountsLoader(this, AccountTypeManager.writableFilter());
-    }
-
-    @Override
-    public void onLoadFinished(Loader<List<AccountInfo>> loader, List<AccountInfo> data) {
-        updateDisplayedAccounts(data);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<List<AccountInfo>> loader) {
+    public void onAccountsLoaded(List<AccountInfo> accounts) {
+        updateDisplayedAccounts(accounts);
     }
 }

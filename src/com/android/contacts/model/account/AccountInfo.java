@@ -76,6 +76,10 @@ public class AccountInfo {
         return mDisplayInfo.isDeviceAccount();
     }
 
+    public boolean hasGoogleAccountType() {
+        return mDisplayInfo.hasGoogleAccountType();
+    }
+
     public boolean sameAccount(AccountInfo other) {
         return sameAccount(other.getAccount());
     }

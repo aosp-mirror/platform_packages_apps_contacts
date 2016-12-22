@@ -54,7 +54,8 @@ import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountInfo;
+import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contactsbind.HelpUtils;
@@ -65,7 +66,7 @@ import java.util.List;
  * This fragment shows the preferences for "display options"
  */
 public class DisplayOptionsPreferenceFragment extends PreferenceFragment
-        implements Preference.OnPreferenceClickListener {
+        implements Preference.OnPreferenceClickListener, AccountsLoader.AccountsListener {
 
     private static final int REQUEST_CODE_CUSTOM_CONTACTS_FILTER = 0;
 
@@ -84,6 +85,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final String KEY_SORT_ORDER = "sortOrder";
 
     private static final int LOADER_PROFILE = 0;
+    private static final int LOADER_ACCOUNTS = 1;
 
     /**
      * Callbacks for hosts of the {@link DisplayOptionsPreferenceFragment}.
@@ -241,7 +243,8 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().restartLoader(LOADER_PROFILE, null, mProfileLoaderListener);
+        getLoaderManager().initLoader(LOADER_PROFILE, null, mProfileLoaderListener);
+        AccountsLoader.loadAccounts(this, LOADER_ACCOUNTS, AccountTypeManager.writableFilter());
     }
 
     @Override
@@ -275,15 +278,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             getPreferenceScreen().removePreference(findPreference(KEY_DISPLAY_ORDER));
         }
 
-        // Remove the default account and custom view settings there aren't any writable accounts
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
-        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
-                /* contactWritableOnly */ true);
-        if (accounts.isEmpty()) {
-            getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
-            getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
-        }
-
         final boolean isPhone = TelephonyManagerCompat.isVoiceCapable(
                 (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE));
         final boolean showBlockedNumbers = isPhone && ContactsUtils.FLAG_N_FEATURE
@@ -294,6 +288,15 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
         if (!mAreContactsAvailable) {
             getPreferenceScreen().removePreference(findPreference(KEY_EXPORT));
+        }
+    }
+
+    @Override
+    public void onAccountsLoaded(List<AccountInfo> accounts) {
+        // Hide accounts preferences if no writable accounts exist
+        if (accounts.isEmpty()) {
+            getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
+            getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
         }
     }
 

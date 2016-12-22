@@ -99,8 +99,9 @@ public class AccountHeaderPresenter {
 
     public void setAccounts(List<AccountInfo> accounts) {
         mAccounts = accounts;
-        // If the current account was removed just switch to the next one in the list.
-        if (mCurrentAccount != null && !AccountInfo.contains(mAccounts, mCurrentAccount)) {
+        // If the current account hasn't been set or it has been removed just use the first
+        // account.
+        if (mCurrentAccount == null || !AccountInfo.contains(mAccounts, mCurrentAccount)) {
             mCurrentAccount = mAccounts.isEmpty() ? null : accounts.get(0).getAccount();
             mObserver.onChange(this);
         }

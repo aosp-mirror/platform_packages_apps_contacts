@@ -89,18 +89,6 @@ public class AccountDisplayInfoFactory {
         return new AccountDisplayInfoFactory(context, accounts);
     }
 
-    public static AccountDisplayInfoFactory forAllAccounts(Context context) {
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(false);
-        return new AccountDisplayInfoFactory(context, accounts);
-    }
-
-    public static AccountDisplayInfoFactory forWritableAccounts(Context context) {
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(true);
-        return new AccountDisplayInfoFactory(context, accounts);
-    }
-
     private boolean shouldUseTypeLabelForName(AccountWithDataSet account) {
         final int type = mDeviceAccountTypeFactory.classifyAccount(account.type);
         return (type == DeviceLocalAccountTypeFactory.TYPE_SIM && mSimAccountCount == 1)

@@ -53,7 +53,6 @@ public class PickRawContactDialogFragment extends DialogFragment {
         private final LayoutInflater mInflater;
         private final Context mContext;
         private final RawContactsMetadata mRawContactsMetadata;
-        private final AccountDisplayInfoFactory mAccountDisplayInfoFactory;
         private final AccountTypeManager mAccountTypeManager;
         private final ContactsPreferences mPreferences;
 
@@ -61,7 +60,6 @@ public class PickRawContactDialogFragment extends DialogFragment {
                 RawContactsMetadata rawContactsMetadata) {
             mContext = context;
             mInflater = LayoutInflater.from(context);
-            mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(context);
             mAccountTypeManager = AccountTypeManager.getInstance(context);
             mPreferences = new ContactsPreferences(context);
             mRawContactsMetadata = rawContactsMetadata;
