@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Contactos"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Añadir contacto"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Llamada directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaje directo"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Elige un contacto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Seleccionar"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear nuevo contacto"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Buscar contactos"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Añadir a Favoritos"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Eliminar de Favoritos"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Eliminado de favoritos"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Enviar"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"No hay contactos"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"¿Quieres añadir \"<xliff:g id="EMAIL">%s</xliff:g>\" a Contactos?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Nombres de tus contactos"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Haz clic para volver a la pantalla anterior"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Añadir número de teléfono"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Añadir correo electrónico"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Cancelar"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Atrás"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"cerrar"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"¿Quieres vincular el contacto actual con el contacto seleccionado?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"¿Quieres editar el contacto seleccionado? Se copiará la información que hayas introducido hasta el momento."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Directorio <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ajustes"</string>
@@ -233,7 +235,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Añadir una foto del contacto"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Foto del contacto"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"No se ha podido abrir el editor."</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Se guarda en"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Se guardará en"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"No se puede editar la información de contacto de <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"VINCULAR CONTACTOS"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"CANCELAR"</string>

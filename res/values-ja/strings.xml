@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"連絡先"</string>
     <string name="contactsList" msgid="8661624236494819731">"連絡先"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"連絡先を追加"</string>
     <string name="shortcutContact" msgid="749243779392912958">"連絡先"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接発信"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接メッセージを送る"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"連絡先を選択"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"選択"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"新しい連絡先を作成"</string>
+    <string name="searchHint" msgid="8482945356247760701">"連絡先を検索"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"お気に入りに追加"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"お気に入りから削除"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"お気に入りから削除します"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"送信"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"連絡先はありません"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"<xliff:g id="EMAIL">%s</xliff:g> を連絡先に追加しますか？"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"連絡先の名前"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"前の画面に戻るにはタップしてください"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"電話番号を追加"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"メールを追加"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"キャンセル"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"戻る"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"閉じる"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"現在の連絡先を選択した連絡先にリンクしますか？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"選択した連絡先の編集に切り替えますか？これまでに入力した情報はコピーされます。"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ディレクトリ<xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>

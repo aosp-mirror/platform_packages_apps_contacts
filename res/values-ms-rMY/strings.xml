@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kenalan"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kenalan"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Tambah kenalan"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kenalan"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Dail terus"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mesej langsung"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Pilih kenalan"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Pilih"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Buat kenalan baharu"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Cari dalam kenalan"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Tambah ke kegemaran"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Alih keluar daripada kegemaran"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Dialih keluar daripada kegemaran"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Hantar"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Tiada kenalan"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Tambah \"<xliff:g id="EMAIL">%s</xliff:g>\" kepada kenalan?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Nama kenalan anda"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik untuk kembali ke skrin sebelumnya"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Tambah nombor telefon"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Tambah e-mel"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Batal"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Kembali"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"tutup"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Pautkan kenalan semasa dengan kenalan pilihan?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Bertukar kepada mengedit kenalan pilihan? Maklumat yang anda masukkan setakat ini akan disalin."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Direktori <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Tetapan"</string>

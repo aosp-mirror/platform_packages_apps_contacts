@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontaktid"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktid"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Kontakti lisamine"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Otsevalimine"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Otsesõnum"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Kontakti valimine"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Valimine"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Loo uus kontakt"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Otsige kontakte"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Lisa lemmikutesse"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Eemalda lemmikutest"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Lemmikutest eemaldatud"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Saada"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Kontakte pole"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Kas lisada „<xliff:g id="EMAIL">%s</xliff:g>” kontaktidesse?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Teie kontaktide nimed"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klõpsake eelmisele ekraanikuvale naasmiseks"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Lisage telefoninumber"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Lisage e-posti aadress"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Tühista"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Tagasi"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"sule"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Kas linkida praegune kontakt valitud kontaktiga?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Kas lülituda valitud kontakti muutmisse? Seni sisestatud andmed kopeeritakse."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Kataloog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Seaded"</string>

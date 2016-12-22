@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Yhteystiedot"</string>
     <string name="contactsList" msgid="8661624236494819731">"Yhteystiedot"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Lisää yhteystieto"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Yhteystieto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Puhelu"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Tekstiviesti"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Valitse yhteystieto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Valitse"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Luo uusi yhteystieto"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Hae yhteystiedoista"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Lisää suosikkeihin"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Poista suosikeista"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Poistettu suosikeista"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Lähetä"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ei yhteystietoja"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Lisätäänkö <xliff:g id="EMAIL">%s</xliff:g> yhteystietoihin?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Yhteystietojen nimet"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Palaa edelliseen näyttöön klikkaamalla"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Lisää puhelinnumero"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Lisää sähköposti"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Peruuta"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Takaisin"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"sulje"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Yhdistetäänkö valittu kontakti nykyiseen kontaktiin?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Haluatko muokata valittuja yhteystietoja? Antamasi tiedot kopioidaan."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Hakemisto <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Asetukset"</string>

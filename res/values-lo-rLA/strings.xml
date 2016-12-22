@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="contactsList" msgid="8661624236494819731">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"ເພີ່ມລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ໂທຫາໂດຍກົງ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ສົ່ງຂໍ້ຄວາມຫາໂດຍກົງ"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ເລືອກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ເລືອກ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ສ້າງລາຍຊື່ຜູ້ຕິດຕໍ່ໃໝ່"</string>
+    <string name="searchHint" msgid="8482945356247760701">"ຊອກຫາລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ເພີ່ມເປັນລາຍການທີ່ມັກ"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ລຶບອອກຈາກລາຍການທີ່ມັກ"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"​ລຶບ​ອອກ​ຈາກ​ລາຍ​ການ​ທີ່​ມັກ​ແລ້ວ"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"ສົ່ງ"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"ບໍ່ມີລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"ເພີ່ມ \"<xliff:g id="EMAIL">%s</xliff:g>\" ໃສ່ລາຍຊື່ຜູ່ຕິດຕໍ່?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"ຊື່ຂອງລາຍຊື່ຜູ່ຕິດຕໍ່ຂອງທ່ານ"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ຄລິກ​ເພື່ອ​ກັບ​ໄປ​ທີ່​ໜ້າຈໍ​ກ່ອນ​ໜ້າ​ນີ້"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ເພີ່ມ​ເບີ​ໂທ​ລະ​ສັບ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ເພີ່ມອີເມວ"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"ຍົກເລີກ"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"ກັບຄືນ"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"ປິດ"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"ລິ້ງລາຍຊື່ຜູ້ຕິດຕໍ່ປະ​ຈະ​ບັນກັບລາຍຊື່ຜູ້ຕິດຕໍ່ທີ່ເລືອກ​ໄວ້?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ສະລັບໄປທີ່ການແກ້ໄຂລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ເລືອກ? ຂໍ້ມູນທີ່ທ່ານຂຽນມາຈະຖືກສຳເນົາໄວ້."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ໄດເຣັກທໍຣີ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ການຕັ້ງຄ່າ"</string>

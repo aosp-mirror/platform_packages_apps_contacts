@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontaktai"</string>
     <string name="contactsList" msgid="8661624236494819731">"Adresinė"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Pridėti kontaktą"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Adresatas"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Tiesioginis numerio rinkimas"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Tiesioginis pranešimas"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Pasirinkti kontaktą"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Pasirinkti"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Kurti naują kontaktą"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Ieškoti adresatų"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Pridėti prie adresyno"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Pašalinti iš adresyno"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Pašalinta iš mėgstamiausių"</string>
@@ -133,6 +135,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Siųsti"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Kontaktų nėra"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Pridėti „<xliff:g id="EMAIL">%s</xliff:g>“ prie adresatų?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Kontaktų vardai"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Spustelėkite, kad grįžtumėte į ankstesnį ekraną"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Pridėti telefono numerį"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Pridėti el. pašto adresą"</string>
@@ -165,7 +168,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Atšaukti"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Atgal"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"uždaryti"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Susieti dabartinį kontaktą su pasirinktu?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Perjungti į pasirinkto kontakto redagavimą? Iki šiol įvesta informacija bus nukopijuota."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"„<xliff:g id="TYPE">%1$s</xliff:g>“ katalogas"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nustatymai"</string>

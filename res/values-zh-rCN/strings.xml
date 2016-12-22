@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"通讯录"</string>
     <string name="contactsList" msgid="8661624236494819731">"通讯录"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"添加联系人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"联系人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接拨打电话"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接发送短信"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"选择联系人"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"选择"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"创建新联系人"</string>
+    <string name="searchHint" msgid="8482945356247760701">"搜索联系人"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"添加到收藏"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"从收藏中移除"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"已从收藏中移除"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"发送"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"没有联系人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"将“<xliff:g id="EMAIL">%s</xliff:g>”添加到通讯录？"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"联系人姓名"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"点击即可返回上一屏幕"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"添加电话号码"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"添加电子邮件地址"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"取消"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"返回"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"关闭"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"要将当前联系人与所选联系人关联吗？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切换至编辑所选联系人吗？系统会复制您到目前为止输入的所有信息。"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"目录类型：<xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"设置"</string>

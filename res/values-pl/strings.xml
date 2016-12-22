@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontakty"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakty"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Dodaj kontakt"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Telefon do osoby"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"SMS do osoby"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Wybierz kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Wybierz"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Utwórz nowy kontakt"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Przeszukuj kontakty"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj do ulubionych"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Usuń z ulubionych"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Usunięto z ulubionych"</string>
@@ -133,6 +135,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Wyślij"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Brak kontaktów"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Czy dodać adres „<xliff:g id="EMAIL">%s</xliff:g>” do kontaktów?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Imiona i nazwiska oraz nazwy w Twoich kontaktach"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknij, by wrócić do poprzedniego ekranu"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Dodaj numer telefonu"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Dodaj adres e-mail"</string>
@@ -165,7 +168,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Anuluj"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Wstecz"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"zamknij"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Połączyć bieżący kontakt z wybranym?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Czy chcesz edytować wybrany kontakt? Wprowadzone dotąd informacje zostaną skopiowane."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Ustawienia"</string>

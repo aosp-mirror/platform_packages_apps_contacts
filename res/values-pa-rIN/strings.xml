@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"ਸੰਪਰਕ"</string>
     <string name="contactsList" msgid="8661624236494819731">"ਸੰਪਰਕ"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"ਸੰਪਰਕ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ਸੰਪਰਕ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ਸਿੱਧਾ ਡਾਇਲ ਕਰੋ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ਸਿੱਧਾ ਸੁਨੇਹਾ"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ਇੱਕ ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ਚੁਣੋ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ਨਵਾਂ ਸੰਪਰਕ ਬਣਾਓ"</string>
+    <string name="searchHint" msgid="8482945356247760701">"ਸੰਪਰਕ ਖੋਜੋ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ਮਨਪਸੰਦ ਵਿੱਚ ਜੋੜੋ"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ਮਨਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"ਮਨਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"ਭੇਜੋ"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"ਕੀ \"<xliff:g id="EMAIL">%s</xliff:g>\" ਨੂੰ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨਾ ਹੈ?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਦੇ ਨਾਮ"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ਪਿਛਲੀ ਸਕ੍ਰੀਨ ਤੇ ਵਾਪਸ ਜਾਣ ਲਈ ਕਲਿਕ ਕਰੋ"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ਫ਼ੋਨ ਨੰਬਰ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ਈਮੇਲ ਜੋੜੋ"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"ਰੱਦ ਕਰੋ"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"ਪਿੱਛੇ"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"ਬੰਦ ਕਰੋ"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"ਕੀ ਚੁਣੇ ਗਏ ਸੰਪਰਕ ਨਾਲ ਮੌਜੂਦਾ ਸੰਪਰਕ ਲਿੰਕ ਕਰਨਾ ਹੈ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ਕੀ ਚੁਣੇ ਗਏ ਸੰਪਰਕ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ ਸਵਿਚ ਕਰਨਾ ਹੈ? ਹੁਣ ਤੱਕ ਤੁਸੀਂ ਜੋ ਜਾਣਕਾਰੀ ਦਰਜ ਕੀਤੀ, ੁਹ ਕਾਪੀ ਕੀਤੀ ਜਾਏਗੀ।"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ਡਾਇਰੈਕਟਰੀ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ਸੈਟਿੰਗਾਂ"</string>

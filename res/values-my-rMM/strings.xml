@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"အဆက်အသွယ်များ"</string>
     <string name="contactsList" msgid="8661624236494819731">"အဆက်အသွယ်များ"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"အဆက်အသွယ် ထည့်ရန်"</string>
     <string name="shortcutContact" msgid="749243779392912958">"အဆက်အသွယ်"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"တိုက်ရိုက်ခေါ်ဆိုခြင်း"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"တိုက်ရိုက်စာပို့ခြင်း"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"လိပ်စာတစ်ခုရွေးပါ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ရွေးရန်"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"အဆက်အသွယ် အသစ် ဖန်တီးရန်"</string>
+    <string name="searchHint" msgid="8482945356247760701">"အဆက်အသွယ်များရှာပါ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"အနှစ်သက်ဆုံးများထဲ ထည့်ပါ"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"အနှစ်သက်ဆုံးများမှ ထုတ်ပါ"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"အကြိုက်ဆုံးများထဲမှ ထုတ်လိုက်ပါပြီ"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"ပို့ရန်"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"အဆက်အသွယ်များမရှိ"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" ကို လိပ်စာထဲ ထည့်မလား?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"အဆက်အသွယ်များ၏နာမည်များ"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ယခင် မျက်နှာပြင်သို့ ပြန်ရန် ကလစ်ပါ"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ဖုန်းနံပါတ် ထည့်ရန်"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"အီးမေးလ် ထည့်ရန်"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"မလုပ်တော့"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"နောက်သို့"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"ပိတ်ရန်"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"လက်ရှိအဆက်အသွယ်ကို ရွေးချယ်ထားသည့်အဆက်အသွယ်နှင့် ကွင်းဆက်ချိတ်မလား။"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ရွေးထားသော လိပ်စာအား ပြင်ဆင်ခြင်းသို့ပြောင်းမလား? သင် အခုထိ ရိုက်ထားသော စာများအားလုံး ကူးယူပြီးဖြစ်ပါလိမ့်မည်"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"အကန့် <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"အပြင်အဆင်များ"</string>

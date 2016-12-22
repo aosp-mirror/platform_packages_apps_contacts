@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontakter"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Lägg till kontakt"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Direktval"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Direktmeddelande"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Välj en kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Välj"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Skapa ny kontakt"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Sök efter kontakter"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Lägg till i Favoriter"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ta bort från Favoriter"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Borttagen från favoriter"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Skicka"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Inga kontakter"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Vill du lägga till <xliff:g id="EMAIL">%s</xliff:g> i Kontakter?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Dina kontakters namn"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klicka om du vill återvända till föregående skärm"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Lägg till telefonnummer"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Lägg till e-post"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Avbryt"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Tillbaka"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"stäng"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Vill du länka den aktuella kontakten till den markerade kontakten?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Vill du fortsätta att redigera den markerade kontakten? Information som du har angett hittills kommer att kopieras."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Inställningar"</string>

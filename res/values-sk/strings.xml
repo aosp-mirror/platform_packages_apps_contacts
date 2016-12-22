@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontakty"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakty"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Pridať kontakt"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Priame vytáčanie"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Priama správa"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Vyberte kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Vybrať"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Vytvoriť nový kontakt"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Hľadať v kontaktoch"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Pridať medzi obľúbené položky"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Odstrániť z obľúbených"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Odstránené z obľúbených"</string>
@@ -133,6 +135,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Odoslať"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Žiadne kontakty"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Chcete pridať „<xliff:g id="EMAIL">%s</xliff:g>“ medzi kontakty?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Mená vašich kontaktov"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknutím na tlačidlo sa vrátite na predchádzajúcu obrazovku."</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Pridať telefónne číslo"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Pridať e-mail"</string>
@@ -165,7 +168,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Zrušiť"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Späť"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"zavrieť"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Prepojiť aktuálny kontakt s vybraným kontaktom?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Prepnúť do režimu úpravy vybraného kontaktu? Doposiaľ zadané informácie budú skopírované."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Adresár <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavenia"</string>
@@ -525,7 +527,7 @@
     <string name="sim_import_title" msgid="2511154832820812822">"Import zo SIM karty"</string>
     <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"Zrušiť"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"Automatická synchronizácia je vypnutá. Zapnete ju klepnutím."</string>
-    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Odmietnuť"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Zatvoriť"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Synchronizácia účtov je vypnutá. Zapnete ju klepnutím."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Chcete zapnúť automatickú synchronizáciu?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Medzi webom a vašimi zariadeniami sa budú aktualizovať zmeny, ktoré vykonáte vo všetkých aplikáciách a účtoch, nielen v Kontaktoch Google."</string>

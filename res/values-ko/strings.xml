@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"주소록"</string>
     <string name="contactsList" msgid="8661624236494819731">"주소록"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"연락처 추가"</string>
     <string name="shortcutContact" msgid="749243779392912958">"연락처"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"바로 전화 걸기"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"바로 메시지 보내기"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"연락처 선택"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"선택"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"새 연락처 만들기"</string>
+    <string name="searchHint" msgid="8482945356247760701">"주소록 검색"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"즐겨찾기에 추가"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"즐겨찾기에서 삭제"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"즐겨찾기에서 삭제됨"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"보내기"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"연락처 없음"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\'<xliff:g id="EMAIL">%s</xliff:g>\'을(를) 주소록에 추가하겠습니까?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"연락처 명단"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"이전 화면으로 돌아가려면 클릭"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"전화번호 추가"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"이메일 추가"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"취소"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"뒤로"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"닫기"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"이 연락처와 선택한 연락처를 연결하시겠습니까?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"선택한 연락처를 수정하시겠습니까? 지금까지 입력하신 정보는 복사됩니다."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"디렉토리 <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"설정"</string>
