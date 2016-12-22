@@ -68,6 +68,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -118,6 +119,12 @@ public class SimImportActivityTest {
             mActivity.finish();
             mInstrumentation.waitForIdleSync();
         }
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        AccountsTestHelper.removeAccountsWithPrefix(
+                InstrumentationRegistry.getTargetContext(), "SimImportActivity");
     }
 
     @Test
@@ -214,7 +221,7 @@ public class SimImportActivityTest {
         AccountTypeManager.setInstanceForTest(null);
 
         final AccountWithDataSet targetAccount = mAccountHelper.addTestAccount(
-                mAccountHelper.generateAccountName("SimImportActivity_target_"));
+                mAccountHelper.generateAccountName("SimImportActivity0_targetAccount_"));
 
         final MockContentProvider iccProvider = new MockContentProvider();
         iccProvider.expect(MockContentProvider.Query.forAnyUri())
@@ -252,7 +259,7 @@ public class SimImportActivityTest {
         assertTrue(mDevice.wait(Until.hasObject(By.desc("Show more")), TIMEOUT));
 
         mDevice.findObject(By.desc("Show more")).clickAndWait(Until.newWindow(), TIMEOUT);
-        mDevice.findObject(By.textStartsWith("SimImportActivity_target_")).click();
+        mDevice.findObject(By.textContains("_targetAccount_")).click();
 
         assertTrue(mDevice.wait(Until.hasObject(By.text("Skip Two")), TIMEOUT));
 

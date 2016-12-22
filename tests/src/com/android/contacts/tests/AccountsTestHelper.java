@@ -45,7 +45,6 @@ public class AccountsTestHelper {
     private final ContentResolver mResolver;
 
     private List<Account> mAddedAccounts;
-    private Account mTestAccount;
 
     public AccountsTestHelper() {
         // Use context instead of target context because the test package has the permissions needed
@@ -61,9 +60,9 @@ public class AccountsTestHelper {
     }
 
     public void addTestAccount(AccountWithDataSet account) {
-        mTestAccount = new Account(account.name, TEST_ACCOUNT_TYPE);
-        assertTrue(mAccountManager.addAccountExplicitly(mTestAccount, null, null));
-        mAddedAccounts.add(mTestAccount);
+        Account newAccount = new Account(account.name, account.type);
+        assertTrue(mAccountManager.addAccountExplicitly(newAccount, null, null));
+        mAddedAccounts.add(newAccount);
     }
 
     public AccountWithDataSet addTestAccount() {
@@ -104,11 +103,6 @@ public class AccountsTestHelper {
         return accounts.contains(new Account(name, TEST_ACCOUNT_TYPE));
     }
 
-    public void removeContactsForAccount() {
-        removeContactsForAccount(
-                new AccountWithDataSet(mTestAccount.name, mTestAccount.type, null));
-    }
-
     public void removeContactsForAccount(AccountWithDataSet account) {
         mResolver.delete(RawContacts.CONTENT_URI,
                 RawContacts.ACCOUNT_NAME + "=? AND " + RawContacts.ACCOUNT_TYPE + "=?",
@@ -117,8 +111,6 @@ public class AccountsTestHelper {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
     public void cleanup() {
-        assertNotNull(mTestAccount);
-
         // Note that we don't need to cleanup up the contact data associated with the account.
         // CP2 will eventually do that automatically so as long as we're using unique account
         // names we should be safe. Note that cleanup is not done synchronously when the account
@@ -129,11 +121,19 @@ public class AccountsTestHelper {
             mAccountManager.removeAccountExplicitly(account);
         }
         mAddedAccounts.clear();
-
-        mTestAccount = null;
     }
 
-    private AccountWithDataSet convertTestAccount() {
-        return new AccountWithDataSet(mTestAccount.name, mTestAccount.type, null);
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    public static void removeAccountsWithPrefix(Context context, String prefix) {
+        final AccountManager accountManager =
+                (AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE);
+        final Account[] accounts = accountManager.getAccountsByType(TEST_ACCOUNT_TYPE);
+        for (Account account : accounts) {
+            if (account.name.startsWith(prefix)) {
+                accountManager.removeAccountExplicitly(account);
+            }
+        }
+
+
     }
 }
