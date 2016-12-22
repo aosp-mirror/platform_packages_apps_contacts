@@ -436,6 +436,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
     /* This notification will arrive on the UI thread */
     public void onAccountsUpdated(Account[] accounts) {
+        reloadLocalAccounts();
         maybeNotifyAccountsUpdated(mAccountManagerAccounts,
                 getAccountsWithDataSets(accounts, mTypeProvider));
     }
@@ -560,22 +561,12 @@ class AccountTypeManagerImpl extends AccountTypeManager
                         "List should have exactly 2 elements");
 
                 final List<AccountInfo> result = new ArrayList<>();
-                boolean hasWritableGoogleAccount = false;
                 for (AccountWithDataSet account : input.get(0)) {
-                    hasWritableGoogleAccount = hasWritableGoogleAccount ||
-                            (GoogleAccountType.ACCOUNT_TYPE.equals(account.type) &&
-                                    account.dataSet == null);
-
                     result.add(
                             typeProvider.getTypeForAccount(account).wrapAccount(mContext, account));
                 }
 
                 for (AccountWithDataSet account : input.get(1)) {
-                    // Exclude the null account if a writable Google account exists because null
-                    // account contacts are automatically converted to Google contacts in this case
-                    if (hasWritableGoogleAccount && account.isNullAccount()) {
-                        continue;
-                    }
                     result.add(
                             typeProvider.getTypeForAccount(account).wrapAccount(mContext, account));
                 }
