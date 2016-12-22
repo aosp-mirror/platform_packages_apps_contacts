@@ -435,7 +435,7 @@ public class ActionBarAdapter implements OnCloseListener {
     /**
      * Find overflow menu ImageView by its content description and update its color.
      */
-    private void updateOverflowButtonColor() {
+    public void updateOverflowButtonColor() {
         final String overflowDescription = mActivity.getResources().getString(
                 R.string.abc_action_menu_overflow_description);
         final ViewGroup decorView = (ViewGroup) mActivity.getWindow().getDecorView();
