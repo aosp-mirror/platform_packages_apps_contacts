@@ -21,6 +21,7 @@ import android.content.Context;
 
 import com.android.contacts.Experiments;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contactsbind.ObjectFactory;
 import com.android.contactsbind.experiments.Flags;
 
@@ -67,7 +68,38 @@ public abstract class DeviceLocalAccountLocator {
         if (Flags.getInstance().getBoolean(Experiments.OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
             return new Cp2DeviceLocalAccountLocator(context.getContentResolver(),
                     ObjectFactory.getDeviceLocalAccountTypeFactory(context), knownTypes);
+        } else {
+            return new NexusDeviceAccountLocator(accountManager);
         }
-        return NULL_ONLY;
+    }
+
+    /**
+     * On Nexus the "device" account uses "null" values for the account name and type columns
+     *
+     * <p>However, the focus sync adapter automatically migrates contacts from this null
+     * account to a Google account if one exists. Hence, the device account should be returned
+     * only when there is no Google Account added
+     * </p>
+     */
+    public static class NexusDeviceAccountLocator extends DeviceLocalAccountLocator {
+
+        private final AccountManager mAccountManager;
+
+        public NexusDeviceAccountLocator(AccountManager accountManager) {
+            mAccountManager = accountManager;
+        }
+
+        @Override
+        public List<AccountWithDataSet> getDeviceLocalAccounts() {
+            @SuppressWarnings("MissingPermission")
+            final Account[] accounts = mAccountManager
+                    .getAccountsByType(GoogleAccountType.ACCOUNT_TYPE);
+
+            if (accounts.length > 0) {
+                return Collections.emptyList();
+            } else {
+                return Collections.singletonList(AccountWithDataSet.getNullAccount());
+            }
+        }
     }
 }
