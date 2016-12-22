@@ -18,21 +18,16 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontaktid"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktid"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Kontakti lisamine"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Otsevalimine"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Otsesõnum"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Kontakti otsetee valimine"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Valige helistamiseks number"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Valige sõnumi jaoks number"</string>
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"Kontakti valimine"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Kontaktile lisamine"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Kontakti valimine"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Valimine"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Loo uus kontakt"</string>
-    <string name="viewContactTitle" msgid="7989394521836644384">"Kontakti üksikasjad"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Teave:"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"Värskendused"</string>
     <string name="searchHint" msgid="8482945356247760701">"Otsige kontakte"</string>
-    <string name="menu_viewContact" msgid="2795575601596468581">"Kuva kontakt"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Lisa lemmikutesse"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Eemalda lemmikutest"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Lemmikutest eemaldatud"</string>
@@ -41,8 +36,6 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Kustuta"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Foto vahetamine"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Loo otsetee"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Helista kontaktile"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Saada kontaktile SMS"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Tühista linkimine"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Eemalda kontaktid"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Nimeta silt ümber"</string>
@@ -51,8 +44,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Vali kontaktid"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Lisa kontakte"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Eemalda sildilt"</string>
-    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Lisa kontakt"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Uue loomine …"</string>
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Sildi loomine"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Kas tühistada selle kontakti linkimine ja jagada see mitmeks kontaktiks?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Tühista linkimine"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Kas soovite tehtud muudatused salvestada, tühistada selle kontakti linkimise ja jagada selle mitmeks kontaktiks?"</string>
@@ -66,7 +58,6 @@
     <string name="menu_save" msgid="1727844363591825909">"Salvesta"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Kontaktide linkimine"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Valige kontakt, kelle soovite linkida kontaktiga <xliff:g id="NAME">%s</xliff:g>:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Kuva kõik kontaktid"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Soovitatud kontaktid"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kõik kontaktid"</string>
     <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> on lingitud"</string>
@@ -101,21 +92,15 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Selle kontakti kustutamisel kustutatakse andmed mitmelt kontolt."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Kas kustutada see kontakt?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Kustuta"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Loobu muudatustest"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakti ei ole olemas."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt lisati avaekraanile."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> lisati avaekraanile."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Loo uus kontakt"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Loo uus kontakt"</string>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Tahvelarvutis pole ühtegi pilti saadaval."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Telefonis pole ühtegi pilti saadaval."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontakti foto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Kohandatud sildi nimi"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Saada kõned otse kõneposti"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eemalda foto"</string>
     <string name="noContacts" msgid="2228592924476426108">"Teie kontaktiloend on tühi"</string>
-    <string name="noGroups" msgid="4607906327968232225">"Silte pole."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Rühmade loomiseks vajate kontot."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Selle sildiga kontakte pole"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Kontol ei ole ühtki kontakti"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Teie kontaktiloend on tühi"</string>
@@ -128,7 +113,6 @@
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"Viga kontakti salvestamisel"</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Kontakti foto muudatusi ei õnnestunud salvestada"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Sildi laadimine ebaõnnestus"</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"Silt on salvestatud"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Silt on kustutatud"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Silt on loodud"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"Silti ei saa luua"</string>
@@ -143,28 +127,9 @@
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Saada sõnum"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Kontaktide valimine"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Saada"</string>
-    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> telefoninumbriga kontakti</item>
-      <item quantity="one">1 telefoninumbriga kontakt</item>
-    </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Telefoninumbritega kontakte pole"</string>
-    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
-      <item quantity="other">Leiti <xliff:g id="COUNT">%d</xliff:g></item>
-      <item quantity="one">Leiti 1</item>
-    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Kontakte pole"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other">Leiti <xliff:g id="COUNT">%d</xliff:g></item>
-      <item quantity="one">Leiti 1</item>
-    </plurals>
-    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Kõik"</string>
-    <string name="callBack" msgid="5498224409038809224">"Helista tagasi"</string>
-    <string name="callAgain" msgid="3197312117049874778">"Helista uuesti"</string>
-    <string name="returnCall" msgid="8171961914203617813">"Tagasihelistamine"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Kas lisada „<xliff:g id="EMAIL">%s</xliff:g>” kontaktidesse?"</string>
-    <string name="description_plus_button" msgid="515164827856229880">"pluss"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Teie kontaktide nimed"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Selle toimingu käsitsemiseks ei leitud ühtegi rakendust."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klõpsake eelmisele ekraanikuvale naasmiseks"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Lisage telefoninumber"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Lisage e-posti aadress"</string>
@@ -183,52 +148,28 @@
     <string name="label_name_dialog_hint" msgid="1276051790427638142">"Sildi nimi"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Häälvestlus"</string>
     <string name="video_chat" msgid="1872255818640336072">"Videovestlus"</string>
-    <string name="connections" msgid="8098440723172028350">"Ühendused"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"Lisa ühendus"</string>
-    <string name="recent" msgid="2659189233141493004">"Hiljutised"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"Uusimad värskendused"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Teenuse <xliff:g id="SOURCE">%1$s</xliff:g> konto"</string>
-    <!-- no translation found for from_account_format (4469138575127580203) -->
-    <skip />
     <string name="take_photo" msgid="7496128293167402354">"Tee foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tee uus foto"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vali foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vali uus foto"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Otsimine ..."</string>
-    <string name="menu_display_selected" msgid="6470001164297969034">"Kuva valitud"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Kuva kõik"</string>
-    <string name="menu_select_all" msgid="621719255150713545">"Vali kõik"</string>
-    <string name="menu_select_none" msgid="7093222469852132345">"Tühista kõikide valik"</string>
-    <string name="add_new_entry_for_section" msgid="5223080690667565044">"Lisa uus"</string>
-    <string name="add_organization" msgid="7311893231158291197">"Lisa organisatsioon"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Kuupäev"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Silt"</string>
-    <string name="change_photo" msgid="8530597935483526383">"Muuda"</string>
-    <string name="description_star" msgid="2605854427360036550">"lemmik"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Muuda kontakti"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Tühista"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Tagasi"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"sule"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Kas linkida praegune kontakt valitud kontaktiga?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Kas lülituda valitud kontakti muutmisse? Seni sisestatud andmed kopeeritakse."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"Kopeeri valikusse Minu kontaktid"</string>
-    <string name="add_to_my_contacts" msgid="1068274916793627723">"Lisa lehele Minu kontaktid"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Kataloog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Seaded"</string>
     <string name="menu_settings" msgid="377929915873428211">"Seaded"</string>
     <string name="menu_help" msgid="1680178646764069976">"Abi ja tagasiside"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Kuvamisvalikud"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefoninumber"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Lisa kontaktidesse"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Kontaktile lisamine"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Sule"</string>
-    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"Kaasa aasta"</string>
-    <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"Laadimine ..."</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Loo uus kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Konto lisamine"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Importimine"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Uue loomine …"</string>
@@ -242,14 +183,10 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Loobu"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Tühista"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Kas soovite kohandamistest loobuda?"</string>
-    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Otsige kontakte"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Kontaktide eemaldamine"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Minu kohalik profiil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Minu profiil: <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
-    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kõigi kontaktide kuvamine"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Hoidke oma kontaktid turvalisena ka siis, kui kaotate telefoni: sünkroonige need võrguteenusega."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Konto lisamine"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Leidke pisut aega ja lisage konto, mis varundab teie kontaktid Google\'is."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Uued kontaktid salvestatakse kontole <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Valige uute kontaktide jaoks vaikekonto:"</string>
@@ -268,7 +205,6 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Kuva vähem"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Hiljutine"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Teave"</string>
-    <string name="send_message" msgid="8938418965550543196">"Saada sõnum"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Isikliku koopia loomine ..."</string>
     <string name="tomorrow" msgid="6241969467795308581">"Homme"</string>
     <string name="today" msgid="8041090779381781781">"Täna"</string>
@@ -284,12 +220,9 @@
     <string name="header_website_entry" msgid="1411467850000824745">"Veebisait"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Sündmus"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Seos"</string>
-    <string name="header_account_entry" msgid="2684318506427891827">"Konto"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Nimi"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"E-post"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Telefon"</string>
-    <string name="content_description_expand_editor" msgid="1111381475901897470">"Klõpsake kontaktiredigeerija laiendamiseks."</string>
-    <string name="content_description_collapse_editor" msgid="7598061318022977825">"Klõpsake kontaktiredigeerija ahendamiseks."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"juhised asukohta"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"viimane SMS. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klõpsake vastamiseks"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"sissetulevad"</string>
@@ -297,7 +230,6 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"vastamata"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"viimane kõne. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klõpsake tagasihelistamiseks"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Teie: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts toimib paremini, kui sisestate isiku Hangoutsi koodi e-posti aadressi või telefoninumbri väljale."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Rohkem välju"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Kontakti foto muutmine"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Kontakti foto lisamine"</string>
@@ -305,37 +237,13 @@
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Redigeerija avamine ebaõnnestus."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Salvestamine asukohta"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Kontaktiteavet kontol <xliff:g id="ACCOUNT">%s</xliff:g> ei saa muuta"</string>
-    <string name="editor_account_selector_description" msgid="3324358600570627740">"Praegu salvestatakse kontole <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Teise konto valimiseks topeltpuudutage."</string>
-    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
-      <item quantity="other">Lingitud kontaktid (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">Lingitud kontakt</item>
-    </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> lingitud kontakti"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LINGI KONTAKTID"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"TÜHISTA"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> võimalikku duplikaati</item>
-      <item quantity="one">1 võimalik duplikaat</item>
-    </plurals>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> lingitud kontakti</item>
-      <item quantity="one">1 lingitud kontakt</item>
-    </plurals>
-    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
-      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one"></item>
-    </plurals>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"See kontakt"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Võimalikud duplikaadid"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Need kontaktid võivad olla sama isik. Saate need linkida üheks kontaktiks."</string>
-    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Lingitud kontaktid"</string>
-    <string name="from_your_accounts" msgid="1746293107836889912">"Teie kontodelt"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Foto valimine"</string>
-    <string name="contact_from_account_name" msgid="2078526819634079406">"Kontolt <xliff:g id="ACCOUNT_NAME">%s</xliff:g>"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Kustuta <xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Kustuta <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
-    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Tundmatult kontolt pärinev foto pole märgitud"</string>
-    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Tundmatult kontolt pärinev foto on märgitud"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Soovitused"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Uus"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Ava navigeerimissahtel"</string>
@@ -404,11 +312,9 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Kataloog"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"Töökontaktide kataloog"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Kõik kontaktid"</string>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"Leitud rohkem kui <xliff:g id="COUNT">%d</xliff:g>."</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"Kiirkontakt: <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="8745511583852904385">"(Nimi puudub)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Sageli valitud kontaktid"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"Vaadake kontakti"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Kõik telefoninumbritega kontaktid"</string>
     <string name="list_filter_phones_work" msgid="1470173699551475015">"Tööprofiili kontaktid"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Kuva värskendused"</string>
@@ -416,7 +322,6 @@
     <string name="account_sim" msgid="6519016427905087952">"SIM-kaart"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nimi"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Hüüdnimi"</string>
-    <string name="full_name" msgid="6602579550613988977">"Nimi"</string>
     <string name="name_given" msgid="4280790853455320619">"Eesnimi"</string>
     <string name="name_family" msgid="7466985689626017037">"Perekonnanimi"</string>
     <string name="name_prefix" msgid="59756378548779822">"Nime eesliide"</string>
@@ -449,8 +354,6 @@
     <string name="email_custom" msgid="5536404237099078802">"Saada meil: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"E-post"</string>
     <string name="postal_street" msgid="8133143961580058972">"Tänav"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Postkast"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Naabruskond"</string>
     <string name="postal_city" msgid="6597491300084895548">"Linn"</string>
     <string name="postal_region" msgid="6045263193478437672">"Riik"</string>
     <string name="postal_postcode" msgid="572136414136673751">"Sihtnumber"</string>
@@ -488,8 +391,6 @@
     <string name="display_more_groups" msgid="2682547080423434170">"Rohkem rühmi ..."</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"Rühma „<xliff:g id="GROUP">%s</xliff:g>” eemaldamisel sünkroonimisest eemaldatakse sünkroonimisest ka kõik rühmitamata kontaktid."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Kuvavalikute salvestamine ..."</string>
-    <string name="menu_done" msgid="796017761764190697">"Valmis"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Tühista"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Kohandatud vaade"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Imporditud kontaktid salvestatakse kontole:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"SIM-kaart"</string>
@@ -514,13 +415,9 @@
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Eksporditavad kontaktid puuduvad."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"Olete nõutud loa keelanud."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Viga eksportimisel: „<xliff:g id="EXACT_REASON">%s</xliff:g>”."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Kohustuslik failinimi on liiga pikk („<xliff:g id="FILENAME">%s</xliff:g>”)."</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O viga"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Pole piisavalt mälu. Fail võib olla liiga suur."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Ootamatul põhjusel vCardi sõelumine ebaõnnestus."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Vormingut ei toetata."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"vCardi faili(de) metaandmete kogumine ebaõnnestus."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Vähemalt ühe faili importimine ebaõnnestus (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"Faili <xliff:g id="FILENAME">%s</xliff:g> eksportimine on lõpetatud."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Kontaktide eksportimine lõpetati."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Kontaktide eksportimine lõpetati. Kontaktide jagamiseks klõpsake märguandel."</string>
@@ -529,27 +426,23 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Kontaktandmete eksportimine"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Kontaktandmed eksporditakse."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Andmebaasiteabe hankimine ebaõnnestus."</string>
-    <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"Eksporditavaid kontakte pole. Kui teil siiski on telefonis kontakte, ei pruugi mõned andmesidepakkujad kontaktide eksportimist telefonist lubada."</string>
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Eksporditavaid kontakte ei ole."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCardi helilooja ei käivitunud korralikult."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Eksport ebaõnnestus"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Kontaktandmeid ei eksporditud.\nPõhjus: „<xliff:g id="FAIL_REASON">%s</xliff:g>”"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"Importimine: <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCardi andmete lugemine ebaõnnestus"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCardi andmete lugemine tühistati"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCardi faili <xliff:g id="FILENAME">%s</xliff:g> importimine on lõpetatud"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"Faili <xliff:g id="FILENAME">%s</xliff:g> importimine tühistati"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"Fail <xliff:g id="FILENAME">%s</xliff:g> imporditakse peagi."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Fail imporditakse peagi."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCardi importimistaotlus lükati tagasi. Proovige hiljem uuesti."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"Fail <xliff:g id="FILENAME">%s</xliff:g> eksporditakse peagi."</string>
-    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Fail eksporditakse peagi."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Kontaktid eksporditakse peagi."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCardi eksportimistaotlus lükati tagasi. Proovige hiljem uuesti."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"kontakt"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"vCardi(de) vahemälustamine kohalikku ajutisse mäluruumi. Tegelik importimine algab peagi."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"vCardi importimine ebaõnnestus."</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt võeti vastu  NFC kaudu"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"Eksportida kontakt?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Vahemällu salvestamine"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importimine: <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Eksportimine VCF-faili"</string>
@@ -564,8 +457,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"Minu teave"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Seadistage oma profiil"</string>
     <string name="setting_about" msgid="7014388749752042863">"Teave rakenduse Kontaktid kohta"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Jaga nähtavaid kontakte"</string>
-    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"Nähtavate kontaktide jagamine ebaõnnestus."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Jaga lemmikkontakte"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Jaga kõiki kontakte"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Kontaktide jagamine ebaõnnestus."</string>
@@ -575,14 +466,10 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Jagamiseks ei ole ühtki kontakti."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kuvatavad kontaktisikud"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kuvatavad kontaktid"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Kohandatud vaate määramine"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Vaate kohandamine"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Salvesta"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Otsi kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Lemmikud"</string>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Kontaktid puuduvad."</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Sagedaste kustutamine"</string>
-    <string name="menu_select_sim" msgid="3603578201960504010">"SIM-kaardi valimine"</string>
-    <string name="menu_accounts" msgid="1424330057450189074">"Kontode haldamine"</string>
     <string name="menu_import" msgid="6107961135813836467">"Importimine"</string>
     <string name="menu_export" msgid="2658783911863503902">"Eksportimine"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokeeritud numbrid"</string>
@@ -590,19 +477,13 @@
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> allika <xliff:g id="SOURCE">%2$s</xliff:g> kaudu"</string>
     <string name="action_menu_back_from_search" msgid="8793348588949233348">"otsimise peatamine"</string>
     <string name="description_clear_search" msgid="688023606766232904">"Otsingu kustutamine"</string>
-    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"Kontaktide kuvavalikud"</string>
     <string name="select_account_dialog_title" msgid="5478489655696599219">"Konto"</string>
     <string name="set_default_account" msgid="4311613760725609801">"Kasuta helistamiseks alati seda"</string>
-    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Helistamine kontoga"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"Kõne koos märkusega"</string>
     <string name="call_subject_hint" msgid="3043028982108363572">"Sisestage märkus, mis koos kõnega saata …"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"SAADA JA HELISTA"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
-    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> lugemata üksust. </item>
-      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> lugemata üksus. </item>
-    </plurals>
     <string name="about_build_version" msgid="1765533099416999801">"Järguversioon"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Avatud lähtekoodi litsentsid"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Avatud lähtekoodiga tarkvara litsentsi üksikasjad"</string>
@@ -641,6 +522,7 @@
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-kaart"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"Kuva rohkem"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM-kaardi importimine viidi lõpule"</string>
-    <string name="importing_sim_failed_title" msgid="3864137973400578707">"SIM-kaarti ei õnnestunud importida"</string>
+    <string name="importing_sim_failed_title" msgid="39706901030537985">"Importimine ebaõnnestus"</string>
+    <string name="importing_sim_failed_message" msgid="3345258302998021066">"Kontakte ei õnnestunud SIM-kaardilt importida"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM-kaardi importimine"</string>
 </resources>

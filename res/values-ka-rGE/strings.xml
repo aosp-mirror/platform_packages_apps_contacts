@@ -18,21 +18,16 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"კონტაქტები"</string>
     <string name="contactsList" msgid="8661624236494819731">"კონტაქტები"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"კონტაქტის დამატება"</string>
     <string name="shortcutContact" msgid="749243779392912958">"კონტაქტი"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"სწრაფი დარეკვა"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"სწრაფი შეტყობინება"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"კონტაქტის მალსახმობის არჩევა"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"დასარეკად აირჩიეთ ნომერი"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"აირჩიეთ ნომერი"</string>
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"კონტაქტის არჩევა"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"კონტაქტზე დამატება"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"კონტაქტის არჩევა"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"არჩევა"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ახალი კონტაქტის შექმნა"</string>
-    <string name="viewContactTitle" msgid="7989394521836644384">"კონტაქტის დეტალები"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"მონაცემები"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"განახლებები"</string>
     <string name="searchHint" msgid="8482945356247760701">"კონტაქტებში ძიება"</string>
-    <string name="menu_viewContact" msgid="2795575601596468581">"კონტაქტის ნახვა"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"რჩეულებში დამატება"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"რჩეულებიდან ამოშლა"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"წაიშალა რჩეულებიდან"</string>
@@ -41,8 +36,6 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"წაშლა"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"ფოტოს გამოცვლა"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"მალსახმობის შექმნა"</string>
-    <string name="menu_call" msgid="3992595586042260618">"დარეკვა კონტაქტთან"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"ტექსტური შეტყობინების გაგზავნა კონტაქტისთვის"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"მიბმის გაუქმება"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"კონტაქტების წაშლა"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"ლეიბლის გადარქმევა"</string>
@@ -51,8 +44,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"კონტაქტების არჩევა"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"კონტაქტების დამატება"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"ლეიბლიდან ამოშლა"</string>
-    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"კონტაქტის დამატება"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"ახლის შექმნა…"</string>
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"ლეიბლის შექმნა"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"გსურთ მიბმის გაუქმება და ამ კონტაქტის რამდენიმე კონტაქტად დაშლა?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"მიბმის გაუქმება"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"გსურთ უკვე შეტანილი ცვლილებების შენახვა და მიბმის გაუქმებით ამ კონტაქტის რამდენიმე კონტაქტად დაშლა?"</string>
@@ -66,7 +58,6 @@
     <string name="menu_save" msgid="1727844363591825909">"შენახვა"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"კონტაქტების მიბმა"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"აირჩიეთ კონტაქტი, რომელიც გსურთ, მიაბათ <xliff:g id="NAME">%s</xliff:g>-ს:"</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"ყველა კონტაქტის ჩვენება"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"შემოთავაზებული კონტაქტები"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"ყველა კონტაქტი"</string>
     <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> დაკავშირებულია"</string>
@@ -101,21 +92,15 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ამ კონტაქტის წაშლის შემთხვევაში, რამდენიმე ანგარიშიდან მიღებული ინფორმაცია წაიშლება."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"გსურთ ამ კონტაქტის წაშლა?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"წაშლა"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"ცვლილებების გაუქმება"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"კონტაქტი არ არსებობს."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"კონტაქტი დაემატა მთავარ ეკრანს."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> დაემატა მთავარ ეკრანს."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"ახალი კონტაქტის შექმნა"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"ახალი კონტაქტის შექმნა"</string>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ტაბლეტზე სურათები მიუწვდომელია."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"ტელეფონზე სურათები არ არის."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"კონტაქტის ფოტო"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"მორგებული ლეიბლის სახელი"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ზარების პირდაპირ ხმოვან ფოსტაში გაგზავნა"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ფოტოების წაშლა"</string>
     <string name="noContacts" msgid="2228592924476426108">"თქვენი კონტაქტების სია ცარიელია"</string>
-    <string name="noGroups" msgid="4607906327968232225">"ლეიბლები არ არის."</string>
-    <string name="noAccounts" msgid="7768267764545265909">"ჯგუფების შესაქმნელად გესაჭიროებათ ანგარიში."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"კონტაქტი ამ ლეიბლით არ არსებობს"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"ამ ანგარიშში კონტაქტები არ არის"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"თქვენი კონტაქტების სია ცარიელია"</string>
@@ -128,7 +113,6 @@
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"კონტაქტის შენახვისას მოხდა შეცდომა"</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"კონტაქტის ფოტოს ცვლილებების შენახვა ვერ მოხერხდა"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"ლეიბლი ვერ ჩაიტვირთა"</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"ლეიბლი შენახულია"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"ლეიბლი წაშლილია"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"ლეიბლი შექმნილია"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"ლეიბლის შექმნა შეუძლებელია"</string>
@@ -143,28 +127,9 @@
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"შეტყობინების გაგზავნა"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"აირჩიეთ კონტაქტები"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"გაგზავნა"</string>
-    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> კონტაქტი ტელეფონის ნომრით</item>
-      <item quantity="one">1 კონტაქტი ტელეფონის ნომრით</item>
-    </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"ტელეფონის ნომრიანი კონტაქტები არ არის"</string>
-    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> მოიძებნა</item>
-      <item quantity="one">1 მოიძებნა</item>
-    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"კონტაქტები არ არის"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> მოიძებნა</item>
-      <item quantity="one">1 მოიძებნა</item>
-    </plurals>
-    <string name="all_contacts_tab_label" msgid="5948889261993124839">"ყველა"</string>
-    <string name="callBack" msgid="5498224409038809224">"გადარეკვა"</string>
-    <string name="callAgain" msgid="3197312117049874778">"დარეკვა ხელახლა"</string>
-    <string name="returnCall" msgid="8171961914203617813">"გადარეკვა"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"„<xliff:g id="EMAIL">%s</xliff:g>“ დაემატოს კონტაქტებს?"</string>
-    <string name="description_plus_button" msgid="515164827856229880">"პლუსი"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"თქვენი კონტაქტების სახელები"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"ამ მოქმედების შესასრულებლად აპი ვერ მოიძებნა."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"დააწკაპუნეთ წინა ეკრანზე დასაბრუნებლად"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ტელეფონის ნომრის დამატება"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ელფოსტის დამატება"</string>
@@ -183,52 +148,28 @@
     <string name="label_name_dialog_hint" msgid="1276051790427638142">"ლეიბლის სახელი"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ხმოვანი ჩეთი"</string>
     <string name="video_chat" msgid="1872255818640336072">"ვიდეო ჩეთი"</string>
-    <string name="connections" msgid="8098440723172028350">"კავშირები"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"კავშირის დამატება"</string>
-    <string name="recent" msgid="2659189233141493004">"უახლესი"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"უახლესი განახლებები"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g>-ის კონტაქტი"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g>-ის ანგარიში"</string>
-    <!-- no translation found for from_account_format (4469138575127580203) -->
-    <skip />
     <string name="take_photo" msgid="7496128293167402354">"ფოტოს გადაღება"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ახალი ფოტოს გადაღება"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ფოტოს არჩევა"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"ახალი ფოტოს არჩევა"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ძიება..."</string>
-    <string name="menu_display_selected" msgid="6470001164297969034">"არჩეულის ჩვენება"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"ყველას ჩვენება"</string>
-    <string name="menu_select_all" msgid="621719255150713545">"ყველას არჩევა"</string>
-    <string name="menu_select_none" msgid="7093222469852132345">"ყველა არჩევანის გაუქმება"</string>
-    <string name="add_new_entry_for_section" msgid="5223080690667565044">"ახლის დამატება"</string>
-    <string name="add_organization" msgid="7311893231158291197">"ორგანიზაციის დამატება"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"თარიღი"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"ლეიბლი"</string>
-    <string name="change_photo" msgid="8530597935483526383">"შეცვლა"</string>
-    <string name="description_star" msgid="2605854427360036550">"რჩეული"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"კონტაქტის რედაქტირება"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"გაუქმება"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"უკან"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"დახურვა"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"გსურთ მიმდინარე და არჩეული კონტაქტების მიბმა?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"გადაერთვებით არჩეული კონტაქტის რედაქტირებაზე? მოხდება თქვენს მიერ შეყვანილი ინფორმაციის კოპირება."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"კოპირება ჩემს კონტაქტებში"</string>
-    <string name="add_to_my_contacts" msgid="1068274916793627723">"ჩემს კონტაქტებში დამატება"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"კატალოგი <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"პარამეტრები"</string>
     <string name="menu_settings" msgid="377929915873428211">"პარამეტრები"</string>
     <string name="menu_help" msgid="1680178646764069976">"დახმარება/უკუკავშირი"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"ეკრანის პარამეტრები"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ტელეფონის ნომერი"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"კონტაქტებში დამატება"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"დაემატოს კონტაქტს"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"დახურვა"</string>
-    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"წელის ჩათვლით"</string>
-    <string name="social_widget_label" msgid="6378905543028924592">"კონტაქტი"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"იტვირთება…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ახალი კონტაქტის შექმნა"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ანგარიშის დამატება"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"იმპორტი"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"ახლის შექმნა…"</string>
@@ -242,14 +183,10 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ცვლ.უარყოფა"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"გაუქმება"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"გსურთ მორგებული პარამეტრების გაუქმება?"</string>
-    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"კონტაქტების ძიება"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"კონტაქტების წაშლა"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ჩემი ადგილობრივი პროფილი"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ჩემი <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> პროფილი"</string>
-    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ყველა კონტაქტის ჩვენება"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"შეინახეთ თქვენი კონტაქტები საიმედოდ ტელეფონის დაკარგვის შემთხვევაშიც კი: მოახდინეთ სინქრონიზაცია ონლაინ სერვისთან."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ანგარიშის დამატება"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"დაუთმეთ ორიოდე წუთი ანგარიშის დამატებას, რომლითაც შეიქმნება თქვენი კონტაქტების სარეზერვო ასლები Google-ში."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ახალი კონტაქტები შეინახება აქ: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"აირჩიეთ ნაგულისხმევი ანგარიში ახალი კონტაქტებისთვის:"</string>
@@ -268,7 +205,6 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"ნაკლების ჩვენება"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"ბოლო"</string>
     <string name="about_card_title" msgid="2920942314212825637">"შესახებ"</string>
-    <string name="send_message" msgid="8938418965550543196">"შეტყობინების გაგზავნა"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"პირადი ასლის შექმნა…"</string>
     <string name="tomorrow" msgid="6241969467795308581">"ხვალ"</string>
     <string name="today" msgid="8041090779381781781">"დღეს"</string>
@@ -284,12 +220,9 @@
     <string name="header_website_entry" msgid="1411467850000824745">"ვებსაიტი"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"მოვლენა"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"კავშირი"</string>
-    <string name="header_account_entry" msgid="2684318506427891827">"ანგარიში"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"სახელი"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"ელფოსტა"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"ტელეფონი"</string>
-    <string name="content_description_expand_editor" msgid="1111381475901897470">"კონტაქტების რედაქტირების გაფართოებისათვის, დააჭირეთ."</string>
-    <string name="content_description_collapse_editor" msgid="7598061318022977825">"კონტაქტების რედაქტირების შეკუმშვისათვის, დააჭირეთ."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"მიმართულებები მდებარეობამდე"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"ბოლო sms. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. დააწკაპუნეთ საპასუხოდ"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"შემომავალი"</string>
@@ -297,7 +230,6 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"გამოტოვებული"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"ბოლო ზარი. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. დააწკაპუნეთ გადასარეკად"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"თქვენ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangout უკეთესად იმუშავებს იმ შემთხვევაში, თუ ტელეფონის ან ელფოსტის ველში პიროვნების Hangout-ის ინდენტიფიკატორს შეიყვანთ."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"სხვა ველები"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"კონტაქტის ფოტოს შეცვლა"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"კონტაქტის ფოტოს დამატება"</string>
@@ -305,37 +237,13 @@
     <string name="editor_failed_to_load" msgid="1623639078580475818">"რედაქტორი ვერ გაიხსნა."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"ინახება აქ:"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"კონტაქტის ინფორმაცია <xliff:g id="ACCOUNT">%s</xliff:g>-იდან ვერ დარედაქტირდება"</string>
-    <string name="editor_account_selector_description" msgid="3324358600570627740">"ამჟამად ინახება <xliff:g id="ACCOUNT_NAME">%s</xliff:g>-ში. ორმაგად შეეხეთ სხვა ანგარიშის ასარჩევად."</string>
-    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
-      <item quantity="other">დაკავშირებული კონტაქტები (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">დაკავშირებული კონტაქტი</item>
-    </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> მიბმული კონტაქტი"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"კონტაქტების მიბმა"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"გაუქმება"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> შესაძლო დუბლიკატი</item>
-      <item quantity="one">1 შესაძლო დუბლიკატი</item>
-    </plurals>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> მიბმული კონტაქტი</item>
-      <item quantity="one">1 მიბმული კონტაქტი</item>
-    </plurals>
-    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
-      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one"></item>
-    </plurals>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"ეს კონტაქტი"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"შესაძლო დუბლიკატები"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"ეს კონტაქტები შეიძლება ერთი და იგივე პიროვნება იყოს. შეგიძლიათ მიბმის მეშვეობით მათი ერთ კონტაქტად გაერთიანება."</string>
-    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"დაკავშირებული კონტაქტები"</string>
-    <string name="from_your_accounts" msgid="1746293107836889912">"თქვენი ანგარიშებიდან"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"აირჩიეთ ფოტო"</string>
-    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g>-დან"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"წაიშალოს <xliff:g id="DATA_KIND">%2$s</xliff:g> (<xliff:g id="DATA_TYPE">%1$s </xliff:g>)"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"წაიშალოს <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
-    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ფოტო უცნობი ანგარიშიდან არ არის მონიშნული"</string>
-    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ფოტო უცნობი ანგარიშიდან მონიშნულია"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"შეთავაზებები"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"ახალი"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ნავიგაციის უჯრის გახსნა"</string>
@@ -404,11 +312,9 @@
     <string name="directory_search_label" msgid="1887759056597975053">"კატალოგი"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"სამსახურის კატალოგი"</string>
     <string name="local_search_label" msgid="2551177578246113614">"ყველა კონტაქტი"</string>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"ნაპოვნია <xliff:g id="COUNT">%d</xliff:g>-ზე მეტი."</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"სწრაფი კონტაქტი <xliff:g id="NAME">%1$s</xliff:g>-თან"</string>
     <string name="missing_name" msgid="8745511583852904385">"(სახელის გარეშე)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"ხშირი კონტაქტები"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"კონტაქტის ნახვა"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"ყველა ტელეფონის ნომრიანი კონტაქტი"</string>
     <string name="list_filter_phones_work" msgid="1470173699551475015">"სამსახურის პროფილის კონტაქტები"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"განახლებების ნახვა"</string>
@@ -416,7 +322,6 @@
     <string name="account_sim" msgid="6519016427905087952">"SIM"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"სახელი"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"მეტსახელი"</string>
-    <string name="full_name" msgid="6602579550613988977">"სახელი"</string>
     <string name="name_given" msgid="4280790853455320619">"სახელი"</string>
     <string name="name_family" msgid="7466985689626017037">"გვარი"</string>
     <string name="name_prefix" msgid="59756378548779822">"სახელის პრეფიქსი"</string>
@@ -449,8 +354,6 @@
     <string name="email_custom" msgid="5536404237099078802">"ელფოსტის გაგზავნა <xliff:g id="CUSTOM_LABEL">%s</xliff:g>-ზე"</string>
     <string name="email" msgid="5668400997660065897">"ელფოსტის გაგზავნა"</string>
     <string name="postal_street" msgid="8133143961580058972">"ქუჩა"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"საფოსტო ყუთი"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"უბანი"</string>
     <string name="postal_city" msgid="6597491300084895548">"ქალაქი"</string>
     <string name="postal_region" msgid="6045263193478437672">"შტატი"</string>
     <string name="postal_postcode" msgid="572136414136673751">"ZIP-კოდი"</string>
@@ -488,8 +391,6 @@
     <string name="display_more_groups" msgid="2682547080423434170">"სხვა ჯგუფები…"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"სინქრონიზაციიდან „<xliff:g id="GROUP">%s</xliff:g>“-ის ამოშლა წაშლის ყველა დაუჯგუფებელ კონტაქტს."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"ეკრანის პარამეტრების შენახვა…"</string>
-    <string name="menu_done" msgid="796017761764190697">"დასრულდა"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"გაუქმება"</string>
     <string name="listCustomView" msgid="1840624396582117590">"მორგებული ხედი"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"იმპორტირებული კონტაქტების შენახვა აქ:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"SIM ბარათიდან"</string>
@@ -514,13 +415,9 @@
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"ექსპორტირებადი კონტაქტი არ არსებობს."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"თქვენ გათიშული გაქვთ მოთხოვნილი ნებართვა."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"ექსპორტი ვერ მოხერხდა: „<xliff:g id="EXACT_REASON">%s</xliff:g>“."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"მოთხოვნილი ფაილის სახელი ძალიან გრძელია („<xliff:g id="FILENAME">%s</xliff:g>“)."</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O შეცდომა"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"მეხსიერება არასაკმარისია. შესაძლოა ფაილი ძალიან დიდია."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"vCard ფაილის გარჩევა ვერ მოხერხდა რომელიღაც მოულოდნელი მიზეზით."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"ეს ფორმატი მხარდაუჭერელია."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"მოცემული vCard ფაილ(ებ)ის მეტა ინფორმაციის შეგროვება ვერ მოხერხდა."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"ერთი ან მეტი ფაილის იმპორტი ვერ მოხერხდა (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g>-ის ექსპორტი დასრულდა."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"კონტაქტების ექსპორტი დასრულდა."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"კონტაქტების ექსპორტი დასრულდა. კონტაქტების გასაზიარებლად, შეეხეთ შეტყობინებას."</string>
@@ -529,27 +426,23 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"კონტაქტების მონაცემთა ექსპორტი"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"მიმდინარეობს კონტაქტების მონაცემების ექსპორტი."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"მონაცემთა ბაზის ინფორმაციის მიღება ვერ მოხერხდა."</string>
-    <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"ექსპორტირებადი კონტაქტები არ მოიპოვება. თუ კონტაქტები ნამდვილად არის თქვენს ტელეფონში, შესაძლოა ზოგიერთი მონაცემთა მომწოდებელი არ იძლევა ტელეფონიდან მათი ექსპორტის უფლებას."</string>
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"ექსპორტირებადი კონტაქტები არ არის."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard კომპოზიტორი გაშვებულია არასწორად."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ექსპორტი ჩაიშალა."</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"კონტაქტების მონაცემები არ არის ექსპორტირებული.\nმიზეზი: „<xliff:g id="FAIL_REASON">%s</xliff:g>“"</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"იმპორტირდება <xliff:g id="NAME">%s</xliff:g>"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard მონაცემთა წაკითხვა ვერ მოხერხდა"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard მონაცემთა წაკითხვა გაუქმდა"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g>-ის იმპორტი დასრულდა"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g>-ის იმპორტი გაუქმდა"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> მალე იმპორტირდება."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"ამ ფაილის იმპორტი მალე შესრულდება."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard-ის იმპორტის მოთხოვნა უარყოფილია. სცადეთ მოგვიანებით."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> მალე ექსპორტირდება."</string>
-    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"ამ ფაილის ექსპორტი მალე შესრულდება."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"კონტაქტების ექსპორტი მალე განხორციელდება."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard-ის ექსპორტის მოთხოვნა უარყოფილია. სცადეთ მოგვიანებით."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"კონტაქტი"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"მიმდინარეობს vCard ფაილ(ებ)ის ქეშირება დროებით ადგილობრივ მეხსიერებაში. ფაქტიური იმპორტი დაიწყება მალე."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"vCard-ის იმპორტი ვერ მოხერხდა."</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"კონტაქტი NFC-ით"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"გსურთ კონტაქტების ექსპორტი?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"ქეშირება"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"მიმდინარეობს იმპორტი <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"ექსპორტი .vcf ფაილში"</string>
@@ -564,8 +457,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"ჩემი ინფორმაცია"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"თქვენი პროფილის დაყენება"</string>
     <string name="setting_about" msgid="7014388749752042863">"კონტაქტების შესახებ"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"ხილული კონტაქტების გაზიარება"</string>
-    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"ხილული კონტაქტების გაზიარება ვერ მოხერხდა."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"რჩეული კონტაქტების გაზიარება"</string>
     <string name="share_contacts" msgid="8109287987498711664">"ყველა კონტაქტის გაზიარება"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"კონტაქტების გაზიარება ვერ მოხერხდა."</string>
@@ -575,14 +466,10 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"გასაზიარებელი კონტაქტები არ არის."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"საჩვენებელი კონტაქტები"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"საჩვენებელი კონტაქტები"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"მორგებ.ხედის განსაზღვრა"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"ხედის პარამეტრების დაყენება"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"შენახვა"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"კონტაქტებში ძიება"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"რჩეულები"</string>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"კონტაქტები არ არის."</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"ხშირი კონტაქტების წაშლა"</string>
-    <string name="menu_select_sim" msgid="3603578201960504010">"აირჩიეთ SIM ბარათი"</string>
-    <string name="menu_accounts" msgid="1424330057450189074">"ანგარიშების მართვა"</string>
     <string name="menu_import" msgid="6107961135813836467">"იმპორტი"</string>
     <string name="menu_export" msgid="2658783911863503902">"ექსპორტი"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"დაბლოკილი ნომრები"</string>
@@ -590,19 +477,13 @@
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> <xliff:g id="SOURCE">%2$s</xliff:g>-ის მეშვეობით"</string>
     <string name="action_menu_back_from_search" msgid="8793348588949233348">"ძიების შეჩერება"</string>
     <string name="description_clear_search" msgid="688023606766232904">"ძიების გასუფთავება"</string>
-    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"კონტაქტის ჩვენების ვარიანტები"</string>
     <string name="select_account_dialog_title" msgid="5478489655696599219">"ანგარიში"</string>
     <string name="set_default_account" msgid="4311613760725609801">"ზარებისთვის მუდამ ამის გამოყენება"</string>
-    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"დარეკვა ანგარიშით"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"ზარი შენიშვნასთან ერთად"</string>
     <string name="call_subject_hint" msgid="3043028982108363572">"აკრიფეთ ჩანიშვნა ზართან ერთად გასაგზავნად…"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"გაგზავნა და დარეკვა"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
-    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> წაუკითხავი ერთეული. </item>
-      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> წაუკითხავი ერთეული. </item>
-    </plurals>
     <string name="about_build_version" msgid="1765533099416999801">"ანაწყობის ვერსია"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"ღია კოდის ლიცენზიები"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"ღია კოდის პროგრამული უზრუნველყოფის ლიცენზირების დეტალები"</string>
@@ -641,6 +522,7 @@
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"მეტის ჩვენება"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM ბარათის იმპორტი დასრულდა"</string>
-    <string name="importing_sim_failed_title" msgid="3864137973400578707">"SIM ბარათის იმპორტი ვერ მოხერხდა"</string>
+    <string name="importing_sim_failed_title" msgid="39706901030537985">"იმპორტი ვერ შესრულდა"</string>
+    <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM ბარათიდან კონტაქტების იმპორტი ვერ შესრულდა"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"მიმდინარეობს SIM-ის იმპორტი"</string>
 </resources>
