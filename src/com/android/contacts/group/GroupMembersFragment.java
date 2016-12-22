@@ -692,6 +692,7 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
             super.onLoadFinished(loader, cursorWrapper);
             // Update state of menu items (e.g. "Remove contacts") based on number of group members.
             mActivity.invalidateOptionsMenu();
+            mActionBarAdapter.updateOverflowButtonColor();
         }
     }
 
