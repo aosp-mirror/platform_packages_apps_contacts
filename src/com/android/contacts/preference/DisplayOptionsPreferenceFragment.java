@@ -54,7 +54,10 @@ import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
+import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contactsbind.HelpUtils;
@@ -84,6 +87,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final String KEY_SORT_ORDER = "sortOrder";
 
     private static final int LOADER_PROFILE = 0;
+    private static final int LOADER_ACCOUNTS = 1;
 
     /**
      * Callbacks for hosts of the {@link DisplayOptionsPreferenceFragment}.
@@ -155,6 +159,26 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         public void onLoaderReset(Loader<Cursor> loader) {
         }
     };
+
+    private final LoaderManager.LoaderCallbacks<List<AccountInfo>> mAccountsLoaderListener =
+            new LoaderManager.LoaderCallbacks<List<AccountInfo>>() {
+                @Override
+                public Loader<List<AccountInfo>> onCreateLoader(int id, Bundle args) {
+                    return new AccountsLoader(getActivity(), AccountTypeManager.writableFilter());
+                }
+
+                @Override
+                public void onLoadFinished(
+                        Loader<List<AccountInfo>> loader, List<AccountInfo> data) {
+                    if (data.isEmpty()) {
+                        removeUnsupportedAccountPreferences();
+                    }
+                }
+
+                @Override
+                public void onLoaderReset(Loader<List<AccountInfo>> loader) {
+                }
+            };
 
     public static DisplayOptionsPreferenceFragment newInstance(String newLocalProfileExtra,
             boolean areContactsAvailable) {
@@ -241,7 +265,8 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().restartLoader(LOADER_PROFILE, null, mProfileLoaderListener);
+        getLoaderManager().initLoader(LOADER_PROFILE, null, mProfileLoaderListener);
+        getLoaderManager().initLoader(LOADER_ACCOUNTS, null, mAccountsLoaderListener);
     }
 
     @Override
@@ -275,15 +300,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             getPreferenceScreen().removePreference(findPreference(KEY_DISPLAY_ORDER));
         }
 
-        // Remove the default account and custom view settings there aren't any writable accounts
-        final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
-        final List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(
-                /* contactWritableOnly */ true);
-        if (accounts.isEmpty()) {
-            getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
-            getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
-        }
-
         final boolean isPhone = TelephonyManagerCompat.isVoiceCapable(
                 (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE));
         final boolean showBlockedNumbers = isPhone && ContactsUtils.FLAG_N_FEATURE
@@ -295,6 +311,11 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         if (!mAreContactsAvailable) {
             getPreferenceScreen().removePreference(findPreference(KEY_EXPORT));
         }
+    }
+
+    private void removeUnsupportedAccountPreferences() {
+        getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
+        getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
     }
 
     @Override
