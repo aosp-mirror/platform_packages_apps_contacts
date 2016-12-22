@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"ទំនាក់ទំនង"</string>
     <string name="contactsList" msgid="8661624236494819731">"ទំនាក់ទំនង"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"បញ្ចូល​​ទំនាក់ទំនង"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ទំនាក់ទំនង"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ហៅ​ដោយ​ផ្ទាល់"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ផ្ញើ​សារ​ដោយ​ផ្ទាល់"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ជ្រើសរើស​ទំនាក់ទំនង"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ជ្រើស"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"បង្កើត​ទំនាក់ទំនង​ថ្មី"</string>
+    <string name="searchHint" msgid="8482945356247760701">"រក​ទំនាក់ទំនង"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"បន្ថែម​ទៅ​សំណព្វ"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"លុប​ចេញពី​សំណព្វ"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"បាន​លុប​ចេញ​​និយម​ប្រើ"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"ផ្ញើ"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"មិន​មាន​ទំនាក់ទំនង"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"បញ្ចូល \"<xliff:g id="EMAIL">%s</xliff:g>\" ទៅ​ក្នុង​ទំនាក់ទំនង?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"ឈ្មោះ​នៃ​ទំនាក់ទំនង​របស់​អ្នក"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ចុច ដើម្បី​ត្រឡប់ទៅ​អេក្រង់​មុន"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"បញ្ចូល​លេខទូរសព្ទ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"បញ្ចូល​អ៊ីមែល"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"បោះបង់"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"ថយក្រោយ"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"បិទ"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"តភ្ជាប់ទំនាក់ទំនងបច្ចុប្បន្នជាមួយទំនាក់ទំនងដែលបានជ្រើស?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ប្ដូរ​ដើម្បី​កែ​ទំនាក់ទំនង​ដែល​បាន​ជ្រើស? ព័ត៌មាន​ដែល​អ្នក​បញ្ចូល​នឹង​បាន​ចម្លង។"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ថត <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ការ​កំណត់"</string>

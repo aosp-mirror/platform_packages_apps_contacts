@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"通訊錄"</string>
     <string name="contactsList" msgid="8661624236494819731">"通訊錄"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"新增聯絡人"</string>
     <string name="shortcutContact" msgid="749243779392912958">"聯絡人"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接撥號"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"私人訊息"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"選擇聯絡人"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"選取"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"建立新聯絡人"</string>
+    <string name="searchHint" msgid="8482945356247760701">"搜尋聯絡人"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"新增至我的最愛"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"從「我的最愛」中移除"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"已從我的最愛中移除"</string>
@@ -78,8 +80,8 @@
     <string name="title_from_google" msgid="4664084747121207202">"來自 Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"來自「<xliff:g id="ACCOUNT">%s</xliff:g>」"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"設定鈴聲"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"轉往語音信箱"</string>
-    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"取消轉往語音信箱"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"轉駁到留言信箱"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"取消轉駁到留言信箱"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"這是唯讀聯絡人，因此無法刪除，但可加以隱藏。"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"隱藏聯絡人"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"此聯絡人的唯讀帳戶將會隱藏，而不會刪除。"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"傳送"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"沒有聯絡人"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"要將「<xliff:g id="EMAIL">%s</xliff:g>」加到通訊錄嗎？"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"您的聯絡人姓名"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"按一下即可返回上一個畫面"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"新增電話號碼"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"新增電郵"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"取消"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"返回"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"關閉"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"要將目前的聯絡人連結至已選的聯絡人嗎？"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"要切換至編輯所選聯絡人嗎？您目前已輸入的資訊將會被複製。"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"名錄 <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"設定"</string>

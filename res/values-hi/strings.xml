@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"संपर्क"</string>
     <string name="contactsList" msgid="8661624236494819731">"संपर्क"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"संपर्क जोड़ें"</string>
     <string name="shortcutContact" msgid="749243779392912958">"संपर्क"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"कॉल करें"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"मैसेज भेजें"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"कोई संपर्क चुनें"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"चुनें"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"नया संपर्क बनाएं"</string>
+    <string name="searchHint" msgid="8482945356247760701">"संपर्क खोजें"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"पसंदीदा में जोड़ें"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"पसंदीदा से निकालें"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"पसंदीदा से निकाल दिया गया"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"भेजें"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"कोई संपर्क नहीं"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"\"<xliff:g id="EMAIL">%s</xliff:g>\" को संपर्कों में जोड़ें?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"आपके संपर्कों के नाम"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"पिछली स्क्रीन पर लौटने के लिए क्लिक करें"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"फ़ोन नंबर जोड़ें"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ईमेल जोड़ें"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"रद्द करें"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"वापस जाएं"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"बंद करें"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"वर्तमान संपर्क को चयनित संपर्क से लिंक करें?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपके द्वारा अभी तक दर्ज की गई जानकारी की प्रतिलिपि बनाई जाएगी."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग"</string>

@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"വിലാസങ്ങൾ"</string>
     <string name="contactsList" msgid="8661624236494819731">"വിലാസങ്ങൾ"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"കോൺടാക്റ്റ് ചേർക്കുക"</string>
     <string name="shortcutContact" msgid="749243779392912958">"കോൺടാക്റ്റ്"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"നേരിട്ടുള്ള ഡയൽ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"സന്ദേശങ്ങൾ നേരിട്ട്"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"തിരഞ്ഞെടുക്കുക"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
+    <string name="searchHint" msgid="8482945356247760701">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"പ്രിയപ്പെട്ടവയിലേക്ക് ചേർക്കുക"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"പ്രിയപ്പെട്ടവയിൽ നിന്നും നീക്കംചെയ്യുക"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"പ്രിയപ്പെട്ടവയിൽ നിന്നും നീക്കംചെയ്‌തു"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"അയയ്‌ക്കുക"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"കോൺടാക്റ്റുകളിലേക്ക് \"<xliff:g id="EMAIL">%s</xliff:g>\" ചേർക്കണോ?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ പേരുകൾ"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"മുമ്പത്തെ സ്‌ക്രീനിലേക്ക് മടങ്ങാൻ ക്ലിക്കുചെയ്യുക"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ഫോണ്‍ നമ്പര്‍ ചേര്‍ക്കുക"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ഇമെയില്‍‌ ചേര്‍‌ക്കുക"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"റദ്ദാക്കുക"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"മടങ്ങുക"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"അടയ്‌ക്കുക"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"തിരഞ്ഞെടുത്ത കോൺടാക്റ്റുമായി നിലവിലെ കോൺടാക്റ്റ് ലിങ്കുചെയ്യണോ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് എഡിറ്റുചെയ്യുന്നതിലേക്ക് മാറണോ? ഇതുവരെ നിങ്ങൾ നൽകിയ വിവരങ്ങൾ പകർത്തപ്പെടും."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ഡയറക്‌ടറി <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ക്രമീകരണം"</string>

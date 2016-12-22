@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"සම්බන්ධතා"</string>
     <string name="contactsList" msgid="8661624236494819731">"සම්බන්ධතා"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"සම්බන්ධතාව එක් කරන්න"</string>
     <string name="shortcutContact" msgid="749243779392912958">"සම්බන්ධතාවය"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ඍජු ඇමතීම"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ඍජු පණිවිඩය"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"සම්බන්ධතාවයක් තෝරන්න"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"තෝරන්න"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"නව සම්බන්ධතාවයක් නිර්මාණය කරන්න"</string>
+    <string name="searchHint" msgid="8482945356247760701">"සම්බන්ධතා සෙවීම"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"ප්‍රියතම වලට එක් කරන්න"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ප්‍රියතම වලින් ඉවත් කරන්න"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"ප්‍රියතමයන්ගෙන් ඉවත් කරන්න"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"යවන්න"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"සම්බන්ධතා නැත"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"සම්බන්ධතා වලට \"<xliff:g id="EMAIL">%s</xliff:g>\" එක් කරන්නද?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"ඔබගේ සම්බන්ධතා වල නම්"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"පෙර තිරයට යෑම ආපසු යෑම ක්ලික් කරන්න"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"දුරකථන අංකයක් එක් කරන්න"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ඊ-තැපෑලක් එක් කරන්න"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"අවලංගු කරන්න"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"ආපසු"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"වසන්න"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"වත්මන් සම්බන්ධතාව තෝරන ලද සම්බන්ධතාව සමඟ සබැඳි කරන්නද?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"තෝරාගෙන ඇති සම්බන්ධතාවය සංස්කරණය කිරීමට මාරු වෙන්නද? ඔබ දැනට ඇතුළු කළ තොරතුරු පිටපත් වනු ඇත."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> නාමාවලිය"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"සැකසීම්"</string>

@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontakter"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontakter"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Legg til kontakt"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ring"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Send melding"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Velg en kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Velg"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Opprett ny kontakt"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Søk i kontakter"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Legg til som favoritt"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Fjern fra favoritter"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Fjernet fra favoritter"</string>
@@ -42,7 +44,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Velg kontakter"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Legg til kontakter"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Fjern fra etiketten"</string>
-    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Opprett en etikett"</string>
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Lag en etikett"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Vil du dele denne kontakten opp i flere kontakter?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Del opp"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Vil du lagre endringene du allerede har gjort, og dele opp denne kontakten i flere kontakter?"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Send"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ingen kontakter"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Legg til «<xliff:g id="EMAIL">%s</xliff:g>» som kontakt?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Navn på kontakter"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klikk for å gå tilbake til den forrige skjermen"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Legg til telefonnummer"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Legg til e-post"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Avbryt"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Tilbake"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"lukk"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Vil du knytte sammen gjeldende kontakt med den valgte kontakten?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Bytt til redigering av gjeldende kontakt? Informasjonen du har lagt til så langt blir kopiert."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Katalog <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Innstillinger"</string>

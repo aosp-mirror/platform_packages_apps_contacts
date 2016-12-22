@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Stiki"</string>
     <string name="contactsList" msgid="8661624236494819731">"Stiki"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Dodaj stik"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Vizitka"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Bližnjice za klicanje"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Neposredno sporočilo"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Izbira stika"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Izberi"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Ustvarite nov stik"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Iskanje stikov"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj k priljubljenim"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Odstrani iz priljubljenih"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Odstranjeno iz priljubljenih"</string>
@@ -133,6 +135,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"Pošlji"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ni stikov"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Želite »<xliff:g id="EMAIL">%s</xliff:g>« dodati stikom?"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"Imena stikov"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliknite za vrnitev na prejšnji zaslon"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Dodaj telefonsko številko"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Dodaj e-poštni naslov"</string>
@@ -165,7 +168,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Prekliči"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Nazaj"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"zapri"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Želite povezati stik z izbranim stikom?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Želite urejati izbrani stik? Podatki, ki ste jih doslej vnesli, bodo kopirani."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"Imenik <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavitve"</string>

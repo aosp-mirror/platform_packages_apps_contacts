@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"جهات الاتصال"</string>
     <string name="contactsList" msgid="8661624236494819731">"جهات الاتصال"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"إضافة جهة اتصال"</string>
     <string name="shortcutContact" msgid="749243779392912958">"الاتصال بـ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"طلب مباشر"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"رسالة مباشرة"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"اختيار جهة اتصال"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"تحديد"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"إنشاء جهة اتصال جديدة"</string>
+    <string name="searchHint" msgid="8482945356247760701">"البحث في جهات الاتصال"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"إضافة إلى المفضلة"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"إزالة من المفضلة"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"تمت الإزالة من المفضلة"</string>
@@ -139,6 +141,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"إرسال"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"ليست هناك جهات اتصال"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"هل ترغب في إضافة \"<xliff:g id="EMAIL">%s</xliff:g>\" إلى جهات الاتصال؟"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"أسماء جهات الاتصال"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"انقر للرجوع إلى الشاشة السابقة"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"إضافة رقم الهاتف"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"إضافة بريد إلكتروني"</string>
@@ -173,7 +176,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"إلغاء"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"رجوع"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"إغلاق"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"هل تريد ربط جهة الاتصال الحالية بجهة الاتصال المحددة؟"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"هل تريد التبديل إلى تعديل جهة الاتصال المحددة؟ سيتم نسخ المعلومات التي أدخلتها حتى الآن."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"الدليل <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"الإعدادات"</string>

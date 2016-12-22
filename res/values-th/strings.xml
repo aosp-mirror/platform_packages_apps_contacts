@@ -18,6 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"รายชื่อติดต่อ"</string>
     <string name="contactsList" msgid="8661624236494819731">"รายชื่อในสมุดโทรศัพท์"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"เพิ่มรายชื่อติดต่อ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"สมุดโทรศัพท์"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"สายตรง"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ข้อความส่วนตัว"</string>
@@ -26,6 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"เลือกรายชื่อติดต่อ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"เลือก"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"สร้างรายชื่อติดต่อใหม่"</string>
+    <string name="searchHint" msgid="8482945356247760701">"ค้นหารายชื่อติดต่อ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"เพิ่มในรายการโปรด"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"ลบจากรายการโปรด"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"นำออกจากรายการโปรดแล้ว"</string>
@@ -127,6 +129,7 @@
     <string name="send_to_selection" msgid="2251339182881603540">"ส่ง"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"ไม่มีรายชื่อติดต่อ"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"เพิ่ม \"<xliff:g id="EMAIL">%s</xliff:g>\" ในสมุดโทรศัพท์หรือไม่"</string>
+    <string name="search_settings_description" msgid="2675223022992445813">"ชื่อของรายชื่อในสมุดโทรศัพท์ของคุณ"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"คลิกเพื่อกลับไปยังหน้าจอก่อนหน้า"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"เพิ่มหมายเลขโทรศัพท์"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"เพิ่มอีเมล"</string>
@@ -157,7 +160,6 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"ยกเลิก"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"กลับ"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"ปิด"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"ลิงก์รายชื่อติดต่อปัจจุบันกับรายชื่อติดต่อที่เลือกใช่ไหม"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"เปลี่ยนไปแก้ไขรายชื่อติดต่อที่เลือกหรือไม่ ข้อมูลที่คุณป้อนไว้จนถึงขณะนี้จะถูกคัดลอก"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"ไดเรกทอรี <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"การตั้งค่า"</string>
