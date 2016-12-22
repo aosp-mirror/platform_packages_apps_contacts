@@ -32,7 +32,7 @@ import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.test.suitebuilder.annotation.Suppress;
 
-import com.android.contacts.common.tests.R;
+import com.android.contacts.tests.R;
 import com.android.contacts.model.dataitem.DataKind;
 
 import com.google.common.base.Objects;
