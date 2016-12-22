@@ -259,7 +259,7 @@ public class AccountWithDataSet implements Parcelable {
             AccountTypeManager accountTypeManager) {
         if (preferences.isDefaultAccountSet()) {
             final AccountWithDataSet account = preferences.getDefaultAccount();
-            if (accountTypeManager.contains(account, true)) {
+            if (accountTypeManager.isWritable(account)) {
                 return account;
             }
         }
