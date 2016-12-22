@@ -139,11 +139,6 @@ public abstract class AccountTypeManager {
     private static final AccountTypeManager EMPTY = new AccountTypeManager() {
 
         @Override
-        public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
-            return Collections.emptyList();
-        }
-
-        @Override
         public ListenableFuture<List<AccountInfo>> getAccountsAsync() {
             return Futures.immediateFuture(Collections.<AccountInfo>emptyList());
         }
@@ -178,9 +173,29 @@ public abstract class AccountTypeManager {
     /**
      * Returns the list of all accounts (if contactWritableOnly is false) or just the list of
      * contact writable accounts (if contactWritableOnly is true).
+     *
+     * <p>TODO(mhagerott) delete this method. It's left in place to prevent build breakages when
+     * this change is automerged. Usages of this method in downstream branches should be
+     * replaced with an asynchronous account loading pattern</p>
      */
-    // TODO: Consider splitting this into getContactWritableAccounts() and getAllAccounts()
-    public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
+    public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
+        return contactWritableOnly
+                ? blockForWritableAccounts()
+                : AccountInfo.extractAccounts(Futures.getUnchecked(getAccountsAsync()));
+    }
+
+    /**
+     * Returns all contact writable accounts
+     *
+     * <p>In general this method should be avoided. It exists to support some legacy usages of
+     * accounts in infrequently used features where refactoring to asynchronous loading is
+     * not justified. The chance that this will actually block is pretty low if the app has been
+     * launched previously</p>
+     */
+    public List<AccountWithDataSet> blockForWritableAccounts() {
+        return AccountInfo.extractAccounts(
+                Futures.getUnchecked(filterAccountsAsync(AccountFilter.CONTACTS_WRITABLE)));
+    }
 
     /**
      * Loads accounts in background and returns future that will complete with list of all accounts
@@ -518,19 +533,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
         loadLocalAccounts();
         Futures.addCallback(mLocalAccountsFuture, newAccountsUpdatedCallback(mLocalAccounts),
                 mMainThreadExecutor);
-    }
-
-    /**
-     * Return list of all known or contact writable {@link AccountWithDataSet}'s.
-     * {@param contactWritableOnly} whether to restrict to contact writable accounts only
-     */
-    @Override
-    public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
-        final Predicate<AccountInfo> filter = contactWritableOnly ?
-                writableFilter() : Predicates.<AccountInfo>alwaysTrue();
-        // TODO: Shouldn't have a synchronous version for getting all accounts
-        return Lists.transform(Futures.getUnchecked(filterAccountsAsync(filter)),
-                AccountInfo.ACCOUNT_EXTRACTOR);
     }
 
     @Override
