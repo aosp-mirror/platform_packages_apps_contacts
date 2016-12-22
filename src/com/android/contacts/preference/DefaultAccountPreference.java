@@ -31,7 +31,6 @@ import com.android.contacts.util.AccountsListAdapter;
 public class DefaultAccountPreference extends DialogPreference {
     private ContactsPreferences mPreferences;
     private AccountsListAdapter mListAdapter;
-    private AccountDisplayInfoFactory mAccountDisplayInfoFactory;
     private AccountTypeManager mAccountTypeManager;
     private int mChosenIndex = -1;
 
@@ -56,7 +55,6 @@ public class DefaultAccountPreference extends DialogPreference {
         mListAdapter = new AccountsListAdapter(getContext(),
                 AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
         mAccountTypeManager = AccountTypeManager.getInstance(getContext());
-        mAccountDisplayInfoFactory = AccountDisplayInfoFactory.forWritableAccounts(getContext());
     }
 
     @Override
@@ -68,10 +66,10 @@ public class DefaultAccountPreference extends DialogPreference {
     public CharSequence getSummary() {
         final AccountWithDataSet defaultAccount = mPreferences.getDefaultAccount();
         if (defaultAccount == null ||
-                !mAccountTypeManager.getAccounts(/* writable */ true).contains(defaultAccount)) {
+                !mAccountTypeManager.exists(defaultAccount)) {
             return null;
         } else {
-            return mAccountDisplayInfoFactory.getAccountDisplayInfo(defaultAccount).getNameLabel();
+            return mAccountTypeManager.getAccountInfoForAccount(defaultAccount).getNameLabel();
         }
     }
 

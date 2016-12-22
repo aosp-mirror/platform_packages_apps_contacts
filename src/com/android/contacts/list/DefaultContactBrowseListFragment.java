@@ -70,6 +70,7 @@ import com.android.contacts.logging.ListEvent;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.logging.ScreenEvent;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.quickcontact.QuickContactActivity;
 import com.android.contacts.util.AccountFilterUtil;
@@ -78,9 +79,11 @@ import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.util.SyncUtil;
 import com.android.contactsbind.FeatureHighlightHelper;
 import com.android.contactsbind.experiments.Flags;
+import com.google.common.util.concurrent.Futures;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Future;
 
 /**
  * Fragment containing a contact list used for browsing (as compared to
@@ -151,6 +154,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private ContactsDrawerActivity mActivity;
     private ContactsRequest mContactsRequest;
     private ContactListFilterController mContactListFilterController;
+
+    private Future<List<AccountInfo>> mWritableAccountsFuture;
 
     private final ActionBarAdapter.Listener mActionBarListener = new ActionBarAdapter.Listener() {
         @Override
@@ -320,12 +325,13 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         // TODO(samchen) : Check ContactListFilter.FILTER_TYPE_CUSTOM
         if (ContactListFilter.FILTER_TYPE_DEFAULT == filter.filterType
                 || ContactListFilter.FILTER_TYPE_ALL_ACCOUNTS == filter.filterType) {
-            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(getContext())
-                    .getAccounts(/* contactsWritableOnly */ true);
-            final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
+            final List<AccountInfo> syncableAccounts =
+                    AccountTypeManager.getInstance(getContext()).getWritableGoogleAccounts();
 
             if (syncableAccounts != null && syncableAccounts.size() > 0) {
-                for (Account account : syncableAccounts) {
+                for (AccountInfo info : syncableAccounts) {
+                    // Won't be null because Google accounts have a non-null name and type.
+                    final Account account = info.getAccount().getAccountOrNull();
                     if (SyncUtil.isSyncStatusPendingOrActive(account)
                             || SyncUtil.isUnsyncableGoogleAccount(account)) {
                         return false;
@@ -508,9 +514,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     public void onEnableAutoSync(ContactListFilter filter) {
         // Turn on auto-sync
         ContentResolver.setMasterSyncAutomatically(true);
+
+        // This should be OK (won't block) because this only happens after a user action
+        final List<AccountInfo> accountInfos = Futures.getUnchecked(mWritableAccountsFuture);
         // Also enable Contacts sync
-        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(
-                getContext()).getAccounts(/* contactsWritableOnly */ true);
+        final List<AccountWithDataSet> accounts = AccountInfo.extractAccounts(accountInfos);
         final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
         if (syncableAccounts != null && syncableAccounts.size() > 0) {
             for (Account account : syncableAccounts) {
@@ -578,8 +586,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
 
-        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(
-                getContext()).getAccounts(/* contactsWritableOnly */ true);
+        final List<AccountWithDataSet> accounts = AccountInfo.extractAccounts(
+                Futures.getUnchecked(mWritableAccountsFuture));
         final List<Account> syncableAccounts = filter.getSyncableAccounts(accounts);
         if (syncableAccounts != null && syncableAccounts.size() > 0) {
             for (Account account : syncableAccounts) {
@@ -729,6 +737,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         mActionBarAdapter.setListener(mActionBarListener);
         mDisableOptionItemSelected = false;
         maybeHideCheckBoxes();
+
+        mWritableAccountsFuture = AccountTypeManager.getInstance(getContext()).filterAccountsAsync(
+                AccountTypeManager.writableFilter());
     }
 
     private void maybeHideCheckBoxes() {
@@ -843,9 +854,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
         if (filter != null && !mActionBarAdapter.isSearchMode()
                 && !mActionBarAdapter.isSelectionMode()) {
-            final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(getContext())
-                    .getAccounts(/* contactsWritableOnly */ true);
-            if (filter.isSyncable(accounts)) {
+            if (filter.isSyncable()
+                    || (filter.shouldShowSyncState()
+                    && SyncUtil.hasSyncableAccount(AccountTypeManager.getInstance(getContext())))) {
                 swipeRefreshLayout.setEnabled(true);
             }
         }
