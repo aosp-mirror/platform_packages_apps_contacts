@@ -24,12 +24,10 @@ import android.os.CancellationSignal;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.Nullable;
-import android.support.v4.util.ArraySet;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContentResolver;
 import android.test.suitebuilder.annotation.SmallTest;
 
-import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.test.mocks.MockContentProvider;
 import com.android.contacts.tests.FakeDeviceAccountTypeFactory;
 import com.android.contacts.util.DeviceLocalAccountTypeFactory;
@@ -37,6 +35,7 @@ import com.android.contacts.util.DeviceLocalAccountTypeFactory;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -100,7 +99,7 @@ public class Cp2DeviceLocalAccountLocatorTests extends AndroidTestCase {
     public void test_getDeviceLocalAccounts_doesNotContainItemsForKnownAccountTypes() {
         final Cp2DeviceLocalAccountLocator sut = new Cp2DeviceLocalAccountLocator(
                 getContext().getContentResolver(), new FakeDeviceAccountTypeFactory(),
-                new ArraySet<>(Arrays.asList("com.example", "com.example.1")));
+                new HashSet<>(Arrays.asList("com.example", "com.example.1")));
 
         assertTrue("Selection should filter known accounts",
                 sut.getSelection().contains("NOT IN (?,?)"));
