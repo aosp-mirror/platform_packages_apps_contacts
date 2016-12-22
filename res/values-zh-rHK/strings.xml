@@ -89,8 +89,8 @@
     <string name="title_from_google" msgid="4664084747121207202">"來自 Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"來自「<xliff:g id="ACCOUNT">%s</xliff:g>」"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"設定鈴聲"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"轉往語音信箱"</string>
-    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"取消轉往語音信箱"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"轉駁到留言信箱"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"取消轉駁到留言信箱"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"這是唯讀聯絡人，因此無法刪除，但可加以隱藏。"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"隱藏聯絡人"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"此聯絡人的唯讀帳戶將會隱藏，而不會刪除。"</string>

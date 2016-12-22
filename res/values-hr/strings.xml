@@ -311,7 +311,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Dodavanje fotografije kontakta"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Fotografija kontakta"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Otvaranje alata za uređivanje nije uspjelo."</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Spremanje na"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Spremi na račun"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Inform. o kontaktu na računu <xliff:g id="ACCOUNT">%s</xliff:g> ne mogu se uređivati"</string>
     <string name="editor_account_selector_description" msgid="3324358600570627740">"Trenutačno se sprema na <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dvaput dodirnite da biste odabrali neki drugi račun."</string>
     <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">

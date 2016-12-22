@@ -667,7 +667,7 @@
     <string name="sim_import_title" msgid="2511154832820812822">"Import zo SIM karty"</string>
     <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"Zrušiť"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"Automatická synchronizácia je vypnutá. Zapnete ju klepnutím."</string>
-    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Odmietnuť"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Zatvoriť"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Synchronizácia účtov je vypnutá. Zapnete ju klepnutím."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Chcete zapnúť automatickú synchronizáciu?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Medzi webom a vašimi zariadeniami sa budú aktualizovať zmeny, ktoré vykonáte vo všetkých aplikáciách a účtoch, nielen v Kontaktoch Google."</string>
