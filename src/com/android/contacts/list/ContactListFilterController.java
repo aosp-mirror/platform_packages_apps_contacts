@@ -194,6 +194,6 @@ class ContactListFilterControllerImpl extends ContactListFilterController {
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(mContext);
         final AccountWithDataSet filterAccount = new AccountWithDataSet(
                 mFilter.accountName, mFilter.accountType, mFilter.dataSet);
-        return accountTypeManager.contains(filterAccount, /* contactWritableOnly */ false);
+        return accountTypeManager.exists(filterAccount);
     }
 }

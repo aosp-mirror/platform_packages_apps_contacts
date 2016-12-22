@@ -206,7 +206,8 @@ public abstract class AccountTypeManager {
      * Returns true if there are real accounts (not "local" account) in the list of accounts.
      */
     public boolean hasNonLocalAccount() {
-        final List<AccountWithDataSet> allAccounts = getAccounts(/* contactWritableOnly */ false);
+        final List<AccountWithDataSet> allAccounts =
+                AccountInfo.extractAccounts(Futures.getUnchecked(getAccountsAsync()));
         if (allAccounts == null || allAccounts.size() == 0) {
             return false;
         }
@@ -267,16 +268,22 @@ public abstract class AccountTypeManager {
     }
 
     /**
-     * @param contactWritableOnly if true, it only returns ones that support writing contacts.
-     * @return true when this instance contains the given account.
+     * Returns whether the specified account still exists
      */
-    public boolean contains(AccountWithDataSet account, boolean contactWritableOnly) {
-        for (AccountWithDataSet account_2 : getAccounts(contactWritableOnly)) {
-            if (account.equals(account_2)) {
-                return true;
-            }
-        }
-        return false;
+    public boolean exists(AccountWithDataSet account) {
+        final List<AccountWithDataSet> accounts =
+                AccountInfo.extractAccounts(Futures.getUnchecked(getAccountsAsync()));
+        return accounts.contains(account);
+    }
+
+    /**
+     * Returns whether the specified account is writable
+     *
+     * <p>This checks that the account still exists and that
+     * {@link AccountType#areContactsWritable()} is true</p>
+     */
+    public boolean isWritable(AccountWithDataSet account) {
+        return exists(account) && getAccountInfoForAccount(account).getType().areContactsWritable();
     }
 
     public boolean hasGoogleAccount() {
@@ -650,6 +657,13 @@ class AccountTypeManagerImpl extends AccountTypeManager
         return result;
     }
 
+    /**
+     * Returns true if there are real accounts (not "local" account) in the list of accounts.
+     *
+     * <p>This is overriden for performance since the default implementation blocks until all
+     * accounts are loaded
+     * </p>
+     */
     @Override
     public boolean hasNonLocalAccount() {
         final Account[] accounts = mAccountManager.getAccounts();
@@ -682,6 +696,26 @@ class AccountTypeManagerImpl extends AccountTypeManager
         }
 
         return kind;
+    }
+
+    /**
+     * Returns whether the account still exists on the device
+     *
+     * <p>This is overridden for performance. The default implementation loads all accounts then
+     * searches through them for specified. This implementation will only load the types for the
+     * specified AccountType (it may still require blocking on IO in some cases but it shouldn't
+     * be as bad as blocking for all accounts).
+     * </p>
+     */
+    @Override
+    public boolean exists(AccountWithDataSet account) {
+        final Account[] accounts = mAccountManager.getAccountsByType(account.type);
+        for (Account existingAccount : accounts) {
+            if (existingAccount.name.equals(account.name)) {
+                return mTypeProvider.getTypeForAccount(account) != null;
+            }
+        }
+        return false;
     }
 
     /**
