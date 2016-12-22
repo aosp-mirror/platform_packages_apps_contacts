@@ -667,7 +667,15 @@ class AccountTypeManagerImpl extends AccountTypeManager
     @Override
     public boolean hasNonLocalAccount() {
         final Account[] accounts = mAccountManager.getAccounts();
-        return accounts != null && accounts.length > 0;
+        if (accounts == null) {
+            return false;
+        }
+        for (Account account : accounts) {
+            if (mTypeProvider.supportsContactsSyncing(account.type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
