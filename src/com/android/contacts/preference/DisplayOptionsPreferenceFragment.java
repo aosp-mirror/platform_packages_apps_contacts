@@ -55,8 +55,6 @@ import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountInfo;
-import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
@@ -68,7 +66,7 @@ import java.util.List;
  * This fragment shows the preferences for "display options"
  */
 public class DisplayOptionsPreferenceFragment extends PreferenceFragment
-        implements Preference.OnPreferenceClickListener {
+        implements Preference.OnPreferenceClickListener, AccountsLoader.AccountsListener {
 
     private static final int REQUEST_CODE_CUSTOM_CONTACTS_FILTER = 0;
 
@@ -160,26 +158,6 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         }
     };
 
-    private final LoaderManager.LoaderCallbacks<List<AccountInfo>> mAccountsLoaderListener =
-            new LoaderManager.LoaderCallbacks<List<AccountInfo>>() {
-                @Override
-                public Loader<List<AccountInfo>> onCreateLoader(int id, Bundle args) {
-                    return new AccountsLoader(getActivity(), AccountTypeManager.writableFilter());
-                }
-
-                @Override
-                public void onLoadFinished(
-                        Loader<List<AccountInfo>> loader, List<AccountInfo> data) {
-                    if (data.isEmpty()) {
-                        removeUnsupportedAccountPreferences();
-                    }
-                }
-
-                @Override
-                public void onLoaderReset(Loader<List<AccountInfo>> loader) {
-                }
-            };
-
     public static DisplayOptionsPreferenceFragment newInstance(String newLocalProfileExtra,
             boolean areContactsAvailable) {
         final DisplayOptionsPreferenceFragment fragment = new DisplayOptionsPreferenceFragment();
@@ -266,7 +244,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getLoaderManager().initLoader(LOADER_PROFILE, null, mProfileLoaderListener);
-        getLoaderManager().initLoader(LOADER_ACCOUNTS, null, mAccountsLoaderListener);
+        AccountsLoader.loadAccounts(this, LOADER_ACCOUNTS, AccountTypeManager.writableFilter());
     }
 
     @Override
@@ -313,9 +291,13 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         }
     }
 
-    private void removeUnsupportedAccountPreferences() {
-        getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
-        getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
+    @Override
+    public void onAccountsLoaded(List<AccountInfo> accounts) {
+        // Hide accounts preferences if no writable accounts exist
+        if (accounts.isEmpty()) {
+            getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
+            getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
+        }
     }
 
     @Override
