@@ -15,6 +15,8 @@
  */
 package com.android.contacts.model.account;
 
+import static com.android.contacts.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
+
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
 import android.content.ContentResolver;
@@ -37,8 +39,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
-import static com.android.contacts.util.DeviceLocalAccountTypeFactory.Util.isLocalAccountType;
 
 /**
  * Provides access to {@link AccountType}s with contact data
@@ -148,6 +148,10 @@ public class AccountTypeProvider {
             }
         }
         return true;
+    }
+
+    public boolean supportsContactsSyncing(String accountType) {
+        return mAuthTypes.containsKey(accountType);
     }
 
     private List<AccountType> loadTypes(String type) {
