@@ -18,21 +18,16 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Байланыштар"</string>
     <string name="contactsList" msgid="8661624236494819731">"Байланыштар"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Байланыш кошуу"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Байланыш"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Түз чалуу"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Түз SMS"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Тез чалуу үчүн байланыш тандаңыз"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Чалуу үчүн номер тандаңыз"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Билдирүү жөнөтүлө турган номерди тандоо"</string>
+    <string name="shortcutActivityTitle" msgid="1504383567778497348">"Байланышты тандоо"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Байланышка кошуу"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Байланыш тандоо"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Тандоо"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Жаңы байланыш түзүү"</string>
-    <string name="viewContactTitle" msgid="7989394521836644384">"Байланыштын чоо-жайы"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Байланыш жөнүндө"</string>
-    <string name="contactDetailUpdates" msgid="3780588624763446941">"Жаңыртуулар"</string>
     <string name="searchHint" msgid="8482945356247760701">"Байланыштарды издөө"</string>
-    <string name="menu_viewContact" msgid="2795575601596468581">"Байланышты карап көрүү"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Сүйүктүүлөргө кошуу"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Сүйүктүүлөрдөн алып салуу"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Сүйүктүүлөрдөн чыгарылды"</string>
@@ -41,8 +36,6 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Жок кылуу"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Сүрөттү өзгөртүү"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Шилтеме түзүү"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Байланышка чалуу"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"Байланышка SMS жазуу"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Ажыратуу"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Байланыштарды алып салуу"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Энбелгинин аталышын өзгөртүү"</string>
@@ -51,8 +44,7 @@
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Байланыштарды тандоо"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Байланыштарды кошуу"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Энбелгиден алып салуу"</string>
-    <string name="menu_new_contact_action_bar" msgid="7371001434034419566">"Байланыш кошуу"</string>
-    <string name="menu_new_group_action_bar" msgid="8726987769872493051">"Жаңысын түзүү..."</string>
+    <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Энбелги түзүү"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Бул байланыш ажыратылсынбы?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Ажыратуу"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Сиз киргизген өзгөртүүлөрдү сактап, бул байланышты бир нече байланышка ажыраткыңыз келеби?"</string>
@@ -66,7 +58,6 @@
     <string name="menu_save" msgid="1727844363591825909">"Сактоо"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Байланыштрд бириктрүү"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> менен бириктириле турган байланышты тандаңыз."</string>
-    <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Бардык байланыштарды көрсөтүү"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Сунушталган байланыштар"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Бардык байланыштар"</string>
     <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> байланыштырылды"</string>
@@ -101,21 +92,15 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Бул байланыш жок кылынса, анын бир нече каттоо эсебиндеги чоо-жайы өчүп калат."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Бул байланыш жок кылынсынбы?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Жок кылуу"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"Өзгөрүүлөрдү жарактан чыгаруу"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Мындай байланыш жок."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Байланыш башкы экранга кошулду."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> Башкы экранга кошулду."</string>
-    <string name="pickerNewContactHeader" msgid="7750705279843568147">"Жаңы байланыш түзүү"</string>
-    <string name="pickerNewContactText" msgid="6166997164401048211">"Жаңы байланыш түзүү"</string>
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Планшетте эч кандай сүрөт жок."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Телефондо эч кандай сүрөт жок."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Байланыштын сүрөтү"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Ыңгайлаштырылган энбелгинин аталышы"</string>
-    <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Үн почтасына түздөн-түз чалуу"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Сүрөттү алып салуу"</string>
     <string name="noContacts" msgid="2228592924476426108">"Байланыштар тизмеңиз бош"</string>
-    <string name="noGroups" msgid="4607906327968232225">"Эч кандай энбелги жок"</string>
-    <string name="noAccounts" msgid="7768267764545265909">"Топторду түзүш үчүн эсеп керек."</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Бул энбелги коюлган бир дагы байланыш жок"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Бул каттоо эсебинде эч кандай байланыш жок"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Байланыштар тизмеңиз бош"</string>
@@ -128,7 +113,6 @@
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"Байланышты сактоодогу ката."</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Байланыштын сүрөт өзгөрүүлөрү сакталган жок."</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Энбелги жүктөлгөн жок"</string>
-    <string name="groupSavedToast" msgid="6491495462357722285">"Энбелги сакталды"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Энбелги жок кылынды"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Энбелги түзүлдү"</string>
     <string name="groupCreateFailedToast" msgid="4359093891863474299">"Энбелги түзүлгөн жок"</string>
@@ -143,28 +127,9 @@
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Билдирүү жөнөтүү"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Байланыштарды тандоо"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Жөнөтүү"</string>
-    <plurals name="listTotalPhoneContacts" formatted="false" msgid="3692277679143308755">
-      <item quantity="other">телефон номерлери менен <xliff:g id="COUNT">%d</xliff:g> байланыш</item>
-      <item quantity="one">телефон номери менен 1 байланыш</item>
-    </plurals>
-    <string name="listTotalPhoneContactsZero" msgid="6968813857632984319">"Телефон номерлери бар байланыштар жок"</string>
-    <plurals name="listFoundAllContacts" formatted="false" msgid="4872115339963093220">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> табылды</item>
-      <item quantity="one">1 табылды</item>
-    </plurals>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Байланыштар жок"</string>
-    <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> табылды</item>
-      <item quantity="one">1 табылды</item>
-    </plurals>
-    <string name="all_contacts_tab_label" msgid="5948889261993124839">"Бардыгы"</string>
-    <string name="callBack" msgid="5498224409038809224">"Кайра чалуу"</string>
-    <string name="callAgain" msgid="3197312117049874778">"Дагы чалуу"</string>
-    <string name="returnCall" msgid="8171961914203617813">"Кайра чалуу"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"Байланыштарга \"<xliff:g id="EMAIL">%s</xliff:g>\" кошосузбу?"</string>
-    <string name="description_plus_button" msgid="515164827856229880">"кошуу"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Байланыштарыңыздын аттары"</string>
-    <string name="quickcontact_missing_app" msgid="358168575340921552">"Бул ишти аткаруучу эч бир колдонмо табылган жок."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Мурунку экранга кайтуу үчүн чыкылдатыңыз"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Телефон номерин кошуу"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Электрондук почта дарегин кошуу"</string>
@@ -183,52 +148,28 @@
     <string name="label_name_dialog_hint" msgid="1276051790427638142">"Энбелгинин аталышы"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Үн чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видео чат"</string>
-    <string name="connections" msgid="8098440723172028350">"Байланыштар"</string>
-    <string name="add_connection_button" msgid="4861308615789601727">"Байланыш кошуу"</string>
-    <string name="recent" msgid="2659189233141493004">"Акыркы"</string>
-    <string name="recent_updates" msgid="4267258535615860710">"Акыркы жаңыртуулар"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> байланышы"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> каттоо эсеби"</string>
-    <!-- no translation found for from_account_format (4469138575127580203) -->
-    <skip />
     <string name="take_photo" msgid="7496128293167402354">"Сүрөт тартуу"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Жаңы сүрөт тартуу"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Сүрөт тандаңыз"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Жаңы сүрөт тандоо"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Изделүүдө…"</string>
-    <string name="menu_display_selected" msgid="6470001164297969034">"Тандалгандарды көрсөтүү"</string>
-    <string name="menu_display_all" msgid="8887488642609786198">"Баарын көрсөтүү"</string>
-    <string name="menu_select_all" msgid="621719255150713545">"Бардыгын тандоо"</string>
-    <string name="menu_select_none" msgid="7093222469852132345">"Баарын тандоодон чыгаруу"</string>
-    <string name="add_new_entry_for_section" msgid="5223080690667565044">"Жаңысын кошуу"</string>
-    <string name="add_organization" msgid="7311893231158291197">"Уюм кошуу"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Дата"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Энбелги"</string>
-    <string name="change_photo" msgid="8530597935483526383">"Өзгөртүү"</string>
-    <string name="description_star" msgid="2605854427360036550">"сүйүктүү"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Байланышты түзөтүү"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Жок"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Артка"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"жабуу"</string>
-    <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Учурдагы байланыш тандалган байланышка шилтемеленсинби?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Тандалган байланышты түзөтүүгө өтөсүзбү? Буга чейин киргизилген маалыматтар көчүрүлөт."</string>
-    <string name="menu_copyContact" msgid="1573960845106822639">"Менин Байланыштарыма көчүрүү"</string>
-    <string name="add_to_my_contacts" msgid="1068274916793627723">"Менин Байланыштарыма кошуу"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> каталогу"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Жөндөөлөр"</string>
     <string name="menu_settings" msgid="377929915873428211">"Жөндөөлөр"</string>
     <string name="menu_help" msgid="1680178646764069976">"Жардам жана жооп пикир"</string>
-    <string name="preference_displayOptions" msgid="1341720270148252393">"Параметрлерди көрсөтүү"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g> , <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Телефон номери"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Байланыштарга кошуу"</string>
-    <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Байланыштарга кошуу"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Жабуу"</string>
-    <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"Жылы көрсөтүлсүн"</string>
-    <string name="social_widget_label" msgid="6378905543028924592">"Байланыш"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"Жүктөлүүдө…"</string>
-    <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Жаңы байланыш түзүү"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Каттоо эсебин кошуу"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Импорттоо"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Жаңысын түзүү..."</string>
@@ -242,14 +183,10 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Жарактан чыгаруу"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Баш тартуу"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Өзгөртүүлөр жокко чыгарылсынбы?"</string>
-    <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Байланыштардан издеп көрүңүз"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Байланыштарды алып салуу"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Менин жергиликтүү профайлым"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Менин <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профайлым"</string>
-    <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Бардык байланыштарды көрсөтүү"</string>
-    <string name="generic_no_account_prompt" msgid="7218827704367325460">"Телефонуңузду жоготсоңуз дагы, байланыштарыңызды жоготпоңуз: онлайн кызмат менен синхрондоңуз."</string>
-    <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Кошуу"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Байланыштарыңыздын камдык көчүрмөсүн Google\'га сактоо үчүн каттоо эсебин кошуңуз."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Жаңы байланыштар <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ичине сакталат."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңы байланыштар үчүн демейки каттоо эсебин тандаңыз:"</string>
@@ -268,7 +205,6 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Азыраак көрүү"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Акыркы"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Байланыш жөнүндө"</string>
-    <string name="send_message" msgid="8938418965550543196">"Билдирүү жөнөтүү"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Жеке көчүрмөсүн түзүү…"</string>
     <string name="tomorrow" msgid="6241969467795308581">"Эртең"</string>
     <string name="today" msgid="8041090779381781781">"Бүгүн"</string>
@@ -284,12 +220,9 @@
     <string name="header_website_entry" msgid="1411467850000824745">"Вебсайт"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Иш-чара"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Мага ким болот"</string>
-    <string name="header_account_entry" msgid="2684318506427891827">"Каттоо эсеби"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Ысымы"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"Электрондук почта"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Телефон"</string>
-    <string name="content_description_expand_editor" msgid="1111381475901897470">"Байланыш түзөткүчүн жайып көрсөтүү үчүн чыкылдатыңыз."</string>
-    <string name="content_description_collapse_editor" msgid="7598061318022977825">"Байланыш түзөткүчүн жыйыштыруу үчүн чыкылдатыңыз."</string>
     <string name="content_description_directions" msgid="2686791825798189335">"жайгашуу ордуна багыттоолор"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"акыркы sms. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. жооп берүү үчүн чыкылдатыңыз"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"келүүчү"</string>
@@ -297,7 +230,6 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"жооп берилбей калган"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"акыркы чалуу. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. кайра чалуу үчүн чыкылдатыңыз"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Сиз: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Кимдир-бирөөнүн Hangouts аныктагычы электрондук почта же телефон талаасына киргизилгенде Hangouts жакшыраак иштейт."</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Калган талааларды көрсөтүү"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Байланыштын сүрөтүн өзгөртүү"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Байланыштын сүрөтүн кошуу"</string>
@@ -305,37 +237,13 @@
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Түзөткүч ачылбай калды."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Төмөнкүгө сакталууда"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Байланыш маалыматын түзөтүүгө болбойт: <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
-    <string name="editor_account_selector_description" msgid="3324358600570627740">"Учурда <xliff:g id="ACCOUNT_NAME">%s</xliff:g> ичине сакталууда. Башка каттоо эсебин тандоо үчүн эки жолу таптаңыз."</string>
-    <plurals name="editor_linked_contacts_selector_title" formatted="false" msgid="249075501821303190">
-      <item quantity="other">Бириктирилген байланыштар (<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one">Бириктирилген байланыш</item>
-    </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> байланыш шилтемеленген"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"БАЙЛАНЫШТАРДЫ ШИЛТЕМЕЛӨӨ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ЖОК"</string>
-    <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> Жупнуска кылса болот</item>
-      <item quantity="one">1 Жупнуска кылса болот</item>
-    </plurals>
-    <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> шилтемеленген байланыш</item>
-      <item quantity="one">1 шилтемеленген байланыш</item>
-    </plurals>
-    <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
-      <item quantity="other">(<xliff:g id="COUNT">%d</xliff:g>)</item>
-      <item quantity="one"></item>
-    </plurals>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Ушул байланыш"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Булар жупнуска болушу мүмкүн"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Бул байланыштар бир эле адам болушу мүмкүн. Аларды жалгыз байланыш кылып бириктирсеңиз болот."</string>
-    <string name="editor_linked_contacts_title" msgid="3077479751631492125">"Бириктирилген байланыштар"</string>
-    <string name="from_your_accounts" msgid="1746293107836889912">"Каттоо эсептериңизден"</string>
-    <string name="photo_picker_title" msgid="5272832995550042801">"Сүрөт тандаңыз"</string>
-    <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> дегенден"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g> жок кылуу"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> жок кылуу"</string>
-    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Белгисиз каттоо эсебинен келген сүрөт тандалган жок"</string>
-    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Белгисиз каттоо эсебинен келген сүрөт тандалды"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Сунуштар"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Жаңы"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Чабыттоо суурмасын ачуу"</string>
@@ -404,11 +312,9 @@
     <string name="directory_search_label" msgid="1887759056597975053">"Каталог"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"Жумуш профилиндеги байланыштар китепчеси"</string>
     <string name="local_search_label" msgid="2551177578246113614">"Бардык байланыштар"</string>
-    <string name="foundTooManyContacts" msgid="5163335650920020220">"<xliff:g id="COUNT">%d</xliff:g> ашык табылды."</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> үчүн тез байланышуу"</string>
     <string name="missing_name" msgid="8745511583852904385">"(Аты жок)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"Көп байланышып турган"</string>
-    <string name="description_view_contact_detail" msgid="9133251213656414807">"Байланыштын чоо-жайын карап көрүү"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"Телефон номерлери бар бардык байланыштар"</string>
     <string name="list_filter_phones_work" msgid="1470173699551475015">"Жумуш профилиндеги байланыштар"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"Жаңыртууларды көрүү"</string>
@@ -416,7 +322,6 @@
     <string name="account_sim" msgid="6519016427905087952">"SIM-карта"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Аты"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Ылакап аты"</string>
-    <string name="full_name" msgid="6602579550613988977">"Аты"</string>
     <string name="name_given" msgid="4280790853455320619">"Аты"</string>
     <string name="name_family" msgid="7466985689626017037">"Фамилиясы"</string>
     <string name="name_prefix" msgid="59756378548779822">"Атынын префикси"</string>
@@ -449,8 +354,6 @@
     <string name="email_custom" msgid="5536404237099078802">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> электрондук кат жөнөтүү"</string>
     <string name="email" msgid="5668400997660065897">"Электрондук почта"</string>
     <string name="postal_street" msgid="8133143961580058972">"Көчөсү"</string>
-    <string name="postal_pobox" msgid="4431938829180269821">"Абоненттик почта кутусу"</string>
-    <string name="postal_neighborhood" msgid="1450783874558956739">"Району"</string>
     <string name="postal_city" msgid="6597491300084895548">"Шаары"</string>
     <string name="postal_region" msgid="6045263193478437672">"Штаты"</string>
     <string name="postal_postcode" msgid="572136414136673751">"ZIP коду"</string>
@@ -488,8 +391,6 @@
     <string name="display_more_groups" msgid="2682547080423434170">"Дагы топтор…"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"\"<xliff:g id="GROUP">%s</xliff:g>\" тобун шайкештирүүдөн алып салуу топко кирбеген башка байланыштарды дагы шайкештирүүдөн чыгарып салат."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"Көрсөтүү параметрлери сакталууда…"</string>
-    <string name="menu_done" msgid="796017761764190697">"Бүттү"</string>
-    <string name="menu_doNotSave" msgid="58593876893538465">"Баш тартуу"</string>
     <string name="listCustomView" msgid="1840624396582117590">"Ылайыкташтырылган көрүнүш"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"Өткөрүлүп алынган байланыштар төмөнкүгө сакталсын:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"SIM-карта"</string>
@@ -514,13 +415,9 @@
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Экспортко жарактуу байланыш жок."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"Керектүү уруксатты өчүрүп койгонсуз."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Экспорттоо учурунда ката кетти: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="fail_reason_too_long_filename" msgid="3393764245254738333">"Талап кылынган файлдын аты өтө узун (\"<xliff:g id="FILENAME">%s</xliff:g>\")."</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O катасы"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Эстутум жетишсиз. Файл өтө чоң окшойт."</string>
-    <string name="fail_reason_vcard_parse_error" msgid="888263542360355784">"Аныкталбаган себептерден улам vCard файлынын синтаксикалык анализи аткарылбай жатат."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"Бул формат колдоого алынбайт."</string>
-    <string name="fail_reason_failed_to_collect_vcard_meta_info" msgid="6427931733267328564">"Берилген vCard файл(дар)ынын мета маалыматтарын чогултуу мүмкүн болбой жатат."</string>
-    <string name="fail_reason_failed_to_read_files" msgid="5823434810622484922">"Бир же эки файл өткөрүлүп алынбай жатат (%s)."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> өткөрүлүп бүттү."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"Байланыштар өткөрүлүп бүттү."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"Байланыштар өткөрүлүп берилди. Байланыштар менен бөлүшүү үчүн эскертмени басыңыз."</string>
@@ -529,27 +426,23 @@
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"Байланыштын чоо-жайы өткөрүлүп берилүүдө"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"Байланыштын дайындары өткөрүлүп берилүүдө."</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"Дайындар базасынын маалыматтары алынбай койду."</string>
-    <string name="composer_has_no_exportable_contact" msgid="3296493229040294335">"Экспорттоло турган байланыштар жок. Эгер байланыштар телефонуңузда болсо, айрым дайындарды камсыздоочулар байланыштарды телефондон экспорттоого жол бербеши мүмкүн."</string>
+    <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"Экспортко жарактуу байланыш жок."</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard түзүүчү туура эмес иштеп баштады."</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"Экспорттой албады"</string>
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"Байланыш маалыматтары өткөрүлүп берилген жок.\nСебеби: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> өткөрүлүп алынууда"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard файдарынын дайындарын окуу мүмкүн эмес"</string>
-    <string name="reading_vcard_canceled_title" msgid="1925216585981542019">"vCard файлдарынын дайындарын окуу токтотулду"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"<xliff:g id="FILENAME">%s</xliff:g> vCard импорттолуп бүттү"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> файлын импорттоо токтотулду"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> бир аздан кийин өткөрүлүп алынат."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Файл бир аздан кийин өткөрүлүп алынат."</string>
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard файлдарынын өткөрүп берүү талабы четке кагылды. Кийинчерээк кайра аракет кылып көрүңүз."</string>
-    <string name="vcard_export_will_start_message" msgid="2210241345252081463">"<xliff:g id="FILENAME">%s</xliff:g> бир аздан кийин өткөрүлүп берилет."</string>
-    <string name="vcard_export_will_start_message_fallback" msgid="6553826997490909749">"Файл бир аздан кийин өткөрүлүп берилет."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Байланыштар жакында өткөрүлүп берилет."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard файлдарын өткөрүп берүү талабы четке кагылды. Кийинчерээк кайра аракет кылып көрүңүз."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"байланыш"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"vCard файл(дар)ы жергиликтүү убактылуу сактагычка кэштелип жатат. Андан соң, өткөрүп алуу башталат."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"vCard файлдары өткөрүлүп алынган жок."</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC аркылуу"</string>
-    <string name="confirm_export_title" msgid="6834385377255286349">"Байланыштар өткөрүлүп берилсинби?"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Кэштөө"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g> өткөрүп алынууда"</string>
     <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".vcf файлына өткөрүп берүү"</string>
@@ -564,8 +457,6 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"Өзүм жөнүндө маалымат"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Профилди жөндөө"</string>
     <string name="setting_about" msgid="7014388749752042863">"Байланыштар жөнүндө"</string>
-    <string name="share_visible_contacts" msgid="890150378880783797">"Көрүнүктүү байланыштарды бөлүшүү"</string>
-    <string name="share_visible_contacts_failure" msgid="7324717548166915560">"Көрүнүктүү байланыштар бөлүшүлбөй койду."</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Сүйүктүү байланыштарды бөлүшүү"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Бардык байланыштар менен бөлүшүү"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Байланыштар бөлүшүлбөй койду."</string>
@@ -575,14 +466,10 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Бөлүшө турган байланыш жок."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Көрсөтүлүүчү байланыштар"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Көрсөтүлүүчү байланыштар"</string>
-    <string name="custom_list_filter" msgid="2105275443109077687">"Ылайыкташтырылган көрүнүштү жөндөө"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Көрүнүштү ыңгайлаштыруу"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Сактоо"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Байланыштарды издеңиз"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Cүйүктүүлөр"</string>
-    <string name="listTotalAllContactsZero" msgid="5513001821794568211">"Эч бир байланыш жок."</string>
-    <string name="menu_clear_frequents" msgid="7688250191932838833">"Көп чалуулар тизмесин тазалоо"</string>
-    <string name="menu_select_sim" msgid="3603578201960504010">"SIM карта тандаңыз"</string>
-    <string name="menu_accounts" msgid="1424330057450189074">"Каттоо эсептерин башкаруу"</string>
     <string name="menu_import" msgid="6107961135813836467">"Өткөрүп алуу"</string>
     <string name="menu_export" msgid="2658783911863503902">"Өткөрүп берүү"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Бөгөттөлгөн номерлер"</string>
@@ -590,19 +477,13 @@
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="DATE">%1$s</xliff:g> <xliff:g id="SOURCE">%2$s</xliff:g> аркылуу"</string>
     <string name="action_menu_back_from_search" msgid="8793348588949233348">"издөөнү токтотуу"</string>
     <string name="description_clear_search" msgid="688023606766232904">"Издөөнү тазалоо"</string>
-    <string name="settings_contact_display_options_title" msgid="4890258244494248687">"Байланышты көрсөтүү параметрлери"</string>
     <string name="select_account_dialog_title" msgid="5478489655696599219">"Каттоо эсеби"</string>
     <string name="set_default_account" msgid="4311613760725609801">"Чалууларда ар дайым бул колдонулсун"</string>
-    <string name="select_phone_account_for_calls" msgid="3810607744451014540">"Төмөнкү менен чалуу"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"Кыска жазуу менен чалуу"</string>
     <string name="call_subject_hint" msgid="3043028982108363572">"Чалуу менен жөнөтүлө турган кыска жазууну териңиз…"</string>
     <string name="send_and_call_button" msgid="7740295432834590737">"ЖӨНӨТҮҮ ЖАНА ЧАЛУУ"</string>
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
-    <plurals name="tab_title_with_unread_items" formatted="false" msgid="7682024005130747825">
-      <item quantity="other"> <xliff:g id="TITLE_2">%1$s</xliff:g>. <xliff:g id="COUNT_3">%2$d</xliff:g> нерсе окула элек. </item>
-      <item quantity="one"> <xliff:g id="TITLE_0">%1$s</xliff:g>. <xliff:g id="COUNT_1">%2$d</xliff:g> нерсе окула элек. </item>
-    </plurals>
     <string name="about_build_version" msgid="1765533099416999801">"Куралма версиясы"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Баштапкы коду ачык программалардын уруксаттамалары"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Баштапкы коду ачык программалардын уруксаттамаларынын чоо-жайы"</string>
@@ -641,6 +522,7 @@
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-карта"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"Дагы көрсөтүү"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM-картадан өткөрүп алуу аяктады"</string>
-    <string name="importing_sim_failed_title" msgid="3864137973400578707">"SIM-картадан өткөрүп алууда ката кетти"</string>
+    <string name="importing_sim_failed_title" msgid="39706901030537985">"Импорттолбой калды"</string>
+    <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM-картадан байланыштар импорттолбой койду"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM-картадан өткөрүлүп алынууда"</string>
 </resources>
