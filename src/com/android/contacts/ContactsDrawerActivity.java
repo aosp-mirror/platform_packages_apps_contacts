@@ -70,7 +70,6 @@ import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountFilterUtil;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.util.MaterialColorMapUtils;
 import com.android.contacts.util.SharedPreferenceUtil;
@@ -693,7 +692,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
             return;
         }
         SelectAccountDialogFragment.show(getFragmentManager(), R.string.dialog_new_group_account,
-                AccountListFilter.ACCOUNTS_GROUP_WRITABLE, /* extraArgs */ null,
+                AccountTypeManager.AccountFilter.GROUPS_WRITABLE, /* extraArgs */ null,
                 TAG_SELECT_ACCOUNT_DIALOG);
     }
 

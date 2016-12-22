@@ -71,6 +71,8 @@ public class AccountsLoader extends ListenableFutureLoader<List<AccountInfo>> {
      * <p>This is a convenience method to reduce the
      * boilerplate needed when implementing {@link android.app.LoaderManager.LoaderCallbacks}
      * in the simple case that the fragment wants to just load the accounts directly</p>
+     * <p>Note that changing the filter between invocations in the same component will not work
+     * properly because the loader is cached.</p>
      */
     public static <FragmentType extends Fragment & AccountsListener> void loadAccounts(
             final FragmentType fragment, int loaderId, final Predicate<AccountInfo> filter) {
@@ -78,6 +80,9 @@ public class AccountsLoader extends ListenableFutureLoader<List<AccountInfo>> {
                 fragment.getActivity(), fragment.getLoaderManager(), loaderId, filter, fragment);
     }
 
+    /**
+     * Same as {@link #loadAccounts(Fragment, int, Predicate)} for an Activity
+     */
     public static <ActivityType extends Activity & AccountsListener> void loadAccounts(
             final ActivityType activity, int id, final Predicate<AccountInfo> filter) {
         loadAccounts(activity, activity.getLoaderManager(), id, filter, activity);

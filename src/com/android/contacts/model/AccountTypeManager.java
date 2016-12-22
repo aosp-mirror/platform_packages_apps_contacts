@@ -83,6 +83,27 @@ public abstract class AccountTypeManager {
     public static final String BROADCAST_ACCOUNTS_CHANGED = AccountTypeManager.class.getName() +
             ".AccountsChanged";
 
+    public enum AccountFilter implements Predicate<AccountInfo> {
+        ALL {
+            @Override
+            public boolean apply(@Nullable AccountInfo input) {
+                return input != null;
+            }
+        },
+        CONTACTS_WRITABLE {
+            @Override
+            public boolean apply(@Nullable AccountInfo input) {
+                return input != null && input.getType().areContactsWritable();
+            }
+        },
+        GROUPS_WRITABLE {
+            @Override
+            public boolean apply(@Nullable AccountInfo input) {
+                return input != null && input.getType().isGroupMembershipEditable();
+            }
+        };
+    }
+
     /**
      * Requests the singleton instance of {@link AccountTypeManager} with data bound from
      * the available authenticators. This method can safely be called from the UI thread.
@@ -298,43 +319,12 @@ public abstract class AccountTypeManager {
         return canGetAccounts && canReadContacts;
     }
 
-    public static Predicate<AccountInfo> nonNullAccountFilter() {
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(AccountInfo info) {
-                AccountWithDataSet account = info != null ? info.getAccount() : null;
-                return account != null && !account.isNullAccount();
-            }
-        };
-
-    }
-
     public static Predicate<AccountInfo> writableFilter() {
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(AccountInfo account) {
-                return account.getType().areContactsWritable();
-            }
-        };
+        return AccountFilter.CONTACTS_WRITABLE;
     }
 
     public static Predicate<AccountInfo> groupWritableFilter() {
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(@Nullable AccountInfo account) {
-                return account.getType().isGroupMembershipEditable();
-            }
-        };
-    }
-
-    public static Predicate<AccountInfo> onlyNonEmptyExtensionFilter(Context context) {
-        final Context appContext = context.getApplicationContext();
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(@Nullable AccountInfo input) {
-                return !input.getType().isExtension() || input.getAccount().hasData(appContext);
-            }
-        };
+        return AccountFilter.GROUPS_WRITABLE;
     }
 }
 

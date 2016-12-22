@@ -30,6 +30,7 @@ import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,50 +38,11 @@ import java.util.List;
  */
 public final class AccountsListAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    private final List<AccountInfo> mAccounts;
-    private final Context mContext;
+    private List<AccountInfo> mAccounts;
     private int mCustomLayout = -1;
 
-    public enum AccountListFilter {
-        ALL_ACCOUNTS {
-            @Override
-            public List<AccountWithDataSet> getSourceAccounts(Context context) {
-                return AccountTypeManager.getInstance(context).getAccounts(false);
-            }
-        },
-        ACCOUNTS_CONTACT_WRITABLE {
-            @Override
-            public List<AccountWithDataSet> getSourceAccounts(Context context) {
-                return AccountTypeManager.getInstance(context).getAccounts(true);
-            }
-        },
-        ACCOUNTS_GROUP_WRITABLE {
-            @Override
-            public List<AccountWithDataSet> getSourceAccounts(Context context) {
-                return AccountTypeManager.getInstance(context).getGroupWritableAccounts();
-            }
-        };
-
-        private List<AccountInfo> getAccounts(Context context) {
-            final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(context);
-            final List<AccountInfo> result = new ArrayList<>();
-            final List<AccountWithDataSet> sourceAccounts = getSourceAccounts(context);
-            for (AccountWithDataSet account : sourceAccounts) {
-                result.add(accountTypeManager.getAccountInfoForAccount(account));
-            }
-            return result;
-        }
-
-        public abstract List<AccountWithDataSet> getSourceAccounts(Context context);
-    }
-
-    public AccountsListAdapter(Context context, AccountListFilter filter) {
-        this(context, filter.getAccounts(context), null);
-    }
-
-    public AccountsListAdapter(Context context, AccountListFilter filter,
-            AccountWithDataSet currentAccount) {
-        this(context, filter.getAccounts(context), currentAccount);
+    public AccountsListAdapter(Context context) {
+        this(context, Collections.<AccountInfo>emptyList(), null);
     }
 
     public AccountsListAdapter(Context context, List<AccountInfo> accounts) {
@@ -93,19 +55,28 @@ public final class AccountsListAdapter extends BaseAdapter {
      */
     public AccountsListAdapter(Context context, List<AccountInfo> accounts,
             AccountWithDataSet currentAccount) {
-        mContext = context;
-
-        final AccountInfo currentInfo = AccountInfo.getAccount(accounts, currentAccount);
-        if (currentInfo != null
-                && !accounts.isEmpty()
-                && !accounts.get(0).sameAccount(currentAccount)
-                && accounts.remove(currentInfo)) {
-            accounts.add(0, currentInfo);
-        }
-
         mInflater = LayoutInflater.from(context);
 
-        mAccounts = accounts;
+        mAccounts = new ArrayList<>(accounts.size());
+        setAccounts(accounts, currentAccount);
+    }
+
+    public void setAccounts(List<AccountInfo> accounts, AccountWithDataSet currentAccount) {
+        // If it's not empty use the previous "current" account (the first one in the list)
+        final AccountInfo currentInfo = mAccounts.isEmpty()
+                ? AccountInfo.getAccount(accounts, currentAccount)
+                : AccountInfo.getAccount(accounts, mAccounts.get(0).getAccount());
+
+        mAccounts.clear();
+        mAccounts.addAll(accounts);
+
+        if (currentInfo != null
+                && !mAccounts.isEmpty()
+                && !mAccounts.get(0).sameAccount(currentAccount)
+                && mAccounts.remove(currentInfo)) {
+            mAccounts.add(0, currentInfo);
+        }
+        notifyDataSetChanged();
     }
 
     public void setCustomLayout(int customLayout) {

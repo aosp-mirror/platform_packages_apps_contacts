@@ -24,14 +24,17 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter;
+
+import java.util.List;
 
 public class DefaultAccountPreference extends DialogPreference {
     private ContactsPreferences mPreferences;
     private AccountsListAdapter mListAdapter;
     private AccountTypeManager mAccountTypeManager;
+    private List<AccountInfo> mAccounts;
     private int mChosenIndex = -1;
 
     public DefaultAccountPreference(Context context) {
@@ -44,6 +47,13 @@ public class DefaultAccountPreference extends DialogPreference {
         prepare();
     }
 
+    public void setAccounts(List<AccountInfo> accounts) {
+        mAccounts = accounts;
+        if (mListAdapter != null) {
+            mListAdapter.setAccounts(accounts, null);
+        }
+    }
+
     @Override
     protected View onCreateDialogView() {
         prepare();
@@ -52,8 +62,10 @@ public class DefaultAccountPreference extends DialogPreference {
 
     private void prepare() {
         mPreferences = new ContactsPreferences(getContext());
-        mListAdapter = new AccountsListAdapter(getContext(),
-                AccountsListAdapter.AccountListFilter.ACCOUNTS_CONTACT_WRITABLE);
+        mListAdapter = new AccountsListAdapter(getContext());
+        if (mAccounts != null) {
+            mListAdapter.setAccounts(mAccounts, null);
+        }
         mAccountTypeManager = AccountTypeManager.getInstance(getContext());
     }
 
