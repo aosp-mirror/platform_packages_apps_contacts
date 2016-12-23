@@ -265,6 +265,9 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         if (!isSearchMode()) {
             maybeShowHamburgerFeatureHighlight();
         }
+        if (mActionBarAdapter != null) {
+            mActionBarAdapter.updateOverflowButtonColor();
+        }
     }
 
     private void maybeShowHamburgerFeatureHighlight() {
@@ -810,6 +813,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         public void onSelectedContactIdsChanged() {
             mActionBarAdapter.setSelectionCount(getSelectedContactIds().size());
             mActivity.invalidateOptionsMenu();
+            mActionBarAdapter.updateOverflowButtonColor();
         }
 
         @Override
