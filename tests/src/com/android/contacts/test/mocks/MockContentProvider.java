@@ -426,7 +426,7 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
                                @Nullable String[] selectionArgs) {
             return mUri.equals(uri) && mContentValues.equals(contentValues) &&
                     Objects.equals(mSelection, selection) &&
-                    Objects.equals(mSelectionArgs, selectionArgs);
+                    Arrays.equals(mSelectionArgs, selectionArgs);
         }
 
         @Override
@@ -443,13 +443,13 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
                     Objects.equals(mUri, update.mUri) &&
                     Objects.equals(mContentValues, update.mContentValues) &&
                     Objects.equals(mSelection, update.mSelection) &&
-                    Objects.equals(mSelectionArgs, update.mSelectionArgs);
+                    Arrays.equals(mSelectionArgs, update.mSelectionArgs);
         }
 
         @Override
         public int hashCode() {
             return Objects.hash(mUri, mContentValues, mAnyNumberOfTimes, mIsExecuted, mSelection,
-                    mSelectionArgs);
+                    Arrays.hashCode(mSelectionArgs));
         }
 
         @Override
@@ -460,7 +460,7 @@ public class MockContentProvider extends android.test.mock.MockContentProvider {
                     ", mAnyNumberOfTimes=" + mAnyNumberOfTimes +
                     ", mIsExecuted=" + mIsExecuted +
                     ", mSelection=" + mSelection +
-                    ", mSelectionArgs=" + mSelectionArgs +
+                    ", mSelectionArgs=" + Arrays.toString(mSelectionArgs) +
                     '}';
         }
     }
