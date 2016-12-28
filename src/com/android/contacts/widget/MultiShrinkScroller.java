@@ -110,7 +110,7 @@ public class MultiShrinkScroller extends FrameLayout {
     private View mPhotoViewContainer;
     private View mTransparentView;
     private MultiShrinkScrollerListener mListener;
-    private TextView mLargeTextView;
+    private TextView mFullNameView;
     private TextView mPhoneticNameView;
     private View mTitleAndPhoneticNameView;
     private View mPhotoTouchInterceptOverlay;
@@ -296,7 +296,7 @@ public class MultiShrinkScroller extends FrameLayout {
         mToolbar = findViewById(R.id.toolbar_parent);
         mPhotoViewContainer = findViewById(R.id.toolbar_parent);
         mTransparentView = findViewById(R.id.transparent_view);
-        mLargeTextView = (TextView) findViewById(R.id.large_title);
+        mFullNameView = (TextView) findViewById(R.id.large_title);
         mPhoneticNameView = (TextView) findViewById(R.id.phonetic_name);
         mTitleAndPhoneticNameView = findViewById(R.id.title_and_phonetic_name);
         mInvisiblePlaceholderTextView = (TextView) findViewById(R.id.placeholder_textview);
@@ -351,7 +351,7 @@ public class MultiShrinkScroller extends FrameLayout {
                 setHeaderHeight(getMaximumScrollableHeaderHeight());
                 if (shouldUpdateNameViewHeight) {
                     mMaximumHeaderTextSize = mTitleAndPhoneticNameView.getHeight();
-                    mMaximumFullNameViewHeight = mLargeTextView.getHeight();
+                    mMaximumFullNameViewHeight = mFullNameView.getHeight();
                     // We cannot rely on mPhoneticNameView.getHeight() since it could be 0
                     final int phoneticNameSize = getResources().getDimensionPixelSize(
                             R.dimen.quickcontact_maximum_phonetic_name_size);
@@ -384,9 +384,9 @@ public class MultiShrinkScroller extends FrameLayout {
                     largeTextLayoutParams.gravity = Gravity.BOTTOM | Gravity.START;
                     mTitleAndPhoneticNameView.setLayoutParams(largeTextLayoutParams);
                 } else {
-                    // Set the width of mLargeTextView as if it was nested inside
+                    // Set the width of mFullNameView as if it was nested inside
                     // mPhotoViewContainer.
-                    mLargeTextView.setWidth(mPhotoViewContainer.getWidth()
+                    mFullNameView.setWidth(mPhotoViewContainer.getWidth()
                             - 2 * mMaximumTitleMargin);
                     mPhoneticNameView.setWidth(mPhotoViewContainer.getWidth()
                             - 2 * mMaximumTitleMargin);
@@ -415,10 +415,10 @@ public class MultiShrinkScroller extends FrameLayout {
     }
 
     public void setTitle(String title, boolean isPhoneNumber) {
-        mLargeTextView.setText(title);
-        // We have a phone number as "mLargeTextView" so make it always LTR.
+        mFullNameView.setText(title);
+        // We have a phone number as "mFullNameView" so make it always LTR.
         if (isPhoneNumber) {
-            mLargeTextView.setTextDirection(View.TEXT_DIRECTION_LTR);
+            mFullNameView.setTextDirection(View.TEXT_DIRECTION_LTR);
         }
         mPhotoTouchInterceptOverlay.setContentDescription(title);
     }
@@ -433,9 +433,11 @@ public class MultiShrinkScroller extends FrameLayout {
         // Every time the phonetic name is changed, set mPhoneticNameView as visible,
         // in case it just changed from Visibility=GONE.
         mPhoneticNameView.setVisibility(View.VISIBLE);
+        final int maximumHeaderTextSize =
+                mMaximumFullNameViewHeight * mFullNameView.getLineCount()
+                + mMaximumPhoneticNameViewHeight * mPhoneticNameView.getLineCount();
         // TODO try not using initialize() to refresh phonetic name view: b/27410518
-        initialize(mListener, mIsOpenContactSquare, /* maximumHeaderTextSize */
-                (mMaximumFullNameViewHeight + mMaximumPhoneticNameViewHeight),
+        initialize(mListener, mIsOpenContactSquare, maximumHeaderTextSize,
                 /* shouldUpdateNameViewHeight */ false);
     }
 
@@ -445,10 +447,10 @@ public class MultiShrinkScroller extends FrameLayout {
             return;
         }
         mPhoneticNameView.setVisibility(View.GONE);
-        // Initialize to make Visibility work.
+        final int maximumHeaderTextSize =
+                mMaximumFullNameViewHeight * mFullNameView.getLineCount();
         // TODO try not using initialize() to refresh phonetic name view: b/27410518
-        initialize(mListener, mIsOpenContactSquare,
-                /* maximumHeaderTextSize */ mMaximumFullNameViewHeight,
+        initialize(mListener, mIsOpenContactSquare, maximumHeaderTextSize,
                 /* shouldUpdateNameViewHeight */ false);
     }
 
