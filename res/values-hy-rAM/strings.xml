@@ -18,7 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Կոնտակտներ"</string>
     <string name="contactsList" msgid="8661624236494819731">"Կոնտակտներ"</string>
-    <string name="shortcut_add_contact" msgid="7476283631356909204">"Ավելացնել կոտակտ"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Ավելացնել կնոտակտ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Կոնտակտ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ուղիղ համարհավաքում"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Ուղիղ հաղորդագրություն"</string>
