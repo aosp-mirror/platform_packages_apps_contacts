@@ -316,8 +316,8 @@
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"পরিচিতি লিঙ্ক করুন"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"বাতিল করুন"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য সদৃশ</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য সদৃশ</item>
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য ডুপ্লিকেট</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য ডুপ্লিকেট</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি লিঙ্ক করা পরিচিতি</item>
