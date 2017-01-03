@@ -18,10 +18,8 @@ package com.android.contacts.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.LoaderManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.os.Bundle;
 import android.provider.ContactsContract.Intents;
 import android.view.View;
@@ -36,13 +34,11 @@ import com.android.contacts.R;
 import com.android.contacts.editor.ContactEditorUtils;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountInfo;
-import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountsListAdapter;
 import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.ImplicitIntentsUtil;
-import com.google.common.util.concurrent.Futures;
 
 import java.util.List;
 
