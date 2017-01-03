@@ -21,6 +21,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 
 import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
@@ -63,7 +64,7 @@ public class FallbackAccountType extends BaseAccountType {
 
     @Override
     public Drawable getDisplayIcon(Context context) {
-        final Drawable icon = context.getResources().getDrawable(iconRes);
+        final Drawable icon = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
         icon.mutate().setColorFilter(ContextCompat.getColor(context,
                 R.color.actionbar_icon_color_grey), PorterDuff.Mode.SRC_ATOP);
         return icon;
