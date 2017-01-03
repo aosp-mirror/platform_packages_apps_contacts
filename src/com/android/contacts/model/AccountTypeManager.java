@@ -54,9 +54,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -155,11 +153,6 @@ public abstract class AccountTypeManager {
         }
 
         @Override
-        public List<AccountWithDataSet> getGroupWritableAccounts() {
-            return Collections.emptyList();
-        }
-
-        @Override
         public Account getDefaultGoogleAccount() {
             return null;
         }
@@ -209,11 +202,6 @@ public abstract class AccountTypeManager {
             Predicate<AccountInfo> filter);
 
     public abstract AccountInfo getAccountInfoForAccount(AccountWithDataSet account);
-
-    /**
-     * Returns the list of accounts that are group writable.
-     */
-    public abstract List<AccountWithDataSet> getGroupWritableAccounts();
 
     /**
      * Returns the default google account.
@@ -610,14 +598,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
             }
         }
         return result;
-    }
-
-    /**
-     * Return the list of all known, group writable {@link AccountWithDataSet}'s.
-     */
-    public List<AccountWithDataSet> getGroupWritableAccounts() {
-        return Lists.transform(Futures.getUnchecked(
-                filterAccountsAsync(groupWritableFilter())), AccountInfo.ACCOUNT_EXTRACTOR);
     }
 
     /**

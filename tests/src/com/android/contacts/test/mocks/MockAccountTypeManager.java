@@ -25,9 +25,6 @@ import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.BaseAccountType;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
-import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.Arrays;
@@ -83,11 +80,6 @@ public class MockAccountTypeManager extends AccountTypeManager {
     @Override
     public AccountInfo getAccountInfoForAccount(AccountWithDataSet account) {
         throw new UnsupportedOperationException("not implemented");
-    }
-
-    @Override
-    public List<AccountWithDataSet> getGroupWritableAccounts() {
-        return Arrays.asList(mAccounts);
     }
 
     @Override

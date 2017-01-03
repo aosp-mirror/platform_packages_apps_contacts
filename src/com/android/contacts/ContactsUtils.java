@@ -29,13 +29,10 @@ import android.util.Pair;
 
 import com.android.contacts.compat.ContactsCompat;
 import com.android.contacts.compat.DirectoryCompat;
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.dataitem.ImDataItem;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.List;
 
 public class ContactsUtils {
     private static final String TAG = "ContactsUtils";
@@ -136,12 +133,6 @@ public class ContactsUtils {
             return false;
         }
         return TextUtils.equals(a.getAction(), b.getAction());
-    }
-
-    public static boolean areGroupWritableAccountsAvailable(Context context) {
-        final List<AccountWithDataSet> accounts =
-                AccountTypeManager.getInstance(context).getGroupWritableAccounts();
-        return !accounts.isEmpty();
     }
 
     /**
