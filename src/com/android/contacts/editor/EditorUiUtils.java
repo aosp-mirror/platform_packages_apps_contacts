@@ -40,6 +40,7 @@ import android.provider.ContactsContract.CommonDataKinds.Relation;
 import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
@@ -158,37 +159,44 @@ public class EditorUiUtils {
     public static Drawable getMimeTypeDrawable(Context context, String mimeType) {
         switch (mimeType) {
             case StructuredName.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.quantum_ic_person_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_person_vd_theme_24, null);
             case StructuredPostal.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.quantum_ic_place_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_place_vd_theme_24, null);
             case SipAddress.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(
-                        R.drawable.quantum_ic_dialer_sip_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_dialer_sip_vd_theme_24, null);
             case Phone.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.quantum_ic_phone_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_phone_vd_theme_24, null);
             case Im.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(
-                        R.drawable.quantum_ic_message_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_message_vd_theme_24, null);
             case Event.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.quantum_ic_event_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_event_vd_theme_24, null);
             case Email.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.quantum_ic_email_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_email_vd_theme_24, null);
             case Website.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.quantum_ic_public_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_public_vd_theme_24, null);
             case Photo.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(
-                        R.drawable.quantum_ic_camera_alt_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_camera_alt_vd_theme_24, null);
             case GroupMembership.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(R.drawable.quantum_ic_label_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_label_vd_theme_24, null);
             case Organization.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(
-                        R.drawable.quantum_ic_business_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_business_vd_theme_24, null);
             case Note.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(
-                        R.drawable.quantum_ic_insert_comment_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_insert_comment_vd_theme_24, null);
             case Relation.CONTENT_ITEM_TYPE:
-                return context.getResources().getDrawable(
-                        R.drawable.quantum_ic_circles_ext_vd_theme_24);
+                return ResourcesCompat.getDrawable(context.getResources(),
+                        R.drawable.quantum_ic_circles_ext_vd_theme_24, null);
             default:
                 return null;
         }

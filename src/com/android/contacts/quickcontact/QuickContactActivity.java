@@ -74,6 +74,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.graphics.Palette;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
@@ -1374,8 +1375,8 @@ public class QuickContactActivity extends ContactsActivity {
      * When contact is a SIM contact, only shows "Add phone number".
      */
     private void initializeNoContactDetailCard(boolean areAllRawContactsSimAccounts) {
-        final Drawable phoneIcon = getResources().getDrawable(
-                R.drawable.quantum_ic_phone_vd_theme_24).mutate();
+        final Drawable phoneIcon = ResourcesCompat.getDrawable(getResources(),
+                R.drawable.quantum_ic_phone_vd_theme_24, null).mutate();
         final Entry phonePromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                 phoneIcon, getString(R.string.quickcontact_add_phone_number),
                 /* subHeader = */ null, /* subHeaderIcon = */ null, /* text = */ null,
@@ -1395,8 +1396,8 @@ public class QuickContactActivity extends ContactsActivity {
         promptEntries.get(0).add(phonePromptEntry);
 
         if (!areAllRawContactsSimAccounts) {
-            final Drawable emailIcon = getResources().getDrawable(
-                    R.drawable.quantum_ic_email_vd_theme_24).mutate();
+            final Drawable emailIcon = ResourcesCompat.getDrawable(getResources(),
+                    R.drawable.quantum_ic_email_vd_theme_24, null).mutate();
             final Entry emailPromptEntry = new Entry(CARD_ENTRY_ID_EDIT_CONTACT,
                     emailIcon, getString(R.string.quickcontact_add_email), /* subHeader = */ null,
                     /* subHeaderIcon = */ null,
@@ -2481,8 +2482,8 @@ public class QuickContactActivity extends ContactsActivity {
                 Trace.endSection();
                 Trace.beginSection("initialize permission explanation card");
 
-                final Drawable historyIcon = getResources().getDrawable(
-                        R.drawable.quantum_ic_history_vd_theme_24);
+                final Drawable historyIcon = ResourcesCompat.getDrawable(getResources(),
+                        R.drawable.quantum_ic_history_vd_theme_24, null);
 
                 final Entry permissionExplanationEntry = new Entry(CARD_ENTRY_ID_REQUEST_PERMISSION,
                         historyIcon, getString(R.string.permission_explanation_header),
