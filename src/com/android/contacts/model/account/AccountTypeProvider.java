@@ -23,7 +23,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SyncAdapterType;
 import android.provider.ContactsContract;
-import android.support.v4.util.ArraySet;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -34,6 +33,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -226,7 +226,7 @@ public class AccountTypeProvider {
 
     private static ImmutableMap<String, AuthenticatorDescription> onlyContactSyncable(
             AuthenticatorDescription[] auths, SyncAdapterType[] syncTypes) {
-        final Set<String> mContactSyncableTypes = new ArraySet<>();
+        final Set<String> mContactSyncableTypes = new HashSet<>();
         for (SyncAdapterType type : syncTypes) {
             if (type.authority.equals(ContactsContract.AUTHORITY)) {
                 mContactSyncableTypes.add(type.accountType);

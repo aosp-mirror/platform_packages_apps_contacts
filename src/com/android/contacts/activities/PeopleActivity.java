@@ -16,7 +16,6 @@
 
 package com.android.contacts.activities;
 
-import android.accounts.Account;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -69,7 +68,6 @@ import com.android.contacts.logging.Logger;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountInfo;
-import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.Constants;

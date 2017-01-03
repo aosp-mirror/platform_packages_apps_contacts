@@ -34,7 +34,6 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.util.ArrayMap;
-import android.support.v4.util.ArraySet;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -48,13 +47,13 @@ import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.PermissionsUtil;
 import com.android.contacts.util.SharedPreferenceUtil;
-
 import com.google.common.base.Joiner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -230,7 +229,7 @@ public class SimContactDaoImpl extends SimContactDao {
                 final AccountWithDataSet account = AccountQuery.getAccount(accountsCursor);
                 final long id = AccountQuery.getId(accountsCursor);
                 if (!result.containsKey(account)) {
-                    result.put(account, new ArraySet<SimContact>());
+                    result.put(account, new HashSet<SimContact>());
                 }
                 for (SimContact contact : rawContactToSimContact.get(id)) {
                     result.get(account).add(contact);
