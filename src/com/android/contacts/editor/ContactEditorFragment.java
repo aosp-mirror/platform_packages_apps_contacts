@@ -1016,7 +1016,7 @@ public class ContactEditorFragment extends Fragment implements
         if (mEditorUtils.shouldShowAccountChangedNotification(accounts)) {
             Intent intent = new Intent(mContext, ContactEditorAccountsChangedActivity.class);
             // Prevent a second instance from being started on rotates
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             mStatus = Status.SUB_ACTIVITY;
             startActivityForResult(intent, REQUEST_CODE_ACCOUNTS_CHANGED);
         } else {
