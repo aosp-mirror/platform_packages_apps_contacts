@@ -366,7 +366,8 @@ public class AttachPhotoActivity extends ContactsActivity {
 
         final List<AccountWithDataSet> accounts = AccountInfo.extractAccounts(accountInfos);
         if (editorUtils.shouldShowAccountChangedNotification(accounts)) {
-            Intent intent = new Intent(this, ContactEditorAccountsChangedActivity.class);
+            Intent intent = new Intent(this, ContactEditorAccountsChangedActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivityForResult(intent, REQUEST_PICK_DEFAULT_ACCOUNT_FOR_NEW_CONTACT);
         } else {
             // Otherwise, there should be a default account. Then either create a null contact
