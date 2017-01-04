@@ -23,7 +23,6 @@ import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountsListAdapter;
@@ -33,7 +32,6 @@ import java.util.List;
 public class DefaultAccountPreference extends DialogPreference {
     private ContactsPreferences mPreferences;
     private AccountsListAdapter mListAdapter;
-    private AccountTypeManager mAccountTypeManager;
     private List<AccountInfo> mAccounts;
     private int mChosenIndex = -1;
 
@@ -51,6 +49,7 @@ public class DefaultAccountPreference extends DialogPreference {
         mAccounts = accounts;
         if (mListAdapter != null) {
             mListAdapter.setAccounts(accounts, null);
+            notifyChanged();
         }
     }
 
@@ -66,7 +65,6 @@ public class DefaultAccountPreference extends DialogPreference {
         if (mAccounts != null) {
             mListAdapter.setAccounts(mAccounts, null);
         }
-        mAccountTypeManager = AccountTypeManager.getInstance(getContext());
     }
 
     @Override
@@ -77,11 +75,11 @@ public class DefaultAccountPreference extends DialogPreference {
     @Override
     public CharSequence getSummary() {
         final AccountWithDataSet defaultAccount = mPreferences.getDefaultAccount();
-        if (defaultAccount == null ||
-                !mAccountTypeManager.exists(defaultAccount)) {
+        if (defaultAccount == null || mAccounts == null ||
+                !AccountInfo.contains(mAccounts, defaultAccount)) {
             return null;
         } else {
-            return mAccountTypeManager.getAccountInfoForAccount(defaultAccount).getNameLabel();
+            return AccountInfo.getAccount(mAccounts, defaultAccount).getNameLabel();
         }
     }
 
