@@ -205,8 +205,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private ContactsActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
-    private GroupsFragment mGroupsFragment;
-    private AccountFiltersFragment mAccountFiltersFragment;
 
     // The account the new group will be created under.
     private AccountWithDataSet mNewGroupAccount;
@@ -423,8 +421,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             mCurrentView = ContactsView.ALL_CONTACTS;
         }
 
-        loadGroups();
-
         // Set up hamburger menu items.
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
@@ -465,20 +461,21 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     private void addGroupsAndFiltersFragments(FragmentTransaction transaction) {
         final FragmentManager fragmentManager = getFragmentManager();
-        mGroupsFragment = (GroupsFragment) fragmentManager.findFragmentByTag(TAG_GROUPS);
-        if (mGroupsFragment == null) {
-            mGroupsFragment = new GroupsFragment();
-            transaction.add(mGroupsFragment, TAG_GROUPS);
+        GroupsFragment groupsFragment =
+                (GroupsFragment) fragmentManager.findFragmentByTag(TAG_GROUPS);
+        if (groupsFragment == null) {
+            groupsFragment = new GroupsFragment();
+            transaction.add(groupsFragment, TAG_GROUPS);
         }
-        mGroupsFragment.setListener(this);
+        groupsFragment.setListener(this);
 
-        mAccountFiltersFragment = (AccountFiltersFragment)
-                fragmentManager.findFragmentByTag(TAG_FILTERS);
-        if (mAccountFiltersFragment == null) {
-            mAccountFiltersFragment = new AccountFiltersFragment();
-            transaction.add(mAccountFiltersFragment, TAG_FILTERS);
+        AccountFiltersFragment accountFiltersFragment =
+                (AccountFiltersFragment) fragmentManager.findFragmentByTag(TAG_FILTERS);
+        if (accountFiltersFragment == null) {
+            accountFiltersFragment = new AccountFiltersFragment();
+            transaction.add(accountFiltersFragment, TAG_FILTERS);
         }
-        mAccountFiltersFragment.setListener(this);
+        accountFiltersFragment.setListener(this);
     }
 
     @Override
@@ -788,25 +785,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 && !mProviderStatus.equals(providerStatus)) {
             loadGroupsAndFilters();
         }
-    }
-
-    // Set up fragment manager to load groups.
-    protected void loadGroups() {
-        final FragmentManager fragmentManager = getFragmentManager();
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        addGroupsLoadingFragment(transaction);
-        transaction.commitAllowingStateLoss();
-        fragmentManager.executePendingTransactions();
-    }
-
-    private void addGroupsLoadingFragment(FragmentTransaction transaction) {
-        final FragmentManager fragmentManager = getFragmentManager();
-        mGroupsFragment = (GroupsFragment) fragmentManager.findFragmentByTag(TAG_GROUPS);
-        if (mGroupsFragment == null) {
-            mGroupsFragment = new GroupsFragment();
-            transaction.add(mGroupsFragment, TAG_GROUPS);
-        }
-        mGroupsFragment.setListener(this);
     }
 
     private void updateViewConfiguration(boolean forceUpdate) {
