@@ -67,17 +67,17 @@ import com.android.contacts.list.MultiSelectContactsListFragment;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
 import com.android.contacts.util.AccountFilterUtil;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.util.MaterialColorMapUtils;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.util.ViewUtil;
 import com.android.contactsbind.HelpUtils;
 import com.android.contactsbind.ObjectFactory;
-import com.android.contactsbind.experiments.Flags;
+import com.google.common.util.concurrent.Futures;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -403,7 +403,8 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     @Override
-    public void onGroupsLoaded(List<GroupListItem> groupListItems) {
+    public void onGroupsLoaded(List<GroupListItem> groupListItems,
+            boolean areGroupWritableAccountsAvailable) {
         final Menu menu = mNavigationView.getMenu();
         final MenuItem groupsMenuItem = menu.findItem(R.id.nav_groups);
         final SubMenu subMenu = groupsMenuItem.getSubMenu();
@@ -444,7 +445,7 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
 
         // Don't show "Create new..." menu if there's no group-writable accounts available.
-        if (!ContactsUtils.areGroupWritableAccountsAvailable(this)) {
+        if (!areGroupWritableAccountsAvailable) {
             return;
         }
 
@@ -680,8 +681,10 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
     }
 
     private void selectAccountForNewGroup() {
-        final List<AccountWithDataSet> accounts = AccountTypeManager.getInstance(this)
-                .getGroupWritableAccounts();
+        // This should never block because the GroupsFragment loads the accounts and the
+        // "Create Label" item only exists when that loading finishes
+        final List<AccountInfo> accounts = Futures.getUnchecked(AccountTypeManager.getInstance(this)
+                .filterAccountsAsync(AccountTypeManager.AccountFilter.GROUPS_WRITABLE));
         if (accounts.isEmpty()) {
             // We shouldn't present the add group button if there are no writable accounts
             // but check it since it's possible we are started with an Intent.
@@ -690,11 +693,11 @@ public abstract class ContactsDrawerActivity extends AppCompatContactsActivity i
         }
         // If there is a single writable account, use it w/o showing a dialog.
         if (accounts.size() == 1) {
-            onAccountChosen(accounts.get(0), /* extraArgs */ null);
+            onAccountChosen(accounts.get(0).getAccount(), /* extraArgs */ null);
             return;
         }
         SelectAccountDialogFragment.show(getFragmentManager(), R.string.dialog_new_group_account,
-                AccountListFilter.ACCOUNTS_GROUP_WRITABLE, /* extraArgs */ null,
+                AccountTypeManager.AccountFilter.GROUPS_WRITABLE, /* extraArgs */ null,
                 TAG_SELECT_ACCOUNT_DIALOG);
     }
 

@@ -194,7 +194,7 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
         mRecord = msg.getRecords()[0];
 
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
-        final List<AccountWithDataSet> accountList = accountTypes.getAccounts(true);
+        final List<AccountWithDataSet> accountList = accountTypes.blockForWritableAccounts();
         if (accountList.size() == 0) {
             mAccount = null;
         } else if (accountList.size() == 1) {

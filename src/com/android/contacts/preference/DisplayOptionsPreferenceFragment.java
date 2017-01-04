@@ -297,6 +297,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         if (accounts.isEmpty()) {
             getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
             getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
+        } else {
+            final DefaultAccountPreference preference =
+                    (DefaultAccountPreference) findPreference(KEY_DEFAULT_ACCOUNT);
+            preference.setAccounts(accounts);
         }
     }
 
