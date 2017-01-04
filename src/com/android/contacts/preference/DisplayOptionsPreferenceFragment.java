@@ -294,14 +294,9 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     @Override
     public void onAccountsLoaded(List<AccountInfo> accounts) {
         // Hide accounts preferences if no writable accounts exist
-        if (accounts.isEmpty()) {
-            getPreferenceScreen().removePreference(findPreference(KEY_DEFAULT_ACCOUNT));
-            getPreferenceScreen().removePreference(findPreference(KEY_CUSTOM_CONTACTS_FILTER));
-        } else {
-            final DefaultAccountPreference preference =
-                    (DefaultAccountPreference) findPreference(KEY_DEFAULT_ACCOUNT);
-            preference.setAccounts(accounts);
-        }
+        final DefaultAccountPreference preference =
+                (DefaultAccountPreference) findPreference(KEY_DEFAULT_ACCOUNT);
+        preference.setAccounts(accounts);
     }
 
     @Override
