@@ -94,6 +94,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private static final String TAG = "DefaultListFragment";
     private static final String ENABLE_DEBUG_OPTIONS_HIDDEN_CODE = "debug debug!";
     private static final String KEY_DELETION_IN_PROGRESS = "deletionInProgress";
+    private static final String KEY_SEARCH_RESULT_CLICKED = "search_result_clicked";
 
     private static final int ACTIVITY_REQUEST_CODE_SHARE = 0;
 
@@ -148,6 +149,8 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
      * activity/fragment.
      */
     private boolean mDisableOptionItemSelected;
+
+    private boolean mSearchResultClicked;
 
     private ActionBarAdapter mActionBarAdapter;
     private PeopleActivity mActivity;
@@ -248,6 +251,22 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         setVisibleScrollbarEnabled(true);
         setDisplayDirectoryHeader(false);
         setHasOptionsMenu(true);
+    }
+
+    /**
+     * Whether a search result was clicked by the user. Tracked so that we can distinguish
+     * between exiting the search mode after a result was clicked from exiting w/o clicking
+     * any search result.
+     */
+    public boolean wasSearchResultClicked() {
+        return mSearchResultClicked;
+    }
+
+    /**
+     * Resets whether a search result was clicked by the user to false.
+     */
+    public void resetSearchResultClicked() {
+        mSearchResultClicked = false;
     }
 
     @Override
@@ -371,6 +390,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         if (getAdapter().isDisplayingCheckBoxes()) {
             super.onItemClick(position, id);
             return;
+        } else {
+            if (isSearchMode()) {
+                mSearchResultClicked = true;
+                Logger.logSearchEvent(createSearchStateForSearchResultClick(position));
+            }
         }
         viewContact(position, uri, getAdapter().isEnterpriseContact(position));
     }
@@ -648,8 +672,11 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
 
         setCheckBoxListListener(new CheckBoxListListener());
         setOnContactListActionListener(new ContactBrowserActionListener());
-        if (savedInstanceState != null && savedInstanceState.getBoolean(KEY_DELETION_IN_PROGRESS)) {
-            deleteSelectedContacts();
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getBoolean(KEY_DELETION_IN_PROGRESS)) {
+                deleteSelectedContacts();
+            }
+            mSearchResultClicked = savedInstanceState.getBoolean(KEY_SEARCH_RESULT_CLICKED);
         }
 
         setDirectorySearchMode();
@@ -1183,6 +1210,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         }
         mDisableOptionItemSelected = true;
         outState.putBoolean(KEY_DELETION_IN_PROGRESS, mIsDeletionInProgress);
+        outState.putBoolean(KEY_SEARCH_RESULT_CLICKED, mSearchResultClicked);
     }
 
     @Override
