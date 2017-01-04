@@ -274,6 +274,10 @@ public class SimContactDaoImpl extends SimContactDao {
     private ArrayList<SimContact> loadFrom(Uri uri) {
         synchronized (SIM_READ_LOCK) {
             final Cursor cursor = mResolver.query(uri, null, null, null, null);
+            if (cursor == null) {
+                // Assume null means there are no SIM contacts.
+                return new ArrayList<>(0);
+            }
 
             try {
                 return loadFromCursor(cursor);
