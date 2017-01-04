@@ -730,8 +730,8 @@ public class GroupMembersFragment extends MultiSelectContactsListFragment<GroupM
         maybeAttachCheckBoxListener();
 
         mActivity.setTitle(mGroupMetaData.groupName);
-        mActivity.updateGroupMenu(mGroupMetaData);
         mActivity.invalidateOptionsMenu();
+        mActivity.updateDrawerGroupMenu(mGroupMetaData.groupId);
 
         // Start loading the group members
         super.startLoading();

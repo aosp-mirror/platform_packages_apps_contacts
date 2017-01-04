@@ -47,11 +47,32 @@
     <!-- Menu group ID for settings and help & feedback  -->
     <item type="id" name="nav_misc" />
 
-    <!-- Menu group ID for the contact groups -->
-    <item type="id" name="nav_groups_items" />
+    <!-- Menu ID for Contacts menu -->
+    <item type="id" name="nav_all_contacts" />
 
-    <!-- Menu group ID for the contact filters -->
-    <item type="id" name="nav_filters_items" />
+    <!-- Menu ID for Suggestions menu -->
+    <item type="id" name="nav_assistant" />
+
+    <!-- Menu ID for group header -->
+    <item type="id" name="nav_groups" />
+
+    <!-- Menu ID for each group menu item -->
+    <item type="id" name="nav_group" />
+
+    <!-- Menu ID for create label menu item -->
+    <item type="id" name="nav_create_label" />
+
+    <!-- Menu ID for filter header -->
+    <item type="id" name="nav_filters" />
+
+    <!-- Menu ID for each filter menu item -->
+    <item type="id" name="nav_filter" />
+
+    <!-- Menu ID for Settings menu -->
+    <item type="id" name="nav_settings" />
+
+    <!-- Menu ID for help & feedback  menu -->
+    <item type="id" name="nav_help" />
 
     <!-- For vcard.ImportVCardActivity -->
     <item type="id" name="dialog_cache_vcard"/>

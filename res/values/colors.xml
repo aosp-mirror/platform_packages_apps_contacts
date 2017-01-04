@@ -241,4 +241,17 @@
 
     <!-- Background color for sync-off alert. -->
     <color name="alert_background">#e0e0e0</color>
+
+    <!-- Divider color in navigation drawer -->
+    <color name="drawer_divider_color">#E5E5E5</color>
+
+    <!-- Background color for the navigation drawer -->
+    <color name="navigation_drawer_background_color">#FAFAFA</color>
+
+    <!-- Background color for the current selected item in the navigation drawer -->
+    <color name="drawer_selected_color">#E8E8E8</color>
+
+    <!-- Highlight color used in places such as ripples -->
+    <color name="control_highlight_color">#1A000000</color>
+
 </resources>

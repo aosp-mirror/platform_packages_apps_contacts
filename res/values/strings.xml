@@ -709,6 +709,9 @@
     <!-- Close drawer content descriptions [CHAR LIMIT=40] -->
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Content description of label name in navigation drawer. For example: Coworker Label, Friends Label [CHAR LIMIT=30] -->
+    <string name="navigation_drawer_label"><xliff:g id="label_name">%s</xliff:g> label</string>
+
     <!-- Menu section title of "labels" [CHAR LIMIT=20] -->
     <string name="menu_title_groups">Labels</string>
 

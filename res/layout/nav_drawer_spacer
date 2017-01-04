@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2016 The Android Open Source Project
+
+<!-- Copyright (C) 2017 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,9 +15,9 @@
      limitations under the License.
 -->
 
-
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:state_activated="true"
-        android:drawable="@color/drawer_selected_color"/>
-  <item android:drawable="@drawable/ripple_background" />
-</selector>
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/nav_drawer_spacer"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/nav_drawer_spacer_height"
+      android:background="@drawable/drawer_item_background"
+      android:importantForAccessibility="no"/>
