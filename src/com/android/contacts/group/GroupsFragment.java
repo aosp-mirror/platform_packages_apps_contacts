@@ -24,6 +24,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import com.android.contacts.GroupListLoader;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
+import com.android.contacts.model.account.AccountsLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +34,10 @@ import java.util.List;
 /**
  * Loads groups and group metadata for all accounts.
  */
-public final class GroupsFragment extends Fragment {
+public final class GroupsFragment extends Fragment implements AccountsLoader.AccountsListener {
 
     private static final int LOADER_GROUPS = 1;
+    private static final int LOADER_ACCOUNTS = 2;
 
     /**
      * Callbacks for hosts of the {@link GroupsFragment}.
@@ -43,7 +47,8 @@ public final class GroupsFragment extends Fragment {
         /**
          * Invoked after groups and group metadata have been loaded.
          */
-        void onGroupsLoaded(List<GroupListItem> groupListItems);
+        void onGroupsLoaded(List<GroupListItem> groupListItems,
+                boolean areGroupWritableAccountsAvailable);
     }
 
     private final LoaderManager.LoaderCallbacks<Cursor> mGroupListLoaderListener =
@@ -65,9 +70,8 @@ public final class GroupsFragment extends Fragment {
                             mGroupListItems.add(GroupUtil.getGroupListItem(data, i));
                         }
                     }
-                    if (mListener != null) {
-                        mListener.onGroupsLoaded(mGroupListItems);
-                    }
+                    mGroupsLoaded = true;
+                    notifyIfReady();
                 }
 
                 public void onLoaderReset(Loader<Cursor> loader) {
@@ -75,15 +79,33 @@ public final class GroupsFragment extends Fragment {
             };
 
     private List<GroupListItem> mGroupListItems = new ArrayList<>();
+    private boolean mHasGroupWritableAccounts = false;
+    private boolean mGroupsLoaded = false;
+    private boolean mAccountsLoaded = false;
     private GroupsListener mListener;
 
     @Override
-    public void onStart() {
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        AccountsLoader.loadAccounts(this, LOADER_ACCOUNTS,
+                AccountTypeManager.AccountFilter.GROUPS_WRITABLE);
         getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupListLoaderListener);
-        super.onStart();
     }
 
     public void setListener(GroupsListener listener) {
         mListener = listener;
+    }
+
+    @Override
+    public void onAccountsLoaded(List<AccountInfo> accounts) {
+        mHasGroupWritableAccounts = !accounts.isEmpty();
+        mAccountsLoaded = true;
+        notifyIfReady();
+    }
+
+    private void notifyIfReady() {
+        if (mAccountsLoaded && mGroupsLoaded && mListener != null) {
+            mListener.onGroupsLoaded(mGroupListItems, mHasGroupWritableAccounts);
+        }
     }
 }

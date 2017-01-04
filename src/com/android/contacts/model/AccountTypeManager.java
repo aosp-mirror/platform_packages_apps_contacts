@@ -54,9 +54,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -82,6 +80,27 @@ public abstract class AccountTypeManager {
 
     public static final String BROADCAST_ACCOUNTS_CHANGED = AccountTypeManager.class.getName() +
             ".AccountsChanged";
+
+    public enum AccountFilter implements Predicate<AccountInfo> {
+        ALL {
+            @Override
+            public boolean apply(@Nullable AccountInfo input) {
+                return input != null;
+            }
+        },
+        CONTACTS_WRITABLE {
+            @Override
+            public boolean apply(@Nullable AccountInfo input) {
+                return input != null && input.getType().areContactsWritable();
+            }
+        },
+        GROUPS_WRITABLE {
+            @Override
+            public boolean apply(@Nullable AccountInfo input) {
+                return input != null && input.getType().isGroupMembershipEditable();
+            }
+        };
+    }
 
     /**
      * Requests the singleton instance of {@link AccountTypeManager} with data bound from
@@ -118,11 +137,6 @@ public abstract class AccountTypeManager {
     private static final AccountTypeManager EMPTY = new AccountTypeManager() {
 
         @Override
-        public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
-            return Collections.emptyList();
-        }
-
-        @Override
         public ListenableFuture<List<AccountInfo>> getAccountsAsync() {
             return Futures.immediateFuture(Collections.<AccountInfo>emptyList());
         }
@@ -139,11 +153,6 @@ public abstract class AccountTypeManager {
         }
 
         @Override
-        public List<AccountWithDataSet> getGroupWritableAccounts() {
-            return Collections.emptyList();
-        }
-
-        @Override
         public Account getDefaultGoogleAccount() {
             return null;
         }
@@ -157,9 +166,29 @@ public abstract class AccountTypeManager {
     /**
      * Returns the list of all accounts (if contactWritableOnly is false) or just the list of
      * contact writable accounts (if contactWritableOnly is true).
+     *
+     * <p>TODO(mhagerott) delete this method. It's left in place to prevent build breakages when
+     * this change is automerged. Usages of this method in downstream branches should be
+     * replaced with an asynchronous account loading pattern</p>
      */
-    // TODO: Consider splitting this into getContactWritableAccounts() and getAllAccounts()
-    public abstract List<AccountWithDataSet> getAccounts(boolean contactWritableOnly);
+    public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
+        return contactWritableOnly
+                ? blockForWritableAccounts()
+                : AccountInfo.extractAccounts(Futures.getUnchecked(getAccountsAsync()));
+    }
+
+    /**
+     * Returns all contact writable accounts
+     *
+     * <p>In general this method should be avoided. It exists to support some legacy usages of
+     * accounts in infrequently used features where refactoring to asynchronous loading is
+     * not justified. The chance that this will actually block is pretty low if the app has been
+     * launched previously</p>
+     */
+    public List<AccountWithDataSet> blockForWritableAccounts() {
+        return AccountInfo.extractAccounts(
+                Futures.getUnchecked(filterAccountsAsync(AccountFilter.CONTACTS_WRITABLE)));
+    }
 
     /**
      * Loads accounts in background and returns future that will complete with list of all accounts
@@ -173,11 +202,6 @@ public abstract class AccountTypeManager {
             Predicate<AccountInfo> filter);
 
     public abstract AccountInfo getAccountInfoForAccount(AccountWithDataSet account);
-
-    /**
-     * Returns the list of accounts that are group writable.
-     */
-    public abstract List<AccountWithDataSet> getGroupWritableAccounts();
 
     /**
      * Returns the default google account.
@@ -298,43 +322,12 @@ public abstract class AccountTypeManager {
         return canGetAccounts && canReadContacts;
     }
 
-    public static Predicate<AccountInfo> nonNullAccountFilter() {
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(AccountInfo info) {
-                AccountWithDataSet account = info != null ? info.getAccount() : null;
-                return account != null && !account.isNullAccount();
-            }
-        };
-
-    }
-
     public static Predicate<AccountInfo> writableFilter() {
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(AccountInfo account) {
-                return account.getType().areContactsWritable();
-            }
-        };
+        return AccountFilter.CONTACTS_WRITABLE;
     }
 
     public static Predicate<AccountInfo> groupWritableFilter() {
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(@Nullable AccountInfo account) {
-                return account.getType().isGroupMembershipEditable();
-            }
-        };
-    }
-
-    public static Predicate<AccountInfo> onlyNonEmptyExtensionFilter(Context context) {
-        final Context appContext = context.getApplicationContext();
-        return new Predicate<AccountInfo>() {
-            @Override
-            public boolean apply(@Nullable AccountInfo input) {
-                return !input.getType().isExtension() || input.getAccount().hasData(appContext);
-            }
-        };
+        return AccountFilter.GROUPS_WRITABLE;
     }
 }
 
@@ -530,19 +523,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 mMainThreadExecutor);
     }
 
-    /**
-     * Return list of all known or contact writable {@link AccountWithDataSet}'s.
-     * {@param contactWritableOnly} whether to restrict to contact writable accounts only
-     */
-    @Override
-    public List<AccountWithDataSet> getAccounts(boolean contactWritableOnly) {
-        final Predicate<AccountInfo> filter = contactWritableOnly ?
-                writableFilter() : Predicates.<AccountInfo>alwaysTrue();
-        // TODO: Shouldn't have a synchronous version for getting all accounts
-        return Lists.transform(Futures.getUnchecked(filterAccountsAsync(filter)),
-                AccountInfo.ACCOUNT_EXTRACTOR);
-    }
-
     @Override
     public ListenableFuture<List<AccountInfo>> getAccountsAsync() {
         return getAllAccountsAsyncInternal();
@@ -618,14 +598,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
             }
         }
         return result;
-    }
-
-    /**
-     * Return the list of all known, group writable {@link AccountWithDataSet}'s.
-     */
-    public List<AccountWithDataSet> getGroupWritableAccounts() {
-        return Lists.transform(Futures.getUnchecked(
-                filterAccountsAsync(groupWritableFilter())), AccountInfo.ACCOUNT_EXTRACTOR);
     }
 
     /**

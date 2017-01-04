@@ -84,15 +84,6 @@ public class AccountSelectionUtil {
         }
     }
 
-    public static Dialog getSelectAccountDialog(Activity activity, int resId) {
-        return getSelectAccountDialog(activity, resId, null, null);
-    }
-
-    public static Dialog getSelectAccountDialog(Activity activity, int resId,
-            DialogInterface.OnClickListener onClickListener) {
-        return getSelectAccountDialog(activity, resId, onClickListener, null);
-    }
-
     /**
      * When OnClickListener or OnCancelListener is null, uses a default listener.
      * The default OnCancelListener just closes itself with {@link Dialog#dismiss()}.
@@ -101,7 +92,8 @@ public class AccountSelectionUtil {
             DialogInterface.OnClickListener onClickListener,
             DialogInterface.OnCancelListener onCancelListener) {
         final AccountTypeManager accountTypes = AccountTypeManager.getInstance(activity);
-        final List<AccountWithDataSet> writableAccountList = accountTypes.getAccounts(true);
+        final List<AccountWithDataSet> writableAccountList =
+                accountTypes.blockForWritableAccounts();
 
         Log.i(LOG_TAG, "The number of available accounts: " + writableAccountList.size());
 

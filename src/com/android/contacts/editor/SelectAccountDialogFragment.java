@@ -27,43 +27,51 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.contacts.R;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountsListAdapter;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
+import com.google.common.base.Preconditions;
+
+import java.util.List;
 
 /**
  * Shows a dialog asking the user which account to chose.
  *
  * The result is passed to {@code targetFragment} passed to {@link #show}.
  */
-public final class SelectAccountDialogFragment extends DialogFragment {
+public final class SelectAccountDialogFragment extends DialogFragment
+        implements AccountsLoader.AccountsListener {
     public static final String TAG = "SelectAccountDialogFragment";
 
     private static final String KEY_TITLE_RES_ID = "title_res_id";
     private static final String KEY_LIST_FILTER = "list_filter";
     private static final String KEY_EXTRA_ARGS = "extra_args";
 
+    private AccountsListAdapter mAccountsAdapter;
+    private AccountTypeManager.AccountFilter mFilter;
+
     /**
      * Show the dialog.
      *
      * @param fragmentManager {@link FragmentManager}.
      * @param titleResourceId resource ID to use as the title.
-     * @param accountListFilter account filter.
      * @param extraArgs Extra arguments, which will later be passed to
      *     {@link Listener#onAccountChosen}.  {@code null} will be converted to
      *     {@link Bundle#EMPTY}.
      */
     public static void show(FragmentManager fragmentManager, int titleResourceId,
-            AccountListFilter accountListFilter, Bundle extraArgs) {
-        show(fragmentManager, titleResourceId, accountListFilter, extraArgs, /* tag */ null);
+            AccountTypeManager.AccountFilter filter, Bundle extraArgs) {
+        show(fragmentManager, titleResourceId, filter, extraArgs, /* tag */ null);
     }
 
     public static void show(FragmentManager fragmentManager, int titleResourceId,
-            AccountListFilter accountListFilter, Bundle extraArgs, String tag) {
+            AccountTypeManager.AccountFilter filter, Bundle extraArgs, String tag) {
         final Bundle args = new Bundle();
         args.putInt(KEY_TITLE_RES_ID, titleResourceId);
-        args.putSerializable(KEY_LIST_FILTER, accountListFilter);
         args.putBundle(KEY_EXTRA_ARGS, (extraArgs == null) ? Bundle.EMPTY : extraArgs);
+        args.putSerializable(KEY_LIST_FILTER, filter);
 
         final SelectAccountDialogFragment instance = new SelectAccountDialogFragment();
         instance.setArguments(args);
@@ -71,14 +79,22 @@ public final class SelectAccountDialogFragment extends DialogFragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        final Bundle args = getArguments();
+        mFilter = (AccountTypeManager.AccountFilter) args.getSerializable(KEY_LIST_FILTER);
+        if (mFilter == null) {
+            mFilter = AccountTypeManager.AccountFilter.ALL;
+        }
+    }
+
+    @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final Bundle args = getArguments();
 
-        final AccountListFilter filter = (AccountListFilter) args.getSerializable(KEY_LIST_FILTER);
-        final AccountsListAdapter accountAdapter = new AccountsListAdapter(builder.getContext(),
-                filter);
-        accountAdapter.setCustomLayout(R.layout.account_selector_list_item_condensed);
+        mAccountsAdapter = new AccountsListAdapter(builder.getContext());
+        mAccountsAdapter.setCustomLayout(R.layout.account_selector_list_item_condensed);
 
         final DialogInterface.OnClickListener clickListener =
                 new DialogInterface.OnClickListener() {
@@ -86,16 +102,22 @@ public final class SelectAccountDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
 
-                onAccountSelected(accountAdapter.getItem(which));
+                onAccountSelected(mAccountsAdapter.getItem(which));
             }
         };
 
         final TextView title = (TextView) View.inflate(getActivity(), R.layout.dialog_title, null);
         title.setText(args.getInt(KEY_TITLE_RES_ID));
         builder.setCustomTitle(title);
-        builder.setSingleChoiceItems(accountAdapter, 0, clickListener);
+        builder.setSingleChoiceItems(mAccountsAdapter, 0, clickListener);
         final AlertDialog result = builder.create();
         return result;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        AccountsLoader.loadAccounts(this, 0, mFilter);
     }
 
     @Override
@@ -124,6 +146,13 @@ public final class SelectAccountDialogFragment extends DialogFragment {
             listener = (Listener) activity;
         }
         return listener;
+    }
+
+    @Override
+    public void onAccountsLoaded(List<AccountInfo> accounts) {
+        Preconditions.checkNotNull(mAccountsAdapter,
+                "Accounts adapter should have been initialized");
+        mAccountsAdapter.setAccounts(accounts, null);
     }
 
     public interface Listener {

@@ -44,12 +44,9 @@ import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountInfo;
-import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
-import com.android.contacts.util.AccountsListAdapter.AccountListFilter;
 import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
 import java.util.concurrent.Future;
@@ -274,7 +271,7 @@ public class ImportDialogFragment extends DialogFragment {
             args.putInt(KEY_SUBSCRIPTION_ID, subscriptionId);
             SelectAccountDialogFragment.show(
                     getFragmentManager(), R.string.dialog_new_contact_account,
-                    AccountListFilter.ACCOUNTS_CONTACT_WRITABLE, args);
+                    AccountTypeManager.AccountFilter.CONTACTS_WRITABLE, args);
         } else {
             AccountSelectionUtil.doImport(getActivity(), resId,
                     (size == 1 ? accountList.get(0) : null),
