@@ -26,14 +26,19 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import android.content.ContentProvider;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
+import android.net.Uri;
+import android.os.CancellationSignal;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
@@ -698,6 +703,27 @@ public class SimContactDaoTests {
 
             final SimContactDao sut = SimContactDao.create(mContext);
             List<SimContact> result = sut
+                    .loadContactsForSim(new SimCard("123", "carrier", "sim", null, "us"));
+            assertTrue(result.isEmpty());
+        }
+
+        @Test
+        public void returnsEmptyListForNullCursor() {
+            mContext = mock(MockContext.class);
+            final MockContentResolver mockResolver = new MockContentResolver();
+            final ContentProvider mockProvider = mock(android.test.mock.MockContentProvider.class);
+            when(mockProvider.query(any(Uri.class), any(String[].class), anyString(),
+                    any(String[].class), anyString()))
+                    .thenReturn(null);
+            when(mockProvider.query(any(Uri.class), any(String[].class), anyString(),
+                    any(String[].class), anyString(), any(CancellationSignal.class)))
+                    .thenReturn(null);
+
+            mockResolver.addProvider("icc", mockProvider);
+            when(mContext.getContentResolver()).thenReturn(mockResolver);
+
+            final SimContactDao sut = SimContactDao.create(mContext);
+            final List<SimContact> result = sut
                     .loadContactsForSim(new SimCard("123", "carrier", "sim", null, "us"));
             assertTrue(result.isEmpty());
         }
