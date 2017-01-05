@@ -75,8 +75,6 @@
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="list_item_header_height">30dip</item>
-        <item name="list_item_data_width_weight">5</item>
-        <item name="list_item_label_width_weight">3</item>
         <item name="list_item_header_text_indent">8dip</item>
         <item name="contact_browser_list_padding_left">0dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>
@@ -146,8 +144,6 @@
         <item name="list_item_header_text_color">@color/people_app_theme_color</item>
         <item name="list_item_header_text_size">14sp</item>
         <item name="list_item_header_height">30dip</item>
-        <item name="list_item_data_width_weight">5</item>
-        <item name="list_item_label_width_weight">3</item>
         <item name="list_item_header_text_indent">8dip</item>
         <item name="contact_browser_list_padding_left">0dip</item>
         <item name="contact_browser_list_padding_right">0dip</item>

@@ -257,13 +257,6 @@
     <!--  Horizontal whitespace (both padding and margin) before the first tile and after the last tile -->
     <dimen name="contact_tile_start_end_whitespace">16dip</dimen>
 
-    <!-- ContactTile Layouts -->
-    <!--
-      Use sp instead of dip so that the shadowbox heights can all scale uniformly
-      when the font size is scaled for accessibility purposes
-    -->
-    <dimen name="contact_tile_shadowbox_height">48sp</dimen>
-
     <!-- For contact filter setting screens -->
     <dimen name="contact_filter_left_margin">8dp</dimen>
     <dimen name="contact_filter_right_margin">16dip</dimen>

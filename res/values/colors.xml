@@ -117,12 +117,6 @@
     <!-- Secondary text color in the Phone app -->
     <color name="dialtacts_secondary_text_color">#737373</color>
 
-    <!--  Color of the semi-transparent shadow box on contact tiles -->
-    <color name="contact_tile_shadow_box_color">#7F000000</color>
-
-    <!--  Color of the status message for starred contacts in the People app -->
-    <color name="people_contact_tile_status_color">#CCCCCC</color>
-
     <color name="shortcut_overlay_text_background">#7f000000</color>
 
     <color name="textColorIconOverlay">#fff</color>
