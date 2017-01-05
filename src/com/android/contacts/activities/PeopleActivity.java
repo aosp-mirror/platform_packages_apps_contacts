@@ -493,14 +493,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             return;
         }
 
-        if (isGroupDeleteAction(action)) {
-            popSecondLevel();
-            mMembersFragment.toastForSaveAction(action);
-            mCurrentView = ContactsView.ALL_CONTACTS;
-            showFabWithAnimation(/* showFab */ true);
-            return;
-        }
-
         if (isGroupSaveAction(action)) {
             mGroupUri = intent.getData();
             if (mGroupUri == null) {
@@ -540,10 +532,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         initializeFabVisibility();
         invalidateOptionsMenuIfNeeded();
-    }
-
-    private static boolean isGroupDeleteAction(String action) {
-        return GroupUtil.ACTION_DELETE_GROUP.equals(action);
     }
 
     private static boolean isGroupSaveAction(String action) {
