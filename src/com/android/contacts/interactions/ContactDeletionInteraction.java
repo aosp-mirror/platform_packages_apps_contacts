@@ -81,10 +81,6 @@ public class ContactDeletionInteraction extends Fragment
     private static final int COLUMN_INDEX_DISPLAY_NAME = 5;
     private static final int COLUMN_INDEX_DISPLAY_NAME_ALT = 6;
 
-    public interface Listener {
-        void onDeletionFinished();
-    }
-
     private boolean mActive;
     private Uri mContactUri;
     private String mDisplayName;
@@ -92,7 +88,6 @@ public class ContactDeletionInteraction extends Fragment
     private boolean mFinishActivityWhenDone;
     private Context mContext;
     private AlertDialog mDialog;
-    private Listener mListener;
 
     /** This is a wrapper around the fragment's loader manager to be used only during testing. */
     private TestLoaderManagerBase mTestLoaderManager;
@@ -351,9 +346,6 @@ public class ContactDeletionInteraction extends Fragment
 
     protected void doDeleteContact(Uri contactUri) {
         mContext.startService(ContactSaveService.createDeleteContactIntent(mContext, contactUri));
-        if (mListener != null) {
-            mListener.onDeletionFinished();
-        }
         if (isAdded() && mFinishActivityWhenDone) {
             getActivity().setResult(RESULT_CODE_DELETED);
             getActivity().finish();
@@ -369,9 +361,5 @@ public class ContactDeletionInteraction extends Fragment
             }
             Toast.makeText(mContext, deleteToastMessage, Toast.LENGTH_LONG).show();
         }
-    }
-
-    public void setListener(Listener listener) {
-        mListener = listener;
     }
 }

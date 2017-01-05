@@ -1237,12 +1237,5 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         return intent;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == DefaultContactBrowseListFragment.ACTIVITY_REQUEST_QUICK_CONTACT &&
-                resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED &&
-                mContactsListFragment != null) {
-            mContactsListFragment.maybeRestartDefaultDirectoryPartitionLoader();
-        }
-    }
+
 }

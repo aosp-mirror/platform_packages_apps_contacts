@@ -313,9 +313,7 @@ public class ContactMultiDeletionInteraction extends Fragment
     protected void doDeleteContact(long[] contactIds, final String[] names) {
         mContext.startService(ContactSaveService.createDeleteMultipleContactsIntent(mContext,
                 contactIds, names));
-        if (mListener != null) {
-            mListener.onDeletionFinished();
-        }
+        mListener.onDeletionFinished();
     }
 
     public void setListener(MultiContactDeleteListener listener) {

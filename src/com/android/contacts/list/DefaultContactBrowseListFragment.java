@@ -97,7 +97,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     private static final String KEY_SEARCH_RESULT_CLICKED = "search_result_clicked";
 
     private static final int ACTIVITY_REQUEST_CODE_SHARE = 0;
-    public static final int ACTIVITY_REQUEST_QUICK_CONTACT = 1000;
 
     private View mSearchHeaderView;
     private View mSearchProgress;
@@ -943,24 +942,14 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
                         /* count */ getAdapter().getCount(),
                         /* clickedIndex */ position, /* numSelected */ 0);
 
-                // Start QuickContact "for result" in case we're using yenta search and need
-                // to manually reload the default directory partition when contacts are deleted.
-                // The QuickContact Activity result is handled in PeopleActivity.
-                ImplicitIntentsUtil.startQuickContactForResult(getActivity(), contactLookupUri,
-                        previousScreen, ACTIVITY_REQUEST_QUICK_CONTACT);
+                ImplicitIntentsUtil.startQuickContact(
+                        getActivity(), contactLookupUri, previousScreen);
             }
         }
 
         @Override
         public void onDeleteContactAction(Uri contactUri) {
-            final ContactDeletionInteraction interacton =
-                    ContactDeletionInteraction.start(mActivity, contactUri, false);
-            interacton.setListener(new ContactDeletionInteraction.Listener() {
-                @Override
-                public void onDeletionFinished() {
-                    maybeRestartDefaultDirectoryPartitionLoader();
-                }
-            });
+            ContactDeletionInteraction.start(mActivity, contactUri, false);
         }
 
         @Override
@@ -1168,16 +1157,6 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
                 /* numSelected */ getSelectedContactIds().size());
             mActionBarAdapter.setSelectionMode(false);
             mIsDeletionInProgress = false;
-            maybeRestartDefaultDirectoryPartitionLoader();
-        }
-    }
-
-    // Because the yenta search loader is not automatically restarted when contacts are deleted
-    // we must manually restart it when contacts displayed in yenta search results are deleted
-    // either on this fragment directly or after opening QuickContact.
-    public void maybeRestartDefaultDirectoryPartitionLoader() {
-        if (isSearchMode() && Flags.getInstance().getBoolean(Experiments.SEARCH_YENTA)) {
-            restartDefaultDirectoryPartitionLoader();
         }
     }
 
@@ -1204,7 +1183,7 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
                     /* listType */ getListTypeIncludingSearch(),
                     /* count */ getAdapter().getCount(), /* clickedIndex */ -1,
                     /* numSelected */ getAdapter().getSelectedContactIds().size());
-                break;
+
 // TODO fix or remove multipicker code: ag/54762
 //                else if (resultCode == RESULT_CANCELED && mMode == MODE_PICK_MULTIPLE_PHONES) {
 //                    // Finish the activity if the sub activity was canceled as back key is used
