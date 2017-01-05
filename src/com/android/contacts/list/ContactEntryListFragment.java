@@ -348,6 +348,22 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         mLoadPriorityDirectoriesOnly = false;
     }
 
+    /** Restarts the {@link DirectoryPartition} with {@link Directory#DEFAULT} directory ID. */
+    protected void restartDefaultDirectoryPartitionLoader() {
+        if (mAdapter == null) return;
+        int partitionCount = mAdapter.getPartitionCount();
+        for (int i = 0; i < partitionCount; i++) {
+            final Partition partition = mAdapter.getPartition(i);
+            if (partition instanceof DirectoryPartition) {
+                final DirectoryPartition directoryPartition = (DirectoryPartition) partition;
+                long directoryId = directoryPartition.getDirectoryId();
+                if (directoryId == Directory.DEFAULT) {
+                    loadDirectoryPartitionDelayed(i, directoryPartition);
+                }
+            }
+        }
+    }
+
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         if (id == DIRECTORY_LOADER_ID) {

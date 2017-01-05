@@ -82,6 +82,7 @@ import com.android.contacts.group.GroupsFragment;
 import com.android.contacts.group.GroupsFragment.GroupsListener;
 import com.android.contacts.interactions.AccountFiltersFragment;
 import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
+import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
@@ -1522,5 +1523,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         return intent;
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == DefaultContactBrowseListFragment.ACTIVITY_REQUEST_QUICK_CONTACT &&
+                resultCode == ContactDeletionInteraction.RESULT_CODE_DELETED &&
+                mContactsListFragment != null) {
+            mContactsListFragment.maybeRestartDefaultDirectoryPartitionLoader();
+        }
+    }
 }
