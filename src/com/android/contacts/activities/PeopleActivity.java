@@ -69,7 +69,6 @@ import android.widget.Toast;
 
 import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
 import com.android.contacts.compat.CompatUtils;
 import com.android.contacts.editor.ContactEditorFragment;
@@ -235,7 +234,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     // Update sync status for accounts in current ContactListFilter
     private void onSyncStateUpdated() {
-        if (isAllFragmentInSearchMode() || isAllFragmentInSelectionMode()) {
+        if (isListFragmentInSearchMode() || isListFragmentInSelectionMode()) {
             return;
         }
 
@@ -317,7 +316,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         private void stopSearchAndSelection() {
             final MultiSelectContactsListFragment listFragment;
             if (isAllContactsView() || isAccountView()) {
-                listFragment = getAllFragment();
+                listFragment = getListFragment();
             } else if (isGroupView()) {
                 listFragment = getGroupFragment();
             } else {
@@ -603,7 +602,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         final FragmentManager fragmentManager = getFragmentManager();
 
-        setUpAllFragment(fragmentManager);
+        setUpListFragment(fragmentManager);
 
         mMembersFragment = (GroupMembersFragment) fragmentManager.findFragmentByTag(TAG_GROUP_VIEW);
 
@@ -641,7 +640,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         LayoutInflater.from(this).inflate(layoutResID, parent);
     }
 
-    private void setUpAllFragment(FragmentManager fragmentManager) {
+    private void setUpListFragment(FragmentManager fragmentManager) {
         mContactsListFragment = (DefaultContactBrowseListFragment)
                 fragmentManager.findFragmentByTag(TAG_ALL);
 
@@ -738,8 +737,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     private void initializeHomeVisibility() {
         // Remove the navigation icon if we return to the fragment in a search or select state
-        if (getToolbar() != null && (isAllFragmentInSelectionMode()
-                || isAllFragmentInSearchMode() || isGroupsFragmentInSelectionMode()
+        if (getToolbar() != null && (isListFragmentInSelectionMode()
+                || isListFragmentInSearchMode() || isGroupsFragmentInSelectionMode()
                 || isGroupsFragmentInSearchMode())) {
             getToolbar().setNavigationIcon(null);
         }
@@ -750,7 +749,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 || isInSecondLevel()) {
             return true;
         }
-        return isAllFragmentInSearchMode() || isAllFragmentInSelectionMode();
+        return isListFragmentInSearchMode()
+                || isListFragmentInSelectionMode();
     }
 
     public void showFabWithAnimation(boolean showFab) {
@@ -885,13 +885,14 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             return;
         }
 
-        // If feature highlight is present, let it handle the back event before mContactsListFragment.
+        // If feature highlight is present, let it handle the back event before
+        // mContactsListFragment.
         if (FeatureHighlightHelper.tryRemoveHighlight(this)) {
             return;
         }
 
         // Handle the back event in "first level" - mContactsListFragment.
-        if (maybeHandleInAllFragment()) {
+        if (maybeHandleInListFragment()) {
             return;
         }
 
@@ -920,13 +921,13 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     // Returns true if back event is handled in this method.
-    private boolean maybeHandleInAllFragment() {
-        if (isAllFragmentInSelectionMode()) {
+    private boolean maybeHandleInListFragment() {
+        if (isListFragmentInSelectionMode()) {
             mContactsListFragment.getActionBarAdapter().setSelectionMode(false);
             return true;
         }
 
-        if (isAllFragmentInSearchMode()) {
+        if (isListFragmentInSearchMode()) {
             mContactsListFragment.getActionBarAdapter().setSearchMode(false);
             if (mContactsListFragment.wasSearchResultClicked()) {
                 mContactsListFragment.resetSearchResultClicked();
@@ -948,12 +949,12 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         return false;
     }
 
-    private boolean isAllFragmentInSelectionMode() {
+    private boolean isListFragmentInSelectionMode() {
         return mContactsListFragment != null && mContactsListFragment.getActionBarAdapter() != null
                 && mContactsListFragment.getActionBarAdapter().isSelectionMode();
     }
 
-    private boolean isAllFragmentInSearchMode() {
+    private boolean isListFragmentInSearchMode() {
         return mContactsListFragment != null && mContactsListFragment.getActionBarAdapter() != null
                 && mContactsListFragment.getActionBarAdapter().isSearchMode();
     }
@@ -1133,7 +1134,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         updateStatusBarBackground(ContextCompat.getColor(this, R.color.primary_color_dark));
     }
 
-    protected DefaultContactBrowseListFragment getAllFragment() {
+    protected DefaultContactBrowseListFragment getListFragment() {
         return mContactsListFragment;
     }
 
