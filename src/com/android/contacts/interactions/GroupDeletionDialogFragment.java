@@ -23,8 +23,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.ContactsDrawerActivity;
 import com.android.contacts.R;
+import com.android.contacts.activities.PeopleActivity;
 
 /**
  * A dialog for deleting a group.
@@ -65,7 +65,7 @@ public class GroupDeletionDialogFragment extends DialogFragment {
 
     protected void deleteGroup() {
         final long groupId = getArguments().getLong(ARG_GROUP_ID);
-        final ContactsDrawerActivity activity = ((ContactsDrawerActivity) getActivity());
+        final PeopleActivity activity = ((PeopleActivity) getActivity());
         activity.startService(ContactSaveService.createGroupDeletionIntent(
                 getActivity(), groupId));
         activity.switchToAllContacts();
