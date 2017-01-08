@@ -47,7 +47,8 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_ACCOUNT_ENTRY = 4;
     private static final int VIEW_TYPE_CREATE_LABEL = 5;
     private static final int VIEW_TYPE_NAV_SPACER = 6;
-    private static final int VIEW_TYPE_NAV_DIVIDER = 7;
+    private static final int VIEW_TYPE_STATUS_SPACER = 7;
+    private static final int VIEW_TYPE_NAV_DIVIDER = 8;
 
     private static final int TYPEFACE_STYLE_ACTIVATE = R.style.DrawerItemTextActiveStyle;
     private static final int TYPEFACE_STYLE_INACTIVE = R.style.DrawerItemTextInactiveStyle;
@@ -61,7 +62,8 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     private long mSelectedGroupId;
     private ContactListFilter mSelectedAccount;
 
-    // Adapter elements, ordered in this way in the getItem() method. The ordering is based on:
+    // Adapter elements, ordered in this way mItemsList. The ordering is based on:
+    //  [Status bar spacer item]
     //  [Navigation spacer item]
     //  [Primary items] (Contacts, Suggestions)
     //  [Group Header]
@@ -71,6 +73,7 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     //  [Accounts]
     //  [Misc items] (a divider, Settings, Help & Feedback)
     //  [Navigation spacer item]
+    private StatusBarSpacerItem mStatusBarSpacerItem = null;
     private NavSpacerItem mNavSpacerItem = null;
     private List<PrimaryItem> mPrimaryItems = new ArrayList<>();
     private HeaderItem mGroupHeader = null;
@@ -94,6 +97,7 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     private void initializeDrawerMenuItems() {
         // Spacer item for dividing sections in drawer
         mNavSpacerItem = new NavSpacerItem(R.id.nav_drawer_spacer);
+        mStatusBarSpacerItem = new StatusBarSpacerItem(R.id.nav_status_bar_spacer);
         // Primary items
         mPrimaryItems.add(new PrimaryItem(R.id.nav_all_contacts, R.string.contactsList,
                 R.drawable.quantum_ic_account_circle_vd_theme_24, ContactsView.ALL_CONTACTS));
@@ -117,6 +121,7 @@ public class DrawerAdapter extends RecyclerView.Adapter {
 
     private void rebuildItemsList() {
         mItemsList.clear();
+        mItemsList.add(mStatusBarSpacerItem);
         mItemsList.add(mNavSpacerItem);
         mItemsList.addAll(mPrimaryItems);
         if (mAreGroupWritableAccountsAvailable) {
@@ -184,6 +189,8 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
+            case VIEW_TYPE_STATUS_SPACER:
+                return getBaseViewHolder(R.layout.nav_header_main, parent);
             case VIEW_TYPE_NAV_SPACER:
                 return getBaseViewHolder(R.layout.nav_drawer_spacer, parent);
             case VIEW_TYPE_PRIMARY_ITEM:
@@ -391,6 +398,15 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     public static class HeaderItem extends BaseDrawerItem {
         public HeaderItem(int id, int textId) {
             super(VIEW_TYPE_HEADER_ITEM, id, textId, /* iconResId */ 0);
+        }
+    }
+
+
+    // Navigation drawer item for status bar spacer item to take up the height of status bar in the
+    // drawer.
+    public static class StatusBarSpacerItem extends BaseDrawerItem {
+        public StatusBarSpacerItem(int id) {
+            super(VIEW_TYPE_STATUS_SPACER, id, /* textResId */ 0, /* iconResId */ 0);
         }
     }
 

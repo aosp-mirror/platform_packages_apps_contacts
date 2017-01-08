@@ -70,7 +70,7 @@ public final class GroupUtil {
     }
 
     /** Returns a {@link GroupListItem} read from the given cursor and position. */
-    static GroupListItem getGroupListItem(Cursor cursor, int position) {
+    public static GroupListItem getGroupListItem(Cursor cursor, int position) {
         if (cursor == null || cursor.isClosed() || !cursor.moveToPosition(position)) {
             return null;
         }
