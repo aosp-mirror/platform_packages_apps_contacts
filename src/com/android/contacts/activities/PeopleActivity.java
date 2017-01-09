@@ -29,7 +29,6 @@ import android.content.IntentFilter;
 import android.content.SyncStatusObserver;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,45 +36,37 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.ProviderStatus;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.contacts.AppCompatContactsActivity;
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.drawer.DrawerFragment;
+import com.android.contacts.drawer.DrawerFragment.DrawerFragmentListener;
 import com.android.contacts.editor.ContactEditorFragment;
 import com.android.contacts.editor.SelectAccountDialogFragment;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupMembersFragment;
-import com.android.contacts.group.GroupMetaData;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.group.GroupsFragment;
@@ -96,8 +87,6 @@ import com.android.contacts.list.ProviderStatusWatcher.ProviderStatusListener;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.model.account.AccountDisplayInfo;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.preference.ContactsPreferenceActivity;
@@ -115,19 +104,14 @@ import com.android.contactsbind.ObjectFactory;
 import com.google.common.util.concurrent.Futures;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Displays a list to browse contacts.
  */
 public class PeopleActivity extends AppCompatContactsActivity implements
-        AccountFiltersListener,
-        GroupsListener,
-        NavigationView.OnNavigationItemSelectedListener,
+        DrawerFragmentListener,
         SelectAccountDialogFragment.Listener {
 
     /** Possible views of Contacts app. */
@@ -143,8 +127,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private static final String TAG_ALL = "contacts-all";
     private static final String TAG_UNAVAILABLE = "contacts-unavailable";
     private static final String TAG_GROUP_VIEW = "contacts-groups";
-    private static final String TAG_GROUPS = "groups";
-    private static final String TAG_FILTERS = "filters";
     private static final String TAG_SELECT_ACCOUNT_DIALOG = "selectAccountDialog";
     private static final String TAG_GROUP_NAME_EDIT_DIALOG = "groupNameEditDialog";
 
@@ -198,25 +180,16 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private final int mInstanceId;
     private static final AtomicInteger sNextInstanceId = new AtomicInteger();
 
-    /** Navigation drawer related */
     private ContactListFilterController mContactListFilterController;
+
+    /** Navigation drawer related */
     private DrawerLayout mDrawerLayout;
+    private DrawerFragment mDrawerFragment;
     private ContactsActionBarDrawerToggle mToggle;
     private Toolbar mToolbar;
-    private NavigationView mNavigationView;
 
     // The account the new group will be created under.
     private AccountWithDataSet mNewGroupAccount;
-
-    // Recycle badge if possible
-    private TextView mAssistantNewBadge;
-
-    // Checkable menu item lookup maps. Every map declared here should be added to
-    // clearCheckedMenus() so that they can be cleared.
-    // TODO find a better way to handle selected menu item state, when switching to fragments.
-    private Map<Long, MenuItem> mGroupMenuMap = new HashMap<>();
-    private Map<ContactListFilter, MenuItem> mFilterMenuMap = new HashMap<>();
-    private Map<Integer, MenuItem> mIdMenuMap = new HashMap<>();
 
     private Object mStatusChangeListenerHandle;
 
@@ -283,7 +256,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     private final ProviderStatusListener mProviderStatusListener = new ProviderStatusListener() {
         @Override
         public void onProviderStatusChange() {
-            reloadGroupsAndFiltersIfNeeded();
+            // TODO see if it works with drawer fragment.
             updateViewConfiguration(false);
         }
     };
@@ -349,7 +322,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             if (newState != DrawerLayout.STATE_IDLE) {
                 updateStatusBarBackground();
             }
-            initializeAssistantNewBadge();
         }
     }
 
@@ -401,9 +373,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         // Set up hamburger button.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerFragment = (DrawerFragment) getFragmentManager().findFragmentById(R.id.drawer);
         mToggle = new ContactsActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
         mDrawerLayout.setDrawerListener(mToggle);
         // Set fallback handler for when drawer is disabled.
         mToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
@@ -419,14 +391,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         } else {
             mCurrentView = ContactsView.ALL_CONTACTS;
         }
-
-        // Set up hamburger menu items.
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        mNavigationView.setNavigationItemSelectedListener(this);
-        setUpMenu();
-
-        initializeAssistantNewBadge();
-        loadGroupsAndFilters();
 
         if (savedState != null && savedState.containsKey(KEY_NEW_GROUP_ACCOUNT)) {
             mNewGroupAccount = AccountWithDataSet.unstringify(
@@ -448,33 +412,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
         getWindow().setBackgroundDrawable(null);
-    }
-
-    private void loadGroupsAndFilters() {
-        final FragmentManager fragmentManager = getFragmentManager();
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        addGroupsAndFiltersFragments(transaction);
-        transaction.commitAllowingStateLoss();
-        fragmentManager.executePendingTransactions();
-    }
-
-    private void addGroupsAndFiltersFragments(FragmentTransaction transaction) {
-        final FragmentManager fragmentManager = getFragmentManager();
-        GroupsFragment groupsFragment =
-                (GroupsFragment) fragmentManager.findFragmentByTag(TAG_GROUPS);
-        if (groupsFragment == null) {
-            groupsFragment = new GroupsFragment();
-            transaction.add(groupsFragment, TAG_GROUPS);
-        }
-        groupsFragment.setListener(this);
-
-        AccountFiltersFragment accountFiltersFragment =
-                (AccountFiltersFragment) fragmentManager.findFragmentByTag(TAG_FILTERS);
-        if (accountFiltersFragment == null) {
-            accountFiltersFragment = new AccountFiltersFragment();
-            transaction.add(accountFiltersFragment, TAG_FILTERS);
-        }
-        accountFiltersFragment.setListener(this);
     }
 
     @Override
@@ -761,20 +698,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
     }
 
-    private void reloadGroupsAndFiltersIfNeeded() {
-        final int providerStatus = mProviderStatusWatcher.getProviderStatus();
-        final Menu menu = mNavigationView.getMenu();
-        final MenuItem groupsMenuItem = menu.findItem(R.id.nav_groups);
-        final SubMenu subMenu = groupsMenuItem.getSubMenu();
-
-        // Reload groups and filters if provider status changes to "normal" and there's no groups
-        // loaded or just a "Create new..." menu item is in the menu.
-        if (subMenu != null && subMenu.size() <= 1 && providerStatus == ProviderStatus.STATUS_NORMAL
-                && !mProviderStatus.equals(providerStatus)) {
-            loadGroupsAndFilters();
-        }
-    }
-
     private void updateViewConfiguration(boolean forceUpdate) {
         int providerStatus = mProviderStatusWatcher.getProviderStatus();
         if (!forceUpdate && (mProviderStatus != null)
@@ -858,7 +781,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         // Handle the back event in drawer first.
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
+            closeDrawer();
             return;
         }
 
@@ -1010,7 +933,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
     }
 
-    private void onGroupMenuItemClicked(long groupId, String title) {
+    private void onGroupMenuItemClicked(long groupId) {
         if (isGroupView() && mMembersFragment != null
                 && mMembersFragment.isCurrentGroup(groupId)) {
             return;
@@ -1083,15 +1006,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
         mShouldSwitchToAllContacts = false;
         mCurrentView = ContactsView.ALL_CONTACTS;
+        mDrawerFragment.setNavigationItemChecked(ContactsView.ALL_CONTACTS);
         showFabWithAnimation(/* showFab */ true);
         mContactsListFragment.scrollToTop();
-
         resetFilter();
-
-        final Menu menu = mNavigationView.getMenu();
-        final MenuItem allContacts = menu.findItem(R.id.nav_all_contacts);
-        updateMenuSelection(allContacts);
-
         setTitle(getString(R.string.contactsList));
     }
 
@@ -1130,10 +1048,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         return mMembersFragment;
     }
 
-    protected GroupMetaData getGroupMetaData() {
-        return mMembersFragment == null ? null : mMembersFragment.getGroupMetaData();
-    }
-
     private void handleFilterChangeForFragment(ContactListFilter filter) {
         if (mContactsListFragment.canSetActionBar()) {
             mContactsListFragment.setFilterAndUpdateTitle(filter);
@@ -1151,9 +1065,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             mShouldSwitchToAllContacts = true;
         }
 
-        // Check menu in navigation drawer.
-        updateFilterMenu(filter);
-
         if (CompatUtils.isNCompatible()) {
             getWindow().getDecorView()
                     .sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
@@ -1161,26 +1072,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         invalidateOptionsMenu();
     }
 
-    private void initializeAssistantNewBadge() {
-        if (mNavigationView == null) {
-            return;
-        }
-        final MenuItem assistantMenu = mNavigationView.getMenu().findItem(R.id.nav_assistant);
-        if (assistantMenu == null) {
-            return;
-        }
-        final LinearLayout newBadgeFrame =
-                (LinearLayout) MenuItemCompat.getActionView(assistantMenu);
-        final boolean showWelcomeBadge = !SharedPreferenceUtil.isWelcomeCardDismissed(this);
-        if (showWelcomeBadge && newBadgeFrame.getChildCount() == 0) {
-            if (mAssistantNewBadge == null) {
-                mAssistantNewBadge = (TextView) LayoutInflater.from(this)
-                        .inflate(R.layout.assistant_new_badge, null);
-            }
-            newBadgeFrame.setGravity(Gravity.CENTER_VERTICAL);
-            newBadgeFrame.addView(mAssistantNewBadge);
-        } else if (!showWelcomeBadge && newBadgeFrame.getChildCount() > 0) {
-            newBadgeFrame.removeAllViews();
+    public void updateDrawerGroupMenu(long groupId) {
+        if (mDrawerFragment != null) {
+            mDrawerFragment.updateGroupMenu(groupId);
         }
     }
 
@@ -1200,31 +1094,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
     }
 
-    private void setUpMenu() {
-        final Menu menu = mNavigationView.getMenu();
-
-        if (ObjectFactory.getAssistantFragment() == null) {
-            menu.removeItem(R.id.nav_assistant);
-        } else {
-            final int id = R.id.nav_assistant;
-            final MenuItem assistantMenu = menu.findItem(id);
-            mIdMenuMap.put(id, assistantMenu);
-            if (isAssistantView()) {
-                updateMenuSelection(assistantMenu);
-            }
-        }
-
-        if (!HelpUtils.isHelpAndFeedbackAvailable()) {
-            menu.removeItem(R.id.nav_help);
-        }
-
-        final MenuItem allContactsMenu = menu.findItem(R.id.nav_all_contacts);
-        mIdMenuMap.put(R.id.nav_all_contacts, allContactsMenu);
-        if (isAllContactsView()) {
-            updateMenuSelection(allContactsMenu);
-        }
-    }
-
     public Toolbar getToolbar() {
         return mToolbar;
     }
@@ -1239,90 +1108,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         mToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void onGroupsLoaded(List<GroupListItem> groupListItems,
-            boolean areGroupWritableAccountsAvailable) {
-        final Menu menu = mNavigationView.getMenu();
-        final MenuItem groupsMenuItem = menu.findItem(R.id.nav_groups);
-        final SubMenu subMenu = groupsMenuItem.getSubMenu();
-        subMenu.removeGroup(R.id.nav_groups_items);
-        mGroupMenuMap = new HashMap<>();
-
-        final GroupMetaData groupMetaData = getGroupMetaData();
-
-        if (groupListItems != null) {
-            // Add each group
-            for (final GroupListItem groupListItem : groupListItems) {
-                if (GroupUtil.isEmptyFFCGroup(groupListItem)) {
-                    continue;
-                }
-                final String title = groupListItem.getTitle();
-                final MenuItem menuItem =
-                        subMenu.add(R.id.nav_groups_items, Menu.NONE, Menu.NONE, title);
-                mGroupMenuMap.put(groupListItem.getGroupId(), menuItem);
-                if (isGroupView() && groupMetaData != null
-                        && groupMetaData.groupId == groupListItem.getGroupId()) {
-                    updateMenuSelection(menuItem);
-                }
-                menuItem.setIcon(R.drawable.quantum_ic_label_vd_theme_24);
-                menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        onGroupMenuItemClicked(groupListItem.getGroupId(),
-                                groupListItem.getTitle());
-                        updateMenuSelection(menuItem);
-                        mDrawerLayout.closeDrawer(GravityCompat.START);
-                        return true;
-                    }
-                });
-
-                updateMenuContentDescription(menuItem,
-                        getString(R.string.group_edit_field_hint_text));
-            }
-        }
-
-        // Don't show "Create label" menu if there's no group-writable accounts available.
-        if (!areGroupWritableAccountsAvailable) {
-            return;
-        }
-
-        // Create a menu item in the sub menu to add new groups
-        final MenuItem menuItem = subMenu.add(R.id.nav_groups_items, Menu.NONE,
-                Menu.NONE, getString(R.string.menu_new_group_action_bar));
-        menuItem.setIcon(R.drawable.quantum_ic_add_vd_theme_24);
-        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                onCreateGroupMenuItemClicked();
-                mDrawerLayout.closeDrawer(GravityCompat.START);
-                return true;
-            }
-        });
-
-        if (isGroupView() && groupMetaData != null) {
-            updateGroupMenu(groupMetaData);
-        }
-    }
-
-    public void updateGroupMenu(GroupMetaData groupMetaData) {
-        clearCheckedMenus();
-        if (groupMetaData != null && mGroupMenuMap != null
-                && mGroupMenuMap.get(groupMetaData.groupId) != null) {
-            setMenuChecked(mGroupMenuMap.get(groupMetaData.groupId), true);
-        }
-    }
-
-    private void updateMenuContentDescription(MenuItem menuItem, CharSequence contentDescription) {
-        // Create a dummy action view to attach extra hidden content description to the menuItem
-        // for Talkback. We want Talkback to read out the account type but not have it be part
-        // of the menuItem title.
-        final LinearLayout view = (LinearLayout) LayoutInflater.from(this)
-                .inflate(R.layout.menu_item_action_view, null);
-        view.setContentDescription(contentDescription);
-        view.setVisibility(View.VISIBLE);
-        menuItem.setActionView(view);
     }
 
     protected void onCreateGroupMenuItemClicked() {
@@ -1362,6 +1147,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 TAG_SELECT_ACCOUNT_DIALOG);
     }
 
+    // Implementation of SelectAccountDialogFragment.Listener
     @Override
     public void onAccountChosen(AccountWithDataSet account, Bundle extraArgs) {
         mNewGroupAccount = account;
@@ -1374,90 +1160,53 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     public void onAccountSelectorCancelled() {
     }
 
+    // Implementation of DrawerFragmentListener
     @Override
-    public void onFiltersLoaded(List<ContactListFilter> accountFilterItems) {
-        final AccountDisplayInfoFactory accountDisplayFactory = AccountDisplayInfoFactory.
-                fromListFilters(this, accountFilterItems);
-
-        final Menu menu = mNavigationView.getMenu();
-        final MenuItem filtersMenuItem = menu.findItem(R.id.nav_filters);
-        final SubMenu subMenu = filtersMenuItem.getSubMenu();
-        subMenu.removeGroup(R.id.nav_filters_items);
-        mFilterMenuMap = new HashMap<>();
-
-        if (accountFilterItems == null || accountFilterItems.size() < 2) {
-            return;
-        }
-
-        for (int i = 0; i < accountFilterItems.size(); i++) {
-            final ContactListFilter filter = accountFilterItems.get(i);
-            final AccountDisplayInfo displayableAccount =
-                    accountDisplayFactory.getAccountDisplayInfoFor(filter);
-            final CharSequence menuName = displayableAccount.getNameLabel();
-            final MenuItem menuItem = subMenu.add(R.id.nav_filters_items, Menu.NONE,
-                    Menu.NONE, menuName);
-            if (isAccountView() && filter == mContactListFilterController.getFilter()) {
-                updateMenuSelection(menuItem);
-            }
-            mFilterMenuMap.put(filter, menuItem);
-            final Intent intent = new Intent();
-            intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
-            menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    onFilterMenuItemClicked(intent);
-                    updateMenuSelection(menuItem);
-                    mDrawerLayout.closeDrawer(GravityCompat.START);
-                    return true;
-                }
-            });
-            if (displayableAccount.getIcon() != null) {
-                menuItem.setIcon(displayableAccount.getIcon());
-                // Get rid of the default menu item overlay and show original account icons.
-                menuItem.getIcon().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_ATOP);
-            }
-
-            updateMenuContentDescription(menuItem, displayableAccount.getTypeLabel());
-        }
-
-        if (isAccountView()) {
-            updateFilterMenu(mContactListFilterController.getFilter());
-        }
+    public void onDrawerItemClicked(){
+        closeDrawer();
     }
 
-    public void updateFilterMenu(ContactListFilter filter) {
-        clearCheckedMenus();
-        if (filter != null && filter.isContactsFilterType()) {
-            if (mIdMenuMap != null && mIdMenuMap.get(R.id.nav_all_contacts) != null) {
-                setMenuChecked(mIdMenuMap.get(R.id.nav_all_contacts), true);
-            }
+    @Override
+    public void onContactsViewSelected(ContactsView mode) {
+        if (mode == ContactsView.ALL_CONTACTS) {
+            switchToAllContacts();
+        } else if (mode == ContactsView.ASSISTANT) {
+            launchAssistant();
         } else {
-            if (mFilterMenuMap != null && mFilterMenuMap.get(filter) != null) {
-                setMenuChecked(mFilterMenuMap.get(filter), true);
+            throw new IllegalStateException("Unknown view " + mode);
+        }
+    }
+
+    @Override
+    public void onCreateLabelButtonClicked() {
+        onCreateGroupMenuItemClicked();
+    }
+
+    @Override
+    public void onOpenSettings() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(createPreferenceIntent());
             }
-        }
+        }, DRAWER_CLOSE_DELAY);
     }
 
-    private void clearCheckedMenus() {
-        clearCheckedMenu(mFilterMenuMap);
-        clearCheckedMenu(mGroupMenuMap);
-        clearCheckedMenu(mIdMenuMap);
+    @Override
+    public void onLaunchHelpFeedback() {
+        HelpUtils.launchHelpAndFeedbackForMainScreen(this);
     }
 
-    private void clearCheckedMenu(Map<?, MenuItem> map) {
-        final Iterator it = map.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            setMenuChecked(map.get(pair.getKey()), false);
-        }
+    @Override
+    public void onGroupViewSelected(GroupListItem groupListItem) {
+        onGroupMenuItemClicked(groupListItem.getGroupId());
     }
 
-    private void setMenuChecked(MenuItem menuItem, boolean checked) {
-        if (menuItem == null) {
-            return;
-        }
-        menuItem.setCheckable(checked);
-        menuItem.setChecked(checked);
+    @Override
+    public void onAccountViewSelected(ContactListFilter filter) {
+        final Intent intent = new Intent();
+        intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
+        onFilterMenuItemClicked(intent);
     }
 
     public boolean isGroupView() {
@@ -1480,39 +1229,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         return isGroupView() || isAssistantView();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
-        final int id = item.getItemId();
-
-        if (id == R.id.nav_settings) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(createPreferenceIntent());
-                }
-            }, DRAWER_CLOSE_DELAY);
-        } else if (id == R.id.nav_help) {
-            HelpUtils.launchHelpAndFeedbackForMainScreen(this);
-        } else if (id == R.id.nav_all_contacts) {
-            switchToAllContacts();
-        } else if (id == R.id.nav_assistant) {
-            if (!isAssistantView()) {
-                launchAssistant();
-                updateMenuSelection(item);
-            }
-        } else if (item.getIntent() != null) {
-            ImplicitIntentsUtil.startActivityInApp(this, item.getIntent());
-        } else {
-            Log.w(TAG, "Unhandled navigation view item selection");
-        }
-
+    public void closeDrawer() {
         mDrawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    private void updateMenuSelection(MenuItem menuItem) {
-        clearCheckedMenus();
-        setMenuChecked(menuItem, true);
     }
 
     private Intent createPreferenceIntent() {

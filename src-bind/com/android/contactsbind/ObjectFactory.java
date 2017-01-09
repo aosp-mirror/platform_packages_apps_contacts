@@ -41,4 +41,8 @@ public class ObjectFactory {
     public static Intent getContactSheetIntent(Context context, Uri contactLookupUri) {
         return null;
     }
+
+    public static Uri getWelcomeUri() {
+        return null;
+    }
 }

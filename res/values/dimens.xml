@@ -364,4 +364,19 @@
     <!-- Row padding for call subject history items. -->
     <dimen name="call_subject_history_item_padding">15dp</dimen>
 
+    <!-- The width of the drawer -->
+    <dimen name="drawer_width">320dp</dimen>
+    <!-- Minimum height of items in navigation drawer -->
+    <dimen name="drawer_item_fixed_height">48dp</dimen>
+    <!-- Side padding within the navigation drawer -->
+    <dimen name="drawer_side_padding">16dp</dimen>
+    <!-- Size of the icon in navigation drawer -->
+    <dimen name="drawer_item_icon_size">32dp</dimen>
+    <!-- The side margin of the item text in navigation drawer -->
+    <dimen name="drawer_item_text_margin">32dp</dimen>
+    <!-- The height of the spacer in navigation drawer -->
+    <dimen name="nav_drawer_spacer_height">8dp</dimen>
+    <!-- Side padding within the navigation drawer -->
+    <dimen name="drawer_label_header_end_padding">24dp</dimen>
+
 </resources>
