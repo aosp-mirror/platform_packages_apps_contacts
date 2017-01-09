@@ -194,14 +194,14 @@
     <dimen name="nav_new_badge_horizontal_pad">5dp</dimen>
     <dimen name="nav_new_badge_font_size">11sp</dimen>
 
-    <!-- Top padding for the image for empty group view -->
-    <dimen name="empty_group_view_image_padding_top">8dp</dimen>
+    <!-- Top padding for the image for empty group view-->
+    <dimen name="empty_group_view_image_padding_top">0dp</dimen>
 
     <!-- Height for the image for empty group and main view-->
-    <dimen name="empty_view_image_height">180dp</dimen>
+    <dimen name="empty_view_image_height">150dp</dimen>
 
-    <!-- Top padding for the text for empty group view -->
-    <dimen name="empty_group_view_text_padding_top">32dp</dimen>
+    <!-- Top padding for the text for empty group view-->
+    <dimen name="empty_group_view_text_padding_top">14dp</dimen>
 
     <!-- Top padding for the text for empty account view -->
     <dimen name="empty_account_view_text_padding_top">24dp</dimen>
