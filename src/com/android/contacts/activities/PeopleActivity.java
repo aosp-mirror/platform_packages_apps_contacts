@@ -1127,7 +1127,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     private void selectAccountForNewGroup() {
-        // This should never block because the GroupsFragment loads the accounts and the
+        // This should never block because the DrawerFragment loads the accounts and the
         // "Create Label" item only exists when that loading finishes
         final List<AccountInfo> accounts = Futures.getUnchecked(AccountTypeManager.getInstance(this)
                 .filterAccountsAsync(AccountTypeManager.AccountFilter.GROUPS_WRITABLE));

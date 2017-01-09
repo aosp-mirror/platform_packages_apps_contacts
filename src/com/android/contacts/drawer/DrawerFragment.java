@@ -18,48 +18,62 @@ package com.android.contacts.drawer;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.app.LoaderManager;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.ContentObserver;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
+import android.widget.FrameLayout;
 
+import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.PeopleActivity.ContactsView;
 import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupUtil;
-import com.android.contacts.group.GroupsFragment;
-import com.android.contacts.group.GroupsFragment.GroupsListener;
-import com.android.contacts.interactions.AccountFiltersFragment;
-import com.android.contacts.interactions.AccountFiltersFragment.AccountFiltersListener;
 import com.android.contacts.list.ContactListFilter;
+import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.account.AccountInfo;
+import com.android.contacts.model.account.AccountsLoader;
+import com.android.contacts.model.account.AccountsLoader.AccountsListener;
+import com.android.contacts.util.AccountFilterUtil;
 import com.android.contactsbind.ObjectFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DrawerFragment extends Fragment implements AccountFiltersListener, GroupsListener {
+public class DrawerFragment extends Fragment implements AccountsListener{
+
+    private static final int LOADER_GROUPS = 1;
+    private static final int LOADER_ACCOUNTS = 2;
+    private static final int LOADER_FILTERS = 3;
+
+    private static final String KEY_CONTACTS_VIEW = "contactsView";
+    private static final String KEY_SELECTED_GROUP = "selectedGroup";
+    private static final String KEY_SELECTED_ACCOUNT = "selectedAccount";
 
     private WelcomeContentObserver mObserver;
     private RecyclerView mDrawerRecyclerView;
     private DrawerAdapter mDrawerAdapter;
     private ContactsView mCurrentContactsView;
     private DrawerFragmentListener mListener;
-    private GroupsFragment mGroupsFragment;
-    private AccountFiltersFragment mAccountFiltersFragment;
+    // Transparent scrim drawn at the top of the drawer fragment.
+    private ScrimDrawable mScrimDrawable;
 
-    private static final String TAG_GROUPS = "groups";
-    private static final String TAG_FILTERS = "filters";
-    private static final String KEY_CONTACTS_VIEW = "contactsView";
-    private static final String KEY_SELECTED_GROUP = "selectedGroup";
-    private static final String KEY_SELECTED_ACCOUNT = "selectedAccount";
+    private List<GroupListItem> mGroupListItems = new ArrayList<>();
+    private boolean mGroupsLoaded;
+    private boolean mAccountsLoaded;
+    private boolean mHasGroupWritableAccounts;
 
     private final class WelcomeContentObserver extends ContentObserver {
         private WelcomeContentObserver(Handler handler) {
@@ -71,6 +85,55 @@ public class DrawerFragment extends Fragment implements AccountFiltersListener, 
             mDrawerAdapter.notifyDataSetChanged();
         }
     }
+
+    private final LoaderManager.LoaderCallbacks<List<ContactListFilter>> mFiltersLoaderListener =
+            new LoaderManager.LoaderCallbacks<List<ContactListFilter>> () {
+                @Override
+                public Loader<List<ContactListFilter>> onCreateLoader(int id, Bundle args) {
+                    return new AccountFilterUtil.FilterLoader(getActivity());
+                }
+
+                @Override
+                public void onLoadFinished(
+                        Loader<List<ContactListFilter>> loader, List<ContactListFilter> data) {
+                    if (data != null) {
+                        if (data == null || data.size() < 2) {
+                            mDrawerAdapter.setAccounts(new ArrayList<ContactListFilter>());
+                        } else {
+                            mDrawerAdapter.setAccounts(data);
+                        }
+                    }
+                }
+
+                public void onLoaderReset(Loader<List<ContactListFilter>> loader) {
+                }
+            };
+
+    private final LoaderManager.LoaderCallbacks<Cursor> mGroupListLoaderListener =
+            new LoaderManager.LoaderCallbacks<Cursor>() {
+                @Override
+                public CursorLoader onCreateLoader(int id, Bundle args) {
+                    return new GroupListLoader(getActivity());
+                }
+
+                @Override
+                public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+                    if (data == null) {
+                        return;
+                    }
+                    mGroupListItems.clear();
+                    for (int i = 0; i < data.getCount(); i++) {
+                        if (data.moveToNext()) {
+                            mGroupListItems.add(GroupUtil.getGroupListItem(data, i));
+                        }
+                    }
+                    mGroupsLoaded = true;
+                    notifyIfReady();
+                }
+
+                public void onLoaderReset(Loader<Cursor> loader) {
+                }
+            };
 
     public DrawerFragment() {}
 
@@ -109,6 +172,14 @@ public class DrawerFragment extends Fragment implements AccountFiltersListener, 
             setNavigationItemChecked(ContactsView.ALL_CONTACTS);
         }
 
+        final FrameLayout root = (FrameLayout) contentView.findViewById(R.id.drawer_fragment_root);
+        root.setFitsSystemWindows(true);
+        root.setOnApplyWindowInsetsListener(new WindowInsetsListener());
+        root.setForegroundGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL);
+
+        mScrimDrawable = new ScrimDrawable();
+        root.setForeground(mScrimDrawable);
+
         return contentView;
     }
 
@@ -139,27 +210,11 @@ public class DrawerFragment extends Fragment implements AccountFiltersListener, 
         }
     }
 
-    // TODO create loaders in this fragment instead of having separate fragments that just kick off
-    // some data loading.
     private void loadGroupsAndFilters() {
-        final FragmentManager fragmentManager = getFragmentManager();
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        mGroupsFragment = (GroupsFragment) fragmentManager.findFragmentByTag(TAG_GROUPS);
-        if (mGroupsFragment == null) {
-            mGroupsFragment = new GroupsFragment();
-            transaction.add(mGroupsFragment, TAG_GROUPS);
-        }
-        mGroupsFragment.setListener(this);
-
-        mAccountFiltersFragment = (AccountFiltersFragment)
-                fragmentManager.findFragmentByTag(TAG_FILTERS);
-        if (mAccountFiltersFragment == null) {
-            mAccountFiltersFragment = new AccountFiltersFragment();
-            transaction.add(mAccountFiltersFragment, TAG_FILTERS);
-        }
-        mAccountFiltersFragment.setListener(this);
-        transaction.commitAllowingStateLoss();
-        fragmentManager.executePendingTransactions();
+        getLoaderManager().initLoader(LOADER_FILTERS, null, mFiltersLoaderListener);
+        AccountsLoader.loadAccounts(this, LOADER_ACCOUNTS,
+                AccountTypeManager.AccountFilter.GROUPS_WRITABLE);
+        getLoaderManager().initLoader(LOADER_GROUPS, null, mGroupListLoaderListener);
     }
 
     @Override
@@ -211,29 +266,28 @@ public class DrawerFragment extends Fragment implements AccountFiltersListener, 
         }
     }
 
-    @Override
-    public void onGroupsLoaded(List<GroupListItem> groupListItems, boolean areGroupWritable) {
-        final Iterator<GroupListItem> iterator = groupListItems.iterator();
-        while (iterator.hasNext()) {
-            final GroupListItem groupListItem = iterator.next();
-            if (GroupUtil.isEmptyFFCGroup(groupListItem)) {
-                iterator.remove();
-            }
-        }
-        mDrawerAdapter.setGroups(groupListItems, areGroupWritable);
-    }
-
     public void updateGroupMenu(long groupId) {
         mDrawerAdapter.setSelectedGroupId(groupId);
         setNavigationItemChecked(ContactsView.GROUP_VIEW);
     }
 
     @Override
-    public void onFiltersLoaded(List<ContactListFilter> accountFilterItems) {
-        if (accountFilterItems == null || accountFilterItems.size() < 2) {
-            mDrawerAdapter.setAccounts(new ArrayList<ContactListFilter>());
-        } else {
-            mDrawerAdapter.setAccounts(accountFilterItems);
+    public void onAccountsLoaded(List<AccountInfo> accounts) {
+        mHasGroupWritableAccounts = !accounts.isEmpty();
+        mAccountsLoaded = true;
+        notifyIfReady();
+    }
+
+    private void notifyIfReady() {
+        if (mAccountsLoaded && mGroupsLoaded) {
+            final Iterator<GroupListItem> iterator = mGroupListItems.iterator();
+            while (iterator.hasNext()) {
+                final GroupListItem groupListItem = iterator.next();
+                if (GroupUtil.isEmptyFFCGroup(groupListItem)) {
+                    iterator.remove();
+                }
+            }
+            mDrawerAdapter.setGroups(mGroupListItems, mHasGroupWritableAccounts);
         }
     }
 
@@ -245,5 +299,15 @@ public class DrawerFragment extends Fragment implements AccountFiltersListener, 
         void onCreateLabelButtonClicked();
         void onOpenSettings();
         void onLaunchHelpFeedback();
+    }
+
+    private class WindowInsetsListener implements View.OnApplyWindowInsetsListener {
+        @Override
+        public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+            final int insetTop = insets.getSystemWindowInsetTop();
+            // set height of the scrim
+            mScrimDrawable.setIntrinsicHeight(insetTop);
+            return insets;
+        }
     }
 }
