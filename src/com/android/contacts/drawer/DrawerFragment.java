@@ -26,14 +26,13 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 
 import com.android.contacts.GroupListLoader;
 import com.android.contacts.R;
@@ -52,7 +51,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DrawerFragment extends Fragment implements AccountsListener{
+public class DrawerFragment extends Fragment implements AccountsListener {
 
     private static final int LOADER_GROUPS = 1;
     private static final int LOADER_ACCOUNTS = 2;
@@ -63,7 +62,7 @@ public class DrawerFragment extends Fragment implements AccountsListener{
     private static final String KEY_SELECTED_ACCOUNT = "selectedAccount";
 
     private WelcomeContentObserver mObserver;
-    private RecyclerView mDrawerRecyclerView;
+    private ListView mDrawerListView;
     private DrawerAdapter mDrawerAdapter;
     private ContactsView mCurrentContactsView;
     private DrawerFragmentListener mListener;
@@ -152,13 +151,12 @@ public class DrawerFragment extends Fragment implements AccountsListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         final View contentView = inflater.inflate(R.layout.drawer_fragment, null);
-        mDrawerRecyclerView = (RecyclerView) contentView.findViewById(R.id.list);
-        mDrawerRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mDrawerListView = (ListView) contentView.findViewById(R.id.list);
         mDrawerAdapter = new DrawerAdapter(getActivity());
         mDrawerAdapter.setSelectedContactsView(mCurrentContactsView);
         mDrawerAdapter.setItemOnClickListener(mOnDrawerItemClickListener);
         loadGroupsAndFilters();
-        mDrawerRecyclerView.setAdapter(mDrawerAdapter);
+        mDrawerListView.setAdapter(mDrawerAdapter);
 
         if (savedInstanceState != null) {
             final ContactsView contactsView =
