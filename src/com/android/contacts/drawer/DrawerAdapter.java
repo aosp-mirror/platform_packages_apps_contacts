@@ -19,11 +19,11 @@ package com.android.contacts.drawer;
 import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.support.annotation.LayoutRes;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +38,7 @@ import com.android.contacts.util.SharedPreferenceUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrawerAdapter extends RecyclerView.Adapter {
+public class DrawerAdapter extends BaseAdapter {
 
     private static final int VIEW_TYPE_PRIMARY_ITEM = 0;
     private static final int VIEW_TYPE_MISC_ITEM = 1;
@@ -49,6 +49,9 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_NAV_SPACER = 6;
     private static final int VIEW_TYPE_STATUS_SPACER = 7;
     private static final int VIEW_TYPE_NAV_DIVIDER = 8;
+
+    // This count must be updated if we add more view types.
+    private static final int VIEW_TYPE_COUNT = 9;
 
     private static final int TYPEFACE_STYLE_ACTIVATE = R.style.DrawerItemTextActiveStyle;
     private static final int TYPEFACE_STYLE_INACTIVE = R.style.DrawerItemTextInactiveStyle;
@@ -168,7 +171,7 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public int getItemCount() {
+    public int getCount() {
         return  mItemsList.size();
     }
 
@@ -182,146 +185,151 @@ public class DrawerAdapter extends RecyclerView.Adapter {
     }
 
     @Override
+    public int getViewTypeCount() {
+        return VIEW_TYPE_COUNT;
+    }
+
+    @Override
+    public View getView(int position, View view, ViewGroup viewGroup) {
+        final BaseDrawerItem drawerItem = getItem(position);
+        switch (drawerItem.viewType) {
+            case VIEW_TYPE_STATUS_SPACER:
+                return getBaseItemView(R.layout.nav_header_main, view, viewGroup);
+            case VIEW_TYPE_PRIMARY_ITEM:
+                return getPrimaryItemView((PrimaryItem) drawerItem, view, viewGroup);
+            case VIEW_TYPE_HEADER_ITEM:
+                return getHeaderItemView((HeaderItem) drawerItem, view, viewGroup);
+            case VIEW_TYPE_CREATE_LABEL:
+                return getDrawerItemView(drawerItem, view, viewGroup);
+            case VIEW_TYPE_GROUP_ENTRY:
+                return getGroupEntryView((GroupEntryItem) drawerItem, view, viewGroup);
+            case VIEW_TYPE_ACCOUNT_ENTRY:
+                return getAccountItemView((AccountEntryItem) drawerItem, view, viewGroup);
+            case VIEW_TYPE_MISC_ITEM:
+                return getDrawerItemView(drawerItem, view, viewGroup);
+            case VIEW_TYPE_NAV_SPACER:
+                return getBaseItemView(R.layout.nav_drawer_spacer, view, viewGroup);
+            case VIEW_TYPE_NAV_DIVIDER:
+                return getBaseItemView(R.layout.drawer_horizontal_divider, view, viewGroup);
+        }
+        throw new IllegalStateException("Unknown drawer item " + drawerItem);
+    }
+
+    private View getBaseItemView(@LayoutRes int layoutResID, View result,ViewGroup parent) {
+        if (result == null) {
+            result = mInflater.inflate(layoutResID, parent, false);
+        }
+        return result;
+    }
+
+    private View getPrimaryItemView(PrimaryItem item, View result, ViewGroup parent) {
+        if (result == null) {
+            result = mInflater.inflate(R.layout.drawer_primary_item, parent, false);
+            result.setOnClickListener(mListener);
+        }
+        final TextView titleView = (TextView) result.findViewById(R.id.title);
+        titleView.setText(item.text);
+        final ImageView iconView = (ImageView) result.findViewById(R.id.icon);
+        iconView.setImageResource(item.icon);
+        final TextView newBadge = (TextView) result.findViewById(R.id.assistant_new_badge);
+        final boolean showWelcomeBadge = !SharedPreferenceUtil.isWelcomeCardDismissed(mActivity);
+        newBadge.setVisibility(item.contactsView == ContactsView.ASSISTANT && showWelcomeBadge
+                ? View.VISIBLE : View.GONE);
+        result.setActivated(item.contactsView == mSelectedView);
+        updateSelectedStatus(titleView, iconView, item.contactsView == mSelectedView);
+        result.setId(item.id);
+        return result;
+    }
+
+    private View getHeaderItemView(HeaderItem item, View result, ViewGroup parent) {
+        if (result == null) {
+            result = mInflater.inflate(R.layout.drawer_header, parent, false);
+        }
+        final TextView textView = (TextView) result.findViewById(R.id.title);
+        textView.setText(item.text);
+        result.setId(item.id);
+        return result;
+    }
+
+    private View getGroupEntryView(GroupEntryItem item, View result, ViewGroup parent) {
+        if (result == null || !(result.getTag() instanceof GroupEntryItem)) {
+            result = mInflater.inflate(R.layout.drawer_item, parent, false);
+            result.setId(item.id);
+            result.setOnClickListener(mListener);
+        }
+
+        final GroupListItem groupListItem = item.group;
+        final TextView title = (TextView) result.findViewById(R.id.title);
+        title.setText(groupListItem.getTitle());
+        final ImageView icon = (ImageView) result.findViewById(R.id.icon);
+        icon.setImageResource(R.drawable.quantum_ic_label_vd_theme_24);
+        final boolean activated = groupListItem.getGroupId() == mSelectedGroupId &&
+                mSelectedView == ContactsView.GROUP_VIEW;
+        updateSelectedStatus(title, icon, activated);
+        result.setActivated(activated);
+
+        result.setTag(groupListItem);
+        result.setContentDescription(
+                mActivity.getString(R.string.navigation_drawer_label, groupListItem.getTitle()));
+        return result;
+    }
+
+    private View getAccountItemView(AccountEntryItem item, View result, ViewGroup parent) {
+        if (result == null || !(result.getTag() instanceof ContactListFilter)) {
+            result = mInflater.inflate(R.layout.drawer_item, parent, false);
+            result.setId(item.id);
+            result.setOnClickListener(mListener);
+        }
+        final ContactListFilter account = item.account;
+        final TextView textView = ((TextView) result.findViewById(R.id.title));
+        textView.setText(account.accountName);
+        final boolean activated = account.equals(mSelectedAccount)
+                && mSelectedView == ContactsView.ACCOUNT_VIEW;
+        textView.setTextAppearance(mActivity, activated
+                ? TYPEFACE_STYLE_ACTIVATE : TYPEFACE_STYLE_INACTIVE);
+
+        final ImageView icon = (ImageView) result.findViewById(R.id.icon);
+        final AccountDisplayInfo displayableAccount =
+                mAccountDisplayFactory.getAccountDisplayInfoFor(item.account);
+        icon.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        icon.setImageDrawable(displayableAccount.getIcon());
+
+        result.setTag(account);
+        result.setActivated(activated);
+        result.setContentDescription(
+                displayableAccount.getTypeLabel() + " " + item.account.accountName);
+        return result;
+    }
+
+    private View getDrawerItemView(BaseDrawerItem item, View result, ViewGroup parent) {
+        if (result == null) {
+            result = mInflater.inflate(R.layout.drawer_item, parent, false);
+            result.setOnClickListener(mListener);
+        }
+
+        final TextView textView = (TextView) result.findViewById(R.id.title);
+        textView.setText(item.text);
+        final ImageView iconView = (ImageView) result.findViewById(R.id.icon);
+        iconView.setImageResource(item.icon);
+        result.setId(item.id);
+        updateSelectedStatus(textView, iconView, false);
+        return result;
+    }
+
+    @Override
     public int getItemViewType(int position) {
         return getItem(position).viewType;
     }
 
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case VIEW_TYPE_STATUS_SPACER:
-                return getBaseViewHolder(R.layout.nav_header_main, parent);
-            case VIEW_TYPE_NAV_SPACER:
-                return getBaseViewHolder(R.layout.nav_drawer_spacer, parent);
-            case VIEW_TYPE_PRIMARY_ITEM:
-                return getPrimaryItemView(parent);
-            case VIEW_TYPE_HEADER_ITEM:
-                return getHeaderItemViewHolder(parent);
-            case VIEW_TYPE_GROUP_ENTRY:
-            case VIEW_TYPE_CREATE_LABEL:
-            case VIEW_TYPE_ACCOUNT_ENTRY:
-            case VIEW_TYPE_MISC_ITEM:
-                return getDrawerItemViewHolder(parent);
-            case VIEW_TYPE_NAV_DIVIDER:
-                return getBaseViewHolder(R.layout.drawer_horizontal_divider, parent);
-        }
-        throw new IllegalStateException("Unknown view type " + viewType);
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final BaseDrawerItem item = getItem(position);
-        switch (item.viewType) {
-            case VIEW_TYPE_PRIMARY_ITEM:
-                bindPrimaryItemViewHolder((PrimaryItemViewHolder) holder, (PrimaryItem) item);
-                break;
-            case VIEW_TYPE_HEADER_ITEM:
-                bindHeaderItemViewHolder((HeaderItemViewHolder) holder, (HeaderItem) item);
-                break;
-            case VIEW_TYPE_GROUP_ENTRY:
-                bindGroupItemViewHolder((DrawerItemViewHolder) holder, (GroupEntryItem) item);
-                break;
-            case VIEW_TYPE_ACCOUNT_ENTRY:
-                bindAccountViewHolder((DrawerItemViewHolder) holder, (AccountEntryItem) item);
-                break;
-            case VIEW_TYPE_CREATE_LABEL:
-            case VIEW_TYPE_MISC_ITEM:
-                bindDrawerItemViewHolder((DrawerItemViewHolder) holder, item);
-                break;
-        }
-    }
-
-    private void bindPrimaryItemViewHolder(PrimaryItemViewHolder viewHolder, PrimaryItem item) {
-        viewHolder.titleView.setText(item.text);
-        viewHolder.iconView.setImageResource(item.icon);
-        viewHolder.itemView.setId(item.id);
-        viewHolder.itemView.setOnClickListener(mListener);
-        final boolean showWelcomeBadge = !SharedPreferenceUtil.isWelcomeCardDismissed(mActivity);
-        if (item.contactsView == ContactsView.ASSISTANT && showWelcomeBadge) {
-            viewHolder.newBadge.setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.newBadge.setVisibility(View.GONE);
-        }
-        viewHolder.itemView.setActivated(item.contactsView == mSelectedView);
-        updateSelectedStatus(viewHolder);
-    }
-
-    private void bindHeaderItemViewHolder(HeaderItemViewHolder viewHolder, HeaderItem item) {
-        viewHolder.titleView.setText(item.text);
-        viewHolder.itemView.setId(item.id);
-    }
-
-    private void bindGroupItemViewHolder(DrawerItemViewHolder viewHolder, GroupEntryItem item) {
-        final GroupListItem group = item.group;
-        viewHolder.titleView.setText(group.getTitle());
-        viewHolder.iconView.setImageResource(R.drawable.quantum_ic_label_vd_theme_24);
-        viewHolder.itemView.setId(item.id);
-        viewHolder.itemView.setTag(group);
-        viewHolder.itemView.setOnClickListener(mListener);
-        viewHolder.itemView.setContentDescription(
-                mActivity.getString(R.string.navigation_drawer_label, group.getTitle()));
-        viewHolder.itemView.setActivated(group.getGroupId() == mSelectedGroupId
-                && mSelectedView == ContactsView.GROUP_VIEW);
-        updateSelectedStatus(viewHolder);
-    }
-
-    private void bindAccountViewHolder(DrawerItemViewHolder viewHolder, AccountEntryItem item) {
-        final ContactListFilter account = item.account;
-        viewHolder.titleView.setText(account.accountName);
-        final AccountDisplayInfo displayableAccount =
-                mAccountDisplayFactory.getAccountDisplayInfoFor(item.account);
-        viewHolder.iconView.setImageDrawable(displayableAccount.getIcon());
-        viewHolder.iconView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        viewHolder.itemView.setId(item.id);
-        viewHolder.itemView.setTag(account);
-        viewHolder.itemView.setOnClickListener(mListener);
-        viewHolder.itemView.setContentDescription(
-                displayableAccount.getTypeLabel() + " " + account.accountName);
-        viewHolder.itemView.setActivated(account.equals(mSelectedAccount)
-                && mSelectedView == ContactsView.ACCOUNT_VIEW);
-        updateSelectedStatus(viewHolder);
-        viewHolder.iconView.clearColorFilter();
-    }
-
-    private void bindDrawerItemViewHolder(DrawerItemViewHolder viewHolder, BaseDrawerItem item) {
-        viewHolder.titleView.setText(item.text);
-        viewHolder.iconView.setImageResource(item.icon);
-        viewHolder.itemView.setId(item.id);
-        viewHolder.itemView.setOnClickListener(mListener);
-        viewHolder.itemView.setActivated(false);
-        updateSelectedStatus(viewHolder);
-    }
-
-    private void updateSelectedStatus(DrawerItemViewHolder viewHolder) {
-        final boolean activated = viewHolder.itemView.isActivated();
-        viewHolder.titleView.setTextAppearance(mActivity, activated
+    private void updateSelectedStatus(TextView textView, ImageView imageView, boolean activated) {
+        textView.setTextAppearance(mActivity, activated
                 ? TYPEFACE_STYLE_ACTIVATE : TYPEFACE_STYLE_INACTIVE);
         if (activated) {
-            viewHolder.iconView.setColorFilter(mActivity.getResources().getColor(R.color
-                    .primary_color), PorterDuff.Mode.SRC_ATOP);
+            imageView.setColorFilter(mActivity.getResources().getColor(R.color.primary_color),
+                    PorterDuff.Mode.SRC_ATOP);
         } else {
-            viewHolder.iconView.clearColorFilter();
+            imageView.clearColorFilter();
         }
-    }
-
-    private BaseViewHolder getBaseViewHolder(@LayoutRes int layoutResID, ViewGroup parent) {
-        final View view = mInflater.inflate(layoutResID, parent, false);
-        return new BaseViewHolder(view);
-    }
-
-    private HeaderItemViewHolder getHeaderItemViewHolder(ViewGroup parent) {
-        final View view = mInflater.inflate(R.layout.drawer_header, parent, false);
-        return new HeaderItemViewHolder(view);
-    }
-
-    private DrawerItemViewHolder getDrawerItemViewHolder(ViewGroup parent) {
-        final View view = mInflater.inflate(R.layout.drawer_item, parent, false);
-        return new DrawerItemViewHolder(view);
-    }
-
-    private PrimaryItemViewHolder getPrimaryItemView(ViewGroup parent) {
-        final View view = mInflater.inflate(R.layout.drawer_primary_item, parent, false);
-        return new PrimaryItemViewHolder(view);
     }
 
     private void notifyChangeAndRebuildList() {
@@ -441,42 +449,6 @@ public class DrawerAdapter extends RecyclerView.Adapter {
         public AccountEntryItem(int id, ContactListFilter account) {
             super(VIEW_TYPE_ACCOUNT_ENTRY, id, /* textResId */ 0, /* iconResId */ 0);
             this.account = account;
-        }
-    }
-
-    /**
-     * ViewHolder classes
-     */
-    public static class BaseViewHolder extends RecyclerView.ViewHolder {
-        public BaseViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
-
-    public static class HeaderItemViewHolder extends BaseViewHolder {
-        public final TextView titleView;
-
-        public HeaderItemViewHolder(View itemView) {
-            super(itemView);
-            titleView = (TextView) itemView.findViewById(R.id.title);
-        }
-    }
-
-    public class DrawerItemViewHolder extends HeaderItemViewHolder {
-        public final ImageView iconView;
-
-        public DrawerItemViewHolder(View itemView) {
-            super(itemView);
-            iconView = (ImageView) itemView.findViewById(R.id.icon);
-        }
-    }
-
-    public class PrimaryItemViewHolder extends DrawerItemViewHolder {
-        public final TextView newBadge;
-
-        public PrimaryItemViewHolder(View itemView) {
-            super(itemView);
-            newBadge = (TextView) itemView.findViewById(R.id.assistant_new_badge);
         }
     }
 }
