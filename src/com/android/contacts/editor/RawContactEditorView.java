@@ -497,6 +497,14 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             addReadOnlyRawContactEditorViews();
         } else {
             setupEditorNormally();
+            // If we're inserting a new contact, request focus to bring up the keyboard for the
+            // name field.
+            if (mHasNewContact) {
+                final StructuredNameEditorView name = getNameEditorView();
+                if (name != null) {
+                    name.requestFocusForFirstEditField();
+                }
+            }
         }
         if (mListener != null) mListener.onEditorsBound();
     }
