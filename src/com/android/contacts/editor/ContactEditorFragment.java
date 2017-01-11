@@ -1090,6 +1090,7 @@ public class ContactEditorFragment extends Fragment implements
     private void setStateForNewContact(AccountWithDataSet account, AccountType accountType,
             RawContactDelta oldState, AccountType oldAccountType, boolean isUserProfile) {
         mStatus = Status.EDITING;
+        mAccountWithDataSet = account;
         mState.add(createNewRawContactDelta(account, accountType, oldState, oldAccountType));
         mIsUserProfile = isUserProfile;
         mNewContactDataReady = true;
@@ -1702,7 +1703,6 @@ public class ContactEditorFragment extends Fragment implements
     public void onRebindEditorsForNewContact(RawContactDelta oldState,
             AccountWithDataSet oldAccount, AccountWithDataSet newAccount) {
         mNewContactAccountChanged = true;
-        mAccountWithDataSet = newAccount;
         rebindEditorsForNewContact(oldState, oldAccount, newAccount);
     }
 
