@@ -248,6 +248,7 @@
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"ਨਵਾਂ"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ਆਵਾਗੌਣ ਦਰਾਜ਼ ਖੋਲ੍ਹੋ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ਆਵਾਗੌਣ ਦਰਾਜ਼ ਬੰਦ ਕਰੋ"</string>
+    <string name="navigation_drawer_label" msgid="4154758025620107419">"<xliff:g id="LABEL_NAME">%s</xliff:g> ਲੇਬਲ"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ਲੇਬਲ"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"ਖਾਤੇ"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"ਆਪਣਾ ਇਤਿਹਾਸ ਇਕੱਠੇ ਤੌਰ \'ਤੇ ਵੇਖੋ"</string>
