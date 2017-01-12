@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import android.app.Dialog;
 import android.app.FragmentTransaction;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
@@ -324,6 +325,11 @@ public class ContactEditorActivity extends AppCompatContactsActivity implements
 
         final Intent intent = getIntent();
         final String action = intent.getAction();
+
+        // Update the component name of our intent to be this class to clear out any activity
+        // aliases. Otherwise ContactSaveService won't notify this activity once a save is finished.
+        // See b/34154706 for more info.
+        intent.setComponent(new ComponentName(this, ContactEditorActivity.class));
 
         // Determine whether or not this activity should be finished after the user is done
         // editing the contact or if this activity should launch another activity to view the
