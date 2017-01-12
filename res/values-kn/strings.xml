@@ -248,6 +248,7 @@
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"ಹೊಸತು"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ತೆರೆಯಿರಿ"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"ನ್ಯಾವಿಗೇಶನ್ ಡ್ರಾಯರ್ ಮುಚ್ಚಿ"</string>
+    <string name="navigation_drawer_label" msgid="4154758025620107419">"<xliff:g id="LABEL_NAME">%s</xliff:g> ಲೇಬಲ್"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ಲೇಬಲ್‌ಗಳು"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"ಖಾತೆಗಳು"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"ನಿಮ್ಮ ಇತಿಹಾಸವನ್ನು ಒಟ್ಟಿಗೆ ವೀಕ್ಷಿಸಿ"</string>

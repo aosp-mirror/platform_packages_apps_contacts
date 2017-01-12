@@ -252,6 +252,7 @@
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Jauns"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Atvērt navigācijas atvilktni"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Aizvērt navigācijas atvilktni"</string>
+    <string name="navigation_drawer_label" msgid="4154758025620107419">"Iezīme “<xliff:g id="LABEL_NAME">%s</xliff:g>”"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Iezīmes"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Konti"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Skatīt visu jūsu vēsturi"</string>
