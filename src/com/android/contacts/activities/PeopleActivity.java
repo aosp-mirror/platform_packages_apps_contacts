@@ -346,6 +346,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         }
         super.onCreate(savedState);
         mAccountTypeManager = AccountTypeManager.getInstance(this);
+        mContactListFilterController = ContactListFilterController.getInstance(this);
 
         if (RequestPermissionsActivity.startPermissionActivity(this)) {
             return;
@@ -356,7 +357,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
             return;
         }
 
-        mContactListFilterController = ContactListFilterController.getInstance(this);
         mContactListFilterController.checkFilterValidity(false);
 
         super.setContentView(R.layout.contacts_drawer_activity);
