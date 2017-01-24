@@ -34,6 +34,7 @@ import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.model.account.AccountDisplayInfo;
 import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.util.SharedPreferenceUtil;
+import com.android.contactsbind.ObjectFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,8 +105,10 @@ public class DrawerAdapter extends BaseAdapter {
         // Primary items
         mPrimaryItems.add(new PrimaryItem(R.id.nav_all_contacts, R.string.contactsList,
                 R.drawable.quantum_ic_account_circle_vd_theme_24, ContactsView.ALL_CONTACTS));
-        mPrimaryItems.add(new PrimaryItem(R.id.nav_assistant, R.string.menu_assistant,
-                R.drawable.quantum_ic_assistant_vd_theme_24, ContactsView.ASSISTANT));
+        if (ObjectFactory.getAssistantFragment() != null) {
+            mPrimaryItems.add(new PrimaryItem(R.id.nav_assistant, R.string.menu_assistant,
+                    R.drawable.quantum_ic_assistant_vd_theme_24, ContactsView.ASSISTANT));
+        }
         // Group Header
         mGroupHeader = new HeaderItem(R.id.nav_groups, R.string.menu_title_groups);
         // Account Header
