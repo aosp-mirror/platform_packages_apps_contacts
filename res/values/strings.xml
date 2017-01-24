@@ -246,9 +246,7 @@
     <skip/>
 
     <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
-    <string name="photoPickerNotFoundText" product="tablet">No pictures are available on the tablet.</string>
-    <!-- Description in the dialog that appears if there are no pictures from which to create an icon for a contact -->
-    <string name="photoPickerNotFoundText" product="default">No pictures are available on the phone.</string>
+    <string name="photoPickerNotFoundText">No pictures are available on the device.</string>
 
     <!-- Description used in the attach photo Intent from third party apps [CHAR LIMIT=50] -->
     <string name="attach_photo_dialog_title">Contact photo</string>
@@ -1152,13 +1150,13 @@
 
 
     <!-- Action string for selecting a .vcf file to import contacts from [CHAR LIMIT=30] -->
-    <string name="import_from_vcf_file" product="default">.vcf file</string>
+    <string name="import_from_vcf_file">.vcf file</string>
 
     <!-- Message shown on Import from dialog when there is nothing available to import (no .vcf option or SIM cards) [CHAR LIMIT=NONE] -->
     <string name="nothing_to_import_message">Nothing to import</string>
 
     <!-- Dialog message asking the user for confirmation before starting to import contacts from a .vcf file. [CHAR LIMIT=NONE] -->
-    <string name="import_from_vcf_file_confirmation_message" product="default">Import contacts from vCard?</string>
+    <string name="import_from_vcf_file_confirmation_message">Import contacts from vCard?</string>
 
     <!-- Message shown in a Dialog confirming a user's cancel request toward existing vCard import.
          The argument is file name for the vCard import the user wants to cancel.
@@ -1313,7 +1311,7 @@
     <string name="progress_notifier_message">Importing <xliff:g id="current_number">%1$s</xliff:g>/<xliff:g id="total_number">%2$s</xliff:g>: <xliff:g id="name" example="Joe Due">%3$s</xliff:g></string>
 
     <!-- Action that exports all contacts to a user selected destination. [CHAR LIMIT=25] -->
-    <string name="export_to_vcf_file" product="default">Export to .vcf file</string>
+    <string name="export_to_vcf_file">Export to .vcf file</string>
 
     <!-- Contact preferences related strings -->
 
