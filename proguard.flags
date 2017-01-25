@@ -39,6 +39,7 @@
 -keep class com.android.contacts.location.CountryDetector { *; }
 -keep class com.android.contacts.model.account.AccountDisplayInfo { *; }
 -keep class com.android.contacts.model.account.AccountDisplayInfoFactory { *; }
+-keep class com.android.contacts.model.account.AccountInfo { *; }
 -keep class com.android.contacts.model.account.AccountType { *; }
 -keep class com.android.contacts.model.account.AccountType$* { *; }
 -keep class com.android.contacts.model.account.AccountTypeWithDataSet { *; }
