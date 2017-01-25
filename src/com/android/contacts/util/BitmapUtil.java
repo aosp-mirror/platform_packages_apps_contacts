@@ -161,4 +161,21 @@ public class BitmapUtil {
         canvas.drawBitmap(input, src, dst, paint);
         return result;
     }
+
+    /**
+     * Converts a drawable to a bitmap.
+     */
+    public static Bitmap drawableToBitmap(Drawable drawable, int avatarSizePx) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        final Bitmap bitmap =
+                Bitmap.createBitmap(avatarSizePx, avatarSizePx, Bitmap.Config.ARGB_8888);
+
+        final Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
 }

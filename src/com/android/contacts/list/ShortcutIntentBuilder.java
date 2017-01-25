@@ -46,6 +46,7 @@ import com.android.contacts.ContactPhotoManager;
 import com.android.contacts.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.R;
+import com.android.contacts.util.BitmapUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
 
 /**
@@ -356,8 +357,10 @@ public class ShortcutIntentBuilder {
         final Resources r = mContext.getResources();
         final float density = r.getDisplayMetrics().density;
 
-        Bitmap phoneIcon = ((BitmapDrawable) r.getDrawableForDensity(actionResId, mIconDensity))
-                .getBitmap();
+        final Drawable phoneDrawable = r.getDrawableForDensity(actionResId, mIconDensity);
+        // These icons have the same height and width so either is fine for the size.
+        final Bitmap phoneIcon =
+                BitmapUtil.drawableToBitmap(phoneDrawable, phoneDrawable.getIntrinsicHeight());
 
         Bitmap icon = generateQuickContactIcon(photo);
         Canvas canvas = new Canvas(icon);
