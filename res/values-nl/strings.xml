@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Het contact bestaat niet."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Contact is toegevoegd aan het startscherm."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> is toegevoegd aan het startscherm."</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Er zijn geen foto\'s beschikbaar op de tablet."</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Er zijn geen foto\'s beschikbaar op de telefoon."</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Contactfoto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Aangepaste labelnaam"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Foto verwijderen"</string>
@@ -404,9 +404,9 @@
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> contacten • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> contact • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"VCF-bestand"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">"VCF-bestand"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Niets te importeren"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Contacten importeren van vCard?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"Contacten importeren van vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Import van <xliff:g id="FILENAME">%s</xliff:g> annuleren?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Export van <xliff:g id="FILENAME">%s</xliff:g> annuleren?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Kan vCard-import/export niet annuleren"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contact via NFC"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"In cachegeheugen opslaan"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importeren <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Exporteren naar VCF"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"Exporteren naar VCF"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sorteren op"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Voornaam"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Achternaam"</string>

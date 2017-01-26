@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"មិន​មាន​ទំនាក់ទំនង។"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"បានបញ្ចូល​ទំនាក់ទំនងទៅអេក្រង់ដើម"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"បានបញ្ចូល​ <xliff:g id="NAME">%s</xliff:g> ទៅអេក្រង់ដើម"</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"មិន​មាន​រូបភាព​នៅ​លើ​កុំព្យូទ័រ​បន្ទះ​នេះ​ទេ។"</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"មិន​មាន​រូបភាព​នៅ​លើ​ទូរស័ព្ទ។"</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"រូបថត​ទំនាក់ទំនង"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ឈ្មោះ​ស្លាក​ផ្ទាល់ខ្លួន"</string>
     <string name="removePhoto" msgid="4898105274130284565">"លុប​រូបថត​ចេញ"</string>
@@ -404,9 +404,9 @@
       <item quantity="other">ទំនាក់ទំនង <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one">ទំនាក់ទំនង <xliff:g id="COUNT_0">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"ឯកសារ .vcf"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">"ឯកសារ .vcf"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"គ្មាន​អ្វី​ត្រូវ​នាំចូល"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"នាំចូល​ទំនាក់ទំនង​ពី vCard ដែរ​ឬ​ទេ?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"នាំចូល​ទំនាក់ទំនង​ពី vCard ដែរ​ឬ​ទេ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"បោះបង់​ការ​នាំចូល <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"បោះបង់​ការ​នាំចេញ <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"មិន​អាច​បោះបង់​ការ​នាំចេញ/នាំចូល vCard"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"ទំនាក់ទំនង​ដែល​បាន​ទទួល​តាម NFC"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"ការ​ផ្ទុក​ក្នុង​ឃ្លាំង​សម្ងាត់"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"កំពុង​នាំចូល <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>៖ <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"នាំចេញទៅឯកសារ .vcf"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"នាំចេញទៅឯកសារ .vcf"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"តម្រៀបតាម"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"នាម​ខ្លួន"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"នាម​ត្រកូល"</string>

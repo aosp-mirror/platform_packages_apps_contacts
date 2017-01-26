@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"ਸੰਪਰਕ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ਸੰਪਰਕ ਮੁੱਖ ਸਕ੍ਰੀਨ \'ਤੇ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ।"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ਮੁੱਖ ਸਕ੍ਰੀਨ \'ਤੇ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ।"</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ਟੈਬਲੇਟ ਤੇ ਕੋਈ ਤਸਵੀਰਾਂ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।"</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"ਫੋਨ ਤੇ ਕੋਈ ਤਸਵੀਰਾਂ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।"</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"ਸੰਪਰਕ ਫ਼ੋਟੋ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ਵਿਸ਼ੇਸ਼=ਵਿਉਂਤਬੱਧ ਲੇਬਲ ਨਾਮ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ਫ਼ੋਟੋ ਹਟਾਓ"</string>
@@ -404,9 +404,9 @@
       <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> ਸੰਪਰਕ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> ਸੰਪਰਕ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ਫ਼ਾਈਲ"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">".vcf ਫ਼ਾਈਲ"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"ਆਯਾਤ ਕਰਨ ਲਈ ਕੁਝ ਨਹੀਂ"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"ਕੀ vCard ਤੋਂ ਸੰਪਰਕ ਆਯਾਤ ਕਰਨੇ ਹਨ?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"ਕੀ vCard ਤੋਂ ਸੰਪਰਕ ਆਯਾਤ ਕਰਨੇ ਹਨ?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"ਕੀ <xliff:g id="FILENAME">%s</xliff:g> ਦਾ ਆਯਾਤ ਰੱਦ ਕਰਨਾ ਹੈ?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"ਕੀ <xliff:g id="FILENAME">%s</xliff:g> ਦਾ ਨਿਰਯਾਤ ਰੱਦ ਕਰਨਾ ਹੈ?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ਆਯਾਤ/ਨਿਰਯਾਤ ਰੱਦ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"ਸੰਪਰਕ NFC \'ਤੇ ਪ੍ਰਾਪਤ ਹੋਇਆ"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"ਕੈਸ਼ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> ਆਯਾਤ ਹੋ ਰਿਹਾ ਹੈ: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".vcf ਫ਼ਾਈਲ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf ਫ਼ਾਈਲ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"ਇਸ ਮੁਤਾਬਕ ਛਾਂਟੋ"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"ਨਾਮ ਦਾ ਪਹਿਲਾ ਭਾਗ"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"ਨਾਮ ਦਾ ਆਖਰੀ ਭਾਗ"</string>

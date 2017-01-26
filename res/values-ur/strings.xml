@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"رابطہ موجود نہیں ہے۔"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"رابطہ ہوم اسکرین میں شامل ہو گیا۔"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ہوم اسکرین میں شامل ہو گیا۔"</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ٹیبلٹ پر کوئی تصاویر دستیاب نہیں ہیں۔"</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"فون پر کوئی تصاویر دستیاب نہیں ہیں۔"</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"رابطہ کی تصویر"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"حسب ضرورت لیبل کا نام"</string>
     <string name="removePhoto" msgid="4898105274130284565">"تصویر ہٹائیں"</string>
@@ -404,9 +404,9 @@
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> رابطے • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> رابطہ • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"‏‎.vcf فائل"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">"‏‎.vcf فائل"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"درآمد کرنے کیلئے کچھ نہیں ہے"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"‏‎vCard‎ سے رابطے درآمد کریں؟"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"‏‎vCard‎ سے رابطے درآمد کریں؟"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> کی درآمد منسوخ کریں"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> کی برآمد منسوخ کریں؟"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"‏vCard کی درآمد/برآمد کو منسوخ نہیں کرسکا"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"‏NFC پر موصولہ رابطہ"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"ذخیرہ کر رہا ہے"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g> درآمد کر رہا ہے"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"‏‎.vcf فائل میں برآمد کریں"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"‏‎.vcf فائل میں برآمد کریں"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"ترتیب دیں بہ لحاظ"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"پہلا نام"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"آخری نام"</string>

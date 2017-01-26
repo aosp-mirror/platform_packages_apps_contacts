@@ -98,8 +98,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt ne postoji."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt je dodat na početni ekran."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> je dodat na početni ekran."</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Slike nisu dostupne na tabletu."</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Na telefonu nema dostupnih slika."</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Slika kontakta"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Naziv prilagođene oznake"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ukloni sliku"</string>
@@ -410,9 +410,9 @@
       <item quantity="few"><xliff:g id="COUNT_2">^1</xliff:g> kontakta • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontakata • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"Iz .vcf datoteke"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">"Iz .vcf datoteke"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Nema ničega za uvoz"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Želite da uvezete kontakte iz vCard datoteke?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"Želite da uvezete kontakte iz vCard datoteke?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Želite li da otkažete uvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Želite li da otkažete izvoz datoteke <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Nije moguće otkazati vCard uvoz/izvoz"</string>
@@ -452,7 +452,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt preko NFC-a"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Keširanje..."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Uvoz <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Izvezi u .vcf datoteku"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"Izvezi u .vcf datoteku"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sortiraj prema"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Ime"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Prezime"</string>
