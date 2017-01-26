@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"සම්බන්ධතාවය නොපවතී."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"සම්බන්ධතාව මුල් පිටු තිරය වෙත එක් කරන ලදී."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> මුල් පිටු තිරය වෙත එක් කරන ලදී."</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ටැබ්ලටයේ පින්තූර කිසිවක් ලද නොහැක."</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"දුරකථනයේ පින්තූර කිසිවක් ලද නොහැක."</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"සම්බන්ධතා ඡායාරූපය"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"අභිරුචි ලේබල නම"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ඡායාරූපය මකන්න"</string>
@@ -404,9 +404,9 @@
       <item quantity="one">සම්බන්ධතා <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="other">සම්බන්ධතා <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf ගොනුව"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">".vcf ගොනුව"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"ආයාත කිරීමට කිසිවක් නැත"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard වෙතින් සම්බන්ධතා ආයාත කරන්න"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"vCard වෙතින් සම්බන්ධතා ආයාත කරන්න"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> ආයාත කිරීම අවලංගු කරන්නද?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> නිර්යාත කිරීම අවලංගු කරන්නද?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard ආයාත/නිර්යාත කිරීම අවලංගු කළ නොහැක"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC හරහා සම්බන්ධතාව ලැබුණි"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"හැඹිලි ගත කරමින්"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g> ආයාත කරමින්"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".vcf ගොනුවට නිර්යාත කරන්න"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf ගොනුවට නිර්යාත කරන්න"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"මේ අනුව අනුපිළිවෙලට සකසන්න"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"පළමු නම"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"අග නම"</string>

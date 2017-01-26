@@ -98,8 +98,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Šāda kontaktpersona nepastāv."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontaktpersona ir pievienota sākuma ekrānam."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontaktpersona <xliff:g id="NAME">%s</xliff:g> ir pievienota sākuma ekrānam."</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Planšetdatorā nav pieejams neviens attēls."</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Tālrunī nav pieejams neviens attēls."</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktpersonas fotoattēls"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Pielāgots iezīmes nosaukums"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Noņemt fotoattēlu"</string>
@@ -410,9 +410,9 @@
       <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> kontaktpersona • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontaktpersonas • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf fails"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">".vcf fails"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Nav vienumu importēšanai"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Vai importēt kontaktpersonas no vCard?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"Vai importēt kontaktpersonas no vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Vai atcelt faila <xliff:g id="FILENAME">%s</xliff:g> importēšanu?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Vai atcelt faila <xliff:g id="FILENAME">%s</xliff:g> eksportēšanu?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Nevarēja atcelt vCard f. import./eksp."</string>
@@ -452,7 +452,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"No NFC saņ. kontaktinf."</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Notiek saglabāšana kešatmiņā"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importē <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> no <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"Eksportēt .vcf failā"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"Eksportēt .vcf failā"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Kārtot pēc:"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Vārds"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Uzvārds"</string>

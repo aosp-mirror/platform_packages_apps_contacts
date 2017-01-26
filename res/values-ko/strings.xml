@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"연락처가 없습니다."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"연락처가 메인 스크린에 추가되었습니다."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>님이 메인 스크린에 추가되었습니다."</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"태블릿에 사진이 없습니다."</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"휴대전화에 사진이 없습니다."</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"연락처 사진"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"라벨 이름 맞춤 설정"</string>
     <string name="removePhoto" msgid="4898105274130284565">"사진 삭제"</string>
@@ -404,9 +404,9 @@
       <item quantity="other">연락처 <xliff:g id="COUNT_2">^1</xliff:g>개 • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one">연락처 <xliff:g id="COUNT_0">^1</xliff:g>개 • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf 파일"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">".vcf 파일"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"가져올 항목이 없습니다."</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"vCard에서 연락처를 가져오시겠습니까?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"vCard에서 연락처를 가져오시겠습니까?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> 가져오기를 취소하시겠습니까?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> 내보내기를 취소하시겠습니까?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard 가져오기/내보내기를 취소하지 못했습니다."</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC를 통해 받은 연락처"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"캐시"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> 가져오는 중: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".VCF 파일로 내보내기"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">".VCF 파일로 내보내기"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"정렬 기준"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"이름"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"성"</string>
