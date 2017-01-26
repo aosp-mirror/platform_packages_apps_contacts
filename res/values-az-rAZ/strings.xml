@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt mövcud deyil."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt Əsas ekrana elavə edilib."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> Əsas ekrana əlavə edilib."</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Planşetdə şəkillər əlçatımlı deyil."</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Telefonda heç bir şəkil əlçatımlı deyil."</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontakt fotosu"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Fərdi etiket adı"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fotonu yığışdırın"</string>
@@ -404,9 +404,9 @@
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontakt • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> kontakt • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">".vcf faylı"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">".vcf faylı"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"İmport etmək üçün heç nə yoxdur"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Kontaktlar vCard\'dan import edilsin?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"Kontaktlar vCard\'dan import edilsin?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> importu ləğv olunsun?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> eksportu ləğv edilsin?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"Vizit kart importunu/eksportunu ləğv etmək mümkün olmadı"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt NFC üzərindən alınıb"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Keşləndirilir"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"İmport edilir: <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">".vcf fayldan eksport edin"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf fayldan eksport edin"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sıralayın:"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Ad"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Soyad"</string>
