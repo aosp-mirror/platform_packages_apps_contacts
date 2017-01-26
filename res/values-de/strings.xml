@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Dieser Kontakt existiert nicht."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt zu Startbildschirm hinzugefügt."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> zu Startbildschirm hinzugefügt."</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Auf dem Tablet sind keine Bilder verfügbar."</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Auf dem Telefon sind keine Bilder verfügbar."</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktbild"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Name des benutzerdef. Labels"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Foto entfernen"</string>
@@ -404,9 +404,9 @@
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> Kontakte • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> Kontakt • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"VCF-Datei"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">"VCF-Datei"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"Keine Daten zum Importieren vorhanden"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"Kontakte von vCard importieren?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"Kontakte von vCard importieren?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"Import von <xliff:g id="FILENAME">%s</xliff:g> abbrechen?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"Export von <xliff:g id="FILENAME">%s</xliff:g> abbrechen?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard-Import/-Export nicht abgebrochen"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt erhalten per NCF"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Caching läuft..."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> wird importiert: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"In VCF-Datei exportieren"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"In VCF-Datei exportieren"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sortieren nach"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Vorname"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Nachname"</string>

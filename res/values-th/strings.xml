@@ -95,8 +95,8 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"ไม่มีรายชื่อติดต่อนี้"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"เพิ่มรายชื่อติดต่อลงในหน้าจอหลักแล้ว"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"เพิ่ม <xliff:g id="NAME">%s</xliff:g> ลงในหน้าจอหลักแล้ว"</string>
-    <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ไม่มีรูปภาพให้ใช้งานบนแท็บเล็ต"</string>
-    <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"ไม่มีรูปให้ใช้งานบนโทรศัพท์"</string>
+    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
+    <skip />
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"ภาพของรายชื่อติดต่อ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ชื่อป้ายที่กำหนดเอง"</string>
     <string name="removePhoto" msgid="4898105274130284565">"นำภาพออก"</string>
@@ -404,9 +404,9 @@
       <item quantity="other">ผู้ติดต่อ <xliff:g id="COUNT_2">^1</xliff:g> คน • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one">ผู้ติดต่อ <xliff:g id="COUNT_0">^1</xliff:g> คน • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" product="default" msgid="8662528435646418203">"ไฟล์ .vcf"</string>
+    <string name="import_from_vcf_file" msgid="8662528435646418203">"ไฟล์ .vcf"</string>
     <string name="nothing_to_import_message" msgid="1651921906873335656">"ไม่มีรายการที่จะนำเข้า"</string>
-    <string name="import_from_vcf_file_confirmation_message" product="default" msgid="967723361108008345">"นำเข้ารายชื่อติดต่อจาก vCard ไหม"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"นำเข้ารายชื่อติดต่อจาก vCard ไหม"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"ยกเลิกการนำเข้า <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"ยกเลิกการส่งออก <xliff:g id="FILENAME">%s</xliff:g> หรือไม่"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"ไม่สามารถยกเลิกการนำเข้า/ส่งออก vCard"</string>
@@ -446,7 +446,7 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"ผู้ติดต่อทาง NFC"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"กำลังแคช"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"กำลังนำเข้า <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" product="default" msgid="4407527157056120858">"ส่งออกเป็นไฟล์ .vcf"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"ส่งออกเป็นไฟล์ .vcf"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"จัดเรียงตาม"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"ชื่อ"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"นามสกุล"</string>
