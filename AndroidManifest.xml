@@ -183,7 +183,8 @@
             android:launchMode="singleTop"
             android:theme="@style/ContactPickerTheme"
             android:uiOptions="splitActionBarWhenNarrow"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:visibleToInstantApps="true">
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT"/>
                 <category android:name="android.intent.category.DEFAULT"/>
