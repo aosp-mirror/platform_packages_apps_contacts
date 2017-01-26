@@ -1,3 +1,5 @@
+-ignorewarnings
+
 -keep class com.android.contacts.model.Sources {
   public <init>(...);
 }
@@ -8,9 +10,6 @@
   public void *(android.view.View);
   public void *(android.view.MenuItem);
 }
-
-# Feature highlight library.  See b/29877098
--keep class com.google.android.libraries.material.featurehighlight.** { *; }
 
 # Needed for tests
 -keep class com.android.contacts.compat.CompatUtils { *; }
