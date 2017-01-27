@@ -41,6 +41,7 @@ import android.provider.ContactsContract.Data;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.filters.SdkSuppress;
+import android.support.test.filters.Suppress;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
@@ -81,6 +82,7 @@ import java.util.concurrent.TimeUnit;
  * These should probably be converted to espresso tests because espresso does a better job of
  * waiting for the app to be idle once espresso library is added
  */
+@Suppress
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.M)
