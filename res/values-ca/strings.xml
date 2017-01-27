@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"El contacte no existeix."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"S\'ha afegit el contacte a la pantalla d\'inici."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"S\'ha afegit <xliff:g id="NAME">%s</xliff:g> a la pantalla d\'inici."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"No hi ha cap imatge disponible al dispositiu."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacte"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nom de camp personalitzat"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Suprimeix la foto"</string>

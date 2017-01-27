@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"ಸಂಪರ್ಕವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ಸಂಪರ್ಕವನ್ನು ಮುಖಪುಟ ಪರದೆಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ಅನ್ನು ಮುಖಪುಟ ಪರದೆಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಚಿತ್ರಗಳು ಲಭ್ಯವಿಲ್ಲ."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"ಸಂಪರ್ಕ ಫೋಟೋ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ಕಸ್ಟಮ್ ಲೇಬಲ್ ಹೆಸರು"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ಫೋಟೋ ತೆಗೆದುಹಾಕಿ"</string>

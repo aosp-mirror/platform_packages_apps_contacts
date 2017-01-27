@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"এই পরিচিতিটি বিদ্যমান নয়৷"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"হোম স্ক্রীনে পরিচিতি যোগ করা হযেছে৷"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"হোম স্ক্রীনে <xliff:g id="NAME">%s</xliff:g> যোগ করা হয়েছে৷"</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"যন্ত্রে কোনো ছবি উপলব্ধ নেই৷"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"পরিচিতির ফটো"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"কাস্টম লেবেল নাম"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ফটো সরান"</string>
