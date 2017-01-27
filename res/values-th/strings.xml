@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"ไม่มีรายชื่อติดต่อนี้"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"เพิ่มรายชื่อติดต่อลงในหน้าจอหลักแล้ว"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"เพิ่ม <xliff:g id="NAME">%s</xliff:g> ลงในหน้าจอหลักแล้ว"</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"ไม่มีรูปภาพให้ใช้งานบนอุปกรณ์"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"ภาพของรายชื่อติดต่อ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ชื่อป้ายที่กำหนดเอง"</string>
     <string name="removePhoto" msgid="4898105274130284565">"นำภาพออก"</string>
