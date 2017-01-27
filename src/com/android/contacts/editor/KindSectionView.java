@@ -362,8 +362,8 @@ public class KindSectionView extends LinearLayout {
         // The account type doesn't support phonetic name.
         if (phoneticNameKind == null) return;
 
-        final PhoneticNameEditorView phoneticNameView = (PhoneticNameEditorView) mLayoutInflater
-                .inflate(R.layout.phonetic_name_editor_view, mEditors, /* attachToRoot =*/ false);
+        final TextFieldsEditorView phoneticNameView = (TextFieldsEditorView) mLayoutInflater
+                .inflate(R.layout.text_fields_editor_view, mEditors, /* attachToRoot =*/ false);
         phoneticNameView.setEditorListener(new OtherNameKindEditorListener());
         phoneticNameView.setDeletable(false);
         phoneticNameView.setValues(

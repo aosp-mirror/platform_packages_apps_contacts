@@ -39,7 +39,6 @@ public final class DataKind {
 
     public static final String PSEUDO_MIME_TYPE_NAME = "#name";
     public static final String PSEUDO_MIME_TYPE_PHONETIC_NAME = "#phoneticName";
-    public static final String PSEUDO_COLUMN_PHONETIC_NAME = "#phoneticName";
 
     public String resourcePackageName;
     public String mimeType;

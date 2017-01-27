@@ -218,14 +218,13 @@ public abstract class BaseAccountType extends AccountType {
         kind.typeOverallMax = 1;
 
         kind.fieldList = Lists.newArrayList();
-        kind.fieldList.add(new EditField(DataKind.PSEUDO_COLUMN_PHONETIC_NAME,
-                R.string.name_phonetic, FLAGS_PHONETIC).setShortForm(true));
+
         kind.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
+                R.string.name_phonetic_family, FLAGS_PHONETIC));
         kind.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+                R.string.name_phonetic_middle, FLAGS_PHONETIC));
         kind.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
+                R.string.name_phonetic_given, FLAGS_PHONETIC));
 
         return kind;
     }
@@ -977,14 +976,12 @@ public abstract class BaseAccountType extends AccountType {
             kinds.add(kp);
 
             // We may want to change the order depending on displayOrderPrimary too.
-            kp.fieldList.add(new EditField(DataKind.PSEUDO_COLUMN_PHONETIC_NAME,
-                    R.string.name_phonetic, FLAGS_PHONETIC).setShortForm(true));
             kp.fieldList.add(new EditField(StructuredName.PHONETIC_FAMILY_NAME,
-                    R.string.name_phonetic_family, FLAGS_PHONETIC).setLongForm(true));
+                    R.string.name_phonetic_family, FLAGS_PHONETIC));
             kp.fieldList.add(new EditField(StructuredName.PHONETIC_MIDDLE_NAME,
-                    R.string.name_phonetic_middle, FLAGS_PHONETIC).setLongForm(true));
+                    R.string.name_phonetic_middle, FLAGS_PHONETIC));
             kp.fieldList.add(new EditField(StructuredName.PHONETIC_GIVEN_NAME,
-                    R.string.name_phonetic_given, FLAGS_PHONETIC).setLongForm(true));
+                    R.string.name_phonetic_given, FLAGS_PHONETIC));
             return kinds;
         }
     }

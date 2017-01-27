@@ -1038,14 +1038,10 @@ public class RawContactModifier {
             return;
         }
 
-        boolean supportPhoneticFullName = false;
         boolean supportPhoneticFamilyName = false;
         boolean supportPhoneticMiddleName = false;
         boolean supportPhoneticGivenName = false;
         for (EditField editField : newDataKind.fieldList) {
-            if (DataKind.PSEUDO_COLUMN_PHONETIC_NAME.equals(editField.column)) {
-                supportPhoneticFullName = true;
-            }
             if (StructuredName.PHONETIC_FAMILY_NAME.equals(editField.column)) {
                 supportPhoneticFamilyName = true;
             }
@@ -1057,52 +1053,14 @@ public class RawContactModifier {
             }
         }
 
-
-        // Phonetic (full) name <-> PHONETIC_FAMILY_NAME, PHONETIC_MIDDLE_NAME, PHONETIC_GIVEN_NAME
-        final String phoneticFullName = values.getAsString(DataKind.PSEUDO_COLUMN_PHONETIC_NAME);
-        if (!TextUtils.isEmpty(phoneticFullName)) {
-            if (!supportPhoneticFullName) {
-                // Old data has a phonetic (full) name, while the new account doesn't allow it.
-                final StructuredNameDataItem tmpItem =
-                        NameConverter.parsePhoneticName(phoneticFullName, null);
-                values.remove(DataKind.PSEUDO_COLUMN_PHONETIC_NAME);
-                if (supportPhoneticFamilyName) {
-                    values.put(StructuredName.PHONETIC_FAMILY_NAME,
-                            tmpItem.getPhoneticFamilyName());
-                } else {
-                    values.remove(StructuredName.PHONETIC_FAMILY_NAME);
-                }
-                if (supportPhoneticMiddleName) {
-                    values.put(StructuredName.PHONETIC_MIDDLE_NAME,
-                            tmpItem.getPhoneticMiddleName());
-                } else {
-                    values.remove(StructuredName.PHONETIC_MIDDLE_NAME);
-                }
-                if (supportPhoneticGivenName) {
-                    values.put(StructuredName.PHONETIC_GIVEN_NAME,
-                            tmpItem.getPhoneticGivenName());
-                } else {
-                    values.remove(StructuredName.PHONETIC_GIVEN_NAME);
-                }
-            }
-        } else {
-            if (supportPhoneticFullName) {
-                // Old data does not have a phonetic (full) name, while the new account requires it.
-                values.put(DataKind.PSEUDO_COLUMN_PHONETIC_NAME,
-                        NameConverter.buildPhoneticName(
-                                values.getAsString(StructuredName.PHONETIC_FAMILY_NAME),
-                                values.getAsString(StructuredName.PHONETIC_MIDDLE_NAME),
-                                values.getAsString(StructuredName.PHONETIC_GIVEN_NAME)));
-            }
-            if (!supportPhoneticFamilyName) {
-                values.remove(StructuredName.PHONETIC_FAMILY_NAME);
-            }
-            if (!supportPhoneticMiddleName) {
-                values.remove(StructuredName.PHONETIC_MIDDLE_NAME);
-            }
-            if (!supportPhoneticGivenName) {
-                values.remove(StructuredName.PHONETIC_GIVEN_NAME);
-            }
+        if (!supportPhoneticFamilyName) {
+            values.remove(StructuredName.PHONETIC_FAMILY_NAME);
+        }
+        if (!supportPhoneticMiddleName) {
+            values.remove(StructuredName.PHONETIC_MIDDLE_NAME);
+        }
+        if (!supportPhoneticGivenName) {
+            values.remove(StructuredName.PHONETIC_GIVEN_NAME);
         }
 
         newState.addEntry(ValuesDelta.fromAfter(values));
