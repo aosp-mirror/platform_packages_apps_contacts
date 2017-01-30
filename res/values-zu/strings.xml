@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Oxhumana naye akekho."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Oxhumana naye ungezwe kusikrini sasekhaya."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"U-<xliff:g id="NAME">%s</xliff:g> ungezwe kusikrini sasekhaya."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Azikho izithombe ezitholakala kudivayisi."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Isithombe sothintana naye"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Igama lelebula efiswayo"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Khipha isithombe"</string>

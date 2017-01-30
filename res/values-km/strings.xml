@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"មិន​មាន​ទំនាក់ទំនង។"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"បានបញ្ចូល​ទំនាក់ទំនងទៅអេក្រង់ដើម"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"បានបញ្ចូល​ <xliff:g id="NAME">%s</xliff:g> ទៅអេក្រង់ដើម"</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"មិន​មាន​រូបភាព​នៅ​លើ​ឧបករណ៍​នេះ​ទេ។"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"រូបថត​ទំនាក់ទំនង"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ឈ្មោះ​ស្លាក​ផ្ទាល់ខ្លួន"</string>
     <string name="removePhoto" msgid="4898105274130284565">"លុប​រូបថត​ចេញ"</string>
