@@ -107,7 +107,7 @@ public abstract class ListenableFutureLoader<D> extends Loader<D> {
                     Log.i(TAG, "Loading cancelled", t);
                     rollbackContentChanged();
                 } else {
-                    Log.e(TAG, "Failed to load accounts", t);
+                    Log.e(TAG, "Loading failed", t);
                 }
             }
         }, mUiExecutor);

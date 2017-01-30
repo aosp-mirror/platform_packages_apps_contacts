@@ -21,8 +21,9 @@ import static com.android.contacts.tests.ContactsMatchers.hasValueForColumn;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -41,7 +42,6 @@ import android.provider.ContactsContract.Data;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.filters.SdkSuppress;
-import android.support.test.filters.Suppress;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
@@ -53,7 +53,6 @@ import android.test.mock.MockContentResolver;
 import com.android.contacts.SimImportService;
 import com.android.contacts.database.SimContactDao;
 import com.android.contacts.database.SimContactDaoImpl;
-import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
@@ -74,6 +73,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -82,14 +82,14 @@ import java.util.concurrent.TimeUnit;
  * These should probably be converted to espresso tests because espresso does a better job of
  * waiting for the app to be idle once espresso library is added
  */
-@Suppress
+//@Suppress
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 @SdkSuppress(minSdkVersion = Build.VERSION_CODES.M)
 @TargetApi(Build.VERSION_CODES.M)
 public class SimImportActivityTest {
 
-    public static final int TIMEOUT = 3000;
+    public static final int TIMEOUT = 100000;
     private Context mContext;
     private UiDevice mDevice;
     private Instrumentation mInstrumentation;
@@ -116,7 +116,6 @@ public class SimImportActivityTest {
     public void tearDown() throws Exception {
         SimContactDao.setFactoryForTest(SimContactDao.DEFAULT_FACTORY);
         mAccountHelper.cleanup();
-        AccountTypeManager.setInstanceForTest(null);
         if (mActivity != null) {
             mActivity.finish();
             mInstrumentation.waitForIdleSync();
@@ -219,9 +218,6 @@ public class SimImportActivityTest {
      */
     @Test
     public void selectionsAreImportedAndDisabledOnSubsequentImports() throws Exception {
-        // Clear out the instance so that it will have the most recent accounts when reloaded
-        AccountTypeManager.setInstanceForTest(null);
-
         final AccountWithDataSet targetAccount = mAccountHelper.addTestAccount(
                 mAccountHelper.generateAccountName("SimImportActivity0_targetAccount_"));
 
@@ -249,7 +245,10 @@ public class SimImportActivityTest {
                 final SimContactDaoImpl spy = spy(new SimContactDaoImpl(
                         mContext, mockResolver,
                         (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE)));
-                when(spy.canReadSimContacts()).thenReturn(true);
+                final SimCard sim = someSimCard();
+                doReturn(true).when(spy).canReadSimContacts();
+                doReturn(Collections.singletonList(sim)).when(spy).getSimCards();
+                doReturn(sim).when(spy).getSimBySubscriptionId(anyInt());
                 return spy;
             }
         });
