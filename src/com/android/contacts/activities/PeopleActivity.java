@@ -69,7 +69,6 @@ import com.android.contacts.group.GroupListItem;
 import com.android.contacts.group.GroupMembersFragment;
 import com.android.contacts.group.GroupNameEditDialogFragment;
 import com.android.contacts.group.GroupUtil;
-import com.android.contacts.interactions.ContactDeletionInteraction;
 import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
@@ -98,6 +97,7 @@ import com.android.contacts.widget.FloatingActionButtonController;
 import com.android.contactsbind.FeatureHighlightHelper;
 import com.android.contactsbind.HelpUtils;
 import com.android.contactsbind.ObjectFactory;
+
 import com.google.common.util.concurrent.Futures;
 
 import java.util.Collections;
@@ -130,6 +130,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     public static final String TAG_ASSISTANT = "contacts-assistant";
     public static final String TAG_SECOND_LEVEL = "second-level";
     public static final String TAG_THIRD_LEVEL = "third-level";
+    public static final String TAG_ASSISTANT_HELPER = "assistant-helper";
     public static final String TAG_DUPLICATES = "DuplicatesFragment";
     public static final String TAG_DUPLICATES_UTIL = "DuplicatesUtilFragment";
 
@@ -821,10 +822,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     private void onBackPressedAssistantView() {
-        if (!popThirdLevel()) {
+        if (!isInThirdLevel()) {
             switchToAllContacts();
         } else {
             setDrawerLockMode(/* enabled */ true);
+            super.onBackPressed();
         }
     }
 
@@ -974,6 +976,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         final FragmentManager fragmentManager =  getFragmentManager();
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
+        popSecondLevel();
         if (isGroupView()) {
             mMembersFragment = GroupMembersFragment.newInstance(mGroupUri);
             transaction.replace(
@@ -998,9 +1001,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     public void switchToAllContacts() {
-        if (isInSecondLevel()) {
-            popSecondLevel();
-        }
+        popSecondLevel();
         mShouldSwitchToAllContacts = false;
         mCurrentView = ContactsView.ALL_CONTACTS;
         mDrawerFragment.setNavigationItemChecked(ContactsView.ALL_CONTACTS);
@@ -1016,18 +1017,6 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         intent.putExtra(AccountFilterActivity.EXTRA_CONTACT_LIST_FILTER, filter);
         AccountFilterUtil.handleAccountFilterResult(
                 mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
-    }
-
-    private boolean popThirdLevel() {
-        return getFragmentManager().popBackStackImmediate(
-                TAG_THIRD_LEVEL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-    }
-
-    private void popSecondLevel() {
-        getFragmentManager().popBackStackImmediate(
-                TAG_SECOND_LEVEL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        mMembersFragment = null;
-        resetToolBarStatusBarColor();
     }
 
     // Reset toolbar and status bar color to Contacts theme color.
@@ -1223,7 +1212,33 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     public boolean isInSecondLevel() {
-        return isGroupView() || isAssistantView();
+        return isLastBackStackTag(TAG_SECOND_LEVEL);
+    }
+
+    private boolean isInThirdLevel() {
+        return isLastBackStackTag(TAG_THIRD_LEVEL);
+    }
+
+    private boolean isLastBackStackTag(String tag) {
+        final int count = getFragmentManager().getBackStackEntryCount();
+        if (count > 0) {
+            final FragmentManager.BackStackEntry last =
+                    getFragmentManager().getBackStackEntryAt(count - 1);
+            if (tag == null) {
+                return last.getName() == null;
+            }
+            return tag.equals(last.getName());
+        }
+        return false;
+    }
+
+    private void popSecondLevel() {
+        getFragmentManager().popBackStackImmediate(
+                TAG_ASSISTANT_HELPER, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getFragmentManager().popBackStackImmediate(
+                TAG_SECOND_LEVEL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        mMembersFragment = null;
+        resetToolBarStatusBarColor();
     }
 
     public void closeDrawer() {
