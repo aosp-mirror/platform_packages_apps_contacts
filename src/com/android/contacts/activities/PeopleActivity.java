@@ -1212,7 +1212,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
     }
 
     public boolean isInSecondLevel() {
-        return isLastBackStackTag(TAG_SECOND_LEVEL);
+        return isGroupView() || isAssistantView();
     }
 
     private boolean isInThirdLevel() {
