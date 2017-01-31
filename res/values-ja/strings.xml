@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"連絡先が存在しません。"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"連絡先をホーム画面に追加しました。"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>をホーム画面に追加しました。"</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"使用できる写真が端末上にありません。"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"連絡先の写真"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"カスタムラベル名"</string>
     <string name="removePhoto" msgid="4898105274130284565">"写真を削除"</string>

@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"လိပ်စာ မရှိပါ"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"အဆက်အသွယ်ကို ပင်မ မျက်နှာပြင်သို့ ထည့်လိုက်ပြီ။"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ကို ပင်မ မျက်နှာပြင်သို့ ထည့်ပေးလိုက်ပြီ။"</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"ဤကိရိယာတွင် ပုံများမရှိပါ။"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"လိပ်စာရဲ့ဓာတ်ပုံ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"စိတ်ကြိုက် အညွှန်းအမည်"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ပုံကို ဖယ်ရှားပါ"</string>

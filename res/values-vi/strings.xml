@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Địa chỉ liên hệ không tồn tại."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Đã thêm liên hệ vào Màn hình chính."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Đã thêm <xliff:g id="NAME">%s</xliff:g> vào Màn hình chính."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Không có ảnh nào trên thiết bị."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Ảnh của liên hệ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Tên nhãn tùy chỉnh"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Xóa ảnh"</string>

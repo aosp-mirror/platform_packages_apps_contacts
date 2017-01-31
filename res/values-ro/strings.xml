@@ -98,8 +98,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Persoana nu există în agendă."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Persoana de contact a fost adăugată pe ecranul de pornire."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Persoana de contact <xliff:g id="NAME">%s</xliff:g> a fost adăugată pe ecranul de pornire."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Nu există imagini disponibile pe dispozitiv."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotografie persoană din agendă"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Numele etichetei personalizate"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminați fotografia"</string>

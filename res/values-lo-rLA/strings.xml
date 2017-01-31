@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"ບໍ່ມີລາຍຊື່ຜູ້ຕິດຕໍ່."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ເພີ່ມລາຍຊື່ຕິດຕໍ່ໃສ່ໜ້າຈໍຫຼັກແລ້ວ."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ເພີ່ມ​ໃສ່​ໜ້າ​ຈໍ​ຫຼັກ​ແລ້ວ."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"ບໍ່ມີຮູບໃນອຸປະກອນທີ່ສາມາດໃຊ້ໄດ້."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"ຮູບລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ປ້າຍກຳກັບຊື່ກຳນົດເອງ"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ລຶບຮູບພາບ"</string>
