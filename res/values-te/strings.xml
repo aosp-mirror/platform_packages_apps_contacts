@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"పరిచయం ఉనికిలో లేదు."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"పరిచయం హోమ్ స్క్రీన్‌కు జోడించబడింది."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> హోమ్ స్క్రీన్‌కు జోడించబడింది."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"పరికరంలో చిత్రాలు ఏవీ అందుబాటులో లేవు."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"పరిచయం ఫోటో"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"అనుకూల లేబుల్ పేరు"</string>
     <string name="removePhoto" msgid="4898105274130284565">"ఫోటోను తీసివేయి"</string>

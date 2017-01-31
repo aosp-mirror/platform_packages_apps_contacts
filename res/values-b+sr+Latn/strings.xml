@@ -98,8 +98,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt ne postoji."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt je dodat na početni ekran."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> je dodat na početni ekran."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Na uređaju nije pronađena nijedna slika."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Slika kontakta"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Naziv prilagođene oznake"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ukloni sliku"</string>

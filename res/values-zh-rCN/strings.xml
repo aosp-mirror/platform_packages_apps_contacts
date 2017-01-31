@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"该联系人不存在。"</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"已将该联系人添加到主屏幕。"</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"已将<xliff:g id="NAME">%s</xliff:g>添加到主屏幕。"</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"设备上没有可用的照片。"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"联系人照片"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"自定义标签名称"</string>
     <string name="removePhoto" msgid="4898105274130284565">"删除照片"</string>

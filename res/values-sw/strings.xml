@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Mwasiliani hayupo."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Anwani imeongezwa kwenye Skrini ya kwanza."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> imeongezwa kwenye Skrini ya kwanza."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Hakuna picha inayopatikana kwenye kifaa."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Picha ya anwani"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Jina maalum la lebo"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Ondoa picha"</string>

@@ -95,8 +95,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"Dieser Kontakt existiert nicht."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt zu Startbildschirm hinzugefügt."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> zu Startbildschirm hinzugefügt."</string>
-    <!-- no translation found for photoPickerNotFoundText (2052542573853433204) -->
-    <skip />
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Auf dem Gerät sind keine Bilder verfügbar."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Kontaktbild"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Name des benutzerdef. Labels"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Foto entfernen"</string>
