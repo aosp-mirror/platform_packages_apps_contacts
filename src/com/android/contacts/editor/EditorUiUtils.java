@@ -88,9 +88,6 @@ public class EditorUiUtils {
         // Relation.CONTENT_ITEM_TYPE
         //
         // Un-supported mime types need to mapped with -1.
-
-        mimetypeLayoutMap.put(DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME,
-                R.layout.phonetic_name_editor_view);
         mimetypeLayoutMap.put(StructuredName.CONTENT_ITEM_TYPE,
                 R.layout.structured_name_editor_view);
         mimetypeLayoutMap.put(GroupMembership.CONTENT_ITEM_TYPE, -1);
