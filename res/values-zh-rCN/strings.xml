@@ -27,7 +27,7 @@
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"选择联系人快捷方式"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"选择一个可直接拨号的号码"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"选择一个可直接向其发送短信的号码"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"添加到现有联系人"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"添加到通讯录"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"选择联系人"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"创建新联系人"</string>
     <string name="starredList" msgid="4817256136413959463">"已加星标的内容"</string>
@@ -251,7 +251,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"查看更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"隐藏部分"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"查看全部"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"最近"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"近期活动"</string>
     <string name="about_card_title" msgid="2920942314212825637">"简介"</string>
     <string name="send_message" msgid="8938418965550543196">"发送短信"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"正在创建个人副本…"</string>

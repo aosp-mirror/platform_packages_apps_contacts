@@ -24,7 +24,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"পরিচিতি"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"সরাসরি ডায়াল"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"সরাসরি বার্তা"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"শর্টকার্ট করতে একটি পরিচিতি বেছে নিন"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"একটি পরিচিতি শর্টকার্ট বাছুন"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"কল করার জন্য একটি নম্বর বেছে নিন"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"বার্তা পাঠানোর জন্য একটি নম্বর বেছে নিন"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"পরিচিতিতে যোগ করুন"</string>
@@ -299,8 +299,8 @@
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"পরিচিতি লিঙ্ক করুন"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"বাতিল করুন"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য সদৃশ</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য সদৃশ</item>
+      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য ডুপ্লিকেট</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টি সম্ভাব্য ডুপ্লিকেট</item>
     </plurals>
     <plurals name="quickcontact_suggestions_number" formatted="false" msgid="495992931510695330">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টি লিঙ্ক করা পরিচিতি</item>

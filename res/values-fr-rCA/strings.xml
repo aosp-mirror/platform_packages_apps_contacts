@@ -24,8 +24,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Raccourci appel"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Raccourci message"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisir un contact pour le raccourci"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choisissez le numéro à appeler"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisir un contact"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choisissez le numéro"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez le numéro auquel envoyer le message"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ajouter au contact"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Sélectionner un contact"</string>
@@ -171,7 +171,7 @@
     <string name="pick_photo" msgid="2129509985223564942">"Choisir une photo"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Sélectionner une nouvelle photo"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"La liste de contacts est en cours de mise à jour."</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"Recherche en cours..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"Recherche…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Afficher la sélection"</string>
     <string name="menu_display_all" msgid="8887488642609786198">"Tout afficher"</string>
     <string name="menu_select_all" msgid="621719255150713545">"Tout sélectionner"</string>
@@ -242,7 +242,7 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Les nouveaux contacts seront enregistrés dans le compte <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Choisissez un compte par défaut pour les nouveaux contacts :"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Ajouter un contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier un contact"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier"</string>
     <string name="keep_local" msgid="1258761699192993322">"Enreg. copie locale"</string>
     <string name="add_account" msgid="8201790677994503186">"Ajouter un compte"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ajouter un nouveau compte"</string>

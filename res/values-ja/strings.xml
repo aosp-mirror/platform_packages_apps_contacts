@@ -24,7 +24,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"連絡先"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"直接発信"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"直接メッセージを送る"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"連絡先ショートカットを選択"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ショートカットを選択"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"発信する番号の選択"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"メッセージを送る番号の選択"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"連絡先に追加"</string>
@@ -103,7 +103,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"タブレット内に写真がありません。"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"画像がありません。"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"連絡先の写真"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"新しいラベル名"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"カスタムラベル名"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"ボイスメールに自動転送する"</string>
     <string name="removePhoto" msgid="4898105274130284565">"写真を削除"</string>
     <string name="noContacts" msgid="4955659076981974652">"連絡先はありません"</string>
@@ -241,7 +241,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"新しい連絡先はバックアップされません。オンラインで連絡先をバックアップするアカウントを追加しますか？"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"新しい連絡先を<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>に保存します"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"新しい連絡先のデフォルトアカウントを選択してください。"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"新しい連絡先を追加"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"連絡先を追加"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"連絡先を編集"</string>
     <string name="keep_local" msgid="1258761699192993322">"ローカルに保存"</string>
     <string name="add_account" msgid="8201790677994503186">"アカウントを追加"</string>

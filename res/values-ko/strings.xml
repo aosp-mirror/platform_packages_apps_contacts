@@ -90,7 +90,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"이 연락처를 삭제하면 여러 계정의 세부정보가 삭제됩니다."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"이 연락처를 삭제하시겠습니까?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"삭제"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"변경사항 취소"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"변경사항 삭제"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"연락처가 없습니다."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"연락처가 메인 스크린에 추가되었습니다."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>님이 메인 스크린에 추가되었습니다."</string>
@@ -226,8 +226,8 @@
     <string name="set_default" msgid="4417505153468300351">"기본으로 설정"</string>
     <string name="clear_default" msgid="7193185801596678067">"기본 설정 지우기"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"텍스트 복사됨"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"변경사항을 취소하고 수정을 중단하시겠습니까?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"취소"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"변경사항을 삭제하고 수정을 중단하시겠습니까?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"삭제"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"계속 수정"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"내 프로필 설정"</string>

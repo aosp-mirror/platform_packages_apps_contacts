@@ -38,7 +38,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"Looge kontakt"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Grupi muutmine"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Grupi loomine"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Teave"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Teave:"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Värskendused"</string>
     <string name="searchHint" msgid="8482945356247760701">"Otsige kontakte"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Kuva kontakt"</string>
@@ -158,7 +158,7 @@
     <string name="video_chat" msgid="1872255818640336072">"Videovestlus"</string>
     <string name="connections" msgid="8098440723172028350">"Ühendused"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"Lisa ühendus"</string>
-    <string name="recent" msgid="2659189233141493004">"Hiljutine"</string>
+    <string name="recent" msgid="2659189233141493004">"Hiljutised"</string>
     <string name="recent_updates" msgid="4267258535615860710">"Uusimad värskendused"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> kontakt"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Teenuse <xliff:g id="SOURCE">%1$s</xliff:g> konto"</string>
@@ -200,11 +200,11 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Kontaktile lisamine"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Sule"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Lisa aasta"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Kaasa aasta"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Laadimine ..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Loo uus kontakt"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Lisa konto"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Konto lisamine"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Impordi kontaktid"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"Uue grupi loomine"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"Loo uus rühm"</string>
@@ -244,7 +244,7 @@
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Kontakti lisamine"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontakti muutmine"</string>
     <string name="keep_local" msgid="1258761699192993322">"Hoia kohalikuna"</string>
-    <string name="add_account" msgid="8201790677994503186">"Lisa konto"</string>
+    <string name="add_account" msgid="8201790677994503186">"Konto lisamine"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisa uus konto"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Andmebaasi failide eksportimine"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"uue kontakti lisamine"</string>

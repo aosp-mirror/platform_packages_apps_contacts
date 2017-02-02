@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Marcación directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaxe directa"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Seleccionar un atallo para o contacto"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolle un número ao que chamar"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolle un número ao que enviar unha mensaxe"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Elixe contacto para atallo"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elixe número para chamadas"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Elixe número para mensaxes"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Engadir a un contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Seleccionar un contacto"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear novo contacto"</string>
@@ -93,7 +93,7 @@
     <string name="menu_discard" msgid="6854657936970228164">"Descartar cambios"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"O contacto non existe."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Engadiuse o contacto á pantalla de inicio."</string>
-    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> engadiuse á pantalla de inicio."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Engadiuse a <xliff:g id="NAME">%s</xliff:g> á pantalla de inicio."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Crear novo contacto"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Crear novo contacto"</string>
   <string-array name="otherLabels">

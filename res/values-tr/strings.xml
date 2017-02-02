@@ -23,7 +23,7 @@
     <string name="contactsList" msgid="8661624236494819731">"Kişiler"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kişi"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Doğrudan çevirme"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Doğrudan ileti"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Doğrudan mesaj"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Bir kişi kısayolu seçin"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Aranacak numarayı seçin"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"İleti gönderilecek bir numara seçin"</string>
@@ -50,7 +50,7 @@
     <string name="menu_deleteContact" msgid="6788644058868189393">"Sil"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Fotoğrafı değiştir"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Ana ekrana yerleştir"</string>
-    <string name="menu_call" msgid="3992595586042260618">"Çağrı yap"</string>
+    <string name="menu_call" msgid="3992595586042260618">"Ara"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Kısa mesaj gönder"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Bağlantıyı kaldır"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Düzenle"</string>

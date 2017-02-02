@@ -109,7 +109,7 @@
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"صورة جهة الاتصال"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"اسم تصنيف مخصص"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"إرسال المكالمات إلى البريد الصوتي مباشرة"</string>
-    <string name="removePhoto" msgid="4898105274130284565">"إزالة الصور"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"إزالة الصورة"</string>
     <string name="noContacts" msgid="4955659076981974652">"ليست هناك جهات اتصال"</string>
     <string name="noGroups" msgid="8614664663561385253">"لا توجد مجموعات."</string>
     <string name="noAccounts" msgid="7768267764545265909">"يجب توفير حساب لإنشاء مجموعات."</string>
@@ -208,7 +208,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"مخصص"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"الإعدادات"</string>
     <string name="menu_settings" msgid="377929915873428211">"الإعدادات"</string>
-    <string name="menu_help" msgid="1680178646764069976">"المساعدة والتعليقات"</string>
+    <string name="menu_help" msgid="1680178646764069976">"مساعدة وتعليقات"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"خيارات العرض"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>، <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"رقم الهاتف"</string>
@@ -222,7 +222,7 @@
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"إنشاء جهة اتصال جديدة"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"إضافة حساب"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"استيراد جهات الاتصال"</string>
-    <string name="create_group_dialog_title" msgid="6874527142828424475">"إنشاء مجموعة جديدة"</string>
+    <string name="create_group_dialog_title" msgid="6874527142828424475">"إنشاء تصنيف جديد"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"إنشاء مجموعة جديدة"</string>
     <plurals name="num_groups_in_account" formatted="false" msgid="6189297639209663469">
       <item quantity="zero"><xliff:g id="COUNT">%0$d</xliff:g> مجموعات</item>

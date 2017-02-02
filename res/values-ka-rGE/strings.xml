@@ -26,7 +26,7 @@
     <string name="shortcutMessageContact" msgid="2460337253595976198">"სწრაფი შეტყობინება"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"კონტაქტის მალსახმობის არჩევა"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"დასარეკად აირჩიეთ ნომერი"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ნომრის შერჩევა შეტყობინების გასაგზავნად"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"აირჩიეთ ნომერი"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"კონტაქტზე დამატება"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"კონტაქტის არჩევა"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"ახალი კონტაქტის შექმნა"</string>
@@ -38,7 +38,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"კონტაქტის შექმნა"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"ჯგუფის რედაქტირება"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"ჯგუფის შექმნა"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"შესახებ"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"მონაცემები"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"განახლებები"</string>
     <string name="searchHint" msgid="8482945356247760701">"კონტაქტებში ძიება"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"კონტაქტის ნახვა"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"მორგებული"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"პარამეტრები"</string>
     <string name="menu_settings" msgid="377929915873428211">"პარამეტრები"</string>
-    <string name="menu_help" msgid="1680178646764069976">"დახმარება და უკუკავშირი"</string>
+    <string name="menu_help" msgid="1680178646764069976">"დახმარება/უკუკავშირი"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ეკრანის პარამეტრები"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ტელეფონის ნომერი"</string>
@@ -200,7 +200,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"დაემატოს კონტაქტს"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"დახურვა"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"შეიტანე წელიც"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"წელის ჩათვლით"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"კონტაქტი"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"იტვირთება…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ახალი კონტაქტის შექმნა"</string>
@@ -227,7 +227,7 @@
     <string name="clear_default" msgid="7193185801596678067">"ნაგულისხმევის წაშლა"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"კოპირებული ტექსტი"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"გსურთ ცვლილებების გაუქმება და რედაქტირებიდან გასვლა?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"გაუქმება"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ცვლ.უარყოფა"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"რედაქტირების გაგრძელება"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"ჩემი პროფ. დაყენება"</string>
@@ -241,7 +241,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"თქვენი ახალი კონტაქტი არ დამარქაფდება. გსურთ ანგარიშის დამატება, რომელიც კონტაქტების სარეზერვო ასლებს ინტერნეტში შეინახავს?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ახალი კონტაქტები შეინახება აქ: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"აირჩიეთ ნაგულისხმევი ანგარიში ახალი კონტაქტებისთვის:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ახალი კონტაქტ.დამატება"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"კონტაქტის დამატება"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"კონტაქტის შესწორება"</string>
     <string name="keep_local" msgid="1258761699192993322">"შენახვა ადგილობრივად"</string>
     <string name="add_account" msgid="8201790677994503186">"ანგარიშის დამატება"</string>

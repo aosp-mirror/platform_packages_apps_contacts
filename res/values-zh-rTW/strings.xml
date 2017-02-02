@@ -251,7 +251,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"顯示較少"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"全部顯示"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"近期活動"</string>
     <string name="about_card_title" msgid="2920942314212825637">"關於"</string>
     <string name="send_message" msgid="8938418965550543196">"傳送簡訊"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"正在建立個人副本..."</string>

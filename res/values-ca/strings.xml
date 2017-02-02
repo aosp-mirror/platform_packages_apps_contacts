@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contacte"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Marcatge directe"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Missatge directe"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Trieu una drecera de contacte"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Trieu un número per trucar-hi"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Trieu un número per enviar-hi un missatge"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Tria una drecera de contacte"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Tria un número per trucar-hi"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Número per enviar un missatge"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Afegeix al contacte"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Tria un contacte"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crea un contacte"</string>
@@ -38,7 +38,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"Crea un contacte"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Edita el grup"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Crea un grup"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Quant a"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Informació"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Actualitz."</string>
     <string name="searchHint" msgid="8482945356247760701">"Cerca als contactes"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Visualitza el contacte"</string>
@@ -87,7 +87,7 @@
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Vols suprimir els contactes seleccionats?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Els contactes dels teus comptes que siguin només de lectura no es poden suprimir, però sí que es poden amagar."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Els contactes que s\'han de suprimir tenen informació de diversos comptes. La informació dels comptes que siguin només de lectura s\'amagarà, però no se suprimirà."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Si suprimeixes aquest contacte se suprimirà informació de diversos comptes."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Si suprimeixes aquest contacte, se suprimirà informació de diversos comptes."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Vols suprimir aquest contacte?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Suprimeix"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Descarta els canvis"</string>
@@ -105,7 +105,7 @@
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacte"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nom de camp personalitzat"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Envia les trucades directament a la bústia de veu"</string>
-    <string name="removePhoto" msgid="4898105274130284565">"Elimina la foto"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"Suprimeix la foto"</string>
     <string name="noContacts" msgid="4955659076981974652">"No hi ha cap contacte"</string>
     <string name="noGroups" msgid="8614664663561385253">"Cap grup"</string>
     <string name="noAccounts" msgid="7768267764545265909">"Per crear grups necessites un compte."</string>
@@ -252,7 +252,7 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Mostra\'n menys"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Mostra-ho tot"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Recents"</string>
-    <string name="about_card_title" msgid="2920942314212825637">"Quant a"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Informació"</string>
     <string name="send_message" msgid="8938418965550543196">"Envia un missatge"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"S\'està creant una còpia personal..."</string>
     <string name="yesterday" msgid="6840858548955018569">"Ahir"</string>

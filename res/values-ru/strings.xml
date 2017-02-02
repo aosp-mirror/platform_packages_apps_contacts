@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Быстрый звонок"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Быстрое SMS"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выбрать контакт для быстрого вызова"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выберите номер для вызова"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для отправки сообщения"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выбрать контакт"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выберите номер"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выбрать номер для SMS"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Добавление данных"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выбор контакта"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Создать контакт"</string>

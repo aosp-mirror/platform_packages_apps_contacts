@@ -25,7 +25,7 @@
     <string name="shortcutDialContact" msgid="746622101599186779">"Dail terus"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mesej langsung"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Pilih pintasan kenalan"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Pilih nombor untuk memanggil"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Pilih nombor utk panggilan"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Pilih nombor untuk menghantar mesej"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Tambahkan pada kenalan"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Pilih kenalan"</string>

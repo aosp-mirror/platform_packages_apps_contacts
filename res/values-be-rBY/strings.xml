@@ -23,10 +23,10 @@
     <string name="contactsList" msgid="8661624236494819731">"Кантакты"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Кантакт"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Хуткі выклік"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Прамое паведамленне"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выберыце кантакт для хуткага доступу"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выберыце нумар для выкліку"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выберыце нумар для адпраўкi паведамлення"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Хуткае паведамл."</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Выберыце кантакт"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Выберыце нумар"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Выберыце нумар"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Дадаць у кантакт"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выберыце кантакт"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Стварыць новы кантакт"</string>
@@ -58,7 +58,7 @@
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Дадаць кантакт"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Дадаць групу"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Раз\'яднаць гэты кантакт на некалькі кантактаў?"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Выдаліць сувязь"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Раз\'яднаць"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Жадаеце захаваць змяненні, якія вы ўжо зрабілі, і развязаць гэты кантакт на некалькі кантактаў?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Захаваць і развязаць"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Жадаеце захаваць змяненні, якія вы ўжо зрабілі, і спасылку на выбраны кантакт?"</string>
@@ -115,7 +115,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Каб дадаць, змянiце групу."</string>
     <string name="savingContact" msgid="4075751076741924939">"Захаванне кантакту..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Кантакт захаваны"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Кантакты адлучаны"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Кантакты раз\'яднаны"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Немагчыма захаваць змены кантакта."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Не ўдалося скасаваць сувязь з кантактам."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Не ўдалося падлучыць кантакт."</string>
@@ -158,9 +158,9 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Дадаць нумар тэлефона"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Дадаць адрас электроннай пошты"</string>
     <string name="missing_app" msgid="1466111003546611387">"Не знойдзена праграма для гэтага дзеяння."</string>
-    <string name="menu_share" msgid="943789700636542260">"Апублікаваць"</string>
+    <string name="menu_share" msgid="943789700636542260">"Абагуліць"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Дадаць у кантакты"</string>
-    <string name="share_via" msgid="563121028023030093">"Апублікаваць кантакт з дапамогай"</string>
+    <string name="share_via" msgid="563121028023030093">"Абагуліць кантакт з дапамогай"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Стварыць групу ва ўліковым запісе"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Галасавы чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Відэачат"</string>
@@ -175,7 +175,7 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Не рэдагуецца гэтым прыкладаннем."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Нельга рэдагаваць на гэтай прыладзе."</string>
     <string name="take_photo" msgid="7496128293167402354">"Зрабіць фота"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"Зрабiце новую фатаграфію"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Зрабiць новую фатаграфію"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Выбраць фота"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Выбраць новае фота"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Спiс кантактаў абнаўляецца."</string>
@@ -255,7 +255,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Рэзервовая копiя вашага новага кантакту не будзе створана. Дадаць улiковы запiс, у якiм будуць захоўвацца рэзервовыя копii кантактаў у Iнтэрнэце?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новыя кантакты будуць захаваны ва ўліковы запіс <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Выбраць уліковы запіс па змаўчанні для новых кантактаў:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Дадаць новы кантакт"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Новы кантакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Рэдагаваць кантакт"</string>
     <string name="keep_local" msgid="1258761699192993322">"Захоўваць лакальна"</string>
     <string name="add_account" msgid="8201790677994503186">"Дадаць уліковы запіс"</string>
@@ -324,7 +324,7 @@
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> звязаны кантакт</item>
       <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> звязаныя кантакты</item>
       <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> звязаных кантактаў</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> звязанага кантакта</item>
+      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> звязанага кантакту</item>
     </plurals>
     <plurals name="quickcontact_suggestion_account_type_number" formatted="false" msgid="3001681298924002373">
       <item quantity="one">(<xliff:g id="COUNT">%d</xliff:g>)</item>

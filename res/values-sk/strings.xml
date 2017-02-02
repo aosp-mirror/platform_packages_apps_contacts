@@ -24,7 +24,7 @@
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Priame vytáčanie"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Priama správa"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Výber skratky kontaktu"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Výber odkazu na kontakt"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Výber čísla pre hovor"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Výber čísla pre správu"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Pridať ku kontaktu"</string>
@@ -52,15 +52,15 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Umiestniť na plochu"</string>
     <string name="menu_call" msgid="3992595586042260618">"Zavolať kontaktu"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Odoslať správu kontaktu"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"Zrušiť prepojenie"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Odpojiť"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Upraviť"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Odstrániť"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Pridať kontakt"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"Pridať skupinu"</string>
-    <string name="splitConfirmation" msgid="7342030840130187290">"Zrušiť prepojenie tohto kontaktu a vytvoriť viacero kontaktov?"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Zrušiť prepojenie"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Chcete vykonané zmeny uložiť, zrušiť prepojenie tohto kontaktu a vytvoriť viacero kontaktov?"</string>
-    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Uložiť a zrušiť prepojenie"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"Chcete tento kontakt rozpojiť na viacero samostatných kontaktov?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Odpojiť"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Chcete vykonané zmeny uložiť a rozpojiť tento kontakt na viacero samostatných kontaktov?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Uložiť a odpojiť"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Chcete vykonané zmeny uložiť a prepojiť s vybratým kontaktom?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Uložiť a prepojiť"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Prepojiť"</string>
@@ -77,7 +77,7 @@
       <item quantity="other">Kontakty boli odstránené</item>
       <item quantity="one">Kontakt bol odstránený</item>
     </plurals>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastaviť zvonenie"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Nastaviť tón zvonenia"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"Hovory do hlas. schránky"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"Kontakty z účtov iba na čítanie nie je možné odstrániť, ale dajú sa skryť."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"Skryť"</string>
@@ -89,13 +89,13 @@
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Odstrániť vybraté kontakty?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontakty z účtov iba na čítanie nie je možné odstrániť, ale dajú sa skryť."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Kontakty, ktoré sa majú odstrániť, obsahujú podrobnosti z viacerých účtov. Podrobnosti z účtov iba na čítanie budú skryté, nie odstránené."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Odstránením tohto kontaktu odstránite podrobnosti z viacerých účtov."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Odstránením tohto kontaktu odstránite údaje z viacerých účtov."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Odstrániť tento kontakt?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Odstrániť"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Zahodiť zmeny"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Kontakt neexistuje."</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt bol pridaný na plochu."</string>
-    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> bol pridaný na plochu."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Kontakt bol pridaný na plochu"</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> bol pridaný na plochu"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Vytvoriť nový kontakt"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Vytvoriť nový kontakt"</string>
   <string-array name="otherLabels">
@@ -107,7 +107,7 @@
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotka kontaktu"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Názov štítku"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Presmerovať hovory priamo do hlasovej schránky"</string>
-    <string name="removePhoto" msgid="4898105274130284565">"Odstrániť fotografiu"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"Odstrániť fotku"</string>
     <string name="noContacts" msgid="4955659076981974652">"Žiadne kontakty"</string>
     <string name="noGroups" msgid="8614664663561385253">"Žiadne skupiny."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Na vytvorenie skupín je potrebný účet."</string>
@@ -117,7 +117,7 @@
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt bol uložený"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakty boli odpojené"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nepodarilo sa uložiť zmeny kontaktu."</string>
-    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Zrušenie prepojenia kontaktu zlyhalo."</string>
+    <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Odpojenie kontaktu zlyhalo"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Kontakt sa nepodarilo prepojiť."</string>
     <string name="contactGenericErrorToast" msgid="7774911165341591714">"Pri ukladaní kontaktu sa vyskytla chyba."</string>
     <string name="contactPhotoSavedErrorToast" msgid="4079032272022979114">"Nepodarilo sa uložiť zmeny fotky kontaktu"</string>
@@ -175,7 +175,7 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Nemožno upraviť pomocou tejto aplikácie."</string>
     <string name="group_read_only" msgid="1061762906115697637">"Nie je možné upraviť v tomto zariadení."</string>
     <string name="take_photo" msgid="7496128293167402354">"Odfotiť"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"Urobiť novú fotografiu"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Znovu odfotiť"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Vybrať fotku"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Vybrať novú fotku"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Prebieha aktualizácia zoznamu kontaktov."</string>
@@ -208,7 +208,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Pridať ku kontaktu"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Zavrieť"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Uvádzať rok"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"uviesť rok"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Načítava sa…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Vytvoriť nový kontakt"</string>
@@ -300,7 +300,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Vy: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Služba Hangouts funguje lepšie, keď do poľa pre e-mailovú adresu alebo telefón zadáte identifikátor osoby v službe Hangouts."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Ďalšie polia"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Zmeniť fotku"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Zmena fotky"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Nepodarilo sa otvoriť editor."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Uložiť ako"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Kontakty sa momentálne ukladajú do účtu <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Iný účet vyberiete dvojitým klepnutím."</string>
@@ -310,7 +310,7 @@
       <item quantity="other">Prepojené kontakty (<xliff:g id="COUNT">%d</xliff:g>)</item>
       <item quantity="one">Prepojený kontakt</item>
     </plurals>
-    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Prepojené kontakty (počet: <xliff:g id="COUNT">%d</xliff:g>)"</string>
+    <string name="quickcontact_contacts_number" msgid="6036916944287597682">"Prepojené kontakty: <xliff:g id="COUNT">%d</xliff:g>"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"PREPOJIŤ KONTAKTY"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ZRUŠIŤ"</string>

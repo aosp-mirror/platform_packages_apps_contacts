@@ -177,7 +177,7 @@
     <string name="take_photo" msgid="7496128293167402354">"Posnemi fotografijo"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Posnemi novo fotografijo"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Izberi fotografijo"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"Izberite novo fotografijo"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Izberi novo fotografijo"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Seznam stikov se posodablja."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Iskanje ..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Pokaži izbrane"</string>
@@ -200,7 +200,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"Po meri"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Nastavitve"</string>
     <string name="menu_settings" msgid="377929915873428211">"Nastavitve"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Pomoč in povratne informacije"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Pomoč in povr. informacije"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"Možnosti prikaza"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefonska številka"</string>

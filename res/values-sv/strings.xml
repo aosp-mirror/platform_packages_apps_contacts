@@ -25,8 +25,8 @@
     <string name="shortcutDialContact" msgid="746622101599186779">"Direktval"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Direktmeddelande"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Välj genväg till kontakten"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Välj ett nummer som du vill ringa"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Välj ett nummer för meddelandet"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Välj ett nummer att ringa"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Välj ett nummer för sms"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Lägg till kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Välj en kontakt"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Skapa ny kontakt"</string>

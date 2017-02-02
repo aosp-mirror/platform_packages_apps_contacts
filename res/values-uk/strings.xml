@@ -22,11 +22,11 @@
     <string name="editContactActivityLabel" msgid="1129944572070802839">"Редагувати контакт"</string>
     <string name="contactsList" msgid="8661624236494819731">"Контакти"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Контакт"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"Прямий набір"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Пряме повідомл."</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"Швидкий набір"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Швидке повідомл."</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Вибрати ярлик контакту"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Вибір номера для виклику"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Вибір номера для надс. повід."</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Вибрати номера для SMS"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Додати в контактні дані"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Вибрати контакт"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Створити новий контакт"</string>
@@ -208,7 +208,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Додати до контакта"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Закрити"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Включити рік"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Вказати рік"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Контакт"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Завантаження..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Створити новий контакт"</string>
@@ -266,7 +266,7 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Показати менше"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Показати все"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Нещодавні"</string>
-    <string name="about_card_title" msgid="2920942314212825637">"Інформація"</string>
+    <string name="about_card_title" msgid="2920942314212825637">"Ім\'я контакту:"</string>
     <string name="send_message" msgid="8938418965550543196">"Надіслати повідомлення"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"Створення особистої копії…"</string>
     <string name="yesterday" msgid="6840858548955018569">"Учора"</string>

@@ -147,8 +147,8 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ඔබගේ සම්බන්ධතා වල නම්"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"මෙම ක්‍රියාව හැසිරවීමට යෙදුමක් සොයාගත්තේ නැත"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"පෙර තිරයට යෑම ආපසු යෑම ක්ලික් කරන්න"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"දුරකථන අංකයක් එකතු කරන්න"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"ඊ-තැපෑලක් එකතු කරන්න"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"දුරකථන අංකයක් එක් කරන්න"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"ඊ-තැපෑලක් එක් කරන්න"</string>
     <string name="missing_app" msgid="1466111003546611387">"මෙම ක්‍රියාව හැසිරවීමට යෙදුමක් සොයාගත්තේ නැත"</string>
     <string name="menu_share" msgid="943789700636542260">"බෙදාගන්න"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"සම්බන්ධතා වලට එක් කරන්න"</string>

@@ -22,7 +22,7 @@
     <string name="editContactActivityLabel" msgid="1129944572070802839">"แก้ไขรายชื่อติดต่อ"</string>
     <string name="contactsList" msgid="8661624236494819731">"รายชื่อในสมุดโทรศัพท์"</string>
     <string name="shortcutContact" msgid="749243779392912958">"สมุดโทรศัพท์"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"โทรโดยตรง"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"สายตรง"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ข้อความส่วนตัว"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"เลือกทางลัดของสมุดโทรศัพท์"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"เลือกหมายเลขที่จะโทร"</string>
@@ -34,7 +34,7 @@
     <string name="frequentList" msgid="7154768136473953056">"บ่อยครั้ง"</string>
     <string name="strequentList" msgid="5640192862059373511">"รายการโปรด"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"รายละเอียดของรายชื่อ"</string>
-    <string name="editContactDescription" msgid="2947202828256214947">"แก้ไขรายชื่อในสมุดโทรศัพท์"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"แก้ไขรายชื่อติดต่อ"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"สร้างรายชื่อ"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"แก้ไขกลุ่ม"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"สร้างกลุ่ม"</string>
@@ -227,7 +227,7 @@
     <string name="clear_default" msgid="7193185801596678067">"ล้างจากค่าเริ่มต้น"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"คัดลอกข้อความแล้ว"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"ยกเลิกการเปลี่ยนแปลงและออกจากการแก้ไขใช่ไหม"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ยกเลิก"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ทิ้ง"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"แก้ไขต่อ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"ตั้งค่าโปรไฟล์ของฉัน"</string>
@@ -266,7 +266,7 @@
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"องค์กร"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"ชื่อเล่น"</string>
-    <string name="header_note_entry" msgid="4320190426480612344">"โน้ต"</string>
+    <string name="header_note_entry" msgid="4320190426480612344">"หมายเหตุ"</string>
     <string name="header_website_entry" msgid="1411467850000824745">"เว็บไซต์"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"กิจกรรม"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"ความสัมพันธ์"</string>

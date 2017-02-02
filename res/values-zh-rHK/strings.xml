@@ -57,7 +57,7 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"刪除"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"新增聯絡人"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"新增群組"</string>
-    <string name="splitConfirmation" msgid="7342030840130187290">"要解除連結此聯絡人為多個聯絡人嗎？"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"要解除連結，並設為多個聯絡人嗎？"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"解除連結"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"您要儲存變更，並解除連結此聯絡人為多個聯絡人嗎？"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"儲存並解除連結"</string>
@@ -251,7 +251,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"顯示更多"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"顯示較少"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"顯示全部"</string>
-    <string name="recent_card_title" msgid="8982782042698001695">"近期"</string>
+    <string name="recent_card_title" msgid="8982782042698001695">"近期活動"</string>
     <string name="about_card_title" msgid="2920942314212825637">"關於"</string>
     <string name="send_message" msgid="8938418965550543196">"傳送訊息"</string>
     <string name="toast_making_personal_copy" msgid="6137651078366797938">"正在建立個人副本…"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"更多欄位"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"變更相片"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"無法打開編輯器。"</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"正在儲存至以下帳戶："</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"儲存至："</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"目前儲存至 <xliff:g id="ACCOUNT_NAME">%s</xliff:g>。連按兩下即可選擇另一個帳戶。"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">已連結的聯絡人 (<xliff:g id="COUNT">%d</xliff:g>)</item>

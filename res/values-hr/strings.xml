@@ -173,7 +173,7 @@
     <string name="take_photo" msgid="7496128293167402354">"Snimi fotografiju"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Snimi novu fotografiju"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Odaberi fotografiju"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"Odaberite novu fotografiju"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Odaberi novu fotografiju"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Popis kontakata ažurira se."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Pretraživanje..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Prikaži odabrano"</string>
@@ -295,7 +295,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Više polja"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Promijeni fotografiju"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Otvaranje alata za uređivanje nije uspjelo."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Spremanje na"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Spremi na račun"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Trenutačno se sprema na <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Dvaput dodirnite da biste odabrali neki drugi račun."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Povezani kontakti (<xliff:g id="COUNT">%d</xliff:g>)</item>

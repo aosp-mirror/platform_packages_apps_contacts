@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Kontaktua"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Markatze zuzena"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mezu zuzena"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Aukeratu kontakturako lasterbidea"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Aukeratu lasterbidea"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Aukeratu deitzeko zenbaki bat"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Aukeratu testu-mezua bidaltzeko zenbaki bat"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Aukeratu mezua bidaltzeko zenbaki bat"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Gehitu kontaktu batean"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Aukeratu kontaktu bat"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Sortu kontaktua"</string>
@@ -113,7 +113,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Batzuk gehitzeko, editatu taldea."</string>
     <string name="savingContact" msgid="4075751076741924939">"Kontaktua gordetzen…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Gorde da kontaktua"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kendu da kontaktuen lotura"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kendu dira kontaktuaren loturak"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Ezin izan dira gorde kontaktuari egindako aldaketak."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Ezin izan da kendu kontaktuaren lotura."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Ezin izan da lotu kontaktua."</string>
@@ -169,7 +169,7 @@
     <string name="take_photo" msgid="7496128293167402354">"Atera argazkia"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Atera beste argazki bat"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Aukeratu argazkia"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"Hautatu argazki berria"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Hautatu beste argazki bat"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontaktuen zerrenda eguneratzen ari da."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Bilatzen…"</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Erakutsi hautatutakoak"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Eremu gehiago"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Aldatu argazkia"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Ezin izan da ireki editorea."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Gorde hemen:"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Hemen gordeko da:"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> kontuan gordetzen dira kontaktuak. Beste kontu bat hautatzeko, sakatu birritan."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Lotutako kontaktuak (<xliff:g id="COUNT">%d</xliff:g>)</item>

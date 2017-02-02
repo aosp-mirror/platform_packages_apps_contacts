@@ -41,30 +41,30 @@
     <string name="contactDetailAbout" msgid="5430408883907061400">"מידע כללי"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"עדכונים"</string>
     <string name="searchHint" msgid="8482945356247760701">"חפש אנשי קשר"</string>
-    <string name="menu_viewContact" msgid="2795575601596468581">"הצג איש קשר"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"הוסף למועדפים"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"הסר מהמועדפים"</string>
+    <string name="menu_viewContact" msgid="2795575601596468581">"פרטי איש קשר"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"הוספה למועדפים"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"הסרה מהמועדפים"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"הוסר מהמועדפים"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"נוסף למועדפים"</string>
-    <string name="menu_editContact" msgid="9042415603857662633">"ערוך"</string>
-    <string name="menu_deleteContact" msgid="6788644058868189393">"מחק"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"עריכה"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"מחיקה"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"החלפת תמונה"</string>
-    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"הצב במסך הבית"</string>
-    <string name="menu_call" msgid="3992595586042260618">"התקשר לאיש קשר"</string>
-    <string name="menu_sendSMS" msgid="5535886767547006515">"שלח הודעת טקסט לאיש קשר"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"בטל קישור"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"ערוך"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"מחק"</string>
+    <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"קיצור דרך במסך הבית"</string>
+    <string name="menu_call" msgid="3992595586042260618">"שיחה לאיש קשר"</string>
+    <string name="menu_sendSMS" msgid="5535886767547006515">"הודעת טקסט לאיש קשר"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"ביטול קישור"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"עריכה"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"מחיקה"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"הוסף איש קשר"</string>
-    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"הוסף קבוצה"</string>
+    <string name="menu_new_group_action_bar" msgid="3520232877587377175">"הוספת קבוצה"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"האם לבטל את הקישור של איש הקשר הזה לאנשי קשר מרובים?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"בטל קישור"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"האם ברצונך לשמור את השינויים שכבר ביצעת ולבטל את הקישור של איש הקשר הזה לאנשי קשר מרובים?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"שמור ובטל את הקישור"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"האם ברצונך לשמור את השינויים שכבר ביצעת ולקשר לאיש הקשר שנבחר?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"שמור וקשר"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"קשר"</string>
-    <string name="menu_save" msgid="1727844363591825909">"שמור"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"קישור"</string>
+    <string name="menu_save" msgid="1727844363591825909">"שמירה"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"קישור אנשי קשר"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"בחר את איש הקשר שברצונך לקשר עם <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"הצג את כל אנשי הקשר"</string>
@@ -77,7 +77,7 @@
       <item quantity="other">אנשי קשר נמחקו</item>
       <item quantity="one">איש קשר נמחק</item>
     </plurals>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"הגדר רינגטון"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"בחירת רינגטון"</string>
     <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"כל השיחות לתא הקולי"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"לא ניתן למחוק אנשי קשר מחשבונות לקריאה-בלבד, אך ניתן להסתיר אותם."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"הסתר"</string>
@@ -92,7 +92,7 @@
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"מחיקת איש קשר זה תמחק פרטים מחשבונות מרובים."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"האם למחוק את איש הקשר הזה?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"מחק"</string>
-    <string name="menu_discard" msgid="6854657936970228164">"בטל שינויים"</string>
+    <string name="menu_discard" msgid="6854657936970228164">"ביטול שינויים"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"איש הקשר לא קיים."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"איש הקשר נוסף למסך דף הבית."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> נוסף למסך דף הבית."</string>
@@ -107,7 +107,7 @@
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"תמונה של איש קשר"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"שם תווית בהתאמה אישית"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"שלח שיחות ישירות לדואר הקולי"</string>
-    <string name="removePhoto" msgid="4898105274130284565">"הסר תמונה"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"הסרת תמונה"</string>
     <string name="noContacts" msgid="4955659076981974652">"אין אנשי קשר"</string>
     <string name="noGroups" msgid="8614664663561385253">"אין קבוצות."</string>
     <string name="noAccounts" msgid="7768267764545265909">"כדי ליצור קבוצות, נחוץ חשבון."</string>
@@ -158,8 +158,8 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"הוסף מספר טלפון"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"הוסף אימייל"</string>
     <string name="missing_app" msgid="1466111003546611387">"לא נמצאה אפליקציה שיכולה לטפל בפעולה זו."</string>
-    <string name="menu_share" msgid="943789700636542260">"שתף"</string>
-    <string name="menu_add_contact" msgid="3198704337220892684">"הוסף לאנשי הקשר"</string>
+    <string name="menu_share" msgid="943789700636542260">"שיתוף"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"הוספה לאנשי הקשר"</string>
     <string name="share_via" msgid="563121028023030093">"שתף איש קשר באמצעות"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"צור קבוצה עבור חשבון"</string>
     <string name="audio_chat" msgid="2535716629358298691">"צ\'אט קולי"</string>
@@ -236,9 +236,9 @@
       <item quantity="one">אדם <xliff:g id="COUNT_0">%1$d</xliff:g></item>
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"הקלד שם של איש קשר לפני קישורו לאחר."</string>
-    <string name="copy_text" msgid="3257145021583508761">"העתק ללוח"</string>
-    <string name="set_default" msgid="4417505153468300351">"קבע כברירת מחדל"</string>
-    <string name="clear_default" msgid="7193185801596678067">"נקה ברירת מחדל"</string>
+    <string name="copy_text" msgid="3257145021583508761">"העתקה ללוח"</string>
+    <string name="set_default" msgid="4417505153468300351">"ברירת מחדל"</string>
+    <string name="clear_default" msgid="7193185801596678067">"ניקוי ברירת מחדל"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"טקסט שהועתק"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"האם להתעלם מהשינויים שביצעת ולהפסיק לערוך?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"מחק"</string>

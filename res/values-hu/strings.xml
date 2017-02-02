@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Névjegy"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Közvetlen tárcsázás"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Közvetlen üzenet"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Válasszon névjegyet a parancsikonhoz"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Válasszon telefonszámot a híváshoz"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Válasszon telefonszámot az üzenetküldéshez"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Válasszon névjegyet"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Válasszon számot a híváshoz"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Válasszon számot az üzenethez"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Hozzáadás névjegyhez"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Névjegy kiválasztása"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Új névjegy létrehozása"</string>

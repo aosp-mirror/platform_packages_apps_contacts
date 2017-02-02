@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"കോൺടാക്റ്റ്"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"നേരിട്ടുള്ള ഡയൽ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"സന്ദേശങ്ങൾ നേരിട്ട്"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"ഒരു കോൺടാക്റ്റ് കുറുക്കുവഴി തിരഞ്ഞെടുക്കുക"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"കോൺടാക്റ്റ് ഷോട്ട്‌കട്ട് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"വിളിക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"സന്ദേശമയയ്‌ക്കാൻ ഒരു നമ്പർ തിരഞ്ഞെടുക്കുക"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"സന്ദേശമയക്കാനുള്ള നമ്പർ എടുക്കൂ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
@@ -65,10 +65,10 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"സംരക്ഷിച്ച് ലിങ്കുചെയ്യുക"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ലിങ്ക്"</string>
     <string name="menu_save" msgid="1727844363591825909">"സംരക്ഷിക്കുക"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"കോൺടാക്റ്റുകൾ ലിങ്കുചെയ്യുക"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"കോണ്ടാക്റ്റുകൾ ലിങ്കുചെയ്യൂ"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> എന്നയാളുമായി ലിങ്കുചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്ന കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"എല്ലാ കോൺടാക്റ്റുകളും കാണിക്കുക"</string>
-    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"നിര്‍ദ്ദേശിച്ച കോണ്‍ടാക്റ്റുകള്‍"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"നിര്‍ദ്ദേശിക്കുന്ന കോണ്‍ടാക്റ്റുകള്‍"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"എല്ലാ കോൺടാക്റ്റുകളും"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"ലിങ്കുചെയ്ത കോൺടാക്റ്റുകൾ"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
@@ -87,7 +87,7 @@
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"തിരഞ്ഞെടുത്ത കോൺടാക്‌റ്റുകൾ ഇല്ലാതാക്കണോ?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"നിങ്ങളുടെ വായന-മാത്രമായ അക്കൗണ്ടുകളിൽ നിന്നുള്ള കോൺടാക്റ്റുകൾ ഇല്ലാതാക്കാൻ കഴിയില്ല, എന്നാൽ അവയെ മറയ്ക്കാവുന്നതാണ്."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"ഇല്ലാതാക്കേണ്ട കോൺടാക്റ്റുകളിൽ ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിശദാംശങ്ങൾ അടങ്ങിയിരിക്കുന്നു. വായന-മാത്രമായ അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിശദാംശങ്ങൾ മറയ്‌ക്കുമെങ്കിലും, അവ ഇല്ലാതാക്കില്ല."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ഈ കോൺടാക്റ്റ് ഇല്ലാതാക്കുന്നത്, ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിശദാംശങ്ങൾ ഇല്ലാതാക്കും."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ഈ കോൺടാക്റ്റ് ഇല്ലാതാക്കുന്നതുവഴി ഒന്നിലധികം അക്കൗണ്ടുകളിൽ നിന്നുള്ള വിശദാംശങ്ങൾ ഇല്ലാതാക്കപ്പെടും."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"ഈ കോൺടാക്റ്റ് ഇല്ലാതാക്കണോ?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ഇല്ലാതാക്കുക"</string>
     <string name="menu_discard" msgid="6854657936970228164">"മാറ്റങ്ങള്‍‌ നിരാകരിക്കുക"</string>
@@ -227,7 +227,7 @@
     <string name="clear_default" msgid="7193185801596678067">"സ്ഥിരമായത് മായ്‌ക്കുക"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"വാചകം പകർത്തി"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"നിങ്ങളുടെ മാറ്റങ്ങൾ തള്ളിക്കളയുകയും എഡിറ്റുചെയ്യൽ ഉപേക്ഷിക്കുകയും ചെയ്യണോ?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"തള്ളിക്കളയുക"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"നിരസിക്കുക"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"എഡിറ്റുചെയ്യുന്നത് തുടരുക"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"പ്രൊഫൈൽ സജ്ജമാക്കൂ"</string>
@@ -296,7 +296,7 @@
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"ലിങ്കുചെയ്ത <xliff:g id="COUNT">%d</xliff:g> കോൺടാക്റ്റുകൾ"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"കോൺടാക്റ്റുകൾ ലിങ്കുചെയ്യുക"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"കോണ്ടാക്റ്റുകൾ ലിങ്കുചെയ്യൂ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"റദ്ദാക്കുക"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="other">സാധ്യതയുള്ള <xliff:g id="COUNT">%d</xliff:g> ഡ്യൂപ്ലിക്കേറ്റുകൾ</item>

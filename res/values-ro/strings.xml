@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Persoană din Agendă"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Apel direct"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mesaj direct"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeți o persoană din agendă pentru a crea o comandă rapidă"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeți un număr pentru apelare"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeți un număr pentru trimiterea mesajului"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Alegeți o pers. din agendă"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Alegeți un nr. pentru apel"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Alegeți un nr. pentru mesaj"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adăugați pentru persoană"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Alegeți o persoană de contact"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Creați o intrare nouă"</string>
@@ -154,7 +154,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Adăugați un număr de telefon"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Adăugați o adresă de e-mail"</string>
     <string name="missing_app" msgid="1466111003546611387">"Nu s-a găsit o aplicație care să îndeplinească această acțiune."</string>
-    <string name="menu_share" msgid="943789700636542260">"Trimiteți"</string>
+    <string name="menu_share" msgid="943789700636542260">"Distribuiți"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Adăugați în agendă"</string>
     <string name="share_via" msgid="563121028023030093">"Distribuiți persoana din agendă prin"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"Creați un grup în contul"</string>
@@ -184,7 +184,7 @@
     <string name="add_organization" msgid="7311893231158291197">"Adăugați o organizație"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Dată"</string>
     <string name="group_edit_field_hint_text" msgid="3966441850870457808">"Nume grup"</string>
-    <string name="change_photo" msgid="8530597935483526383">"Modificați"</string>
+    <string name="change_photo" msgid="8530597935483526383">"Schimbați"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Foto. de bază"</string>
     <string name="description_star" msgid="2605854427360036550">"preferate"</string>
     <string name="edit_contact" msgid="7529281274005689512">"Editați informațiile despre persoana din agendă"</string>
@@ -204,7 +204,7 @@
     <string name="activity_title_confirm_add_detail" msgid="4065089866210730616">"Adăug. la pers. din ag."</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Închideți"</string>
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
-    <string name="date_year_toggle" msgid="7122002148518724139">"Includeți un an"</string>
+    <string name="date_year_toggle" msgid="7122002148518724139">"Includeți anul"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Persoană din agendă"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"Se încarcă..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Creați o intrare nouă în Agendă"</string>

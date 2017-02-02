@@ -22,11 +22,11 @@
     <string name="editContactActivityLabel" msgid="1129944572070802839">"Editar contacto"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contactos"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"Marcação directa"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensagem directa"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Seleccionar um atalho de contacto"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Seleccionar um número a marcar"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Seleccionar um número para enviar mensagem"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"Marcação direta"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensagem direta"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Selec. um atalho de contacto"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Selec. número a marcar"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Selec. n.º a enviar mensagem"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adicionar ao contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolher um contacto"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Criar novo contacto"</string>
@@ -63,10 +63,10 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Guardar e desassociar"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Gostaria de guardar as alterações já efetuadas e associá-las ao contacto selecionado?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Guardar e associar"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Ligar"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Associar"</string>
     <string name="menu_save" msgid="1727844363591825909">"Guardar"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Ligar contactos"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Escolha o contacto que pretende ligar a <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Associar contactos"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Escolha o contacto que pretende associar a <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Mostrar todos os contactos"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos os contactos"</string>
@@ -241,13 +241,13 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Não será efetuada cópia de segurança do novo contacto. Pretende adicionar uma conta que efetue a cópia de segurança dos contactos online?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Os novos contactos serão guardados em <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Escolha uma conta predefinida para os novos contactos:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Adicionar novo contacto"</string>
+    <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Criar novo contacto"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
     <string name="keep_local" msgid="1258761699192993322">"Manter localmente"</string>
     <string name="add_account" msgid="8201790677994503186">"Adicionar conta"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Adicionar nova conta"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Exportar ficheiros da base de dados"</string>
-    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"adicionar novo contacto"</string>
+    <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"criar novo contacto"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Ver mais"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Ver menos"</string>
     <string name="expanding_entry_card_view_see_all" msgid="3845258737661412627">"Ver tudo"</string>
@@ -296,7 +296,7 @@
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> contactos ligados"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LIGAR CONTACTOS"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ASSOCIAR CONTACTOS"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"CANCELAR"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> possíveis duplicados</item>

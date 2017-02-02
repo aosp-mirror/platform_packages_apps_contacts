@@ -24,8 +24,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contato"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Discagem direta"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensagem direta"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Escolha o atalho para um contato"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolha um número a ser chamado"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Escolher contato p/ atalho"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Escolher número p/ atalho"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Escolha um número para enviar uma mensagem"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adicionar a contato"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolha um contato"</string>

@@ -52,7 +52,7 @@
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"Op startscherm plaatsen"</string>
     <string name="menu_call" msgid="3992595586042260618">"Contact bellen"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"Sms\'en naar contact"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"Loskoppelen"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"Link verwijderen"</string>
     <string name="menu_editGroup" msgid="5062005185370983720">"Bewerken"</string>
     <string name="menu_deleteGroup" msgid="3486380004411482874">"Verwijderen"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"Contact toevoegen"</string>

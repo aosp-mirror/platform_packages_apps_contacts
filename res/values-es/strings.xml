@@ -24,8 +24,8 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contacto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Llamada directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaje directo"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Elegir un acceso directo para el contacto"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elegir un número para la llamada"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Elegir acceso directo contacto"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Elegir número para llamar"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Elegir un número para el mensaje"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Añadir al contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Elige un contacto"</string>
@@ -38,7 +38,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"Crear contacto"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Editar grupo"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Crear grupo"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Información"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Información de"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Actividad"</string>
     <string name="searchHint" msgid="8482945356247760701">"Buscar contactos"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Ver contacto"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Más campos"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Cambiar foto"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Error al abrir el editor."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Se guarda en"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Se guardará en"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Actualmente los contactos se guardan en <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Toca dos veces para seleccionar otra cuenta."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="other">Contactos enlazados (<xliff:g id="COUNT">%d</xliff:g>)</item>

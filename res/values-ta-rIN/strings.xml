@@ -63,12 +63,12 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"சேமித்து தொடர்பை அகற்று"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"நீங்கள் ஏற்கனவே செய்த மாற்றங்களைச் சேமித்து, தேர்ந்தெடுத்த தொடர்புடன் இணைக்கவா?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"சேமித்து இணை"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"இணைப்பு"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"இணை"</string>
     <string name="menu_save" msgid="1727844363591825909">"சேமி"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"தொடர்புகளை இணைத்தல்"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> உடன் இணைக்க விரும்பும் தொடர்பைத் தேர்வுசெய்க:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
-    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்பட்ட தொடர்புகள்"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்படும் தொடர்புகள்"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"தொடர்புகள் இணைக்கப்பட்டன"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
@@ -147,7 +147,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"உங்கள் தொடர்புகளின் பெயர்கள்"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"இந்தச் செயலைச் செய்வதற்கான பயன்பாடு எதுவுமில்லை."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"முந்தைய திரைக்குச் செல்ல கிளிக் செய்க"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ஃபோன் எண்ணைச் சேர்க்கவும்"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"மொபைல் எண்ணைச் சேர்க்கவும்"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"மின்னஞ்சலைச் சேர்க்கவும்"</string>
     <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய பயன்பாடு எதுவுமில்லை."</string>
     <string name="menu_share" msgid="943789700636542260">"பகிர்"</string>
@@ -158,7 +158,7 @@
     <string name="video_chat" msgid="1872255818640336072">"வீடியோ அரட்டை"</string>
     <string name="connections" msgid="8098440723172028350">"இணைப்புகள்"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"இணைப்பைச் சேர்"</string>
-    <string name="recent" msgid="2659189233141493004">"சமீபத்தியவை"</string>
+    <string name="recent" msgid="2659189233141493004">"சமீபத்தில்"</string>
     <string name="recent_updates" msgid="4267258535615860710">"சமீபத்திய புதுப்பிப்புகள்"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> தொடர்பு"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> கணக்கு"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"தனிப்பயன்"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"அமைப்பு"</string>
     <string name="menu_settings" msgid="377929915873428211">"அமைப்பு"</string>
-    <string name="menu_help" msgid="1680178646764069976">"உதவி &amp; கருத்துத் தெரிவி"</string>
+    <string name="menu_help" msgid="1680178646764069976">"உதவி &amp; கருத்து"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"திரை விருப்பங்கள்"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"மொபைல் எண்"</string>

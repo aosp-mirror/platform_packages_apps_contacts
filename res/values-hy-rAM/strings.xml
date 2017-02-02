@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Կոնտակտ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Ուղիղ համարհավաքում"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Ուղիղ հաղորդագրություն"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Ընտրել կոնտակտի դյուրանցումը"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Ընտրեք կոնտակտ"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Ընտրել զանգելու համարը"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Ընտրել համարը՝ հաղորդագրելու համար"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Ընտրել SMS-ի համարը"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ավելացնել կոնտակտին"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Ընտրել կոնտակտ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Ստեղծել նոր կոնտակտ"</string>
@@ -38,7 +38,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"Ստեղծել կոնտակտ"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Փոփոխել խումբը"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Ստեղծել խումբ"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Տեղեկատվություն"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Տվյալներ"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Թարմացումները"</string>
     <string name="searchHint" msgid="8482945356247760701">"Կոնտակտների որոնում"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Դիտել կոնտակտը"</string>
@@ -63,7 +63,7 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Պահել և տրոհել"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"Պահե՞լ արդեն իսկ կատարված փոփոխությունները և միակցել ընտրված կոնտակտի հետ:"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Պահել և միակցել"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Միավորել"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Միակցել"</string>
     <string name="menu_save" msgid="1727844363591825909">"Պահել"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Միակցել կոնտակտները"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Ընտրեք կոնտակտը, որը ցանկանում եք միակցել <xliff:g id="NAME">%s</xliff:g>-ի հետ՝"</string>
@@ -87,13 +87,13 @@
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Ջնջե՞լ ընտրված կոնտակտները:"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Ձեր միայն կարդալու հաշիվների կոնտակտները չեն կարող ջնջվել, սակայն կարող են թաքցվել:"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Ջնջվող կոնտակտները պարունակում են տվյալներ մի քանի հաշիվներից: Միայն կարդալու հաշիվների տվյալները կթաքցվեն, սակայն չեն ջնջվի:"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Եթե ջնջեք այս կոնտակտը, կջնջվեն մի քանի հաշիվների տվյալներ:"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Եթե ջնջեք այս կոնտակտը, կջնջվեն տվյալներ մի քանի հաշիվներից։"</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Ջնջե՞լ այս կոնտակտը:"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Ջնջել"</string>
     <string name="menu_discard" msgid="6854657936970228164">"Հրաժարվել փոփոխություններից"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"Կոնտակտը գոյություն չունի:"</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Կոնտակտն ավելացվեց Հիմնական էկրանում:"</string>
-    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> կոնտակտն ավելացվեց Հիմնական էկրանում:"</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"Կոնտակտն ավելացվեց հիմնական էկրանին:"</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> կոնտակտն ավելացվեց հիմնական էկրանին:"</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"Ստեղծել նոր կոնտակտ"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"Ստեղծել նոր կոնտակտ"</string>
   <string-array name="otherLabels">
@@ -103,7 +103,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Պլանշետի վրա հասանելի նկարներ չկան:"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Հեռախոսում մատչելի լուսանկարներ չկան:"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Կոնտակտի լուսանկարը"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Պիտակի հատուկ անունը"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Հատուկ պիտակի անունը"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ուղարկել զանգերը անմիջապես ձայնային փոստին"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Հեռացնել լուսանկարը"</string>
     <string name="noContacts" msgid="4955659076981974652">"Կոնտակտներ չկան"</string>
@@ -113,7 +113,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Փոփոխեք` խմբին անդամ ավելացնելու համար:"</string>
     <string name="savingContact" msgid="4075751076741924939">"Կոնտակտի պահվում է..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Կոնտակտը պահվեց"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Կոնտակտներն անջատվեցին"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Կոնտակտները ապակցվեցին"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Հնարավոր չէ պահել կոնտակտային փոփոխությունները:"</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Չհաջողվեց անջատել կոնտակտը:"</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Չհաջողվեց միակցել կոնտակտները:"</string>
@@ -167,7 +167,7 @@
     <string name="contact_read_only" msgid="7421346527289472273">"Ենթակա չէ փոփոխմանը այս ծրագրից:"</string>
     <string name="group_read_only" msgid="1061762906115697637">"Այս սարքից հնարավոր չէ փոփոխել։"</string>
     <string name="take_photo" msgid="7496128293167402354">"Լուսանկարել"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"Լուսանկարել նորը"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Լուսանկարել"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Ընտրել լուսանկար"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Ընտրել նոր լուսանկար"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Կոնտակտների ցանկը թարմացվում է:"</string>
@@ -223,7 +223,7 @@
     </plurals>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Մուտքագրեք կոնտակտի անունը՝ մեկ ուրիշի հետ միավերլուց առաջ:"</string>
     <string name="copy_text" msgid="3257145021583508761">"Պատճենել սեղմատախտակին"</string>
-    <string name="set_default" msgid="4417505153468300351">"Սահմանել լռելյայն"</string>
+    <string name="set_default" msgid="4417505153468300351">"Սահմանել ըստ կանխադրման"</string>
     <string name="clear_default" msgid="7193185801596678067">"Մաքրել լռելյայն"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Տեքսը պատճենված է"</string>
     <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Անտեսե՞լ փոփոխությունները և դադարեցնել խմբագրումը:"</string>
@@ -262,7 +262,7 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"Վաղը՝ <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(Անվերնագիր միջոցառում)"</string>
-    <string name="date_time_set" msgid="4761419824439606690">"Սահմանել"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"Հաստատել"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"Կազմակերպություն"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"Մականուն"</string>
@@ -284,11 +284,11 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"բաց թողնված"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"վերջին զանգը՝ <xliff:g id="CALL_TYPE">%s</xliff:g>, <xliff:g id="PHONE_NUMBER">%s</xliff:g>, <xliff:g id="DATE">%s</xliff:g>, սեղմեք՝ հետ զանգելու համար"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Դուք՝ <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ն ավելի լավ կաշխատի, եթե էլփոստի կամ հեռախոսի դաշտում մուտքագրեք Hangouts-ի օգտվողի նույնացուցիչը:"</string>
+    <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"Hangouts-ն ավելի լավ կաշխատի, եթե էլփոստի կամ հեռախոսի դաշտում մուտքագրեք Hangouts-ի օգտատիրոջ նույնացուցիչը:"</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Լրացուցիչ դաշտեր"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Փոխել լուսանկարը"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Չհաջողվեց բացել խմբագրիչը:"</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Պահվում է հետևյալ հաշվում՝"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Պահվում է այստեղ՝"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Ներկայումս պահվում է <xliff:g id="ACCOUNT_NAME">%s</xliff:g> հաշվում: Կրկնակի հպեք՝ մեկ այլ հաշիվ ընտրելու համար:"</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Կապված կոնտակտներ (<xliff:g id="COUNT">%d</xliff:g>)</item>

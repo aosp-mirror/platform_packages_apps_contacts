@@ -25,8 +25,8 @@
     <string name="shortcutDialContact" msgid="746622101599186779">"Telefon do osoby"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"SMS do osoby"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Wybierz skrót kontaktu"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Wybierz numer, aby nawiązać połączenie"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Wybierz numer, aby wysłać wiadomość"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Wybierz numer"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Wybierz numer"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Dodaj do kontaktu"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Wybierz kontakt"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Utwórz nowy kontakt"</string>
@@ -115,7 +115,7 @@
     <string name="addPeopleToGroup" msgid="7879585947222263516">"Aby dodać członków, zmodyfikuj grupę."</string>
     <string name="savingContact" msgid="4075751076741924939">"Trwa zapisywanie kontaktu..."</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt został zapisany"</string>
-    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakty zostały odłączone"</string>
+    <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakty zostały rozłączone"</string>
     <string name="contactSavedErrorToast" msgid="3207250533172944892">"Nie można zapisać zmian kontaktu."</string>
     <string name="contactUnlinkErrorToast" msgid="2758070702785994171">"Nie udało się odłączyć kontaktu."</string>
     <string name="contactJoinErrorToast" msgid="3977932531264809035">"Nie udało się połączyć kontaktu."</string>
@@ -210,7 +210,7 @@
     <string name="widget_name_and_phonetic" msgid="8739586586600099979">"<xliff:g id="DISPLAY_NAME">%1$s</xliff:g> (<xliff:g id="PHONETIC_NAME">%2$s</xliff:g>)"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"Dodaj rok"</string>
     <string name="social_widget_label" msgid="6378905543028924592">"Kontakt"</string>
-    <string name="social_widget_loading" msgid="5327336597364074608">"Wczytywanie…"</string>
+    <string name="social_widget_loading" msgid="5327336597364074608">"Wczytuję…"</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"Utwórz nowy kontakt"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Dodaj konto"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"Importuj kontakty"</string>

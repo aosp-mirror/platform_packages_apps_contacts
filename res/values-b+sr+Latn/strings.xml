@@ -26,7 +26,7 @@
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Direktna poruka"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"Odaberite prečicu za kontakt"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Odaberite broj za poziv"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Odaberite broj za slanje poruka"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Odaberite broj za SMS"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Dodajte kontaktu"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Izaberite kontakt"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Napravi novi kontakt"</string>
@@ -173,7 +173,7 @@
     <string name="take_photo" msgid="7496128293167402354">"Slikaj"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Slikaj novu sliku"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Izaberi sliku"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"Izaberite novu sliku"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Izaberi novu sliku"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"Kontakt lista se ažurira."</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Pretražuje se..."</string>
     <string name="menu_display_selected" msgid="6470001164297969034">"Prikaži izabrano"</string>
@@ -187,7 +187,7 @@
     <string name="change_photo" msgid="8530597935483526383">"Promeni"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Glavna slika"</string>
     <string name="description_star" msgid="2605854427360036550">"omiljeno"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Izmeni kontakt"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Izmenite kontakt"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Želite li da aktuelni kontakt objedinite sa izabranim kontaktom?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Želite li da prebacite na uređivanje izabranog kontakta? Biće kopirane informacije koje ste uneli do sada."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopiraj u moje kontakte"</string>
@@ -249,7 +249,7 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Novi kontakti će biti sačuvani na nalogu <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izaberite podrazumevani nalog za nove kontakte:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Dodaj novi kontakt"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Izmeni kontakt"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Izmenite kontakt"</string>
     <string name="keep_local" msgid="1258761699192993322">"Zadrži lokalno"</string>
     <string name="add_account" msgid="8201790677994503186">"Dodaj nalog"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Dodaj novi nalog"</string>

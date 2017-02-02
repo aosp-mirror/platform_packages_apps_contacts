@@ -103,7 +103,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"Engar myndir eru tiltækar í spjaldtölvunni."</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"Engar myndir eru tiltækar í símanum."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Mynd tengiliðar"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Sérsniðin merking"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Sérsniðinn flokkur"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Senda símtöl beint í talhólfið"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Fjarlægja mynd"</string>
     <string name="noContacts" msgid="4955659076981974652">"Engir tengiliðir"</string>
@@ -288,7 +288,7 @@
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"Fleiri reitir"</string>
     <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"Skipta um mynd"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"Mistókst að opna ritilinn."</string>
-    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Vistar í"</string>
+    <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"Vista í"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"Vistar núna á <xliff:g id="ACCOUNT_NAME">%s</xliff:g>. Ýttu tvisvar til að velja annan reikning."</string>
     <plurals name="compact_editor_linked_contacts_selector_title" formatted="false" msgid="9156207930915878316">
       <item quantity="one">Tengdir tengiliðir (<xliff:g id="COUNT">%d</xliff:g>)</item>

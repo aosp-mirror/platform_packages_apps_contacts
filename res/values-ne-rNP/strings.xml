@@ -22,11 +22,11 @@
     <string name="editContactActivityLabel" msgid="1129944572070802839">"सम्पर्क सम्पादन गर्नुहोस्"</string>
     <string name="contactsList" msgid="8661624236494819731">"सम्पर्क"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ठेगाना"</string>
-    <string name="shortcutDialContact" msgid="746622101599186779">"सिधा डायल गर्नुहोस्"</string>
-    <string name="shortcutMessageContact" msgid="2460337253595976198">"सिधा सन्देश"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"सम्पर्क सर्टकट छान्नुहोस्"</string>
+    <string name="shortcutDialContact" msgid="746622101599186779">"सीधा डायल गर्नुहोस्"</string>
+    <string name="shortcutMessageContact" msgid="2460337253595976198">"सीधा सन्देश"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"सम्पर्कको सर्टकट छान्नुहोस्"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"कल गर्नका लागि एउटा नम्बर छान्नुहोस्"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"सन्देश पठाउनका लागि एउटा नम्बर छान्नुहोस्"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"सन्देश पठाउन नम्बर छान्नुहोस्"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"सम्पर्कमा थप्नुहोस्"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"एउटा सम्पर्क छान्नुहोस्"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"नयाँ सम्पर्क सिर्जना गर्नुहोस्"</string>
@@ -57,9 +57,9 @@
     <string name="menu_deleteGroup" msgid="3486380004411482874">"मेट्नुहोस्"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"सम्पर्क थप्नुहोस्"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"समूह थप्नुहोस्"</string>
-    <string name="splitConfirmation" msgid="7342030840130187290">"यस सम्पर्क बहु सम्पर्कमा अनलिंक गर्न चाहनुहुन्छ?"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"यस सम्पर्कलाई बहु सम्पर्कमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"अनलिकं गर्नुहोस्"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्क बहु सम्पर्कहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्कलाई बहु सम्पर्कहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"सुरक्षित गरी अनलिकं गर्नुहोस्"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"तपाईँले पहिलेनै गरिएका परिवर्तनहरूलाई तपाईँले चयन गरेका सम्पर्क ठेगाना सँग सुरक्षित गरी लिंक गर्न चाहनुहुन्छ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"सुरक्षित गर्नुहोस् र लिंक गर्नुहोस्"</string>
@@ -103,7 +103,7 @@
     <string name="photoPickerNotFoundText" product="tablet" msgid="6247290728908599701">"ट्याब्लेटमा कुनै पनि तस्वीरहरू उपलव्ध छैनन्।"</string>
     <string name="photoPickerNotFoundText" product="default" msgid="431331662154342581">"कुनै पनि चित्रहरू फोनमा उपलब्ध छैनन्।"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"सम्पर्क तस्बिर"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"कस्टम लेबल नाम"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"आफू अनुकूल पारिएको लेबलको नाम"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"कलहरू सिधै भ्वाइसमेलमा पठाउनुहोस्"</string>
     <string name="removePhoto" msgid="4898105274130284565">"तस्बिर मेट्नुहोस्"</string>
     <string name="noContacts" msgid="4955659076981974652">"कुनै सम्पर्कहरू छैन।"</string>
@@ -189,7 +189,7 @@
     <string name="menu_copyContact" msgid="1573960845106822639">"मेरा सम्पर्कहरूमा प्रतिलिपि गर्नुहोस्"</string>
     <string name="add_to_my_contacts" msgid="1068274916793627723">"मेरो सम्पर्कहरूमा थप्नुहोस्"</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका<xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="list_filter_custom" msgid="8910173055702057002">"अनुकूलन"</string>
+    <string name="list_filter_custom" msgid="8910173055702057002">"आफू अनुकूल"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिङहरू"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिङहरू"</string>
     <string name="menu_help" msgid="1680178646764069976">"मद्दत &amp; प्रतिक्रिया"</string>
@@ -278,7 +278,7 @@
     <string name="content_description_expand_editor" msgid="1111381475901897470">"सम्पर्क सम्पादक विस्तार गर्न क्लिक गर्नुहोस्।"</string>
     <string name="content_description_collapse_editor" msgid="7598061318022977825">"सम्पर्क सम्पादक समाप्त गर्न क्लिक गर्नुहोस्।"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"स्थानको लागि निर्देशनहरू"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"हालैको एसएमएस। <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. प्रतिक्रियाको लागि क्लिक गर्नुहोस्"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"हालैको SMS। <xliff:g id="MESSAGE_BODY">%s</xliff:g>. <xliff:g id="PHONE_NUMBER">%s</xliff:g>. <xliff:g id="DATE">%s</xliff:g>. प्रतिक्रियाको लागि क्लिक गर्नुहोस्"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"आगमन"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"बहिर्गमन"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"छुटेको"</string>
@@ -327,5 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"अज्ञात खाताको तस्बिर जाँच गरिएन"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"अज्ञात खाताको तस्बिर जाँच गरियो"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"भाषा परिवर्तन प्रतिविम्ब गराउन सम्पर्क सूची अद्यावधिक भइरहेको छ। \n \n कृपया प्रतीक्षा गर्नुहोस्..."</string>
-    <string name="menu_blocked_numbers" msgid="5272951629083025995">"रोकिएका नम्बरहरू"</string>
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"रोक लगाइएका नम्बरहरू"</string>
 </resources>

@@ -167,7 +167,7 @@
     <string name="contact_read_only" msgid="7421346527289472273">"इस ऐप्स  द्वारा संपादन-योग्‍य नहीं."</string>
     <string name="group_read_only" msgid="1061762906115697637">"इस डिवाइस पर संपादन योग्‍य नहीं."</string>
     <string name="take_photo" msgid="7496128293167402354">"फ़ोटो लें"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"नया फ़ोटो लें"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"नई फ़ोटो लें"</string>
     <string name="pick_photo" msgid="2129509985223564942">"फ़ोटो चुनें"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"नई फ़ोटो चुनें"</string>
     <string name="upgrade_in_progress" msgid="474511436863451061">"संपर्क सूची से नई जानकारी मिल रही है."</string>
@@ -261,14 +261,14 @@
     <string name="today_at_time_fmt" msgid="605665249491030460">"आज <xliff:g id="TIME_INTERVAL">%s</xliff:g> बजे"</string>
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"कल <xliff:g id="TIME_INTERVAL">%s</xliff:g> बजे"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
-    <string name="untitled_event" msgid="3484859385405939366">"(शीर्षक रहित ईवेंट)"</string>
+    <string name="untitled_event" msgid="3484859385405939366">"(शीर्षक रहित इवेंट)"</string>
     <string name="date_time_set" msgid="4761419824439606690">"सेट करें"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"संगठन का नाम"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"उपनाम"</string>
     <string name="header_note_entry" msgid="4320190426480612344">"नोट"</string>
     <string name="header_website_entry" msgid="1411467850000824745">"वेबसाइट"</string>
-    <string name="header_event_entry" msgid="6738250422744401460">"ईवेंट"</string>
+    <string name="header_event_entry" msgid="6738250422744401460">"इवेंट"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"संबंध"</string>
     <string name="header_account_entry" msgid="2684318506427891827">"खाता"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"नाम"</string>

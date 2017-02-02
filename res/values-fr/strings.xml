@@ -24,9 +24,9 @@
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Raccourci appel"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Raccourci message"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisissez un contact pour le raccourci"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Choisissez un contact"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Choisissez le numéro à appeler"</string>
-    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez le numéro auquel envoyer le message"</string>
+    <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Choisissez un numéro"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Ajouter au contact"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Sélectionner un contact"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Créer un contact"</string>

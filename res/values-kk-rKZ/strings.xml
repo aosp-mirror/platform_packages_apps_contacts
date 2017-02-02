@@ -38,7 +38,7 @@
     <string name="insertContactDescription" msgid="4709878105452681987">"Контакт жасақтау"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Топты жөндеу"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Топ жасақтау"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"Туралы"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"Контакт:"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"Жаңартулар"</string>
     <string name="searchHint" msgid="8482945356247760701">"Контактілерді іздеу"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"Контактіні көру"</string>
