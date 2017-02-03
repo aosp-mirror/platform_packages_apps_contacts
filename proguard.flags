@@ -1,4 +1,4 @@
--ignorewarnings
+-useuniqueclassmembernames
 
 -keep class com.android.contacts.model.Sources {
   public <init>(...);
@@ -101,12 +101,10 @@
 -keep class com.google.common.base.Functions { *; }
 -keep class com.google.common.base.Objects { *; }
 -keep class com.google.common.base.Preconditions { *; }
--keep class com.google.common.collect.ImmutableMap { *; }
--keep class com.google.common.collect.ImmutableSet { *; }
--keep class com.google.common.collect.Lists { *; }
--keep class com.google.common.collect.Maps { *; }
--keep class com.google.common.collect.Multimap { *; }
--keep class com.google.common.collect.Sets { *; }
+-keep class com.google.common.collect.** { *; }
+-keep class com.google.common.util.concurrent.** { *; }
+
+-keep class com.android.common.widget.CompositeCursorAdapter { *; }
 
 # Any class or method annotated with NeededForReflection.
 -keep @com.android.contacts.test.NeededForReflection class *
