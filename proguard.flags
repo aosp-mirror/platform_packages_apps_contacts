@@ -1,5 +1,7 @@
 -useuniqueclassmembernames
 
+-keep class * implements android.os.Parcelable { *; }
+
 -keep class com.android.contacts.model.Sources {
   public <init>(...);
 }
