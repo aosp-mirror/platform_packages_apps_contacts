@@ -130,7 +130,7 @@ public class DrawerAdapter extends BaseAdapter {
         mItemsList.add(mStatusBarSpacerItem);
         mItemsList.add(mNavSpacerItem);
         mItemsList.addAll(mPrimaryItems);
-        if (mAreGroupWritableAccountsAvailable) {
+        if (mAreGroupWritableAccountsAvailable || !mGroupEntries.isEmpty()) {
             mItemsList.add(mGroupHeader);
         }
         mItemsList.addAll(mGroupEntries);
