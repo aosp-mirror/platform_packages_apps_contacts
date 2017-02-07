@@ -170,7 +170,7 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestPermissionsActivity.startPermissionActivityIfNeeded(this)) {
             return;
         }
 

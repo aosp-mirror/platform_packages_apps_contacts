@@ -71,7 +71,6 @@ import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Intents;
 import android.provider.ContactsContract.QuickContact;
 import android.provider.ContactsContract.RawContacts;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.content.res.ResourcesCompat;
@@ -719,7 +718,7 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.beginSection("onCreate()");
         super.onCreate(savedInstanceState);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestPermissionsActivity.startPermissionActivityIfNeeded(this)) {
             return;
         }
 

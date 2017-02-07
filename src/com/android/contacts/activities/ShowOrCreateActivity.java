@@ -87,7 +87,7 @@ public final class ShowOrCreateActivity extends ContactsActivity
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestPermissionsActivity.startPermissionActivityIfNeeded(this)) {
             return;
         }
 

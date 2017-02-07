@@ -349,9 +349,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mAccountTypeManager = AccountTypeManager.getInstance(this);
         mContactListFilterController = ContactListFilterController.getInstance(this);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
-            return;
-        }
+        RequestPermissionsActivity.startPermissionActivityIfNeeded(this);
 
         if (!processIntent(false)) {
             finish();
