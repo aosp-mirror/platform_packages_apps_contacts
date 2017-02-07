@@ -178,13 +178,10 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             uri = ContactListAdapter.buildSectionIndexerUri(uri);
         }
 
-        // The "All accounts" filter is the same as the entire contents of Directory.DEFAULT
         if (filter != null
                 && filter.filterType != ContactListFilter.FILTER_TYPE_CUSTOM
                 && filter.filterType != ContactListFilter.FILTER_TYPE_SINGLE_CONTACT) {
             final Uri.Builder builder = uri.buildUpon();
-            builder.appendQueryParameter(
-                    ContactsContract.DIRECTORY_PARAM_KEY, String.valueOf(Directory.DEFAULT));
             if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT
                 || filter.filterType == ContactListFilter.FILTER_TYPE_GROUP_MEMBERS) {
                 filter.addAccountQueryParameterToUrl(builder);
