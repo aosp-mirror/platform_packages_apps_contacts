@@ -223,7 +223,7 @@
     <string name="header_email_entry" msgid="8666093061171624478">"इमेल"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"फोन"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"स्थानको लागि निर्देशनहरू"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"हालैको एसएमएस। <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. प्रतिक्रियाको लागि क्लिक गर्नुहोस्"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"हालैको SMS। <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. प्रतिक्रियाको लागि क्लिक गर्नुहोस्"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"आगमन"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"बहिर्गमन"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"छुटेको"</string>
