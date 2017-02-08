@@ -84,7 +84,7 @@ public class ContactEditorSpringBoardActivity extends AppCompatContactsActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestPermissionsActivity.startPermissionActivityIfNeeded(this)) {
             return;
         }
 

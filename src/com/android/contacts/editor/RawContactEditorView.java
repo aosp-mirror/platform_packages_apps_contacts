@@ -58,8 +58,6 @@ import com.android.contacts.model.RawContactDelta;
 import com.android.contacts.model.RawContactDeltaList;
 import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.ValuesDelta;
-import com.android.contacts.model.account.AccountDisplayInfo;
-import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
@@ -72,7 +70,6 @@ import com.android.contacts.util.UiClosables;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -380,7 +377,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
      * Get the raw contact ID for the current photo.
      */
     public long getPhotoRawContactId() {
-        return mCurrentRawContactDelta.getRawContactId();
+        return mCurrentRawContactDelta == null ? - 1 : mCurrentRawContactDelta.getRawContactId();
     }
 
     public StructuredNameEditorView getNameEditorView() {
@@ -464,6 +461,11 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             return;
         }
         pickRawContactDelta();
+        if (mCurrentRawContactDelta == null) {
+            elog("Couldn't pick a raw contact delta.");
+            if (mListener != null) mListener.onBindEditorsFailed();
+            return;
+        }
         // Apply any intent extras now that we have selected a raw contact delta.
         applyIntentExtras();
         parseRawContactDelta();

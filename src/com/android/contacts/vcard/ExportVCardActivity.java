@@ -76,7 +76,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        if (RequestImportVCardPermissionsActivity.startPermissionActivity(this)) {
+        if (RequestImportVCardPermissionsActivity.startPermissionActivityIfNeeded(this)) {
             return;
         }
 

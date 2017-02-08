@@ -44,9 +44,7 @@ public class NonPhoneActivity extends ContactsActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
-            return;
-        }
+        RequestPermissionsActivity.startPermissionActivityIfNeeded(this);
 
         final String phoneNumber = getPhoneNumber();
         if (TextUtils.isEmpty(phoneNumber)) {

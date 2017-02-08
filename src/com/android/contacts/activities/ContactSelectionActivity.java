@@ -107,9 +107,7 @@ public class ContactSelectionActivity extends AppCompatContactsActivity implemen
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
-            return;
-        }
+        RequestPermissionsActivity.startPermissionActivityIfNeeded(this);
 
         if (savedState != null) {
             mActionCode = savedState.getInt(KEY_ACTION_CODE);

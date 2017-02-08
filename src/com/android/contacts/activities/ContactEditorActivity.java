@@ -314,9 +314,7 @@ public class ContactEditorActivity extends AppCompatContactsActivity implements
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
-        if (RequestPermissionsActivity.startPermissionActivity(this)) {
-            return;
-        }
+        RequestPermissionsActivity.startPermissionActivityIfNeeded(this);
 
         final Intent intent = getIntent();
         final String action = intent.getAction();
