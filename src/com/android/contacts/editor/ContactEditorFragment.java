@@ -57,7 +57,6 @@ import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
 import com.android.contacts.ContactSaveService;
-import com.android.contacts.Experiments;
 import com.android.contacts.GroupMetaDataLoader;
 import com.android.contacts.R;
 import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
@@ -89,8 +88,7 @@ import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.util.MaterialColorMapUtils;
 import com.android.contacts.util.UiClosables;
 import com.android.contactsbind.HelpUtils;
-import com.android.contactsbind.ObjectFactory;
-import com.android.contactsbind.experiments.Flags;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
@@ -1439,18 +1437,13 @@ public class ContactEditorFragment extends Fragment implements
         }
         switch (saveMode) {
             case SaveMode.CLOSE: {
-                Intent resultIntent = null;
+                final Intent resultIntent;
                 if (saveSucceeded && contactLookupUri != null) {
                     final Uri lookupUri = ContactEditorUtils.maybeConvertToLegacyLookupUri(
                             mContext, contactLookupUri, mLookupUri);
-                    if (Flags.getInstance().getBoolean(Experiments.CONTACT_SHEET)) {
-                        resultIntent = ObjectFactory.getContactSheetIntent(mContext, lookupUri);
-                    }
-                    if (resultIntent == null) {
-                        resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(
-                                mContext, lookupUri, ScreenType.EDITOR);
-                        resultIntent.putExtra(QuickContactActivity.EXTRA_CONTACT_EDITED, true);
-                    }
+                    resultIntent = ImplicitIntentsUtil.composeQuickContactIntent(
+                            mContext, lookupUri, ScreenType.EDITOR);
+                    resultIntent.putExtra(QuickContactActivity.EXTRA_CONTACT_EDITED, true);
                 } else {
                     resultIntent = null;
                 }

@@ -20,11 +20,6 @@ package com.android.contacts;
  */
 public final class Experiments {
     /**
-     * Whether to open contact sheet (aka smart profile) instead of our own QuickContact.
-     */
-    public static final String CONTACT_SHEET = "QuickContact__contact_sheet";
-
-    /**
      * Flags for maximum content update time
      */
     public static final String DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS =

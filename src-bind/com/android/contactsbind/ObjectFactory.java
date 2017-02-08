@@ -15,7 +15,6 @@ package com.android.contactsbind;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 
 import com.android.contacts.logging.Logger;
@@ -35,10 +34,6 @@ public class ObjectFactory {
     }
 
     public static Fragment getAssistantFragment() {
-        return null;
-    }
-
-    public static Intent getContactSheetIntent(Context context, Uri contactLookupUri) {
         return null;
     }
 
