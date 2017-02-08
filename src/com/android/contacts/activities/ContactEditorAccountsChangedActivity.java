@@ -192,8 +192,7 @@ public class ContactEditorAccountsChangedActivity extends Activity
                 public void onClick(View v) {
                     // Remember that the user wants to create local contacts, so the user is not
                     // prompted again with this activity.
-                    mEditorUtils.saveDefaultAccount(AccountWithDataSet.getNullAccount());
-                    setResult(RESULT_OK);
+                    saveAccountAndReturnResult(AccountWithDataSet.getNullAccount());
                     finish();
                 }
             });
