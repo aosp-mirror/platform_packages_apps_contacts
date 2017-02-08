@@ -63,6 +63,7 @@ import com.android.contacts.activities.ContactEditorAccountsChangedActivity;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactEditorActivity.ContactEditor;
 import com.android.contacts.activities.ContactSelectionActivity;
+import com.android.contacts.activities.RequestPermissionsActivity;
 import com.android.contacts.editor.AggregationSuggestionEngine.Suggestion;
 import com.android.contacts.group.GroupUtil;
 import com.android.contacts.list.UiIntentActions;
@@ -1308,7 +1309,8 @@ public class ContactEditorFragment extends Fragment implements
             }
             return false;
         }
-        return true;
+        // Don't attempt to bind anything if we have no permissions.
+        return RequestPermissionsActivity.hasRequiredPermissions(mContext);
     }
 
     /**

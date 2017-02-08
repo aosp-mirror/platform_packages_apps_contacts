@@ -18,6 +18,7 @@ package com.android.contacts.activities;
 
 import android.Manifest.permission;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.content.LocalBroadcastManager;
@@ -42,7 +43,14 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
         return getPermissions(getPackageManager());
     }
 
-    public static boolean startPermissionActivity(Activity activity) {
+    /**
+     * Method to check if the required permissions are given.
+     */
+    public static boolean hasRequiredPermissions(Context context) {
+        return hasPermissions(context, getPermissions(context.getPackageManager()));
+    }
+
+    public static boolean startPermissionActivityIfNeeded(Activity activity) {
         return startPermissionActivity(activity,
                 getPermissions(activity.getPackageManager()),
                 RequestPermissionsActivity.class);
