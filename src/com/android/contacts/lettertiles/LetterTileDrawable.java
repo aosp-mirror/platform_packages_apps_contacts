@@ -31,7 +31,7 @@ import android.text.TextUtils;
 
 import com.android.contacts.R;
 
-import junit.framework.Assert;
+import com.google.common.base.Preconditions;
 
 /**
  * A drawable that encapsulates all the functionality needed to display a letter tile to
@@ -248,7 +248,7 @@ public class LetterTileDrawable extends Drawable {
      * The default is 0.0f.
      */
     public LetterTileDrawable setOffset(float offset) {
-        Assert.assertTrue(offset >= -0.5f && offset <= 0.5f);
+        Preconditions.checkArgument(offset >= -0.5f && offset <= 0.5f);
         mOffset = offset;
         return this;
     }
