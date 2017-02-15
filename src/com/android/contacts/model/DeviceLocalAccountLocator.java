@@ -51,7 +51,7 @@ public abstract class DeviceLocalAccountLocator {
 
     public static DeviceLocalAccountLocator create(Context context,
             Set<String> knownAccountTypes) {
-        if (Flags.getInstance().getBoolean(Experiments.OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
+        if (Flags.getInstance().getBoolean(Experiments.CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
             return new Cp2DeviceLocalAccountLocator(context.getContentResolver(),
                     ObjectFactory.getDeviceLocalAccountTypeFactory(context), knownAccountTypes);
         }
@@ -65,7 +65,7 @@ public abstract class DeviceLocalAccountLocator {
         for (Account account : accountManager.getAccounts()) {
             knownTypes.add(account.type);
         }
-        if (Flags.getInstance().getBoolean(Experiments.OEM_CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
+        if (Flags.getInstance().getBoolean(Experiments.CP2_DEVICE_ACCOUNT_DETECTION_ENABLED)) {
             return new Cp2DeviceLocalAccountLocator(context.getContentResolver(),
                     ObjectFactory.getDeviceLocalAccountTypeFactory(context), knownTypes);
         } else {
