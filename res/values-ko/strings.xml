@@ -93,8 +93,8 @@
     <string name="deleteConfirmation" msgid="3512271779086656043">"이 연락처를 삭제하시겠습니까?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"삭제"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"연락처가 없습니다."</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"연락처가 메인 스크린에 추가되었습니다."</string>
-    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>님이 메인 스크린에 추가되었습니다."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"연락처가 홈 화면에 추가되었습니다."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>님이 홈 화면에 추가되었습니다."</string>
     <string name="photoPickerNotFoundText" msgid="2052542573853433204">"기기에 사진이 없습니다."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"연락처 사진"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"라벨 이름 맞춤 설정"</string>
