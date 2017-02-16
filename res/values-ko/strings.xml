@@ -92,8 +92,8 @@
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"삭제"</string>
     <string name="menu_discard" msgid="6854657936970228164">"변경사항 삭제"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"연락처가 없습니다."</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"연락처가 메인 스크린에 추가되었습니다."</string>
-    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>님이 메인 스크린에 추가되었습니다."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"연락처가 홈 화면에 추가되었습니다."</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g>님이 홈 화면에 추가되었습니다."</string>
     <string name="pickerNewContactHeader" msgid="7750705279843568147">"새 연락처 만들기"</string>
     <string name="pickerNewContactText" msgid="6166997164401048211">"새 연락처 만들기"</string>
   <string-array name="otherLabels">
