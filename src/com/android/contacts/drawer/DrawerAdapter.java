@@ -336,8 +336,8 @@ public class DrawerAdapter extends BaseAdapter {
     }
 
     private void notifyChangeAndRebuildList() {
-        notifyDataSetChanged();
         rebuildItemsList();
+        notifyDataSetChanged();
     }
 
     public void setSelectedContactsView(ContactsView contactsView) {
