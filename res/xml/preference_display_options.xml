@@ -49,6 +49,12 @@
         android:title="@string/display_options_view_names_as"
         android:dialogTitle="@string/display_options_view_names_as" />
 
+    <com.android.contacts.preference.PhoneticNameDisplayPreference
+        android:icon="@null"
+        android:key="phoneticNameDisplay"
+        android:title="@string/display_options_phonetic_name_fields"
+        android:dialogTitle="@string/display_options_phonetic_name_fields"/>
+
     <Preference
         android:icon="@null"
         android:key="import"

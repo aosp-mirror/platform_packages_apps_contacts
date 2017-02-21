@@ -36,6 +36,7 @@ import com.android.contacts.model.RawContactModifier;
 import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.preference.ContactsPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -348,8 +349,7 @@ public class KindSectionView extends LinearLayout {
                     nameValuesDelta, rawContactDelta.getRawContactId(), mListener));
         }
         nameView.setDeletable(false);
-        nameView.setValues(
-                accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_NAME),
+        nameView.setValues(accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_NAME),
                 nameValuesDelta, rawContactDelta, /* readOnly =*/ false, mViewIdGenerator);
 
         // Correct start margin since there is a second icon in the structured name layout
@@ -376,6 +376,8 @@ public class KindSectionView extends LinearLayout {
         layoutParams.setMargins(0, 0, 0, 0);
         phoneticNameView.setLayoutParams(layoutParams);
         mEditors.addView(phoneticNameView);
+        // Display of phonetic name fields is controlled from settings preferences.
+        mHideIfEmpty = new ContactsPreferences(getContext()).shouldHidePhoneticNamesIfEmpty();
     }
 
     private void addGroupEditorView(RawContactDelta rawContactDelta, DataKind dataKind) {

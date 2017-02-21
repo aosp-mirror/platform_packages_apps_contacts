@@ -43,6 +43,9 @@
     <!-- If true, the default sort order is primary (i.e. by given name) -->
     <bool name="config_default_display_order_primary">true</bool>
 
+    <!-- If true, phonetic name fields are not visible when empty -->
+    <bool name="config_default_hide_phonetic_name_if_empty">true</bool>
+
     <!-- If true, the order of name fields in the editor is primary (i.e. given name first) -->
     <bool name="config_editor_field_order_primary">true</bool>
 

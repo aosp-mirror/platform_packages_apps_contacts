@@ -1318,6 +1318,17 @@
     <!-- Label of the "sort by" display option -->
     <string name="display_options_sort_list_by">Sort by</string>
 
+    <!-- Label of the "phonetic name fields" display option. [CHAR LIMIT=50] -->
+    <string name="display_options_phonetic_name_fields">Phonetic name</string>
+
+    <!-- Option to initially show the phonetic name input fields on the contact editor even if the
+    contact does not have a phonetic name. [CHAR LIMIT=25]  -->
+    <string name="editor_options_always_show_phonetic_names">Always show</string>
+
+    <!-- Option to initially hide the phonetic name input fields on the contact editor if the
+    contact being edited doesn't have a phonetic name. [CHAR LIMIT=25]  -->
+    <string name="editor_options_hide_phonetic_names_if_empty">Hide if empty</string>
+
     <!-- An allowable value for the "sort list by" contact display option  -->
     <string name="display_options_sort_by_given_name">First name</string>
 
