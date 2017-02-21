@@ -14,6 +14,10 @@
      limitations under the License.
 -->
 <resources>
+    <!-- Copied from java/com/google/android/assets/launchscreens/res/values-land/dimens.xml -->
+    <!-- Adjusted higher to deal with the smaller total height we have to deal with on phones -->
+    <dimen name="launchscreens_product_logo_bottom">48dp</dimen>
+
     <dimen name="editor_type_label_width">120dip</dimen>
 
     <!-- Top padding for the image for empty group view-->
