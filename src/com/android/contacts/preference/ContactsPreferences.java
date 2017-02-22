@@ -69,6 +69,8 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
 
     public static final boolean PREF_DISPLAY_ONLY_PHONES_DEFAULT = false;
 
+    public static final String PHONETIC_NAME_DISPLAY_KEY = "Phonetic_name_display";
+
     /**
      * Value to use when a preference is unassigned and needs to be read from the shared preferences
      */
@@ -77,6 +79,8 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     private final Context mContext;
     private int mSortOrder = PREFERENCE_UNASSIGNED;
     private int mDisplayOrder = PREFERENCE_UNASSIGNED;
+    private int mPhoneticNameDisplayPreference = PREFERENCE_UNASSIGNED;
+
     private AccountWithDataSet mDefaultAccount = null;
     private ChangeListener mListener = null;
     private Handler mHandler;
@@ -163,6 +167,34 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         editor.putInt(DISPLAY_ORDER_KEY, displayOrder);
         editor.commit();
         mBackupManager.dataChanged();
+    }
+
+    public int getDefaultPhoneticNameDisplayPreference() {
+        if (mContext.getResources().getBoolean(R.bool.config_default_hide_phonetic_name_if_empty)) {
+            return PhoneticNameDisplayPreference.HIDE_IF_EMPTY;
+        } else {
+            return PhoneticNameDisplayPreference.SHOW_ALWAYS;
+        }
+    }
+
+    public void setPhoneticNameDisplayPreference(int phoneticNameDisplayPreference) {
+        mPhoneticNameDisplayPreference = phoneticNameDisplayPreference;
+        final Editor editor = mPreferences.edit();
+        editor.putInt(PHONETIC_NAME_DISPLAY_KEY, phoneticNameDisplayPreference);
+        editor.commit();
+        mBackupManager.dataChanged();
+    }
+
+    public int getPhoneticNameDisplayPreference() {
+        if (mPhoneticNameDisplayPreference == PREFERENCE_UNASSIGNED) {
+            mPhoneticNameDisplayPreference = mPreferences.getInt(PHONETIC_NAME_DISPLAY_KEY,
+                    getDefaultPhoneticNameDisplayPreference());
+        }
+        return mPhoneticNameDisplayPreference;
+    }
+
+    public boolean shouldHidePhoneticNamesIfEmpty() {
+        return getPhoneticNameDisplayPreference() == PhoneticNameDisplayPreference.HIDE_IF_EMPTY;
     }
 
     public boolean isDefaultAccountUserChangeable() {
@@ -324,6 +356,16 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
             } catch (SettingNotFoundException e) {
             }
             setDisplayOrder(displayOrder);
+        }
+
+        if (!mPreferences.contains(PHONETIC_NAME_DISPLAY_KEY)) {
+            int phoneticNameFieldsDisplay = getDefaultPhoneticNameDisplayPreference();
+            try {
+                phoneticNameFieldsDisplay = Settings.System.getInt(mContext.getContentResolver(),
+                        PHONETIC_NAME_DISPLAY_KEY);
+            } catch (SettingNotFoundException e) {
+            }
+            setPhoneticNameDisplayPreference(phoneticNameFieldsDisplay);
         }
 
         if (!mPreferences.contains(mDefaultAccountKey)) {
