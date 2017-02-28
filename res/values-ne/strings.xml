@@ -447,6 +447,9 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"आयात गर्दै <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> / <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> : <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf फाइलमा निर्यात गर्ने"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"यस आधारमा क्रमबद्ध गर्नुहोस्"</string>
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"ध्वनितात्त्विक नाम"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"सधैँ देखाउनुहोस्"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"खाली छ भने लुकाउनुहोस्"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"पहिलो नाम"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"थर"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"नामको ढाँचा"</string>
