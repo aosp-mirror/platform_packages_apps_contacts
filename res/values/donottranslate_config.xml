@@ -43,6 +43,9 @@
     <!-- If true, the default sort order is primary (i.e. by given name) -->
     <bool name="config_default_display_order_primary">true</bool>
 
+    <!-- If true, an option is shown in Display Options UI to choose a phonetic name display preference -->
+    <bool name="config_phonetic_name_display_user_changeable">true</bool>
+
     <!-- If true, phonetic name fields are not visible when empty -->
     <bool name="config_default_hide_phonetic_name_if_empty">true</bool>
 

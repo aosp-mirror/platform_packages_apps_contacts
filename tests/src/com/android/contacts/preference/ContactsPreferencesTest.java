@@ -61,6 +61,8 @@ public class ContactsPreferencesTest extends InstrumentationTestCase {
                 .thenReturn(true);
         Mockito.when(mSharedPreferences.contains(ContactsPreferences.DISPLAY_ORDER_KEY))
                 .thenReturn(true);
+        Mockito.when(mSharedPreferences.contains(ContactsPreferences.PHONETIC_NAME_DISPLAY_KEY))
+                .thenReturn(true);
 
         InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
             @Override
@@ -106,6 +108,43 @@ public class ContactsPreferencesTest extends InstrumentationTestCase {
                 Mockito.anyInt())).thenReturn(ContactsPreferences.DISPLAY_ORDER_PRIMARY);
         Assert.assertEquals(ContactsPreferences.DISPLAY_ORDER_PRIMARY,
                 mContactsPreferences.getDisplayOrder());
+    }
+
+    public void testGetPhoneticNameDisplayDefault() {
+        Mockito.when(mResources.getBoolean(Mockito.anyInt())).thenReturn(
+                false, // R.bool.config_phonetic_name_display_user_changeable
+                true // R.bool.config_default_hide_phonetic_name_if_empty
+        );
+        Assert.assertEquals(PhoneticNameDisplayPreference.HIDE_IF_EMPTY,
+                mContactsPreferences.getPhoneticNameDisplayPreference());
+    }
+
+    public void testGetPhoneticNameDisplay() {
+        Mockito.when(mResources.getBoolean(Mockito.anyInt())).thenReturn(
+                true // R.bool.config_phonetic_name_display_user_changeable
+        );
+        Mockito.when(mSharedPreferences.getInt(
+                Mockito.eq(ContactsPreferences.PHONETIC_NAME_DISPLAY_KEY),
+                Mockito.anyInt())).thenReturn(PhoneticNameDisplayPreference.HIDE_IF_EMPTY);
+        Assert.assertEquals(PhoneticNameDisplayPreference.HIDE_IF_EMPTY,
+                mContactsPreferences.getPhoneticNameDisplayPreference());
+    }
+
+    public void testRefreshPhoneticNameDisplay() throws InterruptedException {
+        Mockito.when(mResources.getBoolean(Mockito.anyInt())).thenReturn(
+                true // R.bool.config_phonetic_name_display_user_changeable
+        );
+        Mockito.when(mSharedPreferences.getInt(
+                Mockito.eq(ContactsPreferences.PHONETIC_NAME_DISPLAY_KEY),
+                Mockito.anyInt())).thenReturn(PhoneticNameDisplayPreference.HIDE_IF_EMPTY,
+                PhoneticNameDisplayPreference.SHOW_ALWAYS);
+
+        Assert.assertEquals(PhoneticNameDisplayPreference.HIDE_IF_EMPTY,
+                mContactsPreferences.getPhoneticNameDisplayPreference());
+        mContactsPreferences.refreshValue(ContactsPreferences.PHONETIC_NAME_DISPLAY_KEY);
+
+        Assert.assertEquals(PhoneticNameDisplayPreference.SHOW_ALWAYS,
+                mContactsPreferences.getPhoneticNameDisplayPreference());
     }
 
     public void testRefreshSortOrder() throws InterruptedException {
