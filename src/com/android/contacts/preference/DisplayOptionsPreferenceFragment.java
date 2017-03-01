@@ -83,6 +83,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final String KEY_EXPORT = "export";
     private static final String KEY_MY_INFO = "myInfo";
     private static final String KEY_SORT_ORDER = "sortOrder";
+    private static final String KEY_PHONETIC_NAME_DISPLAY = "phoneticNameDisplay";
 
     private static final int LOADER_PROFILE = 0;
     private static final int LOADER_ACCOUNTS = 1;
@@ -267,6 +268,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         final Resources resources = getResources();
         if (!resources.getBoolean(R.bool.config_sort_order_user_changeable)) {
             getPreferenceScreen().removePreference(findPreference(KEY_SORT_ORDER));
+        }
+
+        if (!resources.getBoolean(R.bool.config_phonetic_name_display_user_changeable)) {
+            getPreferenceScreen().removePreference(findPreference(KEY_PHONETIC_NAME_DISPLAY));
         }
 
         if (HelpUtils.isHelpAndFeedbackAvailable()) {

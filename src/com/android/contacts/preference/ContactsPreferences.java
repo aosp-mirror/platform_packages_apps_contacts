@@ -177,6 +177,11 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         }
     }
 
+    public boolean isPhoneticNameDisplayPreferenceChangeable() {
+        return mContext.getResources().getBoolean(
+                R.bool.config_phonetic_name_display_user_changeable);
+    }
+
     public void setPhoneticNameDisplayPreference(int phoneticNameDisplayPreference) {
         mPhoneticNameDisplayPreference = phoneticNameDisplayPreference;
         final Editor editor = mPreferences.edit();
@@ -186,6 +191,9 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
     }
 
     public int getPhoneticNameDisplayPreference() {
+        if (!isPhoneticNameDisplayPreferenceChangeable()) {
+            return getDefaultPhoneticNameDisplayPreference();
+        }
         if (mPhoneticNameDisplayPreference == PREFERENCE_UNASSIGNED) {
             mPhoneticNameDisplayPreference = mPreferences.getInt(PHONETIC_NAME_DISPLAY_KEY,
                     getDefaultPhoneticNameDisplayPreference());
@@ -281,6 +289,7 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         // listener was unregistered.
         mDisplayOrder = PREFERENCE_UNASSIGNED;
         mSortOrder = PREFERENCE_UNASSIGNED;
+        mPhoneticNameDisplayPreference = PREFERENCE_UNASSIGNED;
         mDefaultAccount = null;
 
         mPreferences.registerOnSharedPreferenceChangeListener(this);
@@ -319,6 +328,9 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         } else if (SORT_ORDER_KEY.equals(key)) {
             mSortOrder = PREFERENCE_UNASSIGNED;
             mSortOrder = getSortOrder();
+        } else if (PHONETIC_NAME_DISPLAY_KEY.equals(key)) {
+            mPhoneticNameDisplayPreference = PREFERENCE_UNASSIGNED;
+            mPhoneticNameDisplayPreference = getPhoneticNameDisplayPreference();
         } else if (mDefaultAccountKey.equals(key)) {
             mDefaultAccount = null;
             mDefaultAccount = getDefaultAccount();
