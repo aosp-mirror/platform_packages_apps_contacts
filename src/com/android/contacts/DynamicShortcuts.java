@@ -67,7 +67,7 @@ import java.util.List;
  * Currently it adds shortcuts for the top 3 contacts in the {@link Contacts#CONTENT_STREQUENT_URI}
  *
  * Usage: DynamicShortcuts.initialize should be called during Application creation. This will
- * schedule a Job to keep the shortcuts up-to-date so no further interations should be necessary.
+ * schedule a Job to keep the shortcuts up-to-date so no further interactions should be necessary.
  */
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public class DynamicShortcuts {
@@ -289,11 +289,21 @@ public class DynamicShortcuts {
         return builder;
     }
 
+    public ShortcutInfo getQuickContactShortcutInfo(long id, String lookupKey, String displayName) {
+        final ShortcutInfo.Builder builder = builderForContactShortcut(id, lookupKey, displayName);
+        addIconForContact(id, lookupKey, displayName, builder);
+        return builder.build();
+    }
+
     private void addIconForContact(Cursor cursor, ShortcutInfo.Builder builder) {
         final long id = cursor.getLong(0);
         final String lookupKey = cursor.getString(1);
         final String displayName = cursor.getString(2);
+        addIconForContact(id, lookupKey, displayName, builder);
+    }
 
+    private void addIconForContact(long id, String lookupKey, String displayName,
+            ShortcutInfo.Builder builder) {
         final Bitmap bitmap = getContactPhoto(id);
         if (bitmap != null) {
             builder.setIcon(Icon.createWithBitmap(bitmap));
