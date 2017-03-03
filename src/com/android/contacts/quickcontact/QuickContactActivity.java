@@ -35,6 +35,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -74,6 +75,7 @@ import android.provider.ContactsContract.RawContacts;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.os.BuildCompat;
 import android.support.v7.graphics.Palette;
 import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
@@ -2645,22 +2647,32 @@ public class QuickContactActivity extends ContactsActivity {
 
                     @Override
                     public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
-                        // Broadcast the shortcutIntent to the launcher to create a
-                        // shortcut to this contact
-                        shortcutIntent.setAction(ACTION_INSTALL_SHORTCUT);
-                        QuickContactActivity.this.sendBroadcast(shortcutIntent);
-
-                        // Send a toast to give feedback to the user that a shortcut to this
-                        // contact was added to the launcher.
-                        final String displayName = shortcutIntent
-                                .getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
-                        final String toastMessage = TextUtils.isEmpty(displayName)
-                                ? getString(R.string.createContactShortcutSuccessful_NoName)
-                                : getString(R.string.createContactShortcutSuccessful, displayName);
-                        Toast.makeText(QuickContactActivity.this, toastMessage,
-                                Toast.LENGTH_SHORT).show();
+                        if (BuildCompat.isAtLeastO()) {
+                            final ShortcutManager shortcutManager = (ShortcutManager)
+                                    getSystemService(SHORTCUT_SERVICE);
+                            final DynamicShortcuts shortcuts =
+                                    new DynamicShortcuts(QuickContactActivity.this);
+                            shortcutManager.requestPinShortcut(
+                                    shortcuts.getQuickContactShortcutInfo(
+                                            mContactData.getId(), mContactData.getLookupKey(),
+                                            mContactData.getDisplayName()), null);
+                        } else {
+                            // Broadcast the shortcutIntent to the launcher to create a
+                            // shortcut to this contact
+                            shortcutIntent.setAction(ACTION_INSTALL_SHORTCUT);
+                            QuickContactActivity.this.sendBroadcast(shortcutIntent);
+                            // Send a toast to give feedback to the user that a shortcut to this
+                            // contact was added to the launcher.
+                            final String displayName = shortcutIntent
+                                    .getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
+                            final String toastMessage = TextUtils.isEmpty(displayName)
+                                    ? getString(R.string.createContactShortcutSuccessful_NoName)
+                                    : getString(R.string.createContactShortcutSuccessful,
+                                            displayName);
+                            Toast.makeText(QuickContactActivity.this, toastMessage,
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
-
                 });
         builder.createContactShortcutIntent(mContactData.getLookupUri());
     }
@@ -2670,6 +2682,13 @@ public class QuickContactActivity extends ContactsActivity {
                 mContactData.isDirectoryEntry()) {
             return false;
         }
+
+        if (BuildCompat.isAtLeastO()) {
+            final ShortcutManager manager = (ShortcutManager)
+                    getSystemService(Context.SHORTCUT_SERVICE);
+            return manager.isRequestPinShortcutSupported();
+        }
+
         final Intent createShortcutIntent = new Intent();
         createShortcutIntent.setAction(ACTION_INSTALL_SHORTCUT);
         final List<ResolveInfo> receivers = getPackageManager()
