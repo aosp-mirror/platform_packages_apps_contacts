@@ -447,12 +447,9 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"Flytur inn <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"Flytja út í .vcf-skrá"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Raða eftir"</string>
-    <!-- no translation found for display_options_phonetic_name_fields (3771577099236534776) -->
-    <skip />
-    <!-- no translation found for editor_options_always_show_phonetic_names (7253911385818398903) -->
-    <skip />
-    <!-- no translation found for editor_options_hide_phonetic_names_if_empty (2672008764795671104) -->
-    <skip />
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Hljóðrétt nafn"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Sýna alltaf"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Fela ef þetta er autt"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Fornafn"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Eftirnafn"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Nafnasnið"</string>

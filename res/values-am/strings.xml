@@ -447,12 +447,9 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"በማስገባት ላይ<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>፡<xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"ወደ .vcf ፋይል ላክ"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"ደርድር በ"</string>
-    <!-- no translation found for display_options_phonetic_name_fields (3771577099236534776) -->
-    <skip />
-    <!-- no translation found for editor_options_always_show_phonetic_names (7253911385818398903) -->
-    <skip />
-    <!-- no translation found for editor_options_hide_phonetic_names_if_empty (2672008764795671104) -->
-    <skip />
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"የድምፀ ልሳን ስም"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"ሁልጊዜ አሳይ"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"ባዶ ከሆነ ደብቅ"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"የራስ ስም"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"የአያት ስም"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"የስም ቅርጸት"</string>
@@ -493,7 +490,7 @@
     <string name="about_build_version" msgid="1765533099416999801">"የግንብ ሥሪት"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"የክፍት ምንጭ ፈቃዶች"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"ለክፍት ምንጭ ሶፍትዌሮች የፈቃድ ዝርዝሮች"</string>
-    <string name="about_privacy_policy" msgid="3705518622499152626">"የግላዊነት ፓሊሲ"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"የግላዊነት መመሪያ"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"የአገልግሎት ውል"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"የክፍት ምንጭ ፈቃዶች"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"ዩ አር ኤሉን ለመክፈት አልተሳካም።"</string>
