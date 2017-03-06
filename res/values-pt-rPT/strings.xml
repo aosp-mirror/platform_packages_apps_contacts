@@ -34,7 +34,7 @@
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Adicionado aos favoritos"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Editar"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Eliminar"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"Alterar fotografia"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"Alterar foto"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Criar atalho"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Desassociar"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Remover contactos"</string>
@@ -151,7 +151,7 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"Conta <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Tirar nova fotografia"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Escolher fotografia"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Escolher foto"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Selecionar nova fotografia"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"A pesquisar..."</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Data"</string>
@@ -447,12 +447,9 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"A importar <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"Exportar p/ ficheiro .vcf"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Ordenar por"</string>
-    <!-- no translation found for display_options_phonetic_name_fields (3771577099236534776) -->
-    <skip />
-    <!-- no translation found for editor_options_always_show_phonetic_names (7253911385818398903) -->
-    <skip />
-    <!-- no translation found for editor_options_hide_phonetic_names_if_empty (2672008764795671104) -->
-    <skip />
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Nome fonético"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Mostrar sempre"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Ocultar caso esteja vazio"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Nome próprio"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Apelido"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Formato do nome"</string>
