@@ -1583,4 +1583,7 @@
     <!-- The notification title shown while SIM contacts are being imported [CHAR LIMIT=40] -->
     <string name="importing_sim_in_progress_title">Importing SIM</string>
 
+    <!-- Text shown when viewing channel settings for default Contacts notifications [CHAR LIMIT=50] -->
+    <string name="contacts_default_notification_channel">Notifications</string>
+
 </resources>
