@@ -16,14 +16,11 @@
 
 package com.android.contacts.editor;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +55,6 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
     private final float mPortraitPhotoRatio;
     private final boolean mIsTwoPanel;
 
-    private final int mActionBarHeight;
-    private final int mStatusBarHeight;
-
     private QuickContactImageView mPhotoImageView;
     private View mPhotoIcon;
     private View mPhotoIconOverlay;
@@ -80,15 +74,6 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
         mLandscapePhotoRatio = getTypedFloat(R.dimen.quickcontact_landscape_photo_ratio);
         mPortraitPhotoRatio = getTypedFloat(R.dimen.editor_portrait_photo_ratio);
         mIsTwoPanel = getResources().getBoolean(R.bool.contacteditor_two_panel);
-
-        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
-                new int[] { android.R.attr.actionBarSize });
-        mActionBarHeight = (int) styledAttributes.getDimension(0, 0);
-        styledAttributes.recycle();
-
-        final int resourceId = getResources().getIdentifier(
-                "status_bar_height", "dimen", "android");
-        mStatusBarHeight = resourceId > 0 ? getResources().getDimensionPixelSize(resourceId) : 0;
     }
 
     private float getTypedFloat(int resourceId) {
@@ -104,6 +89,7 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
         mPhotoIcon = findViewById(R.id.photo_icon);
         mPhotoIconOverlay = findViewById(R.id.photo_icon_overlay);
         mPhotoTouchInterceptOverlay = findViewById(R.id.photo_touch_intercept_overlay);
+
     }
 
     public void setListener(Listener listener) {
@@ -165,11 +151,11 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
             public void run() {
                 final int photoHeight, photoWidth;
                 if (mIsTwoPanel) {
-                    photoHeight = getContentViewHeight();
+                    photoHeight = getHeight();
                     photoWidth = (int) (photoHeight * mLandscapePhotoRatio);
                 } else {
                     // Make the photo slightly shorter that it is wide
-                    photoWidth = getContentViewWidth();
+                    photoWidth = getWidth();
                     photoHeight = (int) (photoWidth / mPortraitPhotoRatio);
                 }
                 final ViewGroup.LayoutParams layoutParams = getLayoutParams();
@@ -178,24 +164,6 @@ public class PhotoEditorView extends RelativeLayout implements View.OnClickListe
                 setLayoutParams(layoutParams);
             }
         });
-    }
-
-    private int getContentViewWidth() {
-        final Activity activity = (Activity) getContext();
-        final DisplayMetrics displayMetrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.widthPixels;
-    }
-
-    // We're calculating the height the hard way because using the height of the content view
-    // (found using android.view.Window.ID_ANDROID_CONTENT) with the soft keyboard up when
-    // going from portrait to landscape mode results in a very small height value.
-    // See b/20526470
-    private int getContentViewHeight() {
-        final Activity activity = (Activity) getContext();
-        final DisplayMetrics displayMetrics = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return displayMetrics.heightPixels - mActionBarHeight - mStatusBarHeight;
     }
 
     /**
