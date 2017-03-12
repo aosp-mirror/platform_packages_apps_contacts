@@ -186,7 +186,7 @@
     <string name="title_edit_group" msgid="8602752287270586734">"Отстрани контакти"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мој локален профил"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Мој профил на <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Одвојте малку време за додавање сметка за правење резервна копија на вашите контакти на Google."</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Одвојте малку време за додавање сметка за бекап на вашите контакти на Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новите контакти ќе се зачуваат на <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Изберете стандардна сметка за новите контакти:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Создај нов контакт"</string>
