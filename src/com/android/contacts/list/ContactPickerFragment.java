@@ -24,7 +24,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.android.contacts.R;
-import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.ShortcutIntentBuilder;
+import com.android.contacts.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
 /**
  * Fragment for the contact list used for browsing contacts (as compared to
