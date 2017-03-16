@@ -345,7 +345,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate start");
         }
+
+        // Make sure this is *before* calling super.onCreate
+        setTheme(R.style.PeopleActivityTheme);
         super.onCreate(savedState);
+
         mAccountTypeManager = AccountTypeManager.getInstance(this);
         mContactListFilterController = ContactListFilterController.getInstance(this);
 
