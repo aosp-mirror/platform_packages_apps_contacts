@@ -332,6 +332,15 @@
             android:name=".quickcontact.QuickContactBroadcastReceiver"
             android:exported="false"/>
 
+        <!-- Responsible for creating notification channels when boot is completed or when app is
+        re-installed -->
+        <receiver android:name=".interactions.OnBootOrUpgradeReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
         <activity-alias
             android:name="ContactShortcut"
             android:icon="@drawable/logo_quick_contacts_color_44in48dp"

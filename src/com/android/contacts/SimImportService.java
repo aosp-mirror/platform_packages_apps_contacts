@@ -35,6 +35,7 @@ import com.android.contacts.database.SimContactDao;
 import com.android.contacts.model.SimCard;
 import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountWithDataSet;
+import com.android.contacts.util.ContactsNotificationChannelsUtil;
 import com.android.contactsbind.FeedbackHelper;
 
 import java.util.ArrayList;
@@ -189,6 +190,7 @@ public class SimImportService extends Service {
         final Intent intent = new Intent(this, PeopleActivity.class);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setOngoing(false)
+                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setContentTitle(this.getString(R.string.importing_sim_finished_title))
                 .setColor(this.getResources().getColor(R.color.dialtacts_theme_color))
@@ -201,6 +203,7 @@ public class SimImportService extends Service {
         final Intent intent = new Intent(this, PeopleActivity.class);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setOngoing(false)
+                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setContentTitle(this.getString(R.string.importing_sim_failed_title))
                 .setContentText(this.getString(R.string.importing_sim_failed_message))
@@ -214,6 +217,7 @@ public class SimImportService extends Service {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         final String description = getString(R.string.importing_sim_in_progress_title);
         builder.setOngoing(true)
+                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setProgress(/* current */ 0, /* max */ 100, /* indeterminate */ true)
                 .setContentTitle(description)
                 .setColor(this.getResources().getColor(R.color.dialtacts_theme_color))
