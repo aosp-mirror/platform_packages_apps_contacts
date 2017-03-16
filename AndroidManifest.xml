@@ -74,7 +74,7 @@
             android:alwaysRetainTaskState="true"
             android:launchMode="singleTop"
             android:resizeableActivity="true"
-            android:theme="@style/PeopleActivityTheme"
+            android:theme="@style/LaunchScreenTheme"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

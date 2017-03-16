@@ -89,6 +89,13 @@
         <item name="android:popupMenuStyle">@style/PopupMenuStyle</item>
     </style>
 
+    <style name="LaunchScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@drawable/quantum_launchscreen_contacts</item>
+        <!-- Ensure the status bar color matches the background (grey 500) -->
+        <!-- TODO(yaolu): Switch to use quantum_grey if in Google3 -->
+        <item name="android:colorPrimaryDark">#9e9e9e</item>
+    </style>
+
     <style name="PeopleActivityTheme" parent="@style/PeopleThemeAppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -585,5 +592,4 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:paddingStart">@dimen/drawer_side_padding</item>
         <item name="android:paddingEnd">@dimen/drawer_label_header_end_padding</item>
     </style>
-
 </resources>
