@@ -32,6 +32,7 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.android.contacts.R;
+import com.android.contacts.util.ContactsNotificationChannelsUtil;
 import com.android.vcard.VCardEntry;
 
 import java.text.NumberFormat;
@@ -221,6 +222,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setOngoing(true)
+                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setProgress(totalCount, currentCount, totalCount == - 1)
                 .setTicker(tickerText)
                 .setContentTitle(description)
@@ -246,6 +248,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
     /* package */ static Notification constructCancelNotification(
             Context context, String description) {
         return new NotificationCompat.Builder(context)
+                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setSmallIcon(android.R.drawable.stat_notify_error)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
@@ -276,6 +279,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
     /* package */ static Notification constructFinishNotificationWithFlags(
             Context context, String title, String description, Intent intent, int flags) {
         return new NotificationCompat.Builder(context)
+                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
                 .setSmallIcon(R.drawable.quantum_ic_done_vd_theme_24)
@@ -299,6 +303,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
     /* package */ static Notification constructImportFailureNotification(
             Context context, String reason) {
         return new NotificationCompat.Builder(context)
+                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
                 .setSmallIcon(android.R.drawable.stat_notify_error)
