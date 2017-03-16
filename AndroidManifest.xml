@@ -185,6 +185,8 @@
             android:uiOptions="splitActionBarWhenNarrow"
             android:windowSoftInputMode="adjustResize"
             android:visibleToInstantApps="true">
+            <meta-data android:name="android.app.shortcuts.new_config"
+                android:value="true" />
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT"/>
                 <category android:name="android.intent.category.DEFAULT"/>

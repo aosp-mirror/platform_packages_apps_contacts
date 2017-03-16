@@ -16,7 +16,7 @@
 
 package com.android.contacts.util;
 
-import static com.android.contacts.list.ShortcutIntentBuilder.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION;
+import static com.android.contacts.ShortcutIntentBuilder.INTENT_EXTRA_IGNORE_LAUNCH_ANIMATION;
 
 import android.app.Activity;
 import android.content.Context;

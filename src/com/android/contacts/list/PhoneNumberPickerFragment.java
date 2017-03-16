@@ -28,7 +28,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.contacts.R;
-import com.android.contacts.list.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
+import com.android.contacts.ShortcutIntentBuilder;
+import com.android.contacts.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 
 /**
  * Fragment containing a phone number list for picking.

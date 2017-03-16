@@ -275,24 +275,45 @@ public class DynamicShortcuts {
                 .setDisabledMessage(mContext.getString(R.string.dynamic_shortcut_disabled_message))
                 .setExtras(extras);
 
-        if (displayName.length() < mLongLabelMaxLength) {
-            builder.setLongLabel(displayName);
-        } else {
-            builder.setLongLabel(displayName.substring(0, mLongLabelMaxLength - 1).trim() + "…");
-        }
-
-        if (displayName.length() < mShortLabelMaxLength) {
-            builder.setShortLabel(displayName);
-        } else {
-            builder.setShortLabel(displayName.substring(0, mShortLabelMaxLength - 1).trim() + "…");
-        }
+        setLabel(builder, displayName);
         return builder;
+    }
+
+    @VisibleForTesting
+    ShortcutInfo getActionShortcutInfo(String id, String label, Intent action, Icon icon) {
+        if (id == null || label == null) {
+            return null;
+        }
+        final PersistableBundle extras = new PersistableBundle();
+        extras.putInt(EXTRA_SHORTCUT_TYPE, SHORTCUT_TYPE_CONTACT_URI);
+
+        final ShortcutInfo.Builder builder = new ShortcutInfo.Builder(mContext, id)
+                .setIntent(action)
+                .setIcon(icon)
+                .setDisabledMessage(mContext.getString(R.string.dynamic_shortcut_disabled_message));
+
+        setLabel(builder, label);
+        return builder.build();
     }
 
     public ShortcutInfo getQuickContactShortcutInfo(long id, String lookupKey, String displayName) {
         final ShortcutInfo.Builder builder = builderForContactShortcut(id, lookupKey, displayName);
         addIconForContact(id, lookupKey, displayName, builder);
         return builder.build();
+    }
+
+    private void setLabel(ShortcutInfo.Builder builder, String label) {
+        if (label.length() < mLongLabelMaxLength) {
+            builder.setLongLabel(label);
+        } else {
+            builder.setLongLabel(label.substring(0, mLongLabelMaxLength - 1).trim() + "…");
+        }
+
+        if (label.length() < mShortLabelMaxLength) {
+            builder.setShortLabel(label);
+        } else {
+            builder.setShortLabel(label.substring(0, mShortLabelMaxLength - 1).trim() + "…");
+        }
     }
 
     private void addIconForContact(Cursor cursor, ShortcutInfo.Builder builder) {
