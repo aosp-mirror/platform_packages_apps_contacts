@@ -91,6 +91,7 @@ public class DynamicShortcuts {
     // though new ones may be added
     private static final int SHORTCUT_TYPE_UNKNOWN = 0;
     private static final int SHORTCUT_TYPE_CONTACT_URI = 1;
+    private static final int SHORTCUT_TYPE_ACTION_URI = 2;
 
     // The spec specifies that it should be 44dp @ xxxhdpi
     // Note that ShortcutManager.getIconMaxWidth and ShortcutManager.getMaxHeight return different
@@ -163,9 +164,8 @@ public class DynamicShortcuts {
         for (ShortcutInfo shortcut : mShortcutManager.getPinnedShortcuts()) {
             final PersistableBundle extras = shortcut.getExtras();
 
-            if (!shortcut.isDynamic() || extras == null ||
-                    extras.getInt(EXTRA_SHORTCUT_TYPE, SHORTCUT_TYPE_UNKNOWN) !=
-                            SHORTCUT_TYPE_CONTACT_URI) {
+            if (extras == null || extras.getInt(EXTRA_SHORTCUT_TYPE, SHORTCUT_TYPE_UNKNOWN) !=
+                    SHORTCUT_TYPE_CONTACT_URI) {
                 continue;
             }
 
@@ -285,7 +285,7 @@ public class DynamicShortcuts {
             return null;
         }
         final PersistableBundle extras = new PersistableBundle();
-        extras.putInt(EXTRA_SHORTCUT_TYPE, SHORTCUT_TYPE_CONTACT_URI);
+        extras.putInt(EXTRA_SHORTCUT_TYPE, SHORTCUT_TYPE_ACTION_URI);
 
         final ShortcutInfo.Builder builder = new ShortcutInfo.Builder(mContext, id)
                 .setIntent(action)
@@ -325,12 +325,15 @@ public class DynamicShortcuts {
 
     private void addIconForContact(long id, String lookupKey, String displayName,
             ShortcutInfo.Builder builder) {
-        final Bitmap bitmap = getContactPhoto(id);
-        if (bitmap != null) {
-            builder.setIcon(Icon.createWithBitmap(bitmap));
-        } else {
-            builder.setIcon(Icon.createWithBitmap(getFallbackAvatar(displayName, lookupKey)));
+        Bitmap bitmap = getContactPhoto(id);
+        if (bitmap == null) {
+            bitmap = getFallbackAvatar(displayName, lookupKey);
         }
+        // TODO: Use createWithAdaptiveBitmap if >= O. Since we create these, we'll also need to
+        // return AdaptiveIconDrawables when >= O as well.
+        final Icon icon = Icon.createWithBitmap(bitmap);
+
+        builder.setIcon(icon);
     }
 
     private Bitmap getContactPhoto(long id) {
