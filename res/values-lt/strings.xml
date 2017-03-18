@@ -542,4 +542,6 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Nepavyko importuoti"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Nepavyko importuoti kontaktų iš SIM kortelės"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Importuojami SIM kortelės kontaktai"</string>
+    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
+    <skip />
 </resources>

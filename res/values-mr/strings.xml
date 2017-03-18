@@ -528,4 +528,6 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"आयात अयशस्वी झाले"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"सिम कार्ड वरून संपर्क आयात करणेे शक्य झाले नाही"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"सिम आयात करीत आहे"</string>
+    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
+    <skip />
 </resources>
