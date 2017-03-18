@@ -528,4 +528,6 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"దిగుమతి విఫలమైంది"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM కార్డ్ నుండి పరిచయాలను దిగుమతి చేయలేకపోయింది"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIMను దిగుమతి చేస్తోంది"</string>
+    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
+    <skip />
 </resources>

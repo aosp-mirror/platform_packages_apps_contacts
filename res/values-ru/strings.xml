@@ -542,4 +542,6 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Ошибка импорта"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Не удалось импортировать контакты с SIM-карты"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Импорт контактов с SIM-карты…"</string>
+    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
+    <skip />
 </resources>

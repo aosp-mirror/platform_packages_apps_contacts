@@ -528,4 +528,6 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Innflutningur mistókst"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Gat ekki flutt inn tengiliði af SIM-korti"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Flytur inn SIM-kort"</string>
+    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
+    <skip />
 </resources>
