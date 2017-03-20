@@ -276,6 +276,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 SharedPreferenceUtil.setHamburgerMenuClickedBefore(PeopleActivity.this);
                 mMenuClickedBefore = true;
             }
+            drawerView.requestFocus();
             invalidateOptionsMenu();
             // Stop search and selection mode like Gmail and Keep. Otherwise, if user switches to
             // another fragment in navigation drawer, the current search/selection mode will be
