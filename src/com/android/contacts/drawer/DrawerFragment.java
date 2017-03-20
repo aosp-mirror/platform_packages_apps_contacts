@@ -31,6 +31,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -154,9 +156,9 @@ public class DrawerFragment extends Fragment implements AccountsListener {
         mDrawerListView = (ListView) contentView.findViewById(R.id.list);
         mDrawerAdapter = new DrawerAdapter(getActivity());
         mDrawerAdapter.setSelectedContactsView(mCurrentContactsView);
-        mDrawerAdapter.setItemOnClickListener(mOnDrawerItemClickListener);
         loadGroupsAndFilters();
         mDrawerListView.setAdapter(mDrawerAdapter);
+        mDrawerListView.setOnItemClickListener(mOnDrawerItemClickListener);
 
         if (savedInstanceState != null) {
             final ContactsView contactsView =
@@ -221,13 +223,12 @@ public class DrawerFragment extends Fragment implements AccountsListener {
         mListener = null;
     }
 
-    private final View.OnClickListener mOnDrawerItemClickListener = new View.OnClickListener() {
+    private final OnItemClickListener mOnDrawerItemClickListener = new OnItemClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             if (mListener == null) {
                 return;
             }
-            mListener.onDrawerItemClicked();
             final int viewId = v.getId();
             if (viewId == R.id.nav_all_contacts) {
                 mListener.onContactsViewSelected(ContactsView.ALL_CONTACTS);
@@ -252,8 +253,9 @@ public class DrawerFragment extends Fragment implements AccountsListener {
             } else if (viewId == R.id.nav_help) {
                 mListener.onLaunchHelpFeedback();
             } else {
-                throw new IllegalStateException("Unknown view");
+                return;
             }
+            mListener.onDrawerItemClicked();
         }
     };
 

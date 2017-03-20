@@ -19,5 +19,5 @@
       android:id="@+id/nav_drawer_spacer"
       android:layout_width="match_parent"
       android:layout_height="@dimen/nav_drawer_spacer_height"
-      android:background="@drawable/drawer_item_background"
+      android:background="@color/navigation_drawer_background_color"
       android:importantForAccessibility="no"/>
