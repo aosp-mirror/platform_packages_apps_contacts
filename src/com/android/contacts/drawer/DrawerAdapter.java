@@ -21,7 +21,6 @@ import android.graphics.PorterDuff;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -88,7 +87,6 @@ public class DrawerAdapter extends BaseAdapter {
     private List<BaseDrawerItem> mMiscItems = new ArrayList<>();
 
     private List<BaseDrawerItem> mItemsList = new ArrayList<>();
-    private OnClickListener mListener;
     private AccountDisplayInfoFactory mAccountDisplayFactory;
 
     public DrawerAdapter(Activity activity) {
@@ -143,10 +141,6 @@ public class DrawerAdapter extends BaseAdapter {
         mItemsList.addAll(mAccountEntries);
         mItemsList.addAll(mMiscItems);
         mItemsList.add(mNavSpacerItem);
-    }
-
-    public void setItemOnClickListener(OnClickListener listener) {
-        mListener = listener;
     }
 
     public void setGroups(List<GroupListItem> groupListItems, boolean areGroupWritable) {
@@ -228,7 +222,6 @@ public class DrawerAdapter extends BaseAdapter {
     private View getPrimaryItemView(PrimaryItem item, View result, ViewGroup parent) {
         if (result == null) {
             result = mInflater.inflate(R.layout.drawer_primary_item, parent, false);
-            result.setOnClickListener(mListener);
         }
         final TextView titleView = (TextView) result.findViewById(R.id.title);
         titleView.setText(item.text);
@@ -258,7 +251,6 @@ public class DrawerAdapter extends BaseAdapter {
         if (result == null || !(result.getTag() instanceof GroupEntryItem)) {
             result = mInflater.inflate(R.layout.drawer_item, parent, false);
             result.setId(item.id);
-            result.setOnClickListener(mListener);
         }
 
         final GroupListItem groupListItem = item.group;
@@ -281,7 +273,6 @@ public class DrawerAdapter extends BaseAdapter {
         if (result == null || !(result.getTag() instanceof ContactListFilter)) {
             result = mInflater.inflate(R.layout.drawer_item, parent, false);
             result.setId(item.id);
-            result.setOnClickListener(mListener);
         }
         final ContactListFilter account = item.account;
         final TextView textView = ((TextView) result.findViewById(R.id.title));
@@ -307,7 +298,6 @@ public class DrawerAdapter extends BaseAdapter {
     private View getDrawerItemView(BaseDrawerItem item, View result, ViewGroup parent) {
         if (result == null) {
             result = mInflater.inflate(R.layout.drawer_item, parent, false);
-            result.setOnClickListener(mListener);
         }
 
         final TextView textView = (TextView) result.findViewById(R.id.title);
