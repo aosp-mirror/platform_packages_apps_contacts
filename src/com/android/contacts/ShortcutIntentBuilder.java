@@ -17,6 +17,7 @@ package com.android.contacts;
 
 import android.app.ActivityManager;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
@@ -49,10 +50,6 @@ import android.text.TextUtils.TruncateAt;
 import com.android.contacts.ContactPhotoManager.DefaultImageRequest;
 import com.android.contacts.util.BitmapUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
-
-import com.google.common.collect.Lists;
-
-import java.util.List;
 
 /**
  * Constructs shortcut intents.
@@ -269,6 +266,16 @@ public class ShortcutIntentBuilder {
 
     private void createContactShortcutIntent(Uri contactUri, String contentType, String displayName,
             String lookupKey, byte[] bitmapData) {
+        Intent intent = null;
+        if (BuildCompat.isAtLeastO()) {
+            final long contactId = ContentUris.parseId(contactUri);
+            final ShortcutManager sm = (ShortcutManager)
+                    mContext.getSystemService(Context.SHORTCUT_SERVICE);
+            final DynamicShortcuts dynamicShortcuts = new DynamicShortcuts(mContext);
+            final ShortcutInfo shortcutInfo = dynamicShortcuts.getQuickContactShortcutInfo(
+                    contactId, lookupKey, displayName);
+            intent = sm.createShortcutResultIntent(shortcutInfo);
+        }
         final Drawable drawable = getPhotoDrawable(bitmapData, displayName, lookupKey);
         if (TextUtils.isEmpty(displayName)) {
             displayName = mContext.getResources().getString(R.string.missing_name);
@@ -279,15 +286,6 @@ public class ShortcutIntentBuilder {
 
         final Bitmap icon = generateQuickContactIcon(drawable);
 
-        Intent intent = null;
-        if (BuildCompat.isAtLeastO()) {
-            final ShortcutManager sm = (ShortcutManager)
-                    mContext.getSystemService(Context.SHORTCUT_SERVICE);
-            final DynamicShortcuts dynamicShortcuts = new DynamicShortcuts(mContext);
-            final ShortcutInfo shortcutInfo = dynamicShortcuts.getActionShortcutInfo(
-                    lookupKey, displayName, shortcutIntent, Icon.createWithBitmap(icon));
-            intent = sm.createShortcutResultIntent(shortcutInfo);
-        }
 
         intent = intent == null ? new Intent() : intent;
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
@@ -303,7 +301,7 @@ public class ShortcutIntentBuilder {
         final Drawable drawable = getPhotoDrawable(bitmapData, displayName, lookupKey);
         final Bitmap icon;
         final Uri phoneUri;
-
+        final String shortcutName;
         if (TextUtils.isEmpty(displayName)) {
             displayName = mContext.getResources().getString(R.string.missing_name);
         }
@@ -313,10 +311,13 @@ public class ShortcutIntentBuilder {
             phoneUri = Uri.fromParts(PhoneAccount.SCHEME_TEL, phoneNumber, null);
             icon = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
                     R.drawable.quantum_ic_phone_vd_theme_24);
+            shortcutName = mContext.getResources()
+                    .getString(R.string.call_by_shortcut, displayName);
         } else {
             phoneUri = Uri.fromParts(ContactsUtils.SCHEME_SMSTO, phoneNumber, null);
             icon = generatePhoneNumberIcon(drawable, phoneType, phoneLabel,
                     R.drawable.quantum_ic_message_vd_theme_24);
+            shortcutName = mContext.getResources().getString(R.string.sms_by_shortcut, displayName);
         }
 
         final Intent shortcutIntent = new Intent(shortcutAction, phoneUri);
@@ -328,6 +329,8 @@ public class ShortcutIntentBuilder {
                     mContext.getSystemService(Context.SHORTCUT_SERVICE);
             final String id = shortcutAction + lookupKey;
             final DynamicShortcuts dynamicShortcuts = new DynamicShortcuts(mContext);
+            // TODO: Use createWithAdaptiveBitmap if >= O. Since we create these, we'll also need to
+            // return AdaptiveIconDrawables when >= O as well.
             final ShortcutInfo shortcutInfo = dynamicShortcuts.getActionShortcutInfo(
                     id, displayName, shortcutIntent, Icon.createWithBitmap(icon));
             intent = sm.createShortcutResultIntent(shortcutInfo);
@@ -336,13 +339,7 @@ public class ShortcutIntentBuilder {
         intent = intent == null ? new Intent() : intent;
         intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-        if (TextUtils.equals(shortcutAction, Intent.ACTION_CALL)) {
-            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
-                    mContext.getResources().getString(R.string.call_by_shortcut, displayName));
-        } else if (TextUtils.equals(shortcutAction, Intent.ACTION_SENDTO)) {
-            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
-                    mContext.getResources().getString(R.string.sms_by_shortcut, displayName));
-        }
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, shortcutName);
 
         mListener.onShortcutIntentCreated(uri, intent);
     }
@@ -395,36 +392,32 @@ public class ShortcutIntentBuilder {
         photoPaint.setFilterBitmap(true);
         Rect dst = new Rect(0, 0, mIconSize, mIconSize);
 
-        // Create the overlay if we're pre-O. O created shortcuts have the app badge which overlaps
-        // the type overlay.
-        if (!BuildCompat.isAtLeastO()) {
-            // Create an overlay for the phone number type
-            CharSequence overlay = Phone.getTypeLabel(r, phoneType, phoneLabel);
+        // Create an overlay for the phone number type if we're pre-O. O created shortcuts have the
+        // app badge which overlaps the type overlay.
+        CharSequence overlay = Phone.getTypeLabel(r, phoneType, phoneLabel);
+        if (!BuildCompat.isAtLeastO() && overlay != null) {
+            TextPaint textPaint = new TextPaint(
+                    Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
+            textPaint.setTextSize(r.getDimension(R.dimen.shortcut_overlay_text_size));
+            textPaint.setColor(r.getColor(R.color.textColorIconOverlay));
+            textPaint.setShadowLayer(4f, 0, 2f, r.getColor(R.color.textColorIconOverlayShadow));
 
-            if (overlay != null) {
-                TextPaint textPaint = new TextPaint(
-                        Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
-                textPaint.setTextSize(r.getDimension(R.dimen.shortcut_overlay_text_size));
-                textPaint.setColor(r.getColor(R.color.textColorIconOverlay));
-                textPaint.setShadowLayer(4f, 0, 2f, r.getColor(R.color.textColorIconOverlayShadow));
+            final FontMetricsInt fmi = textPaint.getFontMetricsInt();
 
-                final FontMetricsInt fmi = textPaint.getFontMetricsInt();
+            // First fill in a darker background around the text to be drawn
+            final Paint workPaint = new Paint();
+            workPaint.setColor(mOverlayTextBackgroundColor);
+            workPaint.setStyle(Paint.Style.FILL);
+            final int textPadding = r
+                    .getDimensionPixelOffset(R.dimen.shortcut_overlay_text_background_padding);
+            final int textBandHeight = (fmi.descent - fmi.ascent) + textPadding * 2;
+            dst.set(0, mIconSize - textBandHeight, mIconSize, mIconSize);
+            canvas.drawRect(dst, workPaint);
 
-                // First fill in a darker background around the text to be drawn
-                final Paint workPaint = new Paint();
-                workPaint.setColor(mOverlayTextBackgroundColor);
-                workPaint.setStyle(Paint.Style.FILL);
-                final int textPadding = r
-                        .getDimensionPixelOffset(R.dimen.shortcut_overlay_text_background_padding);
-                final int textBandHeight = (fmi.descent - fmi.ascent) + textPadding * 2;
-                dst.set(0, mIconSize - textBandHeight, mIconSize, mIconSize);
-                canvas.drawRect(dst, workPaint);
-
-                overlay = TextUtils.ellipsize(overlay, textPaint, mIconSize, TruncateAt.END);
-                final float textWidth = textPaint.measureText(overlay, 0, overlay.length());
-                canvas.drawText(overlay, 0, overlay.length(), (mIconSize - textWidth) / 2, mIconSize
-                        - fmi.descent - textPadding, textPaint);
-            }
+            overlay = TextUtils.ellipsize(overlay, textPaint, mIconSize, TruncateAt.END);
+            final float textWidth = textPaint.measureText(overlay, 0, overlay.length());
+            canvas.drawText(overlay, 0, overlay.length(), (mIconSize - textWidth) / 2, mIconSize
+                    - fmi.descent - textPadding, textPaint);
         }
 
         // Draw the phone action icon as an overlay
