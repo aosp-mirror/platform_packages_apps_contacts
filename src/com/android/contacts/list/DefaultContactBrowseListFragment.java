@@ -1228,12 +1228,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
     }
 
     public boolean onKeyDown(int unicodeChar) {
-        if (mActionBarAdapter.isSelectionMode()) {
+        if (mActionBarAdapter != null && mActionBarAdapter.isSelectionMode()) {
             // Ignore keyboard input when in selection mode.
             return true;
         }
 
-        if (!mActionBarAdapter.isSearchMode()) {
+        if (mActionBarAdapter != null && !mActionBarAdapter.isSearchMode()) {
             final String query = new String(new int[]{unicodeChar}, 0, 1);
             mActionBarAdapter.setSearchMode(true);
             mActionBarAdapter.setQueryString(query);
