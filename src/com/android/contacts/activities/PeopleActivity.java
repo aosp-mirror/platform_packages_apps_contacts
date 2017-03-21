@@ -760,6 +760,11 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Only consume the event if the drawer is closed. Otherwise, key events will activate
+        // search mode when drawer is open.
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            return false;
+        }
         // Bring up the search UI if the user starts typing
         final int unicodeChar = event.getUnicodeChar();
         if ((unicodeChar != 0)
