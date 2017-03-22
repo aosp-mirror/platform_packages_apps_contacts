@@ -30,6 +30,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.Rect;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
@@ -329,10 +330,8 @@ public class ShortcutIntentBuilder {
                     mContext.getSystemService(Context.SHORTCUT_SERVICE);
             final String id = shortcutAction + lookupKey;
             final DynamicShortcuts dynamicShortcuts = new DynamicShortcuts(mContext);
-            // TODO: Use createWithAdaptiveBitmap if >= O. Since we create these, we'll also need to
-            // return AdaptiveIconDrawables when >= O as well.
             final ShortcutInfo shortcutInfo = dynamicShortcuts.getActionShortcutInfo(
-                    id, displayName, shortcutIntent, Icon.createWithBitmap(icon));
+                    id, displayName, shortcutIntent, Icon.createWithAdaptiveBitmap(icon));
             intent = sm.createShortcutResultIntent(shortcutInfo);
         }
 
@@ -421,14 +420,23 @@ public class ShortcutIntentBuilder {
         }
 
         // Draw the phone action icon as an overlay
-        Rect src = new Rect(0, 0, phoneIcon.getWidth(), phoneIcon.getHeight());
         int iconWidth = icon.getWidth();
         dst.set(iconWidth - ((int) (20 * density)), -1,
                 iconWidth, ((int) (19 * density)));
-        canvas.drawBitmap(phoneIcon, src, dst, photoPaint);
+        canvas.drawBitmap(phoneIcon, null, dst, photoPaint);
 
         canvas.setBitmap(null);
+        if (!BuildCompat.isAtLeastO()) {
+            return icon;
+        }
 
-        return icon;
+        // On >= O scale image up by AdaptiveIconDrawable.DEFAULT_VIEW_PORT_SCALE.
+        final int scale = (int) (icon.getHeight() *
+                (1f / (1 + 2 * AdaptiveIconDrawable.getExtraInsetPercentage())));
+        final Bitmap scaledBitmap = Bitmap.createBitmap(icon.getWidth() + scale,
+                icon.getHeight() + scale, icon.getConfig());
+        Canvas scaledCanvas = new Canvas(scaledBitmap);
+        scaledCanvas.drawBitmap(icon, scale / 2, scale / 2, null);
+        return scaledBitmap;
     }
 }
