@@ -220,6 +220,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .appendQueryParameter(CancelActivity.TYPE, String.valueOf(type)).build();
         intent.setData(uri);
 
+        ContactsNotificationChannelsUtil.createDefaultChannel(context);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setOngoing(true)
                 .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
@@ -247,6 +248,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
      */
     /* package */ static Notification constructCancelNotification(
             Context context, String description) {
+        ContactsNotificationChannelsUtil.createDefaultChannel(context);
         return new NotificationCompat.Builder(context)
                 .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
@@ -278,6 +280,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
      */
     /* package */ static Notification constructFinishNotificationWithFlags(
             Context context, String title, String description, Intent intent, int flags) {
+        ContactsNotificationChannelsUtil.createDefaultChannel(context);
         return new NotificationCompat.Builder(context)
                 .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
@@ -302,6 +305,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
      */
     /* package */ static Notification constructImportFailureNotification(
             Context context, String reason) {
+        ContactsNotificationChannelsUtil.createDefaultChannel(context);
         return new NotificationCompat.Builder(context)
                 .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)

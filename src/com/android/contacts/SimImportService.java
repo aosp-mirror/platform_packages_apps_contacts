@@ -153,6 +153,7 @@ public class SimImportService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
+        ContactsNotificationChannelsUtil.createDefaultChannel(this);
         final ImportTask task = createTaskForIntent(intent, startId);
         if (task == null) {
             new StopTask(this, startId).executeOnExecutor(mExecutor);
