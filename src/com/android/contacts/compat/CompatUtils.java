@@ -227,7 +227,9 @@ public final class CompatUtils {
             Class.forName(className).getMethod(methodName, parameterTypes);
             return true;
         } catch (ClassNotFoundException | NoSuchMethodException e) {
-            Log.v(TAG, "Could not find method: " + className + "#" + methodName);
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Could not find method: " + className + "#" + methodName);
+            }
             return false;
         } catch (Throwable t) {
             Log.e(TAG, "Unexpected exception when checking if method: " + className + "#"
@@ -260,7 +262,9 @@ public final class CompatUtils {
                     .invoke(instance, parameters);
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalArgumentException
                 | IllegalAccessException | InvocationTargetException e) {
-            Log.v(TAG, "Could not invoke method: " + className + "#" + methodName);
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Could not invoke method: " + className + "#" + methodName);
+            }
             return null;
         } catch (Throwable t) {
             Log.e(TAG, "Unexpected exception when invoking method: " + className

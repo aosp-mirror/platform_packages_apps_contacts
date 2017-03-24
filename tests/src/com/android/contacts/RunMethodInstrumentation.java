@@ -60,8 +60,10 @@ public class RunMethodInstrumentation extends Instrumentation {
         methodName = arguments.getString("method");
         args = arguments;
 
-        Log.d(TAG, "Running " + className + "." + methodName);
-        Log.d(TAG, "args=" + args);
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "Running " + className + "." + methodName);
+            Log.d(TAG, "args=" + args);
+        }
 
         if (arguments.containsKey("debug") && Boolean.parseBoolean(arguments.getString("debug"))) {
             Debug.waitForDebugger();
@@ -71,7 +73,9 @@ public class RunMethodInstrumentation extends Instrumentation {
 
     @Override
     public void onStart() {
-        Log.d(TAG, "onStart");
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "onStart");
+        }
         super.onStart();
 
         if (className == null || methodName == null) {
@@ -84,7 +88,9 @@ public class RunMethodInstrumentation extends Instrumentation {
         runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "acquired main thread from instrumentation");
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "acquired main thread from instrumentation");
+                }
             }
         });
 

@@ -80,7 +80,7 @@ public class StopWatch {
             sb.append(" ");
             last = current;
         }
-        Log.v(TAG, sb.toString());
+        if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, sb.toString());
     }
 
     /**

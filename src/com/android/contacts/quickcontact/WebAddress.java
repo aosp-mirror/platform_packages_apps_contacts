@@ -67,8 +67,6 @@ public class WebAddress {
             throw new NullPointerException();
         }
 
-        // android.util.Log.d(LOGTAG, "WebAddress: " + address);
-
         mScheme = "";
         mHost = "";
         mPort = -1;

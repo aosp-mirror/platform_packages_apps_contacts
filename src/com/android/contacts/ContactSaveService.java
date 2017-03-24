@@ -304,7 +304,9 @@ public class ContactSaveService extends IntentService {
     @Override
     protected void onHandleIntent(final Intent intent) {
         if (intent == null) {
-            Log.d(TAG, "onHandleIntent: could not handle null intent");
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "onHandleIntent: could not handle null intent");
+            }
             return;
         }
         if (!PermissionsUtil.hasPermission(this, WRITE_CONTACTS)) {
@@ -578,7 +580,7 @@ public class ContactSaveService extends IntentService {
                                     rawContactId);
                     lookupUri = RawContacts.getContactLookupUri(resolver, rawContactUri);
                 }
-                if (lookupUri != null) {
+                if (lookupUri != null && Log.isLoggable(TAG, Log.VERBOSE)) {
                     Log.v(TAG, "Saved contact. New URI: " + lookupUri);
                 }
 
