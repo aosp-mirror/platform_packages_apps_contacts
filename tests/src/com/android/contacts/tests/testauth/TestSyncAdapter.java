@@ -54,7 +54,9 @@ public class TestSyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority,
             ContentProviderClient provider, SyncResult syncResult) {
-        Log.v(TestauthConstants.LOG_TAG, "TestSyncAdapter.onPerformSync() account=" + account);
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "TestSyncAdapter.onPerformSync() account=" + account);
+        }
 
         final ArrayList<ContentProviderOperation> ops = new ArrayList<>();
 
@@ -93,9 +95,11 @@ public class TestSyncAdapter extends AbstractThreadedSyncAdapter {
         // TODO: Clear isDirty flag
         // TODO: Remove isDeleted raw contacts
 
-        Log.v(TestauthConstants.LOG_TAG, "Claiming " + ops.size() + " local raw contacts");
-        for (ContentProviderOperation op : ops) {
-            Log.v(TestauthConstants.LOG_TAG, op.toString());
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "Claiming " + ops.size() + " local raw contacts");
+            for (ContentProviderOperation op : ops) {
+                Log.v(TestauthConstants.LOG_TAG, op.toString());
+            }
         }
         try {
             contentResolver.applyBatch(ContactsContract.AUTHORITY, ops);

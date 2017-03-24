@@ -255,11 +255,15 @@ public class ContactDisplayUtils {
             try {
                 uri = Uri.parse(source);
             } catch (Throwable e) {
-                Log.d(TAG, "Could not parse image source: " + source);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Could not parse image source: " + source);
+                }
                 return null;
             }
             if (!RES_SCHEME.equals(uri.getScheme())) {
-                Log.d(TAG, "Image source does not correspond to a resource: " + source);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Image source does not correspond to a resource: " + source);
+                }
                 return null;
             }
             // The URI authority represents the package name.
@@ -267,13 +271,17 @@ public class ContactDisplayUtils {
 
             Resources resources = getResourcesForResourceName(packageName);
             if (resources == null) {
-                Log.d(TAG, "Could not parse image source: " + source);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Could not parse image source: " + source);
+                }
                 return null;
             }
 
             List<String> pathSegments = uri.getPathSegments();
             if (pathSegments.size() != 1) {
-                Log.d(TAG, "Could not parse image source: " + source);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Could not parse image source: " + source);
+                }
                 return null;
             }
 
@@ -282,14 +290,18 @@ public class ContactDisplayUtils {
 
             if (resId == 0) {
                 // Use the default image icon in this case.
-                Log.d(TAG, "Cannot resolve resource identifier: " + source);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Cannot resolve resource identifier: " + source);
+                }
                 return null;
             }
 
             try {
                 return getResourceDrawable(resources, resId);
             } catch (NotFoundException e) {
-                Log.d(TAG, "Resource not found: " + source, e);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Resource not found: " + source, e);
+                }
                 return null;
             }
         }
@@ -307,7 +319,9 @@ public class ContactDisplayUtils {
             try {
                 return mPackageManager.getResourcesForApplication(packageName);
             } catch (NameNotFoundException e) {
-                Log.d(TAG, "Could not find package: " + packageName);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Could not find package: " + packageName);
+                }
                 return null;
             }
         }

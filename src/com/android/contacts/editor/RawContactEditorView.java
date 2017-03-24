@@ -452,7 +452,9 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             mPrimaryAccount = ContactEditorUtils.create(getContext())
                     .getOnlyOrDefaultAccount(AccountInfo.extractAccounts(mAccounts));
         }
-        vlog("state: primary " + mPrimaryAccount);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "state: primary " + mPrimaryAccount);
+        }
 
         // Parse the given raw contact deltas
         if (rawContactDeltas == null || rawContactDeltas.isEmpty()) {
@@ -531,10 +533,14 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
     }
 
     private void pickRawContactDelta() {
-        vlog("parse: " + mRawContactDeltas.size() + " rawContactDelta(s)");
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "parse: " + mRawContactDeltas.size() + " rawContactDelta(s)");
+        }
         for (int j = 0; j < mRawContactDeltas.size(); j++) {
             final RawContactDelta rawContactDelta = mRawContactDeltas.get(j);
-            vlog("parse: " + j + " rawContactDelta" + rawContactDelta);
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "parse: " + j + " rawContactDelta" + rawContactDelta);
+            }
             if (rawContactDelta == null || !rawContactDelta.isVisible()) continue;
             final AccountType accountType = rawContactDelta.getAccountType(mAccountTypeManager);
             if (accountType == null) continue;
@@ -577,15 +583,19 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         final AccountType accountType = mCurrentRawContactDelta.getAccountType(mAccountTypeManager);
         final List<DataKind> dataKinds = accountType.getSortedDataKinds();
         final int dataKindSize = dataKinds == null ? 0 : dataKinds.size();
-        vlog("parse: " + dataKindSize + " dataKinds(s)");
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "parse: " + dataKindSize + " dataKinds(s)");
+        }
 
         for (int i = 0; i < dataKindSize; i++) {
             final DataKind dataKind = dataKinds.get(i);
             // Skip null and un-editable fields.
             if (dataKind == null || !dataKind.editable) {
-                vlog("parse: " + i +
-                        (dataKind == null ? " dropped null data kind"
-                        : " dropped uneditable mimetype: " + dataKind.mimeType));
+                if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                    Log.v(TAG, "parse: " + i +
+                            (dataKind == null ? " dropped null data kind"
+                                    : " dropped uneditable mimetype: " + dataKind.mimeType));
+                }
                 continue;
             }
             final String mimeType = dataKind.mimeType;
@@ -593,14 +603,18 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             // Skip psuedo mime types
             if (DataKind.PSEUDO_MIME_TYPE_NAME.equals(mimeType) ||
                     DataKind.PSEUDO_MIME_TYPE_PHONETIC_NAME.equals(mimeType)) {
-                vlog("parse: " + i + " " + dataKind.mimeType + " dropped pseudo type");
+                if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                    Log.v(TAG, "parse: " + i + " " + dataKind.mimeType + " dropped pseudo type");
+                }
                 continue;
             }
 
             // Skip custom fields
             // TODO: Handle them when we implement editing custom fields.
             if (CustomDataItem.MIMETYPE_CUSTOM_FIELD.equals(mimeType)) {
-                vlog("parse: " + i + " " + dataKind.mimeType + " dropped custom field");
+                if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                    Log.v(TAG, "parse: " + i + " " + dataKind.mimeType + " dropped custom field");
+                }
                 continue;
             }
 
@@ -609,11 +623,13 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             mKindSectionDataMap.put(mimeType, kindSectionData);
             mSortedMimetypes.add(mimeType);
 
-            vlog("parse: " + i + " " + dataKind.mimeType + " " +
-                    kindSectionData.getValuesDeltas().size() + " value(s) " +
-                    kindSectionData.getNonEmptyValuesDeltas().size() + " non-empty value(s) " +
-                    kindSectionData.getVisibleValuesDeltas().size() +
-                    " visible value(s)");
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "parse: " + i + " " + dataKind.mimeType + " " +
+                        kindSectionData.getValuesDeltas().size() + " value(s) " +
+                        kindSectionData.getNonEmptyValuesDeltas().size() + " non-empty value(s) " +
+                        kindSectionData.getVisibleValuesDeltas().size() +
+                        " visible value(s)");
+            }
         }
     }
 
@@ -854,7 +870,9 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             i++;
             // Ignore mime types that we've already handled
             if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
-                vlog("kind: " + i + " " + mimeType + " dropped");
+                if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                    Log.v(TAG, "kind: " + i + " " + mimeType + " dropped");
+                }
                 continue;
             }
             final KindSectionView kindSectionView;
@@ -911,12 +929,6 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             }
         }
         return false;
-    }
-
-    private static void vlog(String message) {
-        if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, message);
-        }
     }
 
     private static void wlog(String message) {

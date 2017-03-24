@@ -168,7 +168,9 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
                                 return false;
                             }
                         } catch (SecurityException e) {
-                            Log.d(TAG, "Did not have read-access to uri : " + uri);
+                            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                                Log.d(TAG, "Did not have read-access to uri : " + uri);
+                            }
                             return false;
                         }
                     }

@@ -199,7 +199,7 @@ public abstract class ContactBrowseListFragment extends
             return;
         }
 
-        Log.v(TAG, "New filter: " + filter);
+        if (Log.isLoggable(TAG, Log.VERBOSE)) Log.v(TAG, "New filter: " + filter);
 
         setListType(filter.toListType());
         setLogListEvents(true);

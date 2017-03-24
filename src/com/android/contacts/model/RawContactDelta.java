@@ -56,7 +56,7 @@ public class RawContactDelta implements Parcelable {
     // TODO: optimize by using contentvalues pool, since we allocate so many of them
 
     private static final String TAG = "EntityDelta";
-    private static final boolean LOGV = false;
+    private static final boolean DEBUG = false;
 
     /**
      * Direct values from {@link Entity#getEntityValues()}.
@@ -110,7 +110,7 @@ public class RawContactDelta implements Parcelable {
         // Create local version if none exists yet
         if (local == null) local = new RawContactDelta();
 
-        if (LOGV) {
+        if (DEBUG) {
             final Long localVersion = (local.mValues == null) ? null : local.mValues
                     .getAsLong(RawContacts.VERSION);
             final Long remoteVersion = remote.mValues.getAsLong(RawContacts.VERSION);

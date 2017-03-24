@@ -1425,8 +1425,10 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                 mPreloadStatus = PRELOAD_STATUS_DONE;
             }
 
-            Log.v(TAG, "Preloaded " + count + " photos.  Cached bytes: "
-                    + mBitmapHolderCache.size());
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Preloaded " + count + " photos.  Cached bytes: "
+                        + mBitmapHolderCache.size());
+            }
 
             requestPreloading();
         }
@@ -1609,11 +1611,15 @@ class ContactPhotoManagerImpl extends ContactPhotoManager implements Callback {
                                 uriRequest.getRequestedExtent());
                         mMainThreadHandler.sendEmptyMessage(MESSAGE_PHOTOS_LOADED);
                     } else {
-                        Log.v(TAG, "Cannot load photo " + uri);
+                        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                            Log.v(TAG, "Cannot load photo " + uri);
+                        }
                         cacheBitmap(originalUri, null, false, uriRequest.getRequestedExtent());
                     }
                 } catch (final Exception | OutOfMemoryError ex) {
-                    Log.v(TAG, "Cannot load photo " + uri, ex);
+                    if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                        Log.v(TAG, "Cannot load photo " + uri, ex);
+                    }
                     cacheBitmap(originalUri, null, false, uriRequest.getRequestedExtent());
                 }
             }

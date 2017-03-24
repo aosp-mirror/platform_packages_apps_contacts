@@ -337,7 +337,9 @@ public class AttachPhotoActivity extends ContactsActivity {
         values.setPhoto(compressed);
 
         // Finally, invoke the ContactSaveService.
-        Log.v(TAG, "all prerequisites met, about to save photo to contact");
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "all prerequisites met, about to save photo to contact");
+        }
         Intent intent = ContactSaveService.createSaveContactIntent(
                 this,
                 deltaList,

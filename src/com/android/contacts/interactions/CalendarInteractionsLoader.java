@@ -73,7 +73,9 @@ public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInte
         allInteractions.addAll(interactions);
         allInteractions.addAll(interactions2);
 
-        Log.v(TAG, "# ContactInteraction Loaded: " + allInteractions.size());
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "# ContactInteraction Loaded: " + allInteractions.size());
+        }
         return allInteractions;
     }
 
