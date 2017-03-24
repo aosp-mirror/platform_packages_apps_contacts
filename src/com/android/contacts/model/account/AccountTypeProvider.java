@@ -172,8 +172,10 @@ public class AccountTypeProvider {
                 && isLocalAccountType(mLocalAccountTypeFactory, type)) {
             accountType = mLocalAccountTypeFactory.getAccountType(type);
         } else {
-            Log.d(TAG, "Registering external account type=" + type
-                    + ", packageName=" + auth.packageName);
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Registering external account type=" + type
+                        + ", packageName=" + auth.packageName);
+            }
             accountType = new ExternalAccountType(mContext, auth.packageName, false);
         }
         if (!accountType.isInitialized()) {
@@ -215,9 +217,11 @@ public class AccountTypeProvider {
                         " doesn't match expected type " + type);
                 continue;
             }
-            Log.d(TAG, "Registering extension package account type="
-                    + accountType.accountType + ", dataSet=" + accountType.dataSet
-                    + ", packageName=" + extensionPackage);
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Registering extension package account type="
+                        + accountType.accountType + ", dataSet=" + accountType.dataSet
+                        + ", packageName=" + extensionPackage);
+            }
 
             result.add(extensionType);
         }

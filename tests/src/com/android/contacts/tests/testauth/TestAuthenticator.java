@@ -61,7 +61,9 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
     @Override
     public Bundle addAccount(AccountAuthenticatorResponse response, String accountType,
             String authTokenType, String[] requiredFeatures, Bundle options) {
-        Log.v(TestauthConstants.LOG_TAG, "addAccount() type=" + accountType);
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "addAccount() type=" + accountType);
+        }
         final Bundle bundle = new Bundle();
 
         final Account account = new Account(newUniqueUserName(), accountType);
@@ -81,7 +83,9 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
     @Override
     public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account,
             String authTokenType, Bundle loginOptions) {
-        Log.v(TestauthConstants.LOG_TAG, "getAuthToken() account=" + account);
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "getAuthToken() account=" + account);
+        }
         final Bundle bundle = new Bundle();
         bundle.putString(AccountManager.KEY_ACCOUNT_NAME, account.name);
         bundle.putString(AccountManager.KEY_ACCOUNT_TYPE, account.type);
@@ -93,20 +97,26 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
     @Override
     public Bundle confirmCredentials(
             AccountAuthenticatorResponse response, Account account, Bundle options) {
-        Log.v(TestauthConstants.LOG_TAG, "confirmCredentials()");
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "confirmCredentials()");
+        }
         return null;
     }
 
     @Override
     public Bundle editProperties(AccountAuthenticatorResponse response, String accountType) {
-        Log.v(TestauthConstants.LOG_TAG, "editProperties()");
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "editProperties()");
+        }
         throw new UnsupportedOperationException();
     }
 
     @Override
     public String getAuthTokenLabel(String authTokenType) {
         // null means we don't support multiple authToken types
-        Log.v(TestauthConstants.LOG_TAG, "getAuthTokenLabel()");
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "getAuthTokenLabel()");
+        }
         return null;
     }
 
@@ -116,7 +126,9 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
         // This call is used to query whether the Authenticator supports
         // specific features. We don't expect to get called, so we always
         // return false (no) for any queries.
-        Log.v(TestauthConstants.LOG_TAG, "hasFeatures()");
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "hasFeatures()");
+        }
         final Bundle result = new Bundle();
         result.putBoolean(AccountManager.KEY_BOOLEAN_RESULT, false);
         return result;
@@ -125,7 +137,9 @@ class TestAuthenticator extends AbstractAccountAuthenticator {
     @Override
     public Bundle updateCredentials(AccountAuthenticatorResponse response, Account account,
             String authTokenType, Bundle loginOptions) {
-        Log.v(TestauthConstants.LOG_TAG, "updateCredentials()");
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, "updateCredentials()");
+        }
         return null;
     }
 }

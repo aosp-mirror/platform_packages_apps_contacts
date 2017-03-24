@@ -162,7 +162,9 @@ public class ContactPhotoUtils {
                 outputStream.write(buffer, 0, length);
                 totalLength += length;
             }
-            Log.v(TAG, "Wrote " + totalLength + " bytes for photo " + inputUri.toString());
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Wrote " + totalLength + " bytes for photo " + inputUri.toString());
+            }
         } catch (IOException | NullPointerException e) {
             Log.e(TAG, "Failed to write photo: " + inputUri.toString() + " because: " + e);
             return false;

@@ -389,7 +389,10 @@ public class ContactEditorFragment extends Fragment implements
                 @Override
                 public void onLoadFinished(Loader<Contact> loader, Contact contact) {
                     final long loaderCurrentTime = SystemClock.elapsedRealtime();
-                    Log.v(TAG, "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
+                    if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                        Log.v(TAG,
+                                "Time needed for loading: " + (loaderCurrentTime-mLoaderStartTime));
+                    }
                     if (!contact.isLoaded()) {
                         // Item has been deleted. Close activity without saving again.
                         Log.i(TAG, "No contact found. Closing activity");
@@ -403,8 +406,10 @@ public class ContactEditorFragment extends Fragment implements
                     final long setDataStartTime = SystemClock.elapsedRealtime();
                     setState(contact);
                     final long setDataEndTime = SystemClock.elapsedRealtime();
-
-                    Log.v(TAG, "Time needed for setting UI: " + (setDataEndTime - setDataStartTime));
+                    if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                        Log.v(TAG, "Time needed for setting UI: "
+                                + (setDataEndTime - setDataStartTime));
+                    }
                 }
 
                 @Override
@@ -1048,7 +1053,9 @@ public class ContactEditorFragment extends Fragment implements
     private void setState(Contact contact) {
         // If we have already loaded data, we do not want to change it here to not confuse the user
         if (!mState.isEmpty()) {
-            Log.v(TAG, "Ignoring background change. This will have to be rebased later");
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "Ignoring background change. This will have to be rebased later");
+            }
             return;
         }
         mContact = contact;
@@ -1480,7 +1487,7 @@ public class ContactEditorFragment extends Fragment implements
                 mStatus = Status.CLOSING;
                 if (mListener != null) {
                     mListener.onContactSplit(contactLookupUri);
-                } else {
+                } else if (Log.isLoggable(TAG, Log.DEBUG)) {
                     Log.d(TAG, "No listener registered, can not call onSplitFinished");
                 }
                 break;

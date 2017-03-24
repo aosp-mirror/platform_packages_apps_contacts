@@ -83,8 +83,10 @@ public class AdbHelpers {
     }
 
     public static void dumpPreferences(Context context) {
-        Log.d(TAG, "preferences=" + getAppContext().getSharedPreferences(
-                getAppContext().getPackageName(), Context.MODE_PRIVATE).getAll());
+        if (Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, "preferences=" + getAppContext().getSharedPreferences(
+                    getAppContext().getPackageName(), Context.MODE_PRIVATE).getAll());
+        }
     }
 
     public static void clearSimCard(Context context)

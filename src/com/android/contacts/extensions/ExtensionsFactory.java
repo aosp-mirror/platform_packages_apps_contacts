@@ -57,14 +57,20 @@ public class ExtensionsFactory {
             if (className != null) {
                 mExtendedPhoneDirectoriesManager = createInstance(className);
             } else {
-                Log.d(TAG, EXTENDED_PHONE_DIRECTORIES_KEY + " not found in properties file.");
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, EXTENDED_PHONE_DIRECTORIES_KEY + " not found in properties file.");
+                }
             }
 
         } catch (FileNotFoundException e) {
             // No custom extensions. Ignore.
-            Log.d(TAG, "No custom extensions.");
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "No custom extensions.");
+            }
         } catch (IOException e) {
-            Log.d(TAG, e.toString());
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, e.toString());
+            }
         }
     }
 

@@ -51,14 +51,18 @@ public class SmsInteractionsLoader extends AsyncTaskLoader<List<ContactInteracti
     public SmsInteractionsLoader(Context context, String[] phoneNums,
             int maxToRetrieve) {
         super(context);
-        Log.v(TAG, "SmsInteractionsLoader");
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "SmsInteractionsLoader");
+        }
         mPhoneNums = phoneNums;
         mMaxToRetrieve = maxToRetrieve;
     }
 
     @Override
     public List<ContactInteraction> loadInBackground() {
-        Log.v(TAG, "loadInBackground");
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "loadInBackground");
+        }
         // Confirm the device has Telephony and numbers were provided before proceeding
         if (!getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)
                 || mPhoneNums == null || mPhoneNums.length == 0) {

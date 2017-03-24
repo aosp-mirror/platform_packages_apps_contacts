@@ -27,18 +27,24 @@ public abstract class TestAuthenticationService extends Service {
 
     @Override
     public void onCreate() {
-        Log.v(TestauthConstants.LOG_TAG, this + " Service started.");
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, this + " Service started.");
+        }
         mAuthenticator = new TestAuthenticator(this);
     }
 
     @Override
     public void onDestroy() {
-        Log.v(TestauthConstants.LOG_TAG, this + " Service stopped.");
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, this + " Service stopped.");
+        }
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.v(TestauthConstants.LOG_TAG, this + " getBinder() intent=" + intent);
+        if (Log.isLoggable(TestauthConstants.LOG_TAG, Log.VERBOSE)) {
+            Log.v(TestauthConstants.LOG_TAG, this + " getBinder() intent=" + intent);
+        }
         return mAuthenticator.getIBinder();
     }
 
