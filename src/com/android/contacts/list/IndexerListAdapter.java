@@ -173,7 +173,7 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
             if (section == -1) {
                 listView.setHeaderInvisible(index, false);
             } else {
-                View topChild = listView.getChildAt(listPosition);
+                View topChild = getViewAtVisiblePosition(listView, listPosition);
                 if (topChild != null) {
                     // Match the pinned header's height to the height of the list item.
                     mHeader.setMinimumHeight(topChild.getMeasuredHeight());
@@ -191,6 +191,26 @@ public abstract class IndexerListAdapter extends PinnedHeaderListAdapter impleme
                 boolean isLastInSection = position == nextSectionPosition - 1;
                 listView.setFadingHeader(index, listPosition, isLastInSection);
             }
+        }
+    }
+
+    /**
+     * Returns the view used for the specified list position assuming it is visible or null if
+     * it isn't.
+     *
+     * <p>This makes some assumptions about the implementation of ListView (child views are the
+     * item views and are ordered in the same way as the adapter items they are displaying)
+     * but they are probably safe given that the API is stable.</p>
+     */
+    private View getViewAtVisiblePosition(ListView list, int position) {
+        final int firstVisiblePosition = list.getFirstVisiblePosition();
+        final int childCount = list.getChildCount();
+        final int index = position - firstVisiblePosition;
+        if (index >= 0 && index < childCount) {
+            // Position is on-screen, use existing view.
+            return list.getChildAt(index);
+        } else {
+            return null;
         }
     }
 
