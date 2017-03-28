@@ -15,7 +15,7 @@
 -->
 <resources>
     <!-- Adaptive icon background layer color -->
-    <color name="ic_contacts_launcher_background">#3F51B5</color>
+    <color name="ic_contacts_launcher_background">#2458CA</color>
 
     <!-- 87% black -->
     <color name="quantum_black_text">#dd000000</color>
