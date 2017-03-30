@@ -249,7 +249,7 @@
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"تغيير صورة جهة الاتصال"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"إضافة صورة جهة الاتصال"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"صورة جهة الاتصال"</string>
-    <string name="editor_failed_to_load" msgid="1623639078580475818">"أخفق فتح المحرر."</string>
+    <string name="editor_failed_to_load" msgid="1623639078580475818">"تعذّر فتح المحرر."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"الحفظ في"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"معلومات جهة الاتصال من <xliff:g id="ACCOUNT">%s</xliff:g> غير قابلة للتعديل"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ربط جهات الاتصال"</string>
@@ -553,9 +553,8 @@
     <string name="single_sim_display_label" msgid="6985770499439371497">"‏شريحة SIM"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"عرض المزيد"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"‏انتهى استيراد شريحة SIM"</string>
-    <string name="importing_sim_failed_title" msgid="39706901030537985">"أخفق الاستيراد"</string>
+    <string name="importing_sim_failed_title" msgid="39706901030537985">"تعذّر الاستيراد"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"‏تعذر استيراد جهات الاتصال من شريحة SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"‏استيراد SIM"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"الإشعارات"</string>
 </resources>
