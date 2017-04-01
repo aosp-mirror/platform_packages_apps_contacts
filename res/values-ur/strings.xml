@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"درآمد کرنا ناکام ہو گیا"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"‏SIM کارڈ سے رابطے درآمد نہیں ہو سکے"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"‏SIM درآمد ہو رہی ہے"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"اطلاعات"</string>
 </resources>
