@@ -19,13 +19,13 @@
     <string name="applicationLabel" msgid="3906689777043645443">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="quickContactActivityLabel" msgid="7985456650689347268">"ಸಂಪರ್ಕ ವೀಕ್ಷಿಸಿ"</string>
-    <string name="editContactActivityLabel" msgid="1129944572070802839">"ಸಂಪರ್ಕ ಸಂಪಾದಿಸು"</string>
+    <string name="editContactActivityLabel" msgid="1129944572070802839">"ಸಂಪರ್ಕ ಎಡಿಟ್ ಮಾಡಿ"</string>
     <string name="contactsList" msgid="8661624236494819731">"ಸಂಪರ್ಕಗಳು"</string>
     <string name="shortcutContact" msgid="749243779392912958">"ಸಂಪರ್ಕ"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ನೇರ ಡಯಲ್"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ನೇರ ಸಂದೇಶ"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"ಸಂಪರ್ಕದ ಶಾರ್ಟ್‌ಕಟ್‌‌ ಆರಿಸಿ"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕೆರಮಾಡಲು ಸಂಖ್ಯೆಯೊಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"ಕರೆಮಾಡಲು ಸಂಖ್ಯೆ ಆಯ್ಕೆ ಮಾಡಿ"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"ಸಂದೇಶಕ್ಕಾಗಿ ಸಂಖ್ಯೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"ಸಂಪರ್ಕಕ್ಕೆ ಸೇರಿಸು"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"ಸಂಪರ್ಕ ಆಯ್ಕೆ ಮಾಡಿ"</string>
@@ -34,11 +34,11 @@
     <string name="frequentList" msgid="7154768136473953056">"ಆಗಾಗ್ಗೆ"</string>
     <string name="strequentList" msgid="5640192862059373511">"ಮೆಚ್ಚಿನವುಗಳು"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"ಸಂಪರ್ಕ ವಿವರಗಳು"</string>
-    <string name="editContactDescription" msgid="2947202828256214947">"ಸಂಪರ್ಕವನ್ನು ಸಂಪಾದಿಸು"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"ಸಂಪರ್ಕವನ್ನು ಎಡಿಟ್ ಮಾಡಿ"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"ಸಂಪರ್ಕವನ್ನು ರಚಿಸಿ"</string>
-    <string name="editGroupDescription" msgid="6321161304201540561">"ಗುಂಪು ಸಂಪಾದಿಸು"</string>
+    <string name="editGroupDescription" msgid="6321161304201540561">"ಗುಂಪು ಎಡಿಟ್ ಮಾಡಿ"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"ಗುಂಪು ರಚಿಸಿ"</string>
-    <string name="contactDetailAbout" msgid="5430408883907061400">"ಕುರಿತು"</string>
+    <string name="contactDetailAbout" msgid="5430408883907061400">"ಇವರ ಕುರಿತು"</string>
     <string name="contactDetailUpdates" msgid="3780588624763446941">"ಅಪ್‌ಡೇಟ್‌ಗಳು"</string>
     <string name="searchHint" msgid="8482945356247760701">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="menu_viewContact" msgid="2795575601596468581">"ಸಂಪರ್ಕವನ್ನು ವೀಕ್ಷಿಸಿ"</string>
@@ -46,21 +46,21 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಿ"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಲಾಗಿದೆ"</string>
-    <string name="menu_editContact" msgid="9042415603857662633">"ಸಂಪಾದಿಸು"</string>
-    <string name="menu_deleteContact" msgid="6788644058868189393">"ಅಳಿಸು"</string>
-    <string name="menu_change_photo" msgid="7769177631511496210">"ಫೋಟೋ ಬದಲಾಯಿಸು"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"ಎಡಿಟ್"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"ಅಳಿಸಿ"</string>
+    <string name="menu_change_photo" msgid="7769177631511496210">"ಫೋಟೋ ಬದಲಾಯಿಸಿ"</string>
     <string name="menu_create_contact_shortcut" msgid="1217971915748509640">"ಮುಖಪುಟ ಪರದೆಯ ಮೇಲೆ ಇರಿಸು"</string>
     <string name="menu_call" msgid="3992595586042260618">"ಕರೆಯ ಸಂಪರ್ಕ"</string>
     <string name="menu_sendSMS" msgid="5535886767547006515">"ಪಠ್ಯ ಸಂಪರ್ಕ"</string>
-    <string name="menu_splitAggregate" msgid="2627252205317945563">"ಲಿಂಕ್ ರದ್ದುಮಾಡು"</string>
-    <string name="menu_editGroup" msgid="5062005185370983720">"ಸಂಪಾದಿಸು"</string>
-    <string name="menu_deleteGroup" msgid="3486380004411482874">"ಅಳಿಸು"</string>
+    <string name="menu_splitAggregate" msgid="2627252205317945563">"ಅನ್‌ಲಿಂಕ್‌"</string>
+    <string name="menu_editGroup" msgid="5062005185370983720">"ಎಡಿಟ್"</string>
+    <string name="menu_deleteGroup" msgid="3486380004411482874">"ಅಳಿಸಿ"</string>
     <string name="menu_new_contact_action_bar" msgid="7263362129442119188">"ಸಂಪರ್ಕವನ್ನು ಸೇರಿಸಿ"</string>
     <string name="menu_new_group_action_bar" msgid="3520232877587377175">"ಗುಂಪು ಸೇರಿಸು"</string>
-    <string name="splitConfirmation" msgid="7342030840130187290">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡುವುದೇ?"</string>
-    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ಲಿಂಕ್ ರದ್ದುಮಾಡು"</string>
+    <string name="splitConfirmation" msgid="7342030840130187290">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡುವುದೇ?"</string>
+    <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"ಅನ್‌ಲಿಂಕ್‌"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
-    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್ ರದ್ದುಮಾಡು"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ಉಳಿಸಿ ಮತ್ತು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕದ ಜೊತೆಗೆ ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡು"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ಲಿಂಕ್‌"</string>
@@ -87,9 +87,9 @@
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸುವುದೇ?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"ನಿಮ್ಮ ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ್ಲ, ಆದರೆ ಅವುಗಳನ್ನು ಮರೆಮಾಡಬಹುದು."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"ಬಹು ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಹೊಂದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ. ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಮರೆಮಾಡಲಾಗುತ್ತದೆ, ಅಳಿಸಲಾಗುವುದಿಲ್ಲ."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ಬಹು ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಅಳಿಸಿಹಾಕಲು ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತಿದೆ."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸುವುದರಿಂದ ಅದಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ವಿವರಗಳನ್ನು ಬಹು ಖಾತೆಗಳಿಂದ ಅಳಿಸಲಾಗುತ್ತದೆ."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸುವುದೇ?"</string>
-    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ಅಳಿಸು"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ಅಳಿಸಿ"</string>
     <string name="menu_discard" msgid="6854657936970228164">"ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸು"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"ಸಂಪರ್ಕವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ಸಂಪರ್ಕವನ್ನು ಮುಖಪುಟ ಪರದೆಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
@@ -110,7 +110,7 @@
     <string name="noGroups" msgid="8614664663561385253">"ಯಾವುದೇ ಗುಂಪುಗಳಿಲ್ಲ."</string>
     <string name="noAccounts" msgid="7768267764545265909">"ಗುಂಪುಗಳನ್ನು ರಚಿಸಲು ನಿಮಗೆ ಖಾತೆಯ ಅಗತ್ಯವಿದೆ."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"ಈ ಗುಂಪಿನಲ್ಲಿ ಜನರಿಲ್ಲ."</string>
-    <string name="addPeopleToGroup" msgid="7879585947222263516">"ಕೆಲವೊಂದು ಸೇರಿಸಲು, ಗುಂಪನ್ನು ಸಂಪಾದಿಸಿ."</string>
+    <string name="addPeopleToGroup" msgid="7879585947222263516">"ಕೆಲವೊಂದು ಸೇರಿಸಲು, ಗುಂಪನ್ನು ಎಡಿಟ್ ಮಾಡಿ."</string>
     <string name="savingContact" msgid="4075751076741924939">"ಸಂಪರ್ಕವನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ…"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"ಸಂಪರ್ಕ‌ವನ್ನು ಉಳಿಸಲಾಗಿದೆ"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"ಸಂಪರ್ಕಗಳನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
@@ -150,7 +150,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ಇಮೇಲ್ ಸೇರಿಸಿ"</string>
     <string name="missing_app" msgid="1466111003546611387">"ಈ ಕ್ರಿಯೆಯನ್ನು ನಿರ್ವಹಿಸಲು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌ ಕಂಡುಬಂದಿಲ್ಲ."</string>
-    <string name="menu_share" msgid="943789700636542260">"ಹಂಚಿಕೊಳ್ಳು"</string>
+    <string name="menu_share" msgid="943789700636542260">"ಹಂಚಿಕೊಳ್ಳಿ"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು"</string>
     <string name="share_via" msgid="563121028023030093">"ಸಂಪರ್ಕದ ಮೂಲಕ ಹಂಚಿಕೊಳ್ಳಿ"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"ಖಾತೆಯ ಅಡಿಯಲ್ಲಿ ಗುಂಪನ್ನು ರಚಿಸಿ"</string>
@@ -165,7 +165,7 @@
     <!-- no translation found for from_account_format (4469138575127580203) -->
     <skip />
     <string name="contact_read_only" msgid="7421346527289472273">"ಈ ಅಪ್ಲಿಕೇಶನ್‌ನಿಂದ ಸಂಪಾದಿಸಲಾಗುವುದಿಲ್ಲ."</string>
-    <string name="group_read_only" msgid="1061762906115697637">"ಈ ಸಾಧನದಲ್ಲಿ ಸಂಪಾದಿಸಲು ಆಗುವುದಿಲ್ಲ."</string>
+    <string name="group_read_only" msgid="1061762906115697637">"ಈ ಸಾಧನದಲ್ಲಿ ಎಡಿಟ್ ಮಾಡಲು ಆಗುವುದಿಲ್ಲ."</string>
     <string name="take_photo" msgid="7496128293167402354">"ಫೋಟೋ ತೆಗೆಯಿರಿ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ಹೊಸ ಫೋಟೋ ತೆಗೆಯಿರಿ"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ"</string>
@@ -183,7 +183,7 @@
     <string name="change_photo" msgid="8530597935483526383">"ಬದಲಾಯಿಸು"</string>
     <string name="primary_photo" msgid="8517942231868516999">"ಪ್ರಾಥಮಿಕ ಫೋಟೋ"</string>
     <string name="description_star" msgid="2605854427360036550">"ಮೆಚ್ಚಿನ"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"ಸಂಪರ್ಕವನ್ನು ಸಂಪಾದಿಸು"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"ಸಂಪರ್ಕವನ್ನು ಎಡಿಟ್ ಮಾಡಿ"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"ಪ್ರಸ್ತುತ ಸಂಪರ್ಕವನ್ನು ಆಯ್ಕೆಮಾಡಿದ ಸಂಪರ್ಕದೊಂದಿಗೆ ಲಿಂಕ್ ಮಾಡುವುದೇ?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"ಆಯ್ಕೆಮಾಡಿದ ಸಂಪರ್ಕವನ್ನು ಸಂಪಾದಿಸುವುದಕ್ಕೆ ಬದಲಿಸುವುದೇ? ನೀವು ಇಲ್ಲಿಯವರೆಗೆ ನಮೂದಿಸಿದ ಮಾಹಿತಿಯನ್ನು ನಕಲು ಮಾಡಲಾಗುತ್ತದೆ."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"ನನ್ನ ಸಂಪರ್ಕಗಳಿಗೆ ನಕಲಿಸು"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"ಕಸ್ಟಮ್"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
     <string name="menu_settings" msgid="377929915873428211">"ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
-    <string name="menu_help" msgid="1680178646764069976">"ಸಹಾಯ &amp; ಪ್ರತಿಕ್ರಿಯೆ"</string>
+    <string name="menu_help" msgid="1680178646764069976">"ಸಹಾಯ ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆ"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳು"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"ಫೋನ್ ಸಂಖ್ಯೆ"</string>
@@ -204,7 +204,7 @@
     <string name="social_widget_label" msgid="6378905543028924592">"ಸಂಪರ್ಕ"</string>
     <string name="social_widget_loading" msgid="5327336597364074608">"ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ..."</string>
     <string name="contacts_unavailable_create_contact" msgid="7014525713871959208">"ಹೊಸ ಸಂಪರ್ಕ ರಚಿಸಿ"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ಖಾತೆ ಸೇರಿಸು"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"ಖಾತೆ ಸೇರಿಸಿ"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4957393255392437529">"ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
     <string name="create_group_dialog_title" msgid="6874527142828424475">"ಹೊಸ ಗುಂಪು ರಚಿಸಿ"</string>
     <string name="create_group_item_label" msgid="4411981763169654825">"ಹೊಸ ಗುಂಪು ರಚಿಸಿ"</string>
@@ -224,27 +224,27 @@
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"ಮತ್ತೊಬ್ಬರೊಂದಿಗೆ ಲಿಂಕ್ ಮಾಡುವ ಮೊದಲು ಸಂಪರ್ಕದ ಹೆಸರನ್ನು ಟೈಪ್‌ ಮಾಡಿ."</string>
     <string name="copy_text" msgid="3257145021583508761">"ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಿ"</string>
     <string name="set_default" msgid="4417505153468300351">"ಡೀಫಾಲ್ಟ್ ಹೊಂದಿಸಿ"</string>
-    <string name="clear_default" msgid="7193185801596678067">"ಡೀಫಾಲ್ಟ್‌ ತೆರವುಗೊಳಿಸಿ"</string>
+    <string name="clear_default" msgid="7193185801596678067">"ಡಿಫಾಲ್ಟ್‌ ತೆರವುಗೊಳಿಸಿ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ಪಠ್ಯವನ್ನು ನಕಲಿಸಲಾಗಿದೆ"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"ನಿಮ್ಮ ಬದಲಾವಣೆಗಳನ್ನು ತಿರಸ್ಕರಿಸುವುದೇ?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"ತ್ಯಜಿಸು"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"ನಿಮ್ಮ ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸಿ ಸಂಪಾದನೆಯನ್ನು ನಿರ್ಗಮಿಸುವುದೇ?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ತ್ಯಜಿಸು"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"ಸಂಪಾದಿಸುತ್ತಿರಿ"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
-    <string name="profile_display_name" msgid="4127389543625918771">"ನನ್ನ ಪ್ರೊಫೈಲ್ ಹೊಂದಿಸು"</string>
+    <string name="profile_display_name" msgid="4127389543625918771">"ನನ್ನ ಪ್ರೊಫೈಲ್ ಹೊಂದಿಸಿ"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"ವ್ಯಕ್ತಿಯ ಹೆಸರನ್ನು ಟೈಪ್‌ ಮಾಡಿ"</string>
     <string name="group_name_hint" msgid="238359485263401293">"ಗುಂಪಿನ ಹೆಸರು"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ನನ್ನ ಸ್ಥಳೀಯ ಪ್ರೊಫೈಲ್"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ನನ್ನ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ಪ್ರೊಫೈಲ್‌"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತಿದೆ"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Google ಖಾತೆಯಲ್ಲಿ ಸಂಪರ್ಕಗಳ ಕಾರ್ಯ ಉತ್ತಮವಾಗಿರುತ್ತದೆ.\n\n• ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್‌ನಿಂದ ಪ್ರವೇಶಿಸಿ.\n• ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಬ್ಯಾಕ್ ಅಪ್ ಮಾಡಿ."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"ನಿಮ್ಮ ಫೋನ್‌ ಅನ್ನು ಕಳೆದುಕೊಂಡರೂ ಸಹ ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಇರಿಸಿಕೊಳ್ಳಿ: ಆನ್‌‌ಲೈನ್‌ ಸೇವೆಯೊಂದಿಗೆ ಸಿಂಕ್ರೊನೈಸ್ ಮಾಡಿ."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"ಖಾತೆಯೊಂದನ್ನು ಸೇರಿಸು"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"ನಿಮ್ಮ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಬ್ಯಾಕಪ್‌ ಮಾಡಲಾಗುವುದಿಲ್ಲ. ಸಂಪರ್ಕಗಳನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಬ್ಯಾಕಪ್‌ ಇರಿಸುವಂತಹ ಖಾತೆಯನ್ನು ಸೇರಿಸುವುದೇ?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ಹೊಸ ಸಂಪರ್ಕಗಳನ್ನು <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ಗೆ ಉಳಿಸಲಾಗುತ್ತದೆ."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ:"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡಿಫಾಲ್ಟ್ ಖಾತೆ ಆಯ್ಕೆಮಾಡಿ:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"ಹೊಸ ಸಂಪರ್ಕ ಸೇರಿಸಿ"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ಸಂಪರ್ಕವನ್ನು ಸಂಪಾದಿಸಿ"</string>
-    <string name="keep_local" msgid="1258761699192993322">"ಸ್ಥಳೀಯವಾಗಿರಿಸು"</string>
-    <string name="add_account" msgid="8201790677994503186">"ಖಾತೆ ಸೇರಿಸು"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ಸಂಪರ್ಕವನ್ನು ಎಡಿಟ್ ಮಾಡಿ"</string>
+    <string name="keep_local" msgid="1258761699192993322">"ಸ್ಥಳೀಯವಾಗಿರಿಸಿ"</string>
+    <string name="add_account" msgid="8201790677994503186">"ಖಾತೆ ಸೇರಿಸಿ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"ಹೊಸ ಖಾತೆಯನ್ನು ಸೇರಿಸಿ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ಡೇಟಾಬೇಸ್‌‌ ಫೈಲ್‌ಗಳನ್ನು ರಫ್ತು ಮಾಡಿ"</string>
     <string name="action_menu_add_new_contact_button" msgid="3180222523336380017">"ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಸೇರಿಸು"</string>
@@ -262,7 +262,7 @@
     <string name="tomorrow_at_time_fmt" msgid="4856497969617819421">"<xliff:g id="TIME_INTERVAL">%s</xliff:g> ಕ್ಕೆ ನಾಳೆ"</string>
     <string name="date_time_fmt" msgid="5053178726906863812">"<xliff:g id="DATE">%s</xliff:g>, <xliff:g id="TIME_INTERVAL">%s</xliff:g>"</string>
     <string name="untitled_event" msgid="3484859385405939366">"(ಶೀರ್ಷಿಕೆರಹಿತ ಈವೆಂಟ್)"</string>
-    <string name="date_time_set" msgid="4761419824439606690">"ಹೊಂದಿಸು"</string>
+    <string name="date_time_set" msgid="4761419824439606690">"ಹೊಂದಿಸಿ"</string>
     <string name="header_im_entry" msgid="3581720979640225615">"IM"</string>
     <string name="header_organization_entry" msgid="8515394955666265406">"ಸಂಸ್ಥೆ"</string>
     <string name="header_nickname_entry" msgid="6743561883967451485">"ಅಡ್ಡಹೆಸರು"</string>
@@ -286,7 +286,7 @@
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ನೀವು: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="contact_editor_hangouts_im_alert" msgid="114855385615225735">"ಇಮೇಲ್ ಕ್ಷೇತ್ರ ಅಥವಾ ಫೋನ್ ಕ್ಷೇತ್ರದಲ್ಲಿ ವ್ಯಕ್ತಿಯ Hangouts ಗುರುತಿಸುವಿಕೆಯನ್ನು ನೀವು ನಮೂದಿಸಿದಾಗ Hangouts ಉತ್ತಮವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ."</string>
     <string name="compact_editor_more_fields" msgid="5987638193568699600">"ಇನ್ನಷ್ಟು ಫೀಲ್ಡ್‌ಗಳು"</string>
-    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ಫೋಟೋ ಬದಲಾಯಿಸು"</string>
+    <string name="compact_editor_change_photo_content_description" msgid="5495487714301211540">"ಫೋಟೋ ಬದಲಾಯಿಸಿ"</string>
     <string name="compact_editor_failed_to_load" msgid="4557094426388044958">"ಸಂಪಾದಕವನ್ನು ತೆರೆಯಲು ವಿಫಲವಾಗಿದೆ."</string>
     <string name="compact_editor_account_selector_title" msgid="5119592614151786601">"ಇದಕ್ಕೆ ಉಳಿಸಲಾಗುತ್ತಿದೆ"</string>
     <string name="compact_editor_account_selector_description" msgid="2127184829759350507">"ಪ್ರಸ್ತುತ <xliff:g id="ACCOUNT_NAME">%s</xliff:g> ಖಾತೆಗೆ ಉಳಿಸಲಾಗುತ್ತಿದೆ. ಬೇರೆ ಖಾತೆಯನ್ನು ಆಯ್ಕೆಮಾಡಲು ಡಬಲ್ ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
@@ -297,7 +297,7 @@
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> ಲಿಂಕ್ ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳು"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"ಲಿಂಕ್ ಸಂಪರ್ಕಗಳು"</string>
-    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ರದ್ದುಮಾಡು"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ರದ್ದುಮಾಡಿ"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> ಸಂಭವನೀಯ ನಕಲುಗಳು</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> ಸಂಭವನೀಯ ನಕಲುಗಳು</item>
@@ -320,46 +320,12 @@
     <string name="all_photos_button" msgid="1943122929420111351">"ಎಲ್ಲ ಫೋಟೋಗಳು"</string>
     <string name="photo_picker_title" msgid="5272832995550042801">"ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ"</string>
     <string name="contact_from_account_name" msgid="2078526819634079406">"<xliff:g id="ACCOUNT_NAME">%s</xliff:g> ನಿಂದ"</string>
-    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> ಅಳಿಸು"</string>
-    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> ಅಳಿಸು"</string>
+    <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%s </xliff:g><xliff:g id="DATA_KIND">%s</xliff:g> ಅಳಿಸಿ"</string>
+    <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> ಅಳಿಸಿ"</string>
     <string name="photo_view_description_not_checked" msgid="8876314195990885177">"<xliff:g id="USER_NAME">%s </xliff:g><xliff:g id="ACCOUNT_TYPE">%s </xliff:g> ಅವರಿಂದ ಫೋಟೋ ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
     <string name="photo_view_description_checked" msgid="3906597168607472795">"<xliff:g id="USER_NAME">%s </xliff:g><xliff:g id="ACCOUNT_TYPE">%s </xliff:g> ಅವರಿಂದ ಫೋಟೋ ಗುರುತಿಸಲಾಗಿದೆ"</string>
-    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ಅಜ್ಞಾತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
-    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಜ್ಞಾತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
+    <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿಲ್ಲ"</string>
+    <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"ಅಪರಿಚಿತ ಖಾತೆಯಿಂದ ಫೋಟೋವನ್ನು ಗುರುತಿಸಲಾಗಿದೆ"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"ಭಾಷೆಯ ಬದಲಾವಣೆಯನ್ನು ಪ್ರತಿಬಿಂಬಿಸಲು ಸಂಪರ್ಕ ಪಟ್ಟಿಯನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ.\n\nದಯವಿಟ್ಟು ಕಾಯಿರಿ..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"ಸಂಖ್ಯೆಯನ್ನು ನಿರ್ಬಂಧಿಸು"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"ಸಂ. ಸೇರಿಸಿ ಅಥವಾ ಸಂಪರ್ಕ ಹುಡುಕಿ"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ನಿರ್ಬಂಧ ತೆಗೆ"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧಿಸುವುದೇ?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ನಿರ್ಬಂಧಿಸು"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> ನಿರ್ಬಂಧ ತೆಗೆಯಲಾಗಿದೆ"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> ಅಮಾನ್ಯವಾಗಿದೆ."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"ಕರೆ ನಿರ್ಬಂಧಿಸುವಿಕೆ ತಾತ್ಕಾಲಿಕ ಆಫ್ ಮಾಡಲಾಗಿದೆ"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"ನೀವು ಕಳೆದ 48 ಗಂಟೆಗಳಲ್ಲಿ ಈ ಫೋನ್‌ನಿಂದ ತುರ್ತು ಸೇವೆಗಳಿಗೆ ಸಂಪರ್ಕಿಸಿರುವ ಕಾರಣದಿಂದ ಕರೆ ನಿರ್ಬಂಧಿಸುವಿಕೆಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ಒಮ್ಮೆ 48 ಗಂಟೆಗಳ ಅವಧಿಯು ಮುಕ್ತಾಯಗೊಂಡ ನಂತರ ಅದನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುಸಕ್ರಿಯಗೊಳಿಸಲಾಗುವುದು."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"ಆಮದು ಮಾಡಿ"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"ಸಂಖ್ಯೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"ಸಂಖ್ಯೆಯನ್ನು ಸೇರಿಸಿ"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"ಕರೆ ನಿರ್ಬಂಧಿಸುವಿಕೆ 48 ಗಂಟೆಗಳವರೆಗೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"ತುರ್ತು ಕರೆಯನ್ನು ಮಾಡಿರುವ ಕಾರಣದಿಂದ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"ರದ್ದುಮಾಡು"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ಈಗಾಗಲೇ ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"ಸಂಖ್ಯೆಯನ್ನು ಅನಿರ್ಬಂಧಿಸು"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> ಗೆ ಸಂಪರ್ಕ ವಿವರಗಳು"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"ಆಮದು ವಿಫಲವಾಗಿದೆ"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"ಸಂಖ್ಯೆಗಳನ್ನು ಆಮದು ಮಾಡಿ"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಲು, ಸಂಪರ್ಕಗಳ ಅನುಮತಿಗಳನ್ನು ಆನ್ ಮಾಡಿ."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"ಆನ್ ಮಾಡು"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"ನಿರ್ಬಂಧಿಸಲಾದ ಸಂಖ್ಯೆಗಳು"</string>
 </resources>

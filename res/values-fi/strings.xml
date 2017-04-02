@@ -19,12 +19,12 @@
     <string name="applicationLabel" msgid="3906689777043645443">"Yhteystiedot"</string>
     <string name="launcherActivityLabel" msgid="6497230399032392417">"Yhteystiedot"</string>
     <string name="quickContactActivityLabel" msgid="7985456650689347268">"Näytä yhteystieto"</string>
-    <string name="editContactActivityLabel" msgid="1129944572070802839">"Muokkaa yhteystietoa"</string>
+    <string name="editContactActivityLabel" msgid="1129944572070802839">"Muokkaa kontaktia"</string>
     <string name="contactsList" msgid="8661624236494819731">"Yhteystiedot"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Yhteystieto"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Puhelu"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Tekstiviesti"</string>
-    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Valitse pikakuvakkeen yhteystieto"</string>
+    <string name="shortcutActivityTitle" msgid="6642877210643565436">"Valitse kuvakkeen yhteystieto"</string>
     <string name="callShortcutActivityTitle" msgid="6065749861423648991">"Valitse vastaanottajan numero"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"Valitse vastaanottajan numero"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Lisää yhteystietoon"</string>
@@ -34,7 +34,7 @@
     <string name="frequentList" msgid="7154768136473953056">"Usein käytetyt"</string>
     <string name="strequentList" msgid="5640192862059373511">"Suosikit"</string>
     <string name="viewContactTitle" msgid="7989394521836644384">"Yhteystiedot"</string>
-    <string name="editContactDescription" msgid="2947202828256214947">"Muokkaa yhteystietoa"</string>
+    <string name="editContactDescription" msgid="2947202828256214947">"Muokkaa kontaktia"</string>
     <string name="insertContactDescription" msgid="4709878105452681987">"Luo yhteystieto"</string>
     <string name="editGroupDescription" msgid="6321161304201540561">"Muokkaa ryhmää"</string>
     <string name="insertGroupDescription" msgid="5658512271662210139">"Luo ryhmä"</string>
@@ -65,8 +65,8 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Tallenna ja linkitä"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Linkitä"</string>
     <string name="menu_save" msgid="1727844363591825909">"Tallenna"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Yhdistä kontaktit"</string>
-    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Valitse kontakti, jonka haluat yhdistää kontaktiin <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Linkitä yhteystiedot"</string>
+    <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Valitse yhteystieto, jonka haluat yhdistää yhteystietoon <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"Näytä kaikki yhteystiedot"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Ehdotetut yhteystiedot"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Kaikki yhteystiedot"</string>
@@ -106,7 +106,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Oman luokituksen nimi"</string>
     <string name="send_to_voicemail_checkbox" msgid="9001686764070676353">"Ohjaa puheluja suoraan vastaajaan"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Poista kuva"</string>
-    <string name="noContacts" msgid="4955659076981974652">"Ei kontakteja"</string>
+    <string name="noContacts" msgid="4955659076981974652">"Ei yhteystietoja"</string>
     <string name="noGroups" msgid="8614664663561385253">"Ei ryhmiä."</string>
     <string name="noAccounts" msgid="7768267764545265909">"Tarvitset tilin ryhmien luomiseen."</string>
     <string name="emptyGroup" msgid="7502116218697177370">"Tässä ryhmässä ei ole ihmisiä."</string>
@@ -130,7 +130,7 @@
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> löytyi</item>
       <item quantity="one">1 löytyi</item>
     </plurals>
-    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ei kontakteja"</string>
+    <string name="listFoundAllContactsZero" msgid="922980883593159444">"Ei yhteystietoja"</string>
     <plurals name="searchFoundContacts" formatted="false" msgid="7223023725334884618">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> löytyi</item>
       <item quantity="one">1 löytyi</item>
@@ -183,7 +183,7 @@
     <string name="change_photo" msgid="8530597935483526383">"Muuta"</string>
     <string name="primary_photo" msgid="8517942231868516999">"Kontaktin kuva"</string>
     <string name="description_star" msgid="2605854427360036550">"lisää suosikkeihin"</string>
-    <string name="edit_contact" msgid="7529281274005689512">"Muokkaa yhteystietoa"</string>
+    <string name="edit_contact" msgid="7529281274005689512">"Muokkaa kontaktia"</string>
     <string name="aggregation_suggestion_join_dialog_message" msgid="6786192560870357912">"Yhdistetäänkö valittu kontakti nykyiseen kontaktiin?"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"Haluatko muokata valittuja yhteystietoja? Antamasi tiedot kopioidaan."</string>
     <string name="menu_copyContact" msgid="1573960845106822639">"Kopioi yhteystietoihini"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Aseta oletukseksi"</string>
     <string name="clear_default" msgid="7193185801596678067">"Poista oletus"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Teksti kopioitu"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"Hylätäänkö muutokset?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"Hylkää"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Hylätäänkö muutokset ja lopetetaan muokkaaminen?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Hylkää"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Jatka muokkausta"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"Luo profiili"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"Kirjoita henkilön nimi"</string>
@@ -235,14 +236,13 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Oma paikallinen profiili"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Oma <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>-profiili"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Kaikki kontaktit"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Yhteystiedot toimivat paremmin Google-tilin kanssa.\n\n• Käytä millä tahansa selaimella.\n• Varmuuskopioi turvallisesti."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Pidä kontaktisi turvassa, vaikka puhelimesi katoaisi: synkronoi ne verkkopalvelun avulla."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Lisää tili"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Uutta kontaktiasi ei varmuuskopioida. Lisätäänkö tili, joka varmuuskopioi uudet kontaktit verkossa?"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Uudet yhteystiedot tallennetaan tilille <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Valitse uusien yhteystietojen oletustili:"</string>
     <string name="contact_editor_title_new_contact" msgid="7192223018128934940">"Lisää yhteystieto"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Muokkaa yhteystietoa"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Muokkaa kontaktia"</string>
     <string name="keep_local" msgid="1258761699192993322">"Säilytä paikallisena"</string>
     <string name="add_account" msgid="8201790677994503186">"Lisää tili"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisää uusi tili"</string>
@@ -296,7 +296,7 @@
     </plurals>
     <string name="quickcontact_contacts_number" msgid="6036916944287597682">"<xliff:g id="COUNT">%d</xliff:g> yhdistettyä kontaktia"</string>
     <string name="quick_contact_display_name_with_phonetic" msgid="3692038078718876610">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> (<xliff:g id="PHONETIC_NAME">%s</xliff:g>)"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"YHDISTÄ KONTAKTIT"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LINKITÄ YHTEYSTIEDOT"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"PERUUTA"</string>
     <plurals name="quickcontact_suggestion_card_title" formatted="false" msgid="2660005966628746406">
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> mahdollista kaksoiskappaletta</item>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Tuntemattoman tilin kuva ei ole valittuna."</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Tuntemattoman tilin kuva on valittuna."</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Yhteystietoluetteloa päivitetään vaihdetun kielen mukaiseksi.\n\nOdota…"</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Lisää numero"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"Estä numero"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Lisää numero tai hae yhteystiedoista"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Kumotaanko numeron <xliff:g id="NUMBER">%1$s</xliff:g> esto?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"KUMOA ESTO"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Estetäänkö <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"ESTÄ"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"Numero <xliff:g id="NUMBER">%1$s</xliff:g> estetty"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Numeron <xliff:g id="NUMBER">%1$s</xliff:g> esto kumottu"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> on virheellinen."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Puheluesto väliaikaisesti pois käytöstä"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Puheluiden estäminen on poistettu käytöstä, koska olet ottanut yhteyttä hätäpalveluihin tästä puhelimesta viimeisen 48 tunnin aikana. Esto otetaan automaattisesti uudelleen käyttöön, kun puhelusta on kulunut 48 tuntia."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"Tuo"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Näytä numerot"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Lisää numero"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Puhelujen esto poistettiin käytöstä 48 tunnin ajaksi"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Toiminto poistettiin käytöstä hätäpuhelun vuoksi."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"KUMOA"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> on jo estetty."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Poista numeron esto"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Yhteystiedot: <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Tuonti epäonnistui."</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"Tuo numerot"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Jos haluat hakea kontaktejasi, ota käyttöön kontaktien käyttöoikeudet."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"Ota käyttöön"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Estetyt numerot"</string>
 </resources>

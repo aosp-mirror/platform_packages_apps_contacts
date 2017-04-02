@@ -25,7 +25,7 @@
     <string name="shortcutDialContact" msgid="746622101599186779">"நேரடி டயல்"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"நேரடி செய்தி"</string>
     <string name="shortcutActivityTitle" msgid="6642877210643565436">"தொடர்பின் குறுக்குவழியைத் தேர்வுசெய்தல்"</string>
-    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"அழைப்பதற்கான எண்ணைத் தேர்வுசெய்யவும்"</string>
+    <string name="callShortcutActivityTitle" msgid="6065749861423648991">"அழைக்கத் தேர்வுசெய்க"</string>
     <string name="messageShortcutActivityTitle" msgid="3084542316620335911">"செய்தி அனுப்ப எண்ணைத் தேர்வுசெய்க"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"தொடர்பில் சேர்"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"தொடர்பைத் தேர்வுசெய்யவும்"</string>
@@ -63,12 +63,12 @@
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"சேமித்து தொடர்பை அகற்று"</string>
     <string name="joinConfirmation" msgid="8262614843581924365">"நீங்கள் ஏற்கனவே செய்த மாற்றங்களைச் சேமித்து, தேர்ந்தெடுத்த தொடர்புடன் இணைக்கவா?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"சேமித்து இணை"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"இணைப்பு"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"இணை"</string>
     <string name="menu_save" msgid="1727844363591825909">"சேமி"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"தொடர்புகளை இணைத்தல்"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> உடன் இணைக்க விரும்பும் தொடர்பைத் தேர்வுசெய்க:"</string>
     <string name="showAllContactsJoinItem" msgid="2189695051430392383">"எல்லா தொடர்புகளையும் காட்டு"</string>
-    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்பட்ட தொடர்புகள்"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"பரிந்துரைக்கப்படும் தொடர்புகள்"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"எல்லா தொடர்புகளும்"</string>
     <string name="contactsJoinedMessage" msgid="3343535986195643136">"தொடர்புகள் இணைக்கப்பட்டன"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="1477708624197262295">
@@ -76,7 +76,7 @@
       <item quantity="one">தொடர்பு நீக்கப்பட்டது</item>
     </plurals>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"ரிங்டோனை அமை"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"எல்லா அழைப்புகளையும் குரலஞ்சலிற்கு திருப்பு"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="4181789196416396656">"அழைப்புகளை குரலஞ்சலிற்கு திருப்பு"</string>
     <string name="readOnlyContactWarning" msgid="5526727661978307833">"படிக்க மட்டுமேயான கணக்குகளிலிருந்து தொடர்புகளை நீக்க முடியாது, ஆனால் அவற்றை மறைக்கலாம்."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="6541862607313811926">"மறை"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="8782086424739664753">"நீக்குவதற்குத் தேர்ந்தெடுத்த தொடர்பில் பல கணக்குகளின் விவரங்கள் உள்ளன. படிக்க மட்டுமேயான கணக்குகளின் விவரங்கள் மறைக்கப்படுமே தவிர நீக்கப்படாது."</string>
@@ -147,18 +147,18 @@
     <string name="search_settings_description" msgid="2675223022992445813">"உங்கள் தொடர்புகளின் பெயர்கள்"</string>
     <string name="quickcontact_missing_app" msgid="358168575340921552">"இந்தச் செயலைச் செய்வதற்கான பயன்பாடு எதுவுமில்லை."</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"முந்தைய திரைக்குச் செல்ல கிளிக் செய்க"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ஃபோன் எண்ணைச் சேர்க்கவும்"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"மொபைல் எண்ணைச் சேர்க்கவும்"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"மின்னஞ்சலைச் சேர்க்கவும்"</string>
     <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய பயன்பாடு எதுவுமில்லை."</string>
     <string name="menu_share" msgid="943789700636542260">"பகிர்"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"தொடர்புகளில் சேர்"</string>
-    <string name="share_via" msgid="563121028023030093">"இதன் வழியாக தொடர்பைப் பகிர்"</string>
+    <string name="share_via" msgid="563121028023030093">"தொடர்பை இதில் பகிர்:"</string>
     <string name="dialog_new_group_account" msgid="2318032089273496830">"கணக்கின் கீழ் குழுவை உருவாக்கவும்"</string>
     <string name="audio_chat" msgid="2535716629358298691">"குரல் அரட்டை"</string>
     <string name="video_chat" msgid="1872255818640336072">"வீடியோ அரட்டை"</string>
     <string name="connections" msgid="8098440723172028350">"இணைப்புகள்"</string>
     <string name="add_connection_button" msgid="4861308615789601727">"இணைப்பைச் சேர்"</string>
-    <string name="recent" msgid="2659189233141493004">"சமீபத்தியவை"</string>
+    <string name="recent" msgid="2659189233141493004">"சமீபத்தில்"</string>
     <string name="recent_updates" msgid="4267258535615860710">"சமீபத்திய புதுப்பிப்புகள்"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> தொடர்பு"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> கணக்கு"</string>
@@ -192,7 +192,7 @@
     <string name="list_filter_custom" msgid="8910173055702057002">"தனிப்பயன்"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"அமைப்பு"</string>
     <string name="menu_settings" msgid="377929915873428211">"அமைப்பு"</string>
-    <string name="menu_help" msgid="1680178646764069976">"உதவி &amp; கருத்துத் தெரிவி"</string>
+    <string name="menu_help" msgid="1680178646764069976">"உதவி &amp; கருத்து"</string>
     <string name="preference_displayOptions" msgid="1341720270148252393">"திரை விருப்பங்கள்"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"மொபைல் எண்"</string>
@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"இயல்புநிலையாக அமை"</string>
     <string name="clear_default" msgid="7193185801596678067">"இயல்பை அழி"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"உரை நகலெடுக்கப்பட்டது"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"மாற்றங்களை விலக்கவா?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"நிராகரி"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"மாற்றங்களை நிராகரித்து, திருத்துவதிலிருந்து வெளியேறவா?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"நிராகரி"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"தொடர்ந்து திருத்து"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"எனது சுயவிவரத்தை அமை"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"பெயரை உள்ளிடவும்"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"எனது சுயவிவரம்"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"எனது <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> சுயவிவரம்"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"எல்லா தொடர்புகளையும் காட்டுகிறது"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Google கணக்குடன் தொடர்புகள் அம்சம் சிறந்த முறையில் வேலை செய்கிறது.\n\n• எந்த இணைய உலாவியிலிருந்தும் அணுகலாம்.\n• தொடர்புகளைப் பாதுகாப்பாகக் காப்புப்பிரதி எடுக்கலாம்."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"மொபைலை தொலைத்தாலும் தொடர்புகளைப் பாதுகாப்புடன் வைத்திருக்கலாம்: ஆன்லைன் சேவையுடன் ஒத்திசைக்கவும்."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"கணக்கைச் சேர்"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"புதிய தொடர்பை நகலெடுக்க முடியாது. தொடர்புகளை ஆன்லைனில் சேமிக்க, கணக்கைச் சேர்க்க விரும்புகிறீர்களா?"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"அறியப்படாத கணக்கிலிருந்து படம் தேர்ந்தெடுக்கப்படவில்லை"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"அறியப்படாத கணக்கிலிருந்து படம் தேர்ந்தெடுக்கப்பட்டது"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"மொழி மாற்றத்தைக் காட்ட, தொடர்புப் பட்டியல் புதுப்பிக்கப்படுகிறது.\n\nகாத்திருக்கவும்..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"எண்ணைச் சேர்"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"எண்ணைத் தடு"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"எண்ணைச் சேர்க்கவும் அல்லது தொடர்புகளில் தேடவும்"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"<xliff:g id="NUMBER">%1$s</xliff:g>ஐ அனுமதிக்கவா?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"அனுமதி"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"<xliff:g id="NUMBER">%1$s</xliff:g>ஐத் தடுக்கவா?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"தடு"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"<xliff:g id="NUMBER">%1$s</xliff:g> தடுக்கப்பட்டது"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"<xliff:g id="NUMBER">%1$s</xliff:g> அனுமதிக்கப்பட்டது"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"<xliff:g id="NUMBER">%1$s</xliff:g> தவறானது."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"அழைப்புத் தடுப்பு அம்சம் தற்காலிகமாக முடக்கப்பட்டுள்ளது"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"கடந்த 48 மணிநேரத்தில், இந்த ஃபோனிலிருந்து அவசர அழைப்பு எண்ணைத் தொடர்புகொண்டதால் அழைப்புத் தடுப்பு அம்சம் முடக்கப்பட்டுள்ளது. 48 மணிநேரம் கழித்து, இந்த அம்சம் தானாகவே மீண்டும் இயக்கப்படும்."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"இறக்கு"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"எண்களைக் காட்டு"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"எண்ணைச் சேர்"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"அழைப்புத் தடுப்பு 48 மணிநேரத்திற்கு முடக்கப்பட்டுள்ளது"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"அவசர அழைப்பு செய்திருப்பதால், அழைப்புத் தடுப்பு முடக்கப்பட்டது."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"செயல்தவிர்"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"<xliff:g id="NUMBER">%1$s</xliff:g> ஏற்கனவே தடுக்கப்பட்டுள்ளது."</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"எண்ணை அனுமதி"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"<xliff:g id="NAMEORNUMBER">%1$s</xliff:g> க்கான தொடர்பு விவரங்கள்"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"இறக்குவதில் தோல்வி"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"எண்களை இறக்கு"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"தொடர்புகளைத் தேட, தொடர்புகள் அனுமதிகளை இயக்கவும்."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"இயக்கு"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"தடுக்கப்பட்ட எண்கள்"</string>
 </resources>

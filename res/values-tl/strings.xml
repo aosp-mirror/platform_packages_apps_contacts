@@ -226,8 +226,9 @@
     <string name="set_default" msgid="4417505153468300351">"Itakda ang default"</string>
     <string name="clear_default" msgid="7193185801596678067">"I-clear ang default"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Kinopya ang teksto"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="5885724679874403115">"I-discard ang iyong mga pagbabago?"</string>
-    <string name="cancel_confirmation_dialog_message_positive_button" msgid="5867089312833413172">"I-discard"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="5058226498605989285">"Gusto mo bang i-discard ang iyong mga pagbabago at huminto sa pag-e-edit?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"I-discard"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7737724111972855348">"Patuloy na mag-edit"</string>
     <string name="call_type_and_date" msgid="747163730039311423">"<xliff:g id="CALL_TYPE">%1$s</xliff:g> <xliff:g id="CALL_SHORT_DATE">%2$s</xliff:g>"</string>
     <string name="profile_display_name" msgid="4127389543625918771">"I-set up ang profile"</string>
     <string name="enter_contact_name" msgid="1738391320566349924">"I-type ang pangalan ng tao"</string>
@@ -235,7 +236,6 @@
     <string name="local_profile_title" msgid="2021416826991393684">"Aking lokal na profile"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Aking <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> na profile"</string>
     <string name="toast_displaying_all_contacts" msgid="2737388783898593875">"Ipinapakita ang lahat ng contact"</string>
-    <string name="no_account_prompt" msgid="6424883302325061025">"Mas mahusay na gumagana ang Mga Contact kapag may Google Account.\n\n• I-access mula sa anumang web browser.\n• Secure na i-back up ang iyong mga contact."</string>
     <string name="generic_no_account_prompt" msgid="7218827704367325460">"Panatilihing ligtas ang iyong mga contact kahit na mawala mo ang iyong telepono: mag-synchronize sa isang online na serbisyo."</string>
     <string name="generic_no_account_prompt_title" msgid="753783911899054860">"Magdagdag ng account"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="1785345895691886499">"Hindi maba-back up ang iyong bagong contact. Magdagdag ng account na nagba-back up ng mga contact online?"</string>
@@ -327,39 +327,5 @@
     <string name="photo_view_description_not_checked_no_info" msgid="2749154927006406981">"Hindi nilagyan ng check ang larawan mula sa isang hindi kilalang account"</string>
     <string name="photo_view_description_checked_no_info" msgid="4974335987092590591">"Nalagyan na ng check ang larawan mula sa isang hindi kilalang account"</string>
     <string name="locale_change_in_progress" msgid="1124266507671178413">"Ina-update ang listahan ng contact upang ipakita ang pagbabago ng wika.\n\nPakihintay..."</string>
-    <!-- no translation found for blocked_numbers_title (6350716762304498682) -->
-    <skip />
-    <!-- no translation found for blocked_number_header_message (7296377056254430077) -->
-    <skip />
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Magdagdag ng numero"</string>
-    <string name="search_shortcut_block_number" msgid="4787156645163436072">"I-block ang numero"</string>
-    <string name="block_number_search_hint" msgid="5409571607043872758">"Magdagdag ng numero, maghanap sa contact"</string>
-    <!-- no translation found for block_number_confirmation_message (4425497283298329703) -->
-    <skip />
-    <string name="unblock_number_confirmation_title" msgid="252824779504084354">"Gusto mo bang alisin sa pagkaka-block ang <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="unblock_number_ok" msgid="6449899182699684786">"ALISIN SA PAGKAKA-BLOCK"</string>
-    <string name="block_number_confirmation_title" msgid="6862219558186931304">"Gusto mo bang i-block ang <xliff:g id="NUMBER">%1$s</xliff:g>?"</string>
-    <string name="block_number_ok" msgid="770551992296781873">"I-BLOCK"</string>
-    <string name="snackbar_number_blocked" msgid="939830142765936021">"Na-block ang <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="snackbar_number_unblocked" msgid="4854738171099045912">"Naalis sa pagkaka-block ang <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="invalidNumber" msgid="619058581062192851">"Hindi wasto ang <xliff:g id="NUMBER">%1$s</xliff:g>."</string>
-    <string name="blocked_numbers_disabled_emergency_header_label" msgid="7870947220238070418">"Pansamantalang na-off ang call blocking"</string>
-    <string name="blocked_numbers_disabled_emergency_desc" msgid="7755803249073401381">"Na-disable ang pagba-block ng tawag dahil nakipag-ugnayan ka sa mga pang-emergency na serbisyo mula sa teleponong ito sa nakalipas na 48 oras. Awtomatiko itong muling i-enable kapag nag-expire na ang 48 oras."</string>
-    <!-- no translation found for blocked_call_settings_import_description (9026101454390679399) -->
-    <skip />
-    <string name="blocked_call_settings_import_button" msgid="178821255125295473">"I-import"</string>
-    <string name="blocked_call_settings_view_numbers_button" msgid="6698986720875955935">"Tingnan ang Numero"</string>
-    <string name="addBlockedNumber" msgid="6064812257482886526">"Magdagdag ng numero"</string>
-    <string name="call_blocking_disabled_notification_title" msgid="8185193413377920194">"Na-disable ang pagba-block ng tawag sa loob ng 48 oras"</string>
-    <string name="call_blocking_disabled_notification_text" msgid="5330772013626378526">"Na-disable dahil tumawag para sa emergency."</string>
-    <string name="block_number_undo" msgid="591338370336724156">"I-UNDO"</string>
-    <string name="alreadyBlocked" msgid="282340105563646876">"Naka-block na ang <xliff:g id="NUMBER">%1$s</xliff:g>"</string>
-    <string name="description_blocked_number_list_delete" msgid="3240093199107796792">"Alisin sa pagkaka-block ang numero"</string>
-    <string name="description_contact_details" msgid="51229793651342809">"Mga detalye sa pakikipag-ugnayan para kay/sa <xliff:g id="NAMEORNUMBER">%1$s</xliff:g>"</string>
-    <string name="send_to_voicemail_import_failed" msgid="5547202002133560069">"Hindi nakapag-import"</string>
-    <string name="import_send_to_voicemail_numbers_label" msgid="1606601823746799926">"I-import ang mga numero"</string>
-    <string name="permission_no_search" msgid="84152933267902056">"Upang hanapin ang iyong mga contact, i-on ang mga pahintulot sa Mga Contact."</string>
-    <string name="permission_single_turn_on" msgid="1543391076065465464">"I-on"</string>
-    <!-- no translation found for menu_blocked_numbers (5272951629083025995) -->
-    <skip />
+    <string name="menu_blocked_numbers" msgid="5272951629083025995">"Mga naka-block na numero"</string>
 </resources>
