@@ -39,6 +39,12 @@ public final class Experiments {
             "Shortcuts__dynamic_min_content_change_update_delay_millis";
 
     /**
+     * Flags for enabling video call from quick contact.
+     */
+    public static final String QUICK_CONTACT_VIDEO_CALL =
+            "QuickContact__duo_integration";
+
+    /**
      * Flags for maximum time to show spinner for a contacts sync.
      */
     public static final String PULL_TO_REFRESH_CANCEL_REFRESH_MILLIS =
