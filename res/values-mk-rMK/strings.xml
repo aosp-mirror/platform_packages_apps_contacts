@@ -520,7 +520,7 @@
     <string name="account_sync_off" msgid="7646143254066243924">"Автоматското синхронизирање е исклучено. Допрете за да го вклучите."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Да се вклучи автоматско синхронизирање?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Промените што ги правите на сите апликации и сметки, не само на „Контакти на Google“, ќе се ажурираат и на интернет и на вашите уреди."</string>
-    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Вклучете"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Вклучи"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Нема мрежа"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"Прикажи повеќе"</string>
