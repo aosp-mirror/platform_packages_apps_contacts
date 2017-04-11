@@ -89,6 +89,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
             mHandler.obtainMessage(0, message).sendToTarget();
         }
 
+        ContactsNotificationChannelsUtil.createDefaultChannel(mContext);
         final Notification notification = constructProgressNotification(mContext,
                 VCardService.TYPE_IMPORT, message, message, jobId, displayName, -1, 0);
         mNotificationManager.notify(DEFAULT_NOTIFICATION_TAG, jobId, notification);
@@ -164,6 +165,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
         final String message = mContext.getString(R.string.contacts_export_will_start_message);
 
         mHandler.obtainMessage(0, message).sendToTarget();
+        ContactsNotificationChannelsUtil.createDefaultChannel(mContext);
         final Notification notification =
                 NotificationImportExportListener.constructProgressNotification(mContext,
                         VCardService.TYPE_EXPORT, message, message, jobId, displayName, -1, 0);
@@ -220,10 +222,10 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .appendQueryParameter(CancelActivity.TYPE, String.valueOf(type)).build();
         intent.setData(uri);
 
-        ContactsNotificationChannelsUtil.createDefaultChannel(context);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setOngoing(true)
                 .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
+                .setOnlyAlertOnce(true)
                 .setProgress(totalCount, currentCount, totalCount == - 1)
                 .setTicker(tickerText)
                 .setContentTitle(description)
