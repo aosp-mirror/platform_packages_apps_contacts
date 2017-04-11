@@ -38,7 +38,7 @@ public class ContactsNotificationChannelsUtil {
         final NotificationManager nm = context.getSystemService(NotificationManager.class);
         final NotificationChannel channel = new NotificationChannel(DEFAULT_CHANNEL,
                 context.getString(R.string.contacts_default_notification_channel),
-                NotificationManager.IMPORTANCE_DEFAULT);
+                NotificationManager.IMPORTANCE_LOW);
         nm.createNotificationChannel(channel);
     }
 }
