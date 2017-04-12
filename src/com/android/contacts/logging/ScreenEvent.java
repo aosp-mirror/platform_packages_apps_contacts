@@ -31,8 +31,10 @@ public class ScreenEvent {
         public static final int ALL_CONTACTS = 4;
         public static final int QUICK_CONTACT = 5;
         public static final int EDITOR = 6;
-        public static final int LIST_ACCOUNT = 7;
-        public static final int LIST_GROUP = 8;
-        public static final int ME_CONTACT = 9;
+        public static final int FIND_DUPLICATES = 7;
+        public static final int LIST_ACCOUNT = 8;
+        public static final int LIST_GROUP = 9;
+        public static final int ME_CONTACT = 10;
+        public static final int ASSISTANT = 11;
     }
 }
