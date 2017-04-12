@@ -117,6 +117,7 @@ public class ExpandingEntryCardView extends CardView {
         private final int mIconResourceId;
         private final int mThirdAction;
         private final Bundle mThirdExtras;
+        private final boolean mShouldApplyThirdIconColor;
 
         public Entry(int id, Drawable mainIcon, String header, String subHeader,
                 Drawable subHeaderIcon, String text, Drawable textIcon,
@@ -125,7 +126,7 @@ public class ExpandingEntryCardView extends CardView {
                 Spannable alternateContentDescription, boolean shouldApplyColor, boolean isEditable,
                 EntryContextMenuInfo entryContextMenuInfo, Drawable thirdIcon, Intent thirdIntent,
                 String thirdContentDescription, int thirdAction, Bundle thirdExtras,
-                int iconResourceId) {
+                boolean shouldApplyThirdIconColor, int iconResourceId) {
             mId = id;
             mIcon = mainIcon;
             mHeader = header;
@@ -146,6 +147,7 @@ public class ExpandingEntryCardView extends CardView {
             mThirdContentDescription = thirdContentDescription;
             mThirdAction = thirdAction;
             mThirdExtras = thirdExtras;
+            mShouldApplyThirdIconColor = shouldApplyThirdIconColor;
             mIconResourceId = iconResourceId;
         }
 
@@ -231,6 +233,10 @@ public class ExpandingEntryCardView extends CardView {
 
         public Bundle getThirdExtras() {
             return mThirdExtras;
+        }
+
+        boolean shouldApplyThirdIconColor() {
+            return mShouldApplyThirdIconColor;
         }
     }
 
@@ -607,7 +613,7 @@ public class ExpandingEntryCardView extends CardView {
                             alternateIcon.setColorFilter(mThemeColorFilter);
                         }
                         Drawable thirdIcon = entry.getThirdIcon();
-                        if (thirdIcon != null) {
+                        if (thirdIcon != null && entry.shouldApplyThirdIconColor()) {
                             thirdIcon.mutate();
                             thirdIcon.setColorFilter(mThemeColorFilter);
                         }
