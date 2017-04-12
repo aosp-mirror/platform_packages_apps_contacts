@@ -22,6 +22,7 @@ import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.android.contacts.R;
 import com.android.contacts.model.RawContactDelta;
@@ -73,6 +74,9 @@ public class StructuredNameEditorView extends TextFieldsEditorView {
             mChanged = false;
         }
         updateEmptiness();
+        // Right alien with rest of the editors. As this view has an extra expand/collapse view on
+        // the right, we need to free the space from deleteContainer
+        mDeleteContainer.setVisibility(View.GONE);
     }
 
     @Override

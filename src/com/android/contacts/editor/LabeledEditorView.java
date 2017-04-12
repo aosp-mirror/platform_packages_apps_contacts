@@ -70,7 +70,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
 
     private Spinner mLabel;
     private EditTypeAdapter mEditTypeAdapter;
-    private View mDeleteContainer;
+    protected View mDeleteContainer;
     private ImageView mDelete;
 
     private DataKind mKind;
@@ -230,7 +230,7 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
             mDeleteContainer.setVisibility(View.VISIBLE);
             mDelete.setEnabled(!mReadOnly && isEnabled());
         } else {
-            mDeleteContainer.setVisibility(View.GONE);
+            mDeleteContainer.setVisibility(View.INVISIBLE);
         }
     }
 
