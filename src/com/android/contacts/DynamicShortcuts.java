@@ -406,9 +406,9 @@ public class DynamicShortcuts {
 
         // If on O or higher, add padding around the bitmap.
         final int paddingW = (int) (bitmap.getWidth() *
-                AdaptiveIconDrawable.getExtraInsetPercentage());
+                AdaptiveIconDrawable.getExtraInsetFraction());
         final int paddingH = (int) (bitmap.getHeight() *
-                AdaptiveIconDrawable.getExtraInsetPercentage());
+                AdaptiveIconDrawable.getExtraInsetFraction());
 
         final Bitmap scaledBitmap = Bitmap.createBitmap(bitmap.getWidth() + paddingW,
                 bitmap.getHeight() + paddingH, bitmap.getConfig());
@@ -426,7 +426,7 @@ public class DynamicShortcuts {
         if (BuildCompat.isAtLeastO()) {
             // Add padding on >= O
             padding = (int) (RECOMMENDED_ICON_PIXEL_LENGTH *
-                    AdaptiveIconDrawable.getExtraInsetPercentage());
+                    AdaptiveIconDrawable.getExtraInsetFraction());
             width = RECOMMENDED_ICON_PIXEL_LENGTH + padding;
             height = RECOMMENDED_ICON_PIXEL_LENGTH + padding;
         } else {

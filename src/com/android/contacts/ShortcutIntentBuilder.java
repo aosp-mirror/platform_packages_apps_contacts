@@ -432,7 +432,7 @@ public class ShortcutIntentBuilder {
 
         // On >= O scale image up by AdaptiveIconDrawable.DEFAULT_VIEW_PORT_SCALE.
         final int scale = (int) (icon.getHeight() *
-                (1f / (1 + 2 * AdaptiveIconDrawable.getExtraInsetPercentage())));
+                (1f / (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction())));
         final Bitmap scaledBitmap = Bitmap.createBitmap(icon.getWidth() + scale,
                 icon.getHeight() + scale, icon.getConfig());
         Canvas scaledCanvas = new Canvas(scaledBitmap);
