@@ -140,14 +140,14 @@ public class AccountTypeProvider {
     public boolean shouldUpdate(AuthenticatorDescription[] auths, SyncAdapterType[] syncTypes) {
         Map<String, AuthenticatorDescription> contactsAuths = onlyContactSyncable(auths, syncTypes);
         if (!contactsAuths.keySet().equals(mAuthTypes.keySet())) {
-            return false;
+            return true;
         }
         for (AuthenticatorDescription auth : contactsAuths.values()) {
             if (!deepEquals(mAuthTypes.get(auth.type), auth)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean supportsContactsSyncing(String accountType) {
@@ -157,6 +157,9 @@ public class AccountTypeProvider {
     private List<AccountType> loadTypes(String type) {
         final AuthenticatorDescription auth = mAuthTypes.get(type);
         if (auth == null) {
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Null auth type for " + type);
+            }
             return Collections.emptyList();
         }
 
@@ -170,6 +173,10 @@ public class AccountTypeProvider {
             accountType = new SamsungAccountType(mContext, auth.packageName, type);
         } else if (!ExternalAccountType.hasContactsXml(mContext, auth.packageName)
                 && isLocalAccountType(mLocalAccountTypeFactory, type)) {
+            if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Registering local account type=" + type
+                        + ", packageName=" + auth.packageName);
+            }
             accountType = mLocalAccountTypeFactory.getAccountType(type);
         } else {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
@@ -184,6 +191,10 @@ public class AccountTypeProvider {
                         + accountType.getClass().getCanonicalName());
             } else {
                 // Skip external account types that couldn't be initialized
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "Skipping external account type=" + type
+                            + ", packageName=" + auth.packageName);
+                }
                 return Collections.emptyList();
             }
         }
