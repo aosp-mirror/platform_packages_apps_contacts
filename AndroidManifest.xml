@@ -76,6 +76,7 @@
             android:launchMode="singleTop"
             android:resizeableActivity="true"
             android:theme="@style/LaunchScreenTheme"
+            android:visibleToInstantApps="true"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
