@@ -93,4 +93,18 @@ public class FallbackAccountType extends BaseAccountType {
     public boolean areContactsWritable() {
         return true;
     }
+
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>This is overriden because the base class validates that the account.type matches
+     * {@link #accountType} but for the fallback case we want to be more permissive</p>
+     */
+    @Override
+    public AccountInfo wrapAccount(Context context, AccountWithDataSet account) {
+        return new AccountInfo(
+                new AccountDisplayInfo(account, account.name,
+                        getDisplayLabel(context), getDisplayIcon(context), false), this);
+    }
 }

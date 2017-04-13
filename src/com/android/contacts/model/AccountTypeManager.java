@@ -580,9 +580,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
         if (account == null) {
             return null;
         }
-        final AccountType type = mTypeProvider.getTypeForAccount(account);
+        AccountType type = mTypeProvider.getTypeForAccount(account);
         if (type == null) {
-            return null;
+            type = mFallbackAccountType;
         }
         return type.wrapAccount(mContext, account);
     }
@@ -703,7 +703,8 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     @Override
     public AccountType getAccountType(AccountTypeWithDataSet accountTypeWithDataSet) {
-        return mTypeProvider.getType(
+        final AccountType type = mTypeProvider.getType(
                 accountTypeWithDataSet.accountType, accountTypeWithDataSet.dataSet);
+        return type != null ? type : mFallbackAccountType;
     }
 }
