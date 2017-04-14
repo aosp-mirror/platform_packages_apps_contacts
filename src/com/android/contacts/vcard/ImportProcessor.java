@@ -16,6 +16,7 @@
 package com.android.contacts.vcard;
 
 import android.accounts.Account;
+import android.app.Notification;
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.util.Log;
@@ -88,7 +89,11 @@ public class ImportProcessor extends ProcessorBase implements VCardEntryHandler 
     public void onEntryCreated(VCardEntry entry) {
         mCurrentCount++;
         if (mListener != null) {
-            mListener.onImportParsed(mImportRequest, mJobId, entry, mCurrentCount, mTotalCount);
+            final Notification notification = mListener.onImportParsed(mImportRequest, mJobId,
+                    entry, mCurrentCount, mTotalCount);
+            if (notification != null) {
+                mService.startForeground(mJobId, notification);
+            }
         }
     }
 

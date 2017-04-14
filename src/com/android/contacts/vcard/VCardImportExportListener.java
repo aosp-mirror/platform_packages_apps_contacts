@@ -16,21 +16,21 @@
 
 package com.android.contacts.vcard;
 
+import android.app.Notification;
 import android.net.Uri;
 
 import com.android.vcard.VCardEntry;
 
 interface VCardImportExportListener {
-    void onImportProcessed(ImportRequest request, int jobId, int sequence);
-    void onImportParsed(ImportRequest request, int jobId, VCardEntry entry, int currentCount,
+    Notification onImportProcessed(ImportRequest request, int jobId, int sequence);
+    Notification onImportParsed(ImportRequest request, int jobId, VCardEntry entry, int currentCount,
             int totalCount);
     void onImportFinished(ImportRequest request, int jobId, Uri uri);
     void onImportFailed(ImportRequest request);
     void onImportCanceled(ImportRequest request, int jobId);
 
-    void onExportProcessed(ExportRequest request, int jobId);
+    Notification onExportProcessed(ExportRequest request, int jobId);
     void onExportFailed(ExportRequest request);
 
     void onCancelRequest(CancelRequest request, int type);
-    void onComplete();
 }

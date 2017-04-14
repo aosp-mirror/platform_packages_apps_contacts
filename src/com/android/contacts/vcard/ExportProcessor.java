@@ -269,8 +269,7 @@ public class ExportProcessor extends ProcessorBase {
                 NotificationImportExportListener.constructProgressNotification(mService,
                         VCardService.TYPE_EXPORT, description, tickerText, mJobId, displayName,
                         totalCount, currentCount);
-        mNotificationManager.notify(NotificationImportExportListener.DEFAULT_NOTIFICATION_TAG,
-                mJobId, notification);
+        mService.startForeground(mJobId, notification);
     }
 
     private void doCancelNotification() {
