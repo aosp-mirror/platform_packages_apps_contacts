@@ -68,7 +68,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
     }
 
     @Override
-    public void onImportProcessed(ImportRequest request, int jobId, int sequence) {
+    public Notification onImportProcessed(ImportRequest request, int jobId, int sequence) {
         // Show a notification about the status
         final String displayName;
         final String message;
@@ -90,16 +90,15 @@ public class NotificationImportExportListener implements VCardImportExportListen
         }
 
         ContactsNotificationChannelsUtil.createDefaultChannel(mContext);
-        final Notification notification = constructProgressNotification(mContext,
-                VCardService.TYPE_IMPORT, message, message, jobId, displayName, -1, 0);
-        mNotificationManager.notify(DEFAULT_NOTIFICATION_TAG, jobId, notification);
+        return constructProgressNotification(mContext, VCardService.TYPE_IMPORT, message, message,
+                jobId, displayName, -1, 0);
     }
 
     @Override
-    public void onImportParsed(ImportRequest request, int jobId, VCardEntry entry, int currentCount,
+    public Notification onImportParsed(ImportRequest request, int jobId, VCardEntry entry, int currentCount,
             int totalCount) {
         if (entry.isIgnorable()) {
-            return;
+            return null;
         }
 
         final String totalCountString = String.valueOf(totalCount);
@@ -111,10 +110,9 @@ public class NotificationImportExportListener implements VCardImportExportListen
         final String description = mContext.getString(R.string.importing_vcard_description,
                 entry.getDisplayName());
 
-        final Notification notification = constructProgressNotification(
-                mContext.getApplicationContext(), VCardService.TYPE_IMPORT, description, tickerText,
-                jobId, request.displayName, totalCount, currentCount);
-        mNotificationManager.notify(DEFAULT_NOTIFICATION_TAG, jobId, notification);
+        return constructProgressNotification(mContext.getApplicationContext(),
+                VCardService.TYPE_IMPORT, description, tickerText, jobId, request.displayName,
+                totalCount, currentCount);
     }
 
     @Override
@@ -159,17 +157,15 @@ public class NotificationImportExportListener implements VCardImportExportListen
     }
 
     @Override
-    public void onExportProcessed(ExportRequest request, int jobId) {
+    public Notification onExportProcessed(ExportRequest request, int jobId) {
         final String displayName = ExportVCardActivity.getOpenableUriDisplayName(mContext,
                 request.destUri);
         final String message = mContext.getString(R.string.contacts_export_will_start_message);
 
         mHandler.obtainMessage(0, message).sendToTarget();
         ContactsNotificationChannelsUtil.createDefaultChannel(mContext);
-        final Notification notification =
-                NotificationImportExportListener.constructProgressNotification(mContext,
-                        VCardService.TYPE_EXPORT, message, message, jobId, displayName, -1, 0);
-        mNotificationManager.notify(DEFAULT_NOTIFICATION_TAG, jobId, notification);
+        return constructProgressNotification(mContext, VCardService.TYPE_EXPORT, message, message,
+                jobId, displayName, -1, 0);
     }
 
     @Override
@@ -320,10 +316,5 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .setContentIntent(PendingIntent
                         .getActivity(context, 0, new Intent(context.getPackageName(), null), 0))
                 .getNotification();
-    }
-
-    @Override
-    public void onComplete() {
-        mContext.finish();
     }
 }

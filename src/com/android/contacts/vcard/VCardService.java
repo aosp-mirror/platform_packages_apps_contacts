@@ -15,6 +15,7 @@
  */
 package com.android.contacts.vcard;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
@@ -89,7 +90,7 @@ public class VCardService extends Service {
     // requests.
     private final ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
 
-    private int mCurrentJobId;
+    private int mCurrentJobId = 1;
 
     // Stores all unfinished import/export jobs which will be executed by mExecutorService.
     // Key is jobId.
@@ -142,6 +143,7 @@ public class VCardService extends Service {
         if (DEBUG) Log.d(LOG_TAG, "VCardService is being destroyed.");
         cancelAllRequestsAndShutdown();
         clearCache();
+        stopForeground(/* removeNotification */ false);
         super.onDestroy();
     }
 
@@ -164,7 +166,11 @@ public class VCardService extends Service {
 
             if (tryExecute(new ImportProcessor(this, listener, request, mCurrentJobId))) {
                 if (listener != null) {
-                    listener.onImportProcessed(request, mCurrentJobId, i);
+                    final Notification notification =
+                            listener.onImportProcessed(request, mCurrentJobId, i);
+                    if (notification != null) {
+                        startForeground(mCurrentJobId, notification);
+                    }
                 }
                 mCurrentJobId++;
             } else {
@@ -193,7 +199,10 @@ public class VCardService extends Service {
             }
 
             if (listener != null) {
-                listener.onExportProcessed(request, mCurrentJobId);
+                final Notification notification = listener.onExportProcessed(request,mCurrentJobId);
+                if (notification != null) {
+                    startForeground(mCurrentJobId, notification);
+                }
             }
             mCurrentJobId++;
         } else {
