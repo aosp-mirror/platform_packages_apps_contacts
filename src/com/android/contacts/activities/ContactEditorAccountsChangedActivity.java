@@ -51,9 +51,6 @@ import java.util.List;
  */
 public class ContactEditorAccountsChangedActivity extends Activity
         implements AccountsLoader.AccountsListener {
-
-    private static final String TAG = ContactEditorAccountsChangedActivity.class.getSimpleName();
-
     private static final int SUBACTIVITY_ADD_NEW_ACCOUNT = 1;
 
     private AccountsListAdapter mAccountListAdapter;

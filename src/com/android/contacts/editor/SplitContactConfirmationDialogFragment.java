@@ -34,7 +34,7 @@ import com.android.contacts.R;
 public class SplitContactConfirmationDialogFragment extends DialogFragment {
 
     private static final String ARG_HAS_PENDING_CHANGES = "hasPendingChanges";
-    public static final String TAG = "splitContactConfirmation";
+    public static final String TAG = "SplitConfirmation";
 
     /**
      * Callbacks for the dialog host.

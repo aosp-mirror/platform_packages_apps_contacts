@@ -42,7 +42,7 @@ import android.os.Handler;
  * internally with true.
  */
 public class IndeterminateProgressDialog extends DialogFragment {
-    private static final String TAG = IndeterminateProgressDialog.class.getSimpleName();
+    private static final String TAG = "IndeterminateProgress";
 
     private CharSequence mTitle;
     private CharSequence mMessage;

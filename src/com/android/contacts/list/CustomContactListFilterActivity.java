@@ -87,7 +87,7 @@ import javax.annotation.Nullable;
 public class CustomContactListFilterActivity extends Activity implements
         ExpandableListView.OnChildClickListener,
         LoaderCallbacks<CustomContactListFilterActivity.AccountSet> {
-    private static final String TAG = "CustomContactListFilterActivity";
+    private static final String TAG = "CustomContactListFilter";
 
     public static final String EXTRA_CURRENT_LIST_FILTER_TYPE = "currentListFilterType";
 

@@ -61,7 +61,7 @@ public abstract class ContactEntryListFragment<T extends ContactEntryListAdapter
         extends Fragment
         implements OnItemClickListener, OnScrollListener, OnFocusChangeListener, OnTouchListener,
                 OnItemLongClickListener, LoaderCallbacks<Cursor> {
-    private static final String TAG = "ContactEntryListFragment";
+    private static final String TAG = "ContactEntryList";
 
     // TODO: Make this protected. This should not be used from the PeopleActivity but
     // instead use the new startActivityWithResultFromFragment API

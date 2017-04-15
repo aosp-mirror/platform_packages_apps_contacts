@@ -57,7 +57,7 @@ public class ContactMultiDeletionInteraction extends Fragment
     }
 
     private static final String FRAGMENT_TAG = "deleteMultipleContacts";
-    private static final String TAG = "ContactMultiDeletionInteraction";
+    private static final String TAG = "ContactMultiDeletion";
     private static final String KEY_ACTIVE = "active";
     private static final String KEY_CONTACTS_IDS = "contactIds";
     public static final String ARG_CONTACT_IDS = "contactIds";
