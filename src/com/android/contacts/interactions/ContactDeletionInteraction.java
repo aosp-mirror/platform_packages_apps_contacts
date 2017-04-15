@@ -54,7 +54,7 @@ import java.util.HashSet;
 public class ContactDeletionInteraction extends Fragment
         implements LoaderCallbacks<Cursor>, OnDismissListener {
 
-    private static final String TAG = "ContactDeletionInteraction";
+    private static final String TAG = "ContactDeletion";
     private static final String FRAGMENT_TAG = "deleteContact";
 
     private static final String KEY_ACTIVE = "active";

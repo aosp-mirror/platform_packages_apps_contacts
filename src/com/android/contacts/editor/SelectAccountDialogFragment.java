@@ -43,7 +43,7 @@ import java.util.List;
  */
 public final class SelectAccountDialogFragment extends DialogFragment
         implements AccountsLoader.AccountsListener {
-    public static final String TAG = "SelectAccountDialogFragment";
+    public static final String TAG = "SelectAccountDialog";
 
     private static final String KEY_TITLE_RES_ID = "title_res_id";
     private static final String KEY_LIST_FILTER = "list_filter";
