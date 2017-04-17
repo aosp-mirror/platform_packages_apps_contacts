@@ -29,7 +29,7 @@ import java.util.Set;
  * Note: the calendar provider treats mailing lists as atomic email addresses.
  */
 public class CalendarInteractionsLoader extends AsyncTaskLoader<List<ContactInteraction>> {
-    private static final String TAG = CalendarInteractionsLoader.class.getSimpleName();
+    private static final String TAG = "CalendarInteractions";
 
     private List<String> mEmailAddresses;
     private int mMaxFutureToRetrieve;
