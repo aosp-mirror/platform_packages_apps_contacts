@@ -230,14 +230,14 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
     }
 
     @Override
-    public void onImportProcessed(ImportRequest request, int jobId, int sequence) {
-        // do nothing
+    public Notification onImportProcessed(ImportRequest request, int jobId, int sequence) {
+        return null;
     }
 
     @Override
-    public void onImportParsed(ImportRequest request, int jobId, VCardEntry entry, int currentCount,
-            int totalCount) {
-        // do nothing
+    public Notification onImportParsed(ImportRequest request, int jobId, VCardEntry entry,
+            int currentCount, int totalCount) {
+        return null;
     }
 
     @Override
@@ -271,8 +271,8 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
     }
 
     @Override
-    public void onExportProcessed(ExportRequest request, int jobId) {
-        // do nothing
+    public Notification onExportProcessed(ExportRequest request, int jobId) {
+        return null;
     }
 
     @Override
@@ -282,11 +282,6 @@ public class NfcImportVCardActivity extends Activity implements ServiceConnectio
 
     @Override
     public void onCancelRequest(CancelRequest request, int type) {
-        // do nothing
-    }
-
-    @Override
-    public void onComplete() {
         // do nothing
     }
 
