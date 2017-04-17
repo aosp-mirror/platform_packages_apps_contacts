@@ -31,6 +31,11 @@ public class PhoneDataItem extends DataItem {
 
     public static final String KEY_FORMATTED_PHONE_NUMBER = "formattedPhoneNumber";
 
+    private boolean mTachyonReachable;
+    // Stores the custom reachable data item to provide extra data to the Entry created from this
+    // PhoneDataItem.
+    private DataItem mReachableDataItem;
+
     /* package */ PhoneDataItem(ContentValues values) {
         super(values);
     }
@@ -52,6 +57,22 @@ public class PhoneDataItem extends DataItem {
 
     public String getLabel() {
         return getContentValues().getAsString(Phone.LABEL);
+    }
+
+    public void setTachyonReachable(boolean tachyonReachable) {
+        mTachyonReachable = tachyonReachable;
+    }
+
+    public boolean isTachyonReachable() {
+        return mTachyonReachable;
+    }
+
+    public DataItem getReachableDataItem() {
+        return mReachableDataItem;
+    }
+
+    public void setReachableDataItem(DataItem reachableDataItem) {
+        mReachableDataItem = reachableDataItem;
     }
 
     public void computeFormattedPhoneNumber(String defaultCountryIso) {
