@@ -1803,24 +1803,16 @@ public class QuickContactActivity extends ContactsActivity {
                     thirdExtras.putString(CallSubjectDialog.ARG_NUMBER_LABEL,
                             phoneLabel);
                 } else if (isVideoEnabled && (!isPresenceEnabled || isPresent)) {
-                        thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
-                        thirdAction = Entry.ACTION_INTENT;
-                        thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
-                                CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
-                        thirdIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.VIDEOCALL);
-                        thirdContentDescription =
-                                res.getString(R.string.description_video_call);
+                    thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
+                    thirdAction = Entry.ACTION_INTENT;
+                    thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
+                            CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
+                    thirdIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.VIDEOCALL);
+                    thirdContentDescription =
+                            res.getString(R.string.description_video_call);
                 } else if (Flags.getInstance().getBoolean(Experiments.QUICK_CONTACT_VIDEO_CALL)
                         && ((PhoneDataItem) dataItem).isTachyonReachable()) {
-                    final Intent tachyonIntent = new Intent(Intent.ACTION_VIEW);
-                    final Uri uri = ContentUris.withAppendedId(Data.CONTENT_URI,
-                            ((PhoneDataItem) dataItem).getReachableDataItem().getId());
-                    tachyonIntent.setDataAndType(uri, MIMETYPE_TACHYON);
-                    tachyonIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.THIRD_PARTY);
-                    tachyonIntent.putExtra(EXTRA_THIRD_PARTY_ACTION, MIMETYPE_TACHYON);
-                    thirdIcon = ResolveCache.getInstance(context).getIcon(MIMETYPE_TACHYON,
-                            tachyonIntent);
-                    shouldApplyThirdIconColor = false;
+                    thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
                     thirdAction = Entry.ACTION_INTENT;
                     thirdIntent = new Intent("com.google.android.apps.tachyon.action.CALL");
                     thirdIntent.setData(
