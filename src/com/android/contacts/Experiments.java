@@ -42,7 +42,7 @@ public final class Experiments {
      * Flags for enabling video call from quick contact.
      */
     public static final String QUICK_CONTACT_VIDEO_CALL =
-            "QuickContact__duo_integration";
+            "QuickContact__video_call_integration";
 
     /**
      * Flags for maximum time to show spinner for a contacts sync.
