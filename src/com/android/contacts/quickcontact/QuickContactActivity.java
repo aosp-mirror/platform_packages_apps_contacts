@@ -105,11 +105,8 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.DynamicShortcuts;
-import com.android.contacts.Experiments;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
-import com.android.contacts.ShortcutIntentBuilder;
-import com.android.contacts.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.activities.ContactEditorActivity;
 import com.android.contacts.activities.ContactSelectionActivity;
 import com.android.contacts.activities.RequestDesiredPermissionsActivity;
@@ -129,6 +126,8 @@ import com.android.contacts.interactions.ContactInteraction;
 import com.android.contacts.interactions.SmsInteractionsLoader;
 import com.android.contacts.interactions.TouchPointManager;
 import com.android.contacts.lettertiles.LetterTileDrawable;
+import com.android.contacts.ShortcutIntentBuilder;
+import com.android.contacts.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
 import com.android.contacts.list.UiIntentActions;
 import com.android.contacts.logging.Logger;
 import com.android.contacts.logging.QuickContactEvent.ActionType;
@@ -176,7 +175,6 @@ import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
 import com.android.contactsbind.HelpUtils;
-import com.android.contactsbind.experiments.Flags;
 
 import com.google.common.collect.Lists;
 
@@ -248,8 +246,6 @@ public class QuickContactActivity extends ContactsActivity {
     @SuppressWarnings("deprecation")
     private static final String LEGACY_AUTHORITY = android.provider.Contacts.AUTHORITY;
 
-    public static final String MIMETYPE_TACHYON =
-            "vnd.android.cursor.item/com.google.android.apps.tachyon.phone";
     private static final String MIMETYPE_GPLUS_PROFILE =
             "vnd.android.cursor.item/vnd.googleplus.profile";
     private static final String GPLUS_PROFILE_DATA_5_VIEW_PROFILE = "view";
@@ -1332,7 +1328,6 @@ public class QuickContactActivity extends ContactsActivity {
                     /* thirdContentDescription = */ null,
                     /* thirdAction = */ Entry.ACTION_NONE,
                     /* thirdExtras = */ null,
-                    /* shouldApplyThirdIconColor = */ true,
                     /* iconResourceId = */  0);
             List<Entry> phoneticList = new ArrayList<>();
             phoneticList.add(phoneticEntry);
@@ -1395,7 +1390,6 @@ public class QuickContactActivity extends ContactsActivity {
                 /* thirdContentDescription = */ null,
                 /* thirdAction = */ Entry.ACTION_NONE,
                 /* thirdExtras = */ null,
-                /* shouldApplyThirdIconColor = */ true,
                 R.drawable.quantum_ic_phone_vd_theme_24);
 
         final List<List<Entry>> promptEntries = new ArrayList<>();
@@ -1415,7 +1409,6 @@ public class QuickContactActivity extends ContactsActivity {
                     /* EntryContextMenuInfo = */ null, /* thirdIcon = */ null,
                     /* thirdIntent = */ null, /* thirdContentDescription = */ null,
                     /* thirdAction = */ Entry.ACTION_NONE, /* thirdExtras = */ null,
-                    /* shouldApplyThirdIconColor = */ true,
                     R.drawable.quantum_ic_email_vd_theme_24);
 
             promptEntries.add(new ArrayList<Entry>(1));
@@ -1450,6 +1443,7 @@ public class QuickContactActivity extends ContactsActivity {
 
         final Map<String, List<DataItem>> dataItemsMap = new HashMap<>();
 
+        final ResolveCache cache = ResolveCache.getInstance(this);
         for (RawContact rawContact : data.getRawContacts()) {
             for (DataItem dataItem : rawContact.getDataItems()) {
                 dataItem.setRawContactId(rawContact.getId());
@@ -1478,7 +1472,6 @@ public class QuickContactActivity extends ContactsActivity {
             }
         }
         Trace.endSection();
-        bindReachability(dataItemsMap);
 
         Trace.beginSection("sort within mimetypes");
         /*
@@ -1536,28 +1529,6 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     /**
-     * Bind the custom data items to each {@link PhoneDataItem} that is Tachyon reachable, the data
-     * will be needed when creating the {@link Entry} for the {@link PhoneDataItem}.
-     */
-    private void bindReachability(Map<String, List<DataItem>> dataItemsMap) {
-        final List<DataItem> phoneItems = dataItemsMap.get(Phone.CONTENT_ITEM_TYPE);
-        final List<DataItem> tachyonItems = dataItemsMap.get(MIMETYPE_TACHYON);
-        if (phoneItems != null && tachyonItems != null) {
-            for (DataItem phone : phoneItems) {
-                if (phone instanceof PhoneDataItem && ((PhoneDataItem) phone).getNumber() != null) {
-                    for (DataItem tachyonItem : tachyonItems) {
-                        if (((PhoneDataItem) phone).getNumber().equals(
-                                tachyonItem.getContentValues().getAsString(Data.DATA1))) {
-                            ((PhoneDataItem) phone).setTachyonReachable(true);
-                            ((PhoneDataItem) phone).setReachableDataItem(tachyonItem);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
      * Class used to hold the About card and Contact cards' data model that gets generated
      * on a background thread. All data is from CP2.
      */
@@ -1603,7 +1574,6 @@ public class QuickContactActivity extends ContactsActivity {
         Spannable smsContentDescription = null;
         Intent intent = null;
         boolean shouldApplyColor = true;
-        boolean shouldApplyThirdIconColor = true;
         Drawable alternateIcon = null;
         Intent alternateIntent = null;
         StringBuilder alternateContentDescription = new StringBuilder();
@@ -1776,9 +1746,6 @@ public class QuickContactActivity extends ContactsActivity {
                 boolean isPresenceEnabled =
                         (videoCapability & CallUtil.VIDEO_CALLING_PRESENCE) != 0;
                 boolean isVideoEnabled = (videoCapability & CallUtil.VIDEO_CALLING_ENABLED) != 0;
-                // Check to ensure carrier presence indicates the number supports video calling.
-                int carrierPresence = dataItem.getCarrierPresence();
-                boolean isPresent = (carrierPresence & Phone.CARRIER_PRESENCE_VT_CAPABLE) != 0;
 
                 if (CallUtil.isCallWithSubjectSupported(context)) {
                     thirdIcon = res.getDrawable(R.drawable.quantum_ic_perm_phone_msg_vd_theme_24);
@@ -1802,23 +1769,20 @@ public class QuickContactActivity extends ContactsActivity {
                             phone.getFormattedPhoneNumber());
                     thirdExtras.putString(CallSubjectDialog.ARG_NUMBER_LABEL,
                             phoneLabel);
-                } else if (isVideoEnabled && (!isPresenceEnabled || isPresent)) {
-                    thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
-                    thirdAction = Entry.ACTION_INTENT;
-                    thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
-                            CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
-                    thirdIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.VIDEOCALL);
-                    thirdContentDescription =
-                            res.getString(R.string.description_video_call);
-                } else if (Flags.getInstance().getBoolean(Experiments.QUICK_CONTACT_VIDEO_CALL)
-                        && ((PhoneDataItem) dataItem).isTachyonReachable()) {
-                    thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
-                    thirdAction = Entry.ACTION_INTENT;
-                    thirdIntent = new Intent("com.google.android.apps.tachyon.action.CALL");
-                    thirdIntent.setData(
-                            Uri.fromParts(PhoneAccount.SCHEME_TEL, phone.getNumber(), null));
-                    thirdContentDescription = ((PhoneDataItem) dataItem).getReachableDataItem()
-                            .getContentValues().getAsString(Data.DATA2);
+                } else if (isVideoEnabled) {
+                    // Check to ensure carrier presence indicates the number supports video calling.
+                    int carrierPresence = dataItem.getCarrierPresence();
+                    boolean isPresent = (carrierPresence & Phone.CARRIER_PRESENCE_VT_CAPABLE) != 0;
+
+                    if ((isPresenceEnabled && isPresent) || !isPresenceEnabled) {
+                        thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
+                        thirdAction = Entry.ACTION_INTENT;
+                        thirdIntent = CallUtil.getVideoCallIntent(phone.getNumber(),
+                                CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
+                        thirdIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.VIDEOCALL);
+                        thirdContentDescription =
+                                res.getString(R.string.description_video_call);
+                    }
                 }
             }
         } else if (dataItem instanceof EmailDataItem) {
@@ -1905,10 +1869,6 @@ public class QuickContactActivity extends ContactsActivity {
                     aboutCardName.value = res.getString(R.string.about_card_title);
                 }
             }
-        } else if (Flags.getInstance().getBoolean(Experiments.QUICK_CONTACT_VIDEO_CALL)
-                && MIMETYPE_TACHYON.equals(dataItem.getMimeType())) {
-            // Skip these actions. They will be placed by the phone number.
-            return null;
         } else {
             // Custom DataItem
             header = dataItem.buildDataStringForDisplay(context, kind);
@@ -1921,6 +1881,7 @@ public class QuickContactActivity extends ContactsActivity {
 
             if (intent != null) {
                 final String mimetype = intent.getType();
+
                 // Build advanced entry for known 3p types. Otherwise default to ResolveCache icon.
                 if (MIMETYPE_HANGOUTS.equals(mimetype)) {
                     // If a secondDataItem is available, use it to build an entry with
@@ -2002,7 +1963,7 @@ public class QuickContactActivity extends ContactsActivity {
                         : smsContentDescription,
                 shouldApplyColor, isEditable,
                 entryContextMenuInfo, thirdIcon, thirdIntent, thirdContentDescription, thirdAction,
-                thirdExtras, shouldApplyThirdIconColor, iconResourceId);
+                thirdExtras, iconResourceId);
     }
 
     private List<Entry> dataItemsToEntries(List<DataItem> dataItems,
@@ -2303,7 +2264,6 @@ public class QuickContactActivity extends ContactsActivity {
                     /* thirdContentDescription = */ null,
                     /* thirdAction = */ Entry.ACTION_NONE,
                     /* thirdActionExtras = */ null,
-                    /* shouldApplyThirdIconColor = */ true,
                     interaction.getIconResourceId()));
         }
         return entries;
@@ -2536,9 +2496,7 @@ public class QuickContactActivity extends ContactsActivity {
                         /* isEditable = */ false, /* EntryContextMenuInfo = */ null,
                         /* thirdIcon = */ null, /* thirdIntent = */ null,
                         /* thirdContentDescription = */ null, /* thirdAction = */ Entry.ACTION_NONE,
-                        /* thirdExtras = */ null,
-                        /* shouldApplyThirdIconColor = */ true,
-                        R.drawable.quantum_ic_history_vd_theme_24);
+                        /* thirdExtras = */ null, R.drawable.quantum_ic_history_vd_theme_24);
 
                 final List<List<Entry>> permissionExplanationEntries = new ArrayList<>();
                 permissionExplanationEntries.add(new ArrayList<Entry>());
