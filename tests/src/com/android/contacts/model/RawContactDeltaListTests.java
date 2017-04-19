@@ -44,8 +44,6 @@ import java.util.Collections;
  */
 @LargeTest
 public class RawContactDeltaListTests extends AndroidTestCase {
-    public static final String TAG = RawContactDeltaListTests.class.getSimpleName();
-
     // From android.content.ContentProviderOperation
     public static final int TYPE_INSERT = 1;
     public static final int TYPE_UPDATE = 2;

@@ -44,7 +44,7 @@ import java.util.Locale;
  * since managing ringtones is handled in a different flow.
  */
 public class SamsungAccountType extends BaseAccountType {
-    private static final String TAG = "KnownExternalAccountType";
+    private static final String TAG = "KnownExternalAccount";
     private static final String ACCOUNT_TYPE_SAMSUNG = "com.osp.app.signin";
 
     public SamsungAccountType(Context context, String authenticatorPackageName, String type) {

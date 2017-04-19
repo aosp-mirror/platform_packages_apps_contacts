@@ -53,8 +53,6 @@ import java.util.List;
  * Runs asynchronous queries to obtain aggregation suggestions in the as-you-type mode.
  */
 public class AggregationSuggestionEngine extends HandlerThread {
-    public static final String TAG = "AggregationSuggestionEngine";
-
     public interface Listener {
         void onAggregationSuggestionChange();
     }

@@ -24,7 +24,7 @@ import android.util.Log;
  */
 public class LegacyPhoneNumberPickerFragment extends PhoneNumberPickerFragment {
 
-    private static final String TAG = LegacyPhoneNumberPickerFragment.class.getSimpleName();
+    private static final String TAG = "LegacyPhoneNumberPicker";
 
     @Override
     protected boolean getVisibleScrollbarEnabled() {

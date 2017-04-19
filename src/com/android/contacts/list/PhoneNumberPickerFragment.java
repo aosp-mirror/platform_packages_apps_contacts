@@ -36,7 +36,7 @@ import com.android.contacts.ShortcutIntentBuilder.OnShortcutIntentCreatedListene
  */
 public class PhoneNumberPickerFragment extends ContactEntryListFragment<ContactEntryListAdapter>
         implements OnShortcutIntentCreatedListener, PhoneNumberListAdapter.Listener {
-    private static final String TAG = PhoneNumberPickerFragment.class.getSimpleName();
+    private static final String TAG = "PhoneNumberPicker";
 
     private static final String KEY_SHORTCUT_ACTION = "shortcutAction";
 
