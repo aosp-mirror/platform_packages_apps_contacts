@@ -301,7 +301,7 @@
     <string name="sms_assistant" msgid="2773424339923116234">"Հաղորդագրել <xliff:g id="ASSISTANT">%s</xliff:g>-ին"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Հաղորդագրել MMS համարին"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Գրել ՍՄՍ)"</string>
-    <string name="description_video_call" msgid="7120921378651700947">"Կատարել տեսազանգ"</string>
+    <string name="description_video_call" msgid="7120921378651700947">"Տեսազանգ սկսել"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Մաքրե՞լ հաճախակի հաղորդակցվողները"</string>
     <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Կոնտակտներ և Հեռախոս հավելվածներից կմաքրվի հաճախակի օգտագործվող կոնտակտների ցանկը, և էլփոստի հավելվածները զրոյից են սովորելու ձեր հաճախակի օգտագործվող կոնտակտները։"</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Մաքրվում է հաճախակի հաղորդակցվողները..."</string>
@@ -496,7 +496,7 @@
     <string name="url_open_error_toast" msgid="452592089815420457">"Չհաջողվեց բացել url-ը:"</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը նշվել է"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը չի նշվել"</string>
-    <string name="description_search_video_call" msgid="5841525580339803272">"Կատարել տեսազանգ"</string>
+    <string name="description_search_video_call" msgid="5841525580339803272">"Տեսազանգ սկսել"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"Ջնջել"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Բազմակետ"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> վ"</string>
