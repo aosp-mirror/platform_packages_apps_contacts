@@ -189,7 +189,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Байланыштарыңыздын камдык көчүрмөсүн Google\'га сактоо үчүн каттоо эсебин кошуңуз."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Жаңы байланыштар <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> ичине сакталат."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңы байланыштар үчүн демейки каттоо эсебин тандаңыз:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Жаңы байланыш түзүү"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Байланыш түзүү"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Байланышты түзөтүү"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Жөн гана көрүү"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Түзөтүү үчүн байланышты тандаңыз"</string>
@@ -336,7 +336,7 @@
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Почта дареги"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Уюм"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"Мамиле"</string>
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Мага ким болот?"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Өзгөчө күн"</string>
     <string name="sms" msgid="1756857139634224222">"SMS билдирүү жөнөтүү"</string>
     <string name="postal_address" msgid="8765560217149624536">"Почта дареги"</string>
@@ -506,7 +506,7 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Байланыш алынып салынган"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Өткөрүп алуу"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"Байланыштарды тандоо"</string>
-    <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM-картаңызда байланыштар жок."</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"SIM картаңызда байланыштар жок."</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"Байланыш мурунтан эле тизмеңизде"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other">SIM-картадан <xliff:g id="COUNT">%d</xliff:g> байланыш өткөрүлүп алынды</item>

@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"လိပ်စာသို့ထည့်ပါ"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"လိပ်စာတစ်ခုရွေးပါ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"ရွေးရန်"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"အဆက်အသွယ် အသစ် ဖန်တီးရန်"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"လိပ်စာသစ် ထည့်ရန်"</string>
     <string name="searchHint" msgid="8482945356247760701">"အဆက်အသွယ်များရှာပါ"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"အနှစ်သက်ဆုံးများထဲ ထည့်ပါ"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"အနှစ်သက်ဆုံးများမှ ထုတ်ပါ"</string>
@@ -189,7 +189,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Google သို့ သင့်အဆက်အသွယ်များကို မိတ္တူကူးယူပေးမည့် အကောင့်တစ်ခုထည့်ရန် တစ်မိနစ်လောက် အချိန်ပေးလိုက်ပါ။"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"အဆက်အသွယ် အသစ်ကို <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> တွင်သိမ်းလိုက်ပါမည်။"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"အဆက်အသွယ် အသစ်များအတွက် မူရင်းအကောင့်ကို ရွေးပါ။"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"အဆက်အသွယ်အသစ် လုပ်ပါ"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"လိပ်စာသစ် ထည့်ရန်"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"အဆက်အသွယ်အားပြင်ရန်"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"ကြည့်ရန်အတွက်သာ"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"ပြင်ဆင်လိုသည့် အဆက်အသွယ်ကို ရွေးချယ်ပါ"</string>
@@ -199,7 +199,7 @@
     <string name="add_account" msgid="8201790677994503186">"အကောင့်ထည့်ရန်"</string>
     <string name="add_new_account" msgid="5748627740680940264">"အကောင့်အသစ်ထည့်ပါ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ဒေ့ဘာဘေ့စ်ဖိုင်များကို အပြင်သို့ထုတ်ပါ"</string>
-    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"အဆက်အသွယ်အသစ် ပြုလုပ်ရန်"</string>
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"လိပ်စာသစ် ထည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ပိုပြီး ကြည့်ရန်"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"လျှော့ပြီး ကြည့်ရန်"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"မကြာမီက"</string>
