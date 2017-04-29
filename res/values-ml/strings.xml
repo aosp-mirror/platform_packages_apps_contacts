@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"തിരഞ്ഞെടുക്കുക"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതുവിലാസം സൃഷ്‌ടിക്കൂ"</string>
     <string name="searchHint" msgid="8482945356247760701">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"പ്രിയപ്പെട്ടവയിലേക്ക് ചേർക്കുക"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"പ്രിയപ്പെട്ടവയിൽ നിന്നും നീക്കംചെയ്യുക"</string>
@@ -456,7 +456,7 @@
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"ഫസ്റ്റ് നെയിം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"ലാസ്റ്റ് നെയിം ആദ്യം"</string>
     <string name="settings_accounts" msgid="350219740670774576">"അക്കൗണ്ടുകൾ"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"പുതിയകോൺടാക്റ്റുകൾക്കുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"പുതുകോൺടാക്റ്റുകൾക്കുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"എന്റെ വിവരം"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക"</string>
     <string name="setting_about" msgid="7014388749752042863">"കോണ്‍ടാക്റ്റുകളെ കുറിച്ച്"</string>
@@ -469,7 +469,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"പങ്കിടാൻ കോൺടാക്റ്റുകളൊന്നും ഇല്ല."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"കാഴ്‌ച ഇഷ്‌ടാനുസൃതമാക്കുക"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"കാഴ്‌ച ഇഷ്‌ടാനുസൃതമാക്കൂ"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"സംരക്ഷിക്കുക"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"പ്രിയപ്പെട്ടവ"</string>

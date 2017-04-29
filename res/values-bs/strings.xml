@@ -27,7 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Izaberi kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Odaberi"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Napravi novi kontakt"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Traži kontakte"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Pretraži kontakte"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj u favorite"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ukloni iz favorita"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz favorita"</string>
@@ -186,7 +186,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Odbaci"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Otkaži"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Odbaciti prilagođavanja?"</string>
-    <string name="enter_contact_name" msgid="4594274696120278368">"Traži kontakte"</string>
+    <string name="enter_contact_name" msgid="4594274696120278368">"Pretraži kontakte"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Ukloni kontakte"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Moj lokalni profil"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Moj profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
@@ -477,7 +477,7 @@
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakti za prikaz"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Prilagodi prikaz"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Sačuvaj"</string>
-    <string name="hint_findContacts" msgid="7128627979899070325">"Traži kontakte"</string>
+    <string name="hint_findContacts" msgid="7128627979899070325">"Pretraži kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriti"</string>
     <string name="menu_import" msgid="6107961135813836467">"Uvezi"</string>
     <string name="menu_export" msgid="2658783911863503902">"Izvezi"</string>

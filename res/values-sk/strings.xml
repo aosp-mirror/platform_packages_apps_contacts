@@ -189,7 +189,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Zahodiť zmeny?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Zahodiť"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Zrušiť"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Chcete zahodiť vlastné úpravy?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Chcete zahodiť prispôsobenia?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Hľadať v kontaktoch"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Odstránenie kontaktov"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Môj miestny profil"</string>
@@ -330,13 +330,13 @@
     <string name="account_sim" msgid="6519016427905087952">"SIM karta"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Meno"</string>
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Prezývka"</string>
-    <string name="name_given" msgid="4280790853455320619">"Meno"</string>
+    <string name="name_given" msgid="4280790853455320619">"Krstné meno"</string>
     <string name="name_family" msgid="7466985689626017037">"Priezvisko"</string>
     <string name="name_prefix" msgid="59756378548779822">"Titul pred menom"</string>
     <string name="name_middle" msgid="8467433655992690326">"Druhé meno"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Titul za menom"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Meno (foneticky)"</string>
-    <string name="name_phonetic_given" msgid="8723179018384187631">"Meno (foneticky)"</string>
+    <string name="name_phonetic_given" msgid="8723179018384187631">"Krstné meno (foneticky)"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Druhé meno (foneticky)"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Priezvisko (foneticky)"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefón"</string>
@@ -462,10 +462,10 @@
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Meno (foneticky)"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Vždy zobrazovať"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Skryť, ak je prázdne"</string>
-    <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Meno"</string>
+    <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Krstné meno"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Priezvisko"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Formát mena"</string>
-    <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Najprv meno"</string>
+    <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Najprv krstné meno"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Najprv priezvisko"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Účty"</string>
     <string name="default_editor_account" msgid="699591683362420991">"Predvolený účet pre nové kontakty"</string>

@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"「<xliff:g id="LABEL_NAME">%s</xliff:g>」ラベル"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"ラベル"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"アカウント"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"一緒に履歴を表示"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"履歴を一緒に表示"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"予定とメッセージ"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"予定"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"メッセージ"</string>

@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Дадаць у кантакт"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выберыце кантакт"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Выбраць"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Стварыць новы кантакт"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Новы кантакт"</string>
     <string name="searchHint" msgid="8482945356247760701">"Пошук кантактаў"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Дадаць у абраныя"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Выдаліць з абраных"</string>
@@ -187,9 +187,9 @@
     <string name="clear_default" msgid="7193185801596678067">"Скінуць налады па змаўчанні"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Тэкст скапіяваны"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Скасаваць змены?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Адхіліць"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Скасаваць"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Скасаваць"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Скасаваць карыст. выгляд?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Скінуць налады?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Пошук кантактаў"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Выдаліць кантакты"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой лакальны профіль"</string>
@@ -197,7 +197,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Знайдзіце хвілінку, каб дадаць уліковы запіс, які дазволіць стварыць рэзервовую копію вашых кантактаў у Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новыя кантакты будуць захаваны ва ўліковы запіс <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Выбраць уліковы запіс па змаўчанні для новых кантактаў:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Стварыць новы кантакт"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Новы кантакт"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Рэдагаваць кантакт"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Толькі прагляд"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Выбраць кантакт для рэдагавання"</string>
@@ -207,7 +207,7 @@
     <string name="add_account" msgid="8201790677994503186">"Дадаць уліковы запіс"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Дадаць новы ўліковы запіс"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Экспарт базы дадзеных файлаў"</string>
-    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Стварыць новы кантакт"</string>
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Новы кантакт"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Болей"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Паказаць менш"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Нядаўнія"</string>
@@ -258,7 +258,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Метка <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Меткі"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Уліковыя запісы"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Паказваць усю гісторыю разам"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Паказаць агульную гісторыю"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Падзеі і паведамленні"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Падзеі"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Паведамленні"</string>
@@ -390,9 +390,9 @@
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"Згорнута"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Усе кантакты"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Пазначана"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Карыстальнiцкi"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Наладзіць"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Кантакт"</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Усе кантакты з тэчкі \"Іншыя\""</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Усе іншыя кантакты"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Усе кантакты"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Выдаліць групу сінхранізацыі"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Дадаць групу сінхранізацыі"</string>
@@ -481,7 +481,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Няма кантактаў, якія можна абагуліць."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Паказаць кантакты"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Адлюстроўваць кантакты"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Наладзіць від"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Наладзіць прагляд"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Захаваць"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Шукаць у кантактах"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Выбранае"</string>

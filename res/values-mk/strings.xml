@@ -32,7 +32,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"Отстрани од омилени"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Отстрането од омилени"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Додадено во омилени"</string>
-    <string name="menu_editContact" msgid="9042415603857662633">"Уреди"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"Измени"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Избриши"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Промени фотографија"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Создај кратенка"</string>
@@ -190,7 +190,7 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Новите контакти ќе се зачуваат на <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Изберете стандардна сметка за новите контакти:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Создај нов контакт"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Уреди контакт"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Измени контакт"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Само приказ"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Изберете контакт за уредување"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Поврзани контакти"</string>

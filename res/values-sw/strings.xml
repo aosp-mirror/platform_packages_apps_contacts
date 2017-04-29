@@ -178,10 +178,10 @@
     <string name="set_default" msgid="4417505153468300351">"Weka chaguo-msingi"</string>
     <string name="clear_default" msgid="7193185801596678067">"Ondoa chaguo-msingi"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Maandishi yamenakiliwa"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Je, unataka kutupa mabadiliko?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Una uhakika hutaki kuhifadhi mabadiliko uliyofanya?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Tupa"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Ghairi"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Je, unataka kutupa mabadiliko uliyoyafanya kukufaa?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Una uhakika hutaki kuhifadhi mabadiliko uliyoyafanya?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Tafuta anwani"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Ondoa anwani"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Wasifu wangu wa ndani."</string>
@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Lebo ya <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Lebo"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Akaunti"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Kuangali historia yako pamoja"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Angalia historia yenu pamoja"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Matukio na ujumbe"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Matukio"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Ujumbe"</string>
@@ -328,8 +328,8 @@
     <string name="name_middle" msgid="8467433655992690326">"Jina la kati"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Herufi za mwisho za jina"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Jina la kifonetiki"</string>
-    <string name="name_phonetic_given" msgid="8723179018384187631">"Anza na jina la kifonetiki"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Jina la katikati la kifonetiki"</string>
+    <string name="name_phonetic_given" msgid="8723179018384187631">"Jina la kwanza kifonetiki"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Jina la katikati kifonetiki"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Jina la mwisho kifonetiki"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Simu"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Barua pepe"</string>
@@ -385,7 +385,7 @@
     <string name="list_filter_customize" msgid="4789963356004169321">"Badilisha kukufaa"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Anwani"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"Anwani Zingine Zote"</string>
-    <string name="display_all_contacts" msgid="2031647544742889505">"Wawasiliani wote"</string>
+    <string name="display_all_contacts" msgid="2031647544742889505">"Anwani zote"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Ondoa kikundi cha usawazishaji"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Ongeza kikundi cha usawazishaji"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"Vikundi zaidi..."</string>
@@ -449,12 +449,12 @@
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Panga kwa"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Jina la kifonetiki"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Onyesha kila wakati"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Ficha ikiwa maelezo hayapo"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Ficha ikiwa halijaongezwa"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Jina la kwanza"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Jina la mwisho"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Mpangilio wa majina"</string>
-    <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Anza na jina la kwanza"</string>
-    <string name="display_options_view_family_name_first" msgid="956445100777296467">"Anza na jina la mwisho"</string>
+    <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Anza kwa jina la kwanza"</string>
+    <string name="display_options_view_family_name_first" msgid="956445100777296467">"Anza kwa jina la mwisho"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Akaunti"</string>
     <string name="default_editor_account" msgid="699591683362420991">"Akaunti chaguo-msingi ya kuhifadhi anwani mpya"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Maelezo yangu"</string>
@@ -468,8 +468,8 @@
     <string name="share_error" msgid="948429331673358107">"Mwasiliani huyu hawezi kushirikishwa."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Hakuna anwani za kushiriki."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Anwani za kuonyesha"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Anwani za uonyesha"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Badilisha mwonekano kukufaa"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Anwani za kuonyesha"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Badilisha upendavyo"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Hifadhi"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Tafuta anwani"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Vipendwa"</string>
