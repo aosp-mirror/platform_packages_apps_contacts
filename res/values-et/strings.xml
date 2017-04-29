@@ -234,7 +234,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Kontakti foto lisamine"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Kontakti foto"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Redigeerija avamine ebaõnnestus."</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Salvestamine asukohta"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Salvestamine kontole"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Kontaktiteavet kontol <xliff:g id="ACCOUNT">%s</xliff:g> ei saa muuta"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LINGI KONTAKTID"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"TÜHISTA"</string>

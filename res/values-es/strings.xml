@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Etiqueta <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiquetas"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Cuentas"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Ver tus historiales juntos"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Interacciones con este contacto"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Eventos y mensajes"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Eventos"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mensajes"</string>
@@ -321,7 +321,7 @@
     <string name="account_phone" msgid="7128032778471187553">"Dispositivo"</string>
     <string name="account_sim" msgid="6519016427905087952">"Tarjeta SIM"</string>
     <string name="nameLabelsGroup" msgid="2034640839640477827">"Nombre"</string>
-    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Seudónimo"</string>
+    <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Mote"</string>
     <string name="name_given" msgid="4280790853455320619">"Nombre"</string>
     <string name="name_family" msgid="7466985689626017037">"Apellidos"</string>
     <string name="name_prefix" msgid="59756378548779822">"Prefijo del nombre"</string>
@@ -516,7 +516,7 @@
     <string name="sim_import_title" msgid="2511154832820812822">"Importar de la SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"Cancelar"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"La sincronización automática está desactivada. Toca para activarla."</string>
-    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Ignorar"</string>
+    <string name="dismiss_sync_alert" msgid="8941131776605093596">"Descartar"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"La sincronización de la cuenta está desactivada. Toca para activarla."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"¿Activar la sincronización automática?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Los cambios que realices en todas las aplicaciones y cuentas, no solo en Contactos de Google, se actualizarán en la Web y en tus dispositivos."</string>

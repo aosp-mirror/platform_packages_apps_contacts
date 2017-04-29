@@ -131,7 +131,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Ձեր կոնտակտների անունները"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Սեղմեք՝ նախորդ էկրանին վերադառնալու համար"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Ավելացնել հեռախոսահամար"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"Ավելացնել էլփոստ"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Ավելացնել էլփոստի հասցե"</string>
     <string name="missing_app" msgid="1466111003546611387">"Այս գործողությունը կատարելու համար ոչ մի ծրագիր չի գտնվել:"</string>
     <string name="menu_share" msgid="943789700636542260">"Կիսվել"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Ավելացնել կոնտակտներում"</string>
@@ -154,7 +154,7 @@
     <string name="pick_photo" msgid="2129509985223564942">"Ընտրել լուսանկար"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Ընտրել նոր լուսանկար"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Որոնում..."</string>
-    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Ամսաթիվը"</string>
+    <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Ամսաթիվ"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Պիտակ"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"Չեղարկել"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"Հետ"</string>
@@ -163,7 +163,7 @@
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> գրացուցակ"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Կարգավորումներ"</string>
     <string name="menu_settings" msgid="377929915873428211">"Կարգավորումներ"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Օգնություն և հետադարձ կապ"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Օգնություն և կարծիք"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Հեռախոսահամար"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Ավելացնել կոնտակտներում"</string>
@@ -178,10 +178,10 @@
     <string name="set_default" msgid="4417505153468300351">"Սահմանել ըստ կանխադրման"</string>
     <string name="clear_default" msgid="7193185801596678067">"Մաքրել լռելյայն"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Տեքսը պատճենված է"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Չեղարկե՞լ փոփոխությունները:"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Անտեսե՞լ փոփոխությունները:"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Անտեսել"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Չեղարկել"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Չեղարկե՞լ փոփոխությունները:"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Անտեսե՞լ փոփոխությունները:"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Որոնեք կոնտակտներ"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Կոնտակտների ջնջում"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Իմ տեղային պրոֆիլը"</string>
@@ -251,7 +251,7 @@
     <string name="menu_title_groups" msgid="8356921831150278868">"Պիտակներ"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Հաշիվներ"</string>
     <string name="permission_explanation_header" msgid="5739405825039695327">"Ցուցադրել միավորված պատմությունը"</string>
-    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Իրադարձություններ և հաղորդագրություններ"</string>
+    <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Միջոցառումներն ու SMS հաղորդագրությունները"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Իրադարձություններ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Հաղորդագրություններ"</string>
     <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Առաջարկներ"</string>
@@ -328,7 +328,7 @@
     <string name="name_middle" msgid="8467433655992690326">"Հայրանուն"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Անվան վերջածանց"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Անուն (տառադարձված)"</string>
-    <string name="name_phonetic_given" msgid="8723179018384187631">"Անունը (տառադարձված)"</string>
+    <string name="name_phonetic_given" msgid="8723179018384187631">"Անուն (տառադարձված)"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Հայրանուն (տառադարձված)"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Ազգանուն (տառադարձված)"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Հեռախոս"</string>
@@ -345,7 +345,7 @@
     <string name="label_notes" msgid="8337354953278341042">"Գրառումներ"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"Հատուկ"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Վեբ-կայք"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Վեբ կայք"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Պիտակներ"</string>
     <string name="email_home" msgid="8573740658148184279">"Նամակագրել տուն"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Ուղարկել բջջային փոստին"</string>
@@ -384,7 +384,7 @@
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Աստղանշված"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"Հարմարեցնել"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Կոնտակտ"</string>
-    <string name="display_ungrouped" msgid="6885954210243119591">"Բոլոր այլ կոնտակտները"</string>
+    <string name="display_ungrouped" msgid="6885954210243119591">"Բոլոր կոնտակտները"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Բոլոր կոնտակտները"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"Հեռացնել համաժամեցված խումբը"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"Ավելացնել համաժամեցված խումբ"</string>
@@ -449,14 +449,14 @@
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Դասավորել ըստ"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Անուն (տառադարձված)"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Միշտ ցուցադրել"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Թաքցնել, եթե դատարկ է"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Թաքցնել դատարկ դաշտը"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Անվան"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Ազգանվան"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Անվան ձևաչափ"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Սկզբում՝ անունը"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Սկզբում՝ ազգանունը"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Հաշիվներ"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"Ստանդարտ հաշիվ նոր կոնտակտների համար"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"Կանխադրված հաշիվ նոր կոնտակտների համար"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Իմ մասին"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Կարգավորել պրոֆիլը"</string>
     <string name="setting_about" msgid="7014388749752042863">"Կոնտակտների մասին"</string>
@@ -467,9 +467,9 @@
     <string name="dialog_import" msgid="2423592905927819672">"Կոնտակտների ներմուծում"</string>
     <string name="share_error" msgid="948429331673358107">"Չհաջողվեց կիսվել կոնտակտով:"</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Հասանելի կոնտակտներ չկան։"</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Կոնտակտների զտիչ"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Կոնտակտների զտիչ"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Դիտակերպի անհատականացում"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Ցուցադրվող կոնտակտներ"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Ցուցադրվող կոնտակտներ"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Կարգավորել դիտակերպը"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Պահել"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Կոնտակտների որոնում"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Ընտրյալներ"</string>
