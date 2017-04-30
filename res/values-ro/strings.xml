@@ -42,7 +42,7 @@
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Ștergeți eticheta"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Adăugați o persoană"</string>
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Selectați persoane"</string>
-    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Adăugați persoanele"</string>
+    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Adăugați persoane"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Eliminați din etichetă"</string>
     <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Creați o etichetă"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Separați această persoană de contact în mai multe persoane de contact?"</string>
@@ -474,7 +474,7 @@
     <string name="share_error" msgid="948429331673358107">"Această persoană de contact nu poate fi distribuită."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nu există persoane de contact de trimis."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Persoane de contact de afişat"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Pers. din agendă de afiş."</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Persoane de afișat"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Personalizați afișarea"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Salvați"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Căutați persoane de contact"</string>

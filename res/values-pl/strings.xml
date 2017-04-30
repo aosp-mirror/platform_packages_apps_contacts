@@ -258,7 +258,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Etykieta <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etykiety"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Konta"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Zobacz swoją pełną historię"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Zobacz Waszą historię"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Wydarzenia i wiadomości"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Wydarzenia"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Wiadomości"</string>
@@ -476,7 +476,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Udostępnij wszystkie kontakty"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Nie udało się udostępnić kontaktów."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Eksportuj kontakty"</string>
-    <string name="dialog_import" msgid="2423592905927819672">"Importuj kontakty z"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Importuję kontakty z"</string>
     <string name="share_error" msgid="948429331673358107">"Tego kontaktu nie można udostępniać."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Brak kontaktów do udostępnienia."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty do wyświetlenia"</string>
