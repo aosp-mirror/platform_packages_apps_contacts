@@ -193,7 +193,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Veltiet brīdi laika, lai pievienotu kontu un savas kontaktpersonas dublētu ar Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Jaunas kontaktpersonas tiks saglabātas kontā <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Izvēlieties noklusējuma kontu, kurā saglabāt jaunās kontaktpersonas:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Jauna kontaktpersona"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Jauns kontakts"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Rediģēšana"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Tikai skatīšana"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Rediģējamās kontaktpersonas izvēle"</string>
@@ -340,7 +340,7 @@
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Adrese"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Tūlītējā ziņojumapmaiņa"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizācija"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"Saistība"</string>
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Attiecības"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Īpašs datums"</string>
     <string name="sms" msgid="1756857139634224222">"Īsziņa"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adrese"</string>

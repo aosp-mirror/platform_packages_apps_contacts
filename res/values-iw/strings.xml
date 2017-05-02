@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"הוסף לאיש קשר"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"בחר איש קשר"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"בחר"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"צור איש קשר חדש"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"איש קשר חדש"</string>
     <string name="searchHint" msgid="8482945356247760701">"חפש אנשי קשר"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"הוספה למועדפים"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"הסרה מהמועדפים"</string>
@@ -197,7 +197,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"‏הקדש דקה כדי להוסיף חשבון Google שבו תגבה את אנשי הקשר שלך."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"אנשי קשר חדשים יישמרו ב-<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"בחר חשבון ברירת מחדל לאנשי קשר חדשים:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"צור איש קשר חדש"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"איש קשר חדש"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"ערוך איש קשר"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"תצוגה בלבד"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"בחר איש קשר לעריכה"</string>
@@ -207,7 +207,7 @@
     <string name="add_account" msgid="8201790677994503186">"הוסף חשבון"</string>
     <string name="add_new_account" msgid="5748627740680940264">"הוסף חשבון חדש"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ייצוא קובצי מסד נתונים"</string>
-    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"צור איש קשר חדש"</string>
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"איש קשר חדש"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"הצג יותר"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"הצג פחות"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"מהזמן האחרון"</string>
@@ -344,7 +344,7 @@
     <string name="postalLabelsGroup" msgid="3487738141112589324">"כתובת"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"הודעה מיידית"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"ארגון"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"קשר"</string>
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"מה הקשר ביניכם?"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"תאריך מיוחד"</string>
     <string name="sms" msgid="1756857139634224222">"הודעת טקסט"</string>
     <string name="postal_address" msgid="8765560217149624536">"כתובת"</string>
