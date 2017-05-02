@@ -151,7 +151,7 @@
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> каттоо эсеби"</string>
     <string name="take_photo" msgid="7496128293167402354">"Сүрөт тартуу"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"Жаңы сүрөт тартуу"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"Сүрөт тандаңыз"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"Сүрөт тандоо"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"Жаңы сүрөт тандоо"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"Изделүүдө…"</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Дата"</string>
@@ -163,7 +163,7 @@
     <string name="contact_directory_description" msgid="683398073603909119">"<xliff:g id="TYPE">%1$s</xliff:g> каталогу"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Жөндөөлөр"</string>
     <string name="menu_settings" msgid="377929915873428211">"Жөндөөлөр"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Жардам жана жооп пикир"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Жардам жана пикир билдирүү"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g> , <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Телефон номери"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Байланыштарга кошуу"</string>
@@ -178,7 +178,7 @@
     <string name="set_default" msgid="4417505153468300351">"Негизги кылуу"</string>
     <string name="clear_default" msgid="7193185801596678067">"Негизгини тазалоо"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"SMS көчүрүлдү"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Өзгөрүүлөр жарактан чыгарылсынбы?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Өзгөрүүлөр сакталбасынбы?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Жарактан чыгаруу"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Баш тартуу"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Өзгөртүүлөр жокко чыгарылсынбы?"</string>
@@ -382,7 +382,7 @@
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"Жыйыштырылды"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Бардык байланыштар"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Белгиленген байланыштар"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Ыңгайлаштыруу"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Тандап көрсөтүү"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Байланыш"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"Бардык башка байланыштар"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Бардык байланыштар"</string>
@@ -447,12 +447,12 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g> өткөрүп алынууда"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf файлына өткөрүп берүү"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Төмөнкү боюнча иргөө"</string>
-    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Фонетикалык аты"</string>
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Аттын транскрипциясы"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Ар дайым көрсөтүлсүн"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Жок болсо жашыруу"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Жок болсо жашырылсын"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Аты"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Фамилиясы"</string>
-    <string name="display_options_view_names_as" msgid="6514632499276563482">"Атты жазуунун форматы"</string>
+    <string name="display_options_view_names_as" msgid="6514632499276563482">"Ысым форматы"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Аты биринчи жазылсын"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Фамилиясы биринчи жазылсын"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Каттоо эсептер"</string>
@@ -461,15 +461,15 @@
     <string name="set_up_profile" msgid="7370213843590143771">"Профилди жөндөө"</string>
     <string name="setting_about" msgid="7014388749752042863">"Байланыштар жөнүндө"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Сүйүктүү байланыштарды бөлүшүү"</string>
-    <string name="share_contacts" msgid="8109287987498711664">"Бардык байланыштар менен бөлүшүү"</string>
+    <string name="share_contacts" msgid="8109287987498711664">"Бардык байланыштарды бөлүшүү"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Байланыштар бөлүшүлбөй койду."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Байланыштарды өткөрүп берүү"</string>
-    <string name="dialog_import" msgid="2423592905927819672">"Байланыштарды импорттоо"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Байланыштарды өткөрүп алуу"</string>
     <string name="share_error" msgid="948429331673358107">"Бул байланышты бөлүшүү мүмкүн эмес."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Бөлүшө турган байланыш жок."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Көрсөтүлүүчү байланыштар"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Көрсөтүлүүчү байланыштар"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Көрүнүштү ыңгайлаштыруу"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Тандап көрсөтүү"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Сактоо"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Байланыштарды издеңиз"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Cүйүктүүлөр"</string>
