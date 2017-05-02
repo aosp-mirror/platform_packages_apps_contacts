@@ -136,7 +136,7 @@
     <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"להוסיף את \"<xliff:g id="EMAIL">%s</xliff:g>\" לאנשי הקשר?"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"השמות של אנשי הקשר"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"לחץ כדי לחזור אל המסך הקודם"</string>
-    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"הוסף מספר טלפון"</string>
+    <string name="quickcontact_add_phone_number" msgid="731665835910658965">"הוספת מספר טלפון"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"הוסף אימייל"</string>
     <string name="missing_app" msgid="1466111003546611387">"לא נמצאה אפליקציה שיכולה לטפל בפעולה זו."</string>
     <string name="menu_share" msgid="943789700636542260">"שיתוף"</string>
@@ -157,9 +157,9 @@
     <string name="video_chat" msgid="1872255818640336072">"Hangout"</string>
     <string name="account_type_format" msgid="718948015590343010">"איש קשר של <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"חשבון <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
-    <string name="take_photo" msgid="7496128293167402354">"צלם תמונה"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"צלם תמונה חדשה"</string>
-    <string name="pick_photo" msgid="2129509985223564942">"בחר תמונה"</string>
+    <string name="take_photo" msgid="7496128293167402354">"צילום תמונה"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"צילום תמונה חדשה"</string>
+    <string name="pick_photo" msgid="2129509985223564942">"בחירת תמונה"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"בחר תמונה חדשה"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"מחפש..."</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"תאריך"</string>
@@ -390,7 +390,7 @@
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"מכווץ"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"כל אנשי הקשר"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"מסומן בכוכב"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"התאם אישית"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"התאמה אישית"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"איש קשר"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"כל אנשי הקשר האחרים"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"כל אנשי הקשר"</string>
@@ -457,11 +457,11 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"‏איש הקשר התקבל באמצעות NFC"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"הופך לקובץ שמור"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"מייבא <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" msgid="4407527157056120858">"‏יצא לקובץ ‎.vcf"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"‏ייצוא לקובץ ‎.vcf"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"מיין לפי"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"שם פונטי"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"הצג תמיד"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"הסתר את השדה אם הוא ריק"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"יופיע תמיד"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"השדה ריק לא יופיע"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"שם פרטי"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"שם משפחה"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"פורמט השם"</string>
@@ -473,9 +473,9 @@
     <string name="set_up_profile" msgid="7370213843590143771">"הגדרת הפרופיל שלך"</string>
     <string name="setting_about" msgid="7014388749752042863">"מידע על אנשי הקשר"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"שתף את אנשי הקשר המועדפים"</string>
-    <string name="share_contacts" msgid="8109287987498711664">"שתף את כל אנשי הקשר"</string>
+    <string name="share_contacts" msgid="8109287987498711664">"שיתוף כל אנשי הקשר"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"לא ניתן היה לשתף את אנשי הקשר."</string>
-    <string name="dialog_export" msgid="1628001095187741417">"ייצא אנשי קשר"</string>
+    <string name="dialog_export" msgid="1628001095187741417">"ייצוא אנשי קשר"</string>
     <string name="dialog_import" msgid="2423592905927819672">"המקור לייבוא של אנשי הקשר"</string>
     <string name="share_error" msgid="948429331673358107">"לא ניתן לשתף איש קשר זה."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"אין אנשי קשר שניתן לשתף."</string>
