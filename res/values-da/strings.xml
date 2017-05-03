@@ -467,7 +467,7 @@
     <string name="dialog_import" msgid="2423592905927819672">"Importér kontaktpersoner fra"</string>
     <string name="share_error" msgid="948429331673358107">"Denne kontaktperson kan ikke deles."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Der er ingen kontaktpersoner, der kan deles."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktpersoner, der vises"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Viste kontaktpersoner"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Viste kontaktpersoner"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Tilpas visning"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gem"</string>
