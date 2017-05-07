@@ -18,7 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Kontaktlar"</string>
     <string name="contactsList" msgid="8661624236494819731">"Kontaktlar"</string>
-    <string name="shortcut_add_contact" msgid="7476283631356909204">"Kontakt qo‘shish"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Kontakt saqlash"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Kontakt"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Tezkor chaqiruv"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Tezkor SMS"</string>
@@ -40,7 +40,7 @@
     <string name="menu_editGroup" msgid="6696843438454341063">"Kontaktlarni olib tashlash"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Yorliqni qayta nomlash"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Yorliqni o‘chirib tashlash"</string>
-    <string name="menu_addToGroup" msgid="3267409983764370041">"Kontakt qo‘shish"</string>
+    <string name="menu_addToGroup" msgid="3267409983764370041">"Kontakt saqlash"</string>
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Kontaktlarni tanlash"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"Kontakt qo‘shish"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Yorliqni olib tashlash"</string>
@@ -56,7 +56,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Bog‘lash"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Bog‘langan kontaktlarni ko‘rish"</string>
     <string name="menu_save" msgid="1727844363591825909">"Saqlash"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Kontaktlarni bog‘lash"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Birlashtirish"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> bilan bog‘lamoqchi bo‘lgan kontaktni tanlang:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Taklif etilgan kontaktlar"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Barcha kontaktlar"</string>
@@ -124,17 +124,17 @@
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Ayrim kontaktlarda telefon raqami ko‘rsatilmagan."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"E-pochta orqali xat yuborish"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"SMS yuborish"</string>
-    <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Kontaktlarni tanlash"</string>
+    <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Kontaktlarni tanlang"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Yuborish"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"Hech qanday kontakt yo‘q."</string>
-    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"“<xliff:g id="EMAIL">%s</xliff:g>” kontaktlarga qo‘shilsinmi?"</string>
+    <string name="add_contact_dlg_message_fmt" msgid="7986472669444326576">"<xliff:g id="EMAIL">%s</xliff:g> kontaktlarga saqlansinmi?"</string>
     <string name="search_settings_description" msgid="2675223022992445813">"Kontaktlaringiz ismi"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Avvalgi ekranga qaytish uchun bosing"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Telefon raqamini kiritish"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"E-pochta manzilini kiritish"</string>
     <string name="missing_app" msgid="1466111003546611387">"Ushbu amalni bajarish uchun ilova topilmadi."</string>
     <string name="menu_share" msgid="943789700636542260">"Yuborish"</string>
-    <string name="menu_add_contact" msgid="3198704337220892684">"Kontaktlarga qo‘shish"</string>
+    <string name="menu_add_contact" msgid="3198704337220892684">"Kontaktlarga saqlash"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"Qo‘shish"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
       <item quantity="other">Kontaktlarni bu orqali baham ko‘rish</item>
@@ -166,7 +166,7 @@
     <string name="menu_help" msgid="1680178646764069976">"Yordam va fikr-mulohaza"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Telefon raqami"</string>
-    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Kontaktlarga qo‘shish"</string>
+    <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Kontaktlarga saqlash"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Yopish"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"yili bilan birga"</string>
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Hisob qo‘shish"</string>
@@ -178,18 +178,18 @@
     <string name="set_default" msgid="4417505153468300351">"Standart sifatida belgilash"</string>
     <string name="clear_default" msgid="7193185801596678067">"Standartni tozalash"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Matndan nuxsa olindi"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"O‘zgarishlar bekor qilinsinmi?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Bekor qilish"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"O‘zgarishlar saqlanmasinmi?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Saqlanmasin"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Bekor qilish"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"O‘zgarishlar bekor qilinsinmi?"</string>
-    <string name="enter_contact_name" msgid="4594274696120278368">"Kontaktlarni qidirish"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Tanlanma saqlanmasinmi?"</string>
+    <string name="enter_contact_name" msgid="4594274696120278368">"Kontaktlar ichidan qidirish"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Kontaktlarni olib tashlash"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Qurilmadagi profilim"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Mening <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> profilim"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Kontaktlaringizni Google xizmatiga saqlash uchun hisob qo‘shing."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Yangi kontaktlar <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> hisobiga saqlanadi."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Yangi kontaktlar uchun birlamchi hisobni tanlang:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Kontakt yaratish"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Yangi kontakt yaratish"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Kontaktni tahrirlash"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Faqat ko‘rish"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Kontaktni tanlang"</string>
@@ -199,7 +199,7 @@
     <string name="add_account" msgid="8201790677994503186">"Hisob qo‘shish"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Yangi hisob qo‘shish"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Ma’lumotlar bazasi fayllarini eksport qilish"</string>
-    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Kontakt yaratish"</string>
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Yangi kontakt yaratish"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Yana"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Kamroq"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Yaqinda"</string>
@@ -229,14 +229,14 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"javobsiz"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"Yaqindagi chaqiruv. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. Qaytarib qilish uchun bosing."</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Siz: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="editor_more_fields" msgid="3630987771304393421">"Boshqa maydonlarni ko‘rsatish"</string>
+    <string name="editor_more_fields" msgid="3630987771304393421">"Boshqa maydonlar"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Kontakt suratini o‘zgartirish"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Kontakt suratini qo‘shish"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Kontakt surati"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Muharrirni ochib bo‘lmadi."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Qayerga saqlansin:"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> hisobining kontakt ma’lumotlarini o‘zgartirib bo‘lmaydi."</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"KONTAKTLARNI BOG‘LASH"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"BIRLASHTIRISH"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"BEKOR QILISH"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Shu kontakt"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Takroriy kontaktlar"</string>
@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"“<xliff:g id="LABEL_NAME">%s</xliff:g>” yorlig‘i"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Yorliqlar"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Hisoblar"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Umumiy tarixni ko‘rsatish"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Umumiy tarixni ochish"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Tadbirlar va xabarlar"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Tadbirlar"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Xabarlar"</string>
@@ -382,7 +382,7 @@
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"Berkitildi"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Barcha kontaktlar"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Yulduzcha qo‘yilganlar"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Sozlash"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Maxsus tanlanma"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"Boshqa kontaktlar"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Barcha kontaktlar"</string>
@@ -457,19 +457,19 @@
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Avval familiyasi"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Hisoblar"</string>
     <string name="default_editor_account" msgid="699591683362420991">"Yangi kontaktlar uchun asosiy hisob"</string>
-    <string name="settings_my_info_title" msgid="1534272456405343119">"Mening ma’lumotlarim"</string>
+    <string name="settings_my_info_title" msgid="1534272456405343119">"Men haqimda"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Profilingizni sozlang"</string>
     <string name="setting_about" msgid="7014388749752042863">"Kontaktlar ilovasi haqida"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"Sevimli kontaktlarni yuborish"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Barcha kontaktlarni yuborish"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Kontaktlarni yuborib bo‘lmadi."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Kontaktlarni eksport qilish"</string>
-    <string name="dialog_import" msgid="2423592905927819672">"Kontaktlarni import qilish:"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Kontaktlarni import qilish"</string>
     <string name="share_error" msgid="948429331673358107">"Bu kontaktni yuborib bo‘lmaydi."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Yuborish uchun hech qanday kontakt yo‘q."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Ko‘rsatiladigan kontaktlar"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Ko‘rsatiladigan kontaktlar"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Ko‘rishni moslashtirish"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktlarni filtrlash"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontaktlarni filtrlash"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Maxsus tanlanma"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Saqlash"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Kontaktlar ichidan qidirish"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Saralangan"</string>
