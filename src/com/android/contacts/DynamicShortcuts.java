@@ -16,6 +16,7 @@
 package com.android.contacts;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.app.job.JobInfo;
 import android.app.job.JobParameters;
 import android.app.job.JobScheduler;
@@ -51,6 +52,7 @@ import android.util.Log;
 
 import com.android.contacts.activities.RequestPermissionsActivity;
 import com.android.contacts.compat.CompatUtils;
+import com.android.contacts.lettertiles.LetterTileDrawable;
 import com.android.contacts.util.BitmapUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.util.PermissionsUtil;
@@ -95,21 +97,18 @@ public class DynamicShortcuts {
     private static final int SHORTCUT_TYPE_CONTACT_URI = 1;
     private static final int SHORTCUT_TYPE_ACTION_URI = 2;
 
-    // The spec specifies that it should be 44dp @ xxxhdpi
-    // Note that ShortcutManager.getIconMaxWidth and ShortcutManager.getMaxHeight return different
-    // (larger) values.
-    private static final int RECOMMENDED_ICON_PIXEL_LENGTH = 176;
-
     @VisibleForTesting
     static final String[] PROJECTION = new String[] {
             Contacts._ID, Contacts.LOOKUP_KEY, Contacts.DISPLAY_NAME_PRIMARY
     };
 
     private final Context mContext;
+
     private final ContentResolver mContentResolver;
     private final ShortcutManager mShortcutManager;
     private int mShortLabelMaxLength = SHORT_LABEL_MAX_LENGTH;
     private int mLongLabelMaxLength = LONG_LABEL_MAX_LENGTH;
+    private int mIconSize;
     private final int mContentChangeMinUpdateDelay;
     private final int mContentChangeMaxUpdateDelay;
     private final JobScheduler mJobScheduler;
@@ -131,6 +130,12 @@ public class DynamicShortcuts {
                 .getInteger(Experiments.DYNAMIC_MIN_CONTENT_CHANGE_UPDATE_DELAY_MILLIS);
         mContentChangeMaxUpdateDelay = Flags.getInstance()
                 .getInteger(Experiments.DYNAMIC_MAX_CONTENT_CHANGE_UPDATE_DELAY_MILLIS);
+        final ActivityManager am = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        mIconSize = context.getResources().getDimensionPixelSize(R.dimen.shortcut_icon_size);
+        if (mIconSize == 0) {
+            mIconSize = am.getLauncherLargeIconSize();
+        }
     }
 
     @VisibleForTesting
@@ -373,10 +378,8 @@ public class DynamicShortcuts {
         final int iconMaxHeight = mShortcutManager.getIconMaxHeight();
 
         final int sampleSize = Math.min(
-                BitmapUtil.findOptimalSampleSize(sourceWidth,
-                        RECOMMENDED_ICON_PIXEL_LENGTH),
-                BitmapUtil.findOptimalSampleSize(sourceHeight,
-                        RECOMMENDED_ICON_PIXEL_LENGTH));
+                BitmapUtil.findOptimalSampleSize(sourceWidth, mIconSize),
+                BitmapUtil.findOptimalSampleSize(sourceHeight, mIconSize));
         final BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inSampleSize = sampleSize;
 
@@ -404,46 +407,26 @@ public class DynamicShortcuts {
             return BitmapUtil.getRoundedBitmap(bitmap, targetSize, targetSize);
         }
 
-        // If on O or higher, add padding around the bitmap.
-        final int paddingW = (int) (bitmap.getWidth() *
-                AdaptiveIconDrawable.getExtraInsetFraction());
-        final int paddingH = (int) (bitmap.getHeight() *
-                AdaptiveIconDrawable.getExtraInsetFraction());
-
-        final Bitmap scaledBitmap = Bitmap.createBitmap(bitmap.getWidth() + paddingW,
-                bitmap.getHeight() + paddingH, bitmap.getConfig());
-
-        final Canvas scaledCanvas = new Canvas(scaledBitmap);
-        scaledCanvas.drawBitmap(bitmap, paddingW / 2, paddingH / 2, null);
-
-        return scaledBitmap;
+        return bitmap;
     }
 
     private Bitmap getFallbackAvatar(String displayName, String lookupKey) {
-        final int width;
-        final int height;
-        final int padding;
-        if (BuildCompat.isAtLeastO()) {
-            // Add padding on >= O
-            padding = (int) (RECOMMENDED_ICON_PIXEL_LENGTH *
-                    AdaptiveIconDrawable.getExtraInsetFraction());
-            width = RECOMMENDED_ICON_PIXEL_LENGTH + padding;
-            height = RECOMMENDED_ICON_PIXEL_LENGTH + padding;
-        } else {
-            padding = 0;
-            width = RECOMMENDED_ICON_PIXEL_LENGTH;
-            height = RECOMMENDED_ICON_PIXEL_LENGTH;
-        }
+        // Use a circular icon if we're not on O or higher.
+        final boolean circularIcon = !BuildCompat.isAtLeastO();
 
         final ContactPhotoManager.DefaultImageRequest request =
-                new ContactPhotoManager.DefaultImageRequest(displayName, lookupKey, true);
+                new ContactPhotoManager.DefaultImageRequest(displayName, lookupKey, circularIcon);
+        if (BuildCompat.isAtLeastO()) {
+            // On O, scale the image down to add the padding needed by AdaptiveIcons.
+            request.scale = LetterTileDrawable.getAdaptiveIconScale();
+        }
         final Drawable avatar = ContactPhotoManager.getDefaultAvatarDrawableForContact(
                 mContext.getResources(), true, request);
-        final Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        final Bitmap result = Bitmap.createBitmap(mIconSize, mIconSize, Bitmap.Config.ARGB_8888);
         // The avatar won't draw unless it thinks it is visible
         avatar.setVisible(true, true);
         final Canvas canvas = new Canvas(result);
-        avatar.setBounds(padding, padding, width - padding, height - padding);
+        avatar.setBounds(0, 0, mIconSize, mIconSize);
         avatar.draw(canvas);
         return result;
     }
