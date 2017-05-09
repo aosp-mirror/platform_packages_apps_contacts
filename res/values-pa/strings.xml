@@ -131,7 +131,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਦੇ ਨਾਮ"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ਪਿਛਲੀ ਸਕ੍ਰੀਨ ਤੇ ਵਾਪਸ ਜਾਣ ਲਈ ਕਲਿਕ ਕਰੋ"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ਫ਼ੋਨ ਨੰਬਰ ਸ਼ਾਮਲ ਕਰੋ"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"ਈਮੇਲ ਜੋੜੋ"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"ਈਮੇਲ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="missing_app" msgid="1466111003546611387">"ਇਸ ਕਿਰਿਆ ਨੂੰ ਸੰਭਾਲਣ ਲਈ ਕੋਈ ਐਪ ਨਹੀਂ ਮਿਲਿਆ।"</string>
     <string name="menu_share" msgid="943789700636542260">"ਸਾਂਝਾ ਕਰੋ"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ"</string>
@@ -175,8 +175,8 @@
     <string name="delete_group_dialog_message" msgid="335713829185261371">"ਕੀ ਲੇਬਲ \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ਮਿਟਾਉਣਾ ਹੈ? (\'ਸੰਪਰਕ ਆਪਣੇ ਆਪ ਨਹੀਂ ਮਿਟਾਏ ਜਾਣਗੇ।)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"ਹੋਰ ਨਾਲ ਲਿੰਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਰਕ ਨਾਮ ਟਾਈਪ ਕਰੋ।"</string>
     <string name="copy_text" msgid="3257145021583508761">"ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕਰੋ"</string>
-    <string name="set_default" msgid="4417505153468300351">"ਡਿਫੌਲਟ ਸੈੱਟ ਕਰੋ"</string>
-    <string name="clear_default" msgid="7193185801596678067">"ਡਿਫੌਲਟ ਹਟਾਓ"</string>
+    <string name="set_default" msgid="4417505153468300351">"ਪੂਰਵ-ਨਿਰਧਾਰਤ ਸੈੱਟ ਕਰੋ"</string>
+    <string name="clear_default" msgid="7193185801596678067">"ਪੂਰਵ-ਨਿਰਧਾਰਤ ਹਟਾਓ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ਟੈਕਸਟ ਕਾਪੀ ਕੀਤਾ"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"ਕੀ ਤਬਦੀਲੀਆਂ ਖਾਰਜ ਕਰਨੀਆਂ ਹਨ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ਛੱਡੋ"</string>
