@@ -1465,17 +1465,19 @@ public class QuickContactActivity extends ContactsActivity {
                 final String mimeType = dataItem.getMimeType();
                 if (mimeType == null) continue;
 
-                final AccountType accountType = rawContact.getAccountType(this);
-                final DataKind dataKind = AccountTypeManager.getInstance(this)
-                        .getKindOrFallback(accountType, mimeType);
-                if (dataKind == null) continue;
+                if (!MIMETYPE_TACHYON.equals(mimeType)) {
+                    final AccountType accountType = rawContact.getAccountType(this);
+                    final DataKind dataKind = AccountTypeManager.getInstance(this)
+                            .getKindOrFallback(accountType, mimeType);
+                    if (dataKind == null) continue;
 
-                dataItem.setDataKind(dataKind);
+                    dataItem.setDataKind(dataKind);
 
-                final boolean hasData = !TextUtils.isEmpty(dataItem.buildDataString(this,
-                        dataKind));
+                    final boolean hasData = !TextUtils.isEmpty(dataItem.buildDataString(this,
+                            dataKind));
 
-                if (isMimeExcluded(mimeType) || !hasData) continue;
+                    if (isMimeExcluded(mimeType) || !hasData) continue;
+                }
 
                 List<DataItem> dataItemListByType = dataItemsMap.get(mimeType);
                 if (dataItemListByType == null) {
