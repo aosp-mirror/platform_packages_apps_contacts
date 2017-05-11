@@ -329,7 +329,7 @@
     <string name="name_suffix" msgid="3855278445375651441">"敬称（名前の後）"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"よみがな"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"フリガナ（名）"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"ミドルネームのよみがな"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"フリガナ（ミドルネーム）"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"フリガナ（姓）"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話番号"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"メール"</string>
