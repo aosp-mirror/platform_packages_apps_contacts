@@ -46,7 +46,9 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v4 \
     com.android.vcard \
     guava \
-    libphonenumber
+    libphonenumber \
+    legacy-android-test \
+    junit
 
 LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared
