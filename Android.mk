@@ -5,29 +5,25 @@ LOCAL_MODULE_TAGS := optional
 
 phone_common_dir := ../PhoneCommon
 
-ifeq ($(TARGET_BUILD_APPS),)
-support_library_root_dir := frameworks/support
-else
-support_library_root_dir := prebuilts/sdk/current/support
-endif
-
 src_dirs := src src-bind $(phone_common_dir)/src
 res_dirs := res $(phone_common_dir)/res
 asset_dirs := assets
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs)) \
-    $(support_library_root_dir)/design/res \
-    $(support_library_root_dir)/transition/res \
-    $(support_library_root_dir)/v7/appcompat/res \
-    $(support_library_root_dir)/v7/cardview/res \
-    $(support_library_root_dir)/v7/recyclerview/res
+    $(SUPPORT_LIBRARY_ROOT)/core-ui/res \
+    $(SUPPORT_LIBRARY_ROOT)/design/res \
+    $(SUPPORT_LIBRARY_ROOT)/transition/res \
+    $(SUPPORT_LIBRARY_ROOT)/v7/appcompat/res \
+    $(SUPPORT_LIBRARY_ROOT)/v7/cardview/res \
+    $(SUPPORT_LIBRARY_ROOT)/v7/recyclerview/res
 LOCAL_ASSET_DIR := $(addprefix $(LOCAL_PATH)/, $(asset_dirs))
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
     --extra-packages com.android.contacts.common \
     --extra-packages com.android.phone.common \
+    --extra-packages android.support.coreui \
     --extra-packages android.support.design \
     --extra-packages android.support.transition \
     --extra-packages android.support.v7.appcompat \
