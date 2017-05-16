@@ -436,8 +436,6 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             }
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             mHasIntentLaunched = true;
             try {
                 final int actionType = intent.getIntExtra(EXTRA_ACTION_TYPE,
@@ -445,10 +443,12 @@ public class QuickContactActivity extends ContactsActivity {
                 final String thirdPartyAction = intent.getStringExtra(EXTRA_THIRD_PARTY_ACTION);
                 Logger.logQuickContactEvent(mReferrer, mContactType,
                         CardType.UNKNOWN_CARD, actionType, thirdPartyAction);
-                // For the tachyon call action, we need to use startActivityForResult.
+                // For the tachyon call action, we need to use startActivityForResult and not
+                // add FLAG_ACTIVITY_NEW_TASK to the intent.
                 if (TACHYON_CALL_ACTION.equals(intent.getAction())) {
                     QuickContactActivity.this.startActivityForResult(intent, /* requestCode */ 0);
                 } else {
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this,
                             intent);
                 }
