@@ -250,6 +250,8 @@ public class QuickContactActivity extends ContactsActivity {
 
     public static final String MIMETYPE_TACHYON =
             "vnd.android.cursor.item/com.google.android.apps.tachyon.phone";
+    private static final String TACHYON_CALL_ACTION =
+            "com.google.android.apps.tachyon.action.CALL";
     private static final String MIMETYPE_GPLUS_PROFILE =
             "vnd.android.cursor.item/vnd.googleplus.profile";
     private static final String GPLUS_PROFILE_DATA_5_VIEW_PROFILE = "view";
@@ -434,8 +436,6 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             }
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             mHasIntentLaunched = true;
             try {
                 final int actionType = intent.getIntExtra(EXTRA_ACTION_TYPE,
@@ -443,7 +443,15 @@ public class QuickContactActivity extends ContactsActivity {
                 final String thirdPartyAction = intent.getStringExtra(EXTRA_THIRD_PARTY_ACTION);
                 Logger.logQuickContactEvent(mReferrer, mContactType,
                         CardType.UNKNOWN_CARD, actionType, thirdPartyAction);
-                ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this, intent);
+                // For the tachyon call action, we need to use startActivityForResult and not
+                // add FLAG_ACTIVITY_NEW_TASK to the intent.
+                if (TACHYON_CALL_ACTION.equals(intent.getAction())) {
+                    QuickContactActivity.this.startActivityForResult(intent, /* requestCode */ 0);
+                } else {
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    ImplicitIntentsUtil.startActivityInAppIfPossible(QuickContactActivity.this,
+                            intent);
+                }
             } catch (SecurityException ex) {
                 Toast.makeText(QuickContactActivity.this, R.string.missing_app,
                         Toast.LENGTH_SHORT).show();
@@ -1457,17 +1465,19 @@ public class QuickContactActivity extends ContactsActivity {
                 final String mimeType = dataItem.getMimeType();
                 if (mimeType == null) continue;
 
-                final AccountType accountType = rawContact.getAccountType(this);
-                final DataKind dataKind = AccountTypeManager.getInstance(this)
-                        .getKindOrFallback(accountType, mimeType);
-                if (dataKind == null) continue;
+                if (!MIMETYPE_TACHYON.equals(mimeType)) {
+                    final AccountType accountType = rawContact.getAccountType(this);
+                    final DataKind dataKind = AccountTypeManager.getInstance(this)
+                            .getKindOrFallback(accountType, mimeType);
+                    if (dataKind == null) continue;
 
-                dataItem.setDataKind(dataKind);
+                    dataItem.setDataKind(dataKind);
 
-                final boolean hasData = !TextUtils.isEmpty(dataItem.buildDataString(this,
-                        dataKind));
+                    final boolean hasData = !TextUtils.isEmpty(dataItem.buildDataString(this,
+                            dataKind));
 
-                if (isMimeExcluded(mimeType) || !hasData) continue;
+                    if (isMimeExcluded(mimeType) || !hasData) continue;
+                }
 
                 List<DataItem> dataItemListByType = dataItemsMap.get(mimeType);
                 if (dataItemListByType == null) {
@@ -1814,7 +1824,7 @@ public class QuickContactActivity extends ContactsActivity {
                         && ((PhoneDataItem) dataItem).isTachyonReachable()) {
                     thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
                     thirdAction = Entry.ACTION_INTENT;
-                    thirdIntent = new Intent("com.google.android.apps.tachyon.action.CALL");
+                    thirdIntent = new Intent(TACHYON_CALL_ACTION);
                     thirdIntent.setData(
                             Uri.fromParts(PhoneAccount.SCHEME_TEL, phone.getNumber(), null));
                     thirdContentDescription = ((PhoneDataItem) dataItem).getReachableDataItem()

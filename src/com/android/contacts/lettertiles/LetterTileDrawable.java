@@ -26,6 +26,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 
@@ -283,5 +284,12 @@ public class LetterTileDrawable extends Drawable {
     public LetterTileDrawable setIsCircular(boolean isCircle) {
         mIsCircle = isCircle;
         return this;
+    }
+
+    /**
+     * Returns the scale percentage as a float for LetterTileDrawables used in AdaptiveIcons.
+     */
+    public static float getAdaptiveIconScale() {
+        return 1 / (1 + (2 * AdaptiveIconDrawable.getExtraInsetFraction()));
     }
 }
