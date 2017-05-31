@@ -53,10 +53,10 @@
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Պահել և միակցել"</string>
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Կցում"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Ապակցում"</string>
-    <string name="menu_joinAggregate" msgid="3599512127797513606">"Միակցել"</string>
+    <string name="menu_joinAggregate" msgid="3599512127797513606">"Միավորել"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Դիտել միակցված կոնտակտները"</string>
     <string name="menu_save" msgid="1727844363591825909">"Պահել"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Միակցել կոնտակտները"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Միավորել կոնտակտները"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Ընտրեք կոնտակտը, որը ցանկանում եք միակցել <xliff:g id="NAME">%s</xliff:g>-ի հետ՝"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Առաջարկվող կոնտակները"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Բոլոր կոնտակտները"</string>
