@@ -40,6 +40,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Photo;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
+import android.support.v4.graphics.drawable.IconCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.os.BuildCompat;
@@ -292,11 +293,15 @@ public class ShortcutIntentBuilder {
         final Intent shortcutIntent = ImplicitIntentsUtil.getIntentForQuickContactLauncherShortcut(
                 mContext, contactUri);
 
-        final Bitmap icon = generateQuickContactIcon(drawable);
-
-
         intent = intent == null ? new Intent() : intent;
-        intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
+
+        final Bitmap icon = generateQuickContactIcon(drawable);
+        if (BuildCompat.isAtLeastO()) {
+            final IconCompat compatIcon = IconCompat.createWithAdaptiveBitmap(icon);
+            compatIcon.addToShortcutIntent(intent);
+        } else {
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
+        }
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, displayName);
 
@@ -332,18 +337,25 @@ public class ShortcutIntentBuilder {
         shortcutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         Intent intent = null;
+        IconCompat compatAdaptiveIcon = null;
         if (BuildCompat.isAtLeastO()) {
+            compatAdaptiveIcon = IconCompat.createWithAdaptiveBitmap(icon);
             final ShortcutManager sm = (ShortcutManager)
                     mContext.getSystemService(Context.SHORTCUT_SERVICE);
             final String id = shortcutAction + lookupKey;
             final DynamicShortcuts dynamicShortcuts = new DynamicShortcuts(mContext);
             final ShortcutInfo shortcutInfo = dynamicShortcuts.getActionShortcutInfo(
-                    id, displayName, shortcutIntent, Icon.createWithAdaptiveBitmap(icon));
+                    id, displayName, shortcutIntent, compatAdaptiveIcon.toIcon());
             intent = sm.createShortcutResultIntent(shortcutInfo);
         }
 
         intent = intent == null ? new Intent() : intent;
-        intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
+        // This will be non-null in O and above.
+        if (compatAdaptiveIcon != null) {
+            compatAdaptiveIcon.addToShortcutIntent(intent);
+        } else {
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
+        }
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, shortcutName);
 
