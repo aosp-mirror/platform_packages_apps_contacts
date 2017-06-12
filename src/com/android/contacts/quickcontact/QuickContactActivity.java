@@ -105,7 +105,6 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.DynamicShortcuts;
-import com.android.contacts.Experiments;
 import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.ShortcutIntentBuilder;
@@ -176,7 +175,6 @@ import com.android.contacts.widget.MultiShrinkScroller;
 import com.android.contacts.widget.MultiShrinkScroller.MultiShrinkScrollerListener;
 import com.android.contacts.widget.QuickContactImageView;
 import com.android.contactsbind.HelpUtils;
-import com.android.contactsbind.experiments.Flags;
 
 import com.google.common.collect.Lists;
 
@@ -1457,6 +1455,7 @@ public class QuickContactActivity extends ContactsActivity {
         Trace.beginSection("Build data items map");
 
         final Map<String, List<DataItem>> dataItemsMap = new HashMap<>();
+        final boolean tachyonEnabled = CallUtil.isTachyonEnabled(this);
 
         for (RawContact rawContact : data.getRawContacts()) {
             for (DataItem dataItem : rawContact.getDataItems()) {
@@ -1466,6 +1465,7 @@ public class QuickContactActivity extends ContactsActivity {
                 if (mimeType == null) continue;
 
                 if (!MIMETYPE_TACHYON.equals(mimeType)) {
+                    // Only validate non-Tachyon mimetypes.
                     final AccountType accountType = rawContact.getAccountType(this);
                     final DataKind dataKind = AccountTypeManager.getInstance(this)
                             .getKindOrFallback(accountType, mimeType);
@@ -1477,6 +1477,9 @@ public class QuickContactActivity extends ContactsActivity {
                             dataKind));
 
                     if (isMimeExcluded(mimeType) || !hasData) continue;
+                } else if (!tachyonEnabled) {
+                    // If tachyon isn't enabled, skip its mimetypes.
+                    continue;
                 }
 
                 List<DataItem> dataItemListByType = dataItemsMap.get(mimeType);
@@ -1820,7 +1823,7 @@ public class QuickContactActivity extends ContactsActivity {
                     thirdIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.VIDEOCALL);
                     thirdContentDescription =
                             res.getString(R.string.description_video_call);
-                } else if (Flags.getInstance().getBoolean(Experiments.QUICK_CONTACT_VIDEO_CALL)
+                } else if (CallUtil.isTachyonEnabled(context)
                         && ((PhoneDataItem) dataItem).isTachyonReachable()) {
                     thirdIcon = res.getDrawable(R.drawable.quantum_ic_videocam_vd_theme_24);
                     thirdAction = Entry.ACTION_INTENT;
@@ -1915,8 +1918,8 @@ public class QuickContactActivity extends ContactsActivity {
                     aboutCardName.value = res.getString(R.string.about_card_title);
                 }
             }
-        } else if (Flags.getInstance().getBoolean(Experiments.QUICK_CONTACT_VIDEO_CALL)
-                && MIMETYPE_TACHYON.equals(dataItem.getMimeType())) {
+        } else if (CallUtil.isTachyonEnabled(context) && MIMETYPE_TACHYON.equals(
+                dataItem.getMimeType())) {
             // Skip these actions. They will be placed by the phone number.
             return null;
         } else {
