@@ -35,6 +35,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -2697,21 +2698,26 @@ public class QuickContactActivity extends ContactsActivity {
      * Creates a launcher shortcut with the current contact.
      */
     private void createLauncherShortcutWithContact() {
-        final ShortcutIntentBuilder builder = new ShortcutIntentBuilder(this,
-                new OnShortcutIntentCreatedListener() {
+        if (BuildCompat.isAtLeastO()) {
+            final ShortcutManager shortcutManager = (ShortcutManager)
+                    getSystemService(SHORTCUT_SERVICE);
+            final DynamicShortcuts shortcuts =
+                    new DynamicShortcuts(QuickContactActivity.this);
+            String displayName = mContactData.getDisplayName();
+            if (displayName == null) {
+                displayName = getString(R.string.missing_name);
+            }
+            final ShortcutInfo shortcutInfo = shortcuts.getQuickContactShortcutInfo(
+                    mContactData.getId(), mContactData.getLookupKey(), displayName);
+            if (shortcutInfo != null) {
+                shortcutManager.requestPinShortcut(shortcutInfo, null);
+            }
+        } else {
+            final ShortcutIntentBuilder builder = new ShortcutIntentBuilder(this,
+                    new OnShortcutIntentCreatedListener() {
 
-                    @Override
-                    public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
-                        if (BuildCompat.isAtLeastO()) {
-                            final ShortcutManager shortcutManager = (ShortcutManager)
-                                    getSystemService(SHORTCUT_SERVICE);
-                            final DynamicShortcuts shortcuts =
-                                    new DynamicShortcuts(QuickContactActivity.this);
-                            shortcutManager.requestPinShortcut(
-                                    shortcuts.getQuickContactShortcutInfo(
-                                            mContactData.getId(), mContactData.getLookupKey(),
-                                            mContactData.getDisplayName()), null);
-                        } else {
+                        @Override
+                        public void onShortcutIntentCreated(Uri uri, Intent shortcutIntent) {
                             // Broadcast the shortcutIntent to the launcher to create a
                             // shortcut to this contact
                             shortcutIntent.setAction(ACTION_INSTALL_SHORTCUT);
@@ -2727,9 +2733,9 @@ public class QuickContactActivity extends ContactsActivity {
                             Toast.makeText(QuickContactActivity.this, toastMessage,
                                     Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
-        builder.createContactShortcutIntent(mContactData.getLookupUri());
+                    });
+            builder.createContactShortcutIntent(mContactData.getLookupUri());
+        }
     }
 
     private boolean isShortcutCreatable() {
