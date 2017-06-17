@@ -37,7 +37,7 @@
     <string name="menu_change_photo" msgid="7769177631511496210">"Schimbați fotografia"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Creați o comandă rapidă"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Disociați"</string>
-    <string name="menu_editGroup" msgid="6696843438454341063">"Eliminați intrările din Agendă"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"Ștergeți persoane de contact"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Redenumiți eticheta"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Ștergeți eticheta"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Adăugați o persoană"</string>
@@ -187,7 +187,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Anulați"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Renunțați la personalizări?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Căutați în Agendă"</string>
-    <string name="title_edit_group" msgid="8602752287270586734">"Eliminați intrările din Agendă"</string>
+    <string name="title_edit_group" msgid="8602752287270586734">"Ștergeți persoane de contact"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Profilul meu local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profilul meu <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Adăugați un cont în care se va face backup pentru agenda dvs. în Google."</string>

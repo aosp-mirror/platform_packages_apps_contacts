@@ -229,7 +229,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"tak terjawab"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"panggilan telepon terbaru. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klik untuk menelepon balik"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Anda: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="editor_more_fields" msgid="3630987771304393421">"Bidang lainnya"</string>
+    <string name="editor_more_fields" msgid="3630987771304393421">"Kolom lainnya"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Ubah foto kontak"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Tambahkan foto kontak"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Foto kontak"</string>
