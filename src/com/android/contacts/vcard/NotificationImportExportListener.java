@@ -220,7 +220,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setOngoing(true)
-                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
+                .setChannelId(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setOnlyAlertOnce(true)
                 .setProgress(totalCount, currentCount, totalCount == - 1)
                 .setTicker(tickerText)
@@ -235,7 +235,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
                     NumberFormat.getPercentInstance().format((double) currentCount / totalCount);
             builder.setContentText(percentage);
         }
-        return builder.getNotification();
+        return builder.build();
     }
 
     /**
@@ -247,8 +247,8 @@ public class NotificationImportExportListener implements VCardImportExportListen
     /* package */ static Notification constructCancelNotification(
             Context context, String description) {
         ContactsNotificationChannelsUtil.createDefaultChannel(context);
-        return new NotificationCompat.Builder(context)
-                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
+        return new NotificationCompat.Builder(context,
+                ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setSmallIcon(android.R.drawable.stat_notify_error)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
@@ -258,7 +258,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 // app to make sure that no other app can steal this pending-intent b/19296918.
                 .setContentIntent(PendingIntent
                         .getActivity(context, 0, new Intent(context.getPackageName(), null), 0))
-                .getNotification();
+                .build();
     }
 
     /**
@@ -279,8 +279,8 @@ public class NotificationImportExportListener implements VCardImportExportListen
     /* package */ static Notification constructFinishNotificationWithFlags(
             Context context, String title, String description, Intent intent, int flags) {
         ContactsNotificationChannelsUtil.createDefaultChannel(context);
-        return new NotificationCompat.Builder(context)
-                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
+        return new NotificationCompat.Builder(context,
+                ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
                 .setSmallIcon(R.drawable.quantum_ic_done_vd_theme_24)
@@ -292,7 +292,7 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 .setContentIntent(PendingIntent.getActivity(context, 0,
                         (intent != null ? intent : new Intent(context.getPackageName(), null)),
                         flags))
-                .getNotification();
+                .build();
     }
 
     /**
@@ -304,8 +304,8 @@ public class NotificationImportExportListener implements VCardImportExportListen
     /* package */ static Notification constructImportFailureNotification(
             Context context, String reason) {
         ContactsNotificationChannelsUtil.createDefaultChannel(context);
-        return new NotificationCompat.Builder(context)
-                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
+        return new NotificationCompat.Builder(context,
+                ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setColor(context.getResources().getColor(R.color.dialtacts_theme_color))
                 .setSmallIcon(android.R.drawable.stat_notify_error)
@@ -315,6 +315,6 @@ public class NotificationImportExportListener implements VCardImportExportListen
                 // app to make sure that no other app can steal this pending-intent b/19296918.
                 .setContentIntent(PendingIntent
                         .getActivity(context, 0, new Intent(context.getPackageName(), null), 0))
-                .getNotification();
+                .build();
     }
 }
