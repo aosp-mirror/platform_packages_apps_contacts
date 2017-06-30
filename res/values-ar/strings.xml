@@ -29,8 +29,8 @@
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"إنشاء جهة اتصال جديدة"</string>
     <string name="searchHint" msgid="8482945356247760701">"البحث في جهات الاتصال"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"إضافة إلى المفضلة"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"إزالة من المفضلة"</string>
-    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"تمت الإزالة من المفضلة"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"الإزالة من العناصر المفضّلة"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"تمت الإزالة من العناصر المفضّلة"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"تمت الإضافة إلى المفضلة"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"تعديل"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"حذف"</string>
