@@ -103,7 +103,7 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> został dodany do ekranu głównego."</string>
     <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Brak zdjęć na urządzeniu."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Zdjęcie kontaktu"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety niestandardowej"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety własnej"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Usuń zdjęcie"</string>
     <string name="noContacts" msgid="2228592924476426108">"Twoja lista kontaktów jest pusta"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Brak kontaktów z tą etykietą"</string>
