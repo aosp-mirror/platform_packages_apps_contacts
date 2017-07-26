@@ -344,7 +344,7 @@ public class ShortcutIntentBuilder {
             compatAdaptiveIcon = IconCompat.createWithAdaptiveBitmap(icon);
             final ShortcutManager sm = (ShortcutManager)
                     mContext.getSystemService(Context.SHORTCUT_SERVICE);
-            final String id = shortcutAction + lookupKey;
+            final String id = shortcutAction + lookupKey + phoneUri.toString().hashCode();
             final DynamicShortcuts dynamicShortcuts = new DynamicShortcuts(mContext);
             final ShortcutInfo shortcutInfo = dynamicShortcuts.getActionShortcutInfo(
                     id, displayName, shortcutIntent, compatAdaptiveIcon.toIcon());
