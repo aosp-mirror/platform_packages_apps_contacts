@@ -189,9 +189,9 @@ public class SimImportService extends Service {
 
     private Notification getCompletedNotification() {
         final Intent intent = new Intent(this, PeopleActivity.class);
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                this, ContactsNotificationChannelsUtil.DEFAULT_CHANNEL);
         builder.setOngoing(false)
-                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setContentTitle(this.getString(R.string.importing_sim_finished_title))
                 .setColor(this.getResources().getColor(R.color.dialtacts_theme_color))
@@ -202,9 +202,9 @@ public class SimImportService extends Service {
 
     private Notification getFailedNotification() {
         final Intent intent = new Intent(this, PeopleActivity.class);
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                this, ContactsNotificationChannelsUtil.DEFAULT_CHANNEL);
         builder.setOngoing(false)
-                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setAutoCancel(true)
                 .setContentTitle(this.getString(R.string.importing_sim_failed_title))
                 .setContentText(this.getString(R.string.importing_sim_failed_message))
@@ -215,10 +215,10 @@ public class SimImportService extends Service {
     }
 
     private Notification getImportingNotification() {
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                this, ContactsNotificationChannelsUtil.DEFAULT_CHANNEL);
         final String description = getString(R.string.importing_sim_in_progress_title);
         builder.setOngoing(true)
-                .setChannel(ContactsNotificationChannelsUtil.DEFAULT_CHANNEL)
                 .setProgress(/* current */ 0, /* max */ 100, /* indeterminate */ true)
                 .setContentTitle(description)
                 .setColor(this.getResources().getColor(R.color.dialtacts_theme_color))
