@@ -257,14 +257,14 @@
     <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Tavsiyalar"</string>
     <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Kontaktlar bilan qulay ishlash uchun ularni tartibga soling"</string>
     <string name="undo" msgid="1425165101664071422">"Bekor qilish"</string>
-    <string name="call_custom" msgid="6385303130912713318">"Qo‘ng‘iroq qilish (<xliff:g id="CUSTOM_LABEL">%s</xliff:g>)"</string>
+    <string name="call_custom" msgid="6385303130912713318">"Chaqiruv (<xliff:g id="CUSTOM_LABEL">%s</xliff:g>)"</string>
     <string name="call_home" msgid="1990519474420545392">"Uy telefoni"</string>
     <string name="call_mobile" msgid="7502236805487609178">"Mobil telefon"</string>
     <string name="call_work" msgid="5328785911463744028">"Ishxona telefoni"</string>
     <string name="call_fax_work" msgid="7467763592359059243">"Ishxona faksi"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Uy faksi"</string>
     <string name="call_pager" msgid="9003902812293983281">"Peyjer"</string>
-    <string name="call_other" msgid="8563753966926932052">"Qo‘ng‘iroq qilish"</string>
+    <string name="call_other" msgid="8563753966926932052">"Chaqiruv"</string>
     <string name="call_callback" msgid="1910165691349426858">"Teskari chaqiruv"</string>
     <string name="call_car" msgid="3280537320306436445">"Avtomobildagi telefon"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Ofis"</string>
@@ -276,9 +276,9 @@
     <string name="call_tty_tdd" msgid="8951266948204379604">"Teletayp"</string>
     <string name="call_work_mobile" msgid="8707874281430105394">"Ishxona mobil telefoni"</string>
     <string name="call_work_pager" msgid="3419348514157949008">"Ish peyjeri"</string>
-    <string name="call_assistant" msgid="670941612175068337">"Qo‘ng‘iroq qilish (<xliff:g id="CUSTOM_LABEL">%s</xliff:g>)"</string>
+    <string name="call_assistant" msgid="670941612175068337">"Chaqiruv (<xliff:g id="CUSTOM_LABEL">%s</xliff:g>)"</string>
     <string name="call_mms" msgid="6274041545876221437">"MMS markazi"</string>
-    <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Qo‘ng‘iroq qilish)"</string>
+    <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Chaqiruv)"</string>
     <string name="sms_custom" msgid="415060214233647603">"SMS yuborish (<xliff:g id="CUSTOM_LABEL">%s</xliff:g>)"</string>
     <string name="sms_home" msgid="7524332261493162995">"SMS: uy telefoni"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"SMS: mobil"</string>
