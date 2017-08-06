@@ -500,11 +500,11 @@
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> з <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <string name="about_build_version" msgid="1765533099416999801">"Версія складання"</string>
-    <string name="about_open_source_licenses" msgid="6479990452352919641">"Ліцензії з відкритим кодом"</string>
+    <string name="about_open_source_licenses" msgid="6479990452352919641">"Ліцензії відкритого коду"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Деталі ліцензії на програмне забезпечення з відкритим кодом"</string>
     <string name="about_privacy_policy" msgid="3705518622499152626">"Політика конфіденційності"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"Умови використання"</string>
-    <string name="activity_title_licenses" msgid="5467767062737708066">"Ліцензії з відкритим кодом"</string>
+    <string name="activity_title_licenses" msgid="5467767062737708066">"Ліцензії відкритого коду"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"Не вдалося відкрити посилання."</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> вибрано"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> не вибрано"</string>
