@@ -366,15 +366,15 @@
     <string name="map_work" msgid="1360474076921878088">"Prikaži poslovnu adresu"</string>
     <string name="map_other" msgid="3817820803587012641">"Prikaži adresu"</string>
     <string name="map_custom" msgid="8761800628069473526">"Prikaži <xliff:g id="CUSTOM_LABEL">%s</xliff:g> adresu"</string>
-    <string name="chat_aim" msgid="2588492205291249142">"Ćaskanje putem aplikacije AIM"</string>
-    <string name="chat_msn" msgid="8041633440091073484">"Ćaskanje putem aplikacije Windows Live"</string>
-    <string name="chat_yahoo" msgid="6629211142719943666">"Ćaskanje putem aplikacije Yahoo"</string>
-    <string name="chat_skype" msgid="1210045020427480566">"Ćaskanje putem aplikacije Skype"</string>
-    <string name="chat_qq" msgid="4294637812847719693">"Ćaskanje putem aplikacije QQ"</string>
-    <string name="chat_gtalk" msgid="981575737258117697">"Ćaskanje putem aplikacije Google Talk"</string>
-    <string name="chat_icq" msgid="8438405386153745775">"Ćaskanje putem aplikacije ICQ"</string>
-    <string name="chat_jabber" msgid="7561444230307829609">"Ćaskanje putem aplikacije Jabber"</string>
-    <string name="chat" msgid="9025361898797412245">"Ćaskanje"</string>
+    <string name="chat_aim" msgid="2588492205291249142">"Chat putem aplikacije AIM"</string>
+    <string name="chat_msn" msgid="8041633440091073484">"Chat putem aplikacije Windows Live"</string>
+    <string name="chat_yahoo" msgid="6629211142719943666">"Chat putem aplikacije Yahoo"</string>
+    <string name="chat_skype" msgid="1210045020427480566">"Chat putem aplikacije Skype"</string>
+    <string name="chat_qq" msgid="4294637812847719693">"Chat putem aplikacije QQ"</string>
+    <string name="chat_gtalk" msgid="981575737258117697">"Chat putem aplikacije Google Talk"</string>
+    <string name="chat_icq" msgid="8438405386153745775">"Chat putem aplikacije ICQ"</string>
+    <string name="chat_jabber" msgid="7561444230307829609">"Chat putem aplikacije Jabber"</string>
+    <string name="chat" msgid="9025361898797412245">"Chat"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"izbriši"</string>
     <string name="expand_name_fields_description" msgid="6948274252874552543">"Prikaži više polja za ime"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"Skupi polja za imena"</string>
