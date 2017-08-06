@@ -103,7 +103,7 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> został dodany do ekranu głównego."</string>
     <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Brak zdjęć na urządzeniu."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Zdjęcie kontaktu"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety niestandardowej"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety własnej"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Usuń zdjęcie"</string>
     <string name="noContacts" msgid="2228592924476426108">"Twoja lista kontaktów jest pusta"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Brak kontaktów z tą etykietą"</string>
@@ -258,7 +258,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Etykieta <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etykiety"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Konta"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Zobacz swoją pełną historię"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Zobacz Waszą historię"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Wydarzenia i wiadomości"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Wydarzenia"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Wiadomości"</string>
@@ -476,7 +476,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Udostępnij wszystkie kontakty"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Nie udało się udostępnić kontaktów."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Eksportuj kontakty"</string>
-    <string name="dialog_import" msgid="2423592905927819672">"Importuj kontakty z"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Importuję kontakty z"</string>
     <string name="share_error" msgid="948429331673358107">"Tego kontaktu nie można udostępniać."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Brak kontaktów do udostępnienia."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty do wyświetlenia"</string>
@@ -542,6 +542,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Nie udało się zaimportować"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Nie udało się zaimportować kontaktów z karty SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Importuję kontakty z karty SIM"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Powiadomienia"</string>
 </resources>

@@ -229,7 +229,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"tak terjawab"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"panggilan telepon terbaru. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. klik untuk menelepon balik"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Anda: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="editor_more_fields" msgid="3630987771304393421">"Bidang lainnya"</string>
+    <string name="editor_more_fields" msgid="3630987771304393421">"Kolom lainnya"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Ubah foto kontak"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Tambahkan foto kontak"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Foto kontak"</string>
@@ -489,7 +489,7 @@
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <string name="about_build_version" msgid="1765533099416999801">"Versi build"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Lisensi sumber terbuka"</string>
-    <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Detail lisensi untuk perangkat lunak sumber terbuka"</string>
+    <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Detail lisensi untuk software sumber terbuka"</string>
     <string name="about_privacy_policy" msgid="3705518622499152626">"Kebijakan privasi"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"Persyaratan layanan"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"Lisensi sumber terbuka"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Impor gagal"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Tidak dapat mengimpor kontak dari kartu SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Mengimpor SIM"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Notifikasi"</string>
 </resources>

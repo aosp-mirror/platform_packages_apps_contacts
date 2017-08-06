@@ -189,7 +189,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Αφιερώστε λίγο χρόνο για να προσθέσετε έναν λογαριασμό μέσω του οποίου θα δημιουργήσετε αντίγραφα ασφαλείας των επαφών σας στην Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Οι νέες επαφές θα αποθηκευτούν στο λογαριασμό <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Επιλέξτε έναν προεπιλεγμένο λογαριασμό για νέες επαφές:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Δημιουρ. νέας επαφής"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Δημιουρ. επαφής"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Επεξεργασία επαφής"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Μόνο για προβολή"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Επιλέξτε επαφή προς επεξεργασία"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Αποτυχία εισαγωγής"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Δεν ήταν δυνατή η εισαγωγή επαφών από την κάρτα SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Εισαγωγή από SIM"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Ειδοποιήσεις"</string>
 </resources>

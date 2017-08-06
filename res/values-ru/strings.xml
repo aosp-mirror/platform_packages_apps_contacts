@@ -24,7 +24,7 @@
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Быстрое SMS"</string>
     <string name="shortcutActivityTitle" msgid="1504383567778497348">"Выбрать контакт"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Добавление данных"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выбор контакта"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Выберите контакт"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Выбрать"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Создать контакт"</string>
     <string name="searchHint" msgid="8482945356247760701">"Поиск в контактах"</string>
@@ -151,8 +151,8 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Выберите аккаунт"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Создание ярлыка"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Изменение названия ярлыка"</string>
-    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Название группы"</string>
-    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Название группы"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Название ярлыка"</string>
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Название ярлыка"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Голосовой чат"</string>
     <string name="video_chat" msgid="1872255818640336072">"Видеочат"</string>
     <string name="account_type_format" msgid="718948015590343010">"Контакт <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
@@ -186,10 +186,10 @@
     <string name="set_default" msgid="4417505153468300351">"Установить по умолчанию"</string>
     <string name="clear_default" msgid="7193185801596678067">"Удалить настройки по умолчанию"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Текст скопирован"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Отменить изменения?"</string>
-    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Отменить"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Не сохранять изменения?"</string>
+    <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Не сохранять"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Отмена"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Отменить изменения?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Не сохранять изменения?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Поиск контактов"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Удалить контакты"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Мой профиль"</string>
@@ -242,7 +242,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Добавить фото контакта"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Фотография контакта"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Не удалось открыть редактор"</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Сохранение:"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Сохранение в аккаунте"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Данные контактов из аккаунта <xliff:g id="ACCOUNT">%s</xliff:g> нельзя изменять"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"СВЯЗАТЬ КОНТАКТЫ"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"ОТМЕНА"</string>
@@ -337,7 +337,7 @@
     <string name="name_suffix" msgid="3855278445375651441">"Звание/титул"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Транскрипция имени"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Транскрипция имени"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Отчество (транскрипция)"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Транскрипция отчества"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Транскрипция фамилии"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Адрес электронной почты"</string>
@@ -464,7 +464,7 @@
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Скрывать пустое поле"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Имя"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Фамилия"</string>
-    <string name="display_options_view_names_as" msgid="6514632499276563482">"Формат имени"</string>
+    <string name="display_options_view_names_as" msgid="6514632499276563482">"Формат имени и фамилии"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Сначала имя"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Сначала фамилия"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Аккаунты"</string>
@@ -542,6 +542,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Ошибка импорта"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Не удалось импортировать контакты с SIM-карты"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Импорт контактов с SIM-карты…"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Уведомления"</string>
 </resources>

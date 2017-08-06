@@ -163,9 +163,9 @@
     <string name="contact_directory_description" msgid="683398073603909119">"ថត <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"ការ​កំណត់"</string>
     <string name="menu_settings" msgid="377929915873428211">"ការ​កំណត់"</string>
-    <string name="menu_help" msgid="1680178646764069976">"ជំនួយ &amp; មតិស្ថាបនា"</string>
+    <string name="menu_help" msgid="1680178646764069976">"ជំនួយ និង មតិស្ថាបនា"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
-    <string name="non_phone_caption" msgid="1541655052330027380">"លេខទូរស័ព្ទ"</string>
+    <string name="non_phone_caption" msgid="1541655052330027380">"លេខទូរសព្ទ"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"បញ្ចូល​ទៅក្នុងទំនាក់ទំនង"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"បិទ​"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"រួមបញ្ចូលឆ្នាំ"</string>
@@ -178,10 +178,10 @@
     <string name="set_default" msgid="4417505153468300351">"កំណត់​លំនាំដើម"</string>
     <string name="clear_default" msgid="7193185801596678067">"សម្អាត​លំនាំដើម"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"បាន​ចម្លង​អត្ថបទ"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"បោះបង់ការផ្លាស់ប្ដូរដែរឬ​ទេ?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"បោះបង់ការផ្លាស់ប្ដូរមែន​ទេ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"បោះបង់"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"បោះ​បង់​"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"បោះបង់ការប្ដូរតាមបំណង​ដែរ ឬ​ទេ?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"បោះបង់ការប្ដូរតាមបំណងមែន​ទេ?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"ស្វែងរក​ទំនាក់ទំនង"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"ដក​ទំនាក់ទំនង​ចេញ"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ប្រវត្តិរូប​មូលដ្ឋាន​របស់​ខ្ញុំ"</string>
@@ -345,7 +345,7 @@
     <string name="label_notes" msgid="8337354953278341042">"ចំណាំ"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"ផ្ទាល់ខ្លួន"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"តំបន់បណ្ដាញ"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"គេហទំព័រ"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"ស្លាក"</string>
     <string name="email_home" msgid="8573740658148184279">"អ៊ីមែល​ទៅ​ផ្ទះ"</string>
     <string name="email_mobile" msgid="2042889209787989814">"អ៊ីមែល​ទៅ​ទូរស័ព្ទ​ចល័ត"</string>
@@ -458,7 +458,7 @@
     <string name="settings_accounts" msgid="350219740670774576">"គណនី"</string>
     <string name="default_editor_account" msgid="699591683362420991">"គណនីលំនាំដើមសម្រាប់ទំនាក់ទំនងថ្មី"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"ព័ត៌មាន​របស់​ខ្ញុំ"</string>
-    <string name="set_up_profile" msgid="7370213843590143771">"រៀបចំ​ប្រវត្តិរូប​របស់​អ្នក"</string>
+    <string name="set_up_profile" msgid="7370213843590143771">"រៀបចំ​កម្រងព័ត៌មានរបស់​អ្នក"</string>
     <string name="setting_about" msgid="7014388749752042863">"អំពីទំនាក់ទំនង"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"ចែករំលែកទំនាក់ទំនង​ដែល​ចូលចិត្ត"</string>
     <string name="share_contacts" msgid="8109287987498711664">"ចែករំលែកទំនាក់ទំនងទាំងអស់"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"ការ​នាំចូល​មិន​បាន​សម្រេច"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"មិន​អាច​នាំចូល​ទំនាក់ទំនង​ពី​ស៊ីម​កាត​បាន​ទេ"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"កំពុង​នាំចូល​ទំនាក់ទំនង​​ពី SIM"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"ការ​ជូនដំណឹង"</string>
 </resources>

@@ -334,7 +334,7 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Adresse"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisation"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Forhold"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Særlig dato"</string>
@@ -467,7 +467,7 @@
     <string name="dialog_import" msgid="2423592905927819672">"Importér kontaktpersoner fra"</string>
     <string name="share_error" msgid="948429331673358107">"Denne kontaktperson kan ikke deles."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Der er ingen kontaktpersoner, der kan deles."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktpersoner, der vises"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Viste kontaktpersoner"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Viste kontaktpersoner"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Tilpas visning"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gem"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Importen mislykkedes"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Kontaktpersonerne kunne ikke importeres fra SIM-kortet"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM-kortet importeres"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Underretninger"</string>
 </resources>

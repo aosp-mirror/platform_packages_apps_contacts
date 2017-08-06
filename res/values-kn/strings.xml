@@ -344,7 +344,7 @@
     <string name="ghostData_title" msgid="7496735200318496110">"ಶೀರ್ಷಿಕೆ"</string>
     <string name="label_notes" msgid="8337354953278341042">"ಟಿಪ್ಪಣಿಗಳು"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"ಕಸ್ಟಮ್"</string>
-    <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
+    <string name="label_sip_address" msgid="7252153678613978127">"ಎಸ್‌ಐಪಿ"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"ವೆಬ್‌ಸೈಟ್"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"ಲೇಬಲ್‌ಗಳು"</string>
     <string name="email_home" msgid="8573740658148184279">"ಮನೆಗೆ ಇಮೇಲ್‌ ಮಾಡಿ"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"ಆಮದು ವಿಫಲವಾಗಿದೆ"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"ಸಿಮ್‌ ಕಾರ್ಡ್‌ನಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಆಮದು ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"ಸಿಮ್‌ ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"ಅಧಿಸೂಚನೆಗಳು"</string>
 </resources>

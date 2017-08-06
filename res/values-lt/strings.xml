@@ -197,7 +197,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Skirkite šiek tiek laiko ir pridėkite paskyrą, kurią naudojant bus kuriama atsarginė kontaktų kopija sistemoje „Google“."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Nauji kontaktai bus išsaugoti paskyroje <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Pasirinkite numatytąją naujų kontaktų paskyrą:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Sukurti naują kontaktą"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Kurti naują kontaktą"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Redaguoti kontaktą"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Tik peržiūrėti"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Pasirinkite norimą redaguoti kontaktą"</string>
@@ -542,6 +542,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Nepavyko importuoti"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Nepavyko importuoti kontaktų iš SIM kortelės"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Importuojami SIM kortelės kontaktai"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Pranešimai"</string>
 </resources>

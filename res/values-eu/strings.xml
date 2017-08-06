@@ -234,7 +234,7 @@
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Gehitu kontaktuaren argazkia"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Kontaktuaren argazkia"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Ezin izan da ireki editorea."</string>
-    <string name="editor_account_selector_title" msgid="4426337993307015833">"Hemen gordeko da:"</string>
+    <string name="editor_account_selector_title" msgid="4426337993307015833">"Kontu honetan gordeko da:"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Ezin da editatu <xliff:g id="ACCOUNT">%s</xliff:g> kontuko kontaktuaren informazioa"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"LOTU KONTAKTUAK"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"UTZI"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Ezin izan da inportatu"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Ezin izan dira inportatu SIM txarteleko kontaktuak"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM txartela inportatzen"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Jakinarazpenak"</string>
 </resources>

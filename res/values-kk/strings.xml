@@ -447,7 +447,7 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>/<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> импортталуда: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf файлына экспорттау"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Сұрыптау шарты"</string>
-    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Атауының транскрипциясы"</string>
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Атының транскрипциясы"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Үнемі көрсету"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Бос болғанда жасыру"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Аты"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Импорттау мүмкін болмады"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Контактілерді SIM картасынан импорттау мүмкін болмады"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM картасы импортталуда"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Хабарландырулар"</string>
 </resources>

@@ -159,7 +159,7 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"रद्द करें"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"वापस जाएं"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"बंद करें"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपके द्वारा अभी तक दर्ज की गई जानकारी की प्रतिलिपि बनाई जाएगी."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपके द्वारा अभी तक दर्ज की गई जानकारी की कॉपी बनाई जाएगी."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग"</string>
@@ -174,10 +174,10 @@
     <string name="create_group_item_label" msgid="3263064599743742865">"नया बनाएं…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"लेबल \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" हटाएं? (संपर्क स्वयं नहीं हटाए जाएंगे.)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"अन्‍य संपर्क से लिंक करने से पहले संपर्क नाम लिखें."</string>
-    <string name="copy_text" msgid="3257145021583508761">"क्‍लिपबोर्ड पर प्रतिलिपि बनाएं"</string>
+    <string name="copy_text" msgid="3257145021583508761">"क्‍लिपबोर्ड में कॉपी करें"</string>
     <string name="set_default" msgid="4417505153468300351">"सामान्य सेट करें"</string>
     <string name="clear_default" msgid="7193185801596678067">"सामान्य साफ़ करें"</string>
-    <string name="toast_text_copied" msgid="5143776250008541719">"लेख की प्रतिलिपि बनाई गई"</string>
+    <string name="toast_text_copied" msgid="5143776250008541719">"लेख को कॉपी किया गया"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"क्या परिवर्तनों को छोड़ना चाहते हैं?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"अभी नहीं"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"रद्द करें"</string>
@@ -204,7 +204,7 @@
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"कम देखें"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"हाल ही का"</string>
     <string name="about_card_title" msgid="2920942314212825637">"संक्षिप्त विवरण"</string>
-    <string name="toast_making_personal_copy" msgid="288549957278065542">"एक व्‍यक्तिगत प्रतिलिपि बना रहा है…"</string>
+    <string name="toast_making_personal_copy" msgid="288549957278065542">"एक व्‍यक्तिगत कॉपी बना रहा है…"</string>
     <string name="tomorrow" msgid="6241969467795308581">"कल"</string>
     <string name="today" msgid="8041090779381781781">"आज"</string>
     <string name="today_at_time_fmt" msgid="605665249491030460">"आज <xliff:g id="TIME_INTERVAL">%s</xliff:g> बजे"</string>
@@ -239,7 +239,7 @@
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"संपर्क लिंक करें"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"अभी नहीं"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"यह संपर्क"</string>
-    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"संभावित प्रतिलिपि"</string>
+    <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"संभावित कॉपी"</string>
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"हो सकता है कि ये संपर्क एक ही व्‍यक्‍ति हो. आप उन्हें एकल संपर्क के रूप में एक साथ लिंक कर सकते हैं."</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"<xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g> हटाएं"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"<xliff:g id="DATA_KIND">%s</xliff:g> हटाएं"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"आयात करना विफल रहा"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM कार्ड से संपर्क आयात नहीं किए जा सके"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM को आयात किया जा रहा है"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"नोटिफ़िकेशन"</string>
 </resources>

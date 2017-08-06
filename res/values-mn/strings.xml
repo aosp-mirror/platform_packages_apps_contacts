@@ -324,11 +324,11 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Хоч"</string>
     <string name="name_given" msgid="4280790853455320619">"Өөрийн нэр"</string>
     <string name="name_family" msgid="7466985689626017037">"Овог"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Нэрний урьдитгал"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Нэрийн урьдитгал"</string>
     <string name="name_middle" msgid="8467433655992690326">"Дундах нэр"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Нэрний дагавар"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Нэрийн дагавар"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Авианы нэр"</string>
-    <string name="name_phonetic_given" msgid="8723179018384187631">"Өөрийн нэрний дуудлага"</string>
+    <string name="name_phonetic_given" msgid="8723179018384187631">"Өөрийн нэрийн дуудлага"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Дундах авианы нэр"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Овгийн дуудлага"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Утас"</string>
@@ -404,8 +404,8 @@
       <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> харилцагч • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
     <string name="import_from_vcf_file" msgid="8662528435646418203">".vcf файл"</string>
-    <string name="nothing_to_import_message" msgid="1651921906873335656">"Импорт хийх зүйл байхгүй"</string>
-    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"vCard-с харилцагчдыг импорт хийх үү?"</string>
+    <string name="nothing_to_import_message" msgid="1651921906873335656">"Импортлох зүйл байхгүй"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="967723361108008345">"vCard-с харилцагчдыг импортлох үү?"</string>
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g>-г импорт хийхийг цуцлах уу?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g>-г экспорт хийхийг цуцлах уу?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard импорт/экспорт хийхийг цуцлаж чадсангүй"</string>
@@ -434,9 +434,9 @@
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard өгөгдлийг уншиж чадсангүй"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> -г импорт хийж дуусав"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g>-г импорт хийхийг цуцлав"</string>
-    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g>-г удахгүй импорт хийх болно."</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Файлыг удахгүй импорт хийх болно."</string>
-    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard импорт хийх хүсэлтийг зөвшөөрсөнгүй. Дараа дахин оролдоно уу."</string>
+    <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g>-г удахгүй импортлох болно."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"Файлыг удахгүй импортлох болно."</string>
+    <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"vCard импортлох хүсэлтийг зөвшөөрсөнгүй. Дараа дахин оролдоно уу."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"Харилцагчдыг удахгүй экспортлох болно."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"vCard экспорт хийх хүсэлтийг зөвшөөрсөнгүй. Дараа дахин оролдоно уу."</string>
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"харилцагч"</string>
@@ -452,7 +452,7 @@
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Хоосон бол нуух"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Өөрийн нэр"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Овог"</string>
-    <string name="display_options_view_names_as" msgid="6514632499276563482">"Нэрний формат"</string>
+    <string name="display_options_view_names_as" msgid="6514632499276563482">"Нэрийн формат"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Нэрийг эхэнд нь"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Овгийг эхэнд нь"</string>
     <string name="settings_accounts" msgid="350219740670774576">"Бүртгэл"</string>
@@ -464,7 +464,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Бүх харилцагчдыг хуваалцах"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Харилцагчдыг хуваалцаж чадсангүй."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Харилцагчдыг экспортлох"</string>
-    <string name="dialog_import" msgid="2423592905927819672">"Харилцагчдыг импорт хийх"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Харилцагчдыг импортлох"</string>
     <string name="share_error" msgid="948429331673358107">"Энэ харилцагчийг хуваалцах боломжгүй."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Хуваалцах харилцагчид байхгүй байна."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Харуулах харилцагчид"</string>
@@ -513,7 +513,7 @@
       <item quantity="one">1 SIM-н харилцагчийг импорт хийсэн</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"SIM-н харилцагчдыг импортолж чадсангүй"</string>
-    <string name="sim_import_title" msgid="2511154832820812822">"SIM-с импорт хийх"</string>
+    <string name="sim_import_title" msgid="2511154832820812822">"SIM-с импортлох"</string>
     <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"Цуцлах"</string>
     <string name="auto_sync_off" msgid="2180147284456026587">"Автомат синк идэвхгүй байна. Идэвхжүүлэх бол товшино уу."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Хаах"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Импортолж чадсангүй"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM картнаас харилцагчдыг импортолж чадсангүй"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM-г импорт хийж байна"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Мэдэгдэл"</string>
 </resources>

@@ -131,7 +131,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Emrat e kontakteve të tua"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Kliko për t\'u kthyer tek ekrani i mëparshëm"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Shto një numër telefoni"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"Shto një mail"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Shto një email"</string>
     <string name="missing_app" msgid="1466111003546611387">"Nuk u gjet asnjë aplikacion për të menaxhuar këtë veprim"</string>
     <string name="menu_share" msgid="943789700636542260">"Shpërnda"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Shto te kontaktet"</string>
@@ -181,7 +181,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Të injorohen ndryshimet?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Hiq"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Anulo"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Të flaken personalizimet?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Të injorohen personalizimet?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Kërko kontaktet"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Hiq kontaktet"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Profili im lokal"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Importimi dështoi"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Kontaktet nga karta SIM nuk mund të importoheshin"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Karta SIM po importohet"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Njoftime"</string>
 </resources>

@@ -332,9 +332,9 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Második utónév fonetikusan"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Családnév fonetikusan"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail cím"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail-cím"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Cím"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldés"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldő"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Szervezet"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Kapcsolat"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Különleges dátum"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Sikertelen importálás"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Nem sikerült importálni a névjegyeket a SIM-kártyáról"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM-kártya importálása folyamatban"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Értesítések"</string>
 </resources>

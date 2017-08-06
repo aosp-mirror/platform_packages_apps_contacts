@@ -143,8 +143,8 @@
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Choisir un compte"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Créer une étiquette"</string>
     <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Renommer l\'étiquette"</string>
-    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Nom d\'étiquette"</string>
-    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Nom d\'étiquette"</string>
+    <string name="group_name_dialog_hint" msgid="7624523157537700160">"Nom de l\'étiquette"</string>
+    <string name="label_name_dialog_hint" msgid="1276051790427638142">"Nom de l\'étiquette"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Clavardage audio"</string>
     <string name="video_chat" msgid="1872255818640336072">"Clavardage vidéo"</string>
     <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> contact"</string>
@@ -189,7 +189,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Prenez une minute pour ajouter un compte qui sauvegardera vos contacts sur Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Les nouveaux contacts seront enregistrés dans le compte <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Choisissez un compte par défaut pour les nouveaux contacts :"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Contact"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Créer un contact"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Modifier"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Lecture seule"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Choisissez le contact à modifier"</string>
@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Étiquette <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Étiquettes"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Comptes"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Consultez votre historique en commun"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Rassembler vos historiques"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Événements et messages"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Événements"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Messages"</string>
@@ -332,7 +332,7 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Deuxième prénom phonétique"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Nom de famille phonétique"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Téléphone"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"Adresse de courriel :"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"Adresse de courriel"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Adresse"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Messagerie instantanée"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisation"</string>
@@ -350,9 +350,9 @@
     <string name="email_home" msgid="8573740658148184279">"Envoyer un courriel au domicile"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Envoyer un courriel sur le mobile"</string>
     <string name="email_work" msgid="2807430017302722689">"Envoyer un courriel au bureau"</string>
-    <string name="email_other" msgid="3454004077967657109">"Adresse de courriel :"</string>
+    <string name="email_other" msgid="3454004077967657109">"Envoyer un courriel"</string>
     <string name="email_custom" msgid="5536404237099078802">"Envoyer un courriel à <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"Adresse de courriel :"</string>
+    <string name="email" msgid="5668400997660065897">"Envoyer un courriel"</string>
     <string name="postal_street" msgid="8133143961580058972">"Rue"</string>
     <string name="postal_city" msgid="6597491300084895548">"Ville"</string>
     <string name="postal_region" msgid="6045263193478437672">"État/province"</string>
@@ -442,7 +442,7 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"contact"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"Mise en cache des fichiers vCard dans l\'espace de stockage temporaire local. L\'importation va bientôt démarrer."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"Impossible d\'importer le fichier vCard."</string>
-    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contact reçu via NFC"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Contact reçu par NFC"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Mise en cache…"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importation <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> sur <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> (<xliff:g id="NAME">%3$s</xliff:g>)"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"Exporter en format .vcf"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Échec de l\'importation"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Impossible d\'importer des contacts à partir de la carte SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Importation des contacts SIM en cours…"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Avis"</string>
 </resources>

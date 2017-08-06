@@ -469,7 +469,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nessun contatto da condividere."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contatti da visualizzare"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Contatti da visualizzare"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Personalizza visualizzazione"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Personalizza visualiz."</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Salva"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Cerca contatti"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Preferiti"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Importazione non riuscita"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Impossibile importare i contatti dalla scheda SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Importazione della SIM"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Notifiche"</string>
 </resources>

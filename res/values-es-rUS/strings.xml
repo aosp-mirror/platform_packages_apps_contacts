@@ -100,7 +100,7 @@
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nombre personalizado de etiqueta"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Eliminar foto"</string>
     <string name="noContacts" msgid="2228592924476426108">"Tu lista de contactos está vacía"</string>
-    <string name="emptyGroup" msgid="5102411903247859575">"Ningún contacto tiene esta etiqueta"</string>
+    <string name="emptyGroup" msgid="5102411903247859575">"No hay contactos con esta etiqueta."</string>
     <string name="emptyAccount" msgid="6873962901497975964">"No hay contactos en esta cuenta"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Tu lista de contactos está vacía"</string>
     <string name="contactSavedNamedToast" msgid="895136068894549611">"Se guardó a <xliff:g id="DISPLAY_NAME">%s</xliff:g>"</string>
@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Etiqueta <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiquetas"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Cuentas"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Consulta el historial entre ustedes"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Interacciones con este contacto"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Eventos y mensajes"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Eventos"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Mensajes"</string>
@@ -326,7 +326,7 @@
     <string name="name_family" msgid="7466985689626017037">"Apellido"</string>
     <string name="name_prefix" msgid="59756378548779822">"Prefijo del nombre"</string>
     <string name="name_middle" msgid="8467433655992690326">"Segundo nombre"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Sufijo del nombre"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Título académico o profesional"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nombre fonético"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Nombre fonético"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Segundo nombre fonético"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Error al importar"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"No se pudieron importar los contactos de la tarjeta SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Importando la tarjeta SIM"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Notificaciones."</string>
 </resources>

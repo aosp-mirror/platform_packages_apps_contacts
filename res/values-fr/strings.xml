@@ -18,7 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"Contacts"</string>
     <string name="contactsList" msgid="8661624236494819731">"Contacts"</string>
-    <string name="shortcut_add_contact" msgid="7476283631356909204">"Ajouter un contact"</string>
+    <string name="shortcut_add_contact" msgid="7476283631356909204">"Ajouter le contact"</string>
     <string name="shortcutContact" msgid="749243779392912958">"Contact"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"Raccourci appel"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Raccourci message"</string>
@@ -464,7 +464,7 @@
     <string name="share_contacts" msgid="8109287987498711664">"Partager tous les contacts"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Échec du partage des contacts."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Exporter les contacts"</string>
-    <string name="dialog_import" msgid="2423592905927819672">"Importer des contacts de"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Importer des contacts depuis"</string>
     <string name="share_error" msgid="948429331673358107">"Impossible de partager ce contact."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Aucun contact à partager."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Contacts à afficher"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Échec lors de l\'importation"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Impossible d\'importer les contacts depuis la carte SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Importation depuis la carte SIM..."</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Notifications"</string>
 </resources>

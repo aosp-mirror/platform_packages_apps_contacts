@@ -218,7 +218,7 @@
     <string name="header_note_entry" msgid="4320190426480612344">"Бележка"</string>
     <string name="header_website_entry" msgid="1411467850000824745">"Уебсайт"</string>
     <string name="header_event_entry" msgid="6738250422744401460">"Събитие"</string>
-    <string name="header_relation_entry" msgid="1520292958088146460">"Отношение"</string>
+    <string name="header_relation_entry" msgid="1520292958088146460">"Връзка"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Име"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"Имейл"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Телефон"</string>
@@ -329,19 +329,19 @@
     <string name="name_suffix" msgid="3855278445375651441">"Обръщение"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Име, както се произнася"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Собствено име (фонетично)"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Презиме, както се произнася"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Презиме (фонетично)"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Фамилно име (фонетично)"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Телефон"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Имейл"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Адрес"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"Незабавни съобщения"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Организация"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"Отношение"</string>
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"Връзка"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Специална дата"</string>
     <string name="sms" msgid="1756857139634224222">"Текстово съобщение"</string>
     <string name="postal_address" msgid="8765560217149624536">"Адрес"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Фирма"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"Заглавие"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"Длъжност"</string>
     <string name="label_notes" msgid="8337354953278341042">"Бележки"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"Персонализирано"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
@@ -469,7 +469,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Няма контакти за споделяне."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти за показване"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти за показване"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Персонализиране на изгледа"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Персонализиране"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Запазване"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Търсете контакти"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Любими"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Импортирането не бе успешно"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Контактите не можаха да се импортират от SIM картата"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Импортира се от SIM картата"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Известия"</string>
 </resources>

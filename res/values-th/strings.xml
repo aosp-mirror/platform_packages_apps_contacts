@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"รายชื่อติดต่อ"</string>
-    <string name="contactsList" msgid="8661624236494819731">"รายชื่อในสมุดโทรศัพท์"</string>
+    <string name="contactsList" msgid="8661624236494819731">"รายชื่อติดต่อ"</string>
     <string name="shortcut_add_contact" msgid="7476283631356909204">"เพิ่มรายชื่อติดต่อ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"สมุดโทรศัพท์"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"สายตรง"</string>
@@ -133,7 +133,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"เพิ่มหมายเลขโทรศัพท์"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"เพิ่มอีเมล"</string>
     <string name="missing_app" msgid="1466111003546611387">"ไม่พบแอปสำหรับการทำงานนี้"</string>
-    <string name="menu_share" msgid="943789700636542260">"ใช้ร่วมกัน"</string>
+    <string name="menu_share" msgid="943789700636542260">"แชร์"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"เพิ่มในสมุดติดต่อ"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"เพิ่ม"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"การนำเข้าล้มเหลว"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"นำเข้ารายชื่อติดต่อจากซิมการ์ดไม่ได้"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"กำลังนำเข้าจากซิมการ์ด"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"การแจ้งเตือน"</string>
 </resources>

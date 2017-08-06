@@ -181,7 +181,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"捨棄變更？"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"捨棄"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"取消"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"要捨棄自訂內容嗎？"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"要捨棄自訂設定嗎？"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"搜尋聯絡人"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"移除聯絡人"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"我的本機個人資料"</string>
@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"<xliff:g id="LABEL_NAME">%s</xliff:g>標籤"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"標籤"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"帳戶"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"一併顯示記錄"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"顯示您們的記錄"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"活動和訊息"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"活動"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"訊息"</string>
@@ -329,7 +329,7 @@
     <string name="name_suffix" msgid="3855278445375651441">"姓名後稱謂"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"名字拼音"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"中間名 (拼音)"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"中間名拼音"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"姓氏拼音"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"電話"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"電子郵件"</string>
@@ -341,7 +341,7 @@
     <string name="sms" msgid="1756857139634224222">"短訊"</string>
     <string name="postal_address" msgid="8765560217149624536">"地址"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"公司"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"標題"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"職位"</string>
     <string name="label_notes" msgid="8337354953278341042">"備註"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"自訂"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
@@ -469,7 +469,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"沒有聯絡人可供分享。"</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"要顯示的聯絡人"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"要顯示的聯絡人"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"自訂檢視"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"自訂檢視畫面"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"儲存"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"搜尋聯絡人"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"我的最愛"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"匯入失敗"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"無法從 SIM 卡匯入聯絡人"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"正在匯入 SIM 卡"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"通知"</string>
 </resources>

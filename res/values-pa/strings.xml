@@ -131,7 +131,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਦੇ ਨਾਮ"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"ਪਿਛਲੀ ਸਕ੍ਰੀਨ ਤੇ ਵਾਪਸ ਜਾਣ ਲਈ ਕਲਿਕ ਕਰੋ"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"ਫ਼ੋਨ ਨੰਬਰ ਸ਼ਾਮਲ ਕਰੋ"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"ਈਮੇਲ ਜੋੜੋ"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"ਈਮੇਲ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="missing_app" msgid="1466111003546611387">"ਇਸ ਕਿਰਿਆ ਨੂੰ ਸੰਭਾਲਣ ਲਈ ਕੋਈ ਐਪ ਨਹੀਂ ਮਿਲਿਆ।"</string>
     <string name="menu_share" msgid="943789700636542260">"ਸਾਂਝਾ ਕਰੋ"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ"</string>
@@ -155,7 +155,7 @@
     <string name="pick_new_photo" msgid="9122450996263688237">"ਨਵੀਂ ਫ਼ੋਟੋ ਚੁਣੋ"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"ਖੋਜ ਰਿਹਾ ਹੈ..."</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"ਮਿਤੀ"</string>
-    <string name="group_edit_field_hint_text" msgid="8038224059926963133">"ਲੇਬਲ ਕਰੋ"</string>
+    <string name="group_edit_field_hint_text" msgid="8038224059926963133">"ਲੇਬਲ ਲਗਾਓ"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"ਰੱਦ ਕਰੋ"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"ਪਿੱਛੇ"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"ਬੰਦ ਕਰੋ"</string>
@@ -175,8 +175,8 @@
     <string name="delete_group_dialog_message" msgid="335713829185261371">"ਕੀ ਲੇਬਲ \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ਮਿਟਾਉਣਾ ਹੈ? (\'ਸੰਪਰਕ ਆਪਣੇ ਆਪ ਨਹੀਂ ਮਿਟਾਏ ਜਾਣਗੇ।)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"ਹੋਰ ਨਾਲ ਲਿੰਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਰਕ ਨਾਮ ਟਾਈਪ ਕਰੋ।"</string>
     <string name="copy_text" msgid="3257145021583508761">"ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕਰੋ"</string>
-    <string name="set_default" msgid="4417505153468300351">"ਡਿਫੌਲਟ ਸੈੱਟ ਕਰੋ"</string>
-    <string name="clear_default" msgid="7193185801596678067">"ਡਿਫੌਲਟ ਹਟਾਓ"</string>
+    <string name="set_default" msgid="4417505153468300351">"ਪੂਰਵ-ਨਿਰਧਾਰਤ ਸੈੱਟ ਕਰੋ"</string>
+    <string name="clear_default" msgid="7193185801596678067">"ਪੂਰਵ-ਨਿਰਧਾਰਤ ਹਟਾਓ"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"ਟੈਕਸਟ ਕਾਪੀ ਕੀਤਾ"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"ਕੀ ਤਬਦੀਲੀਆਂ ਖਾਰਜ ਕਰਨੀਆਂ ਹਨ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"ਛੱਡੋ"</string>
@@ -226,7 +226,7 @@
     <string name="content_description_recent_sms" msgid="1666389577263317445">"ਹਾਲੀਆ sms. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>। <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>। <xliff:g id="DATE">%3$s</xliff:g>। ਜਵਾਬ ਦੇਣ ਲਈ ਕਲਿਕ ਕਰੋ"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"ਇਨਕਮਿੰਗ"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"ਆਊਟਗੋਇੰਗ"</string>
-    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ਮਿਸਡ"</string>
+    <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"ਖੁੰਝ ਗਈਆਂ"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"ਹਾਲੀਆ ਕਾਲ। <xliff:g id="CALL_TYPE">%1$s</xliff:g>। <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>। <xliff:g id="DATE">%3$s</xliff:g>। ਕਾਲ ਬੈਕ ਕਰਨ ਲਈ ਕਲਿਕ ਕਰੋ।"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"ਤੁਸੀਂ: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"ਹੋਰ ਖੇਤਰ"</string>
@@ -336,7 +336,7 @@
     <string name="postalLabelsGroup" msgid="3487738141112589324">"ਪਤਾ"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"ਸੰਗਠਨ"</string>
-    <string name="relationLabelsGroup" msgid="1854373894284572781">"ਸਬੰਧ"</string>
+    <string name="relationLabelsGroup" msgid="1854373894284572781">"ਰਿਸ਼ਤਾ"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"ਵਿਸ਼ੇਸ਼ ਮਿਤੀ"</string>
     <string name="sms" msgid="1756857139634224222">"ਲਿਖਤ ਸੁਨੇਹਾ"</string>
     <string name="postal_address" msgid="8765560217149624536">"ਪਤਾ"</string>
@@ -528,6 +528,5 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"ਆਯਾਤ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM ਕਾਰਡ ਤੋਂ ਸੰਪਰਕ ਆਯਾਤ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕੇ"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"ਸਿਮ ਆਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
-    <!-- no translation found for contacts_default_notification_channel (4754058700611188581) -->
-    <skip />
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"ਸੂਚਨਾਵਾਂ"</string>
 </resources>
