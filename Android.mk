@@ -17,6 +17,7 @@ asset_dirs := assets
 
 LOCAL_SRC_FILES := $(call all-java-files-under, $(src_dirs))
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs)) \
+    $(support_library_root_dir)/core-ui/res \
     $(support_library_root_dir)/design/res \
     $(support_library_root_dir)/transition/res \
     $(support_library_root_dir)/v7/appcompat/res \
@@ -28,6 +29,7 @@ LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
     --extra-packages com.android.contacts.common \
     --extra-packages com.android.phone.common \
+    --extra-packages android.support.coreui \
     --extra-packages android.support.design \
     --extra-packages android.support.transition \
     --extra-packages android.support.v7.appcompat \
