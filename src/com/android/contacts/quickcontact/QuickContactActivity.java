@@ -1607,6 +1607,7 @@ public class QuickContactActivity extends ContactsActivity {
     private static Entry dataItemToEntry(DataItem dataItem, DataItem secondDataItem,
             Context context, Contact contactData,
             final MutableString aboutCardName) {
+        if (contactData == null) return null;
         Drawable icon = null;
         String header = null;
         String subHeader = null;
