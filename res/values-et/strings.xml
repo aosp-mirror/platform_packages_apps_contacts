@@ -135,7 +135,7 @@
     <string name="missing_app" msgid="1466111003546611387">"Selle toimingu käsitlemiseks ei leitud ühtegi rakendust."</string>
     <string name="menu_share" msgid="943789700636542260">"Jaga"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Lisa kontaktide hulka"</string>
-    <string name="menu_add_contacts" msgid="4465646512002163011">"Lisamine"</string>
+    <string name="menu_add_contacts" msgid="4465646512002163011">"Lisa"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
       <item quantity="other">Kontaktide jagamine rakendusega</item>
       <item quantity="one">Kontakti jagamine rakendusega</item>
@@ -194,7 +194,7 @@
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Vaid vaatamiseks"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Valige kontakt, mida soovite muuta"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Lingitud kontaktid"</string>
-    <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Lisamine"</string>
+    <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Lisa"</string>
     <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Link. tühistam."</string>
     <string name="add_account" msgid="8201790677994503186">"Konto lisamine"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Lisa uus konto"</string>
@@ -445,8 +445,8 @@
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"Kontakt võeti vastu  NFC kaudu"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"Vahemällu salvestamine"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importimine: <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" msgid="4407527157056120858">"Eksportimine VCF-faili"</string>
-    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sortimisalus:"</string>
+    <string name="export_to_vcf_file" msgid="4407527157056120858">"Ekspordi VCF-faili"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sortimisalus"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Foneetiline nimi"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Kuva alati"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Peida, kui see on tühi"</string>

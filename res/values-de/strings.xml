@@ -324,9 +324,9 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Spitzname"</string>
     <string name="name_given" msgid="4280790853455320619">"Vorname"</string>
     <string name="name_family" msgid="7466985689626017037">"Nachname"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Namenpräfix"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Namenspräfix"</string>
     <string name="name_middle" msgid="8467433655992690326">"Zweiter Vorname"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Namensuffix"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Namenssuffix"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Phonetischer Name"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Vorname (phonetisch)"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Zweiter Vorname (phonetisch)"</string>
@@ -359,7 +359,7 @@
     <string name="postal_postcode" msgid="572136414136673751">"Postleitzahl"</string>
     <string name="postal_country" msgid="7638264508416368690">"Land"</string>
     <string name="map_home" msgid="1243547733423343982">"Privatadresse anzeigen"</string>
-    <string name="map_work" msgid="1360474076921878088">"Geschäftsadresse anzeigen"</string>
+    <string name="map_work" msgid="1360474076921878088">"Arbeitsadresse anzeigen"</string>
     <string name="map_other" msgid="3817820803587012641">"Adresse anzeigen"</string>
     <string name="map_custom" msgid="8761800628069473526">"Adresse <xliff:g id="CUSTOM_LABEL">%s</xliff:g> anzeigen"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Über AIM chatten"</string>
