@@ -476,11 +476,11 @@
     <string name="share_contacts" msgid="8109287987498711664">"Sdílet všechny kontakty"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Kontakty se nepodařilo sdílet."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Exportovat kontakty"</string>
-    <string name="dialog_import" msgid="2423592905927819672">"Importovat kontakty z umístění"</string>
+    <string name="dialog_import" msgid="2423592905927819672">"Importovat kontakty z:"</string>
     <string name="share_error" msgid="948429331673358107">"Tento kontakt nelze sdílet."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nejsou dostupné žádné kontakty ke sdílení."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakty k zobrazení"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakty k zobrazení"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Zobrazit kontakty"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Zobrazit kontakty"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Přizpůsobit zobrazení"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Uložit"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Vyhledejte kontakty"</string>

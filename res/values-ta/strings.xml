@@ -312,7 +312,7 @@
     <string name="directory_search_label" msgid="1887759056597975053">"கோப்பகம்"</string>
     <string name="directory_search_label_work" msgid="8618292129829443176">"பணிக் கோப்பகம்"</string>
     <string name="local_search_label" msgid="2551177578246113614">"எல்லா தொடர்புகளும்"</string>
-    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> க்கான உடனடித் தொடர்பு"</string>
+    <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> க்கான விரைவுத் தொடர்பு"</string>
     <string name="missing_name" msgid="8745511583852904385">"(பெயர் இல்லை)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"அடிக்கடி தொடர்புகொண்டவர்கள்"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"மொபைல் எண்களுடனான எல்லா தொடர்புகளும்"</string>
