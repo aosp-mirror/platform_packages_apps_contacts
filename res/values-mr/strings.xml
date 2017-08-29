@@ -324,7 +324,7 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"टोपणनाव"</string>
     <string name="name_given" msgid="4280790853455320619">"नाव"</string>
     <string name="name_family" msgid="7466985689626017037">"आडनाव"</string>
-    <string name="name_prefix" msgid="59756378548779822">"नाव प्रत्यय"</string>
+    <string name="name_prefix" msgid="59756378548779822">"नाव उपसर्ग"</string>
     <string name="name_middle" msgid="8467433655992690326">"मधले नाव"</string>
     <string name="name_suffix" msgid="3855278445375651441">"नाव"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"ध्वन्यात्मक नाव"</string>

@@ -101,7 +101,7 @@
     <string name="removePhoto" msgid="4898105274130284565">"Alisin ang larawan"</string>
     <string name="noContacts" msgid="2228592924476426108">"Walang laman ang iyong listahan ng mga contact"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Walang mga contact na mayroong ganitong label"</string>
-    <string name="emptyAccount" msgid="6873962901497975964">"Walang mga contact sa account na ito"</string>
+    <string name="emptyAccount" msgid="6873962901497975964">"Walang contact sa account na ito"</string>
     <string name="emptyMainList" msgid="2772242747899664460">"Walang laman ang iyong listahan ng mga contact"</string>
     <string name="contactSavedNamedToast" msgid="895136068894549611">"Na-save si <xliff:g id="DISPLAY_NAME">%s</xliff:g>"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Na-save ang contact"</string>
@@ -200,7 +200,7 @@
     <string name="add_new_account" msgid="5748627740680940264">"Magdagdag ng bagong account"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"I-export ang mga file ng database"</string>
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Gumawa ng bagong contact"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Tumingin nang higit pa"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Tumingin pa"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Tumingin nang mas kaunti"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Kamakailan"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Tungkol dito"</string>
@@ -229,7 +229,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"hindi nasagot"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"kamakailang tawag. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. mag-click upang tumawag"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Ikaw: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="editor_more_fields" msgid="3630987771304393421">"Higit pang mga field"</string>
+    <string name="editor_more_fields" msgid="3630987771304393421">"Higit pang field"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Baguhin ang larawan ng contact"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Magdagdag ng larawan ng contact"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Larawan ng contact"</string>

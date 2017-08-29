@@ -99,10 +99,10 @@
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto de contacte"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nom de camp personalitzat"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Suprimeix la foto"</string>
-    <string name="noContacts" msgid="2228592924476426108">"La llista de contactes està buida"</string>
+    <string name="noContacts" msgid="2228592924476426108">"La llista de contactes és buida"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"No hi ha cap contacte amb aquesta etiqueta"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"No hi ha cap contacte en aquest compte"</string>
-    <string name="emptyMainList" msgid="2772242747899664460">"La llista de contactes està buida"</string>
+    <string name="emptyMainList" msgid="2772242747899664460">"La llista de contactes és buida"</string>
     <string name="contactSavedNamedToast" msgid="895136068894549611">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> s\'ha desat"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"S\'ha desat el contacte"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Els contactes s\'han desenllaçat"</string>
@@ -449,7 +449,7 @@
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Ordena per"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Nom fonètic"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Mostra sempre"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Amaga si està buit"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Amaga si és buit"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Nom"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Cognoms"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Format del nom"</string>
