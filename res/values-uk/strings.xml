@@ -198,7 +198,7 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Нові контакти буде збережено в обліковому записі <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Виберіть обліковий запис за умовчанням для нових контактів:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Створити новий контакт"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Змінити контакт"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Редагувати контакт"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Лише перегляд"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Вибрати контакт для редагування"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Об’єднані контакти"</string>

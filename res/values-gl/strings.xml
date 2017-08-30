@@ -324,9 +324,9 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alcume"</string>
     <string name="name_given" msgid="4280790853455320619">"Nome"</string>
     <string name="name_family" msgid="7466985689626017037">"Apelidos"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Tratamento do nome"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Forma de tratamento"</string>
     <string name="name_middle" msgid="8467433655992690326">"Segundo nome"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Información profesional do nome"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Título académico ou profesional"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nome fonético"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Nome fonético"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Segundo nome fonético"</string>

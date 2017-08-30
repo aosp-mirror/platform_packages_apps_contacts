@@ -329,7 +329,7 @@
     <string name="name_suffix" msgid="3855278445375651441">"სახელის სუფიქსი"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"სახელის ტრანსკრიფცია"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"სახელი (ტრანსკრიფცია)"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"მეორე სახელის ტრანსკრიფცია"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"მეორე სახელი (ტრანსკრიფცია)"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"გვარი (ტრანსკრიფცია)"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"ტელეფონი"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"ელფოსტა"</string>
