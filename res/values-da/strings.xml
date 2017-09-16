@@ -245,8 +245,8 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Slet <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Forslag"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nyt"</string>
-    <string name="navigation_drawer_open" msgid="1126498472143250642">"Åbn navigationsskuffen"</string>
-    <string name="navigation_drawer_close" msgid="4137416137011817930">"Luk navigationsskuffen"</string>
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"Åbn sidemenuen"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"Luk sidemenuen"</string>
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Etiketten <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiketter"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Konti"</string>
