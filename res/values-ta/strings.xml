@@ -24,7 +24,7 @@
     <string name="shortcutMessageContact" msgid="2460337253595976198">"நேரடி செய்தி"</string>
     <string name="shortcutActivityTitle" msgid="1504383567778497348">"தொடர்பைத் தேர்வுசெய்க"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"தொடர்பில் சேர்"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"தொடர்பைத் தேர்வுசெய்யவும்"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"தொடர்பைத் தேர்வுசெய்க"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"தேர்ந்தெடுக்கவும்"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"புதிய தொடர்பை உருவாக்கவும்"</string>
     <string name="searchHint" msgid="8482945356247760701">"தொடர்புகளைத் தேடு"</string>

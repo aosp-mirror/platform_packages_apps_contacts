@@ -125,7 +125,7 @@
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Ta oznaka već postoji"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Neki kontakti nemaju adrese e-pošte."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Neki kontakti nemaju brojeve telefona."</string>
-    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Pošalji poruku e-pošte"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Pošalji e-poruku"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Pošalji poruku"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Odaberite kontakte"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Pošalji"</string>
@@ -351,11 +351,11 @@
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"Web lokacija"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Oznake"</string>
-    <string name="email_home" msgid="8573740658148184279">"Pošalji poruku e-pošte na kućnu adresu e-pošte"</string>
+    <string name="email_home" msgid="8573740658148184279">"Pošalji e-poruku na kućnu adresu e-pošte"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Mobilna e-pošta"</string>
-    <string name="email_work" msgid="2807430017302722689">"Pošalji poruku e-pošte na poslovnu adresu e-pošte"</string>
+    <string name="email_work" msgid="2807430017302722689">"Pošalji e-poruku na poslovnu adresu e-pošte"</string>
     <string name="email_other" msgid="3454004077967657109">"E-pošta"</string>
-    <string name="email_custom" msgid="5536404237099078802">"Pošalji poruku e-pošte na <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="5536404237099078802">"Pošalji e-poruku na <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"E-pošta"</string>
     <string name="postal_street" msgid="8133143961580058972">"Ulica"</string>
     <string name="postal_city" msgid="6597491300084895548">"Grad"</string>
