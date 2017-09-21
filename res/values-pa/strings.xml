@@ -93,8 +93,8 @@
     <string name="deleteConfirmation" msgid="3512271779086656043">"ਕੀ ਇਸ ਸੰਪਰਕ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"ਹਟਾਓ"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"ਸੰਪਰਕ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ਸੰਪਰਕ ਮੁੱਖ ਸਕ੍ਰੀਨ \'ਤੇ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ।"</string>
-    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ਮੁੱਖ ਸਕ੍ਰੀਨ \'ਤੇ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ।"</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"ਸੰਪਰਕ ਹੋਮ ਸਕ੍ਰੀਨ \'ਤੇ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ।"</string>
+    <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ਹੋਮ ਸਕ੍ਰੀਨ \'ਤੇ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ।"</string>
     <string name="photoPickerNotFoundText" msgid="2052542573853433204">"ਡੀਵਾਈਸ \'ਤੇ ਕੋਈ ਤਸਵੀਰਾਂ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।"</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"ਸੰਪਰਕ ਫ਼ੋਟੋ"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"ਵਿਸ਼ੇਸ਼=ਵਿਉਂਤਬੱਧ ਲੇਬਲ ਨਾਮ"</string>
@@ -372,9 +372,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber ਵਰਤਦੇ ਹੋਏ ਚੈਟ ਕਰੋ"</string>
     <string name="chat" msgid="9025361898797412245">"ਚੈਟ"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"ਮਿਟਾਓ"</string>
-    <string name="expand_name_fields_description" msgid="6948274252874552543">"ਹੋਰ ਨਾਮ ਖੇਤਰ ਵਿਖਾਓ"</string>
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"ਹੋਰ ਨਾਮ ਖੇਤਰ  ਦਿਖਾਓ"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"ਨਾਮ ਖੇਤਰਾਂ ਨੂੰ ਸੁੰਗੇੜੋ"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"ਹੋਰ ਧੁਨੀਆਤਮਿਕ ਨਾਮ ਖੇਤਰ ਵਿਖਾਓ"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"ਹੋਰ ਧੁਨੀਆਤਮਿਕ ਨਾਮ ਖੇਤਰ  ਦਿਖਾਓ"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ਫ਼ੋਨੈਟਿਕ ਨਾਮ ਖੇਤਰਾਂ ਨੂੰ ਸੁੰਗੇੜੋ"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"ਵਿਸਤਾਰ ਕਰੋ"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"ਸੁੰਗੇੜੋ"</string>
@@ -423,15 +423,15 @@
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"ਸੰਪਰਕਾਂ ਨੂੰ ਨਿਰਯਾਤ ਕਰਨਾ ਮੁਕੰਮਲ ਹੋਇਆ, ਸੰਪਰਕਾਂ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਸੂਚਨਾ \'ਤੇ ਕਲਿੱਕ ਕਰੋ।"</string>
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"ਸੰਪਰਕਾਂ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।"</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g> ਨੂੰ ਨਿਰਯਾਤ ਕਰਨਾ ਰੱਦ ਕੀਤਾ ਗਿਆ।"</string>
-    <string name="exporting_contact_list_title" msgid="9072240631534457415">"ਸੰਪਰਕ ਡੈਟਾ ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
+    <string name="exporting_contact_list_title" msgid="9072240631534457415">"ਸੰਪਰਕ  ਡਾਟਾ  ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
     <string name="exporting_contact_list_message" msgid="3367949209642931952">"ਸੰਪਰਕ ਡੈਟੇ ਨੂੰ ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ਡੈਟਾਬੇਸ ਜਾਣਕਾਰੀ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।"</string>
     <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard ਕੰਪੋਜ਼ਰ ਸਹੀ ਢੰਗ ਨਾਲ ਚਾਲੂ ਨਹੀਂ ਹੋਇਆ।"</string>
     <string name="exporting_contact_failed_title" msgid="4892358112409576342">"ਨਿਰਯਾਤ ਨਹੀਂ ਹੋ ਸਕਿਆ"</string>
-    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"ਸੰਪਰਕ ਡੈਟਾ ਨਿਰਯਾਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ।\nਕਾਰਨ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
+    <string name="exporting_contact_failed_message" msgid="4938527850142003141">"ਸੰਪਰਕ  ਡਾਟਾ  ਨਿਰਯਾਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਸੀ।\nਕਾਰਨ: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> ਆਯਾਤ ਹੋ ਰਿਹਾ ਹੈ"</string>
-    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard ਡੈਟਾ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"</string>
+    <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard  ਡਾਟਾ  ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"</string>
     <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> ਨੂੰ ਆਯਾਤ ਕਰਨਾ ਮੁਕੰਮਲ ਹੋਇਆ"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> ਨੂੰ ਆਯਾਤ ਕਰਨਾ ਰੱਦ ਕੀਤਾ ਗਿਆ।"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> ਨੂੰ ਥੋੜ੍ਹੀ ਦੇਰ ਵਿੱਚ ਆਯਾਤ ਕੀਤਾ ਜਾਵੇਗਾ।"</string>
@@ -448,7 +448,7 @@
     <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf ਫ਼ਾਈਲ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"ਇਸ ਮੁਤਾਬਕ ਛਾਂਟੋ"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"ਧੁਨੀਆਤਮਿਕ ਨਾਮ"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"ਹਮੇਸ਼ਾ ਵਿਖਾਓ"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"ਹਮੇਸ਼ਾ  ਦਿਖਾਓ"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"ਲੁਕਾਓ ਜੇਕਰ ਖਾਲੀ ਹੈ"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"ਨਾਮ ਦਾ ਪਹਿਲਾ ਭਾਗ"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"ਨਾਮ ਦਾ ਆਖਰੀ ਭਾਗ"</string>
@@ -506,7 +506,7 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"ਸੰਪਰਕ ਹਟਾਇਆ ਗਿਆ ਸੀ"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"ਆਯਾਤ ਕਰੋ"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"ਸੰਪਰਕ ਚੁਣੋ"</string>
-    <string name="sim_import_empty_message" msgid="7743815244380189651">"ਤੁਹਾਡੇ SIM ਕਾਰਡ \'ਤੇ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ"</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"ਤੁਹਾਡੇ ਸਿਮ ਕਾਰਡ \'ਤੇ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"ਸੰਪਰਕ ਪਹਿਲਾਂ ਹੀ ਤੁਹਾਡੀ ਸੂਚੀ ਵਿੱਚ ਮੌਜੂਦ ਹੈ"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM ਸੰਪਰਕ ਆਯਾਤ ਕੀਤੇ ਗਏ</item>
