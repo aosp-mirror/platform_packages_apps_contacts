@@ -424,7 +424,7 @@
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"ਸੰਪਰਕਾਂ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।"</string>
     <string name="exporting_vcard_canceled_title" msgid="2652222370493306887">"<xliff:g id="FILENAME">%s</xliff:g> ਨੂੰ ਨਿਰਯਾਤ ਕਰਨਾ ਰੱਦ ਕੀਤਾ ਗਿਆ।"</string>
     <string name="exporting_contact_list_title" msgid="9072240631534457415">"ਸੰਪਰਕ  ਡਾਟਾ  ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
-    <string name="exporting_contact_list_message" msgid="3367949209642931952">"ਸੰਪਰਕ ਡੈਟੇ ਨੂੰ ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"</string>
+    <string name="exporting_contact_list_message" msgid="3367949209642931952">"ਸੰਪਰਕ ਡਾਟੇ ਨੂੰ ਨਿਰਯਾਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"</string>
     <string name="composer_failed_to_get_database_infomation" msgid="1765944280846236723">"ਡੈਟਾਬੇਸ ਜਾਣਕਾਰੀ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।"</string>
     <string name="composer_has_no_exportable_contact" msgid="5712531702823346549">"ਨਿਰਯਾਤ ਕਰਨ ਯੋਗ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ।"</string>
     <string name="composer_not_initialized" msgid="2321648986367005254">"vCard ਕੰਪੋਜ਼ਰ ਸਹੀ ਢੰਗ ਨਾਲ ਚਾਲੂ ਨਹੀਂ ਹੋਇਆ।"</string>
