@@ -110,7 +110,7 @@
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"સંપર્કને અનલિંક કરી શક્યા નથી"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"સંપર્ક લિંક કરી શક્યાં નથી"</string>
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"સંપર્ક સાચવવામાં ભૂલ"</string>
-    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"સંપર્ક ફોટાના ફેરફારો સાચવી શક્યાં નથી"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"સંપર્ક ફોટોનાં ફેરફારો સાચવી શક્યાં નથી"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"લેબલ લોડ કરવામાં નિષ્ફળ થયાં"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"લેબલ કાઢી નાખ્યું"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"લેબલ બનાવ્યું"</string>
