@@ -496,7 +496,7 @@
     <string name="about_build_version" msgid="1765533099416999801">"Podverzija"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Licence otvorenog koda"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Detalji o licenci za softver otvorenog koda"</string>
-    <string name="about_privacy_policy" msgid="3705518622499152626">"Pravila o privatnosti"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"Pravila privatnosti"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"Uslovi pružanja usluge"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"Licence otvorenog koda"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"Otvaranje URL-a nije uspjelo."</string>
