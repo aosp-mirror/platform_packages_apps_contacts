@@ -526,7 +526,7 @@
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Odbaci"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Sinhronizacija računa je isključena. Dodirnite da je uključite."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Želite li uključiti automatsko sinhroniziranje?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Promjene koje načinite u svim aplikacijama i računima, ne samo u Google kontaktima, bit će ažurirani i na internetu i na vašim uređajima."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Promjene koje načinite u svim aplikacijama i računima, ne samo u Google Kontaktima, bit će ažurirani i na internetu i na vašim uređajima."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Uključi"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Niste povezani na mrežu"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>

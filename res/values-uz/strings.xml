@@ -122,7 +122,7 @@
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Bunday yorliq allaqachon mavjud"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Ayrim kontaktlarda e-pochta manz. ko‘rsatilmagan."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Ayrim kontaktlarda telefon raqami ko‘rsatilmagan."</string>
-    <string name="menu_sendEmailOption" msgid="5978319931321657780">"E-pochta orqali xat yuborish"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"E-maktub yuborish"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"SMS yuborish"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Kontaktlarni tanlang"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Yuborish"</string>
