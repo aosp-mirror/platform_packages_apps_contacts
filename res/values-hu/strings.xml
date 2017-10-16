@@ -200,8 +200,8 @@
     <string name="add_new_account" msgid="5748627740680940264">"Új fiók hozzáadása"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Adatbázisfájlok exportálása"</string>
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Új névjegy létrehozása"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Továbbiak"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Kevesebb megjelenítése"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Több"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Kevesebb"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Legutóbbiak"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Névjegy"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Személyes másolat készítése..."</string>
