@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="3906689777043645443">"รายชื่อติดต่อ"</string>
-    <string name="contactsList" msgid="8661624236494819731">"รายชื่อในสมุดโทรศัพท์"</string>
+    <string name="contactsList" msgid="8661624236494819731">"รายชื่อติดต่อ"</string>
     <string name="shortcut_add_contact" msgid="7476283631356909204">"เพิ่มรายชื่อติดต่อ"</string>
     <string name="shortcutContact" msgid="749243779392912958">"สมุดโทรศัพท์"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"สายตรง"</string>
@@ -133,7 +133,7 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"เพิ่มหมายเลขโทรศัพท์"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"เพิ่มอีเมล"</string>
     <string name="missing_app" msgid="1466111003546611387">"ไม่พบแอปสำหรับการทำงานนี้"</string>
-    <string name="menu_share" msgid="943789700636542260">"ใช้ร่วมกัน"</string>
+    <string name="menu_share" msgid="943789700636542260">"แชร์"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"เพิ่มในสมุดติดต่อ"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"เพิ่ม"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
@@ -301,7 +301,7 @@
     <string name="sms_assistant" msgid="2773424339923116234">"ส่งข้อความถึง <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"ส่งข้อความถึง MMS"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (ข้อความ)"</string>
-    <string name="description_video_call" msgid="7120921378651700947">"ใช้แฮงเอาท์วิดีโอ"</string>
+    <string name="description_video_call" msgid="7120921378651700947">"ใช้ Hangouts วิดีโอ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"ล้างผู้ที่คุณติดต่อด้วยบ่อยๆ หรือไม่"</string>
     <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"คุณจะล้างรายชื่อของผู้ที่ติดต่อด้วยบ่อยๆ ในแอปพลิเคชัน Contact และ Phone และบังคับให้แอปพลิเคชันอีเมลเรียนรู้ค่ากำหนดที่อยู่ของคุณใหม่ตั้งแต่ต้น"</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"กำลังล้างผู้ที่คุณติดต่อด้วยบ่อยๆ…"</string>
@@ -496,7 +496,7 @@
     <string name="url_open_error_toast" msgid="452592089815420457">"เปิด URL ไม่สำเร็จ"</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g> แล้ว"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"ไม่ได้เลือก <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
-    <string name="description_search_video_call" msgid="5841525580339803272">"เริ่มแฮงเอาท์วิดีโอ"</string>
+    <string name="description_search_video_call" msgid="5841525580339803272">"เริ่ม Hangouts วิดีโอ"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"ลบ"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"จุดไข่ปลา"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> วินาที"</string>

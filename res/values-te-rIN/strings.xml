@@ -329,7 +329,7 @@
     <string name="name_suffix" msgid="3855278445375651441">"పేరు అంత్యప్రత్యయం"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"ఫోనెటిక్ రూపంలో పేరు"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"ఫొనెటిక్ మొదటి పేరు"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"ఫోనెటిక్ రూపంలో మధ్య పేరు"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"ఫొనెటిక్ మధ్య పేరు"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"ఫొనెటిక్ చివరి పేరు"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"ఫోన్"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"ఇమెయిల్"</string>
@@ -469,7 +469,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"భాగస్వామ్యం చేయడానికి పరిచయాలు ఏవీ లేవు."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ప్రదర్శించాల్సిన పరిచయాలు"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"వీక్షణను అనుకూలీకరించండి"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"అనుకూలీకరించిన వీక్షణ"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"సేవ్ చేయి"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"పరిచయాలను శోధించండి"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ఇష్టమైనవి"</string>

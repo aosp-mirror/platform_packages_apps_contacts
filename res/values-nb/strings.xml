@@ -38,7 +38,7 @@
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Lag snarvei"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Del opp"</string>
     <string name="menu_editGroup" msgid="6696843438454341063">"Fjern kontakter"</string>
-    <string name="menu_renameGroup" msgid="7169512355179757182">"Endre navn på etiketten"</string>
+    <string name="menu_renameGroup" msgid="7169512355179757182">"Endre etikettens navn"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Slett etiketten"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Legg til som kontakt"</string>
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Velg kontakter"</string>
@@ -56,7 +56,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Knytt sammen"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Se sammenknyttede kontakter"</string>
     <string name="menu_save" msgid="1727844363591825909">"Lagre"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Knytt sammen kontakter"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Slå sammen kontaktene"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Velg kontakten du vil knytte sammen med <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Forslag"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Alle kontakter"</string>
@@ -142,7 +142,7 @@
     </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Velg konto"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Opprett en etikett"</string>
-    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Endre navn på etiketten"</string>
+    <string name="group_name_dialog_update_title" msgid="6328021162869677383">"Endre etikettens navn"</string>
     <string name="group_name_dialog_hint" msgid="7624523157537700160">"Etikettnavn"</string>
     <string name="label_name_dialog_hint" msgid="1276051790427638142">"Etikettnavn"</string>
     <string name="audio_chat" msgid="2535716629358298691">"Taleprat"</string>
@@ -236,7 +236,7 @@
     <string name="editor_failed_to_load" msgid="1623639078580475818">"Kunne ikke åpne redigeringsvinduet."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"Lagres i"</string>
     <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"Kontaktinformasjonen fra <xliff:g id="ACCOUNT">%s</xliff:g> kan ikke endres"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"KNYTT SAMMEN KONTAKTER"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"SLÅ SAMMEN KONTAKTENE"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"AVBRYT"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"Denne kontakten"</string>
     <string name="suggestion_card_duplicates_title" msgid="9107788743178980902">"Mulige duplikater"</string>
@@ -467,8 +467,8 @@
     <string name="dialog_import" msgid="2423592905927819672">"Importér kontakter fra"</string>
     <string name="share_error" msgid="948429331673358107">"Denne kontakten kan ikke deles."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Det finnes ingen kontakter å dele."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter i visning"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter i visning"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakter som vises"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakter som vises"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Tilpass visningen"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Lagre"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Søk i kontakter"</string>

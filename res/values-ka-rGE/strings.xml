@@ -189,7 +189,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"დაუთმეთ ორიოდე წუთი ანგარიშის დამატებას, რომლითაც შეიქმნება თქვენი კონტაქტების სარეზერვო ასლები Google-ში."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"ახალი კონტაქტები შეინახება აქ: <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"აირჩიეთ ნაგულისხმევი ანგარიში ახალი კონტაქტებისთვის:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"ახალი კონტაქ. შექმნა"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"კონტაქტის შექმნა"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"კონტაქტის შესწორება"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"მხოლოდ ნახვა"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"რედაქტირებისთვის აირჩიეთ კონტაქტი"</string>
@@ -328,9 +328,9 @@
     <string name="name_middle" msgid="8467433655992690326">"მეორე სახელი"</string>
     <string name="name_suffix" msgid="3855278445375651441">"სახელის სუფიქსი"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"სახელის ტრანსკრიფცია"</string>
-    <string name="name_phonetic_given" msgid="8723179018384187631">"ფონეტიკური სახელი"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"მეორე სახელის ტრანსკრიფცია"</string>
-    <string name="name_phonetic_family" msgid="2640133663656011626">"ფონეტიკური გვარი"</string>
+    <string name="name_phonetic_given" msgid="8723179018384187631">"სახელი (ტრანსკრიფცია)"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"მეორე სახელი (ტრანსკრიფცია)"</string>
+    <string name="name_phonetic_family" msgid="2640133663656011626">"გვარი (ტრანსკრიფცია)"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"ტელეფონი"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"ელფოსტა"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"მისამართი"</string>
@@ -456,7 +456,7 @@
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"ჯერ სახელი"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"ჯერ გვარი"</string>
     <string name="settings_accounts" msgid="350219740670774576">"ანგარიშები"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"ნაგულისხმევი ანგარიში ახალი კონტაქტებისთვის"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"ახალი კონტაქტების ნაგულისხმ. ანგარიში"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"ჩემი ინფორმაცია"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"თქვენი პროფილის დაყენება"</string>
     <string name="setting_about" msgid="7014388749752042863">"კონტაქტების შესახებ"</string>
@@ -469,7 +469,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"გასაზიარებელი კონტაქტები არ არის."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"საჩვენებელი კონტაქტები"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"საჩვენებელი კონტაქტები"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"ხედის პარამეტრების დაყენება"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"ხედის დაყენება"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"შენახვა"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"კონტაქტებში ძიება"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"რჩეულები"</string>

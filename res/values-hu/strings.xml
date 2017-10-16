@@ -200,8 +200,8 @@
     <string name="add_new_account" msgid="5748627740680940264">"Új fiók hozzáadása"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Adatbázisfájlok exportálása"</string>
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Új névjegy létrehozása"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Továbbiak"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Kevesebb megjelenítése"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Több"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Kevesebb"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"Legutóbbiak"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Névjegy"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Személyes másolat készítése..."</string>
@@ -332,9 +332,9 @@
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Második utónév fonetikusan"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Családnév fonetikusan"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
-    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail cím"</string>
+    <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail-cím"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Cím"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldés"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Azonnali üzenetküldő"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Szervezet"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Kapcsolat"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Különleges dátum"</string>

@@ -37,12 +37,12 @@
     <string name="menu_change_photo" msgid="7769177631511496210">"Schimbați fotografia"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"Creați o comandă rapidă"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"Disociați"</string>
-    <string name="menu_editGroup" msgid="6696843438454341063">"Eliminați intrările din Agendă"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"Ștergeți persoane de contact"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"Redenumiți eticheta"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"Ștergeți eticheta"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"Adăugați o persoană"</string>
     <string name="menu_selectForGroup" msgid="3999234528229376098">"Selectați persoane"</string>
-    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Adăugați persoanele"</string>
+    <string name="menu_addContactsToGroup" msgid="655196688840626483">"Adăugați persoane"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"Eliminați din etichetă"</string>
     <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Creați o etichetă"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Separați această persoană de contact în mai multe persoane de contact?"</string>
@@ -187,7 +187,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Anulați"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Renunțați la personalizări?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Căutați în Agendă"</string>
-    <string name="title_edit_group" msgid="8602752287270586734">"Eliminați intrările din Agendă"</string>
+    <string name="title_edit_group" msgid="8602752287270586734">"Ștergeți persoane de contact"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Profilul meu local"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"Profilul meu <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Adăugați un cont în care se va face backup pentru agenda dvs. în Google."</string>
@@ -474,7 +474,7 @@
     <string name="share_error" msgid="948429331673358107">"Această persoană de contact nu poate fi distribuită."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nu există persoane de contact de trimis."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Persoane de contact de afişat"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Pers. din agendă de afiş."</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Persoane de afișat"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Personalizați afișarea"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Salvați"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Căutați persoane de contact"</string>

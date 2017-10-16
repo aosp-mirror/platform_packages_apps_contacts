@@ -163,7 +163,7 @@
     <string name="contact_directory_description" msgid="683398073603909119">"Directorio <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"Configuración"</string>
     <string name="menu_settings" msgid="377929915873428211">"Configuración"</string>
-    <string name="menu_help" msgid="1680178646764069976">"Axuda e suxestións"</string>
+    <string name="menu_help" msgid="1680178646764069976">"Axuda e comentarios"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"Número de teléfono"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Engadir a contactos"</string>
@@ -324,9 +324,9 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Alcume"</string>
     <string name="name_given" msgid="4280790853455320619">"Nome"</string>
     <string name="name_family" msgid="7466985689626017037">"Apelidos"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Tratamento do nome"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Forma de tratamento"</string>
     <string name="name_middle" msgid="8467433655992690326">"Segundo nome"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Información profesional do nome"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Título académico ou profesional"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Nome fonético"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Nome fonético"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Segundo nome fonético"</string>

@@ -29,8 +29,8 @@
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"إنشاء جهة اتصال جديدة"</string>
     <string name="searchHint" msgid="8482945356247760701">"البحث في جهات الاتصال"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"إضافة إلى المفضلة"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"إزالة من المفضلة"</string>
-    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"تمت الإزالة من المفضلة"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"الإزالة من العناصر المفضّلة"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"تمت الإزالة من العناصر المفضّلة"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"تمت الإضافة إلى المفضلة"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"تعديل"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"حذف"</string>
@@ -266,7 +266,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"التصنيف <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"التصنيفات"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"الحسابات"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"الاطلاع على تاريخكما المشترك"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"الاطلاع على المحادثات والأحداث التي جمعتكما"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"الأحداث والرسائل"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"الأحداث"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"الرسائل"</string>
@@ -478,7 +478,7 @@
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"اسم العائلة"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"تنسيق الاسم"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"الاسم الأول أولاً"</string>
-    <string name="display_options_view_family_name_first" msgid="956445100777296467">"اسم العائلة /الاسم الأول"</string>
+    <string name="display_options_view_family_name_first" msgid="956445100777296467">"اسم العائلة أوّلًا"</string>
     <string name="settings_accounts" msgid="350219740670774576">"الحسابات"</string>
     <string name="default_editor_account" msgid="699591683362420991">"الحساب الافتراضي لجهات الاتصال الجديدة"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"معلوماتي"</string>

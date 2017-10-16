@@ -245,8 +245,8 @@
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Slet <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="menu_assistant" msgid="5760693735722052454">"Forslag"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Nyt"</string>
-    <string name="navigation_drawer_open" msgid="1126498472143250642">"Åbn navigationsskuffen"</string>
-    <string name="navigation_drawer_close" msgid="4137416137011817930">"Luk navigationsskuffen"</string>
+    <string name="navigation_drawer_open" msgid="1126498472143250642">"Åbn sidemenuen"</string>
+    <string name="navigation_drawer_close" msgid="4137416137011817930">"Luk sidemenuen"</string>
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Etiketten <xliff:g id="LABEL_NAME">%s</xliff:g>"</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Etiketter"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Konti"</string>
@@ -334,7 +334,7 @@
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-mail"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"Adresse"</string>
-    <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
+    <string name="imLabelsGroup" msgid="3898238486262614027">"Chat"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organisation"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Forhold"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Særlig dato"</string>
@@ -467,7 +467,7 @@
     <string name="dialog_import" msgid="2423592905927819672">"Importér kontaktpersoner fra"</string>
     <string name="share_error" msgid="948429331673358107">"Denne kontaktperson kan ikke deles."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Der er ingen kontaktpersoner, der kan deles."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontaktpersoner, der vises"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Viste kontaktpersoner"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Viste kontaktpersoner"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Tilpas visning"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gem"</string>

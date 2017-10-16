@@ -181,7 +181,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Änderungen verwerfen?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Verwerfen"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Abbrechen"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Anpassungen verwerfen?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Änderungen verwerfen?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Kontakte suchen"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Kontakte entfernen"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Mein lokales Profil"</string>
@@ -250,7 +250,7 @@
     <string name="navigation_drawer_label" msgid="4154758025620107419">"Label \"<xliff:g id="LABEL_NAME">%s</xliff:g>\""</string>
     <string name="menu_title_groups" msgid="8356921831150278868">"Label"</string>
     <string name="menu_title_filters" msgid="8210922220185114527">"Konten"</string>
-    <string name="permission_explanation_header" msgid="5739405825039695327">"Verlauf zusammen anzeigen"</string>
+    <string name="permission_explanation_header" msgid="5739405825039695327">"Gemeinsamen Verlauf anzeigen"</string>
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Termine und Nachrichten"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Termine"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Nachrichten"</string>
@@ -324,12 +324,12 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"Spitzname"</string>
     <string name="name_given" msgid="4280790853455320619">"Vorname"</string>
     <string name="name_family" msgid="7466985689626017037">"Nachname"</string>
-    <string name="name_prefix" msgid="59756378548779822">"Namenpräfix"</string>
+    <string name="name_prefix" msgid="59756378548779822">"Namenspräfix"</string>
     <string name="name_middle" msgid="8467433655992690326">"Zweiter Vorname"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"Namensuffix"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"Namenssuffix"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Phonetischer Name"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Vorname (phonetisch)"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Phonetischer zweiter Vorname"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Zweiter Vorname (phonetisch)"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Nachname (phonetisch)"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Telefon"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"E-Mail"</string>
@@ -359,7 +359,7 @@
     <string name="postal_postcode" msgid="572136414136673751">"Postleitzahl"</string>
     <string name="postal_country" msgid="7638264508416368690">"Land"</string>
     <string name="map_home" msgid="1243547733423343982">"Privatadresse anzeigen"</string>
-    <string name="map_work" msgid="1360474076921878088">"Geschäftsadresse anzeigen"</string>
+    <string name="map_work" msgid="1360474076921878088">"Arbeitsadresse anzeigen"</string>
     <string name="map_other" msgid="3817820803587012641">"Adresse anzeigen"</string>
     <string name="map_custom" msgid="8761800628069473526">"Adresse <xliff:g id="CUSTOM_LABEL">%s</xliff:g> anzeigen"</string>
     <string name="chat_aim" msgid="2588492205291249142">"Über AIM chatten"</string>
@@ -382,7 +382,7 @@
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"Minimiert"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Alle Kontakte"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"Markiert"</string>
-    <string name="list_filter_customize" msgid="4789963356004169321">"Personalisieren"</string>
+    <string name="list_filter_customize" msgid="4789963356004169321">"Anpassen"</string>
     <string name="list_filter_single" msgid="5871400283515893087">"Kontakt"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"Alle weiteren Kontakte"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"Alle Kontakte"</string>
@@ -447,7 +447,7 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> wird importiert: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"In VCF-Datei exportieren"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sortieren nach"</string>
-    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Name (phonetisch)"</string>
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Phonetischer Name"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Immer anzeigen"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Leeres Feld ausblenden"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Vorname"</string>
@@ -467,8 +467,8 @@
     <string name="dialog_import" msgid="2423592905927819672">"Kontakte importieren von"</string>
     <string name="share_error" msgid="948429331673358107">"Dieser Kontakt kann nicht geteilt werden."</string>
     <string name="no_contact_to_share" msgid="1276397530378323033">"Keine Kontakte zum Teilen vorhanden."</string>
-    <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakte zur Ansicht"</string>
-    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakte zur Ansicht"</string>
+    <string name="menu_contacts_filter" msgid="2165153460860262501">"Angezeigte Kontakte"</string>
+    <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Angezeigte Kontakte"</string>
     <string name="custom_list_filter" msgid="9048525797111024204">"Ansicht anpassen"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Speichern"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Kontakte suchen"</string>

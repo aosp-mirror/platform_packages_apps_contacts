@@ -341,7 +341,7 @@
     <string name="sms" msgid="1756857139634224222">"ຂໍ້ຄວາມ"</string>
     <string name="postal_address" msgid="8765560217149624536">"ທີ່ຢູ່"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"ບໍລິສັດ"</string>
-    <string name="ghostData_title" msgid="7496735200318496110">"ຊື່"</string>
+    <string name="ghostData_title" msgid="7496735200318496110">"ຕຳແໜ່ງໜ້າທີ່"</string>
     <string name="label_notes" msgid="8337354953278341042">"ໝາຍເຫດ"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"ກຳນົດເອງ"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
@@ -506,7 +506,7 @@
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"ລຶບລາຍຊື່ຜູ້ຕິດຕໍ່ອອກແລ້ວ"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"ນຳເຂົ້າ"</string>
     <string name="sim_import_title_none_selected" msgid="6910517331401970693">"ເລືອກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
-    <string name="sim_import_empty_message" msgid="7743815244380189651">"ບໍ່ມີລາຍຊື່ຜູ່ຕິດຕໍ່ໃນຊິມກາດຂອງທ່ານ."</string>
+    <string name="sim_import_empty_message" msgid="7743815244380189651">"ບໍ່ມີລາຍຊື່ຜູ້ຕິດຕໍ່ໃນຊິມກາດຂອງທ່ານ."</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"ມີລາຍຊື່ຜູ້ຕິດຕໍ່ໃນລາຍຊື່ຂອງທ່ານຢູ່ກ່ອນແລ້ວ"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
       <item quantity="other">ນຳເຂົ້າ <xliff:g id="COUNT">%d</xliff:g> ລາຍຊື່ຜູ້ຕິດຕໍ່ຊິມແລ້ວ</item>

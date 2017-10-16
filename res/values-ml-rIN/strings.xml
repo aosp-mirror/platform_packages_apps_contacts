@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"കോണ്‍‌ടാക്റ്റിലേക്ക് ചേര്‍ക്കുക"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കൂ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"തിരഞ്ഞെടുക്കുക"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതിയകോൺടാക്റ്റ് സൃഷ്‌ടിക്കൂ"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"പുതുവിലാസം സൃഷ്‌ടിക്കൂ"</string>
     <string name="searchHint" msgid="8482945356247760701">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"പ്രിയപ്പെട്ടവയിലേക്ക് ചേർക്കുക"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"പ്രിയപ്പെട്ടവയിൽ നിന്നും നീക്കംചെയ്യുക"</string>
@@ -37,7 +37,7 @@
     <string name="menu_change_photo" msgid="7769177631511496210">"ഫോട്ടോ മാറ്റുക"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"കുറുക്കുവഴി സൃഷ്‌ടിക്കുക"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"അൺലിങ്കുചെയ്യുക"</string>
-    <string name="menu_editGroup" msgid="6696843438454341063">"കോൺടാക്‌റ്റുകൾ നീക്കംചെയ്യൂ"</string>
+    <string name="menu_editGroup" msgid="6696843438454341063">"കോൺടാക്റ്റ് നീക്കംചെയ്യൂ"</string>
     <string name="menu_renameGroup" msgid="7169512355179757182">"ലേബലിന്റെ പേരുമാറ്റുക"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"ലേബല്‍ ഇല്ലാതാക്കുക"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"കോൺടാക്റ്റ് ചേർക്കുക"</string>
@@ -55,7 +55,7 @@
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"അൺലിങ്കുചെയ്യുന്നു"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"ലിങ്ക്"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"ലിങ്കുചെയ്‌ത കോൺടാക്‌റ്റുകൾ കാണുക"</string>
-    <string name="menu_save" msgid="1727844363591825909">"സംരക്ഷിക്കുക"</string>
+    <string name="menu_save" msgid="1727844363591825909">"സംരക്ഷിക്കൂ"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"കോണ്ടാക്റ്റുകൾ ലിങ്കുചെയ്യൂ"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"<xliff:g id="NAME">%s</xliff:g> എന്നയാളുമായി ലിങ്കുചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്ന കോൺടാക്റ്റ് തിരഞ്ഞെടുക്കുക:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"നിര്‍ദ്ദേശിക്കുന്ന കോണ്‍ടാക്റ്റുകള്‍"</string>
@@ -183,7 +183,7 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"റദ്ദാക്കൂ"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"ഇഷ്‌ടാനുസൃതമാക്കലുകൾ നിരസിക്കണോ?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
-    <string name="title_edit_group" msgid="8602752287270586734">"കോൺടാക്‌റ്റുകൾ നീക്കംചെയ്യൂ"</string>
+    <string name="title_edit_group" msgid="8602752287270586734">"കോൺടാക്റ്റ് നീക്കംചെയ്യൂ"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"എന്റെ പ്രാദേശിക പ്രൊഫൈൽ"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"എന്റെ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> പ്രൊഫൈൽ"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"കുറച്ചുസമയമെടുത്ത് ഒരു അക്കൗണ്ട് ചേർക്കുക, അത് Google-ൽ നിങ്ങളുടെ കോൺടാക്‌റ്റുകളുടെ ബായ്‌ക്കപ്പെടുക്കുന്നതിനിടയാക്കും."</string>
@@ -456,7 +456,7 @@
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"ഫസ്റ്റ് നെയിം ആദ്യം"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"ലാസ്റ്റ് നെയിം ആദ്യം"</string>
     <string name="settings_accounts" msgid="350219740670774576">"അക്കൗണ്ടുകൾ"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"പുതിയകോൺടാക്റ്റുകൾക്കുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"പുതുകോൺടാക്റ്റുകൾക്കുള്ള ഡിഫോൾട്ട് അക്കൗണ്ട്"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"എന്റെ വിവരം"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക"</string>
     <string name="setting_about" msgid="7014388749752042863">"കോണ്‍ടാക്റ്റുകളെ കുറിച്ച്"</string>
@@ -469,8 +469,8 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"പങ്കിടാൻ കോൺടാക്റ്റുകളൊന്നും ഇല്ല."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"ദൃശ്യമാക്കേണ്ട കോൺടാക്റ്റുകൾ"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"കാഴ്‌ച ഇഷ്‌ടാനുസൃതമാക്കുക"</string>
-    <string name="menu_custom_filter_save" msgid="2679793632208086460">"സംരക്ഷിക്കുക"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"കാഴ്‌ച ഇഷ്‌ടാനുസൃതമാക്കൂ"</string>
+    <string name="menu_custom_filter_save" msgid="2679793632208086460">"സംരക്ഷിക്കൂ"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"കോണ്‍‌ടാക്റ്റുകള്‍ തിരയുക"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"പ്രിയപ്പെട്ടവ"</string>
     <string name="menu_import" msgid="6107961135813836467">"ഇമ്പോർട്ടുചെയ്യുക"</string>

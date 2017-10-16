@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"পরিচিতিতে যোগ করুন"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"একটি পরিচিতি বেছে নিন"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"নির্বাচন"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"নতুন পরিচিতি তৈরি করুন"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"নতুন পরিচিতি বানান"</string>
     <string name="searchHint" msgid="8482945356247760701">"পরিচিতিগুলি খুঁজুন"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"পছন্দগুলিতে জুড়ুন"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"পছন্দসই থেকে সরান"</string>
@@ -41,7 +41,7 @@
     <string name="menu_renameGroup" msgid="7169512355179757182">"লেবেলের পুনঃনামকরণ করুন"</string>
     <string name="menu_deleteGroup" msgid="1126469629233412249">"লেবেল মুছুন"</string>
     <string name="menu_addToGroup" msgid="3267409983764370041">"পরিচিতি যোগ করুন"</string>
-    <string name="menu_selectForGroup" msgid="3999234528229376098">"পরিচিতিগুলিকে নির্বাচন করুন"</string>
+    <string name="menu_selectForGroup" msgid="3999234528229376098">"পরিচিতিগুলিকে বেছে নিন"</string>
     <string name="menu_addContactsToGroup" msgid="655196688840626483">"পরিচিতিগুলি যোগ করুন"</string>
     <string name="menu_removeFromGroup" msgid="6720354305399961978">"লেবেল থেকে সরান"</string>
     <string name="menu_new_group_action_bar" msgid="3127059073617415221">"লেবেল তৈরি করুন"</string>
@@ -55,7 +55,7 @@
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"লিঙ্কমুক্ত করা হচ্ছে"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"লিঙ্ক করুন"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"লিঙ্ক করা পরিচিতিগুলি দেখুন"</string>
-    <string name="menu_save" msgid="1727844363591825909">"সংরক্ষণ করুন"</string>
+    <string name="menu_save" msgid="1727844363591825909">"সেভ করুন"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"পরিচিতিগুলি লিঙ্ক করুন"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"যে পরিচিতিটিকে <xliff:g id="NAME">%s</xliff:g> এর সাথে লিঙ্ক করতে চান বেছে নিন:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"প্রস্তাবিত পরিচিতিগুলি"</string>
@@ -152,7 +152,7 @@
     <string name="take_photo" msgid="7496128293167402354">"ফটো তুলুন"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ফটো বেছে নিন"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো নির্বাচন করুন"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো বেছে নিন"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"তারিখ"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"লেবেল"</string>
@@ -189,8 +189,8 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"কয়েক মিনিট সময় দিয়ে একটি অ্যাকাউন্ট যোগ করুন যেটি Google এ আপনার পরিচিতিগুলির ব্যাক আপ নেবে৷"</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"নতুন পরিচিতিগুলি <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> এ সংরক্ষণ করা হবে৷"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"নতুন পরিচিতিগুলির জন্য একটি ডিফল্ট অ্যাকাউন্ট বেছে নিন:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"নতুন পরিচিতি তৈরি করুন"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা করুন"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"নতুন পরিচিতি বানান"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"পরিচিতি সম্পাদনা"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"কেবলমাত্র দেখার জন্য"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"সম্পাদনা করার জন্য একটি পরিচিতি বেছে নিন"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"লিঙ্ক করা পরিচিতিগুলি"</string>
@@ -199,9 +199,9 @@
     <string name="add_account" msgid="8201790677994503186">"অ্যাকাউন্ট জুড়ুন"</string>
     <string name="add_new_account" msgid="5748627740680940264">"নতুন অ্যাকাউন্ট যোগ করুন"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"ডেটাবেস ফাইলগুলি রপ্তানি করুন"</string>
-    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"নতুন পরিচিতি তৈরি করুন"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"আরো দেখুন"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"আরো কম"</string>
+    <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"নতুন পরিচিতি বানান"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"আরও দেখুন"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"আরও কম"</string>
     <string name="recent_card_title" msgid="8982782042698001695">"সাম্প্রতিক"</string>
     <string name="about_card_title" msgid="2920942314212825637">"সম্পর্কে"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"একটি ব্যক্তিগত অনুলিপি তৈরি করা হচ্ছে…"</string>
@@ -229,7 +229,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"মিস করা"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"সাম্প্রতিক কল৷ <xliff:g id="CALL_TYPE">%1$s</xliff:g>৷ <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>৷ <xliff:g id="DATE">%3$s</xliff:g>৷ ঘুরিয়ে কল করতে ক্লিক করুন"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"আপনি: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="editor_more_fields" msgid="3630987771304393421">"আরো ফিল্ড"</string>
+    <string name="editor_more_fields" msgid="3630987771304393421">"আরও ফিল্ড"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"পরিচিতির ফটো পরিবর্তন করুন"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"পরিচিতির ফটো যোগ করুন"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"পরিচিতির ফটো"</string>
@@ -372,9 +372,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber ব্যবহার করে চ্যাট করুন"</string>
     <string name="chat" msgid="9025361898797412245">"চ্যাট"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"মুছুন"</string>
-    <string name="expand_name_fields_description" msgid="6948274252874552543">"আরো নামের ক্ষেত্রগুলি দেখান"</string>
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"আরও নামের ক্ষেত্রগুলি দেখান"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"নামের ক্ষেত্রটিকে সঙ্কুচিত করুন"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"আরো ফোনেটিক নামের ক্ষেত্রগুলি দেখান"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"আরও ফোনেটিক নামের ক্ষেত্রগুলি দেখান"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"ফোনেটিক নামের ক্ষেত্রটিকে প্রসারিত করুন"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"প্রসারিত করুন"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"সঙ্কুচিত করুন"</string>
@@ -388,11 +388,11 @@
     <string name="display_all_contacts" msgid="2031647544742889505">"সকল পরিচিতি"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"সমন্বয় গোষ্ঠী সরান"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"সমন্বয় গোষ্ঠী যোগ করুন"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"আরো গোষ্ঠী…"</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"আরও গোষ্ঠী…"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"সমন্বয় থেকে \"<xliff:g id="GROUP">%s</xliff:g>\" সরানো হলে তা সমন্বয় থেকে যেকোনো অগোষ্ঠীবদ্ধ পরিচিতিগুলিকেও সরাবে৷"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"প্রদর্শনের বিকল্পগুলি সংরক্ষণ করা হচ্ছে..."</string>
     <string name="listCustomView" msgid="1840624396582117590">"কাস্টমাইজ করা দৃশ্য"</string>
-    <string name="dialog_new_contact_account" msgid="4969619718062454756">"আমদানি করা পরিচিতিগুলি এতে সংরক্ষণ করুন:"</string>
+    <string name="dialog_new_contact_account" msgid="4969619718062454756">"আমদানি করা পরিচিতিগুলি এতে সেভ করুন:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"সিম কার্ড"</string>
     <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"সিম <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="5821095773211149295">
@@ -505,7 +505,7 @@
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"এই শর্টকাটটি অক্ষম করা হয়েছে"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"পরিচিতিটি সরানো হয়েছে"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"আমদানি করুন"</string>
-    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"পরিচিতিগুলি নির্বাচন করুন"</string>
+    <string name="sim_import_title_none_selected" msgid="6910517331401970693">"পরিচিতিগুলি বেছে নিন"</string>
     <string name="sim_import_empty_message" msgid="7743815244380189651">"আপনার সিম কার্ডে কোনো পরিচিতি নেই"</string>
     <string name="sim_import_contact_exists_toast" msgid="1503743663717316732">"পরিচিতিটি ইতিমধ্যেই আপনার তালিকাতে রয়েছে"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="8572156521110906443">
@@ -523,7 +523,7 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"চালু করুন"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"কোনো সংযোগ নেই"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"সিম"</string>
-    <string name="show_more_content_description" msgid="4277410425912984722">"আরো দেখান"</string>
+    <string name="show_more_content_description" msgid="4277410425912984722">"আরও দেখান"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"সিম কার্ড আমদানি করা সমাপ্ত হয়েছে"</string>
     <string name="importing_sim_failed_title" msgid="39706901030537985">"আমদানি ব্যর্থ হয়েছে"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"সিম কার্ড থেকে পরিচিতিগুলি আমদানি করা গেল না"</string>

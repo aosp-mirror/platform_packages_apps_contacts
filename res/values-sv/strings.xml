@@ -181,7 +181,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Vill du ignorera ändringarna?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Ignorera"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Avbryt"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Vill du kassera anpassningarna?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Vill du ignorera anpassningarna?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"Sök efter kontakter"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"Ta bort kontakter"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"Min lokala profil"</string>

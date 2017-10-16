@@ -324,9 +324,9 @@
     <string name="nicknameLabelsGroup" msgid="2891682101053358010">"暱稱"</string>
     <string name="name_given" msgid="4280790853455320619">"名字"</string>
     <string name="name_family" msgid="7466985689626017037">"姓氏"</string>
-    <string name="name_prefix" msgid="59756378548779822">"姓名前稱銜"</string>
+    <string name="name_prefix" msgid="59756378548779822">"姓名前稱謂"</string>
     <string name="name_middle" msgid="8467433655992690326">"中間名"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"姓名後稱銜"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"姓名後稱謂"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"姓名拼音"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"名字拼音"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"中間名 (拼音)"</string>
