@@ -342,7 +342,7 @@
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"Organizacija"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"Odnos"</string>
     <string name="eventLabelsGroup" msgid="7960408705307831289">"Posebni datum"</string>
-    <string name="sms" msgid="1756857139634224222">"Tekstualna poruka"</string>
+    <string name="sms" msgid="1756857139634224222">"SMS"</string>
     <string name="postal_address" msgid="8765560217149624536">"Adresa"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"Kompanija"</string>
     <string name="ghostData_title" msgid="7496735200318496110">"Pozicija"</string>
@@ -496,7 +496,7 @@
     <string name="about_build_version" msgid="1765533099416999801">"Podverzija"</string>
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Licence otvorenog koda"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Detalji o licenci za softver otvorenog koda"</string>
-    <string name="about_privacy_policy" msgid="3705518622499152626">"Pravila o privatnosti"</string>
+    <string name="about_privacy_policy" msgid="3705518622499152626">"Pravila privatnosti"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"Uslovi pružanja usluge"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"Licence otvorenog koda"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"Otvaranje URL-a nije uspjelo."</string>
@@ -526,7 +526,7 @@
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Odbaci"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"Sinhronizacija računa je isključena. Dodirnite da je uključite."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Želite li uključiti automatsko sinhroniziranje?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Promjene koje načinite u svim aplikacijama i računima, ne samo u Google kontaktima, bit će ažurirani i na internetu i na vašim uređajima."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Promjene koje načinite u svim aplikacijama i računima, ne samo u Google Kontaktima, bit će ažurirani i na internetu i na vašim uređajima."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Uključi"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Niste povezani na mrežu"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM"</string>

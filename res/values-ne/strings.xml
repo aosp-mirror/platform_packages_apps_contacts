@@ -491,7 +491,7 @@
     <string name="about_open_source_licenses" msgid="6479990452352919641">"खुला स्रोतका इजाजतपत्रहरू"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"खुला स्रोतको सफ्टवेयरका लागि इजाजतपत्रका विवरणहरू"</string>
     <string name="about_privacy_policy" msgid="3705518622499152626">"गोपनीयता नीति"</string>
-    <string name="about_terms_of_service" msgid="4642400812150296723">"सेवा सर्तहरू"</string>
+    <string name="about_terms_of_service" msgid="4642400812150296723">"सेवाका सर्तहरू"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"खुला स्रोतका इजाजतपत्रहरू"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"url खोल्न सकिएन।"</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> जाँच गरियो"</string>
