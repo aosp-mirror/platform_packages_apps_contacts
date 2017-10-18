@@ -1169,6 +1169,8 @@ public class QuickContactActivity extends ContactsActivity {
         final List<DataItem> sipCallDataItems = dataItemsMap.get(SipAddress.CONTENT_ITEM_TYPE);
         if (phoneDataItems != null && phoneDataItems.size() == 1) {
             mOnlyOnePhoneNumber = true;
+        } else {
+            mOnlyOnePhoneNumber = false;
         }
         String[] phoneNumbers = null;
         if (phoneDataItems != null) {
@@ -1207,6 +1209,8 @@ public class QuickContactActivity extends ContactsActivity {
         final List<DataItem> emailDataItems = dataItemsMap.get(Email.CONTENT_ITEM_TYPE);
         if (emailDataItems != null && emailDataItems.size() == 1) {
             mOnlyOneEmail = true;
+        } else {
+            mOnlyOneEmail = false;
         }
         String[] emailAddresses = null;
         if (emailDataItems != null) {
