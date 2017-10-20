@@ -103,7 +103,7 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"Kontakt <xliff:g id="NAME">%s</xliff:g> został dodany do ekranu głównego."</string>
     <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Brak zdjęć na urządzeniu."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Zdjęcie kontaktu"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety niestandardowej"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nazwa etykiety własnej"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Usuń zdjęcie"</string>
     <string name="noContacts" msgid="2228592924476426108">"Twoja lista kontaktów jest pusta"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Brak kontaktów z tą etykietą"</string>
@@ -335,7 +335,7 @@
     <string name="name_prefix" msgid="59756378548779822">"Przedrostek nazwiska"</string>
     <string name="name_middle" msgid="8467433655992690326">"Drugie imię"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Przyrostek nazwiska"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"Nazwa (fonetycznie)"</string>
+    <string name="name_phonetic" msgid="4259595234312430484">"Nazwisko (fonetycznie)"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Imię (fonetycznie)"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"Drugie imię (fonetycznie)"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Nazwisko (fonetycznie)"</string>
@@ -353,7 +353,7 @@
     <string name="label_notes" msgid="8337354953278341042">"Notatki"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"Niestandardowe"</string>
     <string name="label_sip_address" msgid="7252153678613978127">"Adres SIP"</string>
-    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Adres witryny"</string>
+    <string name="websiteLabelsGroup" msgid="4202998982804009261">"Strona internetowa"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"Etykiety"</string>
     <string name="email_home" msgid="8573740658148184279">"E-mail – domowy"</string>
     <string name="email_mobile" msgid="2042889209787989814">"E-mail – komórka"</string>
@@ -459,7 +459,7 @@
     <string name="progress_notifier_message" msgid="2311011466908220528">"Importowanie <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"Eksportuj do pliku .vcf"</string>
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Sortuj według"</string>
-    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Nazwa (fonetycznie)"</string>
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Nazwisko (fonetycznie)"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Zawsze pokazuj"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Ukryj, jeśli puste"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Imię"</string>
