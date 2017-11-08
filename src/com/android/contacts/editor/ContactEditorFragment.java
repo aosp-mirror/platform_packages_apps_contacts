@@ -747,6 +747,9 @@ public class ContactEditorFragment extends Fragment implements
             });
         }
 
+        final MenuItem helpMenu = menu.findItem(R.id.menu_help);
+        helpMenu.setVisible(HelpUtils.isHelpAndFeedbackAvailable());
+
         int size = menu.size();
         for (int i = 0; i < size; i++) {
             menu.getItem(i).setEnabled(mEnabled);
