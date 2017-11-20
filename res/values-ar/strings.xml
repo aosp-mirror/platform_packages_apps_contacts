@@ -486,7 +486,7 @@
     <string name="setting_about" msgid="7014388749752042863">"حول جهات الاتصال"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"مشاركة جهات الاتصال المفضلة"</string>
     <string name="share_contacts" msgid="8109287987498711664">"مشاركة جميع جهات الاتصال"</string>
-    <string name="share_contacts_failure" msgid="1216431977330560559">"أخفقت مشاركة جهات الاتصال."</string>
+    <string name="share_contacts_failure" msgid="1216431977330560559">"تعذّرت مشاركة جهات الاتصال."</string>
     <string name="dialog_export" msgid="1628001095187741417">"تصدير جهات الاتصال"</string>
     <string name="dialog_import" msgid="2423592905927819672">"استيراد جهات اتصال من"</string>
     <string name="share_error" msgid="948429331673358107">"لا يمكن مشاركة جهة الاتصال هذه."</string>
