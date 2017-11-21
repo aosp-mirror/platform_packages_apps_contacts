@@ -39,11 +39,7 @@ LOCAL_PACKAGE_NAME := Contacts
 LOCAL_CERTIFICATE := shared
 LOCAL_PRIVILEGED_MODULE := true
 
-LOCAL_PROGUARD_FLAG_FILES := \
-    proguard.flags \
-    ../../../frameworks/support/core-ui/proguard-rules.pro \
-    ../../../frameworks/support/design/proguard-rules.pro \
-    ../../../frameworks/support/v7/recyclerview/proguard-rules.pro
+LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
