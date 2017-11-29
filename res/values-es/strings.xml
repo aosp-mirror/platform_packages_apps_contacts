@@ -23,7 +23,7 @@
     <string name="shortcutDialContact" msgid="746622101599186779">"Llamada directa"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensaje directo"</string>
     <string name="shortcutActivityTitle" msgid="1504383567778497348">"Elegir contacto"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Añadir al contacto"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Añadir a un contacto"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Elige un contacto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Seleccionar"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Crear nuevo contacto"</string>
@@ -54,14 +54,14 @@
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Vinculando"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Desvinculando"</string>
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Vincular"</string>
-    <string name="menu_linkedContacts" msgid="400444389718855621">"Ver contactos enlazados"</string>
+    <string name="menu_linkedContacts" msgid="400444389718855621">"Ver contactos vinculados"</string>
     <string name="menu_save" msgid="1727844363591825909">"Guardar"</string>
     <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Vincular contactos"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Selecciona el contacto que quieras vincular con <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Todos los contactos"</string>
-    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> enlazado"</string>
-    <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contactos enlazados"</string>
+    <string name="contactsJoinedNamedMessage" msgid="1299418263439579455">"<xliff:g id="NAME">%s</xliff:g> vinculado"</string>
+    <string name="contactsJoinedMessage" msgid="3343535986195643136">"Contactos vinculados"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2252551736301363193">"Se ha eliminado a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="3642082931473111791">"Se ha eliminado a <xliff:g id="NAME_0">%1$s</xliff:g> y a <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
     <string name="contacts_deleted_many_named_toast" msgid="7731565342428031249">"Se ha eliminado a <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>…"</string>
@@ -108,7 +108,7 @@
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Contactos desvinculados"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"No se han podido guardar los cambios en el contacto"</string>
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"No se ha podido desvincular el contacto"</string>
-    <string name="contactJoinErrorToast" msgid="5735129234573327701">"No se ha podido enlazar el contacto"</string>
+    <string name="contactJoinErrorToast" msgid="5735129234573327701">"No se ha podido vincular el contacto"</string>
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"No se ha podido guardar el contacto"</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"No se han podido guardar los cambios en la foto del contacto"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"No se ha podido cargar la etiqueta"</string>
@@ -193,7 +193,7 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Editar contacto"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Solo lectura"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Seleccionar contacto para editarlo"</string>
-    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Contactos enlazados"</string>
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Contactos vinculados"</string>
     <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Añadir"</string>
     <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Desvincular"</string>
     <string name="add_account" msgid="8201790677994503186">"Añadir cuenta"</string>

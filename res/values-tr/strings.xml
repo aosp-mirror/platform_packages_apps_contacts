@@ -279,7 +279,7 @@
     <string name="call_assistant" msgid="670941612175068337">"Telefon et: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_mms" msgid="6274041545876221437">"Çağrı yap (MMS)"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Telefon et)"</string>
-    <string name="sms_custom" msgid="415060214233647603">"Kısa mesaj gönder: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
+    <string name="sms_custom" msgid="415060214233647603">"SMS gönder: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="sms_home" msgid="7524332261493162995">"SMS gönder (ev)"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"SMS gönder (mobil)"</string>
     <string name="sms_work" msgid="2269624156655267740">"SMS gönder (iş)"</string>
