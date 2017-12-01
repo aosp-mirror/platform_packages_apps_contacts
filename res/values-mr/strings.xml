@@ -529,4 +529,6 @@
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"सिम कार्ड वरून संपर्क आयात करणेे शक्य झाले नाही"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"सिम आयात करत आहे"</string>
     <string name="contacts_default_notification_channel" msgid="4754058700611188581">"सूचना"</string>
+    <string name="yes_button" msgid="1268479086848288060">"होय"</string>
+    <string name="no_button" msgid="5742815694687835125">"नाही"</string>
 </resources>
