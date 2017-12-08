@@ -136,13 +136,13 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Dodajte broj telefona"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"Dodajte adresu e-pošte"</string>
     <string name="missing_app" msgid="1466111003546611387">"Nije pronađena aplikacija za obavljanje ove radnje."</string>
-    <string name="menu_share" msgid="943789700636542260">"Podijeli"</string>
+    <string name="menu_share" msgid="943789700636542260">"Dijeli"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Dodaj u kontakte"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"Dodaj"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
-      <item quantity="one">Podijeli kontakte putem</item>
-      <item quantity="few">Podijeli kontakte putem</item>
-      <item quantity="other">Podijeli kontakte putem</item>
+      <item quantity="one">Dijeli kontakte putem</item>
+      <item quantity="few">Dijeli kontakte putem</item>
+      <item quantity="other">Dijeli kontakte putem</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"Odaberi račun"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"Izrada oznake"</string>
@@ -419,7 +419,7 @@
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"Nije moguće otvoriti \"<xliff:g id="FILE_NAME">%1$s</xliff:g>\": <xliff:g id="EXACT_REASON">%2$s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"Nije moguće pokrenuti program za izvoz: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"Nema sadržaja za izvoz."</string>
-    <string name="missing_required_permission" msgid="5865884842972833120">"Onemogućili ste potrebnu dozvolu."</string>
+    <string name="missing_required_permission" msgid="5865884842972833120">"Onemogućili ste potrebno odobrenje."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"Došlo je do greške prilikom izvoza: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O greška"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"Nema dovoljno memorije. Možda je fajl prevelik."</string>
@@ -497,7 +497,7 @@
     <string name="about_open_source_licenses" msgid="6479990452352919641">"Licence otvorenog koda"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"Detalji o licenci za softver otvorenog koda"</string>
     <string name="about_privacy_policy" msgid="3705518622499152626">"Pravila privatnosti"</string>
-    <string name="about_terms_of_service" msgid="4642400812150296723">"Uslovi pružanja usluge"</string>
+    <string name="about_terms_of_service" msgid="4642400812150296723">"Uslovi korištenja usluge"</string>
     <string name="activity_title_licenses" msgid="5467767062737708066">"Licence otvorenog koda"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"Otvaranje URL-a nije uspjelo."</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> je označen"</string>
@@ -536,4 +536,6 @@
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Nije moguće uvesti kontakte sa SIM kartice"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"Uvoz sa SIM kartice"</string>
     <string name="contacts_default_notification_channel" msgid="4754058700611188581">"Obavještenja"</string>
+    <string name="yes_button" msgid="1268479086848288060">"Da"</string>
+    <string name="no_button" msgid="5742815694687835125">"Ne"</string>
 </resources>
