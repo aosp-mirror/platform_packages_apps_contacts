@@ -172,7 +172,7 @@
     <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"অ্যাকাউন্ট যোগ করুন"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"আমদানি করুন"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"নতুন তৈরি করুন…"</string>
-    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" গোষ্ঠী মুছবেন? (পরিচিতিগুলি নিজে থেকে মুছে যাবে না৷)"</string>
+    <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" গ্রুপ মুছবেন? (পরিচিতিগুলি নিজে থেকে মুছে যাবে না৷)"</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"অন্য একটির সাথে লিঙ্ক করার আগে পরিচিতির নাম লিখুন৷"</string>
     <string name="copy_text" msgid="3257145021583508761">"ক্লিপবোর্ডে কপি করুন"</string>
     <string name="set_default" msgid="4417505153468300351">"ডিফল্ট সেট করুন"</string>
@@ -386,9 +386,9 @@
     <string name="list_filter_single" msgid="5871400283515893087">"পরিচিতি"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"অন্যান্য সকল পরিচিতি"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"সকল পরিচিতি"</string>
-    <string name="menu_sync_remove" msgid="3266725887008450161">"সমন্বয় গোষ্ঠী সরান"</string>
-    <string name="dialog_sync_add" msgid="8267045393119375803">"সমন্বয় গোষ্ঠী যোগ করুন"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"আরও গোষ্ঠী…"</string>
+    <string name="menu_sync_remove" msgid="3266725887008450161">"সমন্বয় গ্রুপ সরান"</string>
+    <string name="dialog_sync_add" msgid="8267045393119375803">"সমন্বয় গ্রুপ যোগ করুন"</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"আরও গ্রুপ…"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"সমন্বয় থেকে \"<xliff:g id="GROUP">%s</xliff:g>\" সরানো হলে তা সমন্বয় থেকে যেকোনো অগোষ্ঠীবদ্ধ পরিচিতিগুলিকেও সরাবে৷"</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"প্রদর্শনের বিকল্পগুলি সংরক্ষণ করা হচ্ছে..."</string>
     <string name="listCustomView" msgid="1840624396582117590">"কাস্টমাইজ করা দৃশ্য"</string>
