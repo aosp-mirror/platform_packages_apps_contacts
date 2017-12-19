@@ -179,7 +179,7 @@
     <string name="contact_directory_description" msgid="683398073603909119">"الدليل <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"الإعدادات"</string>
     <string name="menu_settings" msgid="377929915873428211">"الإعدادات"</string>
-    <string name="menu_help" msgid="1680178646764069976">"مساعدة وتعليقات"</string>
+    <string name="menu_help" msgid="1680178646764069976">"المساعدة والتعليقات"</string>
     <string name="organization_company_and_title" msgid="6718207751363732025">"<xliff:g id="COMPANY_0">%2$s</xliff:g>، <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="1541655052330027380">"رقم الهاتف"</string>
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"إضافة إلى جهات الاتصال"</string>
@@ -557,4 +557,6 @@
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"‏تعذر استيراد جهات الاتصال من شريحة SIM"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"‏استيراد SIM"</string>
     <string name="contacts_default_notification_channel" msgid="4754058700611188581">"الإشعارات"</string>
+    <string name="yes_button" msgid="1268479086848288060">"نعم"</string>
+    <string name="no_button" msgid="5742815694687835125">"لا"</string>
 </resources>
