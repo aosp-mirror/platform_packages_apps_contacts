@@ -109,7 +109,7 @@
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"संपर्क बदल जतन करणे शक्य झाले नाही"</string>
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"संपर्काचा दुवा रद्द करणे शक्य झाले नाही"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"संपर्काचा दुवा जोडणे शक्य झाले नाही"</string>
-    <string name="contactGenericErrorToast" msgid="3885457515665783976">"संपर्क जतन करताना त्रुटी"</string>
+    <string name="contactGenericErrorToast" msgid="3885457515665783976">"संपर्क जतन करताना एरर"</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"संपर्क फोटो बदल जतन करणे शक्य झाले नाही"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"लेबल लोड करण्यात अयशस्वी झाले"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"लेबल हटविले"</string>
@@ -409,13 +409,13 @@
     <string name="cancel_import_confirmation_message" msgid="3929951040347726757">"<xliff:g id="FILENAME">%s</xliff:g> चे आयात रद्द करायचे?"</string>
     <string name="cancel_export_confirmation_message" msgid="1995462401949262638">"<xliff:g id="FILENAME">%s</xliff:g> चे निर्यात रद्द करायचे?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="6139900383366166706">"vCard आयात/निर्यात रद्द करू शकल नाही"</string>
-    <string name="fail_reason_unknown" msgid="1714092345030570863">"अज्ञात त्रुटी."</string>
+    <string name="fail_reason_unknown" msgid="1714092345030570863">"अज्ञात एरर."</string>
     <string name="fail_reason_could_not_open_file" msgid="2067725459821997463">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\" उघडू शकलो नाही: <xliff:g id="EXACT_REASON">%2$s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="707260459259688510">"निर्यातकर्ता प्रारंभ करू शकला नाही: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="8728506011371262065">"कोणताही निर्यात करण्‍यायोग्‍य संपर्क नाही."</string>
     <string name="missing_required_permission" msgid="5865884842972833120">"आपण आवश्‍यक असलेली एक परवानगी अक्षम केली आहे."</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"निर्यात दरम्‍यान त्रुटी आलीt: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O त्रुटी"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="3018855323913649063">"निर्यात दरम्‍यान एरर आलीt: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O एरर"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"पुरेशी मेमरी नाही. फाईल कदाचित खूप मोठी असू शकते."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"स्वरूपन समर्थित नाही."</string>
     <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> निर्यात करणे समाप्त झाले."</string>
