@@ -97,7 +97,7 @@
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> ditambahkan ke layar Utama."</string>
     <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Tidak ada gambar yang tersedia di perangkat."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Foto kontak"</string>
-    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label khusus"</string>
+    <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nama label kustom"</string>
     <string name="removePhoto" msgid="4898105274130284565">"Hapus foto"</string>
     <string name="noContacts" msgid="2228592924476426108">"Daftar kontak Anda kosong"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Tidak ada kontak dengan label ini"</string>
