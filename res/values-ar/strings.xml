@@ -74,7 +74,7 @@
       <item quantity="one">تم حذف جهة الاتصال</item>
     </plurals>
     <plurals name="contacts_count" formatted="false" msgid="8696793457340503668">
-      <item quantity="zero">ليست هناك أية جهة اتصال (<xliff:g id="COUNT_1">%d</xliff:g>)</item>
+      <item quantity="zero">ليست هناك أي جهة اتصال (<xliff:g id="COUNT_1">%d</xliff:g>)</item>
       <item quantity="two">جهتا اتصال (<xliff:g id="COUNT_1">%d</xliff:g>)</item>
       <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> جهات اتصال</item>
       <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> جهة اتصال</item>
@@ -107,7 +107,7 @@
     <string name="invalidContactMessage" msgid="8215051456181842274">"جهة الاتصال غير موجودة."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"تمت إضافة جهة الاتصال إلى الشاشة الرئيسية."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"تمت إضافة <xliff:g id="NAME">%s</xliff:g> إلى الشاشة الرئيسية."</string>
-    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"لا تتوفر أية صور على الهاتف."</string>
+    <string name="photoPickerNotFoundText" msgid="2052542573853433204">"لا تتوفر أي صور على الهاتف."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"صورة جهة الاتصال"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"اسم تصنيف مخصص"</string>
     <string name="removePhoto" msgid="4898105274130284565">"إزالة الصورة"</string>
@@ -405,7 +405,7 @@
     <string name="menu_sync_remove" msgid="3266725887008450161">"إزالة مجموعة متزامنة"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"إضافة مجموعة متزامنة"</string>
     <string name="display_more_groups" msgid="2682547080423434170">"مزيد من المجموعات..."</string>
-    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"ستؤدي إزالة \"<xliff:g id="GROUP">%s</xliff:g>\" من المزامنة أيضًا إلى إزالة أية جهات اتصال غير مجمعة من المزامنة."</string>
+    <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"ستؤدي إزالة \"<xliff:g id="GROUP">%s</xliff:g>\" من المزامنة أيضًا إلى إزالة أي جهات اتصال غير مجمعة من المزامنة."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"جارٍ حفظ خيارات العرض..."</string>
     <string name="listCustomView" msgid="1840624396582117590">"عرض مُخصص"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"حفظ جهات الاتصال المستوردة إلى:"</string>
