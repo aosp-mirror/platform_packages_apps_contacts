@@ -197,14 +197,14 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"هل تريد إلغاء التغييرات؟"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"تجاهل"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"إلغاء"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"تجاهل عمليات التخصيص؟"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"هل تريد إزالة عمليات التخصيص؟"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"البحث في جهات الاتصال"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"إزالة جهات الاتصال"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"ملفي الشخصي المحلي"</string>
     <string name="external_profile_title" msgid="8034998767621359438">"ملفي الشخصي في <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"‏خذ دقيقة من وقتك لإضافة حساب يحفظ نسخة احتياطية من جهات اتصالك على Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"سيتم حفظ جهات الاتصال الجديدة في <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"اختيار حساب افتراضي لجهات الاتصال الجديدة:"</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"اختيار حساب تلقائي لجهات الاتصال الجديدة:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"إنشاء جهة اتصال"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"تعديل جهة الاتصال"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"للعرض فقط"</string>
@@ -343,7 +343,7 @@
     <string name="name_prefix" msgid="59756378548779822">"بادئة الاسم"</string>
     <string name="name_middle" msgid="8467433655992690326">"الاسم الأوسط"</string>
     <string name="name_suffix" msgid="3855278445375651441">"لاحقة الاسم"</string>
-    <string name="name_phonetic" msgid="4259595234312430484">"الاسم صوتياً"</string>
+    <string name="name_phonetic" msgid="4259595234312430484">"الاسم صوتيًا"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"الاسم الأول صوتيًا"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"الاسم الأوسط صوتيًا"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"اسم العائلة صوتيًا"</string>
@@ -407,7 +407,7 @@
     <string name="display_more_groups" msgid="2682547080423434170">"مزيد من المجموعات..."</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"ستؤدي إزالة \"<xliff:g id="GROUP">%s</xliff:g>\" من المزامنة أيضًا إلى إزالة أي جهات اتصال غير مجمعة من المزامنة."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"جارٍ حفظ خيارات العرض..."</string>
-    <string name="listCustomView" msgid="1840624396582117590">"عرض مُخصص"</string>
+    <string name="listCustomView" msgid="1840624396582117590">"عرض مخصّص"</string>
     <string name="dialog_new_contact_account" msgid="4969619718062454756">"حفظ جهات الاتصال المستوردة إلى:"</string>
     <string name="import_from_sim" msgid="6912071635295799131">"‏شريحة SIM"</string>
     <string name="import_from_sim_summary_fmt" msgid="5169032449686348118">"‏شريحة SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -470,8 +470,8 @@
     <string name="caching_vcard_title" msgid="1226272312940516605">"تخزين مؤقت"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"استيراد <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"‏تصدير إلى ملف vcf."</string>
-    <string name="display_options_sort_list_by" msgid="7028809117272018712">"ترتيب بحسب"</string>
-    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"الاسم صوتياً"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"الترتيب بحسب"</string>
+    <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"الاسم صوتيًا"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"الإظهار دائمًا"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"الإخفاء إذا كان فارغًا"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"الاسم الأول"</string>
@@ -480,7 +480,7 @@
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"الاسم الأول أولاً"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"اسم العائلة أوّلًا"</string>
     <string name="settings_accounts" msgid="350219740670774576">"الحسابات"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"الحساب الافتراضي لجهات الاتصال الجديدة"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"الحساب التلقائي لجهات الاتصال الجديدة"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"معلوماتي"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"إعداد الملف الشخصي"</string>
     <string name="setting_about" msgid="7014388749752042863">"حول جهات الاتصال"</string>

@@ -294,7 +294,7 @@
     <string name="sms_fax_work" msgid="8028189067816907075">"SMS:рабочий факс"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"SMS: дом. факс"</string>
     <string name="sms_pager" msgid="7730404569637015192">"SMS: пейджер"</string>
-    <string name="sms_other" msgid="806127844607642331">"Отправить SMS"</string>
+    <string name="sms_other" msgid="806127844607642331">"SMS"</string>
     <string name="sms_callback" msgid="5004824430094288752">"SMS: номер обратного вызова"</string>
     <string name="sms_car" msgid="7444227058437359641">"SMS:тел. в машине"</string>
     <string name="sms_company_main" msgid="118970873419678087">"SMS: тел. офиса"</string>
@@ -358,7 +358,7 @@
     <string name="email_home" msgid="8573740658148184279">"Личная эл. почта"</string>
     <string name="email_mobile" msgid="2042889209787989814">"Моб. эл. почта"</string>
     <string name="email_work" msgid="2807430017302722689">"Рабочая эл.почта"</string>
-    <string name="email_other" msgid="3454004077967657109">"Написать письмо"</string>
+    <string name="email_other" msgid="3454004077967657109">"Письмо"</string>
     <string name="email_custom" msgid="5536404237099078802">"Написать письмо (<xliff:g id="CUSTOM_LABEL">%s</xliff:g>)"</string>
     <string name="email" msgid="5668400997660065897">"Эл. почта"</string>
     <string name="postal_street" msgid="8133143961580058972">"Улица"</string>

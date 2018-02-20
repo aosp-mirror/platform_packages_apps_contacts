@@ -286,7 +286,7 @@
     <string name="sms_fax_work" msgid="8028189067816907075">"ส่งข้อความถึงแฟกซ์ที่ทำงาน"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"ส่งข้อความเข้าหมายเลขแฟกซ์บ้าน"</string>
     <string name="sms_pager" msgid="7730404569637015192">"ส่งข้อความถึงเพจเจอร์"</string>
-    <string name="sms_other" msgid="806127844607642331">"ข้อความ"</string>
+    <string name="sms_other" msgid="806127844607642331">"ส่งข้อความ"</string>
     <string name="sms_callback" msgid="5004824430094288752">"ส่งข้อความถึงหมายเลขติดต่อกลับ"</string>
     <string name="sms_car" msgid="7444227058437359641">"ส่งข้อความถึงรถยนต์"</string>
     <string name="sms_company_main" msgid="118970873419678087">"ส่งข้อความเข้าโทรศัพท์หลักของบริษัท"</string>
@@ -350,9 +350,9 @@
     <string name="email_home" msgid="8573740658148184279">"ส่งไปที่อีเมลส่วนตัว"</string>
     <string name="email_mobile" msgid="2042889209787989814">"ส่งอีเมลเข้ามือถือ"</string>
     <string name="email_work" msgid="2807430017302722689">"ส่งอีเมลถึงที่ทำงาน"</string>
-    <string name="email_other" msgid="3454004077967657109">"อีเมล"</string>
-    <string name="email_custom" msgid="5536404237099078802">"ส่งอีเมล <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
-    <string name="email" msgid="5668400997660065897">"อีเมล"</string>
+    <string name="email_other" msgid="3454004077967657109">"ส่งอีเมล"</string>
+    <string name="email_custom" msgid="5536404237099078802">"ส่งอีเมลถึง <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
+    <string name="email" msgid="5668400997660065897">"ส่งอีเมล"</string>
     <string name="postal_street" msgid="8133143961580058972">"ถนน"</string>
     <string name="postal_city" msgid="6597491300084895548">"เมือง"</string>
     <string name="postal_region" msgid="6045263193478437672">"รัฐ"</string>
