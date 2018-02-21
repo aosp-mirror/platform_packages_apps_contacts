@@ -98,7 +98,7 @@
     <string name="photoPickerNotFoundText" msgid="2052542573853433204">"Não existem imagens disponíveis no dispositivo."</string>
     <string name="attach_photo_dialog_title" msgid="5599827035558557169">"Fotografia do contacto"</string>
     <string name="customLabelPickerTitle" msgid="1081475101983255212">"Nome da etiqueta personalizada"</string>
-    <string name="removePhoto" msgid="4898105274130284565">"Remover fotografia"</string>
+    <string name="removePhoto" msgid="4898105274130284565">"Remover foto"</string>
     <string name="noContacts" msgid="2228592924476426108">"A sua lista de contactos está vazia"</string>
     <string name="emptyGroup" msgid="5102411903247859575">"Sem contactos com esta etiqueta"</string>
     <string name="emptyAccount" msgid="6873962901497975964">"Não existem contactos nesta conta"</string>
@@ -150,9 +150,9 @@
     <string name="account_type_format" msgid="718948015590343010">"Contacto <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"Conta <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="take_photo" msgid="7496128293167402354">"Tirar foto"</string>
-    <string name="take_new_photo" msgid="7341354729436576304">"Tirar nova fotografia"</string>
+    <string name="take_new_photo" msgid="7341354729436576304">"Tirar nova foto"</string>
     <string name="pick_photo" msgid="2129509985223564942">"Escolher foto"</string>
-    <string name="pick_new_photo" msgid="9122450996263688237">"Selecionar nova fotografia"</string>
+    <string name="pick_new_photo" msgid="9122450996263688237">"Selecionar nova foto"</string>
     <string name="search_results_searching" msgid="3984833028938569930">"A pesquisar..."</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"Data"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"Etiqueta"</string>
