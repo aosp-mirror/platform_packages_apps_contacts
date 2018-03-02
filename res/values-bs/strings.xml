@@ -28,10 +28,10 @@
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Odaberi"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Izrada novog kontakta"</string>
     <string name="searchHint" msgid="8482945356247760701">"Pretraži kontakte"</string>
-    <string name="menu_addStar" msgid="2908478235715404876">"Dodaj u favorite"</string>
-    <string name="menu_removeStar" msgid="5844227078364227030">"Ukloni iz favorita"</string>
-    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz favorita"</string>
-    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Dodano u favorite"</string>
+    <string name="menu_addStar" msgid="2908478235715404876">"Dodaj u omiljeno"</string>
+    <string name="menu_removeStar" msgid="5844227078364227030">"Ukloni iz omiljenih"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz omiljenih"</string>
+    <string name="description_action_menu_add_star" msgid="3327186327234177456">"Dodano u omiljeno"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"Promijeni fotografiju"</string>
@@ -305,7 +305,7 @@
     <string name="sms_assistant" msgid="2773424339923116234">"Pošalji tekstualnu poruku <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="4069352461380762677">"Pošalji tekstualnu poruku na MMS broj"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Poruka)"</string>
-    <string name="description_video_call" msgid="7120921378651700947">"Uputi videopoziv"</string>
+    <string name="description_video_call" msgid="7120921378651700947">"Uputi video poziv"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Obrisati često kontaktirane osobe?"</string>
     <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Obrisat ćete listu često kontaktiranih osoba u aplikaciji Kontakti i Aplikaciji za telefon, pa će aplikacije za e-poštu morati ispočetka učiti vaše postavke adresa."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Brisanje često kontaktiranih osoba…"</string>
@@ -478,7 +478,7 @@
     <string name="custom_list_filter" msgid="9048525797111024204">"Prilagodi prikaz"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Sačuvaj"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Pretraži kontakte"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoriti"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Omiljeni"</string>
     <string name="menu_import" msgid="6107961135813836467">"Uvoz"</string>
     <string name="menu_export" msgid="2658783911863503902">"Izvoz"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokirani brojevi"</string>
@@ -502,7 +502,7 @@
     <string name="url_open_error_toast" msgid="452592089815420457">"Otvaranje URL-a nije uspjelo."</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> je označen"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> nije označen"</string>
-    <string name="description_search_video_call" msgid="5841525580339803272">"Uputi videopoziv"</string>
+    <string name="description_search_video_call" msgid="5841525580339803272">"Uputi video poziv"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"Izbriši"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Elipsa"</string>
     <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> sek."</string>
