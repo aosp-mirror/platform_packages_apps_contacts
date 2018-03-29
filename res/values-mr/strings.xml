@@ -133,12 +133,12 @@
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"फोन नंबर जोडा"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"ईमेल जोडा"</string>
     <string name="missing_app" msgid="1466111003546611387">"ही क्रिया हाताळण्यासाठी कोणताही अ‍ॅप आढळला नाही."</string>
-    <string name="menu_share" msgid="943789700636542260">"सामायिक करा"</string>
+    <string name="menu_share" msgid="943789700636542260">"शेअर करा"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"संपर्कांमध्ये जोडा"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"जोडा"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
-      <item quantity="one">संपर्क याद्वारे सामायिक करा</item>
-      <item quantity="other">संपर्क याद्वारे सामायिक करा</item>
+      <item quantity="one">संपर्क याद्वारे शेअर करा</item>
+      <item quantity="other">संपर्क याद्वारे शेअर करा</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"खाते निवडा"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"लेबल बनवा"</string>
@@ -460,8 +460,8 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"माझी माहिती"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"आपले प्रोफाईल सेट करा"</string>
     <string name="setting_about" msgid="7014388749752042863">"संपर्कांबद्दल"</string>
-    <string name="share_favorite_contacts" msgid="4280926751003081042">"आवडते संपर्क सामायिक करा"</string>
-    <string name="share_contacts" msgid="8109287987498711664">"सर्व संपर्क सामायिक करा"</string>
+    <string name="share_favorite_contacts" msgid="4280926751003081042">"आवडते संपर्क शेअर करा"</string>
+    <string name="share_contacts" msgid="8109287987498711664">"सर्व संपर्क शेअर करा"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"संपर्क सामायिक करण्यात अयशस्वी झाले."</string>
     <string name="dialog_export" msgid="1628001095187741417">"संपर्क निर्यात करा"</string>
     <string name="dialog_import" msgid="2423592905927819672">"यावरून संपर्क आयात करा"</string>
