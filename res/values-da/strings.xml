@@ -472,7 +472,7 @@
     <string name="custom_list_filter" msgid="9048525797111024204">"Tilpas visning"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gem"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Søg efter kontaktpersoner"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Foretrukne"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritter"</string>
     <string name="menu_import" msgid="6107961135813836467">"Importér"</string>
     <string name="menu_export" msgid="2658783911863503902">"Eksportér"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokerede telefonnumre"</string>

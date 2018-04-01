@@ -528,7 +528,7 @@
     <string name="importing_sim_failed_title" msgid="39706901030537985">"आयात करना विफल रहा"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM कार्ड से संपर्क आयात नहीं किए जा सके"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM को आयात किया जा रहा है"</string>
-    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"नोटिफ़िकेशन"</string>
+    <string name="contacts_default_notification_channel" msgid="4754058700611188581">"सूचनाएं"</string>
     <string name="yes_button" msgid="1268479086848288060">"हां"</string>
     <string name="no_button" msgid="5742815694687835125">"नहीं"</string>
 </resources>
