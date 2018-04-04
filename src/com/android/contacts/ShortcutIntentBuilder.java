@@ -300,7 +300,7 @@ public class ShortcutIntentBuilder {
         final Bitmap icon = generateQuickContactIcon(drawable);
         if (BuildCompat.isAtLeastO()) {
             final IconCompat compatIcon = IconCompat.createWithAdaptiveBitmap(icon);
-            compatIcon.addToShortcutIntent(intent);
+            compatIcon.addToShortcutIntent(intent, null, mContext);
         } else {
             intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
         }
@@ -356,7 +356,7 @@ public class ShortcutIntentBuilder {
         intent = intent == null ? new Intent() : intent;
         // This will be non-null in O and above.
         if (compatAdaptiveIcon != null) {
-            compatAdaptiveIcon.addToShortcutIntent(intent);
+            compatAdaptiveIcon.addToShortcutIntent(intent, null, mContext);
         } else {
             intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
         }
