@@ -122,7 +122,7 @@
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Etiketten findes allerede"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Nogle kontaktpersoner har ikke e-mails."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Nogle kontaktpersoner har ikke telefonnumre."</string>
-    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Send e-mail"</string>
+    <string name="menu_sendEmailOption" msgid="5978319931321657780">"Send mail"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Send besked"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"Vælg kontaktpersoner"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"Send"</string>
@@ -131,7 +131,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Navne på dine kontakter"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Klik for at gå tilbage til forrige skærmbillede"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Tilføj telefonnummer"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"Tilføj e-mail"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Tilføj mail"</string>
     <string name="missing_app" msgid="1466111003546611387">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
     <string name="menu_share" msgid="943789700636542260">"Del"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Føj til kontaktpersoner"</string>
@@ -351,7 +351,7 @@
     <string name="email_mobile" msgid="2042889209787989814">"E-mail til mobil"</string>
     <string name="email_work" msgid="2807430017302722689">"E-mail til arbejde"</string>
     <string name="email_other" msgid="3454004077967657109">"E-mail"</string>
-    <string name="email_custom" msgid="5536404237099078802">"Send en e-mail til <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
+    <string name="email_custom" msgid="5536404237099078802">"Send en mail til <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="email" msgid="5668400997660065897">"E-mail"</string>
     <string name="postal_street" msgid="8133143961580058972">"Gade"</string>
     <string name="postal_city" msgid="6597491300084895548">"By"</string>
@@ -472,7 +472,7 @@
     <string name="custom_list_filter" msgid="9048525797111024204">"Tilpas visning"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Gem"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Søg efter kontaktpersoner"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Foretrukne"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Favoritter"</string>
     <string name="menu_import" msgid="6107961135813836467">"Importér"</string>
     <string name="menu_export" msgid="2658783911863503902">"Eksportér"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"Blokerede telefonnumre"</string>

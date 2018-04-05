@@ -310,7 +310,7 @@
     <string name="status_busy" msgid="9147992455450257136">"忙碌"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"其他"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"目錄"</string>
-    <string name="directory_search_label_work" msgid="8618292129829443176">"Work 聯絡人目錄"</string>
+    <string name="directory_search_label_work" msgid="8618292129829443176">"工作聯絡人目錄"</string>
     <string name="local_search_label" msgid="2551177578246113614">"所有聯絡人"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g>的快速聯絡人相片"</string>
     <string name="missing_name" msgid="8745511583852904385">"(無姓名)"</string>
