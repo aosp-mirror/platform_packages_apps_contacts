@@ -20,7 +20,7 @@ import android.content.OperationApplicationException;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
 

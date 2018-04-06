@@ -28,7 +28,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.Groups;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
