@@ -36,7 +36,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Profile;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
 import android.text.BidiFormatter;
