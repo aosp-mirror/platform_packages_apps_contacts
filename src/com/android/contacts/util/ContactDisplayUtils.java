@@ -20,7 +20,7 @@ import static android.provider.ContactsContract.CommonDataKinds.Phone;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;

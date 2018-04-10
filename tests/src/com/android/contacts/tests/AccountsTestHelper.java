@@ -24,8 +24,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Build;
 import android.provider.ContactsContract.RawContacts;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import android.support.test.InstrumentationRegistry;
 
 import com.android.contacts.model.account.AccountWithDataSet;
