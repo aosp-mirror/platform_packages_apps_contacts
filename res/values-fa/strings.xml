@@ -523,7 +523,7 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"فعال کردن"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"اتصال برقرار نیست"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"سیم کارت"</string>
-    <string name="show_more_content_description" msgid="4277410425912984722">"نمایش موارد بیشتر"</string>
+    <string name="show_more_content_description" msgid="4277410425912984722">"بیشتر ببینید"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"وارد کردن سیم کارت تمام شد"</string>
     <string name="importing_sim_failed_title" msgid="39706901030537985">"وارد نشد"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"مخاطبین از سیم کارت وارد نشدند"</string>
