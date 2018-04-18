@@ -169,7 +169,7 @@
     <string name="non_phone_add_to_contacts" msgid="6590985286250471169">"Байланыштарга кошуу"</string>
     <string name="non_phone_close" msgid="7608506439725515667">"Жабуу"</string>
     <string name="date_year_toggle" msgid="7122002148518724139">"Жылы көрсөтүлсүн"</string>
-    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Каттоо эсебин кошуу"</string>
+    <string name="contacts_unavailable_add_account" msgid="4347232421410561500">"Аккаунт кошуу"</string>
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Импорттоо"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Жаңысын түзүү..."</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" энбелгиси өчүрүлсүнбү? (Байланыштардын өзү өчпөйт)."</string>
