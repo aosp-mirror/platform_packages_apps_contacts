@@ -192,7 +192,7 @@
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"اكتب اسم جهة الاتصال قبل ربطها بجهة اتصال أخرى."</string>
     <string name="copy_text" msgid="3257145021583508761">"نسخ إلى الحافظة"</string>
     <string name="set_default" msgid="4417505153468300351">"تعيين كافتراضي"</string>
-    <string name="clear_default" msgid="7193185801596678067">"محو الإعدادات الافتراضية"</string>
+    <string name="clear_default" msgid="7193185801596678067">"محو الإعدادات التلقائية"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"تم نسخ النص"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"هل تريد إلغاء التغييرات؟"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"تجاهل"</string>
