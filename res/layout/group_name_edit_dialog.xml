@@ -27,6 +27,9 @@
     app:errorEnabled="true"
     app:hintEnabled="false">
 
+    <!-- In Android P there is no initial focus by default in touch mode. See b/77244371 -->
+    <requestFocus />
+
     <android.support.design.widget.TextInputEditText
         android:id="@android:id/text1"
         android:layout_width="match_parent"
