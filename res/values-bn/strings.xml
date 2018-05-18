@@ -222,7 +222,7 @@
     <string name="header_name_entry" msgid="1592791008096288306">"নাম"</string>
     <string name="header_email_entry" msgid="8666093061171624478">"ইমেল"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"ফোন"</string>
-    <string name="content_description_directions" msgid="2686791825798189335">"অবস্থান জানার দিকনির্দেশ"</string>
+    <string name="content_description_directions" msgid="2686791825798189335">"লোকেশন জানার দিকনির্দেশ"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"সাম্প্রতিক sms৷ <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>৷ <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>৷ <xliff:g id="DATE">%3$s</xliff:g>৷ প্রতিক্রিয়া জানাতে ক্লিক করুন"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"আগত"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"আউটগোয়িং"</string>

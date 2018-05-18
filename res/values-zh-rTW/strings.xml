@@ -316,7 +316,7 @@
     <string name="missing_name" msgid="8745511583852904385">"(無姓名)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"常用聯絡人"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"所有包含電話號碼的聯絡人資訊"</string>
-    <string name="list_filter_phones_work" msgid="1470173699551475015">"Work 設定檔聯絡人"</string>
+    <string name="list_filter_phones_work" msgid="1470173699551475015">"工作資料夾聯絡人"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"查看更新"</string>
     <string name="account_phone" msgid="7128032778471187553">"裝置"</string>
     <string name="account_sim" msgid="6519016427905087952">"SIM 卡"</string>
