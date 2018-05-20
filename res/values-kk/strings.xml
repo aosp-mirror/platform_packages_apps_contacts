@@ -174,7 +174,7 @@
     <string name="create_group_item_label" msgid="3263064599743742865">"Жаңасын жасау…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" тобы жойылсын ба? Контактілер өздігінен жойылмайды."</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Басқа контактімен байланыстыру алдында контактінің атын теріңіз."</string>
-    <string name="copy_text" msgid="3257145021583508761">"Аралық сақтағышқа көшіру"</string>
+    <string name="copy_text" msgid="3257145021583508761">"Буферге көшіру"</string>
     <string name="set_default" msgid="4417505153468300351">"Бастапқы ретінде орнату"</string>
     <string name="clear_default" msgid="7193185801596678067">"Бастапқыны өшіру"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Мәтін көшірмесі жасалды"</string>

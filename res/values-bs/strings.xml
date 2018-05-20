@@ -30,7 +30,7 @@
     <string name="searchHint" msgid="8482945356247760701">"Pretraži kontakte"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj u omiljeno"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ukloni iz omiljenih"</string>
-    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz omiljenih"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz omiljenog"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Dodano u omiljeno"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
