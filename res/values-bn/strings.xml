@@ -488,11 +488,11 @@
     <string name="call_subject_limit" msgid="4545212901205397669">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="7667188212129152558">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <string name="about_build_version" msgid="1765533099416999801">"বিল্ডের সংস্করণ"</string>
-    <string name="about_open_source_licenses" msgid="6479990452352919641">"মুক্ত উৎস লাইসেন্স"</string>
+    <string name="about_open_source_licenses" msgid="6479990452352919641">"ওপেন সোর্স লাইসেন্স"</string>
     <string name="about_open_source_licenses_summary" msgid="57418386931763994">"মুক্ত উৎস সফ্টওয়্যারের লাইসেন্স বিবরণ"</string>
     <string name="about_privacy_policy" msgid="3705518622499152626">"গোপনীয়তা নীতি"</string>
     <string name="about_terms_of_service" msgid="4642400812150296723">"পরিষেবার শর্তাবলী"</string>
-    <string name="activity_title_licenses" msgid="5467767062737708066">"মুক্ত উৎস লাইসেন্সগুলি"</string>
+    <string name="activity_title_licenses" msgid="5467767062737708066">"ওপেন সোর্স লাইসেন্স"</string>
     <string name="url_open_error_toast" msgid="452592089815420457">"url খুলতে ব্যর্থ হয়েছে৷"</string>
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়েছে"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> এ টিক চিহ্ন দেওয়া হয়নি"</string>
