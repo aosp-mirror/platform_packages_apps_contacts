@@ -153,7 +153,7 @@
     <string name="take_new_photo" msgid="7341354729436576304">"নতুন ফটো তুলুন"</string>
     <string name="pick_photo" msgid="2129509985223564942">"ফটো বেছে নিন"</string>
     <string name="pick_new_photo" msgid="9122450996263688237">"নতুন ফটো বেছে নিন"</string>
-    <string name="search_results_searching" msgid="3984833028938569930">"অনুসন্ধান করছে..."</string>
+    <string name="search_results_searching" msgid="3984833028938569930">"সার্চ করছে..."</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"তারিখ"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"লেবেল"</string>
     <string name="cancel_button_content_description" msgid="1288652456274531846">"বাতিল করুন"</string>
@@ -478,8 +478,8 @@
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"অবরোধ করা নম্বরগুলি"</string>
     <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> এর মাধ্যমে"</string>
     <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="SOURCE">%2$s</xliff:g> এর মাধ্যমে <xliff:g id="DATE">%1$s</xliff:g>"</string>
-    <string name="action_menu_back_from_search" msgid="8793348588949233348">"অনুসন্ধান বন্ধ করুন"</string>
-    <string name="description_clear_search" msgid="688023606766232904">"অনুসন্ধান সাফ করুন"</string>
+    <string name="action_menu_back_from_search" msgid="8793348588949233348">"সার্চ বন্ধ করুন"</string>
+    <string name="description_clear_search" msgid="688023606766232904">"সার্চ সাফ করুন"</string>
     <string name="select_account_dialog_title" msgid="5478489655696599219">"অ্যাকাউন্ট"</string>
     <string name="set_default_account" msgid="4311613760725609801">"কলের জন্য সবসময় এটি ব্যবহার করুন"</string>
     <string name="call_with_a_note" msgid="8389827628360791676">"একটি নোট সহ কল করুন"</string>
