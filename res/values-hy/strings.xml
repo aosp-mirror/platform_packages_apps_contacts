@@ -193,9 +193,9 @@
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Փոփոխել կոնտակտը"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Միայն դիտում"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Ընտրեք կոնտակտ՝ խմբագրելու համար"</string>
-    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Միակցված կոնտակտներ"</string>
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Միավորված կոնտակտներ"</string>
     <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"Ավելացնել"</string>
-    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Ապակցել"</string>
+    <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"Առանձնացնել"</string>
     <string name="add_account" msgid="8201790677994503186">"Ավելացնել հաշիվ"</string>
     <string name="add_new_account" msgid="5748627740680940264">"Ավելացնել նոր հաշիվ"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Արտահանել տվյալների շտեմարանի ֆայլերը"</string>
