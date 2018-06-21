@@ -264,7 +264,7 @@
     <string name="call_fax_work" msgid="7467763592359059243">"Ring til arbejdsfax"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"Ring til hjemmefax"</string>
     <string name="call_pager" msgid="9003902812293983281">"Ring til personsøger"</string>
-    <string name="call_other" msgid="8563753966926932052">"Opkald"</string>
+    <string name="call_other" msgid="8563753966926932052">"Ring op"</string>
     <string name="call_callback" msgid="1910165691349426858">"Ring til tilbagekald"</string>
     <string name="call_car" msgid="3280537320306436445">"Ring til bil"</string>
     <string name="call_company_main" msgid="6105120947138711257">"Ring til arbejde (hovednummer)"</string>
