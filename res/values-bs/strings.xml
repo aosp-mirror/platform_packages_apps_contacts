@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Dodaj u kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Odabir kontakta"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Odaberi"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Izrada novog kontakta"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Kreiraj novi kontakt"</string>
     <string name="searchHint" msgid="8482945356247760701">"Pretraži kontakte"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj u omiljeno"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ukloni iz omiljenih"</string>
@@ -193,7 +193,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="6648376557574360096">"Odvojite malo vremena da dodate račun putem kojeg će se kontakti sigurnosno kopirati na Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Novi kontakti će biti sačuvani na račun <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Odaberite zadani račun za nove kontakte:"</string>
-    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Izrada novog kontakta"</string>
+    <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Kreiraj novi kontakt"</string>
     <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Uređivanje kontakta"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Samo prikaz"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Odaberite kontakt za uređivanje"</string>
