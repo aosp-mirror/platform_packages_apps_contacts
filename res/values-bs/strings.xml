@@ -30,7 +30,7 @@
     <string name="searchHint" msgid="8482945356247760701">"Pretraži kontakte"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj u omiljeno"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ukloni iz omiljenih"</string>
-    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz omiljenog"</string>
+    <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz omiljenih"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"Dodano u omiljeno"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"Uredi"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"Izbriši"</string>
@@ -377,11 +377,11 @@
     <string name="chat" msgid="9025361898797412245">"Chat"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"izbriši"</string>
     <string name="expand_name_fields_description" msgid="6948274252874552543">"Prikaži više polja za ime"</string>
-    <string name="collapse_name_fields_description" msgid="4757877385895561556">"Suzi polja za imena"</string>
+    <string name="collapse_name_fields_description" msgid="4757877385895561556">"Skupi polja za imena"</string>
     <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"Prikaži više polja za fonetsko ime"</string>
-    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Suzi polja za fonetska imena"</string>
+    <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"Skupi polja za fonetska imena"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"Proširi"</string>
-    <string name="collapse_fields_description" msgid="1884143625854637874">"Suzi"</string>
+    <string name="collapse_fields_description" msgid="1884143625854637874">"Skupi"</string>
     <string name="announce_expanded_fields" msgid="1075947220478530622">"Prošireno"</string>
     <string name="announce_collapsed_fields" msgid="6414231530177338704">"Skupljeno"</string>
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"Svi kontakti"</string>
