@@ -109,11 +109,11 @@
     <string name="contactSavedNamedToast" msgid="895136068894549611">"Kontakt <xliff:g id="DISPLAY_NAME">%s</xliff:g> je sačuvan"</string>
     <string name="contactSavedToast" msgid="9171862279493213075">"Kontakt je sačuvan"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Kontakti su razdvojeni"</string>
-    <string name="contactSavedErrorToast" msgid="4827033473908688031">"Nije moguće sačuvati promjene kontakta"</string>
+    <string name="contactSavedErrorToast" msgid="4827033473908688031">"Pohranjivanje promjena kontakta nije uspjelo"</string>
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Nije moguće razdvojiti kontakt"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"Nije moguće povezati kontakt"</string>
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"Greška prilikom spremanja kontakta"</string>
-    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Nije moguće sačuvati promjene fotografije kontakta"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Pohranjivanje promjena fotografije kontakta nije uspjelo"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Učitavanje oznake nije uspjelo"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Oznaka je izbrisana"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Oznaka je napravljena"</string>
@@ -121,7 +121,7 @@
     <string name="groupUpdatedToast" msgid="3667977658676267687">"Oznaka je ažurirana"</string>
     <string name="groupMembersRemovedToast" msgid="3510563559799376603">"Uklonjeno iz oznake"</string>
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Dodano oznaci"</string>
-    <string name="groupSavedErrorToast" msgid="2355891714292740162">"Nije moguće sačuvati promjene oznake"</string>
+    <string name="groupSavedErrorToast" msgid="2355891714292740162">"Pohranjivanje promjena oznake nije uspjelo"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Ta oznaka već postoji"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Neki kontakti nemaju adrese e-pošte."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Neki kontakti nemaju brojeve telefona."</string>
