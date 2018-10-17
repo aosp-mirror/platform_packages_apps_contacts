@@ -505,9 +505,9 @@
     <string name="description_search_video_call" msgid="5841525580339803272">"Uputi video poziv"</string>
     <string name="description_delete_contact" msgid="53835657343783663">"Izbriši"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"Elipsa"</string>
-    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> sek."</string>
-    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%1$s</xliff:g> min. <xliff:g id="SECONDS">%2$s</xliff:g> sek."</string>
-    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%1$s</xliff:g> h <xliff:g id="MINUTES_1">%2$s</xliff:g> min. <xliff:g id="SECONDS">%3$s</xliff:g> sek."</string>
+    <string name="callDurationSecondFormat" msgid="7067644915903528776">"<xliff:g id="SECONDS">%s</xliff:g> s"</string>
+    <string name="callDurationMinuteFormat" msgid="4647095486747447674">"<xliff:g id="MINUTES">%1$s</xliff:g> min. <xliff:g id="SECONDS">%2$s</xliff:g> s"</string>
+    <string name="callDurationHourFormat" msgid="7392254193808506640">"<xliff:g id="MINUTES_0">%1$s</xliff:g> h <xliff:g id="MINUTES_1">%2$s</xliff:g> min. <xliff:g id="SECONDS">%3$s</xliff:g> s"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"Ova prečica je onemogućena"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"Kontakt je uklonjen"</string>
     <string name="sim_import_button_text" msgid="4270841592496619317">"Uvezi"</string>
