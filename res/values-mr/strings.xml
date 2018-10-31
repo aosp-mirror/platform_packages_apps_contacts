@@ -255,7 +255,7 @@
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"इव्हेंट"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"संदेश"</string>
     <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"सूचना"</string>
-    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"आपले संपर्क व्यवस्थापित आणि उपयुक्त ठेवा"</string>
+    <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"तुमचे संपर्क व्यवस्थापित आणि उपयुक्त ठेवा"</string>
     <string name="undo" msgid="1425165101664071422">"पूर्ववत करा"</string>
     <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> ला कॉल करा"</string>
     <string name="call_home" msgid="1990519474420545392">"निवासस्‍थानी कॉल करा"</string>
@@ -458,7 +458,7 @@
     <string name="settings_accounts" msgid="350219740670774576">"खाती"</string>
     <string name="default_editor_account" msgid="699591683362420991">"नवीन संपर्कांसाठी डीफॉल्ट खाते"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"माझी माहिती"</string>
-    <string name="set_up_profile" msgid="7370213843590143771">"आपले प्रोफाईल सेट करा"</string>
+    <string name="set_up_profile" msgid="7370213843590143771">"तुमचे प्रोफाईल सेट करा"</string>
     <string name="setting_about" msgid="7014388749752042863">"संपर्कांबद्दल"</string>
     <string name="share_favorite_contacts" msgid="4280926751003081042">"आवडते संपर्क शेअर करा"</string>
     <string name="share_contacts" msgid="8109287987498711664">"सर्व संपर्क शेअर करा"</string>
