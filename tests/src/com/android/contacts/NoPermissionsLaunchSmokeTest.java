@@ -32,7 +32,6 @@ import org.junit.runner.RunWith;
  * $ adb shell pm revoke com.android.contacts android.permission.WRITE_CONTACTS
  * $ adb shell pm revoke com.android.contacts android.permission.GET_ACCOUNTS
  * $ adb shell pm revoke com.android.contacts android.permission.READ_PHONE_STATE
- * $ adb shell pm revoke com.android.contacts android.permission.READ_CALL_LOG
  * $ adb shell pm revoke com.android.contacts android.permission.CALL_PHONE
  * $ adb shell am instrument -w \
  *     com.google.android.contacts.tests/androidx.test.runner.AndroidJUnitRunner \
@@ -54,7 +53,6 @@ public class NoPermissionsLaunchSmokeTest {
         assumeTrue(!hasPermission(mTargetContext, Manifest.permission.WRITE_CONTACTS));
         assumeTrue(!hasPermission(mTargetContext, Manifest.permission.GET_ACCOUNTS));
         assumeTrue(!hasPermission(mTargetContext, Manifest.permission.READ_PHONE_STATE));
-        assumeTrue(!hasPermission(mTargetContext, Manifest.permission.READ_CALL_LOG));
         assumeTrue(!hasPermission(mTargetContext, Manifest.permission.CALL_PHONE));
 
         // remove state that might exist outside of the app
