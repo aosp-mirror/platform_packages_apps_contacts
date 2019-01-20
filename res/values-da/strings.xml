@@ -88,7 +88,7 @@
     <string name="single_delete_confirmation" msgid="3106905986948679720">"Vil du slette denne kontakt?"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Vil du slette de valgte kontakter?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Kontakter fra dine skrivebeskyttede konti kan ikke slettes, men de kan skjules."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"De kontakter, du vil slette, indeholder oplysninger fra flere konti. Oplysninger fra skrivebeskyttede konti skjules fremfor at blive slettet."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"De kontakter, du vil slette, indeholder info fra flere konti. Info fra skrivebeskyttede konti skjules fremfor at blive slettet."</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"Sletning af denne kontakt sletter oplysninger fra flere konti."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"Vil du slette denne kontakt?"</string>
     <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"Slet"</string>
