@@ -116,7 +116,7 @@
     <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Не ўдалося скасаваць сувязь з кантактам"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"Не ўдалося звязаць кантакт"</string>
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"Памылка пры захаванні кантакту"</string>
-    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Не ўдалося захаваць змяненні фота кантакту"</string>
+    <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Не ўдалося захаваць змены ў фота кантакту"</string>
     <string name="groupLoadErrorToast" msgid="7536267148196064554">"Збой загрузкі этыкеткі"</string>
     <string name="groupDeletedToast" msgid="520896687873262027">"Метка выдалена"</string>
     <string name="groupCreatedToast" msgid="1924195126172834870">"Створана метка"</string>
