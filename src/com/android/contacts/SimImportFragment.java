@@ -25,7 +25,7 @@ import android.content.Loader;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.collection.ArrayMap;
 import androidx.core.view.ViewCompat;

@@ -14,7 +14,7 @@ LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, $(res_dirs))
 LOCAL_ASSET_DIR := $(addprefix $(LOCAL_PATH)/, $(asset_dirs))
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-    androidx.design_design \
+    com.google.android.material_material \
     androidx.transition_transition \
     androidx.legacy_legacy-support-v13 \
     androidx.appcompat_appcompat \
