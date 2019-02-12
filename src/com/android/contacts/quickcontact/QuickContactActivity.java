@@ -67,7 +67,6 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
-import android.provider.ContactsContract.DataUsageFeedback;
 import android.provider.ContactsContract.Directory;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Intents;
@@ -405,36 +404,6 @@ public class QuickContactActivity extends ContactsActivity {
                 Toast.makeText(QuickContactActivity.this, R.string.missing_app,
                         Toast.LENGTH_SHORT).show();
             }
-
-            // Default to USAGE_TYPE_CALL. Usage is summed among all types for sorting each data id
-            // so the exact usage type is not necessary in all cases
-            String usageType = DataUsageFeedback.USAGE_TYPE_CALL;
-
-            final Uri intentUri = intent.getData();
-            if ((intentUri != null && intentUri.getScheme() != null &&
-                    intentUri.getScheme().equals(ContactsUtils.SCHEME_SMSTO)) ||
-                    (intent.getType() != null && intent.getType().equals(MIMETYPE_SMS))) {
-                usageType = DataUsageFeedback.USAGE_TYPE_SHORT_TEXT;
-            }
-
-            // Data IDs start at 1 so anything less is invalid
-            if (dataId > 0) {
-                final Uri dataUsageUri = DataUsageFeedback.FEEDBACK_URI.buildUpon()
-                        .appendPath(String.valueOf(dataId))
-                        .appendQueryParameter(DataUsageFeedback.USAGE_TYPE, usageType)
-                        .build();
-                try {
-                    final boolean successful = getContentResolver().update(
-                            dataUsageUri, new ContentValues(), null, null) > 0;
-                    if (!successful) {
-                        Log.w(TAG, "DataUsageFeedback increment failed");
-                    }
-                } catch (SecurityException ex) {
-                    Log.w(TAG, "DataUsageFeedback increment failed", ex);
-                }
-            } else {
-                Log.w(TAG, "Invalid Data ID");
-            }
         }
     };
 
@@ -572,7 +541,6 @@ public class QuickContactActivity extends ContactsActivity {
      * Data items are compared to the same mimetype based off of three qualities:
      * 1. Super primary
      * 2. Primary
-     * 3. Times used
      */
     private final Comparator<DataItem> mWithinMimeTypeDataItemComparator =
             new Comparator<DataItem>() {
@@ -592,23 +560,15 @@ public class QuickContactActivity extends ContactsActivity {
                 return -1;
             } else if (!lhs.isPrimary() && rhs.isPrimary()) {
                 return 1;
-            } else {
-                final int lhsTimesUsed =
-                        lhs.getTimesUsed() == null ? 0 : lhs.getTimesUsed();
-                final int rhsTimesUsed =
-                        rhs.getTimesUsed() == null ? 0 : rhs.getTimesUsed();
-
-                return rhsTimesUsed - lhsTimesUsed;
             }
+            return 0;
         }
     };
 
     /**
      * Sorts among different mimetypes based off:
      * 1. Whether one of the mimetypes is the prioritized mimetype
-     * 2. Number of times used
-     * 3. Last time used
-     * 4. Statically defined
+     * 2. Statically defined
      */
     private final Comparator<List<DataItem>> mAmongstMimeTypeDataItemComparator =
             new Comparator<List<DataItem>> () {
@@ -629,27 +589,7 @@ public class QuickContactActivity extends ContactsActivity {
                 }
             }
 
-            // 2. Number of times used
-            final int lhsTimesUsed = lhs.getTimesUsed() == null ? 0 : lhs.getTimesUsed();
-            final int rhsTimesUsed = rhs.getTimesUsed() == null ? 0 : rhs.getTimesUsed();
-            final int timesUsedDifference = rhsTimesUsed - lhsTimesUsed;
-            if (timesUsedDifference != 0) {
-                return timesUsedDifference;
-            }
-
-            // 3. Last time used
-            final long lhsLastTimeUsed =
-                    lhs.getLastTimeUsed() == null ? 0 : lhs.getLastTimeUsed();
-            final long rhsLastTimeUsed =
-                    rhs.getLastTimeUsed() == null ? 0 : rhs.getLastTimeUsed();
-            final long lastTimeUsedDifference = rhsLastTimeUsed - lhsLastTimeUsed;
-            if (lastTimeUsedDifference > 0) {
-                return 1;
-            } else if (lastTimeUsedDifference < 0) {
-                return -1;
-            }
-
-            // 4. Resort to a statically defined mimetype order.
+            // 2. Resort to a statically defined mimetype order.
             if (!lhsMimeType.equals(rhsMimeType)) {
                 for (String mimeType : LEADING_MIMETYPES) {
                     if (lhsMimeType.equals(mimeType)) {
@@ -2472,13 +2412,6 @@ public class QuickContactActivity extends ContactsActivity {
                     values.add(organization);
                 }
 
-                // Last time used and times used are aggregated values from the usage stat
-                // table. They need to be removed from data values so the SQL table can insert
-                // properly
-                for (ContentValues value : values) {
-                    value.remove(Data.LAST_TIME_USED);
-                    value.remove(Data.TIMES_USED);
-                }
                 intent.putExtra(Intents.Insert.DATA, values);
 
                 // If the contact can only export to the same account, add it to the intent.
