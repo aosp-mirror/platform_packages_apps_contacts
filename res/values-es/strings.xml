@@ -175,7 +175,7 @@
     <string name="delete_group_dialog_message" msgid="335713829185261371">"¿Seguro que quieres eliminar la etiqueta \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? Los contactos no se eliminarán."</string>
     <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Para vincular el contacto, escribe el nombre del otro contacto."</string>
     <string name="copy_text" msgid="3257145021583508761">"Copiar en el portapapeles"</string>
-    <string name="set_default" msgid="4417505153468300351">"Establecer como predeterminado"</string>
+    <string name="set_default" msgid="4417505153468300351">"Elegir como predeterminado"</string>
     <string name="clear_default" msgid="7193185801596678067">"Borrar predeterminado"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Texto copiado"</string>
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"¿Descartar cambios?"</string>
