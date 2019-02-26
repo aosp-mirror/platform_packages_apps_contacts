@@ -47,9 +47,9 @@
     <string name="menu_new_group_action_bar" msgid="3127059073617415221">"লেবেল সৃষ্টি কৰক"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"একাধিক সম্পৰ্কসূচীৰ পৰা এই সম্পৰ্কটো আনলিংক কৰিবনে?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"আনলিংক কৰক"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"আপুনি ইতিমধ্য়ে কৰা সলনিসমূহ ছেভ কৰিব আৰু একাধিক সম্পৰ্কসূচীৰ পৰা এই সম্পৰ্কটো আনলিংক কৰিব বিচাৰেনে?"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"আপুনি ইতিমধ্যে কৰা সলনিসমূহ ছেভ কৰিব আৰু একাধিক সম্পৰ্কসূচীৰ পৰা এই সম্পৰ্কটো আনলিংক কৰিব বিচাৰেনে?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"ছেভ কৰি আনলিংক কৰক"</string>
-    <string name="joinConfirmation" msgid="8262614843581924365">"আপুনি ইতিমধ্য়ে কৰা সলনিসমূহ ছেভ কৰিব আৰু বাছনি কৰা সম্পৰ্কসমূহলৈ লিংক কৰিব বিচাৰেনে?"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"আপুনি ইতিমধ্যে কৰা সলনিসমূহ ছেভ কৰিব আৰু বাছনি কৰা সম্পৰ্কসমূহলৈ লিংক কৰিব বিচাৰেনে?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"ছেভ আৰু লিংক কৰক"</string>
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"লিংক কৰি থকা হৈছে"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"আনলিংক কৰিথকা হৈছে"</string>
