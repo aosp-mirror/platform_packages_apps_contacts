@@ -928,7 +928,7 @@ public class ContactEditorFragment extends Fragment implements
         }
 
         setEnabled(false);
-
+        hideSoftKeyboard();
         return doSaveAction(saveMode, /* joinContactId */ null);
     }
 
@@ -1837,4 +1837,12 @@ public class ContactEditorFragment extends Fragment implements
             RESTORE_FOCUS_DELAY_MILLIS);
     }
 
+    private void hideSoftKeyboard() {
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(
+            Context.INPUT_METHOD_SERVICE);
+        if (imm != null && mContent != null) {
+            imm.hideSoftInputFromWindow(
+                mContent.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
 }
