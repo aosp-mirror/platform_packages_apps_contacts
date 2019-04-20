@@ -137,8 +137,8 @@
     <string name="menu_add_contact" msgid="3198704337220892684">"संपर्कों में जोड़ें"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"जोड़ें"</string>
     <plurals name="title_share_via" formatted="false" msgid="5886112726191455415">
-      <item quantity="one">इसके द्वारा संपर्कों को शेयर करें</item>
-      <item quantity="other">इसके द्वारा संपर्कों को शेयर करें</item>
+      <item quantity="one">इससे संपर्क शेयर करें</item>
+      <item quantity="other">इससे संपर्क शेयर करें</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="3451312333591556651">"खाता चुनें"</string>
     <string name="group_name_dialog_insert_title" msgid="2668452090427027941">"लेबल बनाएं"</string>
@@ -159,7 +159,7 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"रद्द करें"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"वापस जाएं"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"बंद करें"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपके द्वारा अभी तक दर्ज की गई जानकारी की कॉपी बनाई जाएगी."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपकी अभी तक दर्ज की गई जानकारी की कॉपी बनाई जाएगी."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग"</string>
@@ -200,7 +200,7 @@
     <string name="add_new_account" msgid="5748627740680940264">"नया खाता जोड़ें"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"डेटाबेस फ़ाइलें निर्यात करें"</string>
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"नया संपर्क बनाएं"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"अधिक देखें"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"ज़्यादा देखें"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"कम देखें"</string>
     <string name="about_card_title" msgid="2920942314212825637">"संक्षिप्त विवरण"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"एक व्‍यक्तिगत कॉपी बना रहा है…"</string>
@@ -216,7 +216,7 @@
     <string name="header_email_entry" msgid="8666093061171624478">"ईमेल"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"फ़ोन"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"स्थान के लिए दिशा निर्देश"</string>
-    <string name="editor_more_fields" msgid="3630987771304393421">"अधिक फ़ील्‍ड"</string>
+    <string name="editor_more_fields" msgid="3630987771304393421">"ज़्यादा फ़ील्‍ड"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"संपर्क की फ़ोटो बदलें"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"संपर्क की फ़ोटो जोड़ें"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"संपर्क की फ़ोटो"</string>
@@ -320,7 +320,7 @@
     <string name="imLabelsGroup" msgid="3898238486262614027">"आईएम"</string>
     <string name="organizationLabelsGroup" msgid="2478611760751832035">"संगठन"</string>
     <string name="relationLabelsGroup" msgid="1854373894284572781">"संबंध"</string>
-    <string name="eventLabelsGroup" msgid="7960408705307831289">"विशेष दिनांक"</string>
+    <string name="eventLabelsGroup" msgid="7960408705307831289">"विशेष तारीख"</string>
     <string name="sms" msgid="1756857139634224222">"लेख संदेश"</string>
     <string name="postal_address" msgid="8765560217149624536">"पता"</string>
     <string name="ghostData_company" msgid="5414421120553765775">"कंपनी"</string>
@@ -355,9 +355,9 @@
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber का उपयोग करके बातचीत करें"</string>
     <string name="chat" msgid="9025361898797412245">"बातचीत करें"</string>
     <string name="description_minus_button" msgid="6908099247930477551">"हटाएं"</string>
-    <string name="expand_name_fields_description" msgid="6948274252874552543">"अधिक नाम फ़ील्ड दिखाएं"</string>
+    <string name="expand_name_fields_description" msgid="6948274252874552543">"ज़्यादा नाम फ़ील्ड दिखाएं"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"नाम फ़ील्ड संक्षिप्त करें"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"अधिक फ़ोनेटिक नाम फ़ील्ड दिखाएं"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"ज़्यादा फ़ोनेटिक नाम फ़ील्ड दिखाएं"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="9102249481855019452">"फ़ोनेटिक नाम फ़ील्ड संक्षिप्त करें"</string>
     <string name="expand_fields_description" msgid="8129294181216760037">"विस्तृत करें"</string>
     <string name="collapse_fields_description" msgid="1884143625854637874">"संक्षिप्त करें"</string>
@@ -371,7 +371,7 @@
     <string name="display_all_contacts" msgid="2031647544742889505">"सभी संपर्क"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"समन्वयन समूह निकालें"</string>
     <string name="dialog_sync_add" msgid="8267045393119375803">"समन्वयन समूह जोड़ें"</string>
-    <string name="display_more_groups" msgid="2682547080423434170">"अधिक समूह…"</string>
+    <string name="display_more_groups" msgid="2682547080423434170">"ज़्यादा समूह…"</string>
     <string name="display_warn_remove_ungrouped" msgid="8872290721676651414">"\"<xliff:g id="GROUP">%s</xliff:g>\" को समन्‍वयन से निकालने से समन्‍वयन से सभी असमूहीकृत संपर्क भी  निकल जाएंगे."</string>
     <string name="savingDisplayGroups" msgid="2133152192716475939">"प्रदर्शन विकल्प सहेज रहा है…"</string>
     <string name="listCustomView" msgid="1840624396582117590">"कस्टमाइज़ किया गया दृश्य"</string>
@@ -459,8 +459,8 @@
     <string name="menu_import" msgid="6107961135813836467">"संपर्क लेकर आएं"</string>
     <string name="menu_export" msgid="2658783911863503902">"संपर्क भेजें"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ब्लॉक किए गए नंबर"</string>
-    <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारा"</string>
-    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारा <xliff:g id="DATE">%1$s</xliff:g>"</string>
+    <string name="contact_status_update_attribution" msgid="752179367353018597">"<xliff:g id="SOURCE">%1$s</xliff:g> से"</string>
+    <string name="contact_status_update_attribution_with_date" msgid="7358045508107825068">"<xliff:g id="SOURCE">%2$s</xliff:g> से <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="8793348588949233348">"खोजना बंद करें"</string>
     <string name="description_clear_search" msgid="688023606766232904">"खोज साफ़ करें"</string>
     <string name="select_account_dialog_title" msgid="5478489655696599219">"खाता"</string>
@@ -499,7 +499,7 @@
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"खारिज करें"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"खाता समन्वयन बंद है. चालू करने के लिए टैप करें."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"ऑटो सिंक चालू करना चाहते हैं?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"आपके द्वारा न केवल Google संपर्क में, बल्कि सभी ऐप्लिकेशन और खातों में किए जाने वाले बदलाव, वेब और आपके डिवाइस के बीच अप-टू-डेट रखे जाएंगे."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Google संपर्क सहित सभी ऐप्लिकेशन और खातों में किए जाने वाले आपके बदलाव, वेब और आपके डिवाइस के बीच अप-टू-डेट रखे जाएंगे."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"चालू करें"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"कोई कनेक्शन नहीं"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"सिम"</string>

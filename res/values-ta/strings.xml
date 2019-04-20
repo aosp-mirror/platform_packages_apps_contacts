@@ -156,8 +156,8 @@
     <string name="search_results_searching" msgid="3984833028938569930">"தேடுகிறது..."</string>
     <string name="event_edit_field_hint_text" msgid="5794424930242630477">"தேதி"</string>
     <string name="group_edit_field_hint_text" msgid="8038224059926963133">"லேபிளைச் சேர்"</string>
-    <string name="cancel_button_content_description" msgid="1288652456274531846">"ரத்துசெய்யும் பொத்தான்"</string>
-    <string name="back_arrow_content_description" msgid="4355362760545735065">"முந்தையதற்குச் செல்லும் பொத்தான்"</string>
+    <string name="cancel_button_content_description" msgid="1288652456274531846">"ரத்துசெய்யும் பட்டன்"</string>
+    <string name="back_arrow_content_description" msgid="4355362760545735065">"முந்தையதற்குச் செல்லும் பட்டன்"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"மூடும்"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"தேர்ந்தெடுத்த தொடர்பைத் திருத்துதலுக்கு மாறவா? இதுவரை உள்ளிட்ட தகவல் நகலெடுக்கப்படும்."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"கோப்பகம் <xliff:g id="TYPE">%1$s</xliff:g>"</string>
