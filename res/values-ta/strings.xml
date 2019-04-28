@@ -132,7 +132,7 @@
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"முந்தைய திரைக்குச் செல்ல கிளிக் செய்க"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"மொபைல் எண்ணைச் சேர்க்கவும்"</string>
     <string name="quickcontact_add_email" msgid="739298028384348482">"மின்னஞ்சலைச் சேர்க்கவும்"</string>
-    <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய பயன்பாடு எதுவுமில்லை."</string>
+    <string name="missing_app" msgid="1466111003546611387">"இந்தச் செயலைச் செய்ய ஆப்ஸ் எதுவுமில்லை."</string>
     <string name="menu_share" msgid="943789700636542260">"பகிர்"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"தொடர்புகளில் சேர்"</string>
     <string name="menu_add_contacts" msgid="4465646512002163011">"சேர்"</string>
