@@ -27,7 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Odabir kontakta"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Odaberi"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Kreiraj novi kontakt"</string>
-    <string name="searchHint" msgid="8482945356247760701">"Pretraži kontakte"</string>
+    <string name="searchHint" msgid="8482945356247760701">"Pretražite kontakte"</string>
     <string name="menu_addStar" msgid="2908478235715404876">"Dodaj u omiljeno"</string>
     <string name="menu_removeStar" msgid="5844227078364227030">"Ukloni iz omiljenih"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"Uklonjeno iz omiljenog"</string>
