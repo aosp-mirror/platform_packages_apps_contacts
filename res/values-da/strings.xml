@@ -286,7 +286,7 @@
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (send besked)"</string>
     <string name="description_video_call" msgid="7120921378651700947">"Foretag videoopkald"</string>
     <string name="clearFrequentsConfirmation_title" msgid="766292372438450432">"Vil du rydde de ofte kontaktede?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Hvis du gør dette, rydder du listen over personer, som du ofte kontakter, i dine apps Kontakter og Telefon. Du vil samtidig tvinge e-mailapps til at lære dine adressepræferencer fra bunden."</string>
+    <string name="clearFrequentsConfirmation" msgid="2270554975938265734">"Hvis du gør dette, rydder du listen over personer, som du ofte kontakter, i dine apps Kontakter og Telefon. Du vil samtidig tvinge mailapps til at lære dine adressepræferencer fra bunden."</string>
     <string name="clearFrequentsProgress_title" msgid="5157001637482794212">"Rydder ofte kontaktede personer…"</string>
     <string name="status_available" msgid="5586870015822828392">"Tilgængelig"</string>
     <string name="status_away" msgid="1838861100379804730">"Ikke til stede"</string>
