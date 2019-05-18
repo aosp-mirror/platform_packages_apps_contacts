@@ -243,8 +243,8 @@
     <string name="call_custom" msgid="6385303130912713318">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> पर कॉल करें"</string>
     <string name="call_home" msgid="1990519474420545392">"घर के फ़ोन नंबर पर कॉल करें"</string>
     <string name="call_mobile" msgid="7502236805487609178">"मोबाइल पर कॉल करें"</string>
-    <string name="call_work" msgid="5328785911463744028">"कार्यस्थल के फ़ोन नंबर पर कॉल करें"</string>
-    <string name="call_fax_work" msgid="7467763592359059243">"कार्यस्थल फ़ैक्स पर कॉल करें"</string>
+    <string name="call_work" msgid="5328785911463744028">"दफ़्तर के फ़ोन नंबर पर कॉल करें"</string>
+    <string name="call_fax_work" msgid="7467763592359059243">"दफ़्तर फ़ैक्स पर कॉल करें"</string>
     <string name="call_fax_home" msgid="8342175628887571876">"घर के फ़ैक्स पर कॉल करें"</string>
     <string name="call_pager" msgid="9003902812293983281">"पेजर पर कॉल करें"</string>
     <string name="call_other" msgid="8563753966926932052">"कॉल करें"</string>
@@ -257,16 +257,16 @@
     <string name="call_radio" msgid="8296755876398357063">"रेडियो पर कॉल करें"</string>
     <string name="call_telex" msgid="2223170774548648114">"इस टेलेक्स पर कॉल करें"</string>
     <string name="call_tty_tdd" msgid="8951266948204379604">"TTY/TDD फ़ोन नंबर पर कॉल करें"</string>
-    <string name="call_work_mobile" msgid="8707874281430105394">"कार्यस्थल मोबाइल पर कॉल करें"</string>
-    <string name="call_work_pager" msgid="3419348514157949008">"कार्यस्थल पेजर पर कॉल करें"</string>
+    <string name="call_work_mobile" msgid="8707874281430105394">"दफ़्तर मोबाइल पर कॉल करें"</string>
+    <string name="call_work_pager" msgid="3419348514157949008">"दफ़्तर पेजर पर कॉल करें"</string>
     <string name="call_assistant" msgid="670941612175068337">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> पर कॉल करें"</string>
     <string name="call_mms" msgid="6274041545876221437">"MMS फ़ोन नंबर पर कॉल करें"</string>
     <string name="call_by_shortcut" msgid="2566802538698913124">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (कॉल करें)"</string>
     <string name="sms_custom" msgid="415060214233647603">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> लिखित संदेश भेजें"</string>
     <string name="sms_home" msgid="7524332261493162995">"घर के फ़ोन पर SMS भेजें"</string>
     <string name="sms_mobile" msgid="5200107250451030769">"मोबाइल पर SMS भेजें"</string>
-    <string name="sms_work" msgid="2269624156655267740">"कार्यस्थल के फ़ोन नंबर पर SMS भेजें"</string>
-    <string name="sms_fax_work" msgid="8028189067816907075">"कार्यस्थल फ़ैक्स नंबर पर SMS भेजें"</string>
+    <string name="sms_work" msgid="2269624156655267740">"दफ़्तर के फ़ोन नंबर पर SMS भेजें"</string>
+    <string name="sms_fax_work" msgid="8028189067816907075">"दफ़्तर फ़ैक्स नंबर पर SMS भेजें"</string>
     <string name="sms_fax_home" msgid="9204042076306809634">"घर के फ़ैक्स पर SMS भेजें"</string>
     <string name="sms_pager" msgid="7730404569637015192">"पेजर पर SMS भेजें"</string>
     <string name="sms_other" msgid="806127844607642331">"SMS भेजें"</string>
@@ -279,8 +279,8 @@
     <string name="sms_radio" msgid="3329166673433967820">"रेडियो फ़ोन नंबर पर SMS भेजें"</string>
     <string name="sms_telex" msgid="9034802430065267848">"टेलेक्स फ़ोन नंबर पर SMS भेजें"</string>
     <string name="sms_tty_tdd" msgid="6782284969132531532">"TTY/TDD को SMS भेजें"</string>
-    <string name="sms_work_mobile" msgid="2459939960512702560">"कार्यस्थल मोबाइल को SMS भेजें"</string>
-    <string name="sms_work_pager" msgid="5566924423316960597">"कार्यस्थल पेजर पर SMS भेजें"</string>
+    <string name="sms_work_mobile" msgid="2459939960512702560">"दफ़्तर मोबाइल को SMS भेजें"</string>
+    <string name="sms_work_pager" msgid="5566924423316960597">"दफ़्तर पेजर पर SMS भेजें"</string>
     <string name="sms_assistant" msgid="2773424339923116234">"<xliff:g id="ASSISTANT">%s</xliff:g> को SMS भेजें"</string>
     <string name="sms_mms" msgid="4069352461380762677">"MMS भेजें"</string>
     <string name="sms_by_shortcut" msgid="7741770672976099517">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (संदेश भेजें)"</string>
@@ -299,7 +299,7 @@
     <string name="missing_name" msgid="8745511583852904385">"(कोई नाम नहीं)"</string>
     <string name="favoritesFrequentContacted" msgid="6184232487472425690">"बार-बार संपर्क किया गया"</string>
     <string name="list_filter_phones" msgid="735313795643493365">"फ़ोन नंबरों वाले सभी संपर्क."</string>
-    <string name="list_filter_phones_work" msgid="1470173699551475015">"कार्य प्रोफ़ाइल के संपर्क"</string>
+    <string name="list_filter_phones_work" msgid="1470173699551475015">"वर्क प्रोफ़ाइल के संपर्क"</string>
     <string name="view_updates_from_group" msgid="1782685984905600034">"नई जानकारी देखें"</string>
     <string name="account_phone" msgid="7128032778471187553">"डिवाइस"</string>
     <string name="account_sim" msgid="6519016427905087952">"सिम"</string>
@@ -332,7 +332,7 @@
     <string name="groupsLabel" msgid="7000816729542098972">"लेबल"</string>
     <string name="email_home" msgid="8573740658148184279">"घर का ईमेल"</string>
     <string name="email_mobile" msgid="2042889209787989814">"मोबाइल पर ईमेल भेजें"</string>
-    <string name="email_work" msgid="2807430017302722689">"कार्यस्थल का ईमेल"</string>
+    <string name="email_work" msgid="2807430017302722689">"दफ़्तर का ईमेल"</string>
     <string name="email_other" msgid="3454004077967657109">"ईमेल भेजें"</string>
     <string name="email_custom" msgid="5536404237099078802">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> को ईमेल करें"</string>
     <string name="email" msgid="5668400997660065897">"ईमेल भेजें"</string>
@@ -342,7 +342,7 @@
     <string name="postal_postcode" msgid="572136414136673751">"ज़िप कोड"</string>
     <string name="postal_country" msgid="7638264508416368690">"देश"</string>
     <string name="map_home" msgid="1243547733423343982">"घर का पता देखें"</string>
-    <string name="map_work" msgid="1360474076921878088">"कार्यस्थल का पता देखें"</string>
+    <string name="map_work" msgid="1360474076921878088">"दफ़्तर का पता देखें"</string>
     <string name="map_other" msgid="3817820803587012641">"पता देखें"</string>
     <string name="map_custom" msgid="8761800628069473526">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> पता देखें"</string>
     <string name="chat_aim" msgid="2588492205291249142">"AIM का उपयोग करके बातचीत करें"</string>
@@ -401,7 +401,7 @@
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O गड़बड़ी"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"स्‍मृति काफ़ी नहीं है. हो सकता है फ़ाइल बहुत बड़ी हो."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"प्रारूप समर्थित नहीं है."</string>
-    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात करना पूर्ण."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> का एक्सपोर्ट पूरा हुआ."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"संपर्कों का निर्यात किया जाना खत्म हो गया."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"संपर्कों का निर्यात पूरा हो गया है, संपर्क शेयर करने के लिए नोटिफ़िकेशन क्लिक करें."</string>
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"संपर्क शेयर करने के लिए टैप करें."</string>
@@ -415,7 +415,7 @@
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"संपर्क डेटा निर्या‍त नहीं किया गया था.\nकारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> आयात कर रहा है"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard डेटा नहीं पढ़ा जा सका"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> आयात करना पूर्ण"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> इंपोर्ट पूरा हुआ"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> को आयात करना रद्द किया गया"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> को जल्‍दी ही आयात किया जाएगा."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"फ़ाइल शीघ्र ही आयात की जाएगी."</string>
@@ -504,7 +504,7 @@
     <string name="connection_error_message" msgid="7046408921529247089">"कोई कनेक्शन नहीं"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"सिम"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"और दिखाएं"</string>
-    <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM कार्ड का आयात पूर्ण"</string>
+    <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM कार्ड का इंपोर्ट पूरा हुआ"</string>
     <string name="importing_sim_failed_title" msgid="39706901030537985">"आयात करना विफल रहा"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM कार्ड से संपर्क आयात नहीं किए जा सके"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM को आयात किया जा रहा है"</string>
