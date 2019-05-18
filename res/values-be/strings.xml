@@ -455,7 +455,7 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"Мая інфармацыя"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Наладзьце ваш профіль"</string>
     <string name="setting_about" msgid="7014388749752042863">"Інфармацыя аб Кантактах"</string>
-    <string name="share_favorite_contacts" msgid="4280926751003081042">"Абагуліць улюбёныя кантакты"</string>
+    <string name="share_favorite_contacts" msgid="4280926751003081042">"Абагуліць выбраныя кантакты"</string>
     <string name="share_contacts" msgid="8109287987498711664">"Абагуліць усе кантакты"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"Збой абагульвання кантактаў."</string>
     <string name="dialog_export" msgid="1628001095187741417">"Экспартаваць кантакты"</string>
