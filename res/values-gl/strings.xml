@@ -223,7 +223,7 @@
     <string name="header_email_entry" msgid="8666093061171624478">"Correo electrónico"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Teléfono"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"indicacións para a localización"</string>
-    <string name="content_description_recent_sms" msgid="1666389577263317445">"sms recente. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. fai clic para responder"</string>
+    <string name="content_description_recent_sms" msgid="1666389577263317445">"SMS recente. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. fai clic para responder"</string>
     <string name="content_description_recent_call_type_incoming" msgid="5210739096863511410">"entrante"</string>
     <string name="content_description_recent_call_type_outgoing" msgid="5156553338985232744">"saínte"</string>
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"perdida"</string>
