@@ -401,7 +401,7 @@
     <string name="fail_reason_io_error" msgid="6748358842976073255">"I/O गड़बड़ी"</string>
     <string name="fail_reason_low_memory_during_import" msgid="875222757734882898">"स्‍मृति काफ़ी नहीं है. हो सकता है फ़ाइल बहुत बड़ी हो."</string>
     <string name="fail_reason_not_supported" msgid="8219562769267148825">"प्रारूप समर्थित नहीं है."</string>
-    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> का निर्यात करना पूर्ण."</string>
+    <string name="exporting_vcard_finished_title" msgid="4767045779458185251">"<xliff:g id="FILENAME">%s</xliff:g> का एक्सपोर्ट पूरा हुआ."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="6060472638008218274">"संपर्कों का निर्यात किया जाना खत्म हो गया."</string>
     <string name="exporting_vcard_finished_toast" msgid="1739055986856453882">"संपर्कों का निर्यात पूरा हो गया है, संपर्क शेयर करने के लिए नोटिफ़िकेशन क्लिक करें."</string>
     <string name="touch_to_share_contacts" msgid="4882485525268469736">"संपर्क शेयर करने के लिए टैप करें."</string>
@@ -415,7 +415,7 @@
     <string name="exporting_contact_failed_message" msgid="4938527850142003141">"संपर्क डेटा निर्या‍त नहीं किया गया था.\nकारण: \"<xliff:g id="FAIL_REASON">%s</xliff:g>\""</string>
     <string name="importing_vcard_description" msgid="4245275224298571351">"<xliff:g id="NAME">%s</xliff:g> आयात कर रहा है"</string>
     <string name="reading_vcard_failed_title" msgid="4251647443358422855">"vCard डेटा नहीं पढ़ा जा सका"</string>
-    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> आयात करना पूर्ण"</string>
+    <string name="importing_vcard_finished_title" msgid="3341541727268747967">"vCard <xliff:g id="FILENAME">%s</xliff:g> इंपोर्ट पूरा हुआ"</string>
     <string name="importing_vcard_canceled_title" msgid="2147475978165599336">"<xliff:g id="FILENAME">%s</xliff:g> को आयात करना रद्द किया गया"</string>
     <string name="vcard_import_will_start_message" msgid="2804911199145873396">"<xliff:g id="FILENAME">%s</xliff:g> को जल्‍दी ही आयात किया जाएगा."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="1022969530654129470">"फ़ाइल शीघ्र ही आयात की जाएगी."</string>
@@ -504,7 +504,7 @@
     <string name="connection_error_message" msgid="7046408921529247089">"कोई कनेक्शन नहीं"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"सिम"</string>
     <string name="show_more_content_description" msgid="4277410425912984722">"और दिखाएं"</string>
-    <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM कार्ड का आयात पूर्ण"</string>
+    <string name="importing_sim_finished_title" msgid="5196369441294050721">"SIM कार्ड का इंपोर्ट पूरा हुआ"</string>
     <string name="importing_sim_failed_title" msgid="39706901030537985">"आयात करना विफल रहा"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"SIM कार्ड से संपर्क आयात नहीं किए जा सके"</string>
     <string name="importing_sim_in_progress_title" msgid="3638299581276676109">"SIM को आयात किया जा रहा है"</string>
