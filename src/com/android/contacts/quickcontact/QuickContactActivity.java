@@ -992,6 +992,14 @@ public class QuickContactActivity extends ContactsActivity {
     }
 
     private void bindDataToCards(Cp2DataCardModel cp2DataCardModel) {
+        final Map<String, List<DataItem>> dataItemsMap = cp2DataCardModel.dataItemsMap;
+
+        final List<DataItem> phoneDataItems = dataItemsMap.get(Phone.CONTENT_ITEM_TYPE);
+        mOnlyOnePhoneNumber = phoneDataItems != null && phoneDataItems.size() == 1;
+
+        final List<DataItem> emailDataItems = dataItemsMap.get(Email.CONTENT_ITEM_TYPE);
+        mOnlyOneEmail = emailDataItems != null && emailDataItems.size() == 1;
+
         populateContactAndAboutCard(cp2DataCardModel, /* shouldAddPhoneticName */ true);
     }
 
