@@ -190,7 +190,7 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Жаңа контактілер <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> есептік жазбасында сақталады."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Жаңа контактілерге арналған әдепкі есептік жазбаны таңдаңыз:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Жаңа контакт қосу"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өңдеу"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Контактіні өзгерту"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Көру мүмкіндігі ғана бар"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Өзгертілетін контактіні таңдаңыз"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Байланысты контактілер"</string>
