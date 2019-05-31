@@ -314,7 +314,7 @@
     <string name="name_phonetic_given" msgid="8723179018384187631">"ການອອກສຽງຊື່"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"ການອອກສຽງຊື່ກາງ"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"ການອອກສຽງນາມສະກຸນ"</string>
-    <string name="phoneLabelsGroup" msgid="6468091477851199285">"Phone"</string>
+    <string name="phoneLabelsGroup" msgid="6468091477851199285">"ໂທລະສັບ"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"ອີເມວ"</string>
     <string name="postalLabelsGroup" msgid="3487738141112589324">"ທີ່ຢູ່"</string>
     <string name="imLabelsGroup" msgid="3898238486262614027">"IM"</string>
@@ -432,7 +432,7 @@
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"ຮຽງລຳດັບຕາມ"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"ການອ່ານອອກສຽງຊື່"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"ສະແດງທຸກເທື່ອ"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Hide if empty"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"ເຊື່ອງ​ໄວ້​ຖ້າ​ບໍ່​ມີ"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"ຊື່"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"ນາມສະກຸນ"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"ຮູບແບບຊື່"</string>
