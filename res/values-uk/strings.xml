@@ -481,7 +481,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Немає контактів, якими можна поділитися."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Контакти для показу"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Контакти для показу"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Налаштувати перегляд"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Налаштувати вигляд"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Зберегти"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Пошук серед контактів"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Вибране"</string>

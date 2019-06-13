@@ -186,7 +186,7 @@
     <string name="set_default" msgid="4417505153468300351">"Задаць у якасці стандартнага"</string>
     <string name="clear_default" msgid="7193185801596678067">"Скінуць стандартныя налады"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Тэкст скапіяваны"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Скасаваць змены?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Адхіліць змены?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Скасаваць"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Скасаваць"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Скінуць налады?"</string>
@@ -333,11 +333,11 @@
     <string name="name_given" msgid="4280790853455320619">"Імя"</string>
     <string name="name_family" msgid="7466985689626017037">"Прозвішча"</string>
     <string name="name_prefix" msgid="59756378548779822">"Прэфікс імені"</string>
-    <string name="name_middle" msgid="8467433655992690326">"Імя па бацьку"</string>
+    <string name="name_middle" msgid="8467433655992690326">"Другое імя"</string>
     <string name="name_suffix" msgid="3855278445375651441">"Суфікс да імені"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"Фанетычнае імя"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"Фанетычнае імя"</string>
-    <string name="name_phonetic_middle" msgid="8643721493320405200">"Фанетычнае імя па бацьку"</string>
+    <string name="name_phonetic_middle" msgid="8643721493320405200">"Фанетычнае другое імя"</string>
     <string name="name_phonetic_family" msgid="2640133663656011626">"Фанетычнае прозвішча"</string>
     <string name="phoneLabelsGroup" msgid="6468091477851199285">"Тэлефон"</string>
     <string name="emailLabelsGroup" msgid="8389931313045344406">"Электронная пошта"</string>
@@ -461,7 +461,7 @@
     <string name="display_options_sort_list_by" msgid="7028809117272018712">"Сартаваць па"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Фанетычнае імя"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Заўсёды паказваць"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Схаваць, калі пустое"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Схаваць, калі поле пустое"</string>
     <string name="display_options_sort_by_given_name" msgid="2778421332815687873">"Імя"</string>
     <string name="display_options_sort_by_family_name" msgid="2684905041926954793">"Прозвішча"</string>
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Фармат імя"</string>

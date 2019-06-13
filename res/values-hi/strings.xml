@@ -310,7 +310,7 @@
     <string name="status_busy" msgid="9147992455450257136">"व्यस्त"</string>
     <string name="local_invisible_directory" msgid="6046691709127661065">"अन्य"</string>
     <string name="directory_search_label" msgid="1887759056597975053">"निर्देशिका"</string>
-    <string name="directory_search_label_work" msgid="8618292129829443176">"कार्य निर्देशिका"</string>
+    <string name="directory_search_label_work" msgid="8618292129829443176">"दफ़्तर की निर्देशिका"</string>
     <string name="local_search_label" msgid="2551177578246113614">"सभी संपर्क"</string>
     <string name="description_quick_contact_for" msgid="6737516415168327789">"<xliff:g id="NAME">%1$s</xliff:g> के लिए त्‍वरित संपर्क"</string>
     <string name="missing_name" msgid="8745511583852904385">"(कोई नाम नहीं)"</string>

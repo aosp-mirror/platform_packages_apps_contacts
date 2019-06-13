@@ -82,7 +82,7 @@
     </plurals>
     <string name="title_from_google" msgid="4664084747121207202">"Sa Googlea"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Sa računa <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
-    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Postavi zvono"</string>
+    <string name="menu_set_ring_tone" msgid="8728345772068064946">"Postavi melodiju zvona"</string>
     <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Preusmjeri na govornu poštu"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Poništi preusmj. na gov. poštu"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Ovaj kontakt je samo za čitanje. Ne može se izbrisati, ali ga možete sakriti."</string>
@@ -194,7 +194,7 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"Novi kontakti će biti sačuvani na račun <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"Odaberite zadani račun za nove kontakte:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"Kreiraj novi kontakt"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Uređivanje kontakta"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"Uredite kontakt"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"Samo prikaz"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"Odaberite kontakt za uređivanje"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"Povezani kontakti"</string>
@@ -224,7 +224,7 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Događaj"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Odnos"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Ime"</string>
-    <string name="header_email_entry" msgid="8666093061171624478">"E-pošta"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"Adresa e-pošte"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Telefon"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"smjernice do lokacije"</string>
     <string name="content_description_recent_sms" msgid="1666389577263317445">"nedavni sms-ovi. <xliff:g id="MESSAGE_BODY">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. kliknite da odgovorite"</string>
@@ -475,7 +475,7 @@
     <string name="no_contact_to_share" msgid="1276397530378323033">"Nema kontakata za dijeljenje."</string>
     <string name="menu_contacts_filter" msgid="2165153460860262501">"Kontakti za prikaz"</string>
     <string name="activity_title_contacts_filter" msgid="8275542497615516969">"Kontakti za prikaz"</string>
-    <string name="custom_list_filter" msgid="9048525797111024204">"Prilagodi prikaz"</string>
+    <string name="custom_list_filter" msgid="9048525797111024204">"Prilagodite prikaz"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"Sačuvaj"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"Pretražite kontakte"</string>
     <string name="contactsFavoritesLabel" msgid="8417039765586853670">"Omiljeni"</string>

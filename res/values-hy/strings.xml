@@ -85,7 +85,7 @@
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Սա միայն կարդալու կոնտակտ է: Այն չեք կարող ջնջել, սակայն կարող եք թաքցնել:"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Թաքցնել կոնտակտը"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"Այս հաշվի միայն կարդալու թույլտվությամբ կոնտակտները կթաքցվեն (չեն ջնջվի):"</string>
-    <string name="single_delete_confirmation" msgid="3106905986948679720">"Ջնջե՞լ այս կոնտակտը:"</string>
+    <string name="single_delete_confirmation" msgid="3106905986948679720">"Ջնջե՞լ այս կոնտակտը"</string>
     <string name="batch_delete_confirmation" msgid="3984346060324014108">"Ջնջե՞լ ընտրված կոնտակտները:"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"Ձեր միայն կարդալու հաշիվների կոնտակտները չեն կարող ջնջվել, սակայն կարող են թաքցվել:"</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"Ջնջվող կոնտակտները պարունակում են տվյալներ մի քանի հաշիվներից: Միայն կարդալու հաշիվների տվյալները կթաքցվեն, սակայն չեն ջնջվի:"</string>
@@ -120,7 +120,7 @@
     <string name="groupMembersAddedToast" msgid="4824834898718972768">"Ավելացվեց պիտակին"</string>
     <string name="groupSavedErrorToast" msgid="2355891714292740162">"Չհաջողվեց պահել պիտակի փոփոխությունները"</string>
     <string name="groupExistsErrorMessage" msgid="5196811283836946189">"Այս անունով խումբ արդեն կա"</string>
-    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Որոշ կոնտակտներ էլփոստի հասցե չունեն:"</string>
+    <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"Որոշ կոնտակտներ էլ․ հասցե չունեն:"</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"Որոշ կոնտակտներ հեռախոսահամար չունեն:"</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"Ուղարկել նամակ"</string>
     <string name="menu_sendMessageOption" msgid="8850168125274916426">"Ուղարկել հաղորդագրություն"</string>
@@ -131,7 +131,7 @@
     <string name="search_settings_description" msgid="2675223022992445813">"Ձեր կոնտակտների անունները"</string>
     <string name="quickcontact_transparent_view_description" msgid="987959416759562455">"Սեղմեք՝ նախորդ էկրանին վերադառնալու համար"</string>
     <string name="quickcontact_add_phone_number" msgid="731665835910658965">"Ավելացնել հեռախոսահամար"</string>
-    <string name="quickcontact_add_email" msgid="739298028384348482">"Ավելացնել էլփոստի հասցե"</string>
+    <string name="quickcontact_add_email" msgid="739298028384348482">"Ավելացնել էլ․ հասցե"</string>
     <string name="missing_app" msgid="1466111003546611387">"Այս գործողությունը կատարելու համար ոչ մի ծրագիր չի գտնվել:"</string>
     <string name="menu_share" msgid="943789700636542260">"Կիսվել"</string>
     <string name="menu_add_contact" msgid="3198704337220892684">"Ավելացնել կոնտակտներում"</string>
@@ -243,7 +243,7 @@
     <string name="suggestion_card_help_message" msgid="4474061044387181093">"Այս կոնտակտները հնարավոր է միևնույն մարդու կոնտակտներ են։ Կարող եք դրանք միակցել և ստեղծել մեկ կոնտակտ։"</string>
     <string name="editor_delete_view_description" msgid="8583095381562991959">"Ջնջել <xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g>"</string>
     <string name="editor_delete_view_description_short" msgid="7335518371270844912">"Ջնջել <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
-    <string name="menu_assistant" msgid="5760693735722052454">"Առաջարկներ"</string>
+    <string name="menu_assistant" msgid="5760693735722052454">"Հուշումներ"</string>
     <string name="menu_assistant_new_badge" msgid="3132884821616980034">"Նոր"</string>
     <string name="navigation_drawer_open" msgid="1126498472143250642">"Բացել նավարկման դարակը"</string>
     <string name="navigation_drawer_close" msgid="4137416137011817930">"Փակել նավարկման դարակը"</string>
@@ -254,7 +254,7 @@
     <string name="permission_explanation_subheader_calendar_and_SMS" msgid="5411144298889835768">"Միջոցառումներն ու SMS հաղորդագրությունները"</string>
     <string name="permission_explanation_subheader_calendar" msgid="8785323496211704613">"Իրադարձություններ"</string>
     <string name="permission_explanation_subheader_SMS" msgid="1904552086449525567">"Հաղորդագրություններ"</string>
-    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Առաջարկներ"</string>
+    <string name="hamburger_feature_highlight_header" msgid="5762679188565585072">"Հուշումներ"</string>
     <string name="hamburger_feature_highlight_body" msgid="4403398269286898733">"Կոնտակտները պահեք տեսակավորված և ցանկացած պահի հեշտությամբ գտեք ձեր ուզած կոնտակտը"</string>
     <string name="undo" msgid="1425165101664071422">"Հետարկել"</string>
     <string name="call_custom" msgid="6385303130912713318">"Զանգել <xliff:g id="CUSTOM_LABEL">%s</xliff:g>-ին"</string>

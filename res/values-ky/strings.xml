@@ -229,7 +229,7 @@
     <string name="content_description_recent_call_type_missed" msgid="7371810920196048204">"жооп берилбей калган"</string>
     <string name="content_description_recent_call" msgid="5183800406316723676">"акыркы чалуу. <xliff:g id="CALL_TYPE">%1$s</xliff:g>. <xliff:g id="PHONE_NUMBER">%2$s</xliff:g>. <xliff:g id="DATE">%3$s</xliff:g>. кайра чалуу үчүн чыкылдатыңыз"</string>
     <string name="message_from_you_prefix" msgid="7180706529908434482">"Сиз: <xliff:g id="SMS_BODY">%s</xliff:g>"</string>
-    <string name="editor_more_fields" msgid="3630987771304393421">"Калган талааларды көрсөтүү"</string>
+    <string name="editor_more_fields" msgid="3630987771304393421">"Калганын көрсөтүү"</string>
     <string name="editor_change_photo_content_description" msgid="820879708069864340">"Байланыштын сүрөтүн өзгөртүү"</string>
     <string name="editor_add_photo_content_description" msgid="4194479313465418120">"Байланыштын сүрөтүн кошуу"</string>
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"Байланыштын сүрөтү"</string>
@@ -455,8 +455,8 @@
     <string name="display_options_view_names_as" msgid="6514632499276563482">"Ысым форматы"</string>
     <string name="display_options_view_given_name_first" msgid="3616004640258761473">"Аты биринчи жазылсын"</string>
     <string name="display_options_view_family_name_first" msgid="956445100777296467">"Фамилиясы биринчи жазылсын"</string>
-    <string name="settings_accounts" msgid="350219740670774576">"Каттоо эсептер"</string>
-    <string name="default_editor_account" msgid="699591683362420991">"Жаңы байланыштар үчүн демейки каттоо эсеби"</string>
+    <string name="settings_accounts" msgid="350219740670774576">"Аккаунттар"</string>
+    <string name="default_editor_account" msgid="699591683362420991">"Жаңы байланыштар үчүн демейки аккаунт"</string>
     <string name="settings_my_info_title" msgid="1534272456405343119">"Өзүм жөнүндө маалымат"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"Профилди жөндөө"</string>
     <string name="setting_about" msgid="7014388749752042863">"Байланыштар жөнүндө"</string>

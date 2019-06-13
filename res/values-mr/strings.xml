@@ -181,7 +181,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"बदल टाकून द्यायचे?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"टाकून द्या"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"रद्द करा"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"सानुकूलीकरणेे टाकूून द्यायची?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"कस्टमायझेशन काढून टाकायचे?"</string>
     <string name="enter_contact_name" msgid="4594274696120278368">"संपर्क शोधा"</string>
     <string name="title_edit_group" msgid="8602752287270586734">"संपर्क काढा"</string>
     <string name="local_profile_title" msgid="2021416826991393684">"माझे स्थानिक प्रोफाइल"</string>

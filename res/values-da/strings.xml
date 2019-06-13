@@ -80,7 +80,7 @@
     <string name="title_from_google" msgid="4664084747121207202">"Fra Google"</string>
     <string name="title_from_other_accounts" msgid="8307885412426754288">"Fra <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8728345772068064946">"Angiv ringetone"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Omdiriger til telefonsvarer"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="83331924006712755">"Viderestil til telefonsvarer"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="8725542534701811737">"Træk tilbage fra telefonsvarer"</string>
     <string name="readOnlyContactWarning" msgid="7514475664695089411">"Denne kontakt er skrivebeskyttet. Vedkommende kan ikke slettes, men kun skjules."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"Skjul kontakt"</string>
