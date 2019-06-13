@@ -499,7 +499,7 @@
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"نپذیرفتن"</string>
     <string name="account_sync_off" msgid="7646143254066243924">"همگام‌سازی خودکار غیرفعال است. برای فعال کردن ضربه بزنید."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"همگام‌سازی خودکار را فعال می‌کنید؟"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"‏تغییراتی که در همه برنامه‌ها و حساب‌ها، نه فقط در Google Contacts، ایجاد می‌کنید، بین وب و دستگاه‌هایتان به‌روز نگه داشته می‌شوند."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"‏تغییراتی که در همه برنامه‌ها و حساب‌ها، نه فقط در «مخاطبین Google»، ایجاد می‌کنید، بین وب و دستگاه‌هایتان به‌روز نگه داشته می‌شوند."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"فعال کردن"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"اتصال برقرار نیست"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"سیم کارت"</string>
