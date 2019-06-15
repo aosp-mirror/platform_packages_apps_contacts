@@ -186,7 +186,7 @@
     <string name="set_default" msgid="4417505153468300351">"Задаць у якасці стандартнага"</string>
     <string name="clear_default" msgid="7193185801596678067">"Скінуць стандартныя налады"</string>
     <string name="toast_text_copied" msgid="5143776250008541719">"Тэкст скапіяваны"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Скасаваць змены?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="9008214737653278989">"Адхіліць змены?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="3057023972074640671">"Скасаваць"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="3316573928085916146">"Скасаваць"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="4277114551206032979">"Скінуць налады?"</string>
