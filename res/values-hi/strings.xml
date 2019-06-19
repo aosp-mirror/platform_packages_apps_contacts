@@ -49,7 +49,7 @@
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"अनलिंक करें"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"क्या आप पहले से किए गए बदलावों को सहेजना और इस संपर्क को एकाधिक संपर्कों में अनलिंक करना चाहते हैं?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"सेव करें और अनलिंक करें"</string>
-    <string name="joinConfirmation" msgid="8262614843581924365">"क्या आप पहले से किए गए बदलावों को सहेजना और चयनित संपर्कों से लिंक करना चाहते हैं?"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"क्या आप पहले से किए गए बदलावों को सहेजना और चुने हुए संपर्कों से लिंक करना चाहते हैं?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"सेव करें और लिंक करें"</string>
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"लिंक किए जा रहे हैं"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"अनलिंक कर रहे हैं"</string>
@@ -86,7 +86,7 @@
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"संपर्क छिपाएं"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"इस संपर्क के उन खातों को बस छिपाया जाएगा जो सिर्फ़ पढ़ने के लिए हैं, हटाया नहीं जाएगा."</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"यह संपर्क मिटाएं?"</string>
-    <string name="batch_delete_confirmation" msgid="3984346060324014108">"चयनित संपर्क हटाएं?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"चुने गए संपर्क हटाएं?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"आपके केवल पढ़े जाने वाले खातों के संपर्क हटाए नहीं जा सकते, लेकिन उन्हें छिपाया जा सकता है."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"जिन खातों को हटाया जाना है उनमें एकाधिक खातों के विवरण हैं. केवल पढ़ने के लिए खातों के विवरण छिपाए जाएंगे, उन्हें हटाया नहीं जाएगा."</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"इस संपर्क को हटाने से एकाधिक खातों से विवरण हट जाएंगे."</string>
@@ -159,7 +159,7 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"रद्द करें"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"वापस जाएं"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"बंद करें"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपकी अभी तक दर्ज की गई जानकारी की कॉपी बनाई जाएगी."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चुने हुए संपर्क के संपादन पर जाएं? आपकी अभी तक दर्ज की गई जानकारी की कॉपी बनाई जाएगी."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग"</string>
