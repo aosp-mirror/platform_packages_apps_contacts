@@ -47,9 +47,9 @@
     <string name="menu_new_group_action_bar" msgid="3127059073617415221">"Napravi oznaku"</string>
     <string name="splitConfirmation" msgid="7342030840130187290">"Razdvojiti ovaj kontakt na više kontakata?"</string>
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"Razdvoji"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Želite li sačuvati promjene koje ste već načinili i razdvojiti ovaj kontakt na više kontakata?"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"Želite li sačuvati promjene koje ste već izvršili i razdvojiti ovaj kontakt na više kontakata?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"Sačuvaj i razdvoji"</string>
-    <string name="joinConfirmation" msgid="8262614843581924365">"Želite li sačuvati promjene koje ste već načinili i povezati s odabranim kontaktom?"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"Želite li sačuvati promjene koje ste već izvršili i povezati s odabranim kontaktom?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"Sačuvaj i poveži"</string>
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"Povezivanje u toku"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"Prekid povezanosti u toku"</string>
@@ -205,7 +205,7 @@
     <string name="menu_export_database" msgid="2659719297530170820">"Izvezi fajlove baze podataka"</string>
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Kreiraj novi kontakt"</string>
     <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Pogledaj više"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Vidi manje"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Prikaži manje"</string>
     <string name="about_card_title" msgid="2920942314212825637">"O kontaktu"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Izrađivanje lične kopije u toku…"</string>
     <string name="date_time_set" msgid="4761419824439606690">"Postavi"</string>
