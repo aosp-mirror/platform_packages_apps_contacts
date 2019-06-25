@@ -56,7 +56,7 @@
     <string name="menu_joinAggregate" msgid="3599512127797513606">"Միավորել"</string>
     <string name="menu_linkedContacts" msgid="400444389718855621">"Դիտել միակցված կոնտակտները"</string>
     <string name="menu_save" msgid="1727844363591825909">"Պահել"</string>
-    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Միավորել կոնտակտները"</string>
+    <string name="titleJoinContactDataWith" msgid="6825255752748313944">"Կապել կոնտակտները"</string>
     <string name="blurbJoinContactDataWith" msgid="5864256698061641841">"Ընտրեք կոնտակտը, որը ցանկանում եք միակցել <xliff:g id="NAME">%s</xliff:g>-ի հետ՝"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="2831414448851313345">"Առաջարկվող կոնտակները"</string>
     <string name="separatorJoinAggregateAll" msgid="7939932265026181043">"Բոլոր կոնտակտները"</string>
@@ -107,7 +107,7 @@
     <string name="contactSavedToast" msgid="9171862279493213075">"Կոնտակտը պահվեց"</string>
     <string name="contactUnlinkedToast" msgid="7122823195786012553">"Կոնտակտները ապակցվեցին"</string>
     <string name="contactSavedErrorToast" msgid="4827033473908688031">"Չհաջողվեց պահել կոնտակտի տվյալների փոփոխությունները"</string>
-    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Չհաջողվեց անջատել կոնտակտը"</string>
+    <string name="contactUnlinkErrorToast" msgid="2706297508166952431">"Չհաջողվեց առանձնացնել կոնտակտները"</string>
     <string name="contactJoinErrorToast" msgid="5735129234573327701">"Չհաջողվեց կապել կոնտակտը"</string>
     <string name="contactGenericErrorToast" msgid="3885457515665783976">"Չհաջողվեց պահել կոնտակտը"</string>
     <string name="contactPhotoSavedErrorToast" msgid="6860883564984042194">"Չհաջողվեց պահել կոնտակտի լուսանկարի փոփոխությունները"</string>
@@ -173,7 +173,7 @@
     <string name="contacts_unavailable_import_contacts" msgid="3182801738595937144">"Ներմուծել"</string>
     <string name="create_group_item_label" msgid="3263064599743742865">"Ստեղծել նոր…"</string>
     <string name="delete_group_dialog_message" msgid="335713829185261371">"Ջնջե՞լ «<xliff:g id="GROUP_LABEL">%1$s</xliff:g>» պիտակը (կոնտակտները չեն ջնջվի):"</string>
-    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Մուտքագրեք կոնտակտի անունը՝ մեկ ուրիշի հետ միավերլուց առաջ:"</string>
+    <string name="toast_join_with_empty_contact" msgid="1215465657839085613">"Նշեք կոնտակտի անունը"</string>
     <string name="copy_text" msgid="3257145021583508761">"Պատճենել սեղմատախտակին"</string>
     <string name="set_default" msgid="4417505153468300351">"Սահմանել ըստ կանխադրման"</string>
     <string name="clear_default" msgid="7193185801596678067">"Մաքրել լռելյայն"</string>
@@ -213,7 +213,7 @@
     <string name="header_event_entry" msgid="6738250422744401460">"Միջոցառում"</string>
     <string name="header_relation_entry" msgid="1520292958088146460">"Հարաբերություն"</string>
     <string name="header_name_entry" msgid="1592791008096288306">"Անուն"</string>
-    <string name="header_email_entry" msgid="8666093061171624478">"Էլփոստի հասցե"</string>
+    <string name="header_email_entry" msgid="8666093061171624478">"Էլ․ հասցե"</string>
     <string name="header_phone_entry" msgid="8450980572274173570">"Հեռախոս"</string>
     <string name="content_description_directions" msgid="2686791825798189335">"Երթուղիներ"</string>
     <string name="editor_more_fields" msgid="3630987771304393421">"Լրացուցիչ դաշտեր"</string>

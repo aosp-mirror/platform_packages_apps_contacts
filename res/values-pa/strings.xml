@@ -429,7 +429,7 @@
     <string name="caching_vcard_title" msgid="1226272312940516605">"ਕੈਸ਼ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> ਆਯਾਤ ਹੋ ਰਿਹਾ ਹੈ: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf ਫ਼ਾਈਲ ਵਿੱਚ ਨਿਰਯਾਤ ਕਰੋ"</string>
-    <string name="display_options_sort_list_by" msgid="7028809117272018712">"ਇਸ ਮੁਤਾਬਕ ਛਾਂਟੋ"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"ਇਸ ਮੁਤਾਬਕ ਕ੍ਰਮ-ਬੱਧ ਕਰੋ"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"ਧੁਨੀਆਤਮਿਕ ਨਾਮ"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"ਹਮੇਸਾਂ ਦਿਖਾਓ"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"ਖਾਲੀ ਹੋਣ \'ਤੇ ਲੁਕਾਓ"</string>
