@@ -495,9 +495,9 @@
     <string name="sim_import_failed_toast" msgid="5559267299793622705">"Gagal mengimpor kontak SIM"</string>
     <string name="sim_import_title" msgid="2511154832820812822">"Impor dari SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="1619832410253424452">"Batal"</string>
-    <string name="auto_sync_off" msgid="2180147284456026587">"Sinkronisasi otomatis tidak aktif. Tap untuk mengaktifkan."</string>
+    <string name="auto_sync_off" msgid="2180147284456026587">"Sinkronisasi otomatis tidak aktif. Ketuk untuk mengaktifkan."</string>
     <string name="dismiss_sync_alert" msgid="8941131776605093596">"Tutup"</string>
-    <string name="account_sync_off" msgid="7646143254066243924">"Sinkronisasi akun tidak aktif. Tap untuk mengaktifkan."</string>
+    <string name="account_sync_off" msgid="7646143254066243924">"Sinkronisasi akun tidak aktif. Ketuk untuk mengaktifkan."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="333965456829670541">"Aktifkan sinkronisasi otomatis?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5025336917533693997">"Perubahan yang Anda lakukan pada semua aplikasi dan akun, tidak hanya Google Kontak, akan terus diperbarui antara web dan perangkat."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Aktifkan"</string>
