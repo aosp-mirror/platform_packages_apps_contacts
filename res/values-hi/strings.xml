@@ -327,7 +327,7 @@
     <string name="ghostData_title" msgid="7496735200318496110">"शीर्षक"</string>
     <string name="label_notes" msgid="8337354953278341042">"नोट"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"पसंद के मुताबिक"</string>
-    <string name="label_sip_address" msgid="7252153678613978127">"एसआईपी"</string>
+    <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"वेबसाइट"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"लेबल"</string>
     <string name="email_home" msgid="8573740658148184279">"घर का ईमेल"</string>
@@ -425,7 +425,7 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"संपर्क"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"vCard को स्‍थानीय अस्‍थायी मेमोरी में संचित कर रहा है. वास्‍तविक आयात जल्‍दी ही प्रारंभ होगा."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"vCard आयात नहीं कर सका."</string>
-    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC पर प्राप्त संपर्क"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC पर मिला संपर्क"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"संचय कर रहा है"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> आयात कर रहा है: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf फाइल में निर्यात करें"</string>

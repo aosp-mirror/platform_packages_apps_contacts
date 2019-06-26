@@ -208,7 +208,7 @@
     <string name="add_new_account" msgid="5748627740680940264">"Дадаць новы ўліковы запіс"</string>
     <string name="menu_export_database" msgid="2659719297530170820">"Экспарт базы дадзеных файлаў"</string>
     <string name="action_menu_add_new_contact_button" msgid="5506832825256203208">"Новы кантакт"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Болей"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="3779194067124758079">"Яшчэ"</string>
     <string name="expanding_entry_card_view_see_less" msgid="5344160551629714168">"Паказаць менш"</string>
     <string name="about_card_title" msgid="2920942314212825637">"Інфармацыя"</string>
     <string name="toast_making_personal_copy" msgid="288549957278065542">"Стварэнне асабістай копіі..."</string>
@@ -441,7 +441,7 @@
     <string name="caching_vcard_title" msgid="1226272312940516605">"Кэшаванне..."</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"Імпарт <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">"Экспартаваць у файл .vcf"</string>
-    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Сартаваць па"</string>
+    <string name="display_options_sort_list_by" msgid="7028809117272018712">"Сартаваць:"</string>
     <string name="display_options_phonetic_name_fields" msgid="3771577099236534776">"Фанетычнае імя"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="7253911385818398903">"Заўсёды паказваць"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2672008764795671104">"Схаваць, калі поле пустое"</string>
@@ -517,7 +517,7 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="1070332014838295599">"Уключыць"</string>
     <string name="connection_error_message" msgid="7046408921529247089">"Няма падключэння"</string>
     <string name="single_sim_display_label" msgid="6985770499439371497">"SIM-карта"</string>
-    <string name="show_more_content_description" msgid="4277410425912984722">"Паказаць больш"</string>
+    <string name="show_more_content_description" msgid="4277410425912984722">"Яшчэ"</string>
     <string name="importing_sim_finished_title" msgid="5196369441294050721">"Імпартаванне SIM-карты скончана"</string>
     <string name="importing_sim_failed_title" msgid="39706901030537985">"Не ўдалося імпартаваць"</string>
     <string name="importing_sim_failed_message" msgid="3345258302998021066">"Не ўдалося імпартаваць кантакты з SIM-карты"</string>
