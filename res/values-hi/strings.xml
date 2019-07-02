@@ -33,7 +33,7 @@
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"पसंदीदा से निकाल दिया गया"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"पसंदीदा में जोड़ा गया"</string>
     <string name="menu_editContact" msgid="9042415603857662633">"संपादित करें"</string>
-    <string name="menu_deleteContact" msgid="6788644058868189393">"हटाएं"</string>
+    <string name="menu_deleteContact" msgid="6788644058868189393">"मिटाएं"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"फ़ोटो बदलें"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"शॉर्टकट बनाएं"</string>
     <string name="menu_splitAggregate" msgid="2627252205317945563">"अनलिंक करें"</string>
@@ -49,7 +49,7 @@
     <string name="splitConfirmation_positive_button" msgid="9129409098807939699">"अनलिंक करें"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="7719062163511895696">"क्या आप पहले से किए गए बदलावों को सहेजना और इस संपर्क को एकाधिक संपर्कों में अनलिंक करना चाहते हैं?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="9073444264887244032">"सेव करें और अनलिंक करें"</string>
-    <string name="joinConfirmation" msgid="8262614843581924365">"क्या आप पहले से किए गए बदलावों को सहेजना और चयनित संपर्कों से लिंक करना चाहते हैं?"</string>
+    <string name="joinConfirmation" msgid="8262614843581924365">"क्या आप पहले से किए गए बदलावों को सहेजना और चुने हुए संपर्कों से लिंक करना चाहते हैं?"</string>
     <string name="joinConfirmation_positive_button" msgid="4573092849769149516">"सेव करें और लिंक करें"</string>
     <string name="contacts_linking_progress_bar" msgid="2846494347384549277">"लिंक किए जा रहे हैं"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5989310198163726929">"अनलिंक कर रहे हैं"</string>
@@ -86,12 +86,12 @@
     <string name="readOnlyContactWarning_positive_button" msgid="8914797212167683673">"संपर्क छिपाएं"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="4717023505914239809">"इस संपर्क के उन खातों को बस छिपाया जाएगा जो सिर्फ़ पढ़ने के लिए हैं, हटाया नहीं जाएगा."</string>
     <string name="single_delete_confirmation" msgid="3106905986948679720">"यह संपर्क मिटाएं?"</string>
-    <string name="batch_delete_confirmation" msgid="3984346060324014108">"चयनित संपर्क हटाएं?"</string>
+    <string name="batch_delete_confirmation" msgid="3984346060324014108">"चुने गए संपर्क हटाएं?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="8411117621035639964">"आपके केवल पढ़े जाने वाले खातों के संपर्क हटाए नहीं जा सकते, लेकिन उन्हें छिपाया जा सकता है."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="8207205649127030030">"जिन खातों को हटाया जाना है उनमें एकाधिक खातों के विवरण हैं. केवल पढ़ने के लिए खातों के विवरण छिपाए जाएंगे, उन्हें हटाया नहीं जाएगा."</string>
     <string name="multipleContactDeleteConfirmation" msgid="5235324124905653550">"इस संपर्क को हटाने से एकाधिक खातों से विवरण हट जाएंगे."</string>
     <string name="deleteConfirmation" msgid="3512271779086656043">"यह संपर्क मिटाएं?"</string>
-    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"हटाएं"</string>
+    <string name="deleteConfirmation_positive_button" msgid="7857888845028586365">"मिटाएं"</string>
     <string name="invalidContactMessage" msgid="8215051456181842274">"संपर्क मौजूद नहीं है."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="8831303345367275472">"संपर्कों को होम स्क्रीन में जोड़ा गया."</string>
     <string name="createContactShortcutSuccessful" msgid="953651153238790069">"<xliff:g id="NAME">%s</xliff:g> को होम स्क्रीन में जोड़ा गया."</string>
@@ -123,7 +123,7 @@
     <string name="groupSomeContactsNoEmailsToast" msgid="8211161470235548732">"कुछ संपर्कों में ईमेल नहीं हैं."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="5530760834827530509">"कुछ संपर्कों में फ़ोन नंबर नहीं हैं."</string>
     <string name="menu_sendEmailOption" msgid="5978319931321657780">"ईमेल भेजें"</string>
-    <string name="menu_sendMessageOption" msgid="8850168125274916426">"संदेश भेजें"</string>
+    <string name="menu_sendMessageOption" msgid="8850168125274916426">"मैसेज भेजें"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="1936544190231136729">"संपर्क चुनें"</string>
     <string name="send_to_selection" msgid="2251339182881603540">"भेजें"</string>
     <string name="listFoundAllContactsZero" msgid="922980883593159444">"कोई संपर्क नहीं"</string>
@@ -159,7 +159,7 @@
     <string name="cancel_button_content_description" msgid="1288652456274531846">"रद्द करें"</string>
     <string name="back_arrow_content_description" msgid="4355362760545735065">"वापस जाएं"</string>
     <string name="action_menu_back_from_edit_select" msgid="6435476408621731420">"बंद करें"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चयनित संपर्क के संपादन पर जाएं? आपकी अभी तक दर्ज की गई जानकारी की कॉपी बनाई जाएगी."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="6549585283910518095">"चुने हुए संपर्क के संपादन पर जाएं? आपकी अभी तक दर्ज की गई जानकारी की कॉपी बनाई जाएगी."</string>
     <string name="contact_directory_description" msgid="683398073603909119">"निर्देशिका <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="5464130076132770781">"सेटिंग"</string>
     <string name="menu_settings" msgid="377929915873428211">"सेटिंग"</string>
@@ -309,7 +309,7 @@
     <string name="name_family" msgid="7466985689626017037">"उपनाम"</string>
     <string name="name_prefix" msgid="59756378548779822">"नाम के पहले का टाइटल"</string>
     <string name="name_middle" msgid="8467433655992690326">"मध्य नाम"</string>
-    <string name="name_suffix" msgid="3855278445375651441">"नाम का अंतिम भाग"</string>
+    <string name="name_suffix" msgid="3855278445375651441">"नाम का आखिरी भाग"</string>
     <string name="name_phonetic" msgid="4259595234312430484">"फ़ोनेटिक नाम"</string>
     <string name="name_phonetic_given" msgid="8723179018384187631">"फ़ोनेटिक नाम"</string>
     <string name="name_phonetic_middle" msgid="8643721493320405200">"फ़ोनेटिक मध्य नाम"</string>
@@ -327,7 +327,7 @@
     <string name="ghostData_title" msgid="7496735200318496110">"शीर्षक"</string>
     <string name="label_notes" msgid="8337354953278341042">"नोट"</string>
     <string name="label_custom_field" msgid="1994056912242214426">"पसंद के मुताबिक"</string>
-    <string name="label_sip_address" msgid="7252153678613978127">"एसआईपी"</string>
+    <string name="label_sip_address" msgid="7252153678613978127">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="4202998982804009261">"वेबसाइट"</string>
     <string name="groupsLabel" msgid="7000816729542098972">"लेबल"</string>
     <string name="email_home" msgid="8573740658148184279">"घर का ईमेल"</string>
@@ -354,7 +354,7 @@
     <string name="chat_icq" msgid="8438405386153745775">"ICQ का उपयोग करके बातचीत करें"</string>
     <string name="chat_jabber" msgid="7561444230307829609">"Jabber का उपयोग करके बातचीत करें"</string>
     <string name="chat" msgid="9025361898797412245">"बातचीत करें"</string>
-    <string name="description_minus_button" msgid="6908099247930477551">"हटाएं"</string>
+    <string name="description_minus_button" msgid="6908099247930477551">"मिटाएं"</string>
     <string name="expand_name_fields_description" msgid="6948274252874552543">"ज़्यादा नाम फ़ील्ड दिखाएं"</string>
     <string name="collapse_name_fields_description" msgid="4757877385895561556">"नाम फ़ील्ड संक्षिप्त करें"</string>
     <string name="expand_phonetic_name_fields_description" msgid="9133052674087187927">"ज़्यादा फ़ोनेटिक नाम फ़ील्ड दिखाएं"</string>
@@ -425,7 +425,7 @@
     <string name="vcard_unknown_filename" msgid="7171709890959915954">"संपर्क"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"vCard को स्‍थानीय अस्‍थायी मेमोरी में संचित कर रहा है. वास्‍तविक आयात जल्‍दी ही प्रारंभ होगा."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"vCard आयात नहीं कर सका."</string>
-    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC पर प्राप्त संपर्क"</string>
+    <string name="nfc_vcard_file_name" msgid="2823095213265993609">"NFC पर मिला संपर्क"</string>
     <string name="caching_vcard_title" msgid="1226272312940516605">"संचय कर रहा है"</string>
     <string name="progress_notifier_message" msgid="2311011466908220528">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> आयात कर रहा है: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="4407527157056120858">".vcf फाइल में निर्यात करें"</string>
@@ -480,7 +480,7 @@
     <string name="account_filter_view_checked" msgid="6696859503887762213">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक किया गया"</string>
     <string name="account_filter_view_not_checked" msgid="2248684521205038389">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> चेक नहीं किया गया"</string>
     <string name="description_search_video_call" msgid="5841525580339803272">"वीडियो कॉल करें"</string>
-    <string name="description_delete_contact" msgid="53835657343783663">"हटाएं"</string>
+    <string name="description_delete_contact" msgid="53835657343783663">"मिटाएं\\"</string>
     <string name="description_no_name_header" msgid="8884991311595943271">"पदलोप चिह्न"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="249939425761315252">"इस शॉर्टकट को अक्षम कर दिया गया है"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="6845645831837615899">"संपर्क निकाल दिया गया था"</string>
