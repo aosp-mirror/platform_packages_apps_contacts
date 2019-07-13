@@ -32,7 +32,7 @@
     <string name="menu_removeStar" msgid="5844227078364227030">"पसंदीदा से निकालें"</string>
     <string name="description_action_menu_remove_star" msgid="4699640108012265178">"पसंदीदा से निकाल दिया गया"</string>
     <string name="description_action_menu_add_star" msgid="3327186327234177456">"पसंदीदा में जोड़ा गया"</string>
-    <string name="menu_editContact" msgid="9042415603857662633">"संपादित करें"</string>
+    <string name="menu_editContact" msgid="9042415603857662633">"बदलाव करें"</string>
     <string name="menu_deleteContact" msgid="6788644058868189393">"मिटाएं"</string>
     <string name="menu_change_photo" msgid="7769177631511496210">"फ़ोटो बदलें"</string>
     <string name="menu_create_contact_shortcut" msgid="1663022219127343858">"शॉर्टकट बनाएं"</string>
@@ -190,9 +190,9 @@
     <string name="contact_editor_prompt_one_account" msgid="3087691056345099310">"नए संपर्कों को <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> में सहेजा जाएगा."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="8565761674283473549">"नए संपर्कों के लिए डिफ़ॉल्ट खाता चुनें:"</string>
     <string name="contact_editor_title_new_contact" msgid="3042788718983070111">"नया संपर्क बनाएं"</string>
-    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"संपर्क संपादित करें"</string>
+    <string name="contact_editor_title_existing_contact" msgid="4898475703683187798">"संपर्क में बदलाव करें"</string>
     <string name="contact_editor_title_read_only_contact" msgid="2443496574528842237">"केवल देखने के लिए"</string>
-    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"संपादित करने के लिए संपर्क चुनें"</string>
+    <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4186699385645902152">"बदलाव करने के लिए संपर्क चुनें"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="4618465940423857694">"लिंक किए गए संपर्क"</string>
     <string name="contact_editor_add_linked_contact" msgid="426142748048816297">"जोड़ें"</string>
     <string name="contact_editor_unlink_contacts" msgid="4525214336177236653">"अनलिंक करें"</string>
@@ -222,7 +222,7 @@
     <string name="editor_contact_photo_content_description" msgid="8571975622926162369">"संपर्क की फ़ोटो"</string>
     <string name="editor_failed_to_load" msgid="1623639078580475818">"संपादक को खोलने में विफल रहा."</string>
     <string name="editor_account_selector_title" msgid="4426337993307015833">"इसमें सहेजा जा रहा है"</string>
-    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> की संपर्क जानकारी संपादित नहीं की जा सकती है"</string>
+    <string name="editor_account_selector_read_only_title" msgid="4137969650184457126">"<xliff:g id="ACCOUNT">%s</xliff:g> की संपर्क जानकारी में बदलाव नहीं किया जा सकता है"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3244619714781727946">"संपर्क लिंक करें"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8236954313106630862">"अभी नहीं"</string>
     <string name="suggestion_card_this_contact_title" msgid="3039457405374454914">"यह संपर्क"</string>
