@@ -19,7 +19,7 @@
     <string name="applicationLabel" msgid="3906689777043645443">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="contactsList" msgid="8661624236494819731">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="shortcut_add_contact" msgid="7476283631356909204">"ເພີ່ມລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
-    <string name="shortcutContact" msgid="749243779392912958">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="shortcutContact" msgid="749243779392912958">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="shortcutDialContact" msgid="746622101599186779">"ໂທຫາໂດຍກົງ"</string>
     <string name="shortcutMessageContact" msgid="2460337253595976198">"ສົ່ງຂໍ້ຄວາມຫາໂດຍກົງ"</string>
     <string name="shortcutActivityTitle" msgid="1504383567778497348">"ເລືອກລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
@@ -147,7 +147,7 @@
     <string name="label_name_dialog_hint" msgid="1276051790427638142">"ຊື່ປ້າຍກຳກັບ"</string>
     <string name="audio_chat" msgid="2535716629358298691">"ການສົນທະນາດ້ວຍສຽງ"</string>
     <string name="video_chat" msgid="1872255818640336072">"ການສົນທະນາດ້ວຍວິດີໂອ"</string>
-    <string name="account_type_format" msgid="718948015590343010">"<xliff:g id="SOURCE">%1$s</xliff:g> ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="account_type_format" msgid="718948015590343010">"ລາຍຊື່ຜູ້ຕິດຕໍ່ <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="5283997303922067997">"<xliff:g id="SOURCE">%1$s</xliff:g> ບັນ​ຊີ"</string>
     <string name="take_photo" msgid="7496128293167402354">"ຖ່າຍ​ຮູບ"</string>
     <string name="take_new_photo" msgid="7341354729436576304">"ຖ່າຍຮູບໃໝ່"</string>
@@ -366,7 +366,7 @@
     <string name="list_filter_all_accounts" msgid="8908683398914322369">"ລາຍຊື່ຜູ້ຕິດຕໍ່ທັງໝົດ"</string>
     <string name="list_filter_all_starred" msgid="5031734941601931356">"ຕິດດາວແລ້ວ"</string>
     <string name="list_filter_customize" msgid="4789963356004169321">"ປັບແຕ່ງ"</string>
-    <string name="list_filter_single" msgid="5871400283515893087">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="list_filter_single" msgid="5871400283515893087">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="display_ungrouped" msgid="6885954210243119591">"ລາຍຊື່ຜູ້ຕິດຕໍ່ອື່ນໆທັງໝົດ"</string>
     <string name="display_all_contacts" msgid="2031647544742889505">"ລາຍຊື່ຜູ້ຕິດຕໍ່ທັງໝົດ"</string>
     <string name="menu_sync_remove" msgid="3266725887008450161">"ລຶບກຸ່ມຊິ້ງຂໍ້ມູນ"</string>
@@ -422,7 +422,7 @@
     <string name="vcard_import_request_rejected_message" msgid="2890471184508516011">"ຄຳຂໍການນຳເຂົ້າ vCard ຖືກປະຕິເສດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."</string>
     <string name="contacts_export_will_start_message" msgid="8538705791417534431">"ລາຍຊື່ຜູ້ຕິດຕໍ່ຈະຖືກສົ່ງອອກໃນໄວໆນີ້."</string>
     <string name="vcard_export_request_rejected_message" msgid="2844874826431327531">"ຄຳຂໍການສົ່ງ vCard ອອກ ຖືກປະຕິເສດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."</string>
-    <string name="vcard_unknown_filename" msgid="7171709890959915954">"ລາຍຊື່ຜູ່ຕິດຕໍ່"</string>
+    <string name="vcard_unknown_filename" msgid="7171709890959915954">"ລາຍຊື່ຜູ້ຕິດຕໍ່"</string>
     <string name="caching_vcard_message" msgid="4926308675041506756">"ກຳລັງເກັບຂໍ້ມູນ vCard ໃສ່ບ່ອນຈັດເກັບຂໍ້ມູນຊົ່ວຄາວໃນອຸປະກອນ. ການນຳເຂົ້າຈະເລີ່ມຂຶ້ນໃນໄວໆນີ້."</string>
     <string name="vcard_import_failed" msgid="5223531255894842406">"ບໍ່ສາມາດນຳເຂົ້າ vCard ໄດ້."</string>
     <string name="nfc_vcard_file_name" msgid="2823095213265993609">"ລາຍຊື່ຜູ່ຕິດຕໍ່ທີ່ໄດ້ຮັບຜ່ານ NFC"</string>
