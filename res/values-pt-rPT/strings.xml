@@ -24,7 +24,7 @@
     <string name="shortcutMessageContact" msgid="2460337253595976198">"Mensagem direta"</string>
     <string name="shortcutActivityTitle" msgid="1504383567778497348">"Escolher contacto"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="6527505405325862674">"Adicionar ao contacto"</string>
-    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolher um contacto"</string>
+    <string name="contactPickerActivityTitle" msgid="4301062192337417640">"Escolha um contacto"</string>
     <string name="groupMemberPickerActivityTitle" msgid="1431750793695262522">"Selecionar"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="2436981165830115659">"Criar novo contacto"</string>
     <string name="searchHint" msgid="8482945356247760701">"Pesquisar contactos"</string>
