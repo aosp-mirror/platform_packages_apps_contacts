@@ -501,7 +501,7 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Sinkronizazio automatikoa aktibatu nahi duzu?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Webgunearekin eta gailuekin sinkronizatuko dira aplikazio eta kontu guztietan egiten dituzun aldaketak, ez bakarrik Google Kontaktuak aplikazioan egiten dituzunak."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Aktibatu"</string>
-    <string name="connection_error_message" msgid="7446131881946138093">"Ez dago konexiorik"</string>
+    <string name="connection_error_message" msgid="7446131881946138093">"Ez zaude konektatuta Internetera"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM txart."</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"Erakutsi gehiago"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"Inportatu da SIM txartela"</string>
