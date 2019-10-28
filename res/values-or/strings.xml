@@ -443,7 +443,7 @@
     <string name="settings_my_info_title" msgid="1534272456405343119">"ମୋ ସୂଚନା"</string>
     <string name="set_up_profile" msgid="7370213843590143771">"ନିଜ ପ୍ରୋଫାଇଲ୍‍ ସେଟ୍‍ କରନ୍ତୁ"</string>
     <string name="setting_about" msgid="7014388749752042863">"ଯୋଗାଯୋଗ ବିଷୟରେ"</string>
-    <string name="share_favorite_contacts" msgid="4280926751003081042">"ପସନ୍ଦଦାର୍ ଯୋଗାଯୋଗ ସେୟାର୍‍ କରନ୍ତୁ"</string>
+    <string name="share_favorite_contacts" msgid="4280926751003081042">"ପସନ୍ଦର ଯୋଗାଯୋଗ ସେୟାର୍‍ କରନ୍ତୁ"</string>
     <string name="share_contacts" msgid="8109287987498711664">"ସମସ୍ତ ଯୋଗାଯୋଗ ସେୟାର୍‍ କରନ୍ତୁ"</string>
     <string name="share_contacts_failure" msgid="1216431977330560559">"ଯୋଗଯୋଗ ସେୟାର୍‍ କରିହେଲା ନାହିଁ"</string>
     <string name="dialog_export" msgid="1628001095187741417">"ଯୋଗାଯୋଗ ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ"</string>
@@ -455,7 +455,7 @@
     <string name="custom_list_filter" msgid="9048525797111024204">"ଦୃଶ୍ୟ କୁ ଷ୍ଟମାଇଜ୍ କରନ୍ତୁ"</string>
     <string name="menu_custom_filter_save" msgid="2679793632208086460">"ସେଭ୍‌ କରନ୍ତୁ"</string>
     <string name="hint_findContacts" msgid="7128627979899070325">"ଯୋଗାଯୋଗଙ୍କୁ ଖୋଜନ୍ତୁ"</string>
-    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ପସନ୍ଦଦାର୍"</string>
+    <string name="contactsFavoritesLabel" msgid="8417039765586853670">"ପସନ୍ଦର"</string>
     <string name="menu_import" msgid="6107961135813836467">"ଇମ୍ପୋର୍ଟ କରନ୍ତୁ"</string>
     <string name="menu_export" msgid="2658783911863503902">"ଏକ୍ସପୋର୍ଟ କରନ୍ତୁ"</string>
     <string name="menu_blocked_numbers" msgid="5272951629083025995">"ଅବରୋଧ କରାଯାଇଥିବା ନମ୍ବର୍"</string>
