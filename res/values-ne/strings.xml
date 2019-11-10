@@ -238,7 +238,7 @@
     <string name="menu_title_groups" msgid="3722199658759568221">"लेबलहरू"</string>
     <string name="menu_title_filters" msgid="349866121417914494">"खाताहरू"</string>
     <string name="hamburger_feature_highlight_header" msgid="1786641424099282909">"सुझावहरू"</string>
-    <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"अाफ्ना सम्पर्कहरूलाई व्यवस्थित र उपयोगी बनाइराख्नुहोस्"</string>
+    <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"आफ्ना सम्पर्कहरूलाई व्यवस्थित र उपयोगी बनाइराख्नुहोस्"</string>
     <string name="undo" msgid="2446931036220975026">"अन्डू गर्नुहोस्"</string>
     <string name="call_custom" msgid="2844900154492073207">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> मा कल गर्नुहोस्"</string>
     <string name="call_home" msgid="2443904771140750492">"घरमा कल गर्नुहोस्"</string>
