@@ -175,7 +175,7 @@
     <string name="delete_group_dialog_message" msgid="754082019928025404">"Vols suprimir l\'etiqueta \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (No se\'n suprimiran els contactes.)"</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"Escriu el nom del contacte abans d\'enllaçar-lo amb un altre contacte."</string>
     <string name="copy_text" msgid="6835250673373028909">"Copia al porta-retalls"</string>
-    <string name="set_default" msgid="3704074175618702225">"Predeterminat"</string>
+    <string name="set_default" msgid="3704074175618702225">"Defineix com a predeterminat"</string>
     <string name="clear_default" msgid="2055883863621491533">"Esborra els valors predeterminats"</string>
     <string name="toast_text_copied" msgid="845906090076228771">"Text copiat"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Vols descartar els canvis?"</string>
