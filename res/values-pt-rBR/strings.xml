@@ -145,8 +145,8 @@
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Renomear marcador"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"Nome do marcador"</string>
     <string name="label_name_dialog_hint" msgid="7027635439255596191">"Nome - marcador"</string>
-    <string name="audio_chat" msgid="5921525823973697372">"Bate-papo por voz"</string>
-    <string name="video_chat" msgid="2477295971622477433">"Bate-papo por vídeo"</string>
+    <string name="audio_chat" msgid="5921525823973697372">"Chat por voz"</string>
+    <string name="video_chat" msgid="2477295971622477433">"Chat por vídeo"</string>
     <string name="account_type_format" msgid="4926968760755013450">"Contato de <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="google_account_type_format" msgid="4046692740262396811">"Conta do <xliff:g id="SOURCE">%1$s</xliff:g>"</string>
     <string name="take_photo" msgid="820071555236547516">"Tirar foto"</string>
@@ -342,7 +342,7 @@
     <string name="postal_postcode" msgid="33077708757232659">"CEP"</string>
     <string name="postal_country" msgid="6642804283917549861">"País"</string>
     <string name="map_home" msgid="2169053372466501148">"Ver endereço residencial"</string>
-    <string name="map_work" msgid="8296916987749726461">"Ver endereço comercial"</string>
+    <string name="map_work" msgid="8296916987749726461">"Ver endereço do trabalho"</string>
     <string name="map_other" msgid="4009931029322619674">"Visualizar endereço"</string>
     <string name="map_custom" msgid="7797812861927817335">"Ver endereço de <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2044861410748519265">"Bater papo usando o AIM"</string>
@@ -353,7 +353,7 @@
     <string name="chat_gtalk" msgid="2927882858741904064">"Bater papo usando o Google Talk"</string>
     <string name="chat_icq" msgid="4289041376069626281">"Bater papo usando o ICQ"</string>
     <string name="chat_jabber" msgid="1097960594943864847">"Bater papo usando o Jabber"</string>
-    <string name="chat" msgid="8390862712584830532">"Bate-papo"</string>
+    <string name="chat" msgid="8390862712584830532">"Chat"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"excluir"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"Mostrar mais campos de nome"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"Recolher campos de nome"</string>
