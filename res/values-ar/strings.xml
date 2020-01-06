@@ -191,7 +191,7 @@
     <string name="delete_group_dialog_message" msgid="754082019928025404">"حذف التصنيف \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"؟ (لن يتم حذف جهات الاتصال نفسها)."</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"اكتب اسم جهة الاتصال قبل ربطها بجهة اتصال أخرى."</string>
     <string name="copy_text" msgid="6835250673373028909">"نسخ إلى الحافظة"</string>
-    <string name="set_default" msgid="3704074175618702225">"تعيين كافتراضي"</string>
+    <string name="set_default" msgid="3704074175618702225">"الضبط على الإعداد التلقائي"</string>
     <string name="clear_default" msgid="2055883863621491533">"محو الإعدادات التلقائية"</string>
     <string name="toast_text_copied" msgid="845906090076228771">"تم نسخ النص"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"هل تريد إلغاء التغييرات؟"</string>
