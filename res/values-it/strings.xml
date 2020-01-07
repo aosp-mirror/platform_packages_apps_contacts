@@ -82,7 +82,7 @@
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Imposta suoneria"</string>
     <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"Invia a segreteria"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"Non indirizzare a segreteria"</string>
-    <string name="readOnlyContactWarning" msgid="4158660823025751201">"Il contatto è di solo lettura. Non puoi eliminarlo, ma puoi nasconderlo."</string>
+    <string name="readOnlyContactWarning" msgid="4158660823025751201">"Il contatto è in sola lettura. Non puoi eliminarlo, ma puoi nasconderlo."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"Nascondi contatto"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"Gli account di sola lettura in questo contatto verranno nascosti, non eliminati."</string>
     <string name="single_delete_confirmation" msgid="8260949300855537648">"Eliminare questo contatto?"</string>
