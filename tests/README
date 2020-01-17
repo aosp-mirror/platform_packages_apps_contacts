@@ -1,0 +1,11 @@
+# Running tests
+
+Build and install Contacts.apk
+
+Run
+```shell
+$ atest ContactsTests
+```
+
+More information can be found at
+https://source.android.com/compatibility/tests/development/atest
