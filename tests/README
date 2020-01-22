@@ -2,6 +2,8 @@
 
 Build and install Contacts.apk
 
+Grant Contacts permissions to Contacts.apk
+
 Run
 ```shell
 $ atest ContactsTests
