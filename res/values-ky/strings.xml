@@ -77,7 +77,7 @@
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> байланыш · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> байланыш · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
     </plurals>
-    <string name="title_from_google" msgid="2554633992366572820">"Google каттоо эсебинен"</string>
+    <string name="title_from_google" msgid="2554633992366572820">"Google аккаунтунан"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> каттоо эсбнен"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Шыңгыр коюу"</string>
     <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"Үн почтасына которуу"</string>
