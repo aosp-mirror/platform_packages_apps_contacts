@@ -302,7 +302,7 @@
     <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (رسالة)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"إجراء مكالمة فيديو"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"هل تريد محو قائمة من يُتصل بهم كثيرًا؟"</string>
-    <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"ستمحو قائمة من يتم الاتصال بهم كثيرًا في تطبيقي جهات الاتصال والهاتف، وستفرض على تطبيقات البريد الإلكتروني التعرف على تفضيلات توجيه الرسائل من البداية."</string>
+    <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"ستمحو قائمة الأشخاص الذين يتم التواصل معهم كثيرًا في تطبيقي \"جهات الاتصال\" و\"الهاتف\"، وستفرض بالتالي على تطبيقات البريد الإلكتروني التعرف مجدّدًا على جهات الاتصال المفضّلة لديك."</string>
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"جارٍ محو قائمة المُتصل بهم كثيرًا…"</string>
     <string name="status_available" msgid="8081626460682959098">"متوفر"</string>
     <string name="status_away" msgid="2677693194455091315">"بعيد"</string>
