@@ -28,10 +28,10 @@
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"Тандоо"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"Жаңы байланыш түзүү"</string>
     <string name="searchHint" msgid="1487501532610025473">"Байланыштарды издөө"</string>
-    <string name="menu_addStar" msgid="4903812703386825130">"Сүйүктүүлөргө кошуу"</string>
+    <string name="menu_addStar" msgid="4903812703386825130">"Тандалмаларга кошуу"</string>
     <string name="menu_removeStar" msgid="3707373931808303701">"Сүйүктүүлөрдөн алып салуу"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"Сүйүктүүлөрдөн чыгарылды"</string>
-    <string name="description_action_menu_add_star" msgid="7316521132809388851">"Сүйүктүүлөргө кошулду"</string>
+    <string name="description_action_menu_add_star" msgid="7316521132809388851">"Тандалмаларга кошулду"</string>
     <string name="menu_editContact" msgid="5039663761025630208">"Өзгөртүү"</string>
     <string name="menu_deleteContact" msgid="15161764025276217">"Жок кылуу"</string>
     <string name="menu_change_photo" msgid="4911246106907208055">"Сүрөттү өзгөртүү"</string>
@@ -47,7 +47,7 @@
     <string name="menu_new_group_action_bar" msgid="1670312283925872483">"Энбелги түзүү"</string>
     <string name="splitConfirmation" msgid="4750158900636307469">"Бул байланыш ажыратылсынбы?"</string>
     <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"Ажыратуу"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"Сиз киргизген өзгөртүүлөрдү сактап, бул байланышты бир нече байланышка ажыраткыңыз келеби?"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"Сиз киргизген өзгөртүүлөрдү сактап, бул байланышты бир нече байланышка ажыратасызбы?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"Сактоо жана ажыратуу"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"Сиз киргизген өзгөртүүлөрдү сактап, тандалган байланышка бириктиргиңиз келеби?"</string>
     <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"Сактоо жана бириктирүү"</string>
@@ -62,12 +62,12 @@
     <string name="separatorJoinAggregateAll" msgid="5378346138684490784">"Бардык байланыштар"</string>
     <string name="contactsJoinedNamedMessage" msgid="8732933595873458166">"<xliff:g id="NAME">%s</xliff:g> байланыштырылды"</string>
     <string name="contactsJoinedMessage" msgid="7605856897709458707">"Байланыштар шилтемеленди"</string>
-    <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> жок кылынды"</string>
-    <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> жана <xliff:g id="NAME_1">%2$s</xliff:g> жок кылынды"</string>
-    <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… жок кылынды"</string>
+    <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> өчүрүлдү"</string>
+    <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> жана <xliff:g id="NAME_1">%2$s</xliff:g> өчүрүлдү"</string>
+    <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… өчүрүлдү"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="other">Байланыштар жок кылынды</item>
-      <item quantity="one">Байланыш жок кылынды</item>
+      <item quantity="other">Байланыштар өчүрүлдү</item>
+      <item quantity="one">Байланыш өчүрүлдү</item>
     </plurals>
     <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
       <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> байланыш</item>
@@ -89,7 +89,7 @@
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"Тандалган байланыштар жок кылынсынбы?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Окуу үчүн гана арналган аккаунтуңуздан байланыштарды жок кылуу мүмкүн эмес, бирок аларды жашырып койсо болот."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Жок кылына турган байланыштарда бир нече аккаунтунун чоо-жайы бар. Окуу үчүн гана арналган каттоо эсептеринин чоо-жайы жашырылып, жок кылынбайт."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"Бул байланыш жок кылынса, анын бир нече аккаунтундагы чоо-жайы өчүп калат."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"Бул байланыш өчүрүлсө, анын бир нече аккаунтундагы чоо-жайы өчүп калат."</string>
     <string name="deleteConfirmation" msgid="3727809366015979585">"Бул байланыш жок кылынсынбы?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"Жок кылуу"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"Мындай байланыш жок."</string>
@@ -101,7 +101,7 @@
     <string name="removePhoto" msgid="1190099414600730001">"Сүрөттү алып салуу"</string>
     <string name="noContacts" msgid="3030512741779213810">"Байланыштар тизмеңиз бош"</string>
     <string name="emptyGroup" msgid="8598261660865081152">"Бул энбелги коюлган бир дагы байланыш жок"</string>
-    <string name="emptyAccount" msgid="7450843210977018582">"Бул каттоо эсебинде эч кандай байланыш жок"</string>
+    <string name="emptyAccount" msgid="7450843210977018582">"Бул аккаунтта эч кандай байланыш жок"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"Байланыштар тизмеңиз бош"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> сакталды"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"Байланыш сакталды"</string>
@@ -112,11 +112,11 @@
     <string name="contactGenericErrorToast" msgid="5689457475864876100">"Байланышты сактоодогу ката."</string>
     <string name="contactPhotoSavedErrorToast" msgid="8568460180541397272">"Байланыштын сүрөт өзгөрүүлөрү сакталган жок."</string>
     <string name="groupLoadErrorToast" msgid="4141488223976370583">"Энбелги жүктөлгөн жок"</string>
-    <string name="groupDeletedToast" msgid="7774363940327847515">"Энбелги жок кылынды"</string>
+    <string name="groupDeletedToast" msgid="7774363940327847515">"Энбелги өчүрүлдү"</string>
     <string name="groupCreatedToast" msgid="1685148819468403239">"Энбелги түзүлдү"</string>
     <string name="groupCreateFailedToast" msgid="1836425392831964024">"Энбелги түзүлгөн жок"</string>
-    <string name="groupUpdatedToast" msgid="3381549467345607379">"Энбелги жаңыртылды"</string>
-    <string name="groupMembersRemovedToast" msgid="8019566066934628011">"Энбелгиден алынып салынды"</string>
+    <string name="groupUpdatedToast" msgid="3381549467345607379">"Энбелги жаңырды"</string>
+    <string name="groupMembersRemovedToast" msgid="8019566066934628011">"Энбелгиден өчүрүлдү"</string>
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"Кошулду"</string>
     <string name="groupSavedErrorToast" msgid="8456912862816145318">"Энбелгинин өзгөрүүлөрүн сактай алган жок."</string>
     <string name="groupExistsErrorMessage" msgid="912222525098791136">"Мындай энбелги бар"</string>
@@ -419,9 +419,9 @@
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"<xliff:g id="FILENAME">%s</xliff:g> файлын импорттоо токтотулду"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> бир аздан кийин өткөрүлүп алынат."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"Файл бир аздан кийин өткөрүлүп алынат."</string>
-    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard файлдарынын өткөрүп берүү талабы четке кагылды. Кийинчерээк кайра аракет кылып көрүңүз."</string>
+    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard файлдарынын өткөрүп берүү талабы четке кагылды. Бир аздан кийин кайталап көрүңүз."</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"Байланыштар жакында өткөрүлүп берилет."</string>
-    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard файлдарын өткөрүп берүү талабы четке кагылды. Кийинчерээк кайра аракет кылып көрүңүз."</string>
+    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard файлдарын өткөрүп берүү талабы четке кагылды. Бир аздан кийин кайталап көрүңүз."</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"байланыш"</string>
     <string name="caching_vcard_message" msgid="1879339732783666517">"vCard файл(дар)ы жергиликтүү убактылуу сактагычка кэштелип жатат. Андан соң, өткөрүп алуу башталат."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCard файлдары өткөрүлүп алынган жок."</string>
