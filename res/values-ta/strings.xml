@@ -97,7 +97,7 @@
     <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g> என்ற தொடர்பு முகப்புத் திரையில் சேர்க்கப்பட்டது."</string>
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"சாதனத்தில் படங்கள் எதுவுமில்லை."</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"தொடர்பின் படம்"</string>
-    <string name="customLabelPickerTitle" msgid="816694850254307154">"தனிப்பயன் லேபிள் பெயர்"</string>
+    <string name="customLabelPickerTitle" msgid="816694850254307154">"பிரத்தியேக லேபிள் பெயர்"</string>
     <string name="removePhoto" msgid="1190099414600730001">"படத்தை அகற்று"</string>
     <string name="noContacts" msgid="3030512741779213810">"தொடர்புகள் பட்டியல் காலியாக உள்ளது"</string>
     <string name="emptyGroup" msgid="8598261660865081152">"இந்த லேபிளைக் கொண்ட தொடர்புகள் இல்லை"</string>
@@ -326,7 +326,7 @@
     <string name="ghostData_company" msgid="3873500610390675876">"நிறுவனம்"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"தலைப்பு"</string>
     <string name="label_notes" msgid="7134226125644463585">"குறிப்புகள்"</string>
-    <string name="label_custom_field" msgid="4160584225306364924">"தனிப்பயன்"</string>
+    <string name="label_custom_field" msgid="4160584225306364924">"பிரத்தியேகம்"</string>
     <string name="label_sip_address" msgid="8876347942587537552">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="114754928100220315">"இணையதளம்"</string>
     <string name="groupsLabel" msgid="5622154133880646122">"லேபிள்கள்"</string>
@@ -365,7 +365,7 @@
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"சுருக்கப்பட்டது"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"எல்லா தொடர்புகளும்"</string>
     <string name="list_filter_all_starred" msgid="2582865760150432568">"நட்சத்திரமிட்டவை"</string>
-    <string name="list_filter_customize" msgid="2368900508906139537">"தனிப்பயனாக்கு"</string>
+    <string name="list_filter_customize" msgid="2368900508906139537">"பிரத்தியேகமாக்கு"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"தொடர்பு"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"பிற எல்லா தொடர்புகளும்"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"எல்லா தொடர்புகளும்"</string>
@@ -374,7 +374,7 @@
     <string name="display_more_groups" msgid="8398232980355188133">"மேலும் குழுக்கள்…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"ஒத்திசைவிலிருந்து \"<xliff:g id="GROUP">%s</xliff:g>\" ஐ அகற்றுவது, ஒத்திசைவிலிருந்து குழுவாக்கப்படாத எல்லா தொடர்புகளையும் அகற்றும்."</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"காட்சி விருப்பங்களைச் சேமிக்கிறது…"</string>
-    <string name="listCustomView" msgid="5782275477737032610">"தனிப்பயனாக்கிய காட்சி"</string>
+    <string name="listCustomView" msgid="5782275477737032610">"பிரத்தியேகப்படுத்தப்பட்ட காட்சி"</string>
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"இறக்கிய தொடர்புகளை இதில் சேமிக்கவும்:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"சிம் கார்டு"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> சிம்"</string>
