@@ -200,7 +200,7 @@
     <string name="add_new_account" msgid="573368229646104110">"Додај нова сметка"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Извези датотеки од база на податоци"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Создај нов контакт"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Погледни повеќе"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Прикажи повеќе"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Погледни помалку"</string>
     <string name="about_card_title" msgid="6635849009952435700">"За"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Се создава лична копија..."</string>
