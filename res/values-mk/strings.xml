@@ -200,7 +200,7 @@
     <string name="add_new_account" msgid="573368229646104110">"Додај нова сметка"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Извези датотеки од база на податоци"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Создај нов контакт"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Погледни повеќе"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Прикажи повеќе"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Погледни помалку"</string>
     <string name="about_card_title" msgid="6635849009952435700">"За"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Се создава лична копија..."</string>
@@ -474,7 +474,7 @@
     <string name="about_open_source_licenses" msgid="1617836621315557445">"Лиценци за софтвер со отворен код"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Детали за лиценцата за софтвер со отворен код"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"Политика за приватност"</string>
-    <string name="about_terms_of_service" msgid="7419670771785057738">"Услови на користење"</string>
+    <string name="about_terms_of_service" msgid="7419670771785057738">"Услови за користење"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"Лиценци за софтвер со отворен код"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"Линкот не успеа да се отвори."</string>
     <string name="account_filter_view_checked" msgid="4740544238806346376">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> е штиклирано"</string>
