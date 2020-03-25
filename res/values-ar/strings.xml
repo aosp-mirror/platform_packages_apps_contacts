@@ -127,7 +127,7 @@
     <string name="groupDeletedToast" msgid="7774363940327847515">"تم حذف التصنيف"</string>
     <string name="groupCreatedToast" msgid="1685148819468403239">"تم إنشاء التصنيف"</string>
     <string name="groupCreateFailedToast" msgid="1836425392831964024">"يتعذر إنشاء تصنيف"</string>
-    <string name="groupUpdatedToast" msgid="3381549467345607379">"تمت إعادة تحميل التصنيف"</string>
+    <string name="groupUpdatedToast" msgid="3381549467345607379">"تم تحديث التصنيف"</string>
     <string name="groupMembersRemovedToast" msgid="8019566066934628011">"تمت الإزالة من التصنيف"</string>
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"تمت الإضافة إلى التصنيف"</string>
     <string name="groupSavedErrorToast" msgid="8456912862816145318">"لا يمكن حفظ التغييرات على التصنيف"</string>
@@ -523,10 +523,10 @@
     <string name="sim_import_failed_toast" msgid="358117391138073786">"‏فشل استيراد جهات الاتصال من شريحة SIM"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"‏استيراد من SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"إلغاء"</string>
-    <string name="auto_sync_off" msgid="7039314601316227882">"المزامنة التلقائية متوقفة. انقر للتشغيل."</string>
+    <string name="auto_sync_off" msgid="7039314601316227882">"المزامنة التلقائية متوقفة. انقر للتفعيل."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"تجاهل"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"مزامنة الحساب متوقفة. انقر للتشغيل."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"تشغيل المزامنة التلقائية؟"</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"مزامنة الحساب متوقفة. انقر للتفعيل."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"تفعيل المزامنة التلقائية؟"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"‏سيتم إعادة تحميل التغييرات التي أجريتها على كل التطبيقات والحسابات، وليس فقط جهات اتصال Google، بين الويب وأجهزتك."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"تشغيل"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"لا اتصال"</string>
