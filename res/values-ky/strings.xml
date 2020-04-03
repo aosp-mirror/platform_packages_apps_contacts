@@ -181,7 +181,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Өзгөрүүлөр сакталбасынбы?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"Жарактан чыгаруу"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"Баш тартуу"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Өзгөрүүлөрдү жоесузбу?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Өзгөртүүлөр жокко чыгарылсынбы?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"Байланыштардан издеп көрүңүз"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"Байланыштарды алып салуу"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"Менин жергиликтүү профайлым"</string>

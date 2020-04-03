@@ -178,10 +178,10 @@
     <string name="set_default" msgid="3704074175618702225">"Սահմանել ըստ կանխադրման"</string>
     <string name="clear_default" msgid="2055883863621491533">"Մաքրել լռելյայն"</string>
     <string name="toast_text_copied" msgid="845906090076228771">"Տեքսը պատճենված է"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Հրաժարվե՞լ փոփոխություններից:"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Անտեսե՞լ փոփոխությունները:"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"Անտեսել"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"Չեղարկել"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Հրաժարվե՞լ փոփոխություններից:"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Անտեսե՞լ փոփոխությունները:"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"Որոնեք կոնտակտներ"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"Կոնտակտների ջնջում"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"Իմ տեղային պրոֆիլը"</string>
@@ -285,7 +285,7 @@
     <string name="sms_mms" msgid="7395133080765833725">"Հաղորդագրել MMS համարին"</string>
     <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Գրել SMS)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"Տեսազանգ սկսել"</string>
-    <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"Ջնջե՞լ հաճախակի հաղորդակցվողները"</string>
+    <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"Մաքրե՞լ հաճախակի հաղորդակցվողները"</string>
     <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"Կոնտակտներ և Հեռախոս հավելվածներից կմաքրվի հաճախակի օգտագործվող կոնտակտների ցանկը, և էլփոստի հավելվածները զրոյից են սովորելու ձեր հաճախակի օգտագործվող կոնտակտները։"</string>
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Մաքրվում է հաճախակի հաղորդակցվողները..."</string>
     <string name="status_available" msgid="8081626460682959098">"Հասանելի է"</string>
