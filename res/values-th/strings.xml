@@ -134,7 +134,7 @@
     <string name="quickcontact_add_email" msgid="1442894568471116797">"เพิ่มอีเมล"</string>
     <string name="missing_app" msgid="5674389915738964148">"ไม่พบแอปสำหรับการทำงานนี้"</string>
     <string name="menu_share" msgid="6343022811796001773">"แชร์"</string>
-    <string name="menu_add_contact" msgid="5822356185421997656">"เพิ่มในสมุดติดต่อ"</string>
+    <string name="menu_add_contact" msgid="5822356185421997656">"เพิ่มในรายชื่อติดต่อ"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"เพิ่ม"</string>
     <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
       <item quantity="other">แชร์ผู้ติดต่อผ่านทาง</item>

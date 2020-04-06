@@ -459,7 +459,7 @@
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"الإخفاء إذا كان فارغًا"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"الاسم الأول"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"اسم العائلة"</string>
-    <string name="display_options_view_names_as" msgid="4060686468465916565">"تنسيق الاسم"</string>
+    <string name="display_options_view_names_as" msgid="4060686468465916565">"ترتيب الاسم"</string>
     <string name="display_options_view_given_name_first" msgid="383885125505521383">"الاسم الأول أولاً"</string>
     <string name="display_options_view_family_name_first" msgid="6597077054231296007">"اسم العائلة أوّلًا"</string>
     <string name="settings_accounts" msgid="119582613811929994">"الحسابات"</string>
