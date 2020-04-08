@@ -501,7 +501,7 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Автосинхрондоштуруу күйгүзүлсүнбү?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Байланыштарыңызда гана эмес бардык колдонмолордо жана каттоо эсептеринде жасалган өзгөртүүлөр желе интерфейси менен башка түзмөктөрүңүздүн ортолорунда мезгил-мезгили менен жаңыртылып турат."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Күйгүзүү"</string>
-    <string name="connection_error_message" msgid="7446131881946138093">"Байланыш жок"</string>
+    <string name="connection_error_message" msgid="7446131881946138093">"Интернет жок"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM-карта"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"Дагы көрсөтүү"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"SIM-картадан өткөрүп алуу аяктады"</string>
