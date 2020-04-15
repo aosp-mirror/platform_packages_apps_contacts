@@ -399,7 +399,7 @@
     <string name="missing_required_permission" msgid="1308037728470791436">"तपाईँले आवश्यक अनुमति असक्षम पार्नुभएको छ।"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"\"<xliff:g id="EXACT_REASON">%s</xliff:g>\": निर्यात गर्ने क्रममा त्रुटि भयो।"</string>
     <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O त्रुटि"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"मेमोरी प्रयाप्त छैन। फाइल धेरै ठूलो हुन सक्छ।"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"मेमोरी प्रयाप्त छैन। फाइल धेरै ठुलो हुन सक्छ।"</string>
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"ढाँचा समर्थित छैन।"</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> निर्यात कार्य सकियो।"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"सम्पर्क ठेगानाहरूलाई निर्यात गर्ने काम सकियो।"</string>
