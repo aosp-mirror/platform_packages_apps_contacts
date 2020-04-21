@@ -168,7 +168,7 @@
     <string name="take_photo" msgid="820071555236547516">"التقاط صورة"</string>
     <string name="take_new_photo" msgid="4383091978116875778">"التقاط صورة جديدة"</string>
     <string name="pick_photo" msgid="2050859661654812588">"اختيار صورة"</string>
-    <string name="pick_new_photo" msgid="4218112182908240970">"تحديد صورة جديدة"</string>
+    <string name="pick_new_photo" msgid="4218112182908240970">"اختيار صورة جديدة"</string>
     <string name="search_results_searching" msgid="1373859095361975648">"جارٍ البحث..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"التاريخ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"التصنيف"</string>
