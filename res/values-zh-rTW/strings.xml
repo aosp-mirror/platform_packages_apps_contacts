@@ -432,7 +432,7 @@
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"排序依據"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"姓名拼音"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"一律顯示"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"留空時隱藏"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"欄位留空時隱藏"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"名字"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"姓氏"</string>
     <string name="display_options_view_names_as" msgid="4060686468465916565">"姓名格式"</string>
