@@ -59,7 +59,6 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.common.util.concurrent.MoreExecutors;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -504,8 +503,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private synchronized void reloadAccountTypes() {
         loadAccountTypes();
         Futures.addCallback(
-                Futures.transform(mAccountTypesFuture, mAccountsExtractor,
-                        MoreExecutors.directExecutor()),
+                Futures.transform(mAccountTypesFuture, mAccountsExtractor),
                 newAccountsUpdatedCallback(mAccountManagerAccounts),
                 mMainThreadExecutor);
     }
@@ -536,8 +534,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
         final ListenableFuture<List<List<AccountWithDataSet>>> all =
                 Futures.nonCancellationPropagating(
                         Futures.successfulAsList(
-                                Futures.transform(mAccountTypesFuture, mAccountsExtractor,
-                                        MoreExecutors.directExecutor()),
+                                Futures.transform(mAccountTypesFuture, mAccountsExtractor),
                                 mLocalAccountsFuture));
 
         return Futures.transform(all, new Function<List<List<AccountWithDataSet>>,
@@ -563,7 +560,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 AccountInfo.sortAccounts(null, result);
                 return result;
             }
-        }, MoreExecutors.directExecutor());
+        });
     }
 
     @Override
