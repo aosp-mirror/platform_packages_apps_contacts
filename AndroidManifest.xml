@@ -650,10 +650,6 @@
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW"/>
-            <data android:scheme="http"/>
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.VIEW"/>
             <data android:scheme="https"/>
         </intent>
 
@@ -666,7 +662,8 @@
         </intent>
         <intent>
             <action android:name="android.intent.action.VIEW" />
-            <data android:scheme="content" android:host="com.android.contacts" />
+            <data android:scheme="content" android:host="com.android.contacts"
+                android:mimeType="vnd.android.cursor.item/*" />
         </intent>
 
         <!-- calling -->
