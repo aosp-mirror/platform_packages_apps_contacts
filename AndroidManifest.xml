@@ -619,7 +619,7 @@
         to detect accounts and show actions in QuickContact. -->
     <queries>
         <!-- ContactsProvider2 -->
-        <package android:name="com.android.contacts"/>
+        <package android:name="com.android.providers.contacts"/>
 
         <!-- quickcontact actions and verbs -->
         <intent>
@@ -654,9 +654,6 @@
         </intent>
 
         <!-- Account loading -->
-        <intent>
-            <action android:name="android.content.SyncAdapter"/>
-        </intent>
         <intent>
             <action android:name="android.accounts.AccountAuthenticator"/>
         </intent>
