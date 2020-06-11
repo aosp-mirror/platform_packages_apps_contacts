@@ -27,17 +27,14 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SyncStatusObserver;
 import android.content.pm.PackageManager;
-import android.database.ContentObserver;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.ContactsContract;
-import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.contacts.Experiments;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.android.contacts.R;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.account.AccountInfo;
@@ -49,10 +46,10 @@ import com.android.contacts.model.account.FallbackAccountType;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.concurrent.ContactsExecutors;
-import com.android.contactsbind.experiments.Flags;
-import com.google.common.base.Preconditions;
+
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.util.concurrent.FutureCallback;
@@ -376,7 +373,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
      */
     public AccountTypeManagerImpl(Context context) {
         mContext = context;
-        mLocalAccountLocator = DeviceLocalAccountLocator.create(context);
+        mLocalAccountLocator = new DeviceLocalAccountLocator(context, AccountManager.get(context));
         mTypeProvider = new AccountTypeProvider(context);
         mFallbackAccountType = new FallbackAccountType(context);
 
@@ -405,26 +402,6 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
         ContentResolver.addStatusChangeListener(ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS, this);
 
-        // Observe changes to RAW_CONTACTS so that we will update the list of "Device" accounts
-        // if a new device contact is added or removed.
-        mContext.getContentResolver().registerContentObserver(
-                ContactsContract.RawContacts.CONTENT_URI, /* notifyDescendents */ true,
-                new ContentObserver(mMainThreadHandler) {
-                    @Override
-                    public boolean deliverSelfNotifications() {
-                        return true;
-                    }
-
-                    @Override
-                    public void onChange(boolean selfChange) {
-                        reloadLocalAccounts();
-                    }
-
-                    @Override
-                    public void onChange(boolean selfChange, Uri uri) {
-                        reloadLocalAccounts();
-                    }
-                });
         loadAccountTypes();
     }
 

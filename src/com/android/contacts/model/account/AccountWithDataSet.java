@@ -28,8 +28,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 
-import com.android.contacts.model.AccountTypeManager;
-import com.android.contacts.preference.ContactsPreferences;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 
@@ -86,6 +84,14 @@ public class AccountWithDataSet implements Parcelable {
 
     public static AccountWithDataSet getNullAccount() {
         return new AccountWithDataSet(null, null, null);
+    }
+
+    public static AccountWithDataSet getLocalAccount(Context context) {
+        return new AccountWithDataSet(
+                RawContacts.getLocalAccountName(context),
+                RawContacts.getLocalAccountType(context),
+                null
+        );
     }
 
     public Account getAccountOrNull() {

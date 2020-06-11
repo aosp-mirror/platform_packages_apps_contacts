@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.contacts"
-          android:versionCode="10732"
-          android:versionName="1.7.32">
+          android:versionCode="10733"
+          android:versionName="1.7.33">
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -619,7 +619,7 @@
         to detect accounts and show actions in QuickContact. -->
     <queries>
         <!-- ContactsProvider2 -->
-        <package android:name="com.android.contacts"/>
+        <package android:name="com.android.providers.contacts"/>
 
         <!-- quickcontact actions and verbs -->
         <intent>
@@ -654,9 +654,6 @@
         </intent>
 
         <!-- Account loading -->
-        <intent>
-            <action android:name="android.content.SyncAdapter"/>
-        </intent>
         <intent>
             <action android:name="android.accounts.AccountAuthenticator"/>
         </intent>
