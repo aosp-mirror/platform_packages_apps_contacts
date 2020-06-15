@@ -289,7 +289,7 @@
     <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"Та Харилцагч болон Утас апп-ууд дахь байнга холбоо барьсан харилцагчдын жагсаалтыг устгаж, ингэснээрээ имэйл апп-уудыг таны имэйл хаяглах хандлагыг бүр эхнээс нь суралцахад хүргэнэ."</string>
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Байнга холбоо барьдаг харилцагчдын жагсаалтыг устгаж байна…"</string>
     <string name="status_available" msgid="8081626460682959098">"Холбогдсон"</string>
-    <string name="status_away" msgid="2677693194455091315">"Холдсон"</string>
+    <string name="status_away" msgid="2677693194455091315">"Эзгүй"</string>
     <string name="status_busy" msgid="2759339190187696727">"Завгүй"</string>
     <string name="local_invisible_directory" msgid="5936234374879813300">"Бусад"</string>
     <string name="directory_search_label" msgid="2602118204885565153">"Директор"</string>
