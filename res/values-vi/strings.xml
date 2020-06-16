@@ -241,7 +241,7 @@
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"Giữ cho danh bạ của bạn luôn được sắp xếp và hữu ích"</string>
     <string name="undo" msgid="2446931036220975026">"Hoàn tác"</string>
     <string name="call_custom" msgid="2844900154492073207">"Gọi <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
-    <string name="call_home" msgid="2443904771140750492">"Gọi số điện thoại nhà riêng"</string>
+    <string name="call_home" msgid="2443904771140750492">"Gọi về nhà"</string>
     <string name="call_mobile" msgid="6504312789160309832">"Gọi số điện thoại di động"</string>
     <string name="call_work" msgid="2414313348547560346">"Gọi số điện thoại cơ quan"</string>
     <string name="call_fax_work" msgid="5026843006300760797">"Gọi số fax cơ quan"</string>
