@@ -298,7 +298,7 @@
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Выдаленне частых кантактаў..."</string>
     <string name="status_available" msgid="8081626460682959098">"Даступны"</string>
     <string name="status_away" msgid="2677693194455091315">"Адсутнічае"</string>
-    <string name="status_busy" msgid="2759339190187696727">"Заняты"</string>
+    <string name="status_busy" msgid="2759339190187696727">"Заняты(-ая)"</string>
     <string name="local_invisible_directory" msgid="5936234374879813300">"Іншае"</string>
     <string name="directory_search_label" msgid="2602118204885565153">"Дырэкторыя"</string>
     <string name="directory_search_label_work" msgid="2392128956332931231">"Працоўны каталог"</string>
