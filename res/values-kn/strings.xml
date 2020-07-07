@@ -353,7 +353,7 @@
     <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk ಬಳಸಿಕೊಂಡು ಚಾಟ್‌ ಮಾಡಿ"</string>
     <string name="chat_icq" msgid="4289041376069626281">"ICQ ಬಳಸಿಕೊಂಡು ಚಾಟ್‌ ಮಾಡಿ"</string>
     <string name="chat_jabber" msgid="1097960594943864847">"Jabber ಬಳಸಿಕೊಂಡು ಚಾಟ್‌ ಮಾಡಿ"</string>
-    <string name="chat" msgid="8390862712584830532">"ಚಾಟ್"</string>
+    <string name="chat" msgid="8390862712584830532">"Chat"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"ಅಳಿಸಿ"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"ಇನ್ನಷ್ಟು ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ತೋರಿಸಿ"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"ಹೆಸರಿನ ಕ್ಷೇತ್ರಗಳನ್ನು ಸಂಕುಚಿಸಿ"</string>
