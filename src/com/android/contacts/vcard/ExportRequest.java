@@ -24,12 +24,19 @@ public class ExportRequest {
      */
     public final String exportType;
 
+    public final String displayName;
+
     public ExportRequest(Uri destUri) {
         this(destUri, null);
     }
 
     public ExportRequest(Uri destUri, String exportType) {
+        this(destUri, exportType, null);
+    }
+
+    public ExportRequest(Uri destUri, String exportType, String displayName) {
         this.destUri = destUri;
         this.exportType = exportType;
+        this.displayName = displayName;
     }
 }
