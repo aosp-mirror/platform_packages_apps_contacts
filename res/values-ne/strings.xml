@@ -132,13 +132,13 @@
     <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"अघिल्लो पर्दामा फर्कनको लागि क्लिक गर्नुहोस्"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"फोन नम्बर थप्नुहोस्"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"इमेल थप्नुहोस्"</string>
-    <string name="missing_app" msgid="5674389915738964148">"यो कार्य सम्हाल्न कुनै पनि अनुप्रयोग पाइएन।"</string>
-    <string name="menu_share" msgid="6343022811796001773">"साझेदारी गर्नुहोस्"</string>
+    <string name="missing_app" msgid="5674389915738964148">"यो कार्य सम्हाल्न कुनै पनि एप पाइएन।"</string>
+    <string name="menu_share" msgid="6343022811796001773">"सेयर गर्नुहोस्"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"सम्पर्कहरूमा थप्नुहोस्"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"थप्नुहोस्"</string>
     <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">यस मार्फत सम्पर्कहरू ‍साझेदारी गर्नुहोस्</item>
-      <item quantity="one">यस मार्फत सम्पर्क ‍साझेदारी गर्नुहोस्</item>
+      <item quantity="other">यस मार्फत सम्पर्कहरू ‍सेयर गर्नुहोस्</item>
+      <item quantity="one">यस मार्फत सम्पर्क ‍सेयर गर्नुहोस्</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"खाता छान्नुहोस्"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"लेबल सिर्जना गर्नुहोस्"</string>
@@ -286,7 +286,7 @@
     <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (सन्देश पठाउनुहोस्)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"भिडियो कल बनाउनुहोस्"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"प्रायः सम्पर्क गरिएकाहरूलाई हटाउने हो?"</string>
-    <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"तपाईंले सम्पर्कहरू र फोन अनुप्रयोगहरूमा बारम्बार सम्पर्क गरेको सूची खाली गर्नुहुनेछ र स्क्रयाचबाट तपाईंको ठेगाना प्राथमिकताहरू सिक्नको लागि इमेल अनुप्रयोगहरूलाई दबाब दिनुहुनेछ।"</string>
+    <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"तपाईंले सम्पर्कहरू र फोन एपहरूमा बारम्बार सम्पर्क गरेको सूची खाली गर्नुहुनेछ र स्क्रयाचबाट तपाईंको ठेगाना प्राथमिकताहरू सिक्नको लागि इमेल अनुप्रयोगहरूलाई दबाब दिनुहुनेछ।"</string>
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"प्रायः सम्पर्क गरिएकाहरूलाई हटाउँदै...."</string>
     <string name="status_available" msgid="8081626460682959098">"उपलब्ध"</string>
     <string name="status_away" msgid="2677693194455091315">"टाढा"</string>
@@ -399,7 +399,7 @@
     <string name="missing_required_permission" msgid="1308037728470791436">"तपाईँले आवश्यक अनुमति असक्षम पार्नुभएको छ।"</string>
     <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"\"<xliff:g id="EXACT_REASON">%s</xliff:g>\": निर्यात गर्ने क्रममा त्रुटि भयो।"</string>
     <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O त्रुटि"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"मेमोरी प्रयाप्त छैन। फाइल धेरै ठूलो हुन सक्छ।"</string>
+    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"मेमोरी प्रयाप्त छैन। फाइल धेरै ठुलो हुन सक्छ।"</string>
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"ढाँचा समर्थित छैन।"</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> निर्यात कार्य सकियो।"</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"सम्पर्क ठेगानाहरूलाई निर्यात गर्ने काम सकियो।"</string>
@@ -443,7 +443,7 @@
     <string name="settings_my_info_title" msgid="6236848378653551341">"मेरा बारेमा जानकारी"</string>
     <string name="set_up_profile" msgid="3554999219868611431">"आफ्नो प्रोफाइल सेटअप गर्नुहोस्"</string>
     <string name="setting_about" msgid="2941859292287597555">"सम्पर्कहरूका बारेमा"</string>
-    <string name="share_favorite_contacts" msgid="8208444020721686178">"मन पर्ने सम्पर्कहरू आदान प्रदान गर्नुहोस्"</string>
+    <string name="share_favorite_contacts" msgid="8208444020721686178">"मन पर्ने सम्पर्कहरू सेयर गर्नुहोस्"</string>
     <string name="share_contacts" msgid="2377773269568609796">"सबै सम्पर्क आदान प्रदान गर्ने"</string>
     <string name="share_contacts_failure" msgid="1348777470180064086">"सम्पर्कहरू आदान प्रदान गर्न सकिएन।"</string>
     <string name="dialog_export" msgid="3497435010655060068">"सम्पर्क ठेगानाहरू निर्यात गर्नुहोस्"</string>
@@ -499,7 +499,7 @@
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"खारेज गर्नुहोस्"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"खाता सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"स्वत: सिंक सेवा सक्रिय गर्ने हो?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"तपाईंले Google सम्पर्कहरूमा मात्र नभई, सबै अनुप्रयोग र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा अद्यावधिक हुने छन्।"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"तपाईंले Google सम्पर्कहरूमा मात्र नभई, सबै एप र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा अद्यावधिक हुने छन्।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"खोल्नुहोस्"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"जडान छैन"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
