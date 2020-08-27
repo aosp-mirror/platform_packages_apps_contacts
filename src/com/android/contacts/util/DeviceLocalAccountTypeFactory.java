@@ -19,11 +19,9 @@ import android.content.Context;
 import androidx.annotation.IntDef;
 
 import com.android.contacts.model.account.AccountType;
-import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.DeviceLocalAccountType;
 
 import java.lang.annotation.Retention;
-import java.util.Objects;
 
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
@@ -67,18 +65,15 @@ public interface DeviceLocalAccountTypeFactory {
 
         @Override
         public int classifyAccount(String accountType) {
-            return accountType == null ||
-                    Objects.equals(AccountWithDataSet.getLocalAccount(mContext).type, accountType)
-                    ? TYPE_DEVICE : TYPE_OTHER;
+            return accountType == null ? TYPE_DEVICE : TYPE_OTHER;
         }
 
         @Override
         public AccountType getAccountType(String accountType) {
-            if (accountType != null && !Objects.equals(
-                    AccountWithDataSet.getLocalAccount(mContext).type, accountType)) {
+            if (accountType != null) {
                 throw new IllegalArgumentException(accountType + " is not a device account type.");
             }
-            return new DeviceLocalAccountType(mContext, true);
+            return new DeviceLocalAccountType(mContext);
         }
     }
 }
