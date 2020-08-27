@@ -46,9 +46,7 @@ import java.util.Set;
  */
 public final class GroupUtil {
 
-    public final static String ALL_GROUPS_SELECTION =
-            Groups.ACCOUNT_TYPE + " NOT NULL AND " + Groups.ACCOUNT_NAME + " NOT NULL AND "
-                    + Groups.DELETED + "=0";
+    public final static String ALL_GROUPS_SELECTION = Groups.DELETED + "=0";
 
     public final static String DEFAULT_SELECTION = ALL_GROUPS_SELECTION + " AND "
             + Groups.AUTO_ADD + "=0 AND " + Groups.FAVORITES + "=0";
