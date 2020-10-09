@@ -217,7 +217,7 @@
     <string name="header_phone_entry" msgid="7092868248113091293">"Puhelin"</string>
     <string name="content_description_directions" msgid="860179347986211929">"reittiohjeet sijaintiin"</string>
     <string name="editor_more_fields" msgid="6158558083947445518">"Lisää kenttiä"</string>
-    <string name="editor_change_photo_content_description" msgid="8146896029044539032">"Vaihda yhteystiedon valokuvaa"</string>
+    <string name="editor_change_photo_content_description" msgid="8146896029044539032">"Vaihda yhteystiedon kuvaa"</string>
     <string name="editor_add_photo_content_description" msgid="8457486801272200575">"Lisää yhteystiedon valokuva"</string>
     <string name="editor_contact_photo_content_description" msgid="8699261934352739">"Yhteystiedon valokuva"</string>
     <string name="editor_failed_to_load" msgid="2328074829787373644">"Muokkausnäkymän avaaminen epäonnistui."</string>
