@@ -209,7 +209,7 @@
     <string name="header_organization_entry" msgid="7428066442988227441">"Байгууллага"</string>
     <string name="header_nickname_entry" msgid="1110276804512795150">"Хоч"</string>
     <string name="header_note_entry" msgid="339680292368016788">"Тэмдэглэл"</string>
-    <string name="header_website_entry" msgid="3618691707215428785">"Вэбсайт"</string>
+    <string name="header_website_entry" msgid="3618691707215428785">"Вебсайт"</string>
     <string name="header_event_entry" msgid="70962228694476731">"Үйл явдал"</string>
     <string name="header_relation_entry" msgid="993618132732521944">"Хамаарал"</string>
     <string name="header_name_entry" msgid="2516776099121101578">"Нэр"</string>
@@ -328,7 +328,7 @@
     <string name="label_notes" msgid="7134226125644463585">"Тэмдэглэл"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Тусгай"</string>
     <string name="label_sip_address" msgid="8876347942587537552">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="114754928100220315">"Вэбсайт"</string>
+    <string name="websiteLabelsGroup" msgid="114754928100220315">"Вебсайт"</string>
     <string name="groupsLabel" msgid="5622154133880646122">"Шошгууд"</string>
     <string name="email_home" msgid="1102791500866910269">"Гэрийн имэйл рүү"</string>
     <string name="email_mobile" msgid="6461172430397598705">"Гар утас руу имэйлдэх"</string>
@@ -499,7 +499,7 @@
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Хаах"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Автомат синк идэвхгүй байна. Идэвхжүүлэх бол товшино уу."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Автомат синкийг асаах уу?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Google Харилцагч төдийгүй бүх апп болон бүртгэлд таны оруулсан өөрчлөлтийг вэб болон таны бусад төхөөрөмжүүд хооронд шинэчилж байх болно."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Google Харилцагч төдийгүй бүх апп болон бүртгэлд таны оруулсан өөрчлөлтийг веб болон таны бусад төхөөрөмжүүд хооронд шинэчилж байх болно."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Идэвхжүүлэх"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Холболт байхгүй"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
