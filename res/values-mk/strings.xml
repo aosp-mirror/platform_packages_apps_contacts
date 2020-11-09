@@ -103,7 +103,7 @@
     <string name="emptyGroup" msgid="8598261660865081152">"Нема контакти со етикетава"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"Нема контакти во сметкава"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"Списокот со контакти е празен"</string>
-    <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> е зачуван"</string>
+    <string name="contactSavedNamedToast" msgid="3067050290584834386">"Контактот <xliff:g id="DISPLAY_NAME">%s</xliff:g> е зачуван"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"Контактот е зачуван"</string>
     <string name="contactUnlinkedToast" msgid="6791720274141804377">"Контактите се раздвоени"</string>
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"Не можеше да се зачуваат промените на контактот"</string>
@@ -169,7 +169,7 @@
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"Додај во контакти"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"Затвори"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"Вклучи година"</string>
-    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"Додај сметка"</string>
+    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"Додајте сметка"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"Увези"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"Создајте нова…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"Да се избрише етикетата „<xliff:g id="GROUP_LABEL">%1$s</xliff:g>“? (Контактите нема да се избришат.)"</string>
@@ -196,7 +196,7 @@
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"Поврзани контакти"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"Додајте"</string>
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"Прекинете врска"</string>
-    <string name="add_account" msgid="3071396624500839020">"Додај сметка"</string>
+    <string name="add_account" msgid="3071396624500839020">"Додајте сметка"</string>
     <string name="add_new_account" msgid="573368229646104110">"Додај нова сметка"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Извези датотеки од база на податоци"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Создај нов контакт"</string>
