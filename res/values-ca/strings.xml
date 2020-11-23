@@ -297,7 +297,7 @@
     <string name="local_search_label" msgid="6692495405531144805">"Tots els contactes"</string>
     <string name="description_quick_contact_for" msgid="6364906818231956042">"Contacte ràpid per a <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="7970183292521946492">"(Sense nom)"</string>
-    <string name="favoritesFrequentContacted" msgid="2885862854079966676">"Contactes freqüents"</string>
+    <string name="favoritesFrequentContacted" msgid="2885862854079966676">"Contactats sovint"</string>
     <string name="list_filter_phones" msgid="6839133198968393843">"Tots els contactes amb números de telèfon"</string>
     <string name="list_filter_phones_work" msgid="5583425697781385616">"Contactes del perfil de treball"</string>
     <string name="view_updates_from_group" msgid="6233444629074835594">"Mostra actualitzac."</string>
