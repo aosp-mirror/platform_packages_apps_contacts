@@ -29,7 +29,7 @@
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"Créer un contact"</string>
     <string name="searchHint" msgid="1487501532610025473">"Rech. des contacts"</string>
     <string name="menu_addStar" msgid="4903812703386825130">"Ajouter aux favoris"</string>
-    <string name="menu_removeStar" msgid="3707373931808303701">"Supprimer des favoris"</string>
+    <string name="menu_removeStar" msgid="3707373931808303701">"Retirer des favoris"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"Supprimé des favoris"</string>
     <string name="description_action_menu_add_star" msgid="7316521132809388851">"Ajouté aux favoris"</string>
     <string name="menu_editContact" msgid="5039663761025630208">"Modifier"</string>
@@ -37,7 +37,7 @@
     <string name="menu_change_photo" msgid="4911246106907208055">"Changer de photo"</string>
     <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"Créer un raccourci"</string>
     <string name="menu_splitAggregate" msgid="2062290275288905833">"Annuler la fusion"</string>
-    <string name="menu_editGroup" msgid="8706562583754054622">"Supprimer les contacts"</string>
+    <string name="menu_editGroup" msgid="8706562583754054622">"Retirer les contacts"</string>
     <string name="menu_renameGroup" msgid="2685886609399776475">"Renommer l\'étiquette"</string>
     <string name="menu_deleteGroup" msgid="1180215594530228294">"Supprimer l\'étiquette"</string>
     <string name="menu_addToGroup" msgid="5034813446697655310">"Ajouter un contact"</string>
@@ -67,14 +67,17 @@
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… supprimés"</string>
     <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
       <item quantity="one">Contact supprimé</item>
+      <item quantity="many">Contacts deleted</item>
       <item quantity="other">Contacts supprimés</item>
     </plurals>
     <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
       <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> contact</item>
+      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> contacts</item>
       <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> contacts</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
       <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> contact · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">%1$d</xliff:g> contacts · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> contacts · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="2554633992366572820">"De Google"</string>
@@ -138,6 +141,7 @@
     <string name="menu_add_contacts" msgid="7114262784903366463">"Ajouter"</string>
     <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
       <item quantity="one">Partager le contact par</item>
+      <item quantity="many">Share contacts via</item>
       <item quantity="other">Partager les contacts par</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Choisir un compte"</string>
@@ -183,14 +187,14 @@
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"Annuler"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Supprimer les personnalisations?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"Rechercher dans les contacts"</string>
-    <string name="title_edit_group" msgid="4246193439931854759">"Supprimer les contacts"</string>
+    <string name="title_edit_group" msgid="4246193439931854759">"Retirer les contacts"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"Mon profil local"</string>
     <string name="external_profile_title" msgid="2706282819025406927">"Mon profil <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>"</string>
     <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"Prenez une minute pour ajouter un compte qui sauvegardera vos contacts sur Google."</string>
     <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"Les nouveaux contacts seront enregistrés dans le compte <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Choisissez un compte par défaut pour les nouveaux contacts :"</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Créer un contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"Modifier"</string>
+    <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"Modifier le contact"</string>
     <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Lecture seule"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"Choisissez le contact à modifier"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"Contacts associés"</string>
@@ -369,7 +373,7 @@
     <string name="list_filter_single" msgid="6003845379327432129">"contact"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"Tous les autres contacts"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"Tous les contacts"</string>
-    <string name="menu_sync_remove" msgid="7523335046562082188">"Supprimer le groupe de synchronisation"</string>
+    <string name="menu_sync_remove" msgid="7523335046562082188">"Retirer le groupe de synchronisation"</string>
     <string name="dialog_sync_add" msgid="8012361965908515959">"Ajouter groupe de synchronisation"</string>
     <string name="display_more_groups" msgid="8398232980355188133">"Autres groupes…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"Le retrait du groupe \"<xliff:g id="GROUP">%s</xliff:g>\" de la synchronisation entraîne également le retrait des contacts n\'appartenant à aucun groupe."</string>
@@ -380,10 +384,12 @@
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"Carte SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
       <item quantity="one">%1$d contact</item>
+      <item quantity="many">%1$d contacts</item>
       <item quantity="other">%1$d contacts</item>
     </plurals>
     <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
       <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> contact • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="many"><xliff:g id="COUNT_2">^1</xliff:g> contacts • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> contacts • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
     </plurals>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"Fichier .vcf"</string>
@@ -490,6 +496,7 @@
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Ce contact existe déjà dans votre liste"</string>
     <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
       <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> contact importé de la carte SIM</item>
+      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> SIM contacts imported</item>
       <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> contacts importés de la carte SIM</item>
     </plurals>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Échec de l\'importation des contacts de la carte SIM"</string>
