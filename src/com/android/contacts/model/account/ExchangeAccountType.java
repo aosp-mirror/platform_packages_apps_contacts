@@ -246,6 +246,8 @@ public class ExchangeAccountType extends BaseAccountType {
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
                 FLAGS_GENERIC_NAME));
+        kind.fieldList.add(new EditField(Organization.DEPARTMENT, R.string.ghostData_department,
+                FLAGS_GENERIC_NAME));
         kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
                 FLAGS_GENERIC_NAME));
 
