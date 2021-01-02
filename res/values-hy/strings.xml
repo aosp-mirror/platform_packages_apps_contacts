@@ -286,7 +286,7 @@
     <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (Գրել SMS)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"Տեսազանգ սկսել"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"Ջնջե՞լ հաճախակի հաղորդակցվողները"</string>
-    <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"Կոնտակտներ և Հեռախոս հավելվածներից կմաքրվի հաճախակի օգտագործվող կոնտակտների ցանկը, և էլփոստի հավելվածները զրոյից են սովորելու ձեր հաճախակի օգտագործվող կոնտակտները։"</string>
+    <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"Կոնտակտներ և Հեռախոս հավելվածներից կմաքրվի հաճախակի օգտագործվող կոնտակտների ցանկը, և էլփոստի հավելվածները զրոյից են սովորելու ձեր հաճախակի գործածվող կոնտակտները։"</string>
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Մաքրվում է հաճախակի հաղորդակցվողները..."</string>
     <string name="status_available" msgid="8081626460682959098">"Հասանելի է"</string>
     <string name="status_away" msgid="2677693194455091315">"Տեղում չէ"</string>
