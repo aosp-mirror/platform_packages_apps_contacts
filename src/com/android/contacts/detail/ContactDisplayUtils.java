@@ -42,6 +42,7 @@ import com.android.contacts.model.dataitem.OrganizationDataItem;
 import com.android.contacts.preference.ContactsPreferences;
 import com.android.contacts.util.MoreMath;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -111,42 +112,57 @@ public class ContactDisplayUtils {
     }
 
     /**
-     * Returns the organization of the contact. If several organizations are given,
-     * the first one is used. Returns null if not applicable.
+     * Returns the organization of the contact. If several organizations are given, the first one
+     * is used. Returns null if not applicable.
      */
     public static String getCompany(Context context, Contact contactData) {
         final boolean displayNameIsOrganization = contactData.getDisplayNameSource()
-                == DisplayNameSources.ORGANIZATION;
+            == DisplayNameSources.ORGANIZATION;
         for (RawContact rawContact : contactData.getRawContacts()) {
             for (DataItem dataItem : Iterables.filter(
-                    rawContact.getDataItems(), OrganizationDataItem.class)) {
-                OrganizationDataItem organization = (OrganizationDataItem) dataItem;
-                final String company = organization.getCompany();
-                final String title = organization.getTitle();
-                final String combined;
-                // We need to show company and title in a combined string. However, if the
-                // DisplayName is already the organization, it mirrors company or (if company
-                // is empty title). Make sure we don't show what's already shown as DisplayName
-                if (TextUtils.isEmpty(company)) {
-                    combined = displayNameIsOrganization ? null : title;
-                } else {
-                    if (TextUtils.isEmpty(title)) {
-                        combined = displayNameIsOrganization ? null : company;
-                    } else {
-                        if (displayNameIsOrganization) {
-                            combined = title;
-                        } else {
-                            combined = context.getString(
-                                    R.string.organization_company_and_title,
-                                    company, title);
-                        }
-                    }
-                }
-
-                if (!TextUtils.isEmpty(combined)) {
-                    return combined;
+                rawContact.getDataItems(), OrganizationDataItem.class)) {
+                String organization = getFormattedCompanyString(context,
+                    (OrganizationDataItem) dataItem,
+                    displayNameIsOrganization);
+                if (!TextUtils.isEmpty(organization)) {
+                    return organization;
                 }
             }
+        }
+        return null;
+    }
+
+    /**
+     * Return the formatted organization string from the given OrganizationDataItem
+     *
+     * This will combine the company, department and title in one formatted string. However, if the
+     * DisplayName is already the organization (company or title) and resulted combined string
+     * include either company or title only then we don't need to display the organization string,
+     * as it will already be shown in the DisplayName.
+     */
+    public static String getFormattedCompanyString(
+            Context context, OrganizationDataItem organization, boolean displayNameIsOrganization) {
+        List<String> text = Lists.newArrayList();
+        if (!TextUtils.isEmpty(organization.getCompany())) {
+            text.add(organization.getCompany());
+        }
+        if (!TextUtils.isEmpty(organization.getDepartment())) {
+            text.add(organization.getDepartment());
+        }
+        if (!TextUtils.isEmpty(organization.getTitle())) {
+            text.add(organization.getTitle());
+        }
+        if (text.size() == 3) {
+            return context.getString(
+                R.string.organization_entry_all_field, text.get(0), text.get(1),
+                text.get(2));
+        }
+        if (text.size() == 2) {
+            return context.getString(
+                R.string.organization_entry_two_field, text.get(0), text.get(1));
+        }
+        if (text.size() == 1 && !displayNameIsOrganization) {
+            return text.get(0);
         }
         return null;
     }
