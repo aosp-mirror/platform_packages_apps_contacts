@@ -164,7 +164,10 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"ছেটিংবোৰ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"ছেটিংবোৰ"</string>
     <string name="menu_help" msgid="287801702920372292">"সহায় আৰু মতামত"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <!-- no translation found for organization_entry_two_field (6034934619269052455) -->
+    <skip />
+    <!-- no translation found for organization_entry_all_field (6724345890324437167) -->
+    <skip />
     <string name="non_phone_caption" msgid="7343449684187013327">"ফ\'ন নম্বৰ"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"সর্ম্পক সূচীত যোগ কৰক"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"বন্ধ কৰক"</string>
@@ -324,6 +327,8 @@
     <string name="sms" msgid="4246338112764847384">"পাঠ বাৰ্তা"</string>
     <string name="postal_address" msgid="5031809899673855074">"ঠিকনা"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"কোম্পানী"</string>
+    <!-- no translation found for ghostData_department (8610642449404163799) -->
+    <skip />
     <string name="ghostData_title" msgid="8584897460662904533">"শিৰোনাম"</string>
     <string name="label_notes" msgid="7134226125644463585">"টোকাবোৰ"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"নিজৰ উপযোগিতা অনুসৰি"</string>
