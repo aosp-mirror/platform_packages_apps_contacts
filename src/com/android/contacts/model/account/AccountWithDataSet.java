@@ -21,6 +21,7 @@ import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
@@ -87,11 +88,12 @@ public class AccountWithDataSet implements Parcelable {
     }
 
     public static AccountWithDataSet getLocalAccount(Context context) {
-        return new AccountWithDataSet(
-                RawContacts.getLocalAccountName(context),
-                RawContacts.getLocalAccountType(context),
-                null
-        );
+        return android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.R
+                ? getNullAccount()
+                : new AccountWithDataSet(
+                      RawContacts.getLocalAccountName(context),
+                      RawContacts.getLocalAccountType(context),
+                      null);
     }
 
     public Account getAccountOrNull() {
@@ -261,4 +263,3 @@ public class AccountWithDataSet implements Parcelable {
         return ret;
     }
 }
-
