@@ -325,7 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"Мәтіндік хабар"</string>
     <string name="postal_address" msgid="5031809899673855074">"Мекенжай"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Компания"</string>
-    <string name="ghostData_department" msgid="8610642449404163799">"Департамент"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"Бөлім"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"Атауы"</string>
     <string name="label_notes" msgid="7134226125644463585">"Ескертпелер"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Арнаулы"</string>
