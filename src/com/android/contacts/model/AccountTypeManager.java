@@ -29,6 +29,7 @@ import android.content.SyncStatusObserver;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -44,6 +45,7 @@ import com.android.contacts.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.FallbackAccountType;
 import com.android.contacts.model.account.GoogleAccountType;
+import com.android.contacts.model.account.SimAccountType;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.concurrent.ContactsExecutors;
 
@@ -90,6 +92,13 @@ public abstract class AccountTypeManager {
             @Override
             public boolean apply(@Nullable AccountInfo input) {
                 return input != null && input.getType().areContactsWritable();
+            }
+        },
+        DRAWER_DISPLAYABLE {
+            @Override
+            public boolean apply(@Nullable AccountInfo input) {
+                return input != null && ((input.getType() instanceof SimAccountType)
+                        || input.getType().areContactsWritable());
             }
         },
         GROUPS_WRITABLE {
@@ -324,6 +333,10 @@ public abstract class AccountTypeManager {
         return AccountFilter.CONTACTS_WRITABLE;
     }
 
+    public static Predicate<AccountInfo> drawerDisplayableFilter() {
+        return AccountFilter.DRAWER_DISPLAYABLE;
+    }
+
     public static Predicate<AccountInfo> groupWritableFilter() {
         return AccountFilter.GROUPS_WRITABLE;
     }
@@ -342,9 +355,11 @@ class AccountTypeManagerImpl extends AccountTypeManager
     private final AccountType mFallbackAccountType;
 
     private ListenableFuture<List<AccountWithDataSet>> mLocalAccountsFuture;
+    private ListenableFuture<List<AccountWithDataSet>> mSimAccountsFuture;
     private ListenableFuture<AccountTypeProvider> mAccountTypesFuture;
 
     private List<AccountWithDataSet> mLocalAccounts = new ArrayList<>();
+    private List<AccountWithDataSet> mSimAccounts = new ArrayList<>();
     private List<AccountWithDataSet> mAccountManagerAccounts = new ArrayList<>();
 
     private final Handler mMainThreadHandler = new Handler(Looper.getMainLooper());
@@ -359,12 +374,22 @@ class AccountTypeManagerImpl extends AccountTypeManager
             };
 
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             // Don't use reloadAccountTypesIfNeeded when packages change in case a contacts.xml
             // was updated.
             reloadAccountTypes();
+        }
+    };
+
+    private final BroadcastReceiver mSimBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ContactsContract.SimContacts.ACTION_SIM_ACCOUNTS_CHANGED.equals(
+                    intent.getAction())) {
+                reloadSimAccounts();
+            }
         }
     };
 
@@ -397,6 +422,10 @@ class AccountTypeManagerImpl extends AccountTypeManager
         // be able to be changed on the locale change.
         filter = new IntentFilter(Intent.ACTION_LOCALE_CHANGED);
         mContext.registerReceiver(mBroadcastReceiver, filter);
+
+        IntentFilter simFilter = new IntentFilter(
+                ContactsContract.SimContacts.ACTION_SIM_ACCOUNTS_CHANGED);
+        mContext.registerReceiver(mSimBroadcastReceiver, simFilter);
 
         mAccountManager.addOnAccountsUpdatedListener(this, mMainThreadHandler, false);
 
@@ -439,6 +468,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
         }
         if (mLocalAccountsFuture == null) {
             reloadLocalAccounts();
+        }
+        if (mSimAccountsFuture == null) {
+            reloadSimAccounts();
         }
     }
 
@@ -500,6 +532,28 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 mMainThreadExecutor);
     }
 
+    private synchronized void loadSimAccounts() {
+        mSimAccountsFuture = mExecutor.submit(new Callable<List<AccountWithDataSet>>() {
+            @Override
+            public List<AccountWithDataSet> call() throws Exception {
+                List<AccountWithDataSet> simAccountWithDataSets = new ArrayList<>();
+                List<ContactsContract.SimAccount> simAccounts =
+                        ContactsContract.SimContacts.getSimAccounts(mContext.getContentResolver());
+                for (ContactsContract.SimAccount simAccount : simAccounts) {
+                    simAccountWithDataSets.add(new AccountWithDataSet(simAccount.getAccountName(),
+                            simAccount.getAccountType(), null));
+                }
+                return simAccountWithDataSets;
+            }
+        });
+    }
+
+    private synchronized void reloadSimAccounts() {
+        loadSimAccounts();
+        Futures.addCallback(mSimAccountsFuture, newAccountsUpdatedCallback(mSimAccounts),
+                mMainThreadExecutor);
+    }
+
     @Override
     public ListenableFuture<List<AccountInfo>> getAccountsAsync() {
         return getAllAccountsAsyncInternal();
@@ -513,7 +567,8 @@ class AccountTypeManagerImpl extends AccountTypeManager
                         Futures.successfulAsList(
                                 Futures.transform(mAccountTypesFuture, mAccountsExtractor,
                                         MoreExecutors.directExecutor()),
-                                mLocalAccountsFuture));
+                                mLocalAccountsFuture,
+                                mSimAccountsFuture));
 
         return Futures.transform(all, new Function<List<List<AccountWithDataSet>>,
                 List<AccountInfo>>() {
@@ -522,8 +577,9 @@ class AccountTypeManagerImpl extends AccountTypeManager
             public List<AccountInfo> apply(@Nullable List<List<AccountWithDataSet>> input) {
                 // input.get(0) contains accounts from AccountManager
                 // input.get(1) contains device local accounts
-                Preconditions.checkArgument(input.size() == 2,
-                        "List should have exactly 2 elements");
+                // input.get(2) contains SIM accounts
+                Preconditions.checkArgument(input.size() == 3,
+                        "List should have exactly 3 elements");
 
                 final List<AccountInfo> result = new ArrayList<>();
                 for (AccountWithDataSet account : input.get(0)) {
@@ -532,6 +588,11 @@ class AccountTypeManagerImpl extends AccountTypeManager
                 }
 
                 for (AccountWithDataSet account : input.get(1)) {
+                    result.add(
+                            typeProvider.getTypeForAccount(account).wrapAccount(mContext, account));
+                }
+
+                for (AccountWithDataSet account : input.get(2)) {
                     result.add(
                             typeProvider.getTypeForAccount(account).wrapAccount(mContext, account));
                 }
