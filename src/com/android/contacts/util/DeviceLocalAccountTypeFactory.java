@@ -16,11 +16,14 @@
 package com.android.contacts.util;
 
 import android.content.Context;
+import android.provider.ContactsContract;
+
 import androidx.annotation.IntDef;
 
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.DeviceLocalAccountType;
+import com.android.contacts.model.account.SimAccountType;
 
 import java.lang.annotation.Retention;
 import java.util.Objects;
@@ -67,6 +70,14 @@ public interface DeviceLocalAccountTypeFactory {
 
         @Override
         public int classifyAccount(String accountType) {
+            for (ContactsContract.SimAccount simAccount :
+                    ContactsContract.SimContacts.getSimAccounts(
+                            mContext.getContentResolver())) {
+                if (accountType != null && Objects.equals(accountType,
+                        simAccount.getAccountType())) {
+                    return TYPE_SIM;
+                }
+            }
             return accountType == null ||
                     Objects.equals(AccountWithDataSet.getLocalAccount(mContext).type, accountType)
                     ? TYPE_DEVICE : TYPE_OTHER;
@@ -74,6 +85,9 @@ public interface DeviceLocalAccountTypeFactory {
 
         @Override
         public AccountType getAccountType(String accountType) {
+            if (classifyAccount(accountType) == TYPE_SIM) {
+                return new SimAccountType(mContext);
+            }
             if (accountType != null && !Objects.equals(
                     AccountWithDataSet.getLocalAccount(mContext).type, accountType)) {
                 throw new IllegalArgumentException(accountType + " is not a device account type.");
