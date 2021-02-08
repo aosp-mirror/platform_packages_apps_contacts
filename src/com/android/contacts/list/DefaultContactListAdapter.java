@@ -90,7 +90,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             final ContactListFilter filter = getFilter();
             configureUri(loader, directoryId, filter);
             if (filter != null
-                    && filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+                    && (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS
+                    || filter.filterType == ContactListFilter.FILTER_TYPE_SIM_CONTACTS)) {
                 loader.setProjection(getDataProjectionForContacts(false));
             } else {
                 loader.setProjection(getProjection(false));
@@ -140,7 +141,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
                 } else {
                     uri = ContentUris.withAppendedId(Contacts.CONTENT_URI, getSelectedContactId());
                 }
-            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
+            } else if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS
+                    || filter.filterType == ContactListFilter.FILTER_TYPE_SIM_CONTACTS) {
                 uri = Data.CONTENT_URI;
             }
         }
@@ -209,7 +211,8 @@ public class DefaultContactListAdapter extends ContactListAdapter {
             case ContactListFilter.FILTER_TYPE_GROUP_MEMBERS: {
                 break;
             }
-            case ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS: {
+            case ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS:
+            case ContactListFilter.FILTER_TYPE_SIM_CONTACTS: {
                 if (filter.accountType != null) {
                     selection.append(ContactsContract.RawContacts.ACCOUNT_TYPE)
                             .append("=?");
