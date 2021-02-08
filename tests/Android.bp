@@ -12,6 +12,8 @@ android_test {
 
     static_libs: [
         "androidx.test.rules",
+        "androidx.test.runner",
+        "androidx.test.ext.junit",
         "hamcrest-library",
         "mockito-target-minus-junit4",
         "ub-uiautomator",
