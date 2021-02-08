@@ -302,7 +302,7 @@
     <string name="list_filter_phones_work" msgid="5583425697781385616">"Ажлын профайлын харилцагч"</string>
     <string name="view_updates_from_group" msgid="6233444629074835594">"Шинэчлэлтүүдийг харах"</string>
     <string name="account_phone" msgid="8044426231251817556">"Төхөөрөмж"</string>
-    <string name="account_sim" msgid="3200457113308694663">"СИМ"</string>
+    <string name="account_sim" msgid="3200457113308694663">"SIM"</string>
     <string name="nameLabelsGroup" msgid="513809148312046843">"Нэр"</string>
     <string name="nicknameLabelsGroup" msgid="794390116782033956">"Хоч"</string>
     <string name="name_given" msgid="3883661251894628431">"Өөрийн нэр"</string>
@@ -452,7 +452,7 @@
     <string name="no_contact_to_share" msgid="6285287228557175749">"Хуваалцах харилцагчид байхгүй байна."</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"Харуулах харилцагчид"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"Харуулах харилцагчид"</string>
-    <string name="custom_list_filter" msgid="2544327670202891979">"Харагдацыг тааруулах"</string>
+    <string name="custom_list_filter" msgid="2544327670202891979">"Харагдцыг тааруулах"</string>
     <string name="menu_custom_filter_save" msgid="2412959737200856930">"Хадгалах"</string>
     <string name="hint_findContacts" msgid="5554298639062659655">"Харилцагч хайх"</string>
     <string name="contactsFavoritesLabel" msgid="8339645684721732714">"Таалагддаг"</string>
