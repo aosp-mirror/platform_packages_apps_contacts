@@ -463,7 +463,7 @@
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="DATE">%1$s</xliff:g> <xliff:g id="SOURCE">%2$s</xliff:g> аркылуу"</string>
     <string name="action_menu_back_from_search" msgid="683765774264585732">"издөөнү токтотуу"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"Изделип жаткан нерсени өчүрүү"</string>
-    <string name="select_account_dialog_title" msgid="5047523441152129207">"Каттоо эсеби"</string>
+    <string name="select_account_dialog_title" msgid="5047523441152129207">"Аккаунт"</string>
     <string name="set_default_account" msgid="9194321110211682396">"Чалууларда ар дайым бул колдонулсун"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"Кыска жазуу менен чалуу"</string>
     <string name="call_subject_hint" msgid="7056652101889538157">"Чалуу менен жөнөтүлө турган кыска жазууну териңиз…"</string>
