@@ -201,7 +201,7 @@
     <string name="menu_export_database" msgid="1658249125751926885">"Արտահանել տվյալների շտեմարանի ֆայլերը"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Ստեղծել նոր կոնտակտ"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Տեսնել ավելին"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Կոծկել"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Ցույց տալ ավելի քիչ"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Տեղեկատվություն"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Ստեղծվում է անձնական պատճենը..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Հաստատել"</string>
