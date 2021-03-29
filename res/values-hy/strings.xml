@@ -70,11 +70,11 @@
       <item quantity="other">Կոնտակտները ջնջվեցին</item>
     </plurals>
     <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> contacts</item>
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> կոնտակտ</item>
       <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> կոնտակտ</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> contacts · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> կոնտակտ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> կոնտակտ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="2554633992366572820">"Google-ից"</string>
@@ -137,7 +137,7 @@
     <string name="menu_add_contact" msgid="5822356185421997656">"Ավելացնել կոնտակտներին"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Ավելացնել"</string>
     <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">Share contacts via</item>
+      <item quantity="one">Ուղարկել կոնտակտը հետևյալով՝</item>
       <item quantity="other">Ուղարկել կոնտակտները հետևյալով՝</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Ընտրեք հաշիվը"</string>
@@ -379,11 +379,11 @@
     <string name="import_from_sim" msgid="7825280799813847991">"SIM քարտից"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM-ից"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d contacts</item>
+      <item quantity="one">%1$d կոնտակտ</item>
       <item quantity="other">%1$d կոնտակտ</item>
     </plurals>
     <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> contacts • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> կոնտակտ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> կոնտակտ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
     </plurals>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ֆայլից"</string>
