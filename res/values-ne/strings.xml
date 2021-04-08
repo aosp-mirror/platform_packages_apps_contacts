@@ -50,12 +50,12 @@
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"तपाईँले पहिल्यै गरेका परिवर्तनहरू सुरक्षित गर्न र यस सम्पर्कलाई बहु सम्पर्कहरूमा अनलिंक गर्न चाहनुहुन्छ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"सुरक्षित गरी अनलिकं गर्नुहोस्"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"तपाईँले पहिलेनै गरिएका परिवर्तनहरूलाई तपाईँले चयन गरेका सम्पर्क ठेगाना सँग सुरक्षित गरी लिंक गर्न चाहनुहुन्छ?"</string>
-    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"सुरक्षित गर्नुहोस् र लिंक गर्नुहोस्"</string>
+    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"सेभ गर्नुहोस् र लिंक गर्नुहोस्"</string>
     <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"लिङ्क गर्दै"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"अनलिङ्क गर्दै"</string>
     <string name="menu_joinAggregate" msgid="3116395302755287038">"लिंक"</string>
     <string name="menu_linkedContacts" msgid="6363718333551613063">"लिंक गरिएका सम्पर्कहरू हेर्ने"</string>
-    <string name="menu_save" msgid="7204524700499687371">"सुरक्षित गर्नुहोस्"</string>
+    <string name="menu_save" msgid="7204524700499687371">"सेभ गर्नुहोस्"</string>
     <string name="titleJoinContactDataWith" msgid="7342386037654890242">"सम्पर्क ठेगानाहरू लिंक गर्नुहोस्"</string>
     <string name="blurbJoinContactDataWith" msgid="132105056919797709">"तपाईँले <xliff:g id="NAME">%s</xliff:g> मा लिंक हुन चाहनु भएको सम्पर्क ठेगाना चयन गर्नुहोस्:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="8347769365870796983">"सुझाव गरिएका सम्पर्कहरू"</string>
@@ -377,7 +377,7 @@
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"\" <xliff:g id="GROUP">%s</xliff:g> \" लाई सिङ्कबाट हटाउनाले समूहमा नरहेका सम्पर्कहरूलाई पनि हटाउने छ।"</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"प्रदर्शन विकल्पहरू बचत‍ गर्दै ..."</string>
     <string name="listCustomView" msgid="5782275477737032610">"आफू अनुकूल पारिएको दृश्य"</string>
-    <string name="dialog_new_contact_account" msgid="5652018124788855057">"आयातीत सम्पर्कहरू निम्नमा सुरक्षित गर्नुहोस्:"</string>
+    <string name="dialog_new_contact_account" msgid="5652018124788855057">"आयातीत सम्पर्कहरू निम्नमा सेभ गर्नुहोस्:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM कार्ड"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
