@@ -262,17 +262,17 @@
     <string name="call_assistant" msgid="8556909944379826616">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> मा कल गर्नुहोस्"</string>
     <string name="call_mms" msgid="1760746475672950386">"MMS कल"</string>
     <string name="call_by_shortcut" msgid="5707329943368933423">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (कल गर्नुहोस्)"</string>
-    <string name="sms_custom" msgid="3684453744622817362">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> मा पाठ सन्देश पठाउनुहोस्"</string>
+    <string name="sms_custom" msgid="3684453744622817362">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> मा टेक्स्ट म्यासेज पठाउनुहोस्"</string>
     <string name="sms_home" msgid="6132392861245316613">"पाठ गृह"</string>
     <string name="sms_mobile" msgid="433949735070334192">"पाठ मोबाइल"</string>
     <string name="sms_work" msgid="7784676780449153911">"पाठ काम"</string>
     <string name="sms_fax_work" msgid="8239716828120939345">"पाठलाई काममा फ्याक्स गर्नुहोस्"</string>
     <string name="sms_fax_home" msgid="6887675360794775735">"पाठलाई घर फ्याक्स गर्नुहोस्"</string>
-    <string name="sms_pager" msgid="1052540072760129272">"पाठ सन्देश पेजरमा"</string>
+    <string name="sms_pager" msgid="1052540072760129272">"टेक्स्ट म्यासेज पेजरमा"</string>
     <string name="sms_other" msgid="3584200156296349098">"पाठ"</string>
     <string name="sms_callback" msgid="6932315941997609031">"पाठ कलब्याक"</string>
     <string name="sms_car" msgid="6051606941547979352">"पाठ कार"</string>
-    <string name="sms_company_main" msgid="4801585186677340070">"कार्पायलय मूख्यमा पाठ सन्देश"</string>
+    <string name="sms_company_main" msgid="4801585186677340070">"कार्पायलय मूख्यमा टेक्स्ट म्यासेज"</string>
     <string name="sms_isdn" msgid="8093269429091061478">"पाठ ISDN"</string>
     <string name="sms_main" msgid="624730854551629076">"पाठ मूल"</string>
     <string name="sms_other_fax" msgid="8272996838482574564">"पाठ फ्याक्स"</string>
@@ -321,7 +321,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"संगठन"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"सम्बन्ध"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"विशेष मिति"</string>
-    <string name="sms" msgid="4246338112764847384">"पाठ सन्देश"</string>
+    <string name="sms" msgid="4246338112764847384">"टेक्स्ट म्यासेज"</string>
     <string name="postal_address" msgid="5031809899673855074">"ठेगाना"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"कम्पनी"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"शीर्षक"</string>
