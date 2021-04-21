@@ -103,7 +103,7 @@
     <string name="emptyGroup" msgid="8598261660865081152">"यो लेबल अन्तर्गत कुनै सम्पर्कहरू छैनन्"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"यस खातामा कुनै सम्पर्क ठेगानाहरू छैनन्"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"तपाईंको सम्पर्क ठेगानाहरूको सूची खाली छ"</string>
-    <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> सुरक्षित गरियो"</string>
+    <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> सेभ गरियो"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"सम्पर्क बचत गरियो।"</string>
     <string name="contactUnlinkedToast" msgid="6791720274141804377">"सम्पर्क ठेगानाहरू अनलिंक गरियो"</string>
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"सम्पर्कमा गरिएका परिवर्तनहरू सुरक्षित गर्न सकिएन"</string>
