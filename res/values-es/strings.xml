@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"Ajustes"</string>
     <string name="menu_settings" msgid="3524924670246877187">"Ajustes"</string>
     <string name="menu_help" msgid="287801702920372292">"Ayuda y comentarios"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"Número de teléfono"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"Añadir a contactos"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"Cerrar"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"Mensaje de texto"</string>
     <string name="postal_address" msgid="5031809899673855074">"Dirección"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Empresa"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"Departamento"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"Cargo"</string>
     <string name="label_notes" msgid="7134226125644463585">"Notas"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Personalizado"</string>
