@@ -57,7 +57,6 @@
 -keep class com.android.contacts.model.BuilderWrapper { *; }
 -keep class com.android.contacts.model.Contact { *; }
 -keep class com.android.contacts.model.ContactLoader { *; }
--keep class com.android.contacts.model.Cp2DeviceLocalAccountLocator { *; }
 -keep class com.android.contacts.model.CPOWrapper { *; }
 -keep class com.android.contacts.model.dataitem.DataItem { *; }
 -keep class com.android.contacts.model.dataitem.DataKind { *; }
