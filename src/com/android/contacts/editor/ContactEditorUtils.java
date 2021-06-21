@@ -38,9 +38,11 @@ import java.util.List;
 public class ContactEditorUtils {
     private static final String TAG = "ContactEditorUtils";
 
+    private final Context mContext;
     private final ContactsPreferences mContactsPrefs;
 
     private ContactEditorUtils(Context context) {
+        mContext = context;
         mContactsPrefs = new ContactsPreferences(context);
     }
 
@@ -122,7 +124,7 @@ public class ContactEditorUtils {
     public void maybeUpdateDefaultAccount(List<AccountWithDataSet> currentWritableAccounts) {
         if (currentWritableAccounts.size() == 1) {
             final AccountWithDataSet onlyAccount = currentWritableAccounts.get(0);
-            if (!onlyAccount.isNullAccount()
+            if (!onlyAccount.equals(AccountWithDataSet.getLocalAccount(mContext))
                     && !onlyAccount.equals(mContactsPrefs.getDefaultAccount())) {
                 mContactsPrefs.setDefaultAccount(onlyAccount);
             }
