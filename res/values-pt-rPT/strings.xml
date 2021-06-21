@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"Definições"</string>
     <string name="menu_settings" msgid="3524924670246877187">"Definições"</string>
     <string name="menu_help" msgid="287801702920372292">"Ajuda e comentários"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"Número de telefone"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"Adicionar aos contactos"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"Fechar"</string>
@@ -207,7 +208,7 @@
     <string name="date_time_set" msgid="8526160894146496334">"Definir"</string>
     <string name="header_im_entry" msgid="3581797653862294826">"MI"</string>
     <string name="header_organization_entry" msgid="7428066442988227441">"Entidade"</string>
-    <string name="header_nickname_entry" msgid="1110276804512795150">"Pseudónimo"</string>
+    <string name="header_nickname_entry" msgid="1110276804512795150">"Alcunha"</string>
     <string name="header_note_entry" msgid="339680292368016788">"Nota"</string>
     <string name="header_website_entry" msgid="3618691707215428785">"Website"</string>
     <string name="header_event_entry" msgid="70962228694476731">"Evento"</string>
@@ -304,7 +305,7 @@
     <string name="account_phone" msgid="8044426231251817556">"Dispositivo"</string>
     <string name="account_sim" msgid="3200457113308694663">"SIM"</string>
     <string name="nameLabelsGroup" msgid="513809148312046843">"Nome"</string>
-    <string name="nicknameLabelsGroup" msgid="794390116782033956">"Pseudónimo"</string>
+    <string name="nicknameLabelsGroup" msgid="794390116782033956">"Alcunha"</string>
     <string name="name_given" msgid="3883661251894628431">"Nome próprio"</string>
     <string name="name_family" msgid="2907432135923624482">"Apelido"</string>
     <string name="name_prefix" msgid="8857117624713905211">"Título académico ou profissional"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"Mensagem de texto"</string>
     <string name="postal_address" msgid="5031809899673855074">"Endereço"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Empresa"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"Departamento"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"Título"</string>
     <string name="label_notes" msgid="7134226125644463585">"Notas"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Personalizado"</string>
