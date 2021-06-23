@@ -70,11 +70,11 @@
       <item quantity="other">Կոնտակտները ջնջվեցին</item>
     </plurals>
     <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> contacts</item>
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> կոնտակտ</item>
       <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> կոնտակտ</item>
     </plurals>
     <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> contacts · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> կոնտակտ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> կոնտակտ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
     </plurals>
     <string name="title_from_google" msgid="2554633992366572820">"Google-ից"</string>
@@ -137,7 +137,7 @@
     <string name="menu_add_contact" msgid="5822356185421997656">"Ավելացնել կոնտակտներին"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Ավելացնել"</string>
     <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">Share contacts via</item>
+      <item quantity="one">Ուղարկել կոնտակտը հետևյալով՝</item>
       <item quantity="other">Ուղարկել կոնտակտները հետևյալով՝</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Ընտրեք հաշիվը"</string>
@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"Կարգավորումներ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"Կարգավորումներ"</string>
     <string name="menu_help" msgid="287801702920372292">"Օգնություն և կարծիք"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"Հեռախոսահամար"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"Ավելացնել կոնտակտներում"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"Փակել"</string>
@@ -201,7 +202,7 @@
     <string name="menu_export_database" msgid="1658249125751926885">"Արտահանել տվյալների շտեմարանի ֆայլերը"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Ստեղծել նոր կոնտակտ"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Տեսնել ավելին"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Կոծկել"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Ցույց տալ ավելի քիչ"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Տեղեկատվություն"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Ստեղծվում է անձնական պատճենը..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Հաստատել"</string>
@@ -232,8 +233,8 @@
     <string name="editor_delete_view_description_short" msgid="6471032197042328181">"Ջնջել <xliff:g id="DATA_KIND">%s</xliff:g>"</string>
     <string name="menu_assistant" msgid="3980364519724237934">"Հուշումներ"</string>
     <string name="menu_assistant_new_badge" msgid="1992049406019853898">"Նոր"</string>
-    <string name="navigation_drawer_open" msgid="3428713515765555712">"Բացել նավարկման դարակը"</string>
-    <string name="navigation_drawer_close" msgid="3052989100471689722">"Փակել նավարկման դարակը"</string>
+    <string name="navigation_drawer_open" msgid="3428713515765555712">"Բացել նավիգացիայի դարակը"</string>
+    <string name="navigation_drawer_close" msgid="3052989100471689722">"Փակել նավիգացիայի դարակը"</string>
     <string name="navigation_drawer_label" msgid="8391863484838783638">"<xliff:g id="LABEL_NAME">%s</xliff:g> պիտակ"</string>
     <string name="menu_title_groups" msgid="3722199658759568221">"Պիտակներ"</string>
     <string name="menu_title_filters" msgid="349866121417914494">"Հաշիվներ"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"Տեքստային հաղորդագրություն"</string>
     <string name="postal_address" msgid="5031809899673855074">"Հասցե"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Ընկերություն"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"Բաժին"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"Պաշտոն"</string>
     <string name="label_notes" msgid="7134226125644463585">"Գրառումներ"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Հատուկ"</string>
@@ -379,11 +381,11 @@
     <string name="import_from_sim" msgid="7825280799813847991">"SIM քարտից"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM-ից"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d contacts</item>
+      <item quantity="one">%1$d կոնտակտ</item>
       <item quantity="other">%1$d կոնտակտ</item>
     </plurals>
     <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> contacts • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> կոնտակտ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> կոնտակտ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
     </plurals>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ֆայլից"</string>
@@ -471,11 +473,11 @@
     <string name="call_subject_limit" msgid="5679166729627777474">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="134754147019287616">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <string name="about_build_version" msgid="5870642814752351712">"Կառուցման տարբերակը"</string>
-    <string name="about_open_source_licenses" msgid="1617836621315557445">"Բաց կոդով ծրագրակազմի արտոնագրեր"</string>
+    <string name="about_open_source_licenses" msgid="1617836621315557445">"Բաց կոդով ծրագրակազմի լիցենզիաներ"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Բաց կոդով ծրագրակազմի արտոնագրերի մանրամասներ"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"Գաղտնիության քաղաքականություն"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"Օգտագործման պայմաններ"</string>
-    <string name="activity_title_licenses" msgid="6434398894019119709">"Բաց կոդով ծրագրերի արտոնագրեր"</string>
+    <string name="activity_title_licenses" msgid="6434398894019119709">"Բաց կոդով ծրագրերի լիցենզիաներ"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"Չհաջողվեց բացել url-ը:"</string>
     <string name="account_filter_view_checked" msgid="4740544238806346376">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը նշվել է"</string>
     <string name="account_filter_view_not_checked" msgid="5782705545786455847">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> հաշիվը չի նշվել"</string>

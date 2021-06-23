@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"تنظیمات"</string>
     <string name="menu_settings" msgid="3524924670246877187">"تنظیمات"</string>
     <string name="menu_help" msgid="287801702920372292">"راهنما و بازخورد"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>، <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="SECOND">%2$s</xliff:g> • <xliff:g id="FIRST">%1$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"شماره تلفن"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"افزودن به مخاطبین"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"بستن"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"پیام نوشتاری"</string>
     <string name="postal_address" msgid="5031809899673855074">"آدرس"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"شرکت"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"بخش"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"عنوان"</string>
     <string name="label_notes" msgid="7134226125644463585">"یادداشت‌ها"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"سفارشی"</string>
@@ -403,8 +405,8 @@
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"قالب پشتیبانی نمی‌شود."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> پایان یافت."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"صادر کردن مخاطبین تمام شد."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"مخاطبین صادر شدند؛ برای اشتراک‌گذاری مخاطبین، روی اعلان کلیک کنید."</string>
-    <string name="touch_to_share_contacts" msgid="7678194978416052577">"برای اشتراک‌گذاری مخاطبین ضربه بزنید."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"مخاطبین صادر شدند؛ برای هم‌رسانی مخاطبین، روی اعلان کلیک کنید."</string>
+    <string name="touch_to_share_contacts" msgid="7678194978416052577">"برای هم‌رسانی مخاطبین ضربه بزنید."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"صدور اطلاعات مخاطب"</string>
     <string name="exporting_contact_list_message" msgid="6253904938452184387">"داده‌های مخاطب در حال صادر شدن است."</string>
@@ -449,7 +451,7 @@
     <string name="dialog_export" msgid="3497435010655060068">"صادر کردن مخاطبین"</string>
     <string name="dialog_import" msgid="4590232235052756593">"وارد کردن مخاطبین از"</string>
     <string name="share_error" msgid="4854612167186185739">"این مخاطب قابل اشتراک‌گذاری نیست."</string>
-    <string name="no_contact_to_share" msgid="6285287228557175749">"مخاطبی برای اشتراک‌گذاری وجود ندارد."</string>
+    <string name="no_contact_to_share" msgid="6285287228557175749">"مخاطبی برای هم‌رسانی وجود ندارد."</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"مخاطبین جهت نمایش"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"مخاطبین جهت نمایش"</string>
     <string name="custom_list_filter" msgid="2544327670202891979">"سفارشی ساختن نما"</string>
