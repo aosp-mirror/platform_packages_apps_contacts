@@ -202,7 +202,7 @@
     <string name="menu_export_database" msgid="1658249125751926885">"Databasebestanden exporteren"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Nieuw contact maken"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer tonen"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder weergeven"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder tonen"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Over"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Een persoonlijke kopie maken..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Instellen"</string>
