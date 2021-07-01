@@ -201,8 +201,8 @@
     <string name="add_new_account" msgid="573368229646104110">"Nieuw account toevoegen"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Databasebestanden exporteren"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Nieuw contact maken"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer weergeven"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder weergeven"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer tonen"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder tonen"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Over"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Een persoonlijke kopie maken..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Instellen"</string>
@@ -505,7 +505,7 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Inschakelen"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Geen verbinding"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"Simkaart"</string>
-    <string name="show_more_content_description" msgid="6298277298495491712">"Meer weergeven"</string>
+    <string name="show_more_content_description" msgid="6298277298495491712">"Meer tonen"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"Importeren van simkaart voltooid"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"Importeren mislukt"</string>
     <string name="importing_sim_failed_message" msgid="55568522164349044">"Kan geen contacten importeren van de simkaart"</string>
