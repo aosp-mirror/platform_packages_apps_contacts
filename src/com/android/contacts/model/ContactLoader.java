@@ -887,24 +887,12 @@ public class ContactLoader extends AsyncTaskLoader<Contact> {
                 .getViewContactNotifyServicePackageName();
             if (!TextUtils.isEmpty(serviceName) && !TextUtils.isEmpty(servicePackageName)) {
                 final Uri uri = ContentUris.withAppendedId(RawContacts.CONTENT_URI, rawContactId);
-                final Intent intent = new Intent();
-                intent.setDataAndType(uri, RawContacts.CONTENT_ITEM_TYPE);
                 if (accountType instanceof GoogleAccountType) {
-                    intent.setPackage(servicePackageName);
-                    intent
-                        .setAction("com.google.android.syncadapters.contacts.SYNC_HIGH_RES_PHOTO");
-                    List<ResolveInfo> broadcastReceivers =
-                        context.getPackageManager().queryBroadcastReceivers(intent, 0);
-                    if (!broadcastReceivers.isEmpty()) {
-                        if (Log.isLoggable(TAG, Log.DEBUG)) {
-                            for (ResolveInfo broadcastReceiver : broadcastReceivers) {
-                                Log.d(TAG, broadcastReceiver.activityInfo.toString());
-                            }
-                        }
-                        context.sendBroadcast(intent);
-                        continue;
-                    }
+                    ((GoogleAccountType) accountType).handleRawContactViewed(context, uri);
+                    continue;
                 }
+                final Intent intent = new Intent();
+                intent.setData(uri);
                 // TODO: Social Stream API is deprecated, and once the opted-in
                 // sync adapters target Android O+, we won't be able to start their services
                 // since they'll likely be in the background, so we'll need to remove the
