@@ -16,8 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="applicationLabel" msgid="8908212014470937609">"పరిచయాలు"</string>
-    <string name="contactsList" msgid="4456188358262700898">"పరిచయాలు"</string>
+    <string name="applicationLabel" msgid="8908212014470937609">"కాంటాక్ట్‌లు"</string>
+    <string name="contactsList" msgid="4456188358262700898">"కాంటాక్ట్‌లు"</string>
     <string name="shortcut_add_contact" msgid="7949342235528657981">"పరిచయాన్ని జోడించండి"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"పరిచయం"</string>
     <string name="shortcutDialContact" msgid="155367248069127153">"నేరుగా డయల్"</string>
@@ -132,13 +132,13 @@
     <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"మునుపటి స్క్రీన్‌కి తిరిగి రావడానికి క్లిక్ చేయండి"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"ఫోన్ నంబర్‌ను జోడించండి"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"ఇమెయిల్ జోడించండి"</string>
-    <string name="missing_app" msgid="5674389915738964148">"ఈ చర్యను నిర్వహించడానికి అనువర్తనం ఏదీ కనుగొనబడలేదు."</string>
+    <string name="missing_app" msgid="5674389915738964148">"ఈ చర్యను నిర్వహించడానికి యాప్‌ ఏదీ కనుగొనబడలేదు."</string>
     <string name="menu_share" msgid="6343022811796001773">"షేర్ చేయి"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"పరిచయాలకు జోడించు"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"జోడించు"</string>
     <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">పరిచయాలను దీని ద్వారా భాగస్వామ్యం చేయండి</item>
-      <item quantity="one">పరిచయాన్ని దీని ద్వారా భాగస్వామ్యం చేయండి</item>
+      <item quantity="other">పరిచయాలను దీని ద్వారా షేర్ చేయండి</item>
+      <item quantity="one">పరిచయాన్ని దీని ద్వారా షేర్ చేయండి</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"ఖాతాను ఎంచుకోండి"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"లేబుల్‌ను సృష్టించండి"</string>
@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"సెట్టింగ్‌లు"</string>
     <string name="menu_settings" msgid="3524924670246877187">"సెట్టింగ్‌లు"</string>
     <string name="menu_help" msgid="287801702920372292">"సహాయం &amp; అభిప్రాయం"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ఫోన్ నంబర్"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"పరిచయాలకు జోడించు"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"మూసివేయి"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"వచన సందేశం"</string>
     <string name="postal_address" msgid="5031809899673855074">"చిరునామా"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"కంపెనీ"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"విభాగం"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"శీర్షిక"</string>
     <string name="label_notes" msgid="7134226125644463585">"గమనికలు"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"అనుకూలం"</string>

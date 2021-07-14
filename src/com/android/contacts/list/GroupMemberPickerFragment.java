@@ -245,8 +245,12 @@ public class GroupMemberPickerFragment extends
     @Override
     protected DefaultContactListAdapter createListAdapter() {
         final DefaultContactListAdapter adapter = new DefaultContactListAdapter(getActivity());
-        adapter.setFilter(ContactListFilter.createGroupMembersFilter(
-                mAccountType, mAccountName, mAccountDataSet));
+        if (mAccountName == null && mAccountType == null && mAccountDataSet == null) {
+            adapter.setFilter(ContactListFilter.createDeviceContactsFilter(/*icon=*/null));
+        } else {
+            adapter.setFilter(ContactListFilter.createGroupMembersFilter(
+                    mAccountType, mAccountName, mAccountDataSet));
+        }
         adapter.setSectionHeaderDisplayEnabled(true);
         adapter.setDisplayPhotos(true);
         return adapter;
