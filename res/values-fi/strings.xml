@@ -156,7 +156,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Haetaan..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Päivämäärä"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Tunniste"</string>
-    <string name="cancel_button_content_description" msgid="7407595608883650004">"Peruuta"</string>
+    <string name="cancel_button_content_description" msgid="7407595608883650004">"Peru"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Takaisin"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"sulje"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"Haluatko muokata valittuja yhteystietoja? Antamasi tiedot kopioidaan."</string>
@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"Asetukset"</string>
     <string name="menu_settings" msgid="3524924670246877187">"Asetukset"</string>
     <string name="menu_help" msgid="287801702920372292">"Ohje ja palaute"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"Puhelinnumero"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"Lisää yhteystietoihin"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"Sulje"</string>
@@ -180,7 +181,7 @@
     <string name="toast_text_copied" msgid="845906090076228771">"Teksti kopioitu"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Hylätäänkö muutokset?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"Hylkää"</string>
-    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"Peruuta"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"Peru"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Hylätäänkö muokkaukset?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"Hae yhteystiedoista"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"Poista yhteystiedot"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"Tekstiviesti"</string>
     <string name="postal_address" msgid="5031809899673855074">"Osoite"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Yritys"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"Osasto"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"Nimi"</string>
     <string name="label_notes" msgid="7134226125644463585">"Muistiinpanot"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Muokattu"</string>
@@ -389,8 +391,8 @@
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf-tiedosto"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Ei tuotavia tietoja"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Tuodaanko yhteystiedot vCard-tiedostosta?"</string>
-    <string name="cancel_import_confirmation_message" msgid="1007412828398265611">"Peruuta kohteen <xliff:g id="FILENAME">%s</xliff:g> tuonti?"</string>
-    <string name="cancel_export_confirmation_message" msgid="370693160959236239">"Peruuta kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti?"</string>
+    <string name="cancel_import_confirmation_message" msgid="1007412828398265611">"Peru kohteen <xliff:g id="FILENAME">%s</xliff:g> tuonti?"</string>
+    <string name="cancel_export_confirmation_message" msgid="370693160959236239">"Peru kohteen <xliff:g id="FILENAME">%s</xliff:g> vienti?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="3041814872516288484">"vCardin tuonnin/viennin peruutus epäonn."</string>
     <string name="fail_reason_unknown" msgid="3721044979355043778">"Tuntematon virhe."</string>
     <string name="fail_reason_could_not_open_file" msgid="6015509564074145162">"Tiedostoa \"<xliff:g id="FILE_NAME">%1$s</xliff:g>\" ei voi avata: <xliff:g id="EXACT_REASON">%2$s</xliff:g>"</string>
@@ -494,7 +496,7 @@
     </plurals>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM-yhteystietojen tuonti epäonnistui."</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Tuo SIM-kortilta"</string>
-    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Peruuta"</string>
+    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Peru"</string>
     <string name="auto_sync_off" msgid="7039314601316227882">"Automaattinen synkronointi ei ole käytössä. Ota toiminto käyttöön napauttamalla."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Hylkää"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Tilin synkronointi ei ole käytössä. Ota toiminto käyttöön napauttamalla."</string>
