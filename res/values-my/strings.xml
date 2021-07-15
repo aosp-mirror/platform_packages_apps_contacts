@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"ဆက်တင်များ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"ဆက်တင်များ"</string>
     <string name="menu_help" msgid="287801702920372292">"အကူအညီနှင့် အကြံပြုချက်"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ဖုန်းနံပါတ်"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"လိပ်စာများထဲသို့ ထည့်ပါ"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"ပိတ်ရန်"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"စာသားမက်ဆေ့ဂျ်"</string>
     <string name="postal_address" msgid="5031809899673855074">"လိပ်စာ"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"ကုမ္ပဏီ"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"ဌာန"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"ခေါင်းစဉ်"</string>
     <string name="label_notes" msgid="7134226125644463585">"မှတ်စုများ"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"စိတ်ကြိုက်"</string>
@@ -376,8 +378,8 @@
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ပြသရေးရွေးစရာများကို သိမ်းနေသည်…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"စိတ်ကြိုက်ကြည့်ရှုမှု"</string>
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"တင်သွင်းထားသောအဆက်အသွယ်များကို သိမ်းရမည့်အကောင့် -"</string>
-    <string name="import_from_sim" msgid="7825280799813847991">"ဆင်းမ်ကဒ်"</string>
-    <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> ဆင်းမ်ကဒ်"</string>
+    <string name="import_from_sim" msgid="7825280799813847991">"ဆင်းမ်ကတ်"</string>
+    <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> ဆင်းမ်ကတ်"</string>
     <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
       <item quantity="other">အဆက်အသွယ် %1$d ခု</item>
       <item quantity="one">အဆက်အသွယ် ၁ ခု</item>
@@ -502,7 +504,7 @@
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Google အဆက်အသွယ်များသာမက အက်ပ်နှင့် အကောင့်အားလုံးတွင် သင်ပြုလုပ်သော အပြောင်းအလဲများကို ဝဘ်နှင့် သင့်ကိရိယာများအကြား အချိန်နှင့်တပြေးညီ မွမ်းမံပေးသွားပါမည်။"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"ဖွင့်ရန်"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"ချိတ်ဆက်မှုမရှိပါ"</string>
-    <string name="single_sim_display_label" msgid="264062966309455515">"ဆင်းမ်ကဒ်"</string>
+    <string name="single_sim_display_label" msgid="264062966309455515">"ဆင်းမ်ကတ်"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"ပိုပြပါ"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"ဆင်းမ်ကဒ်ကို တင်သွင်းပြီးပါပြီ"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"တင်သွင်း၍မရပါ"</string>

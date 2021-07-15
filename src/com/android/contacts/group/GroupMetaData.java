@@ -114,10 +114,7 @@ public final class GroupMetaData implements Parcelable {
 
     /** Whether all metadata fields are set. */
     public boolean isValid() {
-        return uri != null
-                && !TextUtils.isEmpty(accountName)
-                && !TextUtils.isEmpty(groupName)
-                && groupId > 0;
+        return uri != null && !TextUtils.isEmpty(groupName) && groupId > 0;
     }
 
     @Override
