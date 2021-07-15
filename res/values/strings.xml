@@ -452,9 +452,23 @@
     <!-- Menu item for invoking contextual Help & Feedback [CHAR LIMIT=64] -->
     <string name="menu_help">Help &amp; feedback</string>
 
-    <!-- Text used to show a organization that has both a company and title. This is used in the Detail-View
-    of a Contact. This is mostly about the formatting of the two elements, so it should be kept small [CHAR LIMIT=79] -->
-    <string name="organization_company_and_title"><xliff:g id="company" example="Technical Program Manager">%2$s</xliff:g>, <xliff:g id="company" example="Google Inc.">%1$s</xliff:g></string>
+    <!-- String used to build an organization entry containing any of the 2 fields <Company>,
+         <Department> or <Job Title>, example: Google • Developer. [CHAR LIMIT=NONE] -->
+    <string name="organization_entry_two_field">
+        <xliff:g id="first" example="Google">%1$s</xliff:g>
+         •
+         <xliff:g id="second" example="Developer">%2$s</xliff:g>
+    </string>
+
+    <!-- String used to build an organization entry containing all the field <Company>,
+       <Department> or <Job Title>, example: Google • Department • Developer. [CHAR LIMIT=NONE] -->
+    <string name="organization_entry_all_field">
+        <xliff:g id="company" example="Google">%1$s</xliff:g>
+         •
+         <xliff:g id="department" example="People">%2$s</xliff:g>
+         •
+         <xliff:g id="title" example="Developer">%3$s</xliff:g>
+    </string>
 
     <!-- Title shown for the phone number when the number tries to call on a device that it not a phone [CHAR LIMIT=30] -->
     <string name="non_phone_caption">Phone number</string>
@@ -922,6 +936,10 @@
 
     <!-- Hint text for the organization name when editing a business/work contact. [CHAR LIMIT=64] -->
     <string name="ghostData_company">Company</string>
+
+    <!-- Hint text for the organization department when editing a business/work contact.
+        [CHAR LIMIT=64] -->
+    <string name="ghostData_department">Department</string>
 
     <!-- Hint text for the organization title when editing a business/work contact. [CHAR LIMIT=64] -->
     <string name="ghostData_title">Title</string>
