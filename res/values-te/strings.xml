@@ -16,8 +16,8 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="applicationLabel" msgid="8908212014470937609">"పరిచయాలు"</string>
-    <string name="contactsList" msgid="4456188358262700898">"పరిచయాలు"</string>
+    <string name="applicationLabel" msgid="8908212014470937609">"కాంటాక్ట్‌లు"</string>
+    <string name="contactsList" msgid="4456188358262700898">"కాంటాక్ట్‌లు"</string>
     <string name="shortcut_add_contact" msgid="7949342235528657981">"పరిచయాన్ని జోడించండి"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"పరిచయం"</string>
     <string name="shortcutDialContact" msgid="155367248069127153">"నేరుగా డయల్"</string>
