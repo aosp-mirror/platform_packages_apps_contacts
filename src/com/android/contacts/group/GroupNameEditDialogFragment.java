@@ -27,8 +27,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.Groups;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -39,10 +37,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+
 import com.android.contacts.ContactSaveService;
 import com.android.contacts.R;
 import com.android.contacts.model.account.AccountWithDataSet;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.common.base.Strings;
 
 import java.util.Collections;
@@ -69,14 +70,17 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
     /** Callbacks for hosts of the {@link GroupNameEditDialogFragment}. */
     public interface Listener {
         void onGroupNameEditCancelled();
+
         void onGroupNameEditCompleted(String name);
 
         public static final Listener None = new Listener() {
             @Override
-            public void onGroupNameEditCancelled() { }
+            public void onGroupNameEditCancelled() {
+            }
 
             @Override
-            public void onGroupNameEditCompleted(String name) { }
+            public void onGroupNameEditCompleted(String name) {
+            }
         };
     }
 
@@ -101,7 +105,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
 
     private static GroupNameEditDialogFragment newInstance(
             AccountWithDataSet account, String callbackAction, long groupId, String groupName) {
-        if (account == null || account.name == null || account.type == null) {
+        if (account == null) {
             throw new IllegalArgumentException("Invalid account");
         }
         final boolean isInsert = groupId == NO_GROUP_ID;
@@ -279,7 +283,7 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         // Only a single loader so id is ignored.
         return new CursorLoader(getActivity(), Groups.CONTENT_SUMMARY_URI,
-                new String[] { Groups.TITLE, Groups.SYSTEM_ID, Groups.ACCOUNT_TYPE,
+                new String[]{Groups.TITLE, Groups.SYSTEM_ID, Groups.ACCOUNT_TYPE,
                         Groups.SUMMARY_COUNT, Groups.GROUP_IS_READ_ONLY},
                 getSelection(), getSelectionArgs(), null);
     }
@@ -353,24 +357,30 @@ public final class GroupNameEditDialogFragment extends DialogFragment implements
 
     private String getSelection() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(Groups.ACCOUNT_NAME).append("=? AND ")
-               .append(Groups.ACCOUNT_TYPE).append("=? AND ")
-               .append(Groups.DELETED).append("=?");
-        if (mAccount.dataSet != null) {
-            builder.append(" AND ").append(Groups.DATA_SET).append("=?");
-        }
+        builder.append(Groups.ACCOUNT_NAME).append(mAccount.name == null ? " IS NULL " : "=?")
+                .append(" AND ")
+                .append(Groups.ACCOUNT_TYPE).append(mAccount.type == null ? " IS NULL " : "=?")
+                .append(" AND ")
+                .append(Groups.DATA_SET).append(mAccount.dataSet == null ? " IS NULL " : "=?")
+                .append(" AND ")
+                .append(Groups.DELETED).append("=0");
         return builder.toString();
     }
 
     private String[] getSelectionArgs() {
-        final int len = mAccount.dataSet == null ? 3 : 4;
-        final String[] args = new String[len];
-        args[0] = mAccount.name;
-        args[1] = mAccount.type;
-        args[2] = "0"; // Not deleted
-        if (mAccount.dataSet != null) {
-            args[3] = mAccount.dataSet;
+        if (mAccount.isNullAccount()) {
+            return null;
+        } else if (mAccount.dataSet == null) {
+            return new String[]{
+                    mAccount.name,
+                    mAccount.type
+            };
+        } else {
+            return new String[]{
+                    mAccount.name,
+                    mAccount.type,
+                    mAccount.dataSet
+            };
         }
-        return args;
     }
 }
