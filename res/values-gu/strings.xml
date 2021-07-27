@@ -161,8 +161,8 @@
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"બંધ કરો"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"પસંદ કરેલ સંપર્કોને સંપાદિત કરવા પર સ્વિચ કરીએ? તમે અત્યાર સુધીમાં દાખલ કરેલી માહિતીને કૉપિ કરાશે."</string>
     <string name="contact_directory_description" msgid="1773630547110881835">"નિર્દેશિકા <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="activity_title_settings" msgid="4004290638426915162">"સેટિંગ્સ"</string>
-    <string name="menu_settings" msgid="3524924670246877187">"સેટિંગ્સ"</string>
+    <string name="activity_title_settings" msgid="4004290638426915162">"સેટિંગ"</string>
+    <string name="menu_settings" msgid="3524924670246877187">"સેટિંગ"</string>
     <string name="menu_help" msgid="287801702920372292">"સહાય અને પ્રતિસાદ"</string>
     <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ફોન નંબર"</string>
