@@ -21,7 +21,7 @@
     <string name="shortcut_add_contact" msgid="7949342235528657981">"పరిచయాన్ని జోడించండి"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"పరిచయం"</string>
     <string name="shortcutDialContact" msgid="155367248069127153">"నేరుగా డయల్"</string>
-    <string name="shortcutMessageContact" msgid="9123517151981679277">"నేరుగా సందేశం"</string>
+    <string name="shortcutMessageContact" msgid="9123517151981679277">"నేరుగా మెసేజ్‌"</string>
     <string name="shortcutActivityTitle" msgid="5407832911005090417">"పరిచయాన్ని ఎంచుకోండి"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"పరిచయానికి జోడించండి"</string>
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"పరిచయాన్ని ఎంచుకోండి"</string>
@@ -84,7 +84,7 @@
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"వాయిస్ మెయిల్‌కు మళ్లించవద్దు"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"ఈ పరిచయం చదవడానికి మాత్రమే. దీన్ని తొలగించలేరు, కానీ దీన్ని దాచి ఉంచగలరు."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"పరిచయాన్ని దాచు"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"ఈ పరిచయంలోని చదవడానికి మాత్రమే ప్రాప్యత గల ఖాతాలు దాచి ఉంచబడతాయి, అంతేకానీ తొలగించబడవు."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"ఈ పరిచయంలోని చదవడానికి మాత్రమే యాక్సెస్‌ గల ఖాతాలు దాచి ఉంచబడతాయి, అంతేకానీ తొలగించబడవు."</string>
     <string name="single_delete_confirmation" msgid="8260949300855537648">"ఈ పరిచయాన్ని తొలగించాలా?"</string>
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"ఎంచుకున్న పరిచయాలను తొలగించాలా?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"మీ చదవడానికి మాత్రమే ఖాతాల నుండి పరిచయాలు తొలగించబడవు, కానీ అవి దాచబడవచ్చు."</string>
@@ -123,7 +123,7 @@
     <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"కొన్ని పరిచయాలకు ఇమెయిల్‌లు లేవు."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"కొన్ని పరిచయాలకు ఫోన్ నంబర్‌లు లేవు."</string>
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"ఇమెయిల్‌ను పంపు"</string>
-    <string name="menu_sendMessageOption" msgid="8051852013078110910">"సందేశాన్ని పంపు"</string>
+    <string name="menu_sendMessageOption" msgid="8051852013078110910">"మెసేజ్‌ను పంపు"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"పరిచయాలను ఎంచుకోండి"</string>
     <string name="send_to_selection" msgid="3655197947726443720">"పంపు"</string>
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"పరిచయాలు లేవు"</string>
@@ -284,7 +284,7 @@
     <string name="sms_work_pager" msgid="8827367747655005608">"కార్యాలయ పేజర్‌కు వచనం పంపండి"</string>
     <string name="sms_assistant" msgid="245045451580096547">"<xliff:g id="ASSISTANT">%s</xliff:g>కు వచనం పంపండి"</string>
     <string name="sms_mms" msgid="7395133080765833725">"MMS నంబర్‌కు వచనం పంపండి"</string>
-    <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (సందేశం)"</string>
+    <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (మెసేజ్‌)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"వీడియో కాల్ చేస్తుంది"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"తరచుగా సంప్రదించినవాటిని క్లియర్ చేయాలా?"</string>
     <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"మీరు పరిచయాలు మరియు ఫోన్ అనువర్తనాల్లో తరచుగా సంప్రదించిన పరిచయాల జాబితాను తీసివేస్తారు మరియు స్క్రాచ్ నుండి మీ చిరునామా ప్రాధాన్యతలను తెలుసుకునేలా ఇమెయిల్ యాప్‌లను నిర్బంధిస్తారు."</string>
@@ -301,7 +301,7 @@
     <string name="favoritesFrequentContacted" msgid="2885862854079966676">"తరచుగా సంప్రదించబడినవి"</string>
     <string name="list_filter_phones" msgid="6839133198968393843">"ఫోన్ నంబర్‌లు గల అన్ని పరిచయాలు"</string>
     <string name="list_filter_phones_work" msgid="5583425697781385616">"కార్యాలయ ప్రొఫైల్ పరిచయాలు"</string>
-    <string name="view_updates_from_group" msgid="6233444629074835594">"తాజా విషయాలను వీక్షించండి"</string>
+    <string name="view_updates_from_group" msgid="6233444629074835594">"తాజా విషయాలను చూడండి"</string>
     <string name="account_phone" msgid="8044426231251817556">"పరికరం"</string>
     <string name="account_sim" msgid="3200457113308694663">"SIM"</string>
     <string name="nameLabelsGroup" msgid="513809148312046843">"పేరు"</string>
@@ -322,7 +322,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"సంస్థ"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"సంబంధం"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"ప్రత్యేక తేదీ"</string>
-    <string name="sms" msgid="4246338112764847384">"వచన సందేశం"</string>
+    <string name="sms" msgid="4246338112764847384">"వచన మెసేజ్‌"</string>
     <string name="postal_address" msgid="5031809899673855074">"చిరునామా"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"కంపెనీ"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"విభాగం"</string>
@@ -343,10 +343,10 @@
     <string name="postal_region" msgid="6130239447563491435">"రాష్ట్రం"</string>
     <string name="postal_postcode" msgid="33077708757232659">"జిప్ కోడ్"</string>
     <string name="postal_country" msgid="6642804283917549861">"దేశం"</string>
-    <string name="map_home" msgid="2169053372466501148">"ఇంటి చిరునామాను వీక్షించండి"</string>
-    <string name="map_work" msgid="8296916987749726461">"కార్యాలయ చిరునామాను వీక్షించండి"</string>
-    <string name="map_other" msgid="4009931029322619674">"చిరునామాను వీక్షించండి"</string>
-    <string name="map_custom" msgid="7797812861927817335">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> చిరునామాను వీక్షించండి"</string>
+    <string name="map_home" msgid="2169053372466501148">"ఇంటి చిరునామాను చూడండి"</string>
+    <string name="map_work" msgid="8296916987749726461">"కార్యాలయ చిరునామాను చూడండి"</string>
+    <string name="map_other" msgid="4009931029322619674">"చిరునామాను చూడండి"</string>
+    <string name="map_custom" msgid="7797812861927817335">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> చిరునామాను చూడండి"</string>
     <string name="chat_aim" msgid="2044861410748519265">"AIMని ఉపయోగించి చాట్ చేయండి"</string>
     <string name="chat_msn" msgid="4733206223124506247">"Windows Liveని ఉపయోగించి చాట్ చేయండి"</string>
     <string name="chat_yahoo" msgid="3807571878191282528">"Yahooని ఉపయోగించి చాట్ చేయండి"</string>
