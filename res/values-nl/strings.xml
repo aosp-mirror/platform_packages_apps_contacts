@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"Instellingen"</string>
     <string name="menu_settings" msgid="3524924670246877187">"Instellingen"</string>
     <string name="menu_help" msgid="287801702920372292">"Hulp en feedback"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"Telefoonnummer"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"Toevoegen aan contacten"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"Sluiten"</string>
@@ -200,8 +201,8 @@
     <string name="add_new_account" msgid="573368229646104110">"Nieuw account toevoegen"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Databasebestanden exporteren"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Nieuw contact maken"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer tonen"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder tonen"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer weergeven"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder weergeven"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Over"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Een persoonlijke kopie maken..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Instellen"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"Sms"</string>
     <string name="postal_address" msgid="5031809899673855074">"Adres"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Bedrijf"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"Afdeling"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"Titel"</string>
     <string name="label_notes" msgid="7134226125644463585">"Opmerkingen"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Aangepast"</string>
@@ -471,11 +473,11 @@
     <string name="call_subject_limit" msgid="5679166729627777474">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="134754147019287616">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <string name="about_build_version" msgid="5870642814752351712">"Buildversie"</string>
-    <string name="about_open_source_licenses" msgid="1617836621315557445">"Opensource-licenties"</string>
+    <string name="about_open_source_licenses" msgid="1617836621315557445">"Open-sourcelicenties"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Licentiedetails voor open-sourcesoftware"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"Privacybeleid"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"Servicevoorwaarden"</string>
-    <string name="activity_title_licenses" msgid="6434398894019119709">"Opensource-licenties"</string>
+    <string name="activity_title_licenses" msgid="6434398894019119709">"Open-sourcelicenties"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"Kan de URL niet openen."</string>
     <string name="account_filter_view_checked" msgid="4740544238806346376">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> geselecteerd"</string>
     <string name="account_filter_view_not_checked" msgid="5782705545786455847">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> niet geselecteerd"</string>
@@ -503,7 +505,7 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Inschakelen"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Geen verbinding"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"Simkaart"</string>
-    <string name="show_more_content_description" msgid="6298277298495491712">"Meer tonen"</string>
+    <string name="show_more_content_description" msgid="6298277298495491712">"Meer weergeven"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"Importeren van simkaart voltooid"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"Importeren mislukt"</string>
     <string name="importing_sim_failed_message" msgid="55568522164349044">"Kan geen contacten importeren van de simkaart"</string>

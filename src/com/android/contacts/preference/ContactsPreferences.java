@@ -16,7 +16,6 @@
 
 package com.android.contacts.preference;
 
-import android.app.backup.BackupAgent;
 import android.app.backup.BackupManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,9 +26,10 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
-import android.text.TextUtils;
 
 import com.android.contacts.R;
 import com.android.contacts.model.account.AccountWithDataSet;
@@ -256,15 +256,16 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
             currentWritableAccounts) {
         final AccountWithDataSet defaultAccount = getDefaultAccount();
 
+        AccountWithDataSet localAccount = AccountWithDataSet.getLocalAccount(mContext);
         // This shouldn't occur anymore because a "device" account is added in the case that there
         // are no other accounts but if there are no writable accounts then the default has been
         // initialized if it is "device"
         if (currentWritableAccounts.isEmpty()) {
-            return defaultAccount == null || !defaultAccount.isNullAccount();
+            return defaultAccount == null || !defaultAccount.equals(localAccount);
         }
 
         if (currentWritableAccounts.size() == 1
-                && !currentWritableAccounts.get(0).isNullAccount()) {
+                && !currentWritableAccounts.get(0).equals(localAccount)) {
             return false;
         }
 
