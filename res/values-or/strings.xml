@@ -327,8 +327,7 @@
     <string name="sms" msgid="4246338112764847384">"SMS"</string>
     <string name="postal_address" msgid="5031809899673855074">"ଠିକଣା"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"କମ୍ପାନୀ"</string>
-    <!-- no translation found for ghostData_department (8610642449404163799) -->
-    <skip />
+    <string name="ghostData_department" msgid="8610642449404163799">"ବିଭାଗ"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"ଟାଇଟଲ୍"</string>
     <string name="label_notes" msgid="7134226125644463585">"ନୋଟ୍"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"କଷ୍ଟମ"</string>
