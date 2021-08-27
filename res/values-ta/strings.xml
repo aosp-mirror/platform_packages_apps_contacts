@@ -164,7 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"அமைப்பு"</string>
     <string name="menu_settings" msgid="3524924670246877187">"அமைப்பு"</string>
     <string name="menu_help" msgid="287801702920372292">"உதவி &amp; கருத்து"</string>
-    <string name="organization_company_and_title" msgid="7197631449041284518">"<xliff:g id="COMPANY_0">%2$s</xliff:g>, <xliff:g id="COMPANY_1">%1$s</xliff:g>"</string>
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"மொபைல் எண்"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"தொடர்புகளில் சேர்"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"மூடு"</string>
@@ -324,6 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"உரைச் செய்தி"</string>
     <string name="postal_address" msgid="5031809899673855074">"முகவரி"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"நிறுவனம்"</string>
+    <string name="ghostData_department" msgid="8610642449404163799">"பிரிவு"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"தலைப்பு"</string>
     <string name="label_notes" msgid="7134226125644463585">"குறிப்புகள்"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"பிரத்தியேகம்"</string>
@@ -386,7 +388,7 @@
       <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> தொடர்புகள் • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> தொடர்பு • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
     </plurals>
-    <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf கோப்பு"</string>
+    <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ஃபைல்"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"இறக்குவதற்கு எதுவுமில்லை"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard இலிருந்து தொடர்புகளை இறக்கவா?"</string>
     <string name="cancel_import_confirmation_message" msgid="1007412828398265611">"<xliff:g id="FILENAME">%s</xliff:g> இன் இறக்குமதியை ரத்துசெய்யவா?"</string>
@@ -399,7 +401,7 @@
     <string name="missing_required_permission" msgid="1308037728470791436">"தேவைப்படும் அனுமதியை முடக்கியுள்ளீர்கள்."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"ஏற்றுமதி செய்யும்போது பிழை: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O பிழை"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"போதுமான நினைவகம் இல்லை. கோப்பு மிகவும் பெரியதாக இருக்கலாம்."</string>
+    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"போதுமான நினைவகம் இல்லை. ஃபைல் மிகவும் பெரியதாக இருக்கலாம்."</string>
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"வடிவம் ஆதரிக்கப்படவில்லை."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> ஏற்றப்பட்டது."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"தொடர்புகள் ஏற்றப்பட்டன."</string>
@@ -418,7 +420,7 @@
     <string name="importing_vcard_finished_title" msgid="2274644947000264322">"vCard <xliff:g id="FILENAME">%s</xliff:g> இறக்கப்பட்டது"</string>
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"<xliff:g id="FILENAME">%s</xliff:g> ஐ இறக்குமதிசெய்வது ரத்துசெய்யப்பட்டது"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> விரைவில் இறக்குமதி செய்யப்படும்."</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"கோப்பு விரைவில் இறக்குமதி செய்யப்படும்."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"ஃபைல் விரைவில் இறக்குமதி செய்யப்படும்."</string>
     <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard இன் இறக்குமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"கூடிய விரைவில் தொடர்புகள் ஏற்றப்படும்."</string>
     <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard இன் ஏற்றுமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
