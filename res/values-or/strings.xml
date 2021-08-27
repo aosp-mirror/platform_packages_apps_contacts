@@ -164,10 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"ସେଟିଙ୍ଗ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"ସେଟିଙ୍ଗ"</string>
     <string name="menu_help" msgid="287801702920372292">"ସହାୟତା ଓ ମତାମତ"</string>
-    <!-- no translation found for organization_entry_two_field (6034934619269052455) -->
-    <skip />
-    <!-- no translation found for organization_entry_all_field (6724345890324437167) -->
-    <skip />
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ଫୋନ୍ ନମ୍ଵର୍"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"ଯୋଗାଯୋଗରେ ଯୋଡ଼ନ୍ତୁ"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"ବନ୍ଦ କରନ୍ତୁ"</string>
@@ -327,8 +325,7 @@
     <string name="sms" msgid="4246338112764847384">"SMS"</string>
     <string name="postal_address" msgid="5031809899673855074">"ଠିକଣା"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"କମ୍ପାନୀ"</string>
-    <!-- no translation found for ghostData_department (8610642449404163799) -->
-    <skip />
+    <string name="ghostData_department" msgid="8610642449404163799">"ବିଭାଗ"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"ଟାଇଟଲ୍"</string>
     <string name="label_notes" msgid="7134226125644463585">"ନୋଟ୍"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"କଷ୍ଟମ"</string>
