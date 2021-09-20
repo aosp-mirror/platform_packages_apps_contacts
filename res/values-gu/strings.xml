@@ -145,8 +145,8 @@
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"લેબલનું નામ બદલો"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"લેબલનું નામ"</string>
     <string name="label_name_dialog_hint" msgid="7027635439255596191">"લેબલનું નામ"</string>
-    <string name="audio_chat" msgid="5921525823973697372">"વોઇસ ચેટ"</string>
-    <string name="video_chat" msgid="2477295971622477433">"વિડિઓ ચેટ"</string>
+    <string name="audio_chat" msgid="5921525823973697372">"વૉઇસ ચૅટ"</string>
+    <string name="video_chat" msgid="2477295971622477433">"વીડિયો ચૅટ"</string>
     <string name="account_type_format" msgid="4926968760755013450">"<xliff:g id="SOURCE">%1$s</xliff:g> સંપર્ક"</string>
     <string name="google_account_type_format" msgid="4046692740262396811">"<xliff:g id="SOURCE">%1$s</xliff:g> એકાઉન્ટ"</string>
     <string name="take_photo" msgid="820071555236547516">"ફોટો લો"</string>
@@ -347,15 +347,15 @@
     <string name="map_work" msgid="8296916987749726461">"કાર્યાલયનું સરનામું જુઓ"</string>
     <string name="map_other" msgid="4009931029322619674">"સરનામું જુઓ"</string>
     <string name="map_custom" msgid="7797812861927817335">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> સરનામું જુઓ"</string>
-    <string name="chat_aim" msgid="2044861410748519265">"AIM નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_msn" msgid="4733206223124506247">"Windows Live નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_yahoo" msgid="3807571878191282528">"Yahoo નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_skype" msgid="5130564346825936093">"Skype નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_qq" msgid="2971335421266098608">"QQ નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_icq" msgid="4289041376069626281">"ICQ નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_jabber" msgid="1097960594943864847">"Jabber નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat" msgid="8390862712584830532">"Chat"</string>
+    <string name="chat_aim" msgid="2044861410748519265">"AIMનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_msn" msgid="4733206223124506247">"Windows Liveનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_yahoo" msgid="3807571878191282528">"Yahooનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_skype" msgid="5130564346825936093">"Skypeનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_qq" msgid="2971335421266098608">"QQનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_gtalk" msgid="2927882858741904064">"Google Talkનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_icq" msgid="4289041376069626281">"ICQનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_jabber" msgid="1097960594943864847">"Jabberનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat" msgid="8390862712584830532">"ચૅટ કરો"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"કાઢી નાખો"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"વધુ નામ ફીલ્ડ્સ બતાવો"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"નામ ફીલ્ડ્સ સંકુચિત કરો"</string>
@@ -373,7 +373,7 @@
     <string name="display_all_contacts" msgid="1281067776483704512">"તમામ સંપર્કો"</string>
     <string name="menu_sync_remove" msgid="7523335046562082188">"સમન્વયન જૂથ દૂર કરો"</string>
     <string name="dialog_sync_add" msgid="8012361965908515959">"સમન્વયન જૂથ ઉમેરો"</string>
-    <string name="display_more_groups" msgid="8398232980355188133">"વધુ જૂથો…"</string>
+    <string name="display_more_groups" msgid="8398232980355188133">"વધુ ગ્રૂપ…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"સમન્વયનમાંથી \"<xliff:g id="GROUP">%s</xliff:g>\" ને દૂર કરવું, સમન્વયનમાંથી કોઇપણ જૂથ વિનાના સંપર્કોને પણ દૂર કરશે."</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"પ્રદર્શન વિકલ્પો સાચવી રહ્યું છે…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"કસ્ટમાઇઝ કરેલ દૃશ્ય"</string>
