@@ -361,7 +361,7 @@
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"Recolher campos de nome"</string>
     <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Mostrar mais campos de nome fonético"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="4614902922362144094">"Recolher campos de nome fonético"</string>
-    <string name="expand_fields_description" msgid="8604448646798943909">"Expandir"</string>
+    <string name="expand_fields_description" msgid="8604448646798943909">"Abrir"</string>
     <string name="collapse_fields_description" msgid="3213872920491992960">"Recolher"</string>
     <string name="announce_expanded_fields" msgid="8410808184164186871">"Expandido"</string>
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"Recolhido"</string>
