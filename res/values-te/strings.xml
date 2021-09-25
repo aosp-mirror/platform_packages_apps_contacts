@@ -464,7 +464,7 @@
     <string name="contact_status_update_attribution" msgid="5051874518046969847">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="683765774264585732">"శోధించడం ఆపివేస్తుంది"</string>
-    <string name="description_clear_search" msgid="1852934085825794095">"శోధనను క్లియర్ చేయి"</string>
+    <string name="description_clear_search" msgid="1852934085825794095">"సెర్చ్‌ను క్లియర్ చేయండి"</string>
     <string name="select_account_dialog_title" msgid="5047523441152129207">"ఖాతా"</string>
     <string name="set_default_account" msgid="9194321110211682396">"కాల్స్‌ల కోసం ఎప్పుడూ ఇది ఉపయోగించు"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"గమనికతో కాల్ చేయి"</string>
