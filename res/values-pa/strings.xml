@@ -163,7 +163,7 @@
     <string name="contact_directory_description" msgid="1773630547110881835">"ਡਾਇਰੈਕਟਰੀ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="4004290638426915162">"ਸੈਟਿੰਗਾਂ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"ਸੈਟਿੰਗਾਂ"</string>
-    <string name="menu_help" msgid="287801702920372292">"ਸਹਾਇਤਾ ਅਤੇ ਪ੍ਰਤੀਕਰਮ"</string>
+    <string name="menu_help" msgid="287801702920372292">"ਮਦਦ ਅਤੇ ਵਿਚਾਰ"</string>
     <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ਫ਼ੋਨ ਨੰਬਰ"</string>
@@ -199,7 +199,7 @@
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"ਅਣਲਿੰਕ ਕਰੋ"</string>
     <string name="add_account" msgid="3071396624500839020">"ਖਾਤਾ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="add_new_account" msgid="573368229646104110">"ਨਵਾਂ ਖਾਤਾ ਸ਼ਾਮਲ ਕਰੋ"</string>
-    <string name="menu_export_database" msgid="1658249125751926885">"ਡਾਟਾਬੇਸ ਫਾਈਲਾਂ ਨਿਰਯਾਤ ਕਰੋ"</string>
+    <string name="menu_export_database" msgid="1658249125751926885">"ਡਾਟਾਬੇਸ ਫ਼ਾਈਲਾਂ ਨਿਰਯਾਤ ਕਰੋ"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"ਨਵਾਂ ਸੰਪਰਕ ਬਣਾਓ"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"ਹੋਰ ਦੇਖੋ"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"ਘੱਟ ਦੇਖੋ"</string>
@@ -355,7 +355,7 @@
     <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk ਵਰਤਦੇ ਹੋਏ ਚੈਟ ਕਰੋ"</string>
     <string name="chat_icq" msgid="4289041376069626281">"ICQ ਵਰਤਦੇ ਹੋਏ ਚੈਟ ਕਰੋ"</string>
     <string name="chat_jabber" msgid="1097960594943864847">"Jabber ਵਰਤਦੇ ਹੋਏ ਚੈਟ ਕਰੋ"</string>
-    <string name="chat" msgid="8390862712584830532">"ਚੈਟ"</string>
+    <string name="chat" msgid="8390862712584830532">"ਚੈਟ ਕਰੋ"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"ਮਿਟਾਓ"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"ਹੋਰ ਨਾਮ ਖੇਤਰ  ਦਿਖਾਓ"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"ਨਾਮ ਖੇਤਰਾਂ ਨੂੰ ਸਮੇਟੋ"</string>
