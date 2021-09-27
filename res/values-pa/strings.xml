@@ -373,7 +373,7 @@
     <string name="display_all_contacts" msgid="1281067776483704512">"ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="menu_sync_remove" msgid="7523335046562082188">"ਸਮਕਾਲੀਕਰਨ ਸਮੂਹ ਹਟਾਓ"</string>
     <string name="dialog_sync_add" msgid="8012361965908515959">"ਸਮਕਾਲੀਕਰਨ ਸਮੂਹ ਸ਼ਾਮਲ ਕਰੋ"</string>
-    <string name="display_more_groups" msgid="8398232980355188133">"ਹੋਰ ਸਮੂਹ…"</string>
+    <string name="display_more_groups" msgid="8398232980355188133">"ਹੋਰ ਗਰੁੱਪ…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"ਸਮਕਾਲੀਕਰਨ ਵਿੱਚੋਂ \"<xliff:g id="GROUP">%s</xliff:g>\" ਨੂੰ ਹਟਾਉਣ ਨਾਲ ਸਮਕਾਲੀਕਰਨ ਤੋਂ ਕੋਈ ਵੀ ਅਣ-ਸਮੂਹਬੱਧ ਕੀਤੇ ਸੰਪਰਕ ਵੀ ਹਟ ਜਾਣਗੇ।"</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ਡਿਸਪਲੇ ਵਿਕਲਪਾਂ ਨੂੰ ਰੱਖਿਅਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕੀਤਾ ਦ੍ਰਿਸ਼"</string>
@@ -464,7 +464,7 @@
     <string name="contact_status_update_attribution" msgid="5051874518046969847">"<xliff:g id="SOURCE">%1$s</xliff:g> ਦੇ ਰਾਹੀਂ"</string>
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="SOURCE">%2$s</xliff:g> ਦੇ ਰਾਹੀਂ <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="683765774264585732">"ਖੋਜ ਕਰਨਾ ਬੰਦ ਕਰੋ"</string>
-    <string name="description_clear_search" msgid="1852934085825794095">"ਖੋਜ ਹਟਾਓ"</string>
+    <string name="description_clear_search" msgid="1852934085825794095">"ਖੋਜ ਕਲੀਅਰ ਕਰੋ"</string>
     <string name="select_account_dialog_title" msgid="5047523441152129207">"ਖਾਤਾ"</string>
     <string name="set_default_account" msgid="9194321110211682396">"ਕਾਲਾਂ ਲਈ ਹਮੇਸ਼ਾ ਇਹ ਵਰਤੋ"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"ਕਿਸੇ ਨੋਟ-ਕਥਨ ਦੇ ਨਾਲ ਕਾਲ ਕਰੋ"</string>
