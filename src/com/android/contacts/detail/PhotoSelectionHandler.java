@@ -242,7 +242,8 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
      */
     private void doCropPhoto(Uri inputUri, Uri outputUri) {
         final Intent intent = getCropImageIntent(inputUri, outputUri);
-        if (!hasIntentHandler(intent)) {
+        final ResolveInfo intentHandler = getIntentHandler(intent);
+        if (intentHandler == null) {
             try {
                 getListener().onPhotoSelected(inputUri);
             } catch (FileNotFoundException e) {
@@ -252,6 +253,7 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
             }
             return;
         }
+        intent.setPackage(intentHandler.activityInfo.packageName);
         try {
             // Launch gallery to crop the photo
             startPhotoActivity(intent, REQUEST_CROP_PHOTO, inputUri);
@@ -322,10 +324,11 @@ public abstract class PhotoSelectionHandler implements OnClickListener {
         return intent;
     }
 
-    private boolean hasIntentHandler(Intent intent) {
-        final List<ResolveInfo> resolveInfo = mContext.getPackageManager()
-                .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        return resolveInfo != null && resolveInfo.size() > 0;
+    private ResolveInfo getIntentHandler(Intent intent) {
+        final List<ResolveInfo> resolveInfos = mContext.getPackageManager()
+                .queryIntentActivities(intent,
+                        PackageManager.MATCH_DEFAULT_ONLY | PackageManager.MATCH_SYSTEM_ONLY);
+        return (resolveInfos != null && resolveInfos.size() > 0) ? resolveInfos.get(0) : null;
     }
 
     /**
