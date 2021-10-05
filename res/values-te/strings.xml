@@ -163,7 +163,7 @@
     <string name="contact_directory_description" msgid="1773630547110881835">"డైరెక్టరీ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="4004290638426915162">"సెట్టింగ్‌లు"</string>
     <string name="menu_settings" msgid="3524924670246877187">"సెట్టింగ్‌లు"</string>
-    <string name="menu_help" msgid="287801702920372292">"సహాయం &amp; అభిప్రాయం"</string>
+    <string name="menu_help" msgid="287801702920372292">"సహాయం &amp; ఫీడ్‌బ్యాక్"</string>
     <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ఫోన్ నంబర్"</string>
@@ -373,7 +373,7 @@
     <string name="display_all_contacts" msgid="1281067776483704512">"అన్ని కాంటాక్ట్‌లు"</string>
     <string name="menu_sync_remove" msgid="7523335046562082188">"సింక్‌ సమూహాన్ని తీసివేయి"</string>
     <string name="dialog_sync_add" msgid="8012361965908515959">"సింక్‌ సమూహాన్ని జోడించండి"</string>
-    <string name="display_more_groups" msgid="8398232980355188133">"మరిన్ని సమూహాలు…"</string>
+    <string name="display_more_groups" msgid="8398232980355188133">"మరిన్ని గ్రూప్‌లు…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"సింక్‌ నుండి \"<xliff:g id="GROUP">%s</xliff:g>\"ని తీసివేయడం వలన సింక్‌ నుండి గ్రూప్ చేయబడని కాంటాక్ట్‌లు కూడా తీసివేయబడతాయి."</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ప్రదర్శన ఎంపికలను సేవ్ చేస్తోంది…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"అనుకూలీకృత వీక్షణ"</string>
