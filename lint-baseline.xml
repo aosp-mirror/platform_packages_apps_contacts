@@ -3,6 +3,39 @@
 
     <issue
         id="NewApi"
+        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimContacts#getSimAccounts`"
+        errorLine1="                        ContactsContract.SimContacts.getSimAccounts(mContext.getContentResolver());"
+        errorLine2="                                                     ~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/model/AccountTypeManager.java"
+            line="541"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountName`"
+        errorLine1="                    simAccountWithDataSets.add(new AccountWithDataSet(simAccount.getAccountName(),"
+        errorLine2="                                                                                 ~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/model/AccountTypeManager.java"
+            line="543"
+            column="82"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountType`"
+        errorLine1="                            simAccount.getAccountType(), null));"
+        errorLine2="                                       ~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/model/AccountTypeManager.java"
+            line="544"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="NewApi"
         message="Cast from `PhoneAccountHandle` to `Parcelable` requires API level 23 (current min is 21)"
         errorLine1="        arguments.putParcelable(ARG_PHONE_ACCOUNT_HANDLE, phoneAccountHandle);"
         errorLine2="                                                          ~~~~~~~~~~~~~~~~~~">
@@ -153,6 +186,28 @@
             file="packages/apps/Contacts/src/com/android/contacts/list/ContactEntryListAdapter.java"
             line="721"
             column="26"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimContacts#getSimAccounts`"
+        errorLine1="                    ContactsContract.SimContacts.getSimAccounts("
+        errorLine2="                                                 ~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/util/DeviceLocalAccountTypeFactory.java"
+            line="74"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountType`"
+        errorLine1="                        simAccount.getAccountType())) {"
+        errorLine2="                                   ~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/util/DeviceLocalAccountTypeFactory.java"
+            line="77"
+            column="36"/>
     </issue>
 
     <issue
