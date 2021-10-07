@@ -27,7 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"ଜଣେ ଯୋଗାଯୋଗଙ୍କୁ ବାଛନ୍ତୁ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"ଚୟନ କରନ୍ତୁ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"ନୂଆ ଯୋଗାଯୋଗ ତିଆରି କରନ୍ତୁ"</string>
-    <string name="searchHint" msgid="1487501532610025473">"ଯୋଗାଯୋଗଙ୍କୁ ଖୋଜନ୍ତୁ"</string>
+    <string name="searchHint" msgid="1487501532610025473">"ଯୋଗାଯୋଗଗୁଡ଼ିକୁ ସନ୍ଧାନ କରନ୍ତୁ"</string>
     <string name="menu_addStar" msgid="4903812703386825130">"ପସନ୍ଦଦାର୍‍ରେ ଯୋଡ଼ନ୍ତୁ"</string>
     <string name="menu_removeStar" msgid="3707373931808303701">"ପସନ୍ଦଦାର୍‌ରୁ କାଢ଼ିଦିଅନ୍ତୁ"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"ପସନ୍ଦଦାର୍‌ରୁ କାଢ଼ିଦିଆଗଲା"</string>
@@ -183,7 +183,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"ଖାରଜ କରନ୍ତୁ"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"ବାତିଲ୍‍ କରନ୍ତୁ"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"କଷ୍ଟମାଇ‍ଜ୍‍ କରିବା ଖାରଜ କରିବେ?"</string>
-    <string name="enter_contact_name" msgid="521859148893732679">"ଯୋଗାଯୋଗଙ୍କୁ ଖୋଜନ୍ତୁ"</string>
+    <string name="enter_contact_name" msgid="521859148893732679">"ଯୋଗାଯୋଗଗୁଡ଼ିକୁ ସନ୍ଧାନ କରନ୍ତୁ"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"ଯୋଗାଯୋଗଙ୍କୁ କାଢ଼ିଦିଅନ୍ତୁ"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"ମୋ ସ୍ଥାନୀୟ ପ୍ରୋଫାଇଲ୍‌"</string>
     <string name="external_profile_title" msgid="2706282819025406927">"ମୋ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ପ୍ରୋଫାଇଲ୍"</string>
