@@ -16,12 +16,12 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.contacts"
-          android:versionCode="10731"
-          android:versionName="1.7.31">
+          android:versionCode="10733"
+          android:versionName="1.7.33">
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="29"/>
+        android:targetSdkVersion="30"/>
 
     <original-package android:name="com.android.contacts"/>
 
@@ -74,6 +74,7 @@
             android:launchMode="singleTop"
             android:resizeableActivity="true"
             android:theme="@style/LaunchScreenTheme"
+            android:exported="true"
             android:visibleToInstantApps="true"
             >
             <intent-filter>
@@ -184,6 +185,7 @@
             android:theme="@style/ContactPickerTheme"
             android:uiOptions="splitActionBarWhenNarrow"
             android:windowSoftInputMode="adjustResize"
+            android:exported="true"
             android:visibleToInstantApps="true">
             <meta-data android:name="android.app.shortcuts.new_config"
                 android:value="true" />
@@ -286,6 +288,7 @@
 
         <activity
             android:name=".activities.ShowOrCreateActivity"
+            android:exported="true"
             android:theme="@android:style/Theme.Material.Light.Dialog.NoActionBar">
 
             <intent-filter>
@@ -303,6 +306,7 @@
             android:launchMode="singleTop"
             android:taskAffinity=""
             android:theme="@style/Theme.QuickContact"
+            android:exported="true"
             android:windowSoftInputMode="stateUnchanged">
 
             <intent-filter>
@@ -331,7 +335,8 @@
 
         <!-- Responsible for creating notification channels when boot is completed or when app is
         re-installed -->
-        <receiver android:name=".interactions.OnBootOrUpgradeReceiver">
+        <receiver android:name=".interactions.OnBootOrUpgradeReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
@@ -342,6 +347,7 @@
             android:name="ContactShortcut"
             android:icon="@drawable/logo_quick_contacts_color_44in48dp"
             android:label="@string/shortcutContact"
+            android:exported="true"
             android:targetActivity=".activities.ContactSelectionActivity">
 
             <intent-filter>
@@ -355,6 +361,7 @@
             android:name="alias.DialShortcut"
             android:icon="@drawable/logo_quick_contacts_dialer_color_44in48dp"
             android:label="@string/shortcutDialContact"
+            android:exported="true"
             android:targetActivity=".activities.ContactSelectionActivity">
 
             <intent-filter>
@@ -370,6 +377,7 @@
             android:name="alias.MessageShortcut"
             android:icon="@drawable/logo_quick_contacts_mail_color_44in48dp"
             android:label="@string/shortcutMessageContact"
+            android:exported="true"
             android:targetActivity=".activities.ContactSelectionActivity">
 
             <intent-filter>
@@ -389,6 +397,7 @@
         <!-- Edit or create a contact with only the most important fields displayed initially. -->
         <activity
             android:name=".activities.ContactEditorActivity"
+            android:exported="true"
             android:theme="@style/EditorActivityTheme">
 
             <intent-filter>
@@ -418,6 +427,7 @@
 
         <activity
             android:name=".activities.ContactEditorSpringBoardActivity"
+            android:exported="true"
             android:theme="@style/TransparentThemeAppCompat">
 
             <intent-filter>
@@ -430,7 +440,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".test.FragmentTestActivity">
+        <activity android:name=".test.FragmentTestActivity"
+            android:exported="true">
             <intent-filter>
                 <category android:name="android.intent.category.TEST"/>
             </intent-filter>
@@ -456,6 +467,7 @@
         <activity
             android:name=".activities.AttachPhotoActivity"
             android:label="@string/attach_photo_dialog_title"
+            android:exported="true"
             android:taskAffinity="">
             <intent-filter>
                 <action android:name="android.intent.action.ATTACH_DATA"/>
@@ -468,6 +480,7 @@
         <activity
             android:name=".vcard.ImportVCardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -482,7 +495,9 @@
 
         <activity
             android:name=".vcard.NfcImportVCardActivity"
+            android:permission="android.permission.DISPATCH_NFC_MESSAGE"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
             android:theme="@style/BackgroundOnlyTheme">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
@@ -528,6 +543,7 @@
              are set lower, so that the user does not see a disambig dialog -->
         <activity
             android:name="com.android.contacts.NonPhoneActivity"
+            android:exported="true"
             android:theme="@style/NonPhoneActivityTheme">
             <intent-filter android:priority="-1">
                 <action android:name="android.intent.action.MAIN"/>
@@ -556,6 +572,7 @@
         <activity
             android:name="com.android.contacts.dialog.CallSubjectDialog"
             android:theme="@style/Theme.CallSubjectDialogTheme"
+            android:exported="true"
             android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
@@ -599,4 +616,95 @@
             android:value="true"/>
 
     </application>
+
+    <!-- Allows the contacts app to see the activities and services needed
+        to detect accounts and show actions in QuickContact. -->
+    <queries>
+        <!-- ContactsProvider2 -->
+        <package android:name="com.android.providers.contacts"/>
+
+        <!-- quickcontact actions and verbs -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="imto" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="xmpp" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="smsto" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="geo"/>
+        </intent>
+        <!-- About card -->
+        <intent>
+            <!-- View CalendarContract Uris -->
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="content" android:host="com.android.calendar"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
+        </intent>
+
+        <!-- Account loading -->
+        <intent>
+            <action android:name="android.accounts.AccountAuthenticator"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="content" android:host="com.android.contacts"
+                android:mimeType="vnd.android.cursor.item/*" />
+        </intent>
+
+        <!-- calling -->
+        <package android:name="com.android.dialer"/>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+            <data android:scheme="sip" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="sip" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+            <data android:scheme="voicemail" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="voicemail" />
+        </intent>
+
+        <!-- vcard export -->
+        <intent>
+            <action android:name="android.intent.action.CREATE_DOCUMENT" />
+            <data android:mimeType="text/x-vcard" />
+            <category android:name="android.intent.category.OPENABLE" />
+        </intent>
+
+        <!-- edit contact photo -->
+        <intent>
+            <action android:name="com.android.camera.action.CROP" />
+            <data android:mimeType="image/*" />
+        </intent>
+
+    </queries>
+
 </manifest>
