@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.contacts"
-          android:versionCode="10731"
-          android:versionName="1.7.31">
+          android:versionCode="10733"
+          android:versionName="1.7.33">
 
     <uses-sdk
         android:minSdkVersion="21"
@@ -615,4 +615,95 @@
             android:value="true"/>
 
     </application>
+
+    <!-- Allows the contacts app to see the activities and services needed
+        to detect accounts and show actions in QuickContact. -->
+    <queries>
+        <!-- ContactsProvider2 -->
+        <package android:name="com.android.providers.contacts"/>
+
+        <!-- quickcontact actions and verbs -->
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="imto" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="xmpp" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="smsto" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="geo"/>
+        </intent>
+        <!-- About card -->
+        <intent>
+            <!-- View CalendarContract Uris -->
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="content" android:host="com.android.calendar"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
+        </intent>
+
+        <!-- Account loading -->
+        <intent>
+            <action android:name="android.accounts.AccountAuthenticator"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="content" android:host="com.android.contacts"
+                android:mimeType="vnd.android.cursor.item/*" />
+        </intent>
+
+        <!-- calling -->
+        <package android:name="com.android.dialer"/>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="tel" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+            <data android:scheme="sip" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="sip" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.CALL" />
+            <data android:scheme="voicemail" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+            <data android:scheme="voicemail" />
+        </intent>
+
+        <!-- vcard export -->
+        <intent>
+            <action android:name="android.intent.action.CREATE_DOCUMENT" />
+            <data android:mimeType="text/x-vcard" />
+            <category android:name="android.intent.category.OPENABLE" />
+        </intent>
+
+        <!-- edit contact photo -->
+        <intent>
+            <action android:name="com.android.camera.action.CROP" />
+            <data android:mimeType="image/*" />
+        </intent>
+
+    </queries>
+
 </manifest>

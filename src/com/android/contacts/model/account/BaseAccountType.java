@@ -35,6 +35,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Data;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
@@ -368,6 +369,8 @@ public abstract class BaseAccountType extends AccountType {
         kind.fieldList = Lists.newArrayList();
         kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
                 FLAGS_GENERIC_NAME));
+        kind.fieldList.add(new EditField(Organization.DEPARTMENT, R.string.ghostData_department,
+                FLAGS_GENERIC_NAME));
         kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
                 FLAGS_GENERIC_NAME));
 
@@ -629,23 +632,25 @@ public abstract class BaseAccountType extends AccountType {
         }
     }
 
-    public static final StringInflater ORGANIZATION_BODY_INFLATER = new StringInflater() {
-        @Override
-        public CharSequence inflateUsing(Context context, ContentValues values) {
-            final CharSequence companyValue = values.containsKey(Organization.COMPANY) ?
-                    values.getAsString(Organization.COMPANY) : null;
-            final CharSequence titleValue = values.containsKey(Organization.TITLE) ?
-                    values.getAsString(Organization.TITLE) : null;
+    public static final StringInflater ORGANIZATION_BODY_INFLATER =
+      (context, values) -> {
+        List<String> text = Lists.newArrayList();
 
-            if (companyValue != null && titleValue != null) {
-                return companyValue +  ": " + titleValue;
-            } else if (companyValue == null) {
-                return titleValue;
-            } else {
-                return companyValue;
-            }
+        if (values.containsKey(Organization.COMPANY)) {
+          text.add(values.getAsString(Organization.COMPANY));
         }
-    };
+        if (values.containsKey(Organization.DEPARTMENT)) {
+          text.add(values.getAsString(Organization.DEPARTMENT));
+        }
+        if (values.containsKey(Organization.TITLE)) {
+          text.add(values.getAsString(Organization.TITLE));
+        }
+
+        if (!text.isEmpty()) {
+          return TextUtils.join(": ", text);
+        }
+        return null;
+      };
 
     @Override
     public boolean isGroupMembershipEditable() {
@@ -1232,6 +1237,8 @@ public abstract class BaseAccountType extends AccountType {
                     ORGANIZATION_BODY_INFLATER);
 
             kind.fieldList.add(new EditField(Organization.COMPANY, R.string.ghostData_company,
+                    FLAGS_GENERIC_NAME));
+            kind.fieldList.add(new EditField(Organization.DEPARTMENT, R.string.ghostData_department,
                     FLAGS_GENERIC_NAME));
             kind.fieldList.add(new EditField(Organization.TITLE, R.string.ghostData_title,
                     FLAGS_GENERIC_NAME));
