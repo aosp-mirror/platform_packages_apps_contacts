@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.icu.text.MessageFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -63,7 +64,10 @@ import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contactsbind.HelpUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * This fragment shows the preferences for "display options"
@@ -429,8 +433,12 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                     SimImportService.RESULT_UNKNOWN);
             final int count = intent.getIntExtra(SimImportService.EXTRA_RESULT_COUNT, -1);
             if (code == SimImportService.RESULT_SUCCESS && count > 0) {
-                Snackbar.make(mRootView, getResources().getQuantityString(
-                        R.plurals.sim_import_success_toast_fmt, count, count),
+                MessageFormat msgFormat = new MessageFormat(
+                    getResources().getString(R.string.sim_import_success_toast_fmt),
+                    Locale.getDefault());
+                Map<String, Object> arguments = new HashMap<>();
+                arguments.put("count", count);
+                Snackbar.make(mRootView, msgFormat.format(arguments),
                         Snackbar.LENGTH_LONG).show();
             } else if (code == SimImportService.RESULT_FAILURE) {
                 Snackbar.make(mRootView, R.string.sim_import_failed_toast,
