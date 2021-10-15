@@ -65,18 +65,12 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> е избришан"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> и <xliff:g id="NAME_1">%2$s</xliff:g> се избришани"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… се избришани"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">Контактот е избришан</item>
-      <item quantity="other">Контактите се избришани</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> контакт</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> контакти</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> контакт · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> контакти · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <!-- no translation found for contacts_deleted_toast (3185825083067357305) -->
+    <skip />
+    <!-- no translation found for contacts_count (92227640680327707) -->
+    <skip />
+    <!-- no translation found for contacts_count_with_account (3921405666045433256) -->
+    <skip />
     <string name="title_from_google" msgid="2554633992366572820">"Од Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"Од <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Постави мелодија"</string>
@@ -136,10 +130,8 @@
     <string name="menu_share" msgid="6343022811796001773">"Сподели"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Додај во контакти"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Додај"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">Споделете контакт преку</item>
-      <item quantity="other">Споделете контакти преку</item>
-    </plurals>
+    <!-- no translation found for title_share_via (3300082736229182956) -->
+    <skip />
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Изберете сметка"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Создајте етикета"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Преименувајте ја етикетата"</string>
@@ -380,14 +372,10 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Зачувајте ги увезените контакти на:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM-картичка"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d контакт</item>
-      <item quantity="other">%1$d контакти</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> контакт • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> контакти • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (4406774701661271748) -->
+    <skip />
+    <!-- no translation found for import_from_sim_secondary_template (7574306746844258362) -->
+    <skip />
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf датотека"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Нема ништо за увезување"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Да се увезат контакти од vCard?"</string>
@@ -490,10 +478,8 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Изберете контакти"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"Нема контакти на вашата SIM-картичка"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Контактот веќе постои во списокот."</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one">Увезен е <xliff:g id="COUNT">%d</xliff:g> контакт од SIM</item>
-      <item quantity="other">Увезени се <xliff:g id="COUNT">%d</xliff:g> контакти од SIM</item>
-    </plurals>
+    <!-- no translation found for sim_import_success_toast_fmt (7645974841482481503) -->
+    <skip />
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Не успеа увезувањето контакти од SIM"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Увоз од SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Откажи"</string>
