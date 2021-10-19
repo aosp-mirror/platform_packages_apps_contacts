@@ -65,18 +65,12 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"Ezabatu da <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"Ezabatu dira <xliff:g id="NAME_0">%1$s</xliff:g> eta <xliff:g id="NAME_1">%2$s</xliff:g>"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"Ezabatu dira <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>…"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="other">Ezabatu dira kontaktuak</item>
-      <item quantity="one">Ezabatu da kontaktua</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontaktu</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> kontaktu</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> kontaktu · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> kontaktu · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
-    </plurals>
+    <!-- no translation found for contacts_deleted_toast (3185825083067357305) -->
+    <skip />
+    <!-- no translation found for contacts_count (92227640680327707) -->
+    <skip />
+    <!-- no translation found for contacts_count_with_account (3921405666045433256) -->
+    <skip />
     <string name="title_from_google" msgid="2554633992366572820">"Google-koak"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> kontukoak"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Ezarri tonua"</string>
@@ -136,10 +130,8 @@
     <string name="menu_share" msgid="6343022811796001773">"Partekatu"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Gehitu kontaktuetan"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Gehitu"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">Partekatu kontaktuak honen bidez</item>
-      <item quantity="one">Partekatu kontaktua honen bidez</item>
-    </plurals>
+    <!-- no translation found for title_share_via (3300082736229182956) -->
+    <skip />
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Aukeratu kontua"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Sortu etiketa"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Aldatu etiketaren izena"</string>
@@ -380,14 +372,10 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Gorde inportatutako kontaktuak hemen:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM txartela"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM txartela"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="other">%1$d kontaktu</item>
-      <item quantity="one">1 kontaktu</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontaktu • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> kontaktu • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
-    </plurals>
+    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (4406774701661271748) -->
+    <skip />
+    <!-- no translation found for import_from_sim_secondary_template (7574306746844258362) -->
+    <skip />
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf fitxategia"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Ez dago ezer inportatzeko"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard fitxategitik inportatu nahi dituzu kontaktuak?"</string>
@@ -490,10 +478,8 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Hautatu kontaktuak"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"Ez duzu kontakturik SIM txartelean"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Kontaktua lehendik duzu zerrendan"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="other">SIM txarteleko <xliff:g id="COUNT">%d</xliff:g> kontaktu inportatu dira</item>
-      <item quantity="one">SIM txarteleko 1 kontaktu inportatu da</item>
-    </plurals>
+    <!-- no translation found for sim_import_success_toast_fmt (7645974841482481503) -->
+    <skip />
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Ezin izan dira inportatu SIM txarteleko kontaktuak"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Inportatu SIM txarteletik"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Utzi"</string>
