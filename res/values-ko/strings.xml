@@ -65,18 +65,12 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g>님 삭제됨"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g>님과 <xliff:g id="NAME_1">%2$s</xliff:g>님 삭제됨"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>님, <xliff:g id="NAME_1">%2$s</xliff:g>님, <xliff:g id="NAME_2">%3$s</xliff:g>님… 삭제됨"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="other">연락처 삭제됨</item>
-      <item quantity="one">연락처 삭제됨</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="other">연락처 <xliff:g id="COUNT_1">%d</xliff:g>개</item>
-      <item quantity="one">연락처 <xliff:g id="COUNT_0">%d</xliff:g>개</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="other">연락처 <xliff:g id="COUNT_2">%1$d</xliff:g>개 · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="one">연락처 <xliff:g id="COUNT_0">%1$d</xliff:g>개 · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
-    </plurals>
+    <!-- no translation found for contacts_deleted_toast (3185825083067357305) -->
+    <skip />
+    <!-- no translation found for contacts_count (92227640680327707) -->
+    <skip />
+    <!-- no translation found for contacts_count_with_account (3921405666045433256) -->
+    <skip />
     <string name="title_from_google" msgid="2554633992366572820">"Google에서 제공"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> 계정 연락처"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"벨소리 설정"</string>
@@ -136,10 +130,8 @@
     <string name="menu_share" msgid="6343022811796001773">"공유"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"주소록에 추가"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"추가"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">연락처 공유에 사용할 애플리케이션:</item>
-      <item quantity="one">연락처 공유에 사용할 애플리케이션:</item>
-    </plurals>
+    <!-- no translation found for title_share_via (3300082736229182956) -->
+    <skip />
     <string name="dialog_new_group_account" msgid="4326402875327788728">"계정 선택"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"라벨 만들기"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"라벨 이름 바꾸기"</string>
@@ -380,14 +372,10 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"가져온 주소록을 저장할 계정:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM 카드"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="other">연락처 %1$d개</item>
-      <item quantity="one">연락처 1개</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="other">연락처 <xliff:g id="COUNT_2">^1</xliff:g>개 • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="one">연락처 <xliff:g id="COUNT_0">^1</xliff:g>개 • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
-    </plurals>
+    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (4406774701661271748) -->
+    <skip />
+    <!-- no translation found for import_from_sim_secondary_template (7574306746844258362) -->
+    <skip />
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf 파일"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"가져올 항목이 없습니다."</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard에서 연락처를 가져오시겠습니까?"</string>
@@ -490,10 +478,8 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"연락처 선택"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"SIM 카드에 연락처가 없습니다."</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"이미 목록에 있는 연락처입니다."</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="other">SIM 연락처 <xliff:g id="COUNT">%d</xliff:g>개를 가져옴</item>
-      <item quantity="one">SIM 연락처 1개를 가져옴</item>
-    </plurals>
+    <!-- no translation found for sim_import_success_toast_fmt (7645974841482481503) -->
+    <skip />
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM 연락처를 가져오지 못했습니다."</string>
     <string name="sim_import_title" msgid="8202961146093040684">"SIM에서 가져오기"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"취소"</string>
