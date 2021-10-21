@@ -122,7 +122,7 @@
     <string name="groupExistsErrorMessage" msgid="912222525098791136">"ఈ లేబుల్ ఇప్పటికే ఉంది"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"కొన్ని కాంటాక్ట్‌లకు ఈమెయిల్‌లు లేవు."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"కొన్ని కాంటాక్ట్‌లకు ఫోన్ నంబర్‌లు లేవు."</string>
-    <string name="menu_sendEmailOption" msgid="8600335923636486825">"ఇమెయిల్‌ను పంపు"</string>
+    <string name="menu_sendEmailOption" msgid="8600335923636486825">"ఈమెయిల్‌ను పంపు"</string>
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"మెసేజ్‌ను పంపు"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"కాంటాక్ట్‌లను ఎంచుకోండి"</string>
     <string name="send_to_selection" msgid="3655197947726443720">"పంపు"</string>
@@ -131,7 +131,7 @@
     <string name="search_settings_description" msgid="5630675648560839920">"మీ కాంటాక్ట్‌ల పేర్లు"</string>
     <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"మునుపటి స్క్రీన్‌కి తిరిగి రావడానికి క్లిక్ చేయండి"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"ఫోన్ నంబర్‌ను జోడించండి"</string>
-    <string name="quickcontact_add_email" msgid="1442894568471116797">"ఇమెయిల్ జోడించండి"</string>
+    <string name="quickcontact_add_email" msgid="1442894568471116797">"ఈమెయిల్‌ జోడించండి"</string>
     <string name="missing_app" msgid="5674389915738964148">"ఈ చర్యను నిర్వహించడానికి యాప్‌ ఏదీ కనుగొనబడలేదు."</string>
     <string name="menu_share" msgid="6343022811796001773">"షేర్ చేయి"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"కాంటాక్ట్‌లకు జోడించండి"</string>
@@ -214,7 +214,7 @@
     <string name="header_event_entry" msgid="70962228694476731">"ఈవెంట్"</string>
     <string name="header_relation_entry" msgid="993618132732521944">"సంబంధం"</string>
     <string name="header_name_entry" msgid="2516776099121101578">"పేరు"</string>
-    <string name="header_email_entry" msgid="8653569770962542178">"ఇమెయిల్"</string>
+    <string name="header_email_entry" msgid="8653569770962542178">"ఈమెయిల్‌"</string>
     <string name="header_phone_entry" msgid="7092868248113091293">"ఫోన్"</string>
     <string name="content_description_directions" msgid="860179347986211929">"లొకేషన్‌ను వెళ్లడానికి దిశలు"</string>
     <string name="editor_more_fields" msgid="6158558083947445518">"మరిన్ని ఫీల్డ్‌లు"</string>
@@ -316,7 +316,7 @@
     <string name="name_phonetic_middle" msgid="6528822054594516485">"ఫొనెటిక్ మధ్య పేరు"</string>
     <string name="name_phonetic_family" msgid="1690852801039809448">"ఫొనెటిక్ చివరి పేరు"</string>
     <string name="phoneLabelsGroup" msgid="2746758650001801885">"ఫోన్"</string>
-    <string name="emailLabelsGroup" msgid="3360719560200449554">"ఇమెయిల్"</string>
+    <string name="emailLabelsGroup" msgid="3360719560200449554">"ఈమెయిల్‌"</string>
     <string name="postalLabelsGroup" msgid="7534317297587527570">"అడ్రస్‌"</string>
     <string name="imLabelsGroup" msgid="2113398976789806432">"IM"</string>
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"సంస్థ"</string>
@@ -332,12 +332,12 @@
     <string name="label_sip_address" msgid="8876347942587537552">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="114754928100220315">"వెబ్‌సైట్"</string>
     <string name="groupsLabel" msgid="5622154133880646122">"లేబుళ్లు"</string>
-    <string name="email_home" msgid="1102791500866910269">"ఇంటికి ఇమెయిల్ చేయండి"</string>
-    <string name="email_mobile" msgid="6461172430397598705">"మొబైల్‌కు ఇమెయిల్ చేయండి"</string>
-    <string name="email_work" msgid="24992619164533704">"కార్యాలయానికి ఇమెయిల్ చేయండి"</string>
-    <string name="email_other" msgid="9200478615023952240">"ఇమెయిల్ చేయండి"</string>
-    <string name="email_custom" msgid="4614140345586842953">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>కి ఇమెయిల్ పంపు"</string>
-    <string name="email" msgid="7367975425670798827">"ఇమెయిల్ చేయండి"</string>
+    <string name="email_home" msgid="1102791500866910269">"ఇంటికి ఈమెయిల్‌ చేయండి"</string>
+    <string name="email_mobile" msgid="6461172430397598705">"మొబైల్‌కు ఈమెయిల్‌ చేయండి"</string>
+    <string name="email_work" msgid="24992619164533704">"కార్యాలయానికి ఈమెయిల్‌ చేయండి"</string>
+    <string name="email_other" msgid="9200478615023952240">"ఈమెయిల్‌ చేయండి"</string>
+    <string name="email_custom" msgid="4614140345586842953">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>కి ఈమెయిల్‌ పంపు"</string>
+    <string name="email" msgid="7367975425670798827">"ఈమెయిల్‌ చేయండి"</string>
     <string name="postal_street" msgid="43809570436400749">"వీధి"</string>
     <string name="postal_city" msgid="3571927981675393150">"నగరం"</string>
     <string name="postal_region" msgid="6130239447563491435">"రాష్ట్రం"</string>
