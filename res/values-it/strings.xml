@@ -65,12 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> eliminato"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> e <xliff:g id="NAME_1">%2$s</xliff:g> eliminati"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… eliminati"</string>
-    <!-- no translation found for contacts_deleted_toast (3185825083067357305) -->
-    <skip />
-    <!-- no translation found for contacts_count (92227640680327707) -->
-    <skip />
-    <!-- no translation found for contacts_count_with_account (3921405666045433256) -->
-    <skip />
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{Contatto eliminato}other{Contatti eliminati}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# contatto}other{# contatti}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# contatto · {account}}other{# contatti · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Di Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"Da <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Imposta suoneria"</string>
@@ -130,8 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"Condividi"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Aggiungi ai contatti"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Aggiungi"</string>
-    <!-- no translation found for title_share_via (3300082736229182956) -->
-    <skip />
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{Condividi contatto tramite}other{Condividi contatti tramite}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Scegli account"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Crea etichetta"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Rinomina etichetta"</string>
@@ -372,10 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Salva i contatti importati in:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"Scheda SIM"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <!-- no translation found for import_from_sim_secondary_contact_count_fmt (4406774701661271748) -->
-    <skip />
-    <!-- no translation found for import_from_sim_secondary_template (7574306746844258362) -->
-    <skip />
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# contatto}other{# contatti}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# contatto • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}other{# contatti • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"File .vcf"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Niente da importare"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Importare i contatti da vCard?"</string>
@@ -478,8 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Seleziona contatti"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"Nessun contatto presente nella SIM"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Contatto già esistente nell\'elenco"</string>
-    <!-- no translation found for sim_import_success_toast_fmt (7645974841482481503) -->
-    <skip />
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# contatto importato dalla SIM}other{# contatti importati dalla SIM}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Impossibile importare i contatti della SIM"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Importa da SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Annulla"</string>
