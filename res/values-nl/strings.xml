@@ -415,7 +415,7 @@
     <string name="export_to_vcf_file" msgid="3096479544575798192">"Exporteren naar VCF"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"Sorteren op"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"Fonetische naam"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Altijd weergeven"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Altijd tonen"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"Verbergen indien leeg"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"Voornaam"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"Achternaam"</string>
@@ -479,9 +479,9 @@
     <string name="auto_sync_off" msgid="7039314601316227882">"Automatisch synchroniseren is uitgeschakeld. Tik om in te schakelen."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Sluiten"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Accountsynchronisatie is uitgeschakeld. Tik om in te schakelen."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Automatisch synchroniseren inschakelen?"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Automatisch synchroniseren aanzetten?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Wijzigingen die je aanbrengt in alle apps en accounts, niet alleen in Google Contacten, worden gesynchroniseerd tussen internet en je apparaten."</string>
-    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Inschakelen"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Aanzetten"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Geen verbinding"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"Simkaart"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"Meer tonen"</string>
