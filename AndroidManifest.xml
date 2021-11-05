@@ -20,8 +20,8 @@
           android:versionName="1.7.33">
 
     <uses-sdk
-        android:minSdkVersion="21"
-        android:targetSdkVersion="30"/>
+        android:minSdkVersion="31"
+        android:targetSdkVersion="31"/>
 
     <original-package android:name="com.android.contacts"/>
 
@@ -495,6 +495,7 @@
 
         <activity
             android:name=".vcard.NfcImportVCardActivity"
+            android:permission="android.permission.DISPATCH_NFC_MESSAGE"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true"
             android:theme="@style/BackgroundOnlyTheme">
