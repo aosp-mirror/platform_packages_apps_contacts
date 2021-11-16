@@ -425,7 +425,7 @@
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"সম্পৰ্কসমূহক সোনকালে ৰপ্তানি কৰা হ\'ব।"</string>
     <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"ভি-কাৰ্ড ৰপ্তানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পিছত আকৌ চেষ্টা কৰক।"</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"সম্পৰ্ক"</string>
-    <string name="caching_vcard_message" msgid="1879339732783666517">"ভি-কাৰ্ড (বোৰ)ক ডিভাইচৰ অস্থায়ী সঞ্চয়াগাৰত কেচ কৰিথকা হৈছে। আচল আমদানি কৰা কাৰ্য সোনকালে আৰম্ভ হ\'ব।"</string>
+    <string name="caching_vcard_message" msgid="1879339732783666517">"ভি-কাৰ্ড(বোৰ)ক ডিভাইচৰ অস্থায়ী ষ্ট’ৰেজত কেশ্ব কৰি থকা হৈছে। আচল ইমপ’ৰ্ট কৰা কাৰ্য সোনকালে আৰম্ভ হ’ব।"</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCard আমদানি কৰিব পৰা নগ\'ল।"</string>
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"NFCৰ জৰিয়তে সম্পৰ্ক পোৱা গ\'ল"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"কেচ কৰিথকা হৈছে"</string>
