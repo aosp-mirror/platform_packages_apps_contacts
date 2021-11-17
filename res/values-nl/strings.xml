@@ -192,7 +192,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Kies een standaardaccount voor nieuwe contacten"</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Nieuw contact maken"</string>
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"Contact bewerken"</string>
-    <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Alleen weergeven"</string>
+    <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Alleen bekijken"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"Contact kiezen om te bewerken"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"Gelinkte contacten"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"Toevoegen"</string>
@@ -343,9 +343,9 @@
     <string name="postal_region" msgid="6130239447563491435">"Staat"</string>
     <string name="postal_postcode" msgid="33077708757232659">"Postcode"</string>
     <string name="postal_country" msgid="6642804283917549861">"Land"</string>
-    <string name="map_home" msgid="2169053372466501148">"Woonadres weergeven"</string>
-    <string name="map_work" msgid="8296916987749726461">"Werkadres weergeven"</string>
-    <string name="map_other" msgid="4009931029322619674">"Adres weergeven"</string>
+    <string name="map_home" msgid="2169053372466501148">"Woonadres bekijken"</string>
+    <string name="map_work" msgid="8296916987749726461">"Werkadres bekijken"</string>
+    <string name="map_other" msgid="4009931029322619674">"Adres bekijken"</string>
     <string name="map_custom" msgid="7797812861927817335">"Adres voor <xliff:g id="CUSTOM_LABEL">%s</xliff:g> bekijken"</string>
     <string name="chat_aim" msgid="2044861410748519265">"Chatten via AIM"</string>
     <string name="chat_msn" msgid="4733206223124506247">"Chatten via Windows Live"</string>
