@@ -192,7 +192,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Kies een standaardaccount voor nieuwe contacten"</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Nieuw contact maken"</string>
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"Contact bewerken"</string>
-    <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Alleen weergeven"</string>
+    <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Alleen bekijken"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"Contact kiezen om te bewerken"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"Gelinkte contacten"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"Toevoegen"</string>
@@ -201,8 +201,8 @@
     <string name="add_new_account" msgid="573368229646104110">"Nieuw account toevoegen"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Databasebestanden exporteren"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Nieuw contact maken"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer weergeven"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder weergeven"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer tonen"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder tonen"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Over"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Een persoonlijke kopie maken..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Instellen"</string>
@@ -343,9 +343,9 @@
     <string name="postal_region" msgid="6130239447563491435">"Staat"</string>
     <string name="postal_postcode" msgid="33077708757232659">"Postcode"</string>
     <string name="postal_country" msgid="6642804283917549861">"Land"</string>
-    <string name="map_home" msgid="2169053372466501148">"Woonadres weergeven"</string>
-    <string name="map_work" msgid="8296916987749726461">"Werkadres weergeven"</string>
-    <string name="map_other" msgid="4009931029322619674">"Adres weergeven"</string>
+    <string name="map_home" msgid="2169053372466501148">"Woonadres bekijken"</string>
+    <string name="map_work" msgid="8296916987749726461">"Werkadres bekijken"</string>
+    <string name="map_other" msgid="4009931029322619674">"Adres bekijken"</string>
     <string name="map_custom" msgid="7797812861927817335">"Adres voor <xliff:g id="CUSTOM_LABEL">%s</xliff:g> bekijken"</string>
     <string name="chat_aim" msgid="2044861410748519265">"Chatten via AIM"</string>
     <string name="chat_msn" msgid="4733206223124506247">"Chatten via Windows Live"</string>
@@ -433,7 +433,7 @@
     <string name="export_to_vcf_file" msgid="3096479544575798192">"Exporteren naar VCF"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"Sorteren op"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"Fonetische naam"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Altijd weergeven"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Altijd tonen"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"Verbergen indien leeg"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"Voornaam"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"Achternaam"</string>
@@ -500,12 +500,12 @@
     <string name="auto_sync_off" msgid="7039314601316227882">"Automatisch synchroniseren is uitgeschakeld. Tik om in te schakelen."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Sluiten"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Accountsynchronisatie is uitgeschakeld. Tik om in te schakelen."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Automatisch synchroniseren inschakelen?"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Automatisch synchroniseren aanzetten?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Wijzigingen die je aanbrengt in alle apps en accounts, niet alleen in Google Contacten, worden gesynchroniseerd tussen internet en je apparaten."</string>
-    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Inschakelen"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Aanzetten"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Geen verbinding"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"Simkaart"</string>
-    <string name="show_more_content_description" msgid="6298277298495491712">"Meer weergeven"</string>
+    <string name="show_more_content_description" msgid="6298277298495491712">"Meer tonen"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"Importeren van simkaart voltooid"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"Importeren mislukt"</string>
     <string name="importing_sim_failed_message" msgid="55568522164349044">"Kan geen contacten importeren van de simkaart"</string>

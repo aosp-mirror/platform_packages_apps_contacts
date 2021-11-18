@@ -18,10 +18,14 @@ package com.android.contacts.model.account;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.CommonDataKinds.Relation;
+import android.util.Log;
 
 import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
@@ -202,5 +206,28 @@ public class GoogleAccountType extends BaseAccountType {
     @Override
     public String getViewContactNotifyServicePackageName() {
         return "com.google.android.syncadapters.contacts";
+    }
+
+    /**
+     * Sends a broadcast to the sync adapter to trigger a high res photo sync for the contact which
+     * was viewed
+     * @param context context to send broadcast in
+     * @param rawContactUri Uri of the raw contact viewed
+     */
+    public void handleRawContactViewed(Context context, Uri rawContactUri) {
+        final Intent intent = new Intent();
+        intent.setData(rawContactUri);
+        // New broadcast for syncing high res photo.
+        intent.setPackage(GoogleAccountType.PLUS_EXTENSION_PACKAGE_NAME);
+        intent.setAction(
+                "com.google.android.gms.people.sync.focus.SYNC_HIGH_RES_PHOTO");
+
+        context.sendBroadcast(intent);
+
+        // Old broadcast. This can be removed in T
+        intent.setPackage(getViewContactNotifyServicePackageName());
+        intent.setAction(
+                "com.google.android.syncadapters.contacts.SYNC_HIGH_RES_PHOTO");
+        context.sendBroadcast(intent);
     }
 }
