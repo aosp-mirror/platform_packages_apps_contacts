@@ -197,7 +197,8 @@ public class AttachPhotoActivity extends ContactsActivity {
             }
             ContactPhotoUtils.addPhotoPickerExtras(intent, mCroppedPhotoUri);
             ContactPhotoUtils.addCropExtras(intent, mPhotoDim != 0 ? mPhotoDim : mDefaultPhotoDim);
-            if (!hasIntentHandler(intent)) {
+            final ResolveInfo intentHandler = getIntentHandler(intent);
+            if (intentHandler == null) {
                 // No activity supports the crop action. So skip cropping and set the photo
                 // without performing any cropping.
                 mCroppedPhotoUri = mTempPhotoUri;
@@ -211,6 +212,7 @@ public class AttachPhotoActivity extends ContactsActivity {
                 return;
             }
 
+            intent.setPackage(intentHandler.activityInfo.packageName);
             try {
                 startActivityForResult(intent, REQUEST_CROP_PHOTO);
             } catch (ActivityNotFoundException ex) {
@@ -237,10 +239,11 @@ public class AttachPhotoActivity extends ContactsActivity {
         }
     }
 
-    private boolean hasIntentHandler(Intent intent) {
-        final List<ResolveInfo> resolveInfo = getPackageManager()
-                .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        return resolveInfo != null && resolveInfo.size() > 0;
+    private ResolveInfo getIntentHandler(Intent intent) {
+        final List<ResolveInfo> resolveInfos = getPackageManager()
+                .queryIntentActivities(intent,
+                        PackageManager.MATCH_DEFAULT_ONLY | PackageManager.MATCH_SYSTEM_ONLY);
+        return (resolveInfos != null && resolveInfos.size() > 0) ? resolveInfos.get(0) : null;
     }
 
     // TODO: consider moving this to ContactLoader, especially if we keep adding similar
