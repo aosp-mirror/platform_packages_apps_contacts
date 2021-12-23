@@ -32,7 +32,7 @@
     <string name="menu_removeStar" msgid="3707373931808303701">"ఇష్టమైనవాటి నుండి తీసివేయి"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"ఇష్టమైనవి నుండి తీసివేయబడింది"</string>
     <string name="description_action_menu_add_star" msgid="7316521132809388851">"ఇష్టమైనవికి జోడించబడింది"</string>
-    <string name="menu_editContact" msgid="5039663761025630208">"సవరించు"</string>
+    <string name="menu_editContact" msgid="5039663761025630208">"ఎడిట్"</string>
     <string name="menu_deleteContact" msgid="15161764025276217">"తొలగించు"</string>
     <string name="menu_change_photo" msgid="4911246106907208055">"ఫోటోను మార్చు"</string>
     <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"షార్ట్‌కట్‌ను సృష్టించు"</string>
