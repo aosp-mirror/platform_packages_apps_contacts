@@ -145,8 +145,8 @@
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"লেবেলৰ নতুন নাম দিয়ক"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"লেবেলৰ নাম"</string>
     <string name="label_name_dialog_hint" msgid="7027635439255596191">"লেবেলৰ নাম"</string>
-    <string name="audio_chat" msgid="5921525823973697372">"ভইচ চ্চাট"</string>
-    <string name="video_chat" msgid="2477295971622477433">"ভিডিঅ’ চ্চাট"</string>
+    <string name="audio_chat" msgid="5921525823973697372">"ভইচ চাট"</string>
+    <string name="video_chat" msgid="2477295971622477433">"ভিডিঅ’ চাট"</string>
     <string name="account_type_format" msgid="4926968760755013450">"<xliff:g id="SOURCE">%1$s</xliff:g>ৰ সম্পৰ্ক"</string>
     <string name="google_account_type_format" msgid="4046692740262396811">"<xliff:g id="SOURCE">%1$s</xliff:g> একাউণ্ট"</string>
     <string name="take_photo" msgid="820071555236547516">"ফট\' লওক"</string>
@@ -164,10 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"ছেটিংবোৰ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"ছেটিংবোৰ"</string>
     <string name="menu_help" msgid="287801702920372292">"সহায় আৰু মতামত"</string>
-    <!-- no translation found for organization_entry_two_field (6034934619269052455) -->
-    <skip />
-    <!-- no translation found for organization_entry_all_field (6724345890324437167) -->
-    <skip />
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ফ\'ন নম্বৰ"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"সর্ম্পক সূচীত যোগ কৰক"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"বন্ধ কৰক"</string>
@@ -349,15 +347,15 @@
     <string name="map_work" msgid="8296916987749726461">"কৰ্মস্থানৰ ঠিকনা চাওক"</string>
     <string name="map_other" msgid="4009931029322619674">"ঠিকনা চাওক"</string>
     <string name="map_custom" msgid="7797812861927817335">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>ৰ ঠিকনা চাওক"</string>
-    <string name="chat_aim" msgid="2044861410748519265">"AIM ব্য়ৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat_msn" msgid="4733206223124506247">"ৱিণ্ড\'জ লাইভ ব্য়ৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat_yahoo" msgid="3807571878191282528">"Yahoo ব্যৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat_skype" msgid="5130564346825936093">"Skype ব্যৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat_qq" msgid="2971335421266098608">"QQ ব্যৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk ব্যৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat_icq" msgid="4289041376069626281">"ICQ ব্যৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat_jabber" msgid="1097960594943864847">"Jabber ব্যৱহাৰ কৰি চ্চাট কৰক"</string>
-    <string name="chat" msgid="8390862712584830532">"Chat"</string>
+    <string name="chat_aim" msgid="2044861410748519265">"AIM ব্য়ৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_msn" msgid="4733206223124506247">"ৱিণ্ড\'জ লাইভ ব্য়ৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_yahoo" msgid="3807571878191282528">"Yahoo ব্যৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_skype" msgid="5130564346825936093">"Skype ব্যৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_qq" msgid="2971335421266098608">"QQ ব্যৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk ব্যৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_icq" msgid="4289041376069626281">"ICQ ব্যৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_jabber" msgid="1097960594943864847">"Jabber ব্যৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat" msgid="8390862712584830532">"চাট কৰক"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"মচক"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"নামৰ অধিক ক্ষেত্ৰ দেখুৱাওক"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"নামৰ ক্ষেত্ৰ সংকুচিত কৰক"</string>
