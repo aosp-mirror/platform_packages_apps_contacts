@@ -262,6 +262,17 @@
             android:theme="@style/ContactsPreferencesTheme"/>
 
         <activity
+            android:name=".preference.SetDefaultAccountActivity"
+            android:exported="true"
+            android:theme="@style/BackgroundOnlyTheme"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.provider.action.SET_DEFAULT_ACCOUNT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".activities.LicenseActivity"
             android:exported="true"
             android:label="@string/activity_title_licenses"
