@@ -176,7 +176,7 @@
     <string name="delete_group_dialog_message" msgid="754082019928025404">"Hapus label \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Kontak tidak akan dihapus.)"</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"Ketik nama kontak sebelum menautkan dengan lainnya."</string>
     <string name="copy_text" msgid="6835250673373028909">"Salin ke papan klip"</string>
-    <string name="set_default" msgid="3704074175618702225">"Setel sebagai default"</string>
+    <string name="set_default" msgid="3704074175618702225">"Jadikan default"</string>
     <string name="clear_default" msgid="2055883863621491533">"Hapus default"</string>
     <string name="toast_text_copied" msgid="845906090076228771">"Teks disalin"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Hapus perubahan?"</string>
@@ -290,7 +290,7 @@
     <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"Anda akan menghapus daftar yang sering dihubungi pada aplikasi Kontak dan Ponsel, serta memaksa aplikasi email untuk mempelajari preferensi penanganan dari awal."</string>
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Menghapus yang sering dihubungi..."</string>
     <string name="status_available" msgid="8081626460682959098">"Ada"</string>
-    <string name="status_away" msgid="2677693194455091315">"Tidak di Tempat"</string>
+    <string name="status_away" msgid="2677693194455091315">"Pergi"</string>
     <string name="status_busy" msgid="2759339190187696727">"Sibuk"</string>
     <string name="local_invisible_directory" msgid="5936234374879813300">"Lainnya"</string>
     <string name="directory_search_label" msgid="2602118204885565153">"Direktori"</string>
