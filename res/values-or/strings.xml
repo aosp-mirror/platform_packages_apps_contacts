@@ -27,7 +27,7 @@
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"ଜଣେ ଯୋଗାଯୋଗଙ୍କୁ ବାଛନ୍ତୁ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"ଚୟନ କରନ୍ତୁ"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"ନୂଆ ଯୋଗାଯୋଗ ତିଆରି କରନ୍ତୁ"</string>
-    <string name="searchHint" msgid="1487501532610025473">"ଯୋଗାଯୋଗଙ୍କୁ ଖୋଜନ୍ତୁ"</string>
+    <string name="searchHint" msgid="1487501532610025473">"ଯୋଗାଯୋଗଗୁଡ଼ିକୁ ସନ୍ଧାନ କରନ୍ତୁ"</string>
     <string name="menu_addStar" msgid="4903812703386825130">"ପସନ୍ଦଦାର୍‍ରେ ଯୋଡ଼ନ୍ତୁ"</string>
     <string name="menu_removeStar" msgid="3707373931808303701">"ପସନ୍ଦଦାର୍‌ରୁ କାଢ଼ିଦିଅନ୍ତୁ"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"ପସନ୍ଦଦାର୍‌ରୁ କାଢ଼ିଦିଆଗଲା"</string>
@@ -164,10 +164,8 @@
     <string name="activity_title_settings" msgid="4004290638426915162">"ସେଟିଙ୍ଗ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"ସେଟିଙ୍ଗ"</string>
     <string name="menu_help" msgid="287801702920372292">"ସହାୟତା ଓ ମତାମତ"</string>
-    <!-- no translation found for organization_entry_two_field (6034934619269052455) -->
-    <skip />
-    <!-- no translation found for organization_entry_all_field (6724345890324437167) -->
-    <skip />
+    <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
+    <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ଫୋନ୍ ନମ୍ଵର୍"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"ଯୋଗାଯୋଗରେ ଯୋଡ଼ନ୍ତୁ"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"ବନ୍ଦ କରନ୍ତୁ"</string>
@@ -185,7 +183,7 @@
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"ଖାରଜ କରନ୍ତୁ"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"ବାତିଲ୍‍ କରନ୍ତୁ"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"କଷ୍ଟମାଇ‍ଜ୍‍ କରିବା ଖାରଜ କରିବେ?"</string>
-    <string name="enter_contact_name" msgid="521859148893732679">"ଯୋଗାଯୋଗଙ୍କୁ ଖୋଜନ୍ତୁ"</string>
+    <string name="enter_contact_name" msgid="521859148893732679">"ଯୋଗାଯୋଗଗୁଡ଼ିକୁ ସନ୍ଧାନ କରନ୍ତୁ"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"ଯୋଗାଯୋଗଙ୍କୁ କାଢ଼ିଦିଅନ୍ତୁ"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"ମୋ ସ୍ଥାନୀୟ ପ୍ରୋଫାଇଲ୍‌"</string>
     <string name="external_profile_title" msgid="2706282819025406927">"ମୋ <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> ପ୍ରୋଫାଇଲ୍"</string>
@@ -357,7 +355,7 @@
     <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk ବ୍ୟବହାର କରି ଚାଟ୍‍ କରନ୍ତୁ"</string>
     <string name="chat_icq" msgid="4289041376069626281">"ICQ ବ୍ୟବହାର କରି ଚା‍ଟ୍‍ କରନ୍ତୁ"</string>
     <string name="chat_jabber" msgid="1097960594943864847">"Jabber ବ୍ୟବହାର କରି ଚାଟ୍‍ କରନ୍ତୁ"</string>
-    <string name="chat" msgid="8390862712584830532">"Chat"</string>
+    <string name="chat" msgid="8390862712584830532">"ଚାଟ୍ କରନ୍ତୁ"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"ଡିଲିଟ୍ କରନ୍ତୁ"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"ଅଧିକ ନାମ କ୍ଷେତ୍ର ଦର୍ଶାନ୍ତୁ"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"ନାମ କ୍ଷେତ୍ରକୁ ସଙ୍କୁଚିତ କରନ୍ତୁ"</string>

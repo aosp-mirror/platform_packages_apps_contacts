@@ -357,9 +357,9 @@
     <string name="chat_jabber" msgid="1097960594943864847">"Trò chuyện sử dụng Jabber"</string>
     <string name="chat" msgid="8390862712584830532">"Trò chuyện"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"xóa"</string>
-    <string name="expand_name_fields_description" msgid="6059558159338959487">"Hiển thị thêm trường tên"</string>
+    <string name="expand_name_fields_description" msgid="6059558159338959487">"Hiện thêm trường tên"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"Thu gọn trường tên"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Hiển thị thêm trường tên theo phiên âm"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Hiện thêm trường tên theo phiên âm"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="4614902922362144094">"Thu gọn trường tên theo phiên âm"</string>
     <string name="expand_fields_description" msgid="8604448646798943909">"Mở rộng"</string>
     <string name="collapse_fields_description" msgid="3213872920491992960">"Thu gọn"</string>
@@ -505,7 +505,7 @@
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Bật"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Không có kết nối"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
-    <string name="show_more_content_description" msgid="6298277298495491712">"Hiển thị thêm"</string>
+    <string name="show_more_content_description" msgid="6298277298495491712">"Hiện thêm"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"Đã nhập xong thẻ SIM"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"Nhập không thành công"</string>
     <string name="importing_sim_failed_message" msgid="55568522164349044">"Không thể nhập danh bạ từ thẻ SIM"</string>

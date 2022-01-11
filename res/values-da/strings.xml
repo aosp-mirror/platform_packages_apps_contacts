@@ -216,7 +216,7 @@
     <string name="header_name_entry" msgid="2516776099121101578">"Navn"</string>
     <string name="header_email_entry" msgid="8653569770962542178">"Mail"</string>
     <string name="header_phone_entry" msgid="7092868248113091293">"Telefon"</string>
-    <string name="content_description_directions" msgid="860179347986211929">"rutevejledning til placering"</string>
+    <string name="content_description_directions" msgid="860179347986211929">"rutevejledning til lokation"</string>
     <string name="editor_more_fields" msgid="6158558083947445518">"Flere felter"</string>
     <string name="editor_change_photo_content_description" msgid="8146896029044539032">"Skift kontaktpersonens billede"</string>
     <string name="editor_add_photo_content_description" msgid="8457486801272200575">"Tilføj et billede af kontaktpersonen"</string>
