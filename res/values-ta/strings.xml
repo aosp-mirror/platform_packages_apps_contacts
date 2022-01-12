@@ -199,7 +199,7 @@
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"இணைப்பை நீக்கு"</string>
     <string name="add_account" msgid="3071396624500839020">"கணக்கைச் சேர்"</string>
     <string name="add_new_account" msgid="573368229646104110">"புதிய கணக்கைச் சேர்"</string>
-    <string name="menu_export_database" msgid="1658249125751926885">"தரவுத்தள கோப்புகளை ஏற்றுமதி செய்"</string>
+    <string name="menu_export_database" msgid="1658249125751926885">"தரவுத்தள ஃபைல்களை ஏற்றுமதி செய்"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"புதிய தொடர்பை உருவாக்கும்"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"மேலும் காட்டு"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"குறைவாகக் காட்டு"</string>
@@ -430,7 +430,7 @@
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"NFC வழியாக தொடர்பு பெறப்பட்டது"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"தற்காலிகமாகச் சேமித்தல்"</string>
     <string name="progress_notifier_message" msgid="8522060892889599746">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> ஐ இறக்குமதி செய்கிறது: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf கோப்பிற்கு ஏற்று"</string>
+    <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf ஃபைலிற்கு ஏற்று"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"இதன்படி வரிசைப்படுத்து:"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"ஒலிப்புமுறைப் பெயர்"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"எப்போதும் காட்டு"</string>
