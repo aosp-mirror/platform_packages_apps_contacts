@@ -357,9 +357,9 @@
     <string name="chat_jabber" msgid="1097960594943864847">"Chatten via Jabber"</string>
     <string name="chat" msgid="8390862712584830532">"Chat"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"verwijderen"</string>
-    <string name="expand_name_fields_description" msgid="6059558159338959487">"Meer naamvelden weergeven"</string>
+    <string name="expand_name_fields_description" msgid="6059558159338959487">"Meer naamvelden tonen"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"Naamvelden samenvouwen"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Meer fonetische naamvelden weergeven"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Meer fonetische naamvelden tonen"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="4614902922362144094">"Fonetische naamvelden samenvouwen"</string>
     <string name="expand_fields_description" msgid="8604448646798943909">"Uitvouwen"</string>
     <string name="collapse_fields_description" msgid="3213872920491992960">"Samenvouwen"</string>
@@ -484,7 +484,7 @@
     <string name="description_search_video_call" msgid="1768558141309418755">"Videogesprek starten"</string>
     <string name="description_delete_contact" msgid="8110643050235441400">"Verwijderen"</string>
     <string name="description_no_name_header" msgid="8596201864512339003">"Weglatingsteken"</string>
-    <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Deze snelkoppeling is uitgeschakeld"</string>
+    <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Deze snelkoppeling staat uit"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Contact is verwijderd"</string>
     <string name="sim_import_button_text" msgid="2845608246304396009">"Importeren"</string>
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Contacten selecteren"</string>
@@ -497,9 +497,9 @@
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Kan contacten op simkaart niet importeren"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Importeren van simkaart"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Annuleren"</string>
-    <string name="auto_sync_off" msgid="7039314601316227882">"Automatisch synchroniseren is uitgeschakeld. Tik om in te schakelen."</string>
+    <string name="auto_sync_off" msgid="7039314601316227882">"Automatisch synchroniseren staat uit. Tik om aan te zetten."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Sluiten"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"Accountsynchronisatie is uitgeschakeld. Tik om in te schakelen."</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"Accountsynchronisatie staat uit. Tik om aan te zetten."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Automatisch synchroniseren aanzetten?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Wijzigingen die je aanbrengt in alle apps en accounts, niet alleen in Google Contacten, worden gesynchroniseerd tussen internet en je apparaten."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Aanzetten"</string>
