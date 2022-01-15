@@ -371,10 +371,10 @@
     <string name="list_filter_single" msgid="6003845379327432129">"ਸੰਪਰਕ"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"ਹੋਰ ਸਾਰੇ ਸੰਪਰਕ"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"ਸਾਰੇ ਸੰਪਰਕ"</string>
-    <string name="menu_sync_remove" msgid="7523335046562082188">"ਸਮਕਾਲੀਕਰਨ ਸਮੂਹ ਹਟਾਓ"</string>
-    <string name="dialog_sync_add" msgid="8012361965908515959">"ਸਮਕਾਲੀਕਰਨ ਸਮੂਹ ਸ਼ਾਮਲ ਕਰੋ"</string>
+    <string name="menu_sync_remove" msgid="7523335046562082188">"ਸਿੰਕ ਸਮੂਹ ਹਟਾਓ"</string>
+    <string name="dialog_sync_add" msgid="8012361965908515959">"ਸਿੰਕ ਸਮੂਹ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="display_more_groups" msgid="8398232980355188133">"ਹੋਰ ਗਰੁੱਪ…"</string>
-    <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"ਸਮਕਾਲੀਕਰਨ ਵਿੱਚੋਂ \"<xliff:g id="GROUP">%s</xliff:g>\" ਨੂੰ ਹਟਾਉਣ ਨਾਲ ਸਮਕਾਲੀਕਰਨ ਤੋਂ ਕੋਈ ਵੀ ਅਣ-ਸਮੂਹਬੱਧ ਕੀਤੇ ਸੰਪਰਕ ਵੀ ਹਟ ਜਾਣਗੇ।"</string>
+    <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"ਸਿੰਕ ਵਿੱਚੋਂ \"<xliff:g id="GROUP">%s</xliff:g>\" ਨੂੰ ਹਟਾਉਣ ਨਾਲ ਸਿੰਕ ਤੋਂ ਕੋਈ ਵੀ ਅਣ-ਸਮੂਹਬੱਧ ਕੀਤੇ ਸੰਪਰਕ ਵੀ ਹਟ ਜਾਣਗੇ।"</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ਡਿਸਪਲੇ ਵਿਕਲਪਾਂ ਨੂੰ ਰੱਖਿਅਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"ਵਿਸ਼ੇਸ਼-ਵਿਉਂਤਬੱਧ ਕੀਤਾ ਦ੍ਰਿਸ਼"</string>
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"ਆਯਾਤ ਕੀਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਇਸ ਵਿੱਚ ਰੱਖਿਅਤ ਕਰੋ:"</string>
@@ -497,10 +497,10 @@
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM ਸੰਪਰਕਾਂ ਨੂੰ ਆਯਾਤ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"SIM ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"ਰੱਦ ਕਰੋ"</string>
-    <string name="auto_sync_off" msgid="7039314601316227882">"ਸਵੈ-ਸਮਕਾਲੀਕਰਨ ਬੰਦ ਹੈ। ਚਾਲੂ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।"</string>
+    <string name="auto_sync_off" msgid="7039314601316227882">"ਸਵੈ-ਸਿੰਕ ਬੰਦ ਹੈ। ਚਾਲੂ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।"</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"ਖਾਰਜ ਕਰੋ"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"ਖਾਤਾ ਸਮਕਾਲੀਕਰਨ ਬੰਦ ਹੈ। ਚਾਲੂ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।"</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"ਕੀ ਸਵੈ-ਸਮਕਾਲੀਕਰਨ ਚਾਲੂ ਕਰਨਾ ਹੈ?"</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"ਖਾਤਾ ਸਿੰਕ ਬੰਦ ਹੈ। ਚਾਲੂ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"ਕੀ ਸਵੈ-ਸਿੰਕ ਚਾਲੂ ਕਰਨਾ ਹੈ?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"ਨਾ ਸਿਰਫ਼ Google ਸੰਪਰਕਾਂ ਲਈ, ਬਲਕਿ ਸਾਰੀਆਂ ਐਪਾਂ ਅਤੇ ਖਾਤਿਆਂ ਲਈ ਕੀਤੀਆਂ ਗਈਆਂ ਤੁਹਾਡੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਵੈੱਬ ਅਤੇ ਤੁਹਾਡੀਆਂ ਡੀਵਾਈਸਾਂ ਵਿਚਕਾਰ ਅੱਪ ਟੂ ਡੇਟ ਰੱਖਿਆ ਜਾਵੇਗਾ।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"ਚਾਲੂ ਕਰੋ"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"ਕੋਈ ਕਨੈਕਸ਼ਨ ਨਹੀਂ"</string>
