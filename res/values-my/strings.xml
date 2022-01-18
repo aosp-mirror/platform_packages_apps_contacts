@@ -240,7 +240,7 @@
     <string name="menu_title_filters" msgid="349866121417914494">"အကောင့်များ"</string>
     <string name="hamburger_feature_highlight_header" msgid="1786641424099282909">"အကြံပြုချက်များ"</string>
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"သင်၏အဆက်အသွယ်များကို စနစ်တကျနှင့် အသုံးဝင်စွာ ထားလိုက်ပါ"</string>
-    <string name="undo" msgid="2446931036220975026">"တစ်ဆင့်နောက်ပြန်ရန်"</string>
+    <string name="undo" msgid="2446931036220975026">"နောက်ပြန်ရန်"</string>
     <string name="call_custom" msgid="2844900154492073207">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> ထံ ဖုန်းခေါ်ရန်"</string>
     <string name="call_home" msgid="2443904771140750492">"အိမ်ဖုန်းနံပါတ်ကို ခေါ်ရန်"</string>
     <string name="call_mobile" msgid="6504312789160309832">"မိုဘိုင်းနံပါတ်ကို ခေါ်ရန်"</string>
