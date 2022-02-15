@@ -38,6 +38,7 @@
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
@@ -259,6 +260,17 @@
             android:label="@string/activity_title_settings"
             android:launchMode="singleTop"
             android:theme="@style/ContactsPreferencesTheme"/>
+
+        <activity
+            android:name=".preference.SetDefaultAccountActivity"
+            android:exported="true"
+            android:theme="@style/BackgroundOnlyTheme"
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.provider.action.SET_DEFAULT_ACCOUNT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".activities.LicenseActivity"
