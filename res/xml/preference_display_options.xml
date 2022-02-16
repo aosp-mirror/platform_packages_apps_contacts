@@ -26,7 +26,7 @@
         android:title="@string/settings_accounts">
     </Preference>
 
-    <Preference
+    <com.android.contacts.preference.DefaultAccountPreference
         android:icon="@null"
         android:key="defaultAccount"
         android:title="@string/default_editor_account"
