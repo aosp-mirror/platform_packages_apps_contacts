@@ -169,22 +169,22 @@
     <string name="contacts_deleted_many_named_toast"><xliff:g id="name">%1$s</xliff:g>, <xliff:g id="name">%2$s</xliff:g>, <xliff:g id="name">%3$s</xliff:g>\u2026 deleted</string>
 
     <!-- Toast shown after contacts that the user has selected are deleted by a user action. [CHAR LIMIT=30] -->
-    <string name="contacts_deleted_toast"> {count, plural,
-        =1    {Contact deleted}
-        other {Contacts deleted}
-    }</string>
+    <plurals name="contacts_deleted_toast">
+        <item quantity="one">Contact deleted</item>
+        <item quantity="other">Contacts deleted</item>
+    </plurals>
 
     <!-- List header indicating the number of contacts in the list [CHAR LIMIT=30] -->
-    <string name="contacts_count"> {count, plural,
-        =1    {# contact}
-        other {# contacts}
-    }</string>
+    <plurals name="contacts_count">
+        <item quantity="one"><xliff:g id="count">%d</xliff:g> contact</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> contacts</item>
+    </plurals>
 
     <!-- List header indicating the number of contacts and account name in the list [CHAR LIMIT=30] -->
-    <string name="contacts_count_with_account"> {count, plural,
-        =1    {# contact · {account}}
-        other {# contacts · {account}}
-    }</string>
+    <plurals name="contacts_count_with_account">
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> contact · <xliff:g id="account">%2$s</xliff:g></item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> contacts · <xliff:g id="account">%2$s</xliff:g></item>
+    </plurals>
 
     <!-- Activity title indicating contacts are from a Google account [CHAR LIMIT=30] -->
     <string name="title_from_google">From Google</string>
@@ -373,10 +373,10 @@
     <string name="menu_add_contacts">Add</string>
 
     <!-- Dialog title when picking the application to share one or multiple contacts with. [CHAR LIMIT=40] -->
-    <string name="title_share_via"> {count, plural,
-        =1    {Share contact via}
-        other {Share contacts via}
-    }</string>
+    <plurals name="title_share_via">
+        <item quantity="one">Share contact via</item>
+        <item quantity="other">Share contacts via</item>
+    </plurals>
 
     <!-- Title for the disambiguation dialog that requests the user choose an account for the new label to be created under [CHAR LIMIT=NONE] -->
     <string name="dialog_new_group_account">Choose account</string>
@@ -1101,19 +1101,21 @@
     <!-- Secondary string showing the number of SIM contacts for the SIM card on the action for
          importing from that SIM. Only shown if there is no phone number available for the SIM card
          [CHAR LIMIT=25] -->
-    <string name="import_from_sim_secondary_contact_count_fmt"> {count, plural,
-        =1    {# contact}
-        other {# contacts}
-    }</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt">
+        <item quantity="one">1 contact</item>
+        <item quantity="other">%1$d contacts</item>
+    </plurals>
 
     <!-- Secondary string showing the number of SIM contacts and phone number for the SIM card
          on the action for importing that SIM. Note that the bullet character is purely a visual
          separator between the contact count and phone number; it has no grammatical meaning in
          this string [CHAR LIMIT=35]-->
-    <string name="import_from_sim_secondary_template"> {count, plural,
-        =1    {# contact • <xliff:g id="phone_number">^1</xliff:g>}
-        other {# contacts • <xliff:g id="phone_number">^1</xliff:g>}
-    }</string>
+    <plurals name="import_from_sim_secondary_template">
+        <item quantity="one"><xliff:g id="count">^1</xliff:g> contact • <xliff:g id="phone_number">^2</xliff:g></item>
+        <item quantity="other"><xliff:g id="count">^1</xliff:g> contacts • <xliff:g id="phone_number">^2</xliff:g></item>
+    </plurals>
+
+
 
     <!-- Action string for selecting a .vcf file to import contacts from [CHAR LIMIT=30] -->
     <string name="import_from_vcf_file">.vcf file</string>
@@ -1482,10 +1484,10 @@
     <string name="sim_import_contact_exists_toast">Contact already exists in your list</string>
 
     <!-- Toast shown on settings screen when importing from SIM completes successfully -->
-    <string name="sim_import_success_toast_fmt"> {count, plural,
-        =1    {# SIM contact imported}
-        other {# SIM contacts imported}
-    }</string>
+    <plurals name="sim_import_success_toast_fmt">
+        <item quantity="one">1 SIM contact imported</item>
+        <item quantity="other"><xliff:g id="count">%d</xliff:g> SIM contacts imported</item>
+    </plurals>
 
     <!-- Toast shown on settings screen when importing from SIM completes with an error -->
     <string name="sim_import_failed_toast">Failed to import SIM contacts</string>
