@@ -5,10 +5,7 @@ package {
     // to get the below license kinds:
     //   SPDX-license-identifier-Apache-2.0
     //   SPDX-license-identifier-CC-BY
-    default_applicable_licenses: [
-        "packages_apps_Contacts_license",
-        "Android-Apache-2.0",
-    ],
+    default_applicable_licenses: ["packages_apps_Contacts_license"],
 }
 
 android_test {
