@@ -65,9 +65,21 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"Kontakt <xliff:g id="NAME">%1$s</xliff:g> je izbrisan"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"Kontakti <xliff:g id="NAME_0">%1$s</xliff:g> i <xliff:g id="NAME_1">%2$s</xliff:g> su izbrisani"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"Kontakti <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… su izbrisani"</string>
-    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{Kontakt je izbrisan}one{Kontakti su izbrisani}few{Kontakti su izbrisani}other{Kontakti su izbrisani}}"</string>
-    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# kontakt}one{# kontakt}few{# kontakta}other{# kontakata}}"</string>
-    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# kontakt · {account}}one{# kontakt · {account}}few{# kontakta · {account}}other{# kontakata · {account}}}"</string>
+    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
+      <item quantity="one">Kontakti su izbrisani</item>
+      <item quantity="few">Kontakti su izbrisani</item>
+      <item quantity="other">Kontakti su izbrisani</item>
+    </plurals>
+    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
+      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> kontakt</item>
+      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> kontakta</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontakata</item>
+    </plurals>
+    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
+      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakt · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakta · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakata · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
+    </plurals>
     <string name="title_from_google" msgid="2554633992366572820">"Sa Googlea"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"Sa računa <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Postavi melodiju zvona"</string>
@@ -127,7 +139,11 @@
     <string name="menu_share" msgid="6343022811796001773">"Dijeli"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Dodaj u kontakte"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Dodaj"</string>
-    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{Dijelite kontakt putem}one{Dijelite kontakte putem}few{Dijelite kontakte putem}other{Dijelite kontakte putem}}"</string>
+    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
+      <item quantity="one">Dijeli kontakte putem</item>
+      <item quantity="few">Dijeli kontakte putem</item>
+      <item quantity="other">Dijeli kontakte putem</item>
+    </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Odaberi račun"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Izrada oznake"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Promijeni naziv oznake"</string>
@@ -368,8 +384,16 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Sačuvaj uvezene kontakte na karticu:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM kartice"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM kartice <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# kontakt}one{# kontakt}few{# kontakta}other{# kontakata}}"</string>
-    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# kontakt • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# kontakt • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}few{# kontakta • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# kontakata • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
+    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
+      <item quantity="one">%1$d kontakt</item>
+      <item quantity="few">%1$d kontakta</item>
+      <item quantity="other">%1$d kontakata</item>
+    </plurals>
+    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
+      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> kontakt • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="few"><xliff:g id="COUNT_2">^1</xliff:g> kontakta • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontakata • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
+    </plurals>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf fajla"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Nema ništa za uvoz"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Uvesti kontakte iz vCard fajla?"</string>
@@ -472,7 +496,11 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Odaberite kontakte"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"Nema kontakata na SIM kartici"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Kontakt se već nalazi na listi"</string>
-    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{Uvezen je # kontakt sa SIM-a}one{Uvezen je # kontakt sa SIM-a}few{Uvezena su # kontakta sa SIM-a}other{Uvezeno je # kontakata sa SIM-a}}"</string>
+    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
+      <item quantity="one">Uvezen je <xliff:g id="COUNT">%d</xliff:g> kontakt sa SIM kartice</item>
+      <item quantity="few">Uvezena su <xliff:g id="COUNT">%d</xliff:g> kontakta sa SIM kartice</item>
+      <item quantity="other">Uvezeno je <xliff:g id="COUNT">%d</xliff:g> kontakata sa SIM kartice</item>
+    </plurals>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Uvoz kontakata sa SIM kartice nije uspio"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Uvezi sa SIM kartice"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Otkaži"</string>

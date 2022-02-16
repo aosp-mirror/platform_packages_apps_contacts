@@ -16,12 +16,12 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.contacts"
-          android:versionCode="10734"
-          android:versionName="1.7.34">
+          android:versionCode="10733"
+          android:versionName="1.7.33">
 
     <uses-sdk
-        android:minSdkVersion="31"
-        android:targetSdkVersion="31"/>
+        android:minSdkVersion="21"
+        android:targetSdkVersion="30"/>
 
     <original-package android:name="com.android.contacts"/>
 
@@ -38,7 +38,6 @@
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.NFC"/>
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
@@ -46,7 +45,6 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.SET_DEFAULT_ACCOUNT_FOR_CONTACTS"/>
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
     <!-- Following used for Contact metadata syncing -->
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
@@ -56,7 +54,6 @@
     <!-- Required in P to run Service.startForeground() -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -260,17 +257,6 @@
             android:label="@string/activity_title_settings"
             android:launchMode="singleTop"
             android:theme="@style/ContactsPreferencesTheme"/>
-
-        <activity
-            android:name=".preference.SetDefaultAccountActivity"
-            android:exported="true"
-            android:theme="@style/BackgroundOnlyTheme"
-            android:excludeFromRecents="true">
-            <intent-filter>
-                <action android:name="android.provider.action.SET_DEFAULT_ACCOUNT"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
 
         <activity
             android:name=".activities.LicenseActivity"
@@ -714,10 +700,6 @@
         </intent>
 
         <!-- edit contact photo -->
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-        </intent>
-
         <intent>
             <action android:name="com.android.camera.action.CROP" />
             <data android:mimeType="image/*" />
