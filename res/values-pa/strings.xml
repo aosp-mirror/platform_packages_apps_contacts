@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> ਅਤੇ <xliff:g id="NAME_1">%2$s</xliff:g> ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… ਨੂੰ ਮਿਟਾਇਆ ਗਿਆ"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one"> ਸੰਪਰਕ ਹਟਾਏ</item>
-      <item quantity="other"> ਸੰਪਰਕ ਹਟਾਏ</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> ਸੰਪਰਕ</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> ਸੰਪਰਕ</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> ਸੰਪਰਕ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> ਸੰਪਰਕ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{ਸੰਪਰਕ ਮਿਟਾਇਆ ਗਿਆ}one{ਸੰਪਰਕ ਮਿਟਾਇਆ ਗਿਆ}other{ਸੰਪਰਕ ਮਿਟਾਏ ਗਏ}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# ਸੰਪਰਕ}one{# ਸੰਪਰਕ}other{# ਸੰਪਰਕ}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# ਸੰਪਰਕ · {account}}one{# ਸੰਪਰਕ · {account}}other{# ਸੰਪਰਕ · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Google ਤੋਂ"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> ਤੋਂ"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"ਰਿੰਗਟੋਨ ਸੈੱਟ ਕਰੋ"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"ਸਾਂਝਾ ਕਰੋ"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"ਸ਼ਾਮਲ ਕਰੋ"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">ਇਸ ਰਾਹੀਂ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ</item>
-      <item quantity="other">ਇਸ ਰਾਹੀਂ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{ਇਸ ਰਾਹੀਂ ਸੰਪਰਕ ਸਾਂਝਾ ਕਰੋ}one{ਇਸ ਰਾਹੀਂ ਸੰਪਰਕ ਸਾਂਝਾ ਕਰੋ}other{ਇਸ ਰਾਹੀਂ ਸੰਪਰਕ ਸਾਂਝੇ ਕਰੋ}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"ਖਾਤਾ ਚੁਣੋ"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"ਲੇਬਲ ਬਣਾਓ"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"ਲੇਬਲ ਦਾ ਨਾਮ ਬਦਲੋ"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"ਆਯਾਤ ਕੀਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਇਸ ਵਿੱਚ ਰੱਖਿਅਤ ਕਰੋ:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM ਕਾਰਡ"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d ਸੰਪਰਕ</item>
-      <item quantity="other">%1$d ਸੰਪਰਕ</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> ਸੰਪਰਕ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> ਸੰਪਰਕ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# ਸੰਪਰਕ}one{# ਸੰਪਰਕ}other{# ਸੰਪਰਕ}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# ਸੰਪਰਕ • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# ਸੰਪਰਕ • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# ਸੰਪਰਕ • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ਫ਼ਾਈਲ"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"ਆਯਾਤ ਕਰਨ ਲਈ ਕੁਝ ਨਹੀਂ"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"ਕੀ vCard ਤੋਂ ਸੰਪਰਕ ਆਯਾਤ ਕਰਨੇ ਹਨ?"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"ਸੰਪਰਕ ਚੁਣੋ"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"ਤੁਹਾਡੇ ਸਿਮ ਕਾਰਡ \'ਤੇ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਹਨ"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"ਸੰਪਰਕ ਪਹਿਲਾਂ ਹੀ ਤੁਹਾਡੀ ਸੂਚੀ ਵਿੱਚ ਮੌਜੂਦ ਹੈ"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM ਸੰਪਰਕ ਆਯਾਤ ਕੀਤੇ ਗਏ</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM ਸੰਪਰਕ ਆਯਾਤ ਕੀਤੇ ਗਏ</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# ਸਿਮ ਵਾਲਾ ਸੰਪਰਕ ਆਯਾਤ ਕੀਤਾ ਗਿਆ}one{# ਸਿਮ ਵਾਲਾ ਸੰਪਰਕ ਆਯਾਤ ਕੀਤਾ ਗਿਆ}other{# ਸਿਮ ਵਾਲੇ ਸੰਪਰਕ ਆਯਾਤ ਕੀਤੇ ਗਏ}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM ਸੰਪਰਕਾਂ ਨੂੰ ਆਯਾਤ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"SIM ਤੋਂ ਆਯਾਤ ਕਰੋ"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"ਰੱਦ ਕਰੋ"</string>
