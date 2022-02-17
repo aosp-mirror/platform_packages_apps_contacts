@@ -16,6 +16,7 @@
 
 package com.android.contacts.preference;
 
+import android.accounts.Account;
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.BroadcastReceiver;
@@ -25,16 +26,21 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.icu.text.MessageFormat;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.BlockedNumberContract;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.DisplayNameSources;
 import android.provider.ContactsContract.Profile;
+import android.provider.ContactsContract.Settings;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.telecom.TelecomManager;
@@ -58,12 +64,17 @@ import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountInfo;
+import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.AccountsLoader;
 import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contactsbind.HelpUtils;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * This fragment shows the preferences for "display options"
@@ -72,6 +83,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         implements Preference.OnPreferenceClickListener, AccountsLoader.AccountsListener {
 
     private static final int REQUEST_CODE_CUSTOM_CONTACTS_FILTER = 0;
+    private static final int REQUEST_CODE_SET_DEFAULT_ACCOUNT_CP2 = 1;
 
     private static final String ARG_CONTACTS_AVAILABLE = "are_contacts_available";
     private static final String ARG_NEW_LOCAL_PROFILE = "new_local_profile";
@@ -142,6 +154,8 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
     private ViewGroup mRootView;
     private SaveServiceResultListener mSaveServiceListener;
+
+    private List<AccountInfo> accounts = Collections.emptyList();
 
     private final LoaderManager.LoaderCallbacks<Cursor> mProfileLoaderListener =
             new LoaderManager.LoaderCallbacks<Cursor>() {
@@ -245,6 +259,12 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             customFilterPreference.setOnPreferenceClickListener(this);
             setCustomContactsFilterSummary();
         }
+
+        final Preference defaultAccountPreference = findPreference(KEY_DEFAULT_ACCOUNT);
+        if (defaultAccountPreference != null) {
+            defaultAccountPreference.setOnPreferenceClickListener(this);
+            defaultAccountPreference.setSummary(getDefaultAccountSummary());
+        }
     }
 
     @Override
@@ -310,9 +330,10 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     @Override
     public void onAccountsLoaded(List<AccountInfo> accounts) {
         // Hide accounts preferences if no writable accounts exist
-        final DefaultAccountPreference preference =
-                (DefaultAccountPreference) findPreference(KEY_DEFAULT_ACCOUNT);
-        preference.setAccounts(accounts);
+        this.accounts = accounts;
+        final Preference defaultAccountPreference =
+                findPreference(KEY_DEFAULT_ACCOUNT);
+        defaultAccountPreference.setSummary(getDefaultAccountSummary());
     }
 
     @Override
@@ -380,6 +401,13 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                     ContactListFilterController.getInstance(getContext()).getFilter();
             AccountFilterUtil.startAccountFilterActivityForResult(
                     this, REQUEST_CODE_CUSTOM_CONTACTS_FILTER, filter);
+        } else if (KEY_DEFAULT_ACCOUNT.equals(prefKey)) {
+            String packageName = getSetDefaultAccountActivityPackage();
+            Intent intent = new Intent(Settings.ACTION_SET_DEFAULT_ACCOUNT);
+            if (packageName != null) {
+                intent.setPackage(packageName);
+                startActivityForResult(intent, REQUEST_CODE_SET_DEFAULT_ACCOUNT_CP2);
+            }
         }
         return false;
     }
@@ -391,6 +419,12 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             AccountFilterUtil.handleAccountFilterResult(
                     ContactListFilterController.getInstance(getContext()), resultCode, data);
             setCustomContactsFilterSummary();
+        } else if (requestCode == REQUEST_CODE_SET_DEFAULT_ACCOUNT_CP2
+                && resultCode == Activity.RESULT_OK) {
+            final Preference defaultAccountPreference = findPreference(KEY_DEFAULT_ACCOUNT);
+            if (defaultAccountPreference != null) {
+                defaultAccountPreference.setSummary(getDefaultAccountSummary());
+            }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -414,6 +448,34 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
         }
     }
 
+    private CharSequence getDefaultAccountSummary() {
+        ContactsPreferences preferences = new ContactsPreferences(getContext());
+        AccountWithDataSet defaultAccountWithDataSet = preferences.getDefaultAccount();
+        AccountInfo defaultAccountInfo = AccountInfo.getAccount(
+                accounts, defaultAccountWithDataSet);
+        if (defaultAccountInfo != null) {
+            return defaultAccountInfo.getNameLabel();
+        } else {
+            return null;
+        }
+    }
+
+    private String getSetDefaultAccountActivityPackage() {
+        // Only preloaded Contacts App has the permission to call setDefaultAccount.
+        Intent intent = new Intent(Settings.ACTION_SET_DEFAULT_ACCOUNT);
+        PackageManager packageManager = getContext().getPackageManager();
+        List<ResolveInfo> resolveInfos = packageManager.queryIntentActivities(intent, 0);
+        for (ResolveInfo resolveInfo : resolveInfos) {
+            String packageName = resolveInfo.activityInfo.packageName;
+            if (packageManager.checkPermission(
+                    android.Manifest.permission.SET_DEFAULT_ACCOUNT_FOR_CONTACTS, packageName)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return packageName;
+            }
+        }
+        return null;
+    }
+
     private class SaveServiceResultListener extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -429,8 +491,12 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                     SimImportService.RESULT_UNKNOWN);
             final int count = intent.getIntExtra(SimImportService.EXTRA_RESULT_COUNT, -1);
             if (code == SimImportService.RESULT_SUCCESS && count > 0) {
-                Snackbar.make(mRootView, getResources().getQuantityString(
-                        R.plurals.sim_import_success_toast_fmt, count, count),
+                MessageFormat msgFormat = new MessageFormat(
+                    getResources().getString(R.string.sim_import_success_toast_fmt),
+                    Locale.getDefault());
+                Map<String, Object> arguments = new HashMap<>();
+                arguments.put("count", count);
+                Snackbar.make(mRootView, msgFormat.format(arguments),
                         Snackbar.LENGTH_LONG).show();
             } else if (code == SimImportService.RESULT_FAILURE) {
                 Snackbar.make(mRootView, R.string.sim_import_failed_toast,

@@ -199,13 +199,13 @@ public class GoogleAccountType extends BaseAccountType {
 
     @Override
     public String getViewContactNotifyServiceClassName() {
-        return "com.google.android.syncadapters.contacts." +
-                "SyncHighResPhotoIntentService";
+        return GoogleAccountType.PLUS_EXTENSION_PACKAGE_NAME +
+                ".people.sync.focus.SyncHighResPhotoIntentOperation";
     }
 
     @Override
     public String getViewContactNotifyServicePackageName() {
-        return "com.google.android.syncadapters.contacts";
+        return GoogleAccountType.PLUS_EXTENSION_PACKAGE_NAME;
     }
 
     /**
@@ -222,12 +222,6 @@ public class GoogleAccountType extends BaseAccountType {
         intent.setAction(
                 "com.google.android.gms.people.sync.focus.SYNC_HIGH_RES_PHOTO");
 
-        context.sendBroadcast(intent);
-
-        // Old broadcast. This can be removed in T
-        intent.setPackage(getViewContactNotifyServicePackageName());
-        intent.setAction(
-                "com.google.android.syncadapters.contacts.SYNC_HIGH_RES_PHOTO");
         context.sendBroadcast(intent);
     }
 }
