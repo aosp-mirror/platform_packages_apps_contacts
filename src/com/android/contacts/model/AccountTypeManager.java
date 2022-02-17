@@ -425,7 +425,7 @@ class AccountTypeManagerImpl extends AccountTypeManager
 
         IntentFilter simFilter = new IntentFilter(
                 ContactsContract.SimContacts.ACTION_SIM_ACCOUNTS_CHANGED);
-        mContext.registerReceiver(mSimBroadcastReceiver, simFilter);
+        mContext.registerReceiver(mSimBroadcastReceiver, simFilter, Context.RECEIVER_EXPORTED);
 
         mAccountManager.addOnAccountsUpdatedListener(this, mMainThreadHandler, false);
 
