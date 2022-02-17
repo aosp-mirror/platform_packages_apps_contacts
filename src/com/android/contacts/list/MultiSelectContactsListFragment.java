@@ -19,6 +19,7 @@ package com.android.contacts.list;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.icu.text.MessageFormat;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import androidx.core.view.ViewCompat;
@@ -46,7 +47,10 @@ import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.TreeSet;
 
 /**
@@ -345,12 +349,21 @@ public abstract class MultiSelectContactsListFragment<T extends MultiSelectEntry
         // Set text of count of contacts and account name
         final TextView accountFilterHeader = (TextView) accountFilterContainer.findViewById(
                 R.id.account_filter_header);
-        final String headerText = shouldShowAccountName(accountType)
-                ? String.format(context.getResources().getQuantityString(
-                        R.plurals.contacts_count_with_account, memberCount),
-                                memberCount, accountWithDataSet.name)
-                : context.getResources().getQuantityString(
-                        R.plurals.contacts_count, memberCount, memberCount);
+        String headerText;
+        Map<String, Object> arguments = new HashMap<>();
+        arguments.put("count", memberCount);
+        if (shouldShowAccountName(accountType)) {
+            arguments.put("account", accountWithDataSet.name);
+            MessageFormat msgFormat = new MessageFormat(
+                getResources().getString(R.string.contacts_count_with_account),
+                Locale.getDefault());
+            headerText = msgFormat.format(arguments);
+        } else {
+            MessageFormat msgFormat = new MessageFormat(
+                getResources().getString(R.string.contacts_count),
+                Locale.getDefault());
+            headerText = msgFormat.format(arguments);
+        }
         accountFilterHeader.setText(headerText);
         accountFilterHeader.setAllCaps(false);
 
