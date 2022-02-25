@@ -52,8 +52,7 @@ public class SelectAccountActivity extends Activity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        getWindow().addSystemFlags(android.view.WindowManager.LayoutParams
-            .SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS);
+        getWindow().setHideOverlayWindows(true);
 
         // There's three possibilities:
         // - more than one accounts -> ask the user
