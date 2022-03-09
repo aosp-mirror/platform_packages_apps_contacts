@@ -427,7 +427,7 @@
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"contact"</string>
     <string name="caching_vcard_message" msgid="1879339732783666517">"Mise en cache des fichiers vCard dans l\'espace de stockage temporaire local. L\'importation va bientôt démarrer."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"Impossible d\'importer le fichier vCard."</string>
-    <string name="nfc_vcard_file_name" msgid="2113518216329123152">"Contact reçu par CCP"</string>
+    <string name="nfc_vcard_file_name" msgid="2113518216329123152">"Contact reçu par NFC"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"Mise en cache…"</string>
     <string name="progress_notifier_message" msgid="8522060892889599746">"Importation <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> sur <xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> (<xliff:g id="NAME">%3$s</xliff:g>)"</string>
     <string name="export_to_vcf_file" msgid="3096479544575798192">"Exporter en format .vcf"</string>
