@@ -133,12 +133,12 @@
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"Shto një numër telefoni"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"Shto një email"</string>
     <string name="missing_app" msgid="5674389915738964148">"Nuk u gjet asnjë aplikacion për të menaxhuar këtë veprim"</string>
-    <string name="menu_share" msgid="6343022811796001773">"Shpërnda"</string>
+    <string name="menu_share" msgid="6343022811796001773">"Shpërndaj"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Shto te kontaktet"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Shto"</string>
     <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">Shpërnda kontaktet nëpërmjet</item>
-      <item quantity="one">Shpërnda kontaktin nëpërmjet</item>
+      <item quantity="other">Shpërndaj kontaktet nëpërmjet</item>
+      <item quantity="one">Shpërndaj kontaktin nëpërmjet</item>
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Zgjidh llogarinë"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Krijo etiketë"</string>
