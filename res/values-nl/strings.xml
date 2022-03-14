@@ -192,7 +192,7 @@
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Kies een standaardaccount voor nieuwe contacten"</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Nieuw contact maken"</string>
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"Contact bewerken"</string>
-    <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Alleen bekijken"</string>
+    <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Alleen weergeven"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"Contact kiezen om te bewerken"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"Gelinkte contacten"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"Toevoegen"</string>
@@ -201,8 +201,8 @@
     <string name="add_new_account" msgid="573368229646104110">"Nieuw account toevoegen"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Databasebestanden exporteren"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Nieuw contact maken"</string>
-    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer tonen"</string>
-    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder tonen"</string>
+    <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Meer weergeven"</string>
+    <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Minder weergeven"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Over"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Een persoonlijke kopie maken..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Instellen"</string>
@@ -343,9 +343,9 @@
     <string name="postal_region" msgid="6130239447563491435">"Staat"</string>
     <string name="postal_postcode" msgid="33077708757232659">"Postcode"</string>
     <string name="postal_country" msgid="6642804283917549861">"Land"</string>
-    <string name="map_home" msgid="2169053372466501148">"Woonadres bekijken"</string>
-    <string name="map_work" msgid="8296916987749726461">"Werkadres bekijken"</string>
-    <string name="map_other" msgid="4009931029322619674">"Adres bekijken"</string>
+    <string name="map_home" msgid="2169053372466501148">"Woonadres weergeven"</string>
+    <string name="map_work" msgid="8296916987749726461">"Werkadres weergeven"</string>
+    <string name="map_other" msgid="4009931029322619674">"Adres weergeven"</string>
     <string name="map_custom" msgid="7797812861927817335">"Adres voor <xliff:g id="CUSTOM_LABEL">%s</xliff:g> bekijken"</string>
     <string name="chat_aim" msgid="2044861410748519265">"Chatten via AIM"</string>
     <string name="chat_msn" msgid="4733206223124506247">"Chatten via Windows Live"</string>
@@ -357,9 +357,9 @@
     <string name="chat_jabber" msgid="1097960594943864847">"Chatten via Jabber"</string>
     <string name="chat" msgid="8390862712584830532">"Chat"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"verwijderen"</string>
-    <string name="expand_name_fields_description" msgid="6059558159338959487">"Meer naamvelden tonen"</string>
+    <string name="expand_name_fields_description" msgid="6059558159338959487">"Meer naamvelden weergeven"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"Naamvelden samenvouwen"</string>
-    <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Meer fonetische naamvelden tonen"</string>
+    <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Meer fonetische naamvelden weergeven"</string>
     <string name="collapse_phonetic_name_fields_description" msgid="4614902922362144094">"Fonetische naamvelden samenvouwen"</string>
     <string name="expand_fields_description" msgid="8604448646798943909">"Uitvouwen"</string>
     <string name="collapse_fields_description" msgid="3213872920491992960">"Samenvouwen"</string>
@@ -433,7 +433,7 @@
     <string name="export_to_vcf_file" msgid="3096479544575798192">"Exporteren naar VCF"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"Sorteren op"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"Fonetische naam"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Altijd tonen"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Altijd weergeven"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"Verbergen indien leeg"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"Voornaam"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"Achternaam"</string>
@@ -473,18 +473,18 @@
     <string name="call_subject_limit" msgid="5679166729627777474">"<xliff:g id="COUNT">%1$s</xliff:g>/<xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="134754147019287616">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <string name="about_build_version" msgid="5870642814752351712">"Buildversie"</string>
-    <string name="about_open_source_licenses" msgid="1617836621315557445">"Opensource-licenties"</string>
+    <string name="about_open_source_licenses" msgid="1617836621315557445">"Open-sourcelicenties"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Licentiedetails voor open-sourcesoftware"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"Privacybeleid"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"Servicevoorwaarden"</string>
-    <string name="activity_title_licenses" msgid="6434398894019119709">"Opensource-licenties"</string>
+    <string name="activity_title_licenses" msgid="6434398894019119709">"Open-sourcelicenties"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"Kan de URL niet openen."</string>
     <string name="account_filter_view_checked" msgid="4740544238806346376">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> geselecteerd"</string>
     <string name="account_filter_view_not_checked" msgid="5782705545786455847">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> niet geselecteerd"</string>
     <string name="description_search_video_call" msgid="1768558141309418755">"Videogesprek starten"</string>
     <string name="description_delete_contact" msgid="8110643050235441400">"Verwijderen"</string>
     <string name="description_no_name_header" msgid="8596201864512339003">"Weglatingsteken"</string>
-    <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Deze snelkoppeling staat uit"</string>
+    <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Deze snelkoppeling is uitgeschakeld"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Contact is verwijderd"</string>
     <string name="sim_import_button_text" msgid="2845608246304396009">"Importeren"</string>
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Contacten selecteren"</string>
@@ -497,15 +497,15 @@
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Kan contacten op simkaart niet importeren"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Importeren van simkaart"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Annuleren"</string>
-    <string name="auto_sync_off" msgid="7039314601316227882">"Automatisch synchroniseren staat uit. Tik om aan te zetten."</string>
+    <string name="auto_sync_off" msgid="7039314601316227882">"Automatisch synchroniseren is uitgeschakeld. Tik om in te schakelen."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Sluiten"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"Accountsynchronisatie staat uit. Tik om aan te zetten."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Automatisch synchroniseren aanzetten?"</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"Accountsynchronisatie is uitgeschakeld. Tik om in te schakelen."</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Automatisch synchroniseren inschakelen?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Wijzigingen die je aanbrengt in alle apps en accounts, niet alleen in Google Contacten, worden gesynchroniseerd tussen internet en je apparaten."</string>
-    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Aanzetten"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Inschakelen"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Geen verbinding"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"Simkaart"</string>
-    <string name="show_more_content_description" msgid="6298277298495491712">"Meer tonen"</string>
+    <string name="show_more_content_description" msgid="6298277298495491712">"Meer weergeven"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"Importeren van simkaart voltooid"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"Importeren mislukt"</string>
     <string name="importing_sim_failed_message" msgid="55568522164349044">"Kan geen contacten importeren van de simkaart"</string>
