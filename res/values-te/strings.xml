@@ -104,8 +104,8 @@
     <string name="contactPhotoSavedErrorToast" msgid="8568460180541397272">"కాంటాక్ట్ ఫోటో మార్పులను సేవ్ చేయలేకపోయింది"</string>
     <string name="groupLoadErrorToast" msgid="4141488223976370583">"లేబుల్‌ను లోడ్ చేయడంలో విఫలమైంది"</string>
     <string name="groupDeletedToast" msgid="7774363940327847515">"లేబుల్ తొలగించబడింది"</string>
-    <string name="groupCreatedToast" msgid="1685148819468403239">"లేబుల్ సృష్టించబడింది"</string>
-    <string name="groupCreateFailedToast" msgid="1836425392831964024">"లేబుల్‌ను సృష్టించడం సాధ్యపడదు"</string>
+    <string name="groupCreatedToast" msgid="1685148819468403239">"లేబుల్ క్రియేట్ చేయబడింది"</string>
+    <string name="groupCreateFailedToast" msgid="1836425392831964024">"లేబుల్‌ను క్రియేట్ చేయడం సాధ్యపడదు"</string>
     <string name="groupUpdatedToast" msgid="3381549467345607379">"లేబుల్ నవీకరించబడింది"</string>
     <string name="groupMembersRemovedToast" msgid="8019566066934628011">"లేబుల్ నుండి తీసివేయబడ్డాయి"</string>
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"లేబుల్‌కు జోడించబడింది/జోడించబడ్డాయి"</string>
@@ -355,7 +355,7 @@
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"కుదించబడింది"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"అన్ని కాంటాక్ట్‌లు"</string>
     <string name="list_filter_all_starred" msgid="2582865760150432568">"నక్షత్రం గుర్తు ఉన్నవి"</string>
-    <string name="list_filter_customize" msgid="2368900508906139537">"అనుకూలీకరించు"</string>
+    <string name="list_filter_customize" msgid="2368900508906139537">"అనుకూలంగా మార్చండి"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"కాంటాక్ట్"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"అన్ని ఇతర కాంటాక్ట్‌లు"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"అన్ని కాంటాక్ట్‌లు"</string>
@@ -445,7 +445,7 @@
     <string name="menu_blocked_numbers" msgid="7064680515202657609">"బ్లాక్ చేయబడిన నంబర్‌లు"</string>
     <string name="contact_status_update_attribution" msgid="5051874518046969847">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
-    <string name="action_menu_back_from_search" msgid="683765774264585732">"శోధించడం ఆపివేస్తుంది"</string>
+    <string name="action_menu_back_from_search" msgid="683765774264585732">"సెర్చ్ చేయడం ఆపివేస్తుంది"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"సెర్చ్‌ను క్లియర్ చేయండి"</string>
     <string name="select_account_dialog_title" msgid="5047523441152129207">"ఖాతా"</string>
     <string name="set_default_account" msgid="9194321110211682396">"కాల్స్‌ల కోసం ఎప్పుడూ ఇది ఉపయోగించు"</string>
