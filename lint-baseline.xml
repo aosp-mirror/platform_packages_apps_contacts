@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+<issues format="6" by="lint 7.1.0-dev" type="baseline" client="" dependencies="true" name="" variant="all" version="7.1.0-dev">
 
     <issue
         id="NewApi"
-        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimContacts#getSimAccounts`"
+        message="Call requires API level S (current min is 21): `android.provider.ContactsContract.SimContacts#getSimAccounts`"
         errorLine1="                        ContactsContract.SimContacts.getSimAccounts(mContext.getContentResolver());"
         errorLine2="                                                     ~~~~~~~~~~~~~~">
         <location
@@ -14,7 +14,7 @@
 
     <issue
         id="NewApi"
-        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountName`"
+        message="Call requires API level S (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountName`"
         errorLine1="                    simAccountWithDataSets.add(new AccountWithDataSet(simAccount.getAccountName(),"
         errorLine2="                                                                                 ~~~~~~~~~~~~~~">
         <location
@@ -25,7 +25,7 @@
 
     <issue
         id="NewApi"
-        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountType`"
+        message="Call requires API level S (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountType`"
         errorLine1="                            simAccount.getAccountType(), null));"
         errorLine2="                                       ~~~~~~~~~~~~~~">
         <location
@@ -179,6 +179,17 @@
 
     <issue
         id="NewApi"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="                MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                          ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/interactions/ContactDeletionInteraction.java"
+            line="360"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
         message="Call requires API level 23 (current min is 21): `android.widget.QuickContactBadge#setPrioritizedMimeType`"
         errorLine1="            quickContact.setPrioritizedMimeType(Phone.CONTENT_ITEM_TYPE);"
         errorLine2="                         ~~~~~~~~~~~~~~~~~~~~~~">
@@ -190,7 +201,29 @@
 
     <issue
         id="NewApi"
-        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimContacts#getSimAccounts`"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="            MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                      ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/ContactSaveService.java"
+            line="1221"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="            MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                      ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/list/DefaultContactBrowseListFragment.java"
+            line="1129"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level S (current min is 21): `android.provider.ContactsContract.SimContacts#getSimAccounts`"
         errorLine1="                    ContactsContract.SimContacts.getSimAccounts("
         errorLine2="                                                 ~~~~~~~~~~~~~~">
         <location
@@ -201,7 +234,7 @@
 
     <issue
         id="NewApi"
-        message="Call requires API level 31 (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountType`"
+        message="Call requires API level S (current min is 21): `android.provider.ContactsContract.SimAccount#getAccountType`"
         errorLine1="                        simAccount.getAccountType())) {"
         errorLine2="                                   ~~~~~~~~~~~~~~">
         <location
@@ -223,13 +256,13 @@
 
     <issue
         id="NewApi"
-        message="Call requires API level 24 (current min is 21): `android.provider.BlockedNumberContract#canCurrentUserBlockNumbers`"
-        errorLine1="                &amp;&amp; BlockedNumberContract.canCurrentUserBlockNumbers(getContext());"
-        errorLine2="                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="                MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                          ~~~~~~~~~~~~~~~~~">
         <location
             file="packages/apps/Contacts/src/com/android/contacts/preference/DisplayOptionsPreferenceFragment.java"
-            line="300"
-            column="42"/>
+            line="436"
+            column="43"/>
     </issue>
 
     <issue
@@ -245,6 +278,28 @@
 
     <issue
         id="NewApi"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="                    MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                              ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/interactions/ImportDialogFragment.java"
+            line="178"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="                    MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                              ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/interactions/ImportDialogFragment.java"
+            line="187"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="NewApi"
         message="Call requires API level 26 (current min is 21): `android.graphics.drawable.AdaptiveIconDrawable#getExtraInsetFraction`"
         errorLine1="        return 1 / (1 + (2 * AdaptiveIconDrawable.getExtraInsetFraction()));"
         errorLine2="                                                  ~~~~~~~~~~~~~~~~~~~~~">
@@ -252,6 +307,28 @@
             file="packages/apps/Contacts/src/com/android/contacts/lettertiles/LetterTileDrawable.java"
             line="293"
             column="51"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="            MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                      ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/list/MultiSelectContactsListFragment.java"
+            line="357"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="            MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                      ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/list/MultiSelectContactsListFragment.java"
+            line="362"
+            column="39"/>
     </issue>
 
     <issue
@@ -360,7 +437,7 @@
         errorLine2="                                                                          ~~~~~~~~~~~">
         <location
             file="packages/apps/Contacts/src/com/android/contacts/quickcontact/QuickContactActivity.java"
-            line="652"
+            line="654"
             column="75"/>
     </issue>
 
@@ -371,8 +448,19 @@
         errorLine2="                        ~~~~~~~~~~~">
         <location
             file="packages/apps/Contacts/src/com/android/contacts/quickcontact/QuickContactActivity.java"
-            line="653"
+            line="655"
             column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 21): `new android.icu.text.MessageFormat`"
+        errorLine1="        MessageFormat msgFormat = new MessageFormat("
+        errorLine2="                                  ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Contacts/src/com/android/contacts/quickcontact/QuickContactActivity.java"
+            line="2226"
+            column="35"/>
     </issue>
 
     <issue
@@ -454,7 +542,7 @@
 
     <issue
         id="NewApi"
-        message="Call requires API level R (current min is 21): `android.telephony.TelephonyManager#getSubscriptionId`"
+        message="Call requires API level 30 (current min is 21): `android.telephony.TelephonyManager#getSubscriptionId`"
         errorLine1="            return new SimCard(telephony.getSimSerialNumber(), telephony.getSubscriptionId(),"
         errorLine2="                                                                         ~~~~~~~~~~~~~~~~~">
         <location
@@ -465,7 +553,7 @@
 
     <issue
         id="NewApi"
-        message="Call requires API level 31 (current min is 21): `android.provider.SimPhonebookContract.SimRecords#getContentUri`"
+        message="Call requires API level S (current min is 21): `android.provider.SimPhonebookContract.SimRecords#getContentUri`"
         errorLine1="                SimRecords.getContentUri("
         errorLine2="                           ~~~~~~~~~~~~~">
         <location

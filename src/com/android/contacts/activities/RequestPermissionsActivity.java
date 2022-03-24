@@ -68,6 +68,7 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
                 // ImportExportDialogFragment.  We work around missing this permission when
                 // telephony is not available on the device (i.e. on tablets).
                 permissions.add(permission.CALL_PHONE);
+                permissions.add(permission.READ_PHONE_NUMBERS);
                 permissions.add(permission.READ_PHONE_STATE);
             }
             sRequiredPermissions = permissions.toArray(new String[0]);
