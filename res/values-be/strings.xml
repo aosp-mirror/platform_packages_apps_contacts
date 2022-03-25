@@ -65,24 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"Карыстальнік <xliff:g id="NAME">%1$s</xliff:g> выдалены"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"Карыстальнікі <xliff:g id="NAME_0">%1$s</xliff:g> і <xliff:g id="NAME_1">%2$s</xliff:g> выдалены"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"Карыстальнікі <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... выдалены"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">Кантакты выдалены</item>
-      <item quantity="few">Кантакты выдалены</item>
-      <item quantity="many">Кантакты выдалены</item>
-      <item quantity="other">Кантакты выдалены</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> кантакт</item>
-      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> кантакты</item>
-      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> кантактаў</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> кантакту</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> кантакт · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> кантакты · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="many"><xliff:g id="COUNT_2">%1$d</xliff:g> кантактаў · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> кантакту · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{Кантакт выдалены}one{Кантакты выдалены}few{Кантакты выдалены}many{Кантакты выдалены}other{Кантакты выдалены}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# кантакт}one{# кантакт}few{# кантакты}many{# кантактаў}other{# кантакту}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# кантакт · {account}}one{# кантакт · {account}}few{# кантакты · {account}}many{# кантактаў · {account}}other{# кантакту · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"З Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"З <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Задаць рынгтон"</string>
@@ -142,12 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"Абагуліць"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Дадаць у кантакты"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Дадаць"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">Абагуліць кантакты праз</item>
-      <item quantity="few">Абагуліць кантакты праз</item>
-      <item quantity="many">Абагуліць кантакты праз</item>
-      <item quantity="other">Абагуліць кантакты праз</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{Праграма для абагульвання кантакту}one{Праграма для абагульвання кантактаў}few{Праграма для абагульвання кантактаў}many{Праграма для абагульвання кантактаў}other{Праграма для абагульвання кантактаў}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Выбраць уліковы запіс"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Стварыць метку"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Перайменаваць метку"</string>
@@ -388,18 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Захаваць імпартаваныя кантакты ў:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM-карта"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM-карта <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d кантакт</item>
-      <item quantity="few">%1$d кантакты</item>
-      <item quantity="many">%1$d кантактаў</item>
-      <item quantity="other">%1$d кантакту</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> кантакт • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="few"><xliff:g id="COUNT_2">^1</xliff:g> кантакты • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="many"><xliff:g id="COUNT_2">^1</xliff:g> кантактаў • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> кантакту • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# кантакт}one{# кантакт}few{# кантакты}many{# кантактаў}other{# кантакту}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# кантакт • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# кантакт • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}few{# кантакты • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}many{# кантактаў • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# кантакту • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"Файл .vcf"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Няма што імпартаваць"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Імпартаваць кантакты з vCard?"</string>
@@ -502,12 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Выберыце кантакты"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"На вашай SIM-карце няма кантактаў"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Кантакт ужо ёсць у вашым спісе"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> кантакт SIM-карты імпартаваны</item>
-      <item quantity="few"><xliff:g id="COUNT">%d</xliff:g> кантакты SIM-карты імпартаваны</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> кантактаў SIM-карты імпартаваны</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> кантакту SIM-карты імпартавана</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# кантакт імпартаваны з SIM-карты}one{# кантакт імпартаваны з SIM-карты}few{# кантакты імпартаваны з SIM-карты}many{# кантактаў імпартаваны з SIM-карты}other{# кантакту імпартаваны з SIM-карты}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Памылка імпарту кантактаў SIM-карты"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Імпартаваць з SIM-карты"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Скасаваць"</string>
