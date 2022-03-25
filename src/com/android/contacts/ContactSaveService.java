@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.icu.text.MessageFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -75,8 +76,11 @@ import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -1214,8 +1218,12 @@ public class ContactSaveService extends IntentService {
                 ContactSaveService.EXTRA_DISPLAY_NAME_ARRAY);
         final String deleteToastMessage;
         if (contactIds.length != names.length || names.length == 0) {
-            deleteToastMessage = getResources().getQuantityString(
-                    R.plurals.contacts_deleted_toast, contactIds.length);
+            MessageFormat msgFormat = new MessageFormat(
+                getResources().getString(R.string.contacts_deleted_toast),
+                Locale.getDefault());
+            Map<String, Object> arguments = new HashMap<>();
+            arguments.put("count", contactIds.length);
+            deleteToastMessage = msgFormat.format(arguments);
         } else if (names.length == 1) {
             deleteToastMessage = getResources().getString(
                     R.string.contacts_deleted_one_named_toast, (Object[]) names);
