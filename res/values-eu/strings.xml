@@ -26,7 +26,7 @@
     <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Gehitu kontaktu batean"</string>
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"Aukeratu kontaktu bat"</string>
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"Hautatu"</string>
-    <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"Sortu kontaktua"</string>
+    <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"Sortu kontaktu bat"</string>
     <string name="searchHint" msgid="1487501532610025473">"Bilatu kontaktuetan"</string>
     <string name="menu_addStar" msgid="4903812703386825130">"Gehitu gogokoetan"</string>
     <string name="menu_removeStar" msgid="3707373931808303701">"Kendu gogokoetatik"</string>
@@ -190,7 +190,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"Hartu minutu pare bat Google-ko kontaktuen babeskopiak gordeko dituen kontu bat gehitzeko."</string>
     <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"<xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> kontuan gordeko dira kontaktu berriak."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Aukeratu kontaktu berriak gordetzeko erabili nahi duzun kontua:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Sortu kontaktua"</string>
+    <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Sortu kontaktu bat"</string>
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"Editatu kontaktua"</string>
     <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Ikusi soilik"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"Aukeratu editatu beharreko kontaktua"</string>
@@ -200,7 +200,7 @@
     <string name="add_account" msgid="3071396624500839020">"Gehitu kontu bat"</string>
     <string name="add_new_account" msgid="573368229646104110">"Gehitu beste kontu bat"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Esportatu datu-baseko fitxategiak"</string>
-    <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Sortu kontaktua"</string>
+    <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Sortu kontaktu bat"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Ikusi gehiago"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Ikusi gutxiago"</string>
     <string name="about_card_title" msgid="6635849009952435700">"Honi buruz"</string>
