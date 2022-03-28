@@ -38,7 +38,7 @@
     <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"सर्टकट सिर्जना गर्नुहोस्"</string>
     <string name="menu_splitAggregate" msgid="2062290275288905833">"अनलिंक"</string>
     <string name="menu_editGroup" msgid="8706562583754054622">"सम्पर्कहरू हटाउनुहोस्"</string>
-    <string name="menu_renameGroup" msgid="2685886609399776475">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
+    <string name="menu_renameGroup" msgid="2685886609399776475">"लेबलको नाम बदल्नुहोस्"</string>
     <string name="menu_deleteGroup" msgid="1180215594530228294">"लेबल मेटाउनुहोस"</string>
     <string name="menu_addToGroup" msgid="5034813446697655310">"सम्पर्क थप्नुहोस्"</string>
     <string name="menu_selectForGroup" msgid="6386553337569514850">"सम्पर्कहरू चयन गर्नुहोस्"</string>
@@ -142,7 +142,7 @@
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"खाता छान्नुहोस्"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"लेबल सिर्जना गर्नुहोस्"</string>
-    <string name="group_name_dialog_update_title" msgid="3955919589366745101">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
+    <string name="group_name_dialog_update_title" msgid="3955919589366745101">"लेबलको नाम बदल्नुहोस्"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"लेबलको नाम"</string>
     <string name="label_name_dialog_hint" msgid="7027635439255596191">"लेबलको नाम"</string>
     <string name="audio_chat" msgid="5921525823973697372">"भ्वाइस च्याट"</string>
