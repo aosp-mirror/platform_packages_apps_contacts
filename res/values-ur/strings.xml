@@ -270,7 +270,7 @@
     <string name="sms_fax_work" msgid="8239716828120939345">"دفتر کے فیکس نمبر پر متن بھیجیں"</string>
     <string name="sms_fax_home" msgid="6887675360794775735">"گھر کے فیکس نمبر پر متن بھیجیں"</string>
     <string name="sms_pager" msgid="1052540072760129272">"پیجر نمبر پر متن بھیجیں"</string>
-    <string name="sms_other" msgid="3584200156296349098">"متن بھیجیں"</string>
+    <string name="sms_other" msgid="3584200156296349098">"ٹیکسٹ بھیجیں"</string>
     <string name="sms_callback" msgid="6932315941997609031">"کال بیک نمبر پر متن بھیجیں"</string>
     <string name="sms_car" msgid="6051606941547979352">"کار کے نمبر پر متن بھیجیں"</string>
     <string name="sms_company_main" msgid="4801585186677340070">"کمپنی کے اصل نمبر پر متن بھیجیں"</string>
