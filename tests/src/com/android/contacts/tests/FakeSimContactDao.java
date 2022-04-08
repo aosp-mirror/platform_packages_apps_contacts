@@ -110,4 +110,5 @@ public class FakeSimContactDao extends SimContactDao {
         result.canReadSimContacts = false;
         return result;
     }
+
 }

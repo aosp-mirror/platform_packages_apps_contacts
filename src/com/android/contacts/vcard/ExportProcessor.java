@@ -209,7 +209,7 @@ public class ExportProcessor extends ProcessorBase {
             mService.updateMediaScanner(request.destUri.getPath());
 
             successful = true;
-            final String filename = request.displayName;
+            final String filename = ExportVCardActivity.getOpenableUriDisplayName(mService, uri);
             // If it is a local file (i.e. not a file from Drive), we need to allow user to share
             // the file by pressing the notification; otherwise, it would be a file in Drive, we
             // don't need to enable this action in notification since the file is already uploaded.

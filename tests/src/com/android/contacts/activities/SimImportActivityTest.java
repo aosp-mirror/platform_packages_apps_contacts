@@ -40,8 +40,6 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
-import android.provider.SimPhonebookContract;
-import android.provider.SimPhonebookContract.SimRecords;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.Until;
@@ -50,9 +48,9 @@ import android.test.mock.MockContentResolver;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.test.InstrumentationRegistry;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.SdkSuppress;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.android.contacts.SimImportService;
 import com.android.contacts.database.SimContactDao;
@@ -226,10 +224,10 @@ public class SimImportActivityTest {
         final AccountWithDataSet targetAccount = mAccountHelper.addTestAccount(
                 mAccountHelper.generateAccountName("SimImportActivity0_targetAccount_"));
 
-        final MockContentProvider simPhonebookProvider = new MockContentProvider();
-        simPhonebookProvider.expect(MockContentProvider.Query.forAnyUri())
-                .withProjection(
-                        SimRecords.RECORD_NUMBER, SimRecords.NAME, SimRecords.PHONE_NUMBER)
+        final MockContentProvider iccProvider = new MockContentProvider();
+        iccProvider.expect(MockContentProvider.Query.forAnyUri())
+                .withDefaultProjection(new String[] {SimContactDaoImpl._ID, SimContactDaoImpl.NAME,
+                        SimContactDaoImpl.NUMBER, SimContactDaoImpl.EMAILS })
                 .anyNumberOfTimes()
                 .returnRow(toCursorRow(new SimContact(1, "Import One", "5550101")))
                 .returnRow(toCursorRow(new SimContact(2, "Skip Two", "5550102")))
@@ -238,7 +236,7 @@ public class SimImportActivityTest {
                 .returnRow(toCursorRow(new SimContact(5, "Skip Five", "5550105")))
                 .returnRow(toCursorRow(new SimContact(6, "Import Six", "5550106")));
         final MockContentResolver mockResolver = new MockContentResolver();
-        mockResolver.addProvider(SimPhonebookContract.AUTHORITY, simPhonebookProvider);
+        mockResolver.addProvider("icc", iccProvider);
         final ContentProviderClient contactsProviderClient = mContext.getContentResolver()
                 .acquireContentProviderClient(ContactsContract.AUTHORITY);
         mockResolver.addProvider(ContactsContract.AUTHORITY, new ForwardingContentProvider(
@@ -260,7 +258,6 @@ public class SimImportActivityTest {
 
         mActivity = mInstrumentation.startActivitySync(
                 new Intent(mContext, SimImportActivity.class)
-                        .putExtra(SimImportActivity.EXTRA_SUBSCRIPTION_ID, 1)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
         assertTrue(mDevice.wait(Until.hasObject(By.desc("Show more")), TIMEOUT));
@@ -322,7 +319,6 @@ public class SimImportActivityTest {
 
         mActivity = mInstrumentation.startActivitySync(
                 new Intent(mContext, SimImportActivity.class)
-                        .putExtra(SimImportActivity.EXTRA_SUBSCRIPTION_ID, 1)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 
         assertTrue(mDevice.wait(Until.hasObject(By.text("Import One")), TIMEOUT));
@@ -355,7 +351,7 @@ public class SimImportActivityTest {
     }
 
     private Object[] toCursorRow(SimContact contact) {
-        return new Object[]{contact.getRecordNumber(), contact.getName(), contact.getPhone()};
+        return new Object[] { contact.getId(), contact.getName(), contact.getPhone(), null };
     }
 
     private SimCard someSimCard() {

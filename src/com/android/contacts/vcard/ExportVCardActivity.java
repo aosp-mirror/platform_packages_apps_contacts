@@ -136,8 +136,7 @@ public class ExportVCardActivity extends Activity implements ServiceConnection,
                     data != null && data.getData() != null) {
                 final Uri targetFileName = data.getData();
                 if (DEBUG) Log.d(LOG_TAG, "exporting to " + targetFileName);
-                final String displayName = getOpenableUriDisplayName(this, targetFileName);
-                final ExportRequest request = new ExportRequest(targetFileName, null, displayName);
+                final ExportRequest request = new ExportRequest(targetFileName);
                 // The connection object will call finish().
                 mService.handleExportRequest(request, new NotificationImportExportListener(
                         ExportVCardActivity.this));

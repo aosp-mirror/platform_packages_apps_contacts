@@ -17,13 +17,8 @@ package com.android.contacts.model.account;
 
 import android.accounts.AuthenticatorDescription;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import com.android.contacts.R;
 import com.android.contacts.model.dataitem.DataKind;
@@ -60,7 +55,7 @@ public class SimAccountType extends BaseAccountType {
 
     @Override
     public boolean areContactsWritable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -116,14 +111,6 @@ public class SimAccountType extends BaseAccountType {
         }
 
         return kind;
-    }
-
-    @Override
-    public Drawable getDisplayIcon(Context context) {
-        final Drawable icon = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
-        icon.mutate().setColorFilter(ContextCompat.getColor(context,
-                R.color.actionbar_icon_color_grey), PorterDuff.Mode.SRC_ATOP);
-        return icon;
     }
 
     @Override

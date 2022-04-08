@@ -83,8 +83,7 @@ public class AccountTypeProvider {
      */
     public List<AccountType> getAccountTypes(String accountType) {
         // ConcurrentHashMap doesn't support null keys
-        if (accountType == null || mLocalAccountTypeFactory.classifyAccount(accountType)
-                == DeviceLocalAccountTypeFactory.TYPE_SIM) {
+        if (accountType == null) {
             AccountType type = mLocalAccountTypeFactory.getAccountType(accountType);
             // Just in case the DeviceLocalAccountTypeFactory doesn't handle the null type
             if (type == null) {

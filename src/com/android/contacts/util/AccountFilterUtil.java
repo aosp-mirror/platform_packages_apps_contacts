@@ -20,12 +20,15 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ActivityNotFoundException;
+import android.content.AsyncTaskLoader;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -36,6 +39,9 @@ import com.android.contacts.list.AccountFilterActivity;
 import com.android.contacts.list.ContactListFilter;
 import com.android.contacts.list.ContactListFilterController;
 import com.android.contacts.model.AccountTypeManager;
+import com.android.contacts.model.Contact;
+import com.android.contacts.model.account.AccountDisplayInfo;
+import com.android.contacts.model.account.AccountDisplayInfoFactory;
 import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountWithDataSet;
@@ -45,11 +51,15 @@ import com.android.contacts.util.concurrent.ListenableFutureLoader;
 import com.android.contactsbind.ObjectFactory;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Utility class for account filter manipulation.
@@ -115,7 +125,7 @@ public class AccountFilterUtil {
         @Override
         protected ListenableFuture<List<ContactListFilter>> loadData() {
             return Futures.transform(mAccountTypeManager.filterAccountsAsync(
-                    AccountTypeManager.drawerDisplayableFilter()),
+                    AccountTypeManager.writableFilter()),
                     new Function<List<AccountInfo>, List<ContactListFilter>>() {
                         @Override
                         public List<ContactListFilter> apply(List<AccountInfo> input) {
@@ -140,12 +150,9 @@ public class AccountFilterUtil {
                 }
                 final Drawable icon = accountType != null ?
                         accountType.getDisplayIcon(getContext()) : null;
-                if (mDeviceLocalFactory.classifyAccount(account.type)
-                        == DeviceLocalAccountTypeFactory.TYPE_DEVICE) {
+                if (DeviceLocalAccountTypeFactory.Util.isLocalAccountType(
+                        mDeviceLocalFactory, account.type)) {
                     accountFilters.add(ContactListFilter.createDeviceContactsFilter(icon, account));
-                } else if (mDeviceLocalFactory.classifyAccount(account.type)
-                        == DeviceLocalAccountTypeFactory.TYPE_SIM) {
-                    accountFilters.add(ContactListFilter.createSimContactsFilter(icon, account));
                 } else {
                     accountFilters.add(ContactListFilter.createAccountFilter(
                             account.type, account.name, account.dataSet, icon));
@@ -215,8 +222,6 @@ public class AccountFilterUtil {
     public static String getActionBarTitleForFilter(Context context, ContactListFilter filter) {
         if (filter.filterType == ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS) {
             return context.getString(R.string.account_phone);
-        } else if (filter.filterType == ContactListFilter.FILTER_TYPE_SIM_CONTACTS) {
-            return context.getString(R.string.account_sim);
         } else if (filter.filterType == ContactListFilter.FILTER_TYPE_ACCOUNT &&
                 !TextUtils.isEmpty(filter.accountName)) {
             return getActionBarTitleForAccount(context, filter);

@@ -267,7 +267,8 @@ public class GroupMembershipView extends LinearLayout
     }
 
     private void updateView() {
-        if (mGroupMetaData == null || mGroupMetaData.isClosed()) {
+        if (mGroupMetaData == null || mGroupMetaData.isClosed() || mAccountType == null
+                || mAccountName == null) {
             setVisibility(GONE);
             return;
         }
@@ -281,9 +282,8 @@ public class GroupMembershipView extends LinearLayout
             String accountName = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);
             String accountType = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             String dataSet = mGroupMetaData.getString(GroupMetaDataLoader.DATA_SET);
-            if (TextUtils.equals(accountName, mAccountName)
-                    && TextUtils.equals(accountType, mAccountType)
-                    && TextUtils.equals(dataSet, mDataSet)) {
+            if (accountName.equals(mAccountName) && accountType.equals(mAccountType)
+                    && Objects.equal(dataSet, mDataSet)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
                 if (!mGroupMetaData.isNull(GroupMetaDataLoader.FAVORITES)
                         && mGroupMetaData.getInt(GroupMetaDataLoader.FAVORITES) != 0) {
@@ -355,9 +355,8 @@ public class GroupMembershipView extends LinearLayout
             String accountName = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_NAME);
             String accountType = mGroupMetaData.getString(GroupMetaDataLoader.ACCOUNT_TYPE);
             String dataSet = mGroupMetaData.getString(GroupMetaDataLoader.DATA_SET);
-            if (TextUtils.equals(accountName, mAccountName)
-                    && TextUtils.equals(accountType, mAccountType)
-                    && TextUtils.equals(dataSet, mDataSet)) {
+            if (accountName.equals(mAccountName) && accountType.equals(mAccountType)
+                    && Objects.equal(dataSet, mDataSet)) {
                 long groupId = mGroupMetaData.getLong(GroupMetaDataLoader.GROUP_ID);
                 if (groupId != mFavoritesGroupId
                         && (groupId != mDefaultGroupId || mDefaultGroupVisible)) {

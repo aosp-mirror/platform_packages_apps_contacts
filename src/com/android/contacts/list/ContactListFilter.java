@@ -45,7 +45,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public static final int FILTER_TYPE_SINGLE_CONTACT = -6;
     public static final int FILTER_TYPE_GROUP_MEMBERS = -7;
     public static final int FILTER_TYPE_DEVICE_CONTACTS = -8;
-    public static final int FILTER_TYPE_SIM_CONTACTS = -9;
 
     public static final int FILTER_TYPE_ACCOUNT = 0;
 
@@ -102,12 +101,6 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     public static ContactListFilter createDeviceContactsFilter(Drawable icon,
             AccountWithDataSet account) {
         return new ContactListFilter(ContactListFilter.FILTER_TYPE_DEVICE_CONTACTS,
-                account.type, account.name, account.dataSet, icon);
-    }
-
-    public static ContactListFilter createSimContactsFilter(Drawable icon,
-            AccountWithDataSet account) {
-        return new ContactListFilter(ContactListFilter.FILTER_TYPE_SIM_CONTACTS,
                 account.type, account.name, account.dataSet, icon);
     }
 
@@ -354,8 +347,7 @@ public final class ContactListFilter implements Comparable<ContactListFilter>, P
     }
 
     public AccountWithDataSet toAccountWithDataSet() {
-        if (filterType == FILTER_TYPE_ACCOUNT || filterType == FILTER_TYPE_DEVICE_CONTACTS
-                || filterType == FILTER_TYPE_SIM_CONTACTS) {
+        if (filterType == FILTER_TYPE_ACCOUNT || filterType == FILTER_TYPE_DEVICE_CONTACTS) {
             return new AccountWithDataSet(accountName, accountType, dataSet);
         } else {
             throw new IllegalStateException("Cannot create Account from filter type " +

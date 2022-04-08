@@ -60,7 +60,7 @@ public class ShareVCardActivity extends ExportVCardActivity {
                 getString(R.string.contacts_file_provider_authority), file);
         if (DEBUG) Log.d(LOG_TAG, "exporting to " + contentUri);
 
-        final ExportRequest request = new ExportRequest(contentUri, null, file.getName());
+        final ExportRequest request = new ExportRequest(contentUri);
         // The connection object will call finish().
         mService.handleExportRequest(request, new NotificationImportExportListener(
                 ShareVCardActivity.this));
