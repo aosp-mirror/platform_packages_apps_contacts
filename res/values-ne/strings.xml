@@ -502,7 +502,7 @@
     <string name="account_sync_off" msgid="6187683798342006021">"खाता सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"स्वत: सिंक सेवा सक्रिय गर्ने हो?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"तपाईंले Google सम्पर्कहरूमा मात्र नभई, सबै एप र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा अद्यावधिक हुने छन्।"</string>
-    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"खोल्नुहोस्"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"अन गर्नुहोस्"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"जडान छैन"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"थप देखाउनुहोस्"</string>
