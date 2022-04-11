@@ -77,19 +77,19 @@
       <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> контакт· <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
       <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> контакт· <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
     </plurals>
-    <string name="title_from_google" msgid="2554633992366572820">"Google есептік жазбасынан"</string>
-    <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> есептік жазбасынан"</string>
+    <string name="title_from_google" msgid="2554633992366572820">"Google аккаунтынан"</string>
+    <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> аккаунтынан"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Рингтонды орнату"</string>
     <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"Дауыстық поштаға ауыстыру"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"Дауыстық поштаны шығару"</string>
-    <string name="readOnlyContactWarning" msgid="4158660823025751201">"Бұл контакт тек қана оқу рұқсаты бар есептік жазбадан. Оны жою мүмкін емес, бірақ жасыруға болады."</string>
+    <string name="readOnlyContactWarning" msgid="4158660823025751201">"Бұл контакт тек қана оқу рұқсаты бар аккаунттан. Оны жою мүмкін емес, бірақ жасыруға болады."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"Контактіні жасыру"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"Тек қана оқу рұқсаты бар есептік жазбалар жасырылады, жойылмайды."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"Тек қана оқу рұқсаты бар аккаунттар жасырылады, жойылмайды."</string>
     <string name="single_delete_confirmation" msgid="8260949300855537648">"Осы контактіні жою керек пе?"</string>
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"Таңдалған контактілерді жою керек пе?"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Тек оқуға арналған есептік жазбалардағы контактілерді жою мүмкін емес, бірақ оларды жасыруға болады."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Жойылатын контактілерде бірнеше есептік жазбадан алынған мәліметтер бар. Тек оқуға арналған есептік жазбалардан алынған мәліметтер жойылмайды, жасырылады."</string>
-    <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"Бұл контактіні жою бірнеше есептік жазбадан мәліметтерді жояды."</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Тек оқуға арналған аккаунттардағы контактілерді жою мүмкін емес, бірақ оларды жасыруға болады."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Жойылатын контактілерде бірнеше аккаунттан алынған мәліметтер бар. Тек оқуға арналған аккаунттардан алынған мәліметтер жойылмайды, жасырылады."</string>
+    <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"Бұл контактіні жою бірнеше аккаунттан мәліметтерді жояды."</string>
     <string name="deleteConfirmation" msgid="3727809366015979585">"Осы контактіні жою керек пе?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"Жою"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"Мұндай контакт жоқ."</string>
@@ -101,7 +101,7 @@
     <string name="removePhoto" msgid="1190099414600730001">"Фотосуретті алу"</string>
     <string name="noContacts" msgid="3030512741779213810">"Контактілер тізімі бос"</string>
     <string name="emptyGroup" msgid="8598261660865081152">"Осы белгісі бар контактілер жоқ"</string>
-    <string name="emptyAccount" msgid="7450843210977018582">"Бұл есептік жазбада контактілер жоқ"</string>
+    <string name="emptyAccount" msgid="7450843210977018582">"Бұл аккаунтта контактілер жоқ"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"Контактілер тізімі бос"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> сақталды"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"Контакт сақталды"</string>
@@ -140,7 +140,7 @@
       <item quantity="other">Контактілерді бөлісу</item>
       <item quantity="one">Контактіні бөлісу</item>
     </plurals>
-    <string name="dialog_new_group_account" msgid="4326402875327788728">"Есептік жазба таңдау"</string>
+    <string name="dialog_new_group_account" msgid="4326402875327788728">"Аккаунт таңдау"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Белгі жасау"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Белгінің атын өзгерту"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"Белгі атауы"</string>
@@ -148,7 +148,7 @@
     <string name="audio_chat" msgid="5921525823973697372">"Дауыс чаты"</string>
     <string name="video_chat" msgid="2477295971622477433">"Видео чат"</string>
     <string name="account_type_format" msgid="4926968760755013450">"<xliff:g id="SOURCE">%1$s</xliff:g> контакт"</string>
-    <string name="google_account_type_format" msgid="4046692740262396811">"<xliff:g id="SOURCE">%1$s</xliff:g> есептік жазбасы"</string>
+    <string name="google_account_type_format" msgid="4046692740262396811">"<xliff:g id="SOURCE">%1$s</xliff:g> аккаунты"</string>
     <string name="take_photo" msgid="820071555236547516">"Фотосурет түсіру"</string>
     <string name="take_new_photo" msgid="4383091978116875778">"Жаңа фотосурет түсіру"</string>
     <string name="pick_photo" msgid="2050859661654812588">"Фотосуретті таңдау"</string>
@@ -170,7 +170,7 @@
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"Контактілерге қосу"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"Жабу"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"Жылды қосу"</string>
-    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"Есептік жазба қосу"</string>
+    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"Аккаунт қосу"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"Импорттау"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"Жаңасын жасау…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" тобы жойылсын ба? Контактілер өздігінен жойылмайды."</string>
@@ -187,9 +187,9 @@
     <string name="title_edit_group" msgid="4246193439931854759">"Контактілерді жою"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"Менің жергілікті профайлым"</string>
     <string name="external_profile_title" msgid="2706282819025406927">"Менің <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> профайлым"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"Google-ға контактілеріңіздің сақтық көшірмесін жасайтын есептік жазба қосу үшін бір минут уақыт бөліңіз."</string>
-    <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"Жаңа контактілер <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> есептік жазбасында сақталады."</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Жаңа контактілерге арналған әдепкі есептік жазбаны таңдаңыз:"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"Google-ға контактілеріңіздің сақтық көшірмесін жасайтын аккаунт қосу үшін бір минут уақыт бөліңіз."</string>
+    <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"Жаңа контактілер <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> аккаунтында сақталады."</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Жаңа контактілерге арналған әдепкі аккаунтты таңдаңыз:"</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Жаңа контакт қосу"</string>
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"Контактіні өзгерту"</string>
     <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Көру мүмкіндігі ғана бар"</string>
@@ -198,7 +198,7 @@
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"Қосу"</string>
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"Байланысты жою"</string>
     <string name="add_account" msgid="3071396624500839020">"Ес. жазба қосу"</string>
-    <string name="add_new_account" msgid="573368229646104110">"Жаңа есептік жазба қосу"</string>
+    <string name="add_new_account" msgid="573368229646104110">"Жаңа аккаунт қосу"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"Дерекқор файлдарын экспорттау"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Жаңа контакт қосу"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Көбірек көру"</string>
@@ -237,7 +237,7 @@
     <string name="navigation_drawer_close" msgid="3052989100471689722">"Жылжу тақтасын жабу"</string>
     <string name="navigation_drawer_label" msgid="8391863484838783638">"<xliff:g id="LABEL_NAME">%s</xliff:g> белгісі"</string>
     <string name="menu_title_groups" msgid="3722199658759568221">"Белгілер"</string>
-    <string name="menu_title_filters" msgid="349866121417914494">"Есептік жазбалар"</string>
+    <string name="menu_title_filters" msgid="349866121417914494">"Аккаунттар"</string>
     <string name="hamburger_feature_highlight_header" msgid="1786641424099282909">"Ұсыныстар"</string>
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"Контактілерді реттеу және тиімді пайдалану жолы"</string>
     <string name="undo" msgid="2446931036220975026">"Қайтару"</string>
@@ -440,8 +440,8 @@
     <string name="display_options_view_names_as" msgid="4060686468465916565">"Ат пішімі"</string>
     <string name="display_options_view_given_name_first" msgid="383885125505521383">"Алдымен аты"</string>
     <string name="display_options_view_family_name_first" msgid="6597077054231296007">"Алдымен тегі"</string>
-    <string name="settings_accounts" msgid="119582613811929994">"Есептік жазбалар"</string>
-    <string name="default_editor_account" msgid="4810392921888877149">"Жаңа контактілерге арналған әдепкі есептік жазба"</string>
+    <string name="settings_accounts" msgid="119582613811929994">"Аккаунттар"</string>
+    <string name="default_editor_account" msgid="4810392921888877149">"Жаңа контактілерге арналған әдепкі аккаунт"</string>
     <string name="settings_my_info_title" msgid="6236848378653551341">"Ақпаратым"</string>
     <string name="set_up_profile" msgid="3554999219868611431">"Профильді орнату"</string>
     <string name="setting_about" msgid="2941859292287597555">"Контактілер туралы"</string>
@@ -465,7 +465,7 @@
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="DATE">%1$s</xliff:g> <xliff:g id="SOURCE">%2$s</xliff:g> арқылы"</string>
     <string name="action_menu_back_from_search" msgid="683765774264585732">"іздеуді тоқтату"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"Іздеуді өшіру"</string>
-    <string name="select_account_dialog_title" msgid="5047523441152129207">"Есептік жазба"</string>
+    <string name="select_account_dialog_title" msgid="5047523441152129207">"Аккаунт"</string>
     <string name="set_default_account" msgid="9194321110211682396">"Осыны қоңырауларға ылғи пайдалану"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"Ескертпе бар қоңырау"</string>
     <string name="call_subject_hint" msgid="7056652101889538157">"Қоңыраумен жіберілетін мәтінді теріңіз..."</string>
@@ -501,11 +501,11 @@
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Жабу"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Автоматты синхрондау өшірулі. Қосу үшін түртіңіз."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Авто сақтық функциясын қосу қажет пе?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Google контактілеріне ғана емес, барлық қолданбалар мен есептік жазбаларға енгізілген өзгерістер желі және құрылғылар арасында синхрондалады."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Google контактілеріне ғана емес, барлық қолданбалар мен аккаунттарға енгізілген өзгерістер желі және құрылғылар арасында синхрондалады."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Қосу"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Байланыс жоқ"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
-    <string name="show_more_content_description" msgid="6298277298495491712">"Тағы көрсету"</string>
+    <string name="show_more_content_description" msgid="6298277298495491712">"Тағы"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"SIM картасын импорттау аяқталды"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"Импорттау мүмкін болмады"</string>
     <string name="importing_sim_failed_message" msgid="55568522164349044">"Контактілерді SIM картасынан импорттау мүмкін болмады"</string>
