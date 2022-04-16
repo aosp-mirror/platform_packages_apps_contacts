@@ -466,7 +466,7 @@
     <string name="action_menu_back_from_search" msgid="683765774264585732">"interromper a pesquisa"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"Limpar pesquisa"</string>
     <string name="select_account_dialog_title" msgid="5047523441152129207">"Conta"</string>
-    <string name="set_default_account" msgid="9194321110211682396">"Utilizar sempre este para chamadas"</string>
+    <string name="set_default_account" msgid="9194321110211682396">"Usar sempre este para chamadas"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"Ligar com uma nota"</string>
     <string name="call_subject_hint" msgid="7056652101889538157">"Escrever uma nota para enviar com a chamada…"</string>
     <string name="send_and_call_button" msgid="4851257959568592699">"ENVIAR E LIGAR"</string>
