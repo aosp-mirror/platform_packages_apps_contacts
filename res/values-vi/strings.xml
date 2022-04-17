@@ -500,7 +500,7 @@
     <string name="auto_sync_off" msgid="7039314601316227882">"Tính năng tự động đồng bộ hóa đang tắt. Hãy nhấn để bật."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Loại bỏ"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Tính năng đồng bộ hóa tài khoản đang tắt. Hãy nhấn để bật."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Bật tự động đồng bộ hóa?"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Bật tính năng tự động đồng bộ hóa?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Những thay đổi bạn thực hiện đối với tất cả ứng dụng và tài khoản, không chỉ với Danh bạ Google, sẽ luôn được cập nhật giữa web và thiết bị của bạn."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Bật"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Không có kết nối"</string>
