@@ -35,7 +35,7 @@
     <string name="menu_editContact" msgid="5039663761025630208">"ఎడిట్"</string>
     <string name="menu_deleteContact" msgid="15161764025276217">"తొలగించు"</string>
     <string name="menu_change_photo" msgid="4911246106907208055">"ఫోటోను మార్చు"</string>
-    <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"షార్ట్‌కట్‌ను సృష్టించు"</string>
+    <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"షార్ట్‌కట్‌ను క్రియేట్ చేయండి"</string>
     <string name="menu_splitAggregate" msgid="2062290275288905833">"వేరు చేయి"</string>
     <string name="menu_editGroup" msgid="8706562583754054622">"కాంటాక్ట్‌లను తీసివేయండి"</string>
     <string name="menu_renameGroup" msgid="2685886609399776475">"లేబుల్ పేరును మార్చు"</string>
@@ -44,7 +44,7 @@
     <string name="menu_selectForGroup" msgid="6386553337569514850">"కాంటాక్ట్‌లను ఎంచుకోండి"</string>
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"కాంటాక్ట్‌లను జోడించండి"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"లేబుల్ నుండి తీసివేయి"</string>
-    <string name="menu_new_group_action_bar" msgid="1670312283925872483">"లేబుల్‌ను సృష్టించు"</string>
+    <string name="menu_new_group_action_bar" msgid="1670312283925872483">"లేబుల్‌ను క్రియేట్ చేయండి"</string>
     <string name="splitConfirmation" msgid="4750158900636307469">"ఈ కాంటాక్ట్‌ను పలు కాంటాక్ట్‌లుగా అన్‌లింక్ చేయాలా?"</string>
     <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"వేరు చేయి"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"మీరు ఇప్పటికే చేసిన మార్పులను సేవ్ చేసి, ఈ కాంటాక్ట్‌ను పలు కాంటాక్ట్‌లుగా అన్‌లింక్ చేయాలనుకుంటున్నారా?"</string>
@@ -113,8 +113,8 @@
     <string name="contactPhotoSavedErrorToast" msgid="8568460180541397272">"కాంటాక్ట్ ఫోటో మార్పులను సేవ్ చేయలేకపోయింది"</string>
     <string name="groupLoadErrorToast" msgid="4141488223976370583">"లేబుల్‌ను లోడ్ చేయడంలో విఫలమైంది"</string>
     <string name="groupDeletedToast" msgid="7774363940327847515">"లేబుల్ తొలగించబడింది"</string>
-    <string name="groupCreatedToast" msgid="1685148819468403239">"లేబుల్ సృష్టించబడింది"</string>
-    <string name="groupCreateFailedToast" msgid="1836425392831964024">"లేబుల్‌ను సృష్టించడం సాధ్యపడదు"</string>
+    <string name="groupCreatedToast" msgid="1685148819468403239">"లేబుల్ క్రియేట్ చేయబడింది"</string>
+    <string name="groupCreateFailedToast" msgid="1836425392831964024">"లేబుల్‌ను క్రియేట్ చేయడం సాధ్యపడదు"</string>
     <string name="groupUpdatedToast" msgid="3381549467345607379">"లేబుల్ నవీకరించబడింది"</string>
     <string name="groupMembersRemovedToast" msgid="8019566066934628011">"లేబుల్ నుండి తీసివేయబడ్డాయి"</string>
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"లేబుల్‌కు జోడించబడింది/జోడించబడ్డాయి"</string>
@@ -172,7 +172,7 @@
     <string name="date_year_toggle" msgid="8930759990426623823">"సంవత్సరాన్ని చేర్చు"</string>
     <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"ఖాతాను జోడించు"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"దిగుమతి చేయి"</string>
-    <string name="create_group_item_label" msgid="921929508079162463">"కొత్తది సృష్టించు…"</string>
+    <string name="create_group_item_label" msgid="921929508079162463">"కొత్తది క్రియేట్ చేయండి…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" లేబుల్‌ని తొలగించాలా? (కాంటాక్ట్‌లు వాటంతట అవే తొలగించబడవు.)"</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"మరొకదానితో లింక్ చేయడానికి ముందు కాంటాక్ట్ పేరు టైప్ చేయండి."</string>
     <string name="copy_text" msgid="6835250673373028909">"క్లిప్‌బోర్డ్‌కు కాపీ చేయి"</string>
@@ -190,7 +190,7 @@
     <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"మీ కాంటాక్ట్‌లను Googleకు బ్యాకప్ చేసే ఖాతాను జోడించడానికి ఒక నిమిషం కేటాయించండి."</string>
     <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"కొత్త కాంటాక్ట్‌లు <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>కి సేవ్ చేయబడతాయి."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"కొత్త కాంటాక్టుల కోసం ఆటోమేటిక్ ఖాతాను ఎంచుకోండి:"</string>
-    <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"కొత్త పరి. సృష్టించు"</string>
+    <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"కొత్త పరి. క్రియేట్ చేయండి"</string>
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"కాంటాక్ట్‌ ఎడిట్"</string>
     <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"వీక్షణ మాత్రమే"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"ఎడిట్ చేయాల్సిన కాంటాక్ట్‌ను ఎంచుకోండి"</string>
@@ -367,7 +367,7 @@
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"కుదించబడింది"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"అన్ని కాంటాక్ట్‌లు"</string>
     <string name="list_filter_all_starred" msgid="2582865760150432568">"నక్షత్రం గుర్తు ఉన్నవి"</string>
-    <string name="list_filter_customize" msgid="2368900508906139537">"అనుకూలీకరించు"</string>
+    <string name="list_filter_customize" msgid="2368900508906139537">"అనుకూలంగా మార్చండి"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"కాంటాక్ట్"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"అన్ని ఇతర కాంటాక్ట్‌లు"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"అన్ని కాంటాక్ట్‌లు"</string>
@@ -394,13 +394,13 @@
     <string name="cancel_import_confirmation_message" msgid="1007412828398265611">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క దిగుమతిని రద్దు చేయాలా?"</string>
     <string name="cancel_export_confirmation_message" msgid="370693160959236239">"<xliff:g id="FILENAME">%s</xliff:g> యొక్క ఎగుమతిని రద్దు చేయాలా?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="3041814872516288484">"vCard దిగుమతి/ఎగుమతిని రద్దు చేయడం సాధ్యపడలేదు"</string>
-    <string name="fail_reason_unknown" msgid="3721044979355043778">"తెలియని లోపం."</string>
+    <string name="fail_reason_unknown" msgid="3721044979355043778">"తెలియని ఎర్రర్."</string>
     <string name="fail_reason_could_not_open_file" msgid="6015509564074145162">"\"<xliff:g id="FILE_NAME">%1$s</xliff:g>\"ని తెరవడం సాధ్యపడలేదు: <xliff:g id="EXACT_REASON">%2$s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4145819808407973981">"ఎక్స్‌పోర్టర్‌ను ప్రారంభించడం సాధ్యపడలేదు: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="487925011719622851">"ఎగమతి చేయగల కాంటాక్ట్ లేదు."</string>
     <string name="missing_required_permission" msgid="1308037728470791436">"మీరు అవసరమైన అనుమతిని నిలిపివేసారు."</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"ఎగుమతి సమయంలో లోపం సంభవించింది: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
-    <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O లోపం"</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"ఎగుమతి సమయంలో ఎర్రర్ ఏర్పడింది: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O ఎర్రర్"</string>
     <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"తగినంత మెమరీ లేదు. ఫైల్ చాలా పెద్దదిగా ఉండవచ్చు."</string>
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"ఈ ఫార్మాట్‌కు సపోర్ట్‌ లేదు."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g>ని ఎగుమతి చేయడం పూర్తయింది."</string>
@@ -463,7 +463,7 @@
     <string name="menu_blocked_numbers" msgid="7064680515202657609">"బ్లాక్ చేయబడిన నంబర్‌లు"</string>
     <string name="contact_status_update_attribution" msgid="5051874518046969847">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
-    <string name="action_menu_back_from_search" msgid="683765774264585732">"శోధించడం ఆపివేస్తుంది"</string>
+    <string name="action_menu_back_from_search" msgid="683765774264585732">"సెర్చ్ చేయడం ఆపివేస్తుంది"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"సెర్చ్‌ను క్లియర్ చేయండి"</string>
     <string name="select_account_dialog_title" msgid="5047523441152129207">"ఖాతా"</string>
     <string name="set_default_account" msgid="9194321110211682396">"కాల్స్‌ల కోసం ఎప్పుడూ ఇది ఉపయోగించు"</string>
@@ -472,7 +472,7 @@
     <string name="send_and_call_button" msgid="4851257959568592699">"పంపు &amp; కాల్ చేయి"</string>
     <string name="call_subject_limit" msgid="5679166729627777474">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="134754147019287616">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
-    <string name="about_build_version" msgid="5870642814752351712">"బిల్డ్ సంస్కరణ"</string>
+    <string name="about_build_version" msgid="5870642814752351712">"బిల్డ్ వెర్షన్‌"</string>
     <string name="about_open_source_licenses" msgid="1617836621315557445">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"ఓపెన్ సోర్స్ సాఫ్ట్‌వేర్ యొక్క లైసెన్స్ వివరాలు"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"గోప్యతా విధానం"</string>
