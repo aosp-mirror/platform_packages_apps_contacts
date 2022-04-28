@@ -211,7 +211,7 @@
     <string name="editor_contact_photo_content_description" msgid="8699261934352739">"সম্পৰ্ক ব্য়ক্তিৰ ফট\'"</string>
     <string name="editor_failed_to_load" msgid="2328074829787373644">"সম্পাদক খুলিবপৰা নগ\'ল।"</string>
     <string name="editor_account_selector_title" msgid="3190515989740696043">"ইয়ালৈ ছেভ কৰিথকা হৈছে"</string>
-    <string name="editor_account_selector_read_only_title" msgid="4870485850053962114">"<xliff:g id="ACCOUNT">%s</xliff:g>ৰ সম্পৰ্ক সম্পৰ্কীয় তথ্য় সম্পাদনাযোগ্য় নহয়"</string>
+    <string name="editor_account_selector_read_only_title" msgid="4870485850053962114">"<xliff:g id="ACCOUNT">%s</xliff:g>ৰ সম্পৰ্ক সম্পৰ্কীয় তথ্য সম্পাদনাযোগ্য় নহয়"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3485212664301802371">"সম্পৰ্কসমূহ লিংক কৰক"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8851156850681440055">"বাতিল কৰক"</string>
     <string name="suggestion_card_this_contact_title" msgid="8851257599121989253">"এই সম্পৰ্ক"</string>
@@ -335,8 +335,8 @@
     <string name="map_work" msgid="8296916987749726461">"কৰ্মস্থানৰ ঠিকনা চাওক"</string>
     <string name="map_other" msgid="4009931029322619674">"ঠিকনা চাওক"</string>
     <string name="map_custom" msgid="7797812861927817335">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>ৰ ঠিকনা চাওক"</string>
-    <string name="chat_aim" msgid="2044861410748519265">"AIM ব্য়ৱহাৰ কৰি চাট কৰক"</string>
-    <string name="chat_msn" msgid="4733206223124506247">"ৱিণ্ড\'জ লাইভ ব্য়ৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_aim" msgid="2044861410748519265">"AIM ব্যৱহাৰ কৰি চাট কৰক"</string>
+    <string name="chat_msn" msgid="4733206223124506247">"ৱিণ্ড\'জ লাইভ ব্যৱহাৰ কৰি চাট কৰক"</string>
     <string name="chat_yahoo" msgid="3807571878191282528">"Yahoo ব্যৱহাৰ কৰি চাট কৰক"</string>
     <string name="chat_skype" msgid="5130564346825936093">"Skype ব্যৱহাৰ কৰি চাট কৰক"</string>
     <string name="chat_qq" msgid="2971335421266098608">"QQ ব্যৱহাৰ কৰি চাট কৰক"</string>
@@ -392,7 +392,7 @@
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"<xliff:g id="FILENAME">%s</xliff:g>ৰ ৰপ্তানি বাতিল কৰা হ’ল।"</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"সম্পৰ্ক ডেটা ৰপ্তানি কৰি থকা হৈছে"</string>
     <string name="exporting_contact_list_message" msgid="6253904938452184387">"সম্পৰ্কৰ ডেটা ৰপ্তানি কৰিথকা হৈছে।"</string>
-    <string name="composer_failed_to_get_database_infomation" msgid="4394169679142311379">"ডেটাবেছৰ তথ্য় পোৱা নগ\'ল।"</string>
+    <string name="composer_failed_to_get_database_infomation" msgid="4394169679142311379">"ডেটাবেছৰ তথ্য পোৱা নগ\'ল।"</string>
     <string name="composer_has_no_exportable_contact" msgid="473911071832548562">"ৰপ্তানি কৰিবপৰা কোনো সম্পৰ্ক নাই।"</string>
     <string name="composer_not_initialized" msgid="3861391548605450184">"ভি-কাৰ্ড কম্প\'জাৰ সঠিকভাবে আৰম্ভ নহ\'ল।"</string>
     <string name="exporting_contact_failed_title" msgid="9003659313161289860">"ৰপ্তানি কৰিবপৰা নগ\'ল"</string>
@@ -424,7 +424,7 @@
     <string name="display_options_view_family_name_first" msgid="6597077054231296007">"অন্তিম নামটো প্ৰথমে"</string>
     <string name="settings_accounts" msgid="119582613811929994">"একাউণ্টসমূহ"</string>
     <string name="default_editor_account" msgid="4810392921888877149">"নতুন সম্পৰ্কৰ বাবে ডিফ\'ল্ট একাউণ্ট"</string>
-    <string name="settings_my_info_title" msgid="6236848378653551341">"মোৰ তথ্য়"</string>
+    <string name="settings_my_info_title" msgid="6236848378653551341">"মোৰ তথ্য"</string>
     <string name="set_up_profile" msgid="3554999219868611431">"আপোনাৰ প্ৰ\'ফাইল ছেট আপ কৰক"</string>
     <string name="setting_about" msgid="2941859292287597555">"সম্পৰ্কসূচীৰ বিষয়ে"</string>
     <string name="share_favorite_contacts" msgid="8208444020721686178">"প্ৰিয় সম্পৰ্কবোৰ শ্বেয়াৰ কৰক"</string>
