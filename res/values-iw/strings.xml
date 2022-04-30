@@ -159,7 +159,7 @@
     <string name="non_phone_close" msgid="2792373584950696532">"סגור"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"ציין שנה"</string>
     <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"הוספת חשבון"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"ייבא"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"ייבוא"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"צור חדשה…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"למחוק את התווית \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (אנשי הקשר המסומנים בתווית לא יימחקו)."</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"הקלד שם של איש קשר לפני קישורו לאחר."</string>
@@ -468,7 +468,7 @@
     <string name="description_no_name_header" msgid="8596201864512339003">"שלוש נקודות"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"קיצור הדרך הזה הושבת"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"איש הקשר הוסר"</string>
-    <string name="sim_import_button_text" msgid="2845608246304396009">"ייבא"</string>
+    <string name="sim_import_button_text" msgid="2845608246304396009">"ייבוא"</string>
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"בחירת אנשי קשר"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"‏אין אף איש קשר בכרטיס ה-SIM"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"איש הקשר כבר קיים ברשימה"</string>
