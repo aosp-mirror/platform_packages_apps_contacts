@@ -76,12 +76,12 @@
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"Este contacto é só de leitura. Não pode ser eliminado, mas pode ocultá-lo."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"Ocultar contacto"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"As contas só de leitura neste contacto serão ocultadas e não eliminadas."</string>
-    <string name="single_delete_confirmation" msgid="8260949300855537648">"Pretende eliminar este contacto?"</string>
-    <string name="batch_delete_confirmation" msgid="4149615167210863403">"Pretende eliminar os contactos selecionados?"</string>
+    <string name="single_delete_confirmation" msgid="8260949300855537648">"Eliminar este contacto?"</string>
+    <string name="batch_delete_confirmation" msgid="4149615167210863403">"Eliminar os contactos selecionados?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Não é possível eliminar os contactos das suas contas só de leitura, mas é possível ocultá-los."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Os contactos a eliminar têm detalhes de várias contas. Os detalhes das contas só de leitura ficam ocultos, mas não são eliminados."</string>
     <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"A eliminação deste contacto elimina detalhes de várias contas."</string>
-    <string name="deleteConfirmation" msgid="3727809366015979585">"Pretende eliminar este contacto?"</string>
+    <string name="deleteConfirmation" msgid="3727809366015979585">"Eliminar este contacto?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"Eliminar"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"O contacto não existe."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"Contacto adicionado ao ecrã principal."</string>
@@ -161,7 +161,7 @@
     <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"Adicionar conta"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"Importar"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"Criar nova…"</string>
-    <string name="delete_group_dialog_message" msgid="754082019928025404">"Pretende eliminar a etiqueta \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Os contactos não serão eliminados.)"</string>
+    <string name="delete_group_dialog_message" msgid="754082019928025404">"Eliminar a etiqueta \"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\"? (Os contactos não serão eliminados.)"</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"Introduza o nome do contacto antes de ligar a outro contacto."</string>
     <string name="copy_text" msgid="6835250673373028909">"Copiar para área de transf."</string>
     <string name="set_default" msgid="3704074175618702225">"Definir a predefinição"</string>
@@ -448,7 +448,7 @@
     <string name="action_menu_back_from_search" msgid="683765774264585732">"interromper a pesquisa"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"Limpar pesquisa"</string>
     <string name="select_account_dialog_title" msgid="5047523441152129207">"Conta"</string>
-    <string name="set_default_account" msgid="9194321110211682396">"Utilizar sempre este para chamadas"</string>
+    <string name="set_default_account" msgid="9194321110211682396">"Usar sempre este para chamadas"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"Ligar com uma nota"</string>
     <string name="call_subject_hint" msgid="7056652101889538157">"Escrever uma nota para enviar com a chamada…"</string>
     <string name="send_and_call_button" msgid="4851257959568592699">"ENVIAR E LIGAR"</string>
@@ -479,7 +479,7 @@
     <string name="auto_sync_off" msgid="7039314601316227882">"A sincronização automática está desativada. Toque para ativar."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Ignorar"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"A sincronização da conta está desativada. Toque para ativar."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Pretende ativar a sincronização automática?"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Ativar a sincronização automática?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"As alterações que efetuar a todas as aplicações e contas, e não apenas aos Contactos do Google, serão atualizadas entre a Web e os seus dispositivos."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Ativar"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Sem ligação"</string>
