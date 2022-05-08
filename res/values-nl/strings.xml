@@ -398,7 +398,7 @@
     <string name="fail_reason_could_not_open_file" msgid="6015509564074145162">"Kan \'<xliff:g id="FILE_NAME">%1$s</xliff:g>\' niet openen: <xliff:g id="EXACT_REASON">%2$s</xliff:g>."</string>
     <string name="fail_reason_could_not_initialize_exporter" msgid="4145819808407973981">"Kan het exportprogramma niet starten: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'."</string>
     <string name="fail_reason_no_exportable_contact" msgid="487925011719622851">"Er is geen contact dat kan worden geëxporteerd."</string>
-    <string name="missing_required_permission" msgid="1308037728470791436">"Je hebt een vereist recht uitgeschakeld."</string>
+    <string name="missing_required_permission" msgid="1308037728470791436">"Je hebt een vereist recht uitgezet."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"Er is een fout opgetreden tijdens het exporteren: \'<xliff:g id="EXACT_REASON">%s</xliff:g>\'."</string>
     <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O-fout"</string>
     <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"Onvoldoende geheugen. Het bestand is mogelijk te groot."</string>
