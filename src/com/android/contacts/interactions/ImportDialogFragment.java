@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.icu.text.MessageFormat;
 import android.os.Bundle;
 import androidx.core.text.BidiFormatter;
 import androidx.core.text.TextDirectionHeuristicsCompat;
@@ -50,7 +51,10 @@ import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
 import com.google.common.util.concurrent.Futures;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
@@ -171,17 +175,22 @@ public class ImportDialogFragment extends DialogFragment {
 
                 if (count != -1 && phone != null) {
                     // We use a template instead of format string so that the TTS span is preserved
-                    final CharSequence template = getResources()
-                            .getQuantityString(R.plurals.import_from_sim_secondary_template, count);
-                    return TextUtils.expandTemplate(template, String.valueOf(count), phone);
+                    MessageFormat msgFormat = new MessageFormat(
+                        getResources().getString(R.string.import_from_sim_secondary_template),
+                        Locale.getDefault());
+                    Map<String, Object> arguments = new HashMap<>();
+                    arguments.put("count", count);
+                    return TextUtils.expandTemplate(msgFormat.format(arguments), phone);
                 } else if (phone != null) {
                     return phone;
                 } else if (count != -1) {
-                    // count != -1
-                    return getResources()
-                            .getQuantityString(
-                                    R.plurals.import_from_sim_secondary_contact_count_fmt, count,
-                                    count);
+                    MessageFormat msgFormat = new MessageFormat(
+                        getResources()
+                            .getString(R.string.import_from_sim_secondary_contact_count_fmt),
+                        Locale.getDefault());
+                    Map<String, Object> arguments = new HashMap<>();
+                    arguments.put("count", count);
+                    return msgFormat.format(arguments);
                 } else {
                     return null;
                 }
