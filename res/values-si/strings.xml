@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> මකන ලදී"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> සහ <xliff:g id="NAME_1">%2$s</xliff:g> මකන ලදී"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… මකන ලදී"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">සම්බන්ධතා මකන ලදී</item>
-      <item quantity="other">සම්බන්ධතා මකන ලදී</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one">සම්බන්ධතා <xliff:g id="COUNT_1">%d</xliff:g></item>
-      <item quantity="other">සම්බන්ධතා <xliff:g id="COUNT_1">%d</xliff:g></item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> සම්බන්ධතා · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> සම්බන්ධතා · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{සම්බන්ධතාව මැකිණි}one{සම්බන්ධතා මැකිණි}other{සම්බන්ධතා මැකිණි}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# සම්බන්ධතාවයක්}one{සම්බන්ධතා #ක්}other{සම්බන්ධතා #ක්}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# සම්බන්ධතාවයක් · {account}}one{සම්බන්ධතා #ක් · {account}}other{සම්බන්ධතා #ක් · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Google වෙතින්"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> වෙතින්"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"රිංග්ටෝනය සකසන්න"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"බෙදාගන්න"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"සම්බන්ධතා වලට එක් කරන්න"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"එක් කරන්න"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">මේ හරහා සම්බන්ධතා බෙදා ගන්න</item>
-      <item quantity="other">මේ හරහා සම්බන්ධතා බෙදා ගන්න</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{මේ ඔස්සේ සම්බන්ධතාව බෙදා ගන්න}one{මේ ඔස්සේ සම්බන්ධතා බෙදා ගන්න}other{මේ ඔස්සේ සම්බන්ධතා බෙදා ගන්න}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"ගිණුම තෝරන්න"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"ලේබලය තනන්න"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"ලේබලය නැවත නම් කරන්න"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"ආයාත කළ සම්බන්ධතා මෙහි සුරකින්න:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM කාඩ් පත"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> SIM"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">සම්බන්ධතා %1$d</item>
-      <item quantity="other">සම්බන්ධතා %1$d</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one">සම්බන්ධතා <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other">සම්බන්ධතා <xliff:g id="COUNT_2">^1</xliff:g> • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# සම්බන්ධතාවයක්}one{සම්බන්ධතා #ක්}other{සම්බන්ධතා #ක්}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# සම්බන්ධතාවයක් • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{සම්බන්ධතා #ක් • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{සම්බන්ධතා #ක් • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ගොනුව"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"ආයාත කිරීමට කිසිවක් නැත"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard වෙතින් සම්බන්ධතා ආයාත කරන්න"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"සම්බන්ධතා තෝරන්න"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"ඔබේ SIM කාඩ්පතේ සම්බන්ධතා නොමැත"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"සම්බන්ධතාව දැනටමත් ඔබේ ලැයිස්තුවෙහි පවතී"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one">SIM සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g>ක් ආයාත කරන ලදී</item>
-      <item quantity="other">SIM සම්බන්ධතා <xliff:g id="COUNT">%d</xliff:g>ක් ආයාත කරන ලදී</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# SIM සම්බන්ධතාවක් ආයාත කෙරිණි}one{SIM සම්බන්ධතා #ක් ආයාත කෙරිණි}other{SIM සම්බන්ධතා #ක් ආයාත කෙරිණි}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM සම්බන්ධතා ආයාත කිරීමට අසමත් විය"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"SIM වෙතින් ආයාත කරන්න"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"අවලංගු කරන්න"</string>

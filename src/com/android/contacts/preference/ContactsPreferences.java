@@ -16,20 +16,29 @@
 
 package com.android.contacts.preference;
 
+import static android.Manifest.permission.SET_DEFAULT_ACCOUNT_FOR_CONTACTS;
+
+import android.accounts.Account;
+import android.annotation.SuppressLint;
 import android.app.backup.BackupManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.os.BuildCompat;
 
 import com.android.contacts.R;
 import com.android.contacts.model.account.AccountWithDataSet;
@@ -209,23 +218,45 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
         return mIsDefaultAccountUserChangeable;
     }
 
+    @SuppressLint("NewApi")
     public AccountWithDataSet getDefaultAccount() {
         if (!isDefaultAccountUserChangeable()) {
             return mDefaultAccount;
         }
         if (mDefaultAccount == null) {
-            final String accountString = mPreferences
-                    .getString(mDefaultAccountKey, null);
-            if (!TextUtils.isEmpty(accountString)) {
-                mDefaultAccount = AccountWithDataSet.unstringify(accountString);
+            Account cp2DefaultAccount = null;
+            if (BuildCompat.isAtLeastT()) {
+                cp2DefaultAccount = getDefaultAccountFromCp2();
             }
+
+            mDefaultAccount = cp2DefaultAccount == null
+                    ? AccountWithDataSet.getNullAccount()
+                    : new AccountWithDataSet(cp2DefaultAccount.name, cp2DefaultAccount.type, null);
         }
         return mDefaultAccount;
     }
 
+    @RequiresApi(33)
+    private Account getDefaultAccountFromCp2() {
+        StrictMode.ThreadPolicy oldPolicy = StrictMode.getThreadPolicy();
+        StrictMode.setThreadPolicy(
+                new StrictMode.ThreadPolicy.Builder(oldPolicy)
+                .permitDiskReads()
+                .build());
+        try {
+            return ContactsContract.Settings.getDefaultAccount(
+                    mContext.getContentResolver());
+        } finally {
+            StrictMode.setThreadPolicy(oldPolicy);
+        }
+    }
+
     public void clearDefaultAccount() {
-        mDefaultAccount = null;
-        mPreferences.edit().remove(mDefaultAccountKey).commit();
+        if (mContext.checkSelfPermission(SET_DEFAULT_ACCOUNT_FOR_CONTACTS)
+                == PackageManager.PERMISSION_GRANTED) {
+            mDefaultAccount = null;
+            setDefaultAccountToCp2(null);
+        }
     }
 
     public void setDefaultAccount(@NonNull AccountWithDataSet accountWithDataSet) {
@@ -233,12 +264,30 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
             throw new IllegalArgumentException(
                     "argument should not be null");
         }
-        mDefaultAccount = accountWithDataSet;
-        mPreferences.edit().putString(mDefaultAccountKey, accountWithDataSet.stringify()).commit();
+        if (mContext.checkSelfPermission(SET_DEFAULT_ACCOUNT_FOR_CONTACTS)
+                == PackageManager.PERMISSION_GRANTED) {
+            mDefaultAccount = accountWithDataSet;
+            setDefaultAccountToCp2(accountWithDataSet);
+        }
+    }
+
+    private void setDefaultAccountToCp2(AccountWithDataSet accountWithDataSet) {
+        StrictMode.ThreadPolicy oldPolicy = StrictMode.getThreadPolicy();
+        StrictMode.setThreadPolicy(
+                new StrictMode.ThreadPolicy.Builder(oldPolicy)
+                        .permitDiskWrites()
+                        .permitDiskReads()
+                        .build());
+        try {
+            ContactsContract.Settings.setDefaultAccount(mContext.getContentResolver(),
+                    accountWithDataSet == null ? null : accountWithDataSet.getAccountOrNull());
+        } finally {
+            StrictMode.setThreadPolicy(oldPolicy);
+        }
     }
 
     public boolean isDefaultAccountSet() {
-        return mDefaultAccount != null || mPreferences.contains(mDefaultAccountKey);
+        return mDefaultAccount != null;
     }
 
     /**
@@ -385,6 +434,15 @@ public class ContactsPreferences implements OnSharedPreferenceChangeListener {
             final SharedPreferences previousPrefs =
                     PreferenceManager.getDefaultSharedPreferences(mContext);
             final String defaultAccount = previousPrefs.getString(mDefaultAccountKey, null);
+            if (!TextUtils.isEmpty(defaultAccount)) {
+                final AccountWithDataSet accountWithDataSet = AccountWithDataSet.unstringify(
+                        defaultAccount);
+                setDefaultAccount(accountWithDataSet);
+            }
+        }
+
+        if (mPreferences.contains(mDefaultAccountKey) && getDefaultAccount() == null) {
+            String defaultAccount = mPreferences.getString(mDefaultAccountKey, null);
             if (!TextUtils.isEmpty(defaultAccount)) {
                 final AccountWithDataSet accountWithDataSet = AccountWithDataSet.unstringify(
                         defaultAccount);
