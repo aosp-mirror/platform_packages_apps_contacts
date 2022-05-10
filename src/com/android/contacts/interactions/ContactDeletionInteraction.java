@@ -28,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Loader;
 import android.database.Cursor;
+import android.icu.text.MessageFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
@@ -46,7 +47,10 @@ import com.android.contacts.util.ContactDisplayUtils;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * An interaction invoked to delete a contact.
@@ -353,8 +357,12 @@ public class ContactDeletionInteraction extends Fragment
             final String name = ContactDisplayUtils.getPreferredDisplayName(mDisplayName,
                     mDisplayNameAlt, new ContactsPreferences(mContext));
             if (TextUtils.isEmpty(name)) {
-                deleteToastMessage = getResources().getQuantityString(
-                        R.plurals.contacts_deleted_toast, /* quantity */ 1);
+                MessageFormat msgFormat = new MessageFormat(
+                    getResources().getString(R.string.contacts_deleted_toast),
+                    Locale.getDefault());
+                Map<String, Object> arguments = new HashMap<>();
+                arguments.put("count", 1);
+                deleteToastMessage = msgFormat.format(arguments);
             } else {
                 deleteToastMessage = getResources().getString(
                         R.string.contacts_deleted_one_named_toast, name);

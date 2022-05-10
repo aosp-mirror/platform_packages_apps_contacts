@@ -31,6 +31,7 @@ import android.database.Cursor;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.icu.text.MessageFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -80,8 +81,10 @@ import com.android.contactsbind.FeatureHighlightHelper;
 import com.android.contactsbind.experiments.Flags;
 import com.google.common.util.concurrent.Futures;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
@@ -1123,8 +1126,12 @@ public class DefaultContactBrowseListFragment extends ContactBrowseListFragment
         intent.setType(ContactsContract.Contacts.CONTENT_VCARD_TYPE);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         try {
-            startActivityForResult(Intent.createChooser(intent, getResources().getQuantityString(
-                    R.plurals.title_share_via,/* quantity */ getSelectedContactIds().size()))
+            MessageFormat msgFormat = new MessageFormat(
+                getResources().getString(R.string.title_share_via),
+                Locale.getDefault());
+            Map<String, Object> arguments = new HashMap<>();
+            arguments.put("count", getSelectedContactIds().size());
+            startActivityForResult(Intent.createChooser(intent, msgFormat.format(arguments))
                     , ACTIVITY_REQUEST_CODE_SHARE);
         } catch (final ActivityNotFoundException ex) {
             Toast.makeText(getContext(), R.string.share_error, Toast.LENGTH_SHORT).show();
