@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> ને કાઢી નાખ્યાં"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> અને <xliff:g id="NAME_1">%2$s</xliff:g> ને કાઢી નાખ્યાં"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… ને કાઢી નાખ્યાં"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">સંપર્કો કાઢી નાખ્યા</item>
-      <item quantity="other">સંપર્કો કાઢી નાખ્યા</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> સંપર્ક</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> સંપર્ક</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> સંપર્ક · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> સંપર્ક · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{સંપર્ક ડિલીટ કર્યો}one{સંપર્ક ડિલીટ કર્યો}other{સંપર્કો ડિલીટ કર્યા}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# સંપર્ક}one{# સંપર્ક}other{# સંપર્ક}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# સંપર્ક · {account}}one{# સંપર્ક · {account}}other{# સંપર્ક · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Google થી"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> થી"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"રિંગટોન સેટ કરો"</string>
@@ -136,17 +127,14 @@
     <string name="menu_share" msgid="6343022811796001773">"શેર કરો"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"સંપર્કોમાં ઉમેરો"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"ઉમેરો"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">આના દ્વારા સંપર્કો શેર કરો</item>
-      <item quantity="other">આના દ્વારા સંપર્કો શેર કરો</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{આના દ્વારા સંપર્ક શેર કરો}one{આના દ્વારા સંપર્ક શેર કરો}other{આના દ્વારા સંપર્કો શેર કરો}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"એકાઉન્ટ પસંદ કરો"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"લેબલ બનાવો"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"લેબલનું નામ બદલો"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"લેબલનું નામ"</string>
     <string name="label_name_dialog_hint" msgid="7027635439255596191">"લેબલનું નામ"</string>
-    <string name="audio_chat" msgid="5921525823973697372">"વોઇસ ચેટ"</string>
-    <string name="video_chat" msgid="2477295971622477433">"વિડિઓ ચેટ"</string>
+    <string name="audio_chat" msgid="5921525823973697372">"વૉઇસ ચૅટ"</string>
+    <string name="video_chat" msgid="2477295971622477433">"વીડિયો ચૅટ"</string>
     <string name="account_type_format" msgid="4926968760755013450">"<xliff:g id="SOURCE">%1$s</xliff:g> સંપર્ક"</string>
     <string name="google_account_type_format" msgid="4046692740262396811">"<xliff:g id="SOURCE">%1$s</xliff:g> એકાઉન્ટ"</string>
     <string name="take_photo" msgid="820071555236547516">"ફોટો લો"</string>
@@ -161,8 +149,8 @@
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"બંધ કરો"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"પસંદ કરેલ સંપર્કોને સંપાદિત કરવા પર સ્વિચ કરીએ? તમે અત્યાર સુધીમાં દાખલ કરેલી માહિતીને કૉપિ કરાશે."</string>
     <string name="contact_directory_description" msgid="1773630547110881835">"નિર્દેશિકા <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="activity_title_settings" msgid="4004290638426915162">"સેટિંગ્સ"</string>
-    <string name="menu_settings" msgid="3524924670246877187">"સેટિંગ્સ"</string>
+    <string name="activity_title_settings" msgid="4004290638426915162">"સેટિંગ"</string>
+    <string name="menu_settings" msgid="3524924670246877187">"સેટિંગ"</string>
     <string name="menu_help" msgid="287801702920372292">"સહાય અને પ્રતિસાદ"</string>
     <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
@@ -347,15 +335,15 @@
     <string name="map_work" msgid="8296916987749726461">"કાર્યાલયનું સરનામું જુઓ"</string>
     <string name="map_other" msgid="4009931029322619674">"સરનામું જુઓ"</string>
     <string name="map_custom" msgid="7797812861927817335">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> સરનામું જુઓ"</string>
-    <string name="chat_aim" msgid="2044861410748519265">"AIM નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_msn" msgid="4733206223124506247">"Windows Live નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_yahoo" msgid="3807571878191282528">"Yahoo નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_skype" msgid="5130564346825936093">"Skype નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_qq" msgid="2971335421266098608">"QQ નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_icq" msgid="4289041376069626281">"ICQ નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat_jabber" msgid="1097960594943864847">"Jabber નો ઉપયોગ કરીને ચેટ કરો"</string>
-    <string name="chat" msgid="8390862712584830532">"Chat"</string>
+    <string name="chat_aim" msgid="2044861410748519265">"AIMનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_msn" msgid="4733206223124506247">"Windows Liveનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_yahoo" msgid="3807571878191282528">"Yahooનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_skype" msgid="5130564346825936093">"Skypeનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_qq" msgid="2971335421266098608">"QQનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_gtalk" msgid="2927882858741904064">"Google Talkનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_icq" msgid="4289041376069626281">"ICQનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat_jabber" msgid="1097960594943864847">"Jabberનો ઉપયોગ કરીને ચૅટ કરો"</string>
+    <string name="chat" msgid="8390862712584830532">"ચૅટ કરો"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"કાઢી નાખો"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"વધુ નામ ફીલ્ડ્સ બતાવો"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"નામ ફીલ્ડ્સ સંકુચિત કરો"</string>
@@ -373,21 +361,15 @@
     <string name="display_all_contacts" msgid="1281067776483704512">"તમામ સંપર્કો"</string>
     <string name="menu_sync_remove" msgid="7523335046562082188">"સમન્વયન જૂથ દૂર કરો"</string>
     <string name="dialog_sync_add" msgid="8012361965908515959">"સમન્વયન જૂથ ઉમેરો"</string>
-    <string name="display_more_groups" msgid="8398232980355188133">"વધુ જૂથો…"</string>
+    <string name="display_more_groups" msgid="8398232980355188133">"વધુ ગ્રૂપ…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"સમન્વયનમાંથી \"<xliff:g id="GROUP">%s</xliff:g>\" ને દૂર કરવું, સમન્વયનમાંથી કોઇપણ જૂથ વિનાના સંપર્કોને પણ દૂર કરશે."</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"પ્રદર્શન વિકલ્પો સાચવી રહ્યું છે…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"કસ્ટમાઇઝ કરેલ દૃશ્ય"</string>
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"આયાત કરેલ સંપર્કોને આની પર સાચવો:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM કાર્ડ"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d સંપર્ક</item>
-      <item quantity="other">%1$d સંપર્ક</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> સંપર્ક • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> સંપર્ક • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# સંપર્ક}one{# સંપર્ક}other{# સંપર્ક}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# સંપર્ક • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# સંપર્ક • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# સંપર્ક • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ફાઇલ"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"આયાત કરવા માટે કંઇ નથી"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard માંથી સંપર્કો આયાત કરીએ?"</string>
@@ -472,7 +454,7 @@
     <string name="send_and_call_button" msgid="4851257959568592699">"મોકલો અને કૉલ કરો"</string>
     <string name="call_subject_limit" msgid="5679166729627777474">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="134754147019287616">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
-    <string name="about_build_version" msgid="5870642814752351712">"બિલ્ડ સંસ્કરણ"</string>
+    <string name="about_build_version" msgid="5870642814752351712">"બિલ્ડ વર્ઝન"</string>
     <string name="about_open_source_licenses" msgid="1617836621315557445">"ઓપન સોર્સ લાઇસન્સીસ"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"ખુલ્લા સ્ત્રોતના સોફ્ટવેર માટે લાઇસન્સની વિગતો"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"પ્રાઇવસી પૉલિસી"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"સંપર્કો પસંદ કરો"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"તમારા SIM કાર્ડ પર કોઈ સંપર્કો નથી"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"સંપર્ક પહેલાંથી જ તમારી સૂચિમાં અસ્તિત્વમાં છે"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> SIM સંપર્કો આયાત કર્યાં</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> SIM સંપર્કો આયાત કર્યાં</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{સિમમાં સાચવેલો # સંપર્ક આયાત કર્યો}one{સિમમાં સાચવેલો # સંપર્ક આયાત કર્યો}other{સિમમાં સાચવેલો # સંપર્ક આયાત કર્યા}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM સંપર્કો આયાત કરવામાં નિષ્ફળ થયાં"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"SIM માંથી આયાત કરો"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"રદ કરો"</string>
