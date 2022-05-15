@@ -97,7 +97,7 @@
     <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g> Башкы экранга кошулду."</string>
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"Түзмөктө бир да сүрөт жок."</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"Байланыштын сүрөтү"</string>
-    <string name="customLabelPickerTitle" msgid="816694850254307154">"Ыңгайлаштырылган энбелгинин аталышы"</string>
+    <string name="customLabelPickerTitle" msgid="816694850254307154">"Аталышы"</string>
     <string name="removePhoto" msgid="1190099414600730001">"Сүрөттү алып салуу"</string>
     <string name="noContacts" msgid="3030512741779213810">"Байланыштар тизмеңиз бош"</string>
     <string name="emptyGroup" msgid="8598261660865081152">"Бул энбелги коюлган бир дагы байланыш жок"</string>
