@@ -65,24 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"Kontakt <xliff:g id="NAME">%1$s</xliff:g> bol odstránený"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"Kontakty <xliff:g id="NAME_0">%1$s</xliff:g> a <xliff:g id="NAME_1">%2$s</xliff:g> boli odstránené"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"Kontakty <xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… boli odstránené"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="few">Kontakty boli odstránené</item>
-      <item quantity="many">Kontakty boli odstránené</item>
-      <item quantity="other">Kontakty boli odstránené</item>
-      <item quantity="one">Kontakt bol odstránený</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="few"><xliff:g id="COUNT_1">%d</xliff:g> kontakty</item>
-      <item quantity="many"><xliff:g id="COUNT_1">%d</xliff:g> kontaktu</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontaktov</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> kontakt</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="few"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakty · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="many"><xliff:g id="COUNT_2">%1$d</xliff:g> kontaktu · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> kontaktov · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> kontakt · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{Kontakt bol odstránený}few{Kontakty boli odstránené}many{Contacts deleted}other{Kontakty boli odstránené}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# kontakt}few{# kontakty}many{# contacts}other{# kontaktov}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# kontakt · {account}}few{# kontakty · {account}}many{# contacts · {account}}other{# kontaktov · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Z Googlu"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"Z účtu <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Nastaviť tón zvonenia"</string>
@@ -142,12 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"Zdieľať"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Pridať do kontaktov"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Pridať"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="few">Zdieľať kontakty pomocou</item>
-      <item quantity="many">Zdieľať kontakty pomocou</item>
-      <item quantity="other">Zdieľať kontakty pomocou</item>
-      <item quantity="one">Zdieľať kontakt pomocou</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{Zdieľanie kontaktu cez aplikáciu}few{Zdieľanie kontaktov cez aplikáciu}many{Share contacts via}other{Zdieľanie kontaktov cez aplikáciu}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Výber účtu"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Vytvorenie štítka"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Premenovanie štítka"</string>
@@ -388,18 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Účet na ukladanie importovaných kontaktov"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"zo SIM karty"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM karty <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="few">%1$d kontakty</item>
-      <item quantity="many">%1$d kontaktu</item>
-      <item quantity="other">%1$d kontaktov</item>
-      <item quantity="one">1 kontakt</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="few"><xliff:g id="COUNT_2">^1</xliff:g> kontakty • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="many"><xliff:g id="COUNT_2">^1</xliff:g> kontaktu • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontaktov • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> kontakt • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# kontakt}few{# kontakty}many{# contacts}other{# kontaktov}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# kontakt • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}few{# kontakty • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}many{# contacts • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# kontaktov • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"z .vcf súboru"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Nič nie je k dispozícii na import"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Importovať kontakty z vizitky vCard?"</string>
@@ -502,12 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Výber kontaktov"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"Na SIM karte nie sú žiadne kontakty"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Kontakt sa už vo vašom zozname nachádza"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="few">Boli importované <xliff:g id="COUNT">%d</xliff:g> kontakty zo SIM karty</item>
-      <item quantity="many"><xliff:g id="COUNT">%d</xliff:g> SIM contacts imported</item>
-      <item quantity="other">Bolo importovaných <xliff:g id="COUNT">%d</xliff:g> kontaktov zo SIM karty</item>
-      <item quantity="one">Bol importovaný 1 kontakt zo SIM karty</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{Bol importovaný # kontakt na SIM karte}few{Boli importované # kontakty na SIM karte}many{# SIM contacts imported}other{Bolo importovaných # kontaktov na SIM karte}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Import kontaktov na SIM karte zlyhal"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Import zo SIM karty"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Zrušiť"</string>

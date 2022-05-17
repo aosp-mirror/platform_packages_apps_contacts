@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> मेटाइयो"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> र <xliff:g id="NAME_1">%2$s</xliff:g> मेटाइयो"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… मेटाइयो"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="other">सम्पर्क ठेगानाहरू मेटिए</item>
-      <item quantity="one"> सम्पर्क ठेगाना मेटियो</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> सम्पर्कहरू</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> सम्पर्क</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> सम्पर्कहरू · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> सम्पर्क · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{सम्पर्क ठेगाना मेटाइयो}other{सम्पर्क ठेगानाहरू मेटाइए}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# सम्पर्क ठेगाना}other{# वटा सम्पर्क ठेगाना}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# सम्पर्क ठेगाना · {account}}other{# वटा सम्पर्क ठेगाना · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Google बाट"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> बाट"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"रिङ्टोन मिलाउनुहोस्"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"सेयर गर्नुहोस्"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"सम्पर्कहरूमा थप्नुहोस्"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"थप्नुहोस्"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">यस मार्फत सम्पर्कहरू ‍सेयर गर्नुहोस्</item>
-      <item quantity="one">यस मार्फत सम्पर्क ‍सेयर गर्नुहोस्</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{यसमार्फत सम्पर्क ठेगाना सेयर गर्नुहोस्:}other{यसमार्फत सम्पर्क ठेगानाहरू सेयर गर्नुहोस्:}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"खाता छान्नुहोस्"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"लेबल सिर्जना गर्नुहोस्"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"लेबलको नाम बदल्नुहोस्"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"आयातीत सम्पर्कहरू निम्नमा सेभ गर्नुहोस्:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM कार्ड"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="other">%1$d सम्पर्कहरू</item>
-      <item quantity="one">१ सम्पर्क</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> सम्पर्कहरू • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> सम्पर्क • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# सम्पर्क ठेगाना}other{# वटा सम्पर्क ठेगाना}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# सम्पर्क ठेगाना • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}other{# वटा सम्पर्क ठेगाना • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf फाइल"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"आयात गर्न केही छैन"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard बाट सम्पर्कहरू पुनर्स्थापना गर्नुहोस्?"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"सम्पर्कहरू चयन गर्नुहोस्"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"तपाईँको SIM कार्डमा कुनै पनि सम्पर्कहरू छैनन्।"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"तपाईंको सूचीमा सम्पर्क पहिले नै विद्यमान छ"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="other">SIM को <xliff:g id="COUNT">%d</xliff:g> सम्पर्कहरू आयात गरिए</item>
-      <item quantity="one">SIM को १ सम्पर्क आयात गरियो</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{SIM मा भएको # सम्पर्क ठेगाना इम्पोर्ट गरियो}other{SIM मा भएका # वटा सम्पर्क ठेगाना इम्पोर्ट गरिए}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM को सम्पर्कहरू आयात गर्न सकिएन"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"SIM बाट आयात गर्नुहोस्"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"रद्द गर्नुहोस्"</string>
@@ -502,7 +481,7 @@
     <string name="account_sync_off" msgid="6187683798342006021">"खाता सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"स्वत: सिंक सेवा सक्रिय गर्ने हो?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"तपाईंले Google सम्पर्कहरूमा मात्र नभई, सबै एप र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा अद्यावधिक हुने छन्।"</string>
-    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"खोल्नुहोस्"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"अन गर्नुहोस्"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"जडान छैन"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"थप देखाउनुहोस्"</string>
