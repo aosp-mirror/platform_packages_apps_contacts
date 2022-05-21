@@ -273,7 +273,7 @@
     <string name="sms_assistant" msgid="245045451580096547">"Bidali testu-mezua <xliff:g id="ASSISTANT">%s</xliff:g> zenbakira"</string>
     <string name="sms_mms" msgid="7395133080765833725">"Bidali testu-mezua MMS zenbakira"</string>
     <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (bidali SMS mezua)"</string>
-    <string name="description_video_call" msgid="4956825008907720371">"Egin bideo-deia"</string>
+    <string name="description_video_call" msgid="4956825008907720371">"Egin bideodeia"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"Sarri erabilitako kontaktuak garbitu?"</string>
     <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"Kontaktuak eta Telefonoa aplikazioetako maiz erabilitako kontaktuen zerrenda garbituko duzu. Beraz, berriro ikasi beharko dituzte helbideen hobespenak posta elektronikoaren aplikazioek."</string>
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Sarri erabilitako kontaktuak garbitzen…"</string>
@@ -463,7 +463,7 @@
     <string name="url_open_error_toast" msgid="4885855620824048385">"Ezin izan da ireki URLa."</string>
     <string name="account_filter_view_checked" msgid="4740544238806346376">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> hautatu da"</string>
     <string name="account_filter_view_not_checked" msgid="5782705545786455847">"Ez da hautatu <xliff:g id="ACCOUNT_INFO">%s</xliff:g>"</string>
-    <string name="description_search_video_call" msgid="1768558141309418755">"Egin bideo-deia"</string>
+    <string name="description_search_video_call" msgid="1768558141309418755">"Egin bideodeia"</string>
     <string name="description_delete_contact" msgid="8110643050235441400">"Ezabatu"</string>
     <string name="description_no_name_header" msgid="8596201864512339003">"Etenpuntuak"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Lasterbidea desgaitu egin da"</string>
