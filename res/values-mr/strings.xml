@@ -460,7 +460,7 @@
     <string name="contactsFavoritesLabel" msgid="8339645684721732714">"आवडते"</string>
     <string name="menu_import" msgid="2206768098740726906">"इंपोर्ट करा"</string>
     <string name="menu_export" msgid="1217402092617629429">"एक्सपोर्ट"</string>
-    <string name="menu_blocked_numbers" msgid="7064680515202657609">"अवरोधित केलेले नंबर"</string>
+    <string name="menu_blocked_numbers" msgid="7064680515202657609">"ब्लॉक केलेले नंबर"</string>
     <string name="contact_status_update_attribution" msgid="5051874518046969847">"<xliff:g id="SOURCE">%1$s</xliff:g> द्वारे"</string>
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="SOURCE">%2$s</xliff:g> द्वारे <xliff:g id="DATE">%1$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="683765774264585732">"शोध थांबवा"</string>
