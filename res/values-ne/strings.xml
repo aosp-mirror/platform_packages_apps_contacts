@@ -38,7 +38,7 @@
     <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"सर्टकट सिर्जना गर्नुहोस्"</string>
     <string name="menu_splitAggregate" msgid="2062290275288905833">"अनलिंक"</string>
     <string name="menu_editGroup" msgid="8706562583754054622">"सम्पर्कहरू हटाउनुहोस्"</string>
-    <string name="menu_renameGroup" msgid="2685886609399776475">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
+    <string name="menu_renameGroup" msgid="2685886609399776475">"लेबलको नाम बदल्नुहोस्"</string>
     <string name="menu_deleteGroup" msgid="1180215594530228294">"लेबल मेटाउनुहोस"</string>
     <string name="menu_addToGroup" msgid="5034813446697655310">"सम्पर्क थप्नुहोस्"</string>
     <string name="menu_selectForGroup" msgid="6386553337569514850">"सम्पर्कहरू चयन गर्नुहोस्"</string>
@@ -142,7 +142,7 @@
     </plurals>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"खाता छान्नुहोस्"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"लेबल सिर्जना गर्नुहोस्"</string>
-    <string name="group_name_dialog_update_title" msgid="3955919589366745101">"लेबलको पुन:नामाकरण गर्नुहोस्"</string>
+    <string name="group_name_dialog_update_title" msgid="3955919589366745101">"लेबलको नाम बदल्नुहोस्"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"लेबलको नाम"</string>
     <string name="label_name_dialog_hint" msgid="7027635439255596191">"लेबलको नाम"</string>
     <string name="audio_chat" msgid="5921525823973697372">"भ्वाइस च्याट"</string>
@@ -502,7 +502,7 @@
     <string name="account_sync_off" msgid="6187683798342006021">"खाता सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"स्वत: सिंक सेवा सक्रिय गर्ने हो?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"तपाईंले Google सम्पर्कहरूमा मात्र नभई, सबै एप र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा अद्यावधिक हुने छन्।"</string>
-    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"खोल्नुहोस्"</string>
+    <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"अन गर्नुहोस्"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"जडान छैन"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"थप देखाउनुहोस्"</string>
