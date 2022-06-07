@@ -345,7 +345,7 @@
     <string name="postal_country" msgid="6642804283917549861">"País"</string>
     <string name="map_home" msgid="2169053372466501148">"Ver endereço residencial"</string>
     <string name="map_work" msgid="8296916987749726461">"Ver endereço do trabalho"</string>
-    <string name="map_other" msgid="4009931029322619674">"Visualizar endereço"</string>
+    <string name="map_other" msgid="4009931029322619674">"Ver endereço"</string>
     <string name="map_custom" msgid="7797812861927817335">"Ver endereço de <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2044861410748519265">"Bater papo usando o AIM"</string>
     <string name="chat_msn" msgid="4733206223124506247">"Bater papo usando o Windows Live"</string>
@@ -431,7 +431,7 @@
     <string name="caching_vcard_title" msgid="6333926052524937628">"Armazenando em cache"</string>
     <string name="progress_notifier_message" msgid="8522060892889599746">"Importando <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="3096479544575798192">"Exportar p/ arquivo .vcf"</string>
-    <string name="display_options_sort_list_by" msgid="4333658089057400431">"Classificar por"</string>
+    <string name="display_options_sort_list_by" msgid="4333658089057400431">"Ordenar por"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"Nome fonético"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Mostrar sempre"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"Ocultar se vazio"</string>
