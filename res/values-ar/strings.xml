@@ -179,7 +179,7 @@
     <string name="contact_directory_description" msgid="1773630547110881835">"الدليل <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="4004290638426915162">"الإعدادات"</string>
     <string name="menu_settings" msgid="3524924670246877187">"الإعدادات"</string>
-    <string name="menu_help" msgid="287801702920372292">"المساعدة والتعليقات"</string>
+    <string name="menu_help" msgid="287801702920372292">"المساعدة والملاحظات"</string>
     <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"رقم الهاتف"</string>
