@@ -18,7 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="8908212014470937609">"ଯୋଗାଯୋଗ"</string>
     <string name="contactsList" msgid="4456188358262700898">"ଯୋଗାଯୋଗ"</string>
-    <string name="shortcut_add_contact" msgid="7949342235528657981">"ଯୋଗାଯୋଗଙ୍କୁ ଯୋଡ଼ନ୍ତୁ"</string>
+    <string name="shortcut_add_contact" msgid="7949342235528657981">"ଯୋଗାଯୋଗକୁ ଯୋଗ କରନ୍ତୁ"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"ଯୋଗାଯୋଗ"</string>
     <string name="shortcutDialContact" msgid="155367248069127153">"ଡାଇରେକ୍ଟ କଲ୍ କରନ୍ତୁ"</string>
     <string name="shortcutMessageContact" msgid="9123517151981679277">"ଡାଇରେକ୍ଟ ମେସେଜ୍‍ ପଠାନ୍ତୁ"</string>
