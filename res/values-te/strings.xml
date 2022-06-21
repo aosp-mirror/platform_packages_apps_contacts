@@ -359,8 +359,8 @@
     <string name="list_filter_single" msgid="6003845379327432129">"కాంటాక్ట్"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"అన్ని ఇతర కాంటాక్ట్‌లు"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"అన్ని కాంటాక్ట్‌లు"</string>
-    <string name="menu_sync_remove" msgid="7523335046562082188">"సింక్‌ సమూహాన్ని తీసివేయి"</string>
-    <string name="dialog_sync_add" msgid="8012361965908515959">"సింక్‌ సమూహాన్ని జోడించండి"</string>
+    <string name="menu_sync_remove" msgid="7523335046562082188">"సింక్‌ గ్రూప్‌ను తీసివేయి"</string>
+    <string name="dialog_sync_add" msgid="8012361965908515959">"సింక్‌ గ్రూప్‌ను జోడించండి"</string>
     <string name="display_more_groups" msgid="8398232980355188133">"మరిన్ని గ్రూప్‌లు…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"సింక్‌ నుండి \"<xliff:g id="GROUP">%s</xliff:g>\"ని తీసివేయడం వలన సింక్‌ నుండి గ్రూప్ చేయబడని కాంటాక్ట్‌లు కూడా తీసివేయబడతాయి."</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ప్రదర్శన ఎంపికలను సేవ్ చేస్తోంది…"</string>
@@ -457,7 +457,7 @@
     <string name="about_build_version" msgid="5870642814752351712">"బిల్డ్ వెర్షన్‌"</string>
     <string name="about_open_source_licenses" msgid="1617836621315557445">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"ఓపెన్ సోర్స్ సాఫ్ట్‌వేర్ యొక్క లైసెన్స్ వివరాలు"</string>
-    <string name="about_privacy_policy" msgid="4581488375200402678">"గోప్యతా విధానం"</string>
+    <string name="about_privacy_policy" msgid="4581488375200402678">"గోప్యతా పాలసీ"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"సేవా నిబంధనలు"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"urlని తెరవడంలో విఫలమైంది."</string>
