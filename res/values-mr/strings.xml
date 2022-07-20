@@ -53,7 +53,7 @@
     <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"सेव्ह करा आणि दुवा जोडा"</string>
     <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"दुवा साधत आहे"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"दुवा रद्द करत आहे"</string>
-    <string name="menu_joinAggregate" msgid="3116395302755287038">"दुवा साधा"</string>
+    <string name="menu_joinAggregate" msgid="3116395302755287038">"लिंक करा"</string>
     <string name="menu_linkedContacts" msgid="6363718333551613063">"दुवा जोडलेले संपर्क"</string>
     <string name="menu_save" msgid="7204524700499687371">"सेव्ह करा"</string>
     <string name="titleJoinContactDataWith" msgid="7342386037654890242">"संपर्कांचा दुवा साधा"</string>
