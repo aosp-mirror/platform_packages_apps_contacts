@@ -104,7 +104,6 @@ import com.android.contacts.ContactSaveService;
 import com.android.contacts.ContactsActivity;
 import com.android.contacts.ContactsUtils;
 import com.android.contacts.DynamicShortcuts;
-import com.android.contacts.NfcHandler;
 import com.android.contacts.R;
 import com.android.contacts.ShortcutIntentBuilder;
 import com.android.contacts.ShortcutIntentBuilder.OnShortcutIntentCreatedListener;
@@ -990,7 +989,6 @@ public class QuickContactActivity extends ContactsActivity {
             }
         };
         mEntriesAndActionsTask.execute();
-        NfcHandler.register(this, mContactData.getLookupUri());
     }
 
     private void bindDataToCards(Cp2DataCardModel cp2DataCardModel) {
