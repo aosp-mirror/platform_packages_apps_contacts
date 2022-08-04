@@ -115,7 +115,7 @@
     <string name="groupDeletedToast" msgid="7774363940327847515">"లేబుల్ తొలగించబడింది"</string>
     <string name="groupCreatedToast" msgid="1685148819468403239">"లేబుల్ క్రియేట్ చేయబడింది"</string>
     <string name="groupCreateFailedToast" msgid="1836425392831964024">"లేబుల్‌ను క్రియేట్ చేయడం సాధ్యపడదు"</string>
-    <string name="groupUpdatedToast" msgid="3381549467345607379">"లేబుల్ నవీకరించబడింది"</string>
+    <string name="groupUpdatedToast" msgid="3381549467345607379">"లేబుల్ అప్‌డేట్ చేయబడింది"</string>
     <string name="groupMembersRemovedToast" msgid="8019566066934628011">"లేబుల్ నుండి తీసివేయబడ్డాయి"</string>
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"లేబుల్‌కు జోడించబడింది/జోడించబడ్డాయి"</string>
     <string name="groupSavedErrorToast" msgid="8456912862816145318">"లేబుల్ మార్పులను సేవ్ చేయలేకపోయింది"</string>
