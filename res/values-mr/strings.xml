@@ -36,7 +36,7 @@
     <string name="menu_deleteContact" msgid="15161764025276217">"हटवा"</string>
     <string name="menu_change_photo" msgid="4911246106907208055">"फोटो बदला"</string>
     <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"शॉर्टकट तयार करा"</string>
-    <string name="menu_splitAggregate" msgid="2062290275288905833">"दुवा रद्द करा"</string>
+    <string name="menu_splitAggregate" msgid="2062290275288905833">"अनलिंक करा"</string>
     <string name="menu_editGroup" msgid="8706562583754054622">"संपर्क काढा"</string>
     <string name="menu_renameGroup" msgid="2685886609399776475">"लेबल पुनर्नामित करा"</string>
     <string name="menu_deleteGroup" msgid="1180215594530228294">"लेबल हटवा"</string>
@@ -45,23 +45,23 @@
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"संपर्क जोडा"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"लेबलवरून काढा"</string>
     <string name="menu_new_group_action_bar" msgid="1670312283925872483">"लेबल तयार करा"</string>
-    <string name="splitConfirmation" msgid="4750158900636307469">"एकाधिक संपर्कांमध्‍ये या संपर्काचा दुवा रद्द करायचा?"</string>
-    <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"दुवा रद्द करा"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"तुम्ही आधीपासून केलेले बदल तुम्ही सेव्ह करू आणि एकाधिक संपर्कांमध्‍ये या संपर्काचा दुवा रद्द करू इच्छिता?"</string>
-    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"सेव्ह करा आणि दुवा रद्द करा"</string>
-    <string name="joinConfirmation" msgid="1245184431169363397">"तुम्ही आधीपासून केलेले बदल तुम्ही सेव्ह करू आणि निवडलेल्या संपर्काशी दुवा जोडू इच्छिता?"</string>
-    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"सेव्ह करा आणि दुवा जोडा"</string>
-    <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"दुवा साधत आहे"</string>
-    <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"दुवा रद्द करत आहे"</string>
-    <string name="menu_joinAggregate" msgid="3116395302755287038">"दुवा साधा"</string>
-    <string name="menu_linkedContacts" msgid="6363718333551613063">"दुवा जोडलेले संपर्क"</string>
+    <string name="splitConfirmation" msgid="4750158900636307469">"एकाधिक संपर्कांमध्‍ये हा संपर्क अनलिंक करायचा?"</string>
+    <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"अनलिंक करा"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"तुम्ही आधीपासून केलेले बदल सेव्ह करून एकाधिक संपर्कांशी हा संपर्क लिंक करू इच्छिता?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"सेव्ह करा आणि अनलिंक करा"</string>
+    <string name="joinConfirmation" msgid="1245184431169363397">"तुम्ही आधीपासून केलेले बदल सेव्ह करून निवडलेले संपर्क लिंक करू इच्छिता?"</string>
+    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"सेव्ह करा आणि लिंक करा"</string>
+    <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"लिंक करत आहे"</string>
+    <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"अनलिंक करत आहे"</string>
+    <string name="menu_joinAggregate" msgid="3116395302755287038">"लिंक करा"</string>
+    <string name="menu_linkedContacts" msgid="6363718333551613063">"लिंक केलेले संपर्क"</string>
     <string name="menu_save" msgid="7204524700499687371">"सेव्ह करा"</string>
-    <string name="titleJoinContactDataWith" msgid="7342386037654890242">"संपर्कांचा दुवा साधा"</string>
-    <string name="blurbJoinContactDataWith" msgid="132105056919797709">"तुम्ही <xliff:g id="NAME">%s</xliff:g> सह ज्या संपर्काचा दुवा जोडू इच्छिता तो निवडा:"</string>
+    <string name="titleJoinContactDataWith" msgid="7342386037654890242">"संपर्क लिंक करा"</string>
+    <string name="blurbJoinContactDataWith" msgid="132105056919797709">"तुम्ही <xliff:g id="NAME">%s</xliff:g> सह जे संपर्क लिंक करू इच्छिता तो निवडा:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="8347769365870796983">"सूचित संपर्क"</string>
     <string name="separatorJoinAggregateAll" msgid="5378346138684490784">"सर्व संपर्क"</string>
-    <string name="contactsJoinedNamedMessage" msgid="8732933595873458166">"<xliff:g id="NAME">%s</xliff:g> चा दुवा जोडला"</string>
-    <string name="contactsJoinedMessage" msgid="7605856897709458707">"संपर्कांचा दुवा साधला"</string>
+    <string name="contactsJoinedNamedMessage" msgid="8732933595873458166">"<xliff:g id="NAME">%s</xliff:g> लिंक केले"</string>
+    <string name="contactsJoinedMessage" msgid="7605856897709458707">"संपर्क लिंक केले"</string>
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> हटविले"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> आणि <xliff:g id="NAME_1">%2$s</xliff:g> हटविले"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... हटविले"</string>
@@ -96,10 +96,10 @@
     <string name="emptyMainList" msgid="3266182207039677163">"तुमची संपर्क सूची रिक्त आहे"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> सेव्ह केले"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"संपर्क सेव्ह केला"</string>
-    <string name="contactUnlinkedToast" msgid="6791720274141804377">"संपर्कांचा दुवा रद्द केला"</string>
+    <string name="contactUnlinkedToast" msgid="6791720274141804377">"संपर्क अनलिंक केले"</string>
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"संपर्क बदल सेव्ह करणे शक्य झाले नाही"</string>
-    <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"संपर्काचा दुवा रद्द करणे शक्य झाले नाही"</string>
-    <string name="contactJoinErrorToast" msgid="1222155997933362787">"संपर्काचा दुवा जोडणे शक्य झाले नाही"</string>
+    <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"संपर्क अनलिंक करता आले नाहीत"</string>
+    <string name="contactJoinErrorToast" msgid="1222155997933362787">"संपर्क लिंक करता आले नाहीत"</string>
     <string name="contactGenericErrorToast" msgid="5689457475864876100">"संपर्क सेव्ह करताना एरर"</string>
     <string name="contactPhotoSavedErrorToast" msgid="8568460180541397272">"संपर्क फोटो बदल सेव्ह करणे शक्य झाले नाही"</string>
     <string name="groupLoadErrorToast" msgid="4141488223976370583">"लेबल लोड करण्यात अयशस्वी झाले"</string>
@@ -162,7 +162,7 @@
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"इंपोर्ट करा"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"नवीन तयार करा…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" लेबल हटवायचे? (संपर्क आपणहून हटविले जाणार नाहीत.)"</string>
-    <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"दुसर्‍यासह दुवा जोडण्‍याआधी संपर्क नाव टाइप करा."</string>
+    <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"दुसर्‍यासह लिंक करण्यापूर्वी संपर्क नाव टाइप करा."</string>
     <string name="copy_text" msgid="6835250673373028909">"क्लिपबोर्डवर कॉपी करा"</string>
     <string name="set_default" msgid="3704074175618702225">"डीफॉल्ट म्हणून सेट करा"</string>
     <string name="clear_default" msgid="2055883863621491533">"डीफॉल्ट साफ करा"</string>
@@ -182,9 +182,9 @@
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"संपर्क संपादित करा"</string>
     <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"केवळ दर्शनीय"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"संपादित करण्यासाठी संपर्क निवडा"</string>
-    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"दुवा साधलेले संपर्क"</string>
+    <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"लिंक केलेले संपर्क"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"जोडा"</string>
-    <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"दुवा रद्द करा"</string>
+    <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"अनलिंक करा"</string>
     <string name="add_account" msgid="3071396624500839020">"खाते जोडा"</string>
     <string name="add_new_account" msgid="573368229646104110">"नवीन खाते जोडा"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"डेटाबेस फाइल एक्सपोर्ट करा"</string>
@@ -212,11 +212,11 @@
     <string name="editor_failed_to_load" msgid="2328074829787373644">"संपादक उघडण्यात अयशस्वी."</string>
     <string name="editor_account_selector_title" msgid="3190515989740696043">"यावर सेव्ह करत आहे"</string>
     <string name="editor_account_selector_read_only_title" msgid="4870485850053962114">"<xliff:g id="ACCOUNT">%s</xliff:g> वरील संपर्क माहिती संपादनयोग्य नाही"</string>
-    <string name="quickcontact_suggestion_link_button" msgid="3485212664301802371">"संपर्कांचा दुवा साधा"</string>
+    <string name="quickcontact_suggestion_link_button" msgid="3485212664301802371">"संपर्क लिंक करा"</string>
     <string name="quickcontact_suggestion_cancel_button" msgid="8851156850681440055">"रद्द करा"</string>
     <string name="suggestion_card_this_contact_title" msgid="8851257599121989253">"हा संपर्क"</string>
     <string name="suggestion_card_duplicates_title" msgid="2623890874933696454">"संभाव्य डुप्लिकेट"</string>
-    <string name="suggestion_card_help_message" msgid="8367379652312412794">"हे संपर्क म्हणजे कदाचित एकच व्यक्ती असू शकते. तुम्ही त्या सर्वांना एकल दुवा म्हणून एकत्र जोडू शकता."</string>
+    <string name="suggestion_card_help_message" msgid="8367379652312412794">"हे संपर्क म्हणजे कदाचित एकच व्यक्ती असू शकते. तुम्ही त्या सर्वांना एकच लिंक म्हणून एकत्र जोडू शकता."</string>
     <string name="editor_delete_view_description" msgid="4549610631864383156">"<xliff:g id="DATA_TYPE">%1$s </xliff:g><xliff:g id="DATA_KIND">%2$s</xliff:g> हटवा"</string>
     <string name="editor_delete_view_description_short" msgid="6471032197042328181">"<xliff:g id="DATA_KIND">%s</xliff:g> हटवा"</string>
     <string name="menu_assistant" msgid="3980364519724237934">"सूचना"</string>
