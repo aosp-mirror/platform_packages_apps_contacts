@@ -29,7 +29,7 @@
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"కొత్త కాంటాక్ట్‌ క్రియేట్ చేయి"</string>
     <string name="searchHint" msgid="1487501532610025473">"కాంటాక్ట్‌లను సెర్చ్ చేయండి"</string>
     <string name="menu_addStar" msgid="4903812703386825130">"ఇష్టమైనవాటికి జోడించు"</string>
-    <string name="menu_removeStar" msgid="3707373931808303701">"ఇష్టమైనవాటి నుండి తీసివేయి"</string>
+    <string name="menu_removeStar" msgid="3707373931808303701">"ఇష్టమైనవాటి నుండి తీసివేయండి"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"ఇష్టమైనవి నుండి తీసివేయబడింది"</string>
     <string name="description_action_menu_add_star" msgid="7316521132809388851">"ఇష్టమైనవికి జోడించబడింది"</string>
     <string name="menu_editContact" msgid="5039663761025630208">"ఎడిట్"</string>
@@ -43,7 +43,7 @@
     <string name="menu_addToGroup" msgid="5034813446697655310">"కాంటాక్ట్‌ను జోడించండి"</string>
     <string name="menu_selectForGroup" msgid="6386553337569514850">"కాంటాక్ట్‌లను ఎంచుకోండి"</string>
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"కాంటాక్ట్‌లను జోడించండి"</string>
-    <string name="menu_removeFromGroup" msgid="8753799091967887958">"లేబుల్ నుండి తీసివేయి"</string>
+    <string name="menu_removeFromGroup" msgid="8753799091967887958">"లేబుల్ నుండి తీసివేయండి"</string>
     <string name="menu_new_group_action_bar" msgid="1670312283925872483">"లేబుల్‌ను క్రియేట్ చేయండి"</string>
     <string name="splitConfirmation" msgid="4750158900636307469">"ఈ కాంటాక్ట్‌ను పలు కాంటాక్ట్‌లుగా అన్‌లింక్ చేయాలా?"</string>
     <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"వేరు చేయి"</string>
@@ -89,7 +89,7 @@
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"పరికరంలో చిత్రాలు ఏవీ అందుబాటులో లేవు."</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"కాంటాక్ట్ ఫోటో"</string>
     <string name="customLabelPickerTitle" msgid="816694850254307154">"అనుకూల లేబుల్ పేరు"</string>
-    <string name="removePhoto" msgid="1190099414600730001">"ఫోటోను తీసివేయి"</string>
+    <string name="removePhoto" msgid="1190099414600730001">"ఫోటోను తీసివేయండి"</string>
     <string name="noContacts" msgid="3030512741779213810">"మీ కాంటాక్ట్‌ల లిస్ట్‌ ఖాళీగా ఉంది"</string>
     <string name="emptyGroup" msgid="8598261660865081152">"ఈ లేబుల్‌తో కాంటాక్ట్‌లు ఏవీ లేవు"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"ఈ ఖాతాలో కాంటాక్ట్‌లు ఏవీ లేవు"</string>
@@ -106,7 +106,7 @@
     <string name="groupDeletedToast" msgid="7774363940327847515">"లేబుల్ తొలగించబడింది"</string>
     <string name="groupCreatedToast" msgid="1685148819468403239">"లేబుల్ క్రియేట్ చేయబడింది"</string>
     <string name="groupCreateFailedToast" msgid="1836425392831964024">"లేబుల్‌ను క్రియేట్ చేయడం సాధ్యపడదు"</string>
-    <string name="groupUpdatedToast" msgid="3381549467345607379">"లేబుల్ నవీకరించబడింది"</string>
+    <string name="groupUpdatedToast" msgid="3381549467345607379">"లేబుల్ అప్‌డేట్ చేయబడింది"</string>
     <string name="groupMembersRemovedToast" msgid="8019566066934628011">"లేబుల్ నుండి తీసివేయబడ్డాయి"</string>
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"లేబుల్‌కు జోడించబడింది/జోడించబడ్డాయి"</string>
     <string name="groupSavedErrorToast" msgid="8456912862816145318">"లేబుల్ మార్పులను సేవ్ చేయలేకపోయింది"</string>
@@ -159,7 +159,7 @@
     <string name="non_phone_close" msgid="2792373584950696532">"మూసివేయి"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"సంవత్సరాన్ని చేర్చు"</string>
     <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"ఖాతాను జోడించు"</string>
-    <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"దిగుమతి చేయి"</string>
+    <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"దిగుమతి చేయండి"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"కొత్తది క్రియేట్ చేయండి…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" లేబుల్‌ని తొలగించాలా? (కాంటాక్ట్‌లు వాటంతట అవే తొలగించబడవు.)"</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"మరొకదానితో లింక్ చేయడానికి ముందు కాంటాక్ట్ పేరు టైప్ చేయండి."</string>
@@ -359,7 +359,7 @@
     <string name="list_filter_single" msgid="6003845379327432129">"కాంటాక్ట్"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"అన్ని ఇతర కాంటాక్ట్‌లు"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"అన్ని కాంటాక్ట్‌లు"</string>
-    <string name="menu_sync_remove" msgid="7523335046562082188">"సింక్‌ గ్రూప్‌ను తీసివేయి"</string>
+    <string name="menu_sync_remove" msgid="7523335046562082188">"సింక్‌ గ్రూప్‌ను తీసివేయండి"</string>
     <string name="dialog_sync_add" msgid="8012361965908515959">"సింక్‌ గ్రూప్‌ను జోడించండి"</string>
     <string name="display_more_groups" msgid="8398232980355188133">"మరిన్ని గ్రూప్‌లు…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"సింక్‌ నుండి \"<xliff:g id="GROUP">%s</xliff:g>\"ని తీసివేయడం వలన సింక్‌ నుండి గ్రూప్ చేయబడని కాంటాక్ట్‌లు కూడా తీసివేయబడతాయి."</string>
@@ -436,11 +436,11 @@
     <string name="no_contact_to_share" msgid="6285287228557175749">"షేర్ చేయడానికి కాంటాక్ట్‌లు ఏవీ లేవు."</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"డిస్‌ప్లే చేయాల్సిన కాంటాక్ట్‌లు"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"డిస్‌ప్లే చేయాల్సిన కాంటాక్ట్‌లు"</string>
-    <string name="custom_list_filter" msgid="2544327670202891979">"అనుకూలీకరించిన వీక్షణ"</string>
+    <string name="custom_list_filter" msgid="2544327670202891979">"అనుకూలంగా మార్చిన వీక్షణ"</string>
     <string name="menu_custom_filter_save" msgid="2412959737200856930">"సేవ్ చేయి"</string>
     <string name="hint_findContacts" msgid="5554298639062659655">"కాంటాక్ట్‌లను సెర్చ్ చేయండి"</string>
     <string name="contactsFavoritesLabel" msgid="8339645684721732714">"ఇష్టమైనవి"</string>
-    <string name="menu_import" msgid="2206768098740726906">"దిగుమతి చేయి"</string>
+    <string name="menu_import" msgid="2206768098740726906">"దిగుమతి చేయండి"</string>
     <string name="menu_export" msgid="1217402092617629429">"ఎగుమతి చేయి"</string>
     <string name="menu_blocked_numbers" msgid="7064680515202657609">"బ్లాక్ చేయబడిన నంబర్‌లు"</string>
     <string name="contact_status_update_attribution" msgid="5051874518046969847">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
@@ -468,7 +468,7 @@
     <string name="description_no_name_header" msgid="8596201864512339003">"అధ్యాహారం"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"ఈ షార్ట్‌కట్‌ నిలిపివేయబడింది"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"కాంటాక్ట్ తీసివేయబడింది"</string>
-    <string name="sim_import_button_text" msgid="2845608246304396009">"దిగుమతి చేయి"</string>
+    <string name="sim_import_button_text" msgid="2845608246304396009">"దిగుమతి చేయండి"</string>
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"కాంటాక్ట్‌లను ఎంచుకోండి"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"మీ SIM కార్డ్‌లో కాంటాక్ట్‌లు ఏవీ లేవు"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"కాంటాక్ట్ మీ లిస్ట్‌లో ఇప్పటికే ఉంది"</string>
