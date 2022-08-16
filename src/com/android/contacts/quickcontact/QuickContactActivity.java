@@ -45,6 +45,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.icu.text.MessageFormat;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -174,6 +175,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -2219,8 +2221,12 @@ public class QuickContactActivity extends ContactsActivity {
         intent.putExtra(Intent.EXTRA_STREAM, shareUri);
 
         // Launch chooser to share contact via
-        final CharSequence chooseTitle = getResources().getQuantityString(
-                R.plurals.title_share_via, /* quantity */ 1);
+        MessageFormat msgFormat = new MessageFormat(
+            getResources().getString(R.string.title_share_via),
+            Locale.getDefault());
+        Map<String, Object> arguments = new HashMap<>();
+        arguments.put("count", 1);
+        CharSequence chooseTitle = msgFormat.format(arguments);
         final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
 
         try {
