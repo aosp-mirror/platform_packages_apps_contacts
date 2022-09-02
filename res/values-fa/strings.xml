@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> حذف شد"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> و <xliff:g id="NAME_1">%2$s</xliff:g> حذف شدند"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>، <xliff:g id="NAME_1">%2$s</xliff:g>، <xliff:g id="NAME_2">%3$s</xliff:g>... حذف شد"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">مخاطب حذف شد</item>
-      <item quantity="other">مخاطب حذف شد</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> مخاطب</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> مخاطب</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> مخاطب · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> مخاطب · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{مخاطب حذف شد}one{مخاطب حذف شد}other{مخاطبین حذف شدند}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# مخاطب}one{# مخاطب}other{# مخاطب}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# مخاطب · {account}}one{# مخاطب · {account}}other{# مخاطب · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"‏از Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"از <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"تنظیم آهنگ زنگ"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"اشتراک‌گذاری"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"افزودن به مخاطبین"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"افزودن"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">اشتراک‌گذاری مخاطبین از طریق</item>
-      <item quantity="other">اشتراک‌گذاری مخاطبین از طریق</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{هم‌رسانی مخاطب ازطریق}one{هم‌رسانی مخاطب ازطریق}other{هم‌رسانی مخاطبین ازطریق}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"انتخاب حساب"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"ایجاد برچسب"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"تغییر نام برچسب"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"ذخیره مخاطبین واردشده در:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"سیم کارت"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"سیم کارت <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">‏‎%1$d مخاطب</item>
-      <item quantity="other">‏‎%1$d مخاطب</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> مخاطب • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> مخاطب • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# مخاطب}one{# مخاطب}other{# مخاطب}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# مخاطب • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# مخاطب • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# مخاطب • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"‏فایل vcf."</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"چیزی برای وارد کردن نیست"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"‏مخاطبین از vCard وارد شوند؟"</string>
@@ -405,8 +387,8 @@
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"قالب پشتیبانی نمی‌شود."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> پایان یافت."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"صادر کردن مخاطبین تمام شد."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"مخاطبین صادر شدند؛ برای اشتراک‌گذاری مخاطبین، روی اعلان کلیک کنید."</string>
-    <string name="touch_to_share_contacts" msgid="7678194978416052577">"برای اشتراک‌گذاری مخاطبین ضربه بزنید."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"مخاطبین صادر شدند؛ برای هم‌رسانی مخاطبین، روی اعلان کلیک کنید."</string>
+    <string name="touch_to_share_contacts" msgid="7678194978416052577">"برای هم‌رسانی مخاطبین ضربه بزنید."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"صدور اطلاعات مخاطب"</string>
     <string name="exporting_contact_list_message" msgid="6253904938452184387">"داده‌های مخاطب در حال صادر شدن است."</string>
@@ -451,7 +433,7 @@
     <string name="dialog_export" msgid="3497435010655060068">"صادر کردن مخاطبین"</string>
     <string name="dialog_import" msgid="4590232235052756593">"وارد کردن مخاطبین از"</string>
     <string name="share_error" msgid="4854612167186185739">"این مخاطب قابل اشتراک‌گذاری نیست."</string>
-    <string name="no_contact_to_share" msgid="6285287228557175749">"مخاطبی برای اشتراک‌گذاری وجود ندارد."</string>
+    <string name="no_contact_to_share" msgid="6285287228557175749">"مخاطبی برای هم‌رسانی وجود ندارد."</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"مخاطبین جهت نمایش"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"مخاطبین جهت نمایش"</string>
     <string name="custom_list_filter" msgid="2544327670202891979">"سفارشی ساختن نما"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"انتخاب مخاطبین"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"مخاطبی در سیم کارت نیست"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"مخاطب از قبل در فهرستتان است"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> مخاطب سیم کارت وارد شد</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> مخاطب سیم کارت وارد شد</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# مخاطب سیم‌کارت وارد شد}one{# مخاطب سیم‌کارت وارد شد}other{# مخاطب سیم‌کارت وارد شد}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"مخاطبین سیم کارت وارد نشدند"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"وارد کردن از سیم کارت"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"لغو"</string>

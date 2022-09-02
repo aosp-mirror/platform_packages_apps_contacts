@@ -36,7 +36,7 @@
     <string name="menu_deleteContact" msgid="15161764025276217">"ഇല്ലാതാക്കുക"</string>
     <string name="menu_change_photo" msgid="4911246106907208055">"ഫോട്ടോ മാറ്റുക"</string>
     <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"കുറുക്കുവഴി സൃഷ്‌ടിക്കുക"</string>
-    <string name="menu_splitAggregate" msgid="2062290275288905833">"അൺലിങ്കുചെയ്യുക"</string>
+    <string name="menu_splitAggregate" msgid="2062290275288905833">"അൺലിങ്ക് ചെയ്യുക"</string>
     <string name="menu_editGroup" msgid="8706562583754054622">"കോൺടാക്റ്റ് നീക്കംചെയ്യൂ"</string>
     <string name="menu_renameGroup" msgid="2685886609399776475">"ലേബലിന്റെ പേരുമാറ്റുക"</string>
     <string name="menu_deleteGroup" msgid="1180215594530228294">"ലേബല്‍ ഇല്ലാതാക്കുക"</string>
@@ -45,10 +45,10 @@
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"കോൺടാക്റ്റുകൾ ചേർക്കുക"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"ലേബ‌ലിൽ നിന്ന് നീക്കംചെയ്യുക"</string>
     <string name="menu_new_group_action_bar" msgid="1670312283925872483">"ലേബല്‍ സൃഷ്ടിക്കുക"</string>
-    <string name="splitConfirmation" msgid="4750158900636307469">"ഈ കോൺടാക്റ്റ് ഒന്നിലധികം കോൺടാക്റ്റുകളായി അൺലിങ്കുചെയ്യണോ?"</string>
-    <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"അൺലിങ്കുചെയ്യുക"</string>
-    <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"നിങ്ങൾ ഇതിനകം വരുത്തിയിട്ടുള്ള മാറ്റങ്ങൾ സംരക്ഷിക്കാനും ഒന്നിലധികം കോൺടാക്റ്റുകളായി ഈ കോൺടാക്റ്റ് അൺലിങ്കുചെയ്യാനും താൽപ്പര്യപ്പെടുന്നുണ്ടോ?"</string>
-    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"സംരക്ഷിച്ച് അൺലിങ്കുചെയ്യുക"</string>
+    <string name="splitConfirmation" msgid="4750158900636307469">"ഈ കോൺടാക്റ്റ് ഒന്നിലധികം കോൺടാക്റ്റുകളായി അൺലിങ്ക് ചെയ്യണോ?"</string>
+    <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"അൺലിങ്ക് ചെയ്യുക"</string>
+    <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"നിങ്ങൾ ഇതിനകം വരുത്തിയിട്ടുള്ള മാറ്റങ്ങൾ സംരക്ഷിക്കാനും ഒന്നിലധികം കോൺടാക്റ്റുകളായി ഈ കോൺടാക്റ്റ് അൺലിങ്ക് ചെയ്യാനും താൽപ്പര്യപ്പെടുന്നുണ്ടോ?"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"സംരക്ഷിച്ച് അൺലിങ്ക് ചെയ്യുക"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"നിങ്ങൾ ഇതിനകം വരുത്തിയിട്ടുള്ള മാറ്റങ്ങൾ സംരക്ഷിക്കാനും തിരഞ്ഞെടുത്ത കോൺടാക്റ്റുമായി ലിങ്കുചെയ്യാനും താൽപ്പര്യപ്പെടുന്നുണ്ടോ?"</string>
     <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"സംരക്ഷിച്ച് ലിങ്കുചെയ്യുക"</string>
     <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"ലിങ്കുചെയ്യുന്നു"</string>
@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> എന്ന കോൺടാക്റ്റിനെ ഇല്ലാതാക്കി"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g>,<xliff:g id="NAME_1">%2$s</xliff:g> എന്നീ കോൺടാക്റ്റുകളെ ഇല്ലാതാക്കി"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g> എന്നീ കോൺടാക്റ്റുകളെ ഇല്ലാതാക്കി…"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="other">കോൺടാക്റ്റുകൾ ഇല്ലാതാക്കി</item>
-      <item quantity="one">കോൺടാക്റ്റ് ഇല്ലാതാക്കി</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> കോൺടാക്റ്റുകൾ</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> കോൺടാക്റ്റ്</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> കോൺടാക്‌റ്റുകൾ · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> കോൺടാക്‌റ്റ് · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{കോൺടാക്റ്റ് ഇല്ലാതാക്കി}other{കോൺടാക്റ്റുകൾ ഇല്ലാതാക്കി}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# കോൺടാക്റ്റ്}other{# കോൺടാക്റ്റുകൾ}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# കോൺടാക്റ്റ് · {account}}other{# കോൺടാക്റ്റുകൾ · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Google-ൽ നിന്നുള്ളവ"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> അക്കൗണ്ടിൽ നിന്നുള്ളവ"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"റിംഗ്‌ടോൺ സജ്ജമാക്കുക"</string>
@@ -107,7 +98,7 @@
     <string name="contactSavedToast" msgid="4370392215196995301">"കോൺടാക്റ്റ് സംരക്ഷിച്ചു"</string>
     <string name="contactUnlinkedToast" msgid="6791720274141804377">"കോൺടാക്റ്റുകൾ അൺലിങ്കുചെയ്തു"</string>
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"കോൺടാക്റ്റ് മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല"</string>
-    <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"കോൺടാക്റ്റ് അൺലിങ്കുചെയ്യാനായില്ല"</string>
+    <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"കോൺടാക്റ്റ് അൺലിങ്ക് ചെയ്യാനായില്ല"</string>
     <string name="contactJoinErrorToast" msgid="1222155997933362787">"കോൺടാക്റ്റ് ലിങ്കുചെയ്യാനായില്ല"</string>
     <string name="contactGenericErrorToast" msgid="5689457475864876100">"കോൺടാക്റ്റ് സംരക്ഷിക്കുന്നതില്‍ പിശക്"</string>
     <string name="contactPhotoSavedErrorToast" msgid="8568460180541397272">"കോൺടാക്റ്റ് ഫോട്ടോയിലെ മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല"</string>
@@ -129,17 +120,14 @@
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"കോൺടാക്റ്റുകളിലേക്ക് \"<xliff:g id="EMAIL">%s</xliff:g>\" ചേർക്കണോ?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ പേരുകൾ"</string>
-    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"മുമ്പത്തെ സ്‌ക്രീനിലേക്ക് മടങ്ങാൻ ക്ലിക്കുചെയ്യുക"</string>
+    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"മുമ്പത്തെ സ്‌ക്രീനിലേക്ക് മടങ്ങാൻ ക്ലിക്ക് ചെയ്യുക"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"ഫോണ്‍ നമ്പര്‍ ചേര്‍ക്കുക"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"ഇമെയില്‍‌ ചേര്‍‌ക്കുക"</string>
     <string name="missing_app" msgid="5674389915738964148">"ഈ പ്രവർത്തനം കൈകാര്യം ചെയ്യാൻ അപ്ലിക്കേഷനുകളൊന്നും കണ്ടെത്തിയില്ല."</string>
     <string name="menu_share" msgid="6343022811796001773">"പങ്കിടുക"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"കോൺടാക്‌റ്റുകളിൽ ചേർക്കുക"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"ചേർക്കുക"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">ഇതുവഴി കോൺടാക്‌റ്റുകൾ പങ്കിടുക</item>
-      <item quantity="one">ഇതുവഴി കോൺടാക്‌റ്റ് പങ്കിടുക</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{കോൺടാക്റ്റ് ഇനിപ്പറയുന്നത് വഴി പങ്കിടുക}other{കോൺടാക്റ്റുകൾ ഇനിപ്പറയുന്നത് വഴി പങ്കിടുക}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"ലേബല്‍ സൃഷ്ടിക്കുക"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"ലേബലിന്റെ പേരുമാറ്റുക"</string>
@@ -196,7 +184,7 @@
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"എഡിറ്റുചെയ്യാനുള്ള കോൺടാക്‌റ്റ്‌ തിരഞ്ഞെടുക്കുക"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"ലിങ്കുചെയ്ത കോൺടാക്റ്റുകൾ"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"ചേർക്കുക"</string>
-    <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"അൺലിങ്കുചെയ്യുക"</string>
+    <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"അൺലിങ്ക് ചെയ്യുക"</string>
     <string name="add_account" msgid="3071396624500839020">"അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="add_new_account" msgid="573368229646104110">"പുതിയ അക്കൗണ്ട് ചേർക്കുക"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"ഡാറ്റാബേസ് ഫയലുകൾ എക്‌സ്‌പോർട്ടുചെയ്യുക"</string>
@@ -355,7 +343,7 @@
     <string name="chat_gtalk" msgid="2927882858741904064">"Google Talk ഉപയോഗിച്ച് ചാറ്റുചെയ്യുക"</string>
     <string name="chat_icq" msgid="4289041376069626281">"ICQ ഉപയോഗിച്ച് ചാറ്റുചെയ്യുക"</string>
     <string name="chat_jabber" msgid="1097960594943864847">"Jabber ഉപയോഗിച്ച് ചാറ്റുചെയ്യുക"</string>
-    <string name="chat" msgid="8390862712584830532">"Chat"</string>
+    <string name="chat" msgid="8390862712584830532">"ചാറ്റ് ചെയ്യുക"</string>
     <string name="description_minus_button" msgid="1305985971158054217">"ഇല്ലാതാക്കുക"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"പേരിന്റെ കൂടുതൽ ഫീൽഡുകൾ കാണിക്കുക"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"പേരിന്റെ ഫീൽഡുകൾ ചുരുക്കുക"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"ഇമ്പോർട്ടുചെയ്ത കോൺടാക്റ്റുകൾ ഇനിപ്പറയുന്നതിലേക്ക് സംരക്ഷിക്കുക:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"സിം കാർഡ്‌"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"സിം, <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="other">%d കോൺടാക്‌റ്റുകൾ</item>
-      <item quantity="one">ഒരു കോൺടാക്‌റ്റ്</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> കോൺടാക്‌റ്റുകൾ • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> കോൺടാക്‌റ്റ്‌ • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# കോൺടാക്റ്റ്}other{# കോൺടാക്റ്റുകൾ}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# കോൺടാക്റ്റ് • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}other{# കോൺടാക്റ്റുകൾ • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ഫയൽ"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"ഇമ്പോർട്ടുചെയ്യാനൊന്നുമില്ല"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard-ൽ നിന്ന്‌ കോൺടാക്‌റ്റുകൾ ഇമ്പോർട്ടുചെയ്യണോ?"</string>
@@ -405,7 +387,7 @@
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"ഫോർമാറ്റിനെ പിന്തുണയ്‌ക്കില്ല."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി, കോൺടാക്റ്റുകൾ പങ്കിടുന്നതിന് അറിയിപ്പിൽ ക്ലിക്കുചെയ്യുക."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി, കോൺടാക്റ്റുകൾ പങ്കിടുന്നതിന് അറിയിപ്പിൽ ക്ലിക്ക് ചെയ്യുക."</string>
     <string name="touch_to_share_contacts" msgid="7678194978416052577">"കോൺടാക്റ്റുകൾ പങ്കിടാൻ ടാപ്പുചെയ്യുക."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കി."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്യുന്നു"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"കോണ്‍‌ടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"നിങ്ങളുടെ സിം കാർഡിൽ കോൺടാക്‌റ്റുകളില്ല"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"കോൺടാക്‌റ്റ്‌ നിലവിൽ നിങ്ങളുടെ ലിസ്‌റ്റിലുണ്ട്‌"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> സിം കോൺടാക്‌റ്റുകൾ ഇമ്പോർട്ടുചെയ്‌തു</item>
-      <item quantity="one">ഒരു സിം കോൺടാക്‌റ്റ് ഇമ്പോർട്ടുചെയ്‌തു</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# സിം കോൺടാക്റ്റ് ഇമ്പോർട്ട് ചെയ്‌തു}other{# സിം കോൺടാക്റ്റുകൾ ഇമ്പോർട്ട് ചെയ്‌തു}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"സിം കോൺടാക്‌റ്റുകൾ ഇമ്പോർട്ടുചെയ്യാനായില്ല"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"സിം കാർഡിൽ നിന്ന്‌ ഇമ്പോർട്ടുചെയ്യുക"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"റദ്ദാക്കുക"</string>
