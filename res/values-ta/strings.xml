@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> நீக்கப்பட்டது"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> மற்றும் <xliff:g id="NAME_1">%2$s</xliff:g> நீக்கப்பட்டன"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… நீக்கப்பட்டன"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="other">தொடர்புகள் நீக்கப்பட்டன</item>
-      <item quantity="one">தொடர்பு நீக்கப்பட்டது</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> தொடர்புகள்</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> தொடர்பு</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> தொடர்புகள் · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> தொடர்பு · <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{தொடர்பு நீக்கப்பட்டது}other{தொடர்புகள் நீக்கப்பட்டன}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# தொடர்பு}other{# தொடர்புகள்}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# தொடர்பு · {account}}other{# தொடர்புகள் · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Google கணக்கிலிருந்து"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> இலிருந்து"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"ரிங்டோனை அமை"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"பகிர்"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"தொடர்புகளில் சேர்"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"சேர்"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">தொடர்புகளை இதில் பகிர்:</item>
-      <item quantity="one">தொடர்பை இதில் பகிர்:</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{இதன் மூலம் தொடர்பைப் பகிர்:}other{இதன் மூலம் தொடர்புகளைப் பகிர்:}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"கணக்கைத் தேர்வுசெய்க"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"லேபிளை உருவாக்கு"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"லேபிளின் பெயரை மாற்று"</string>
@@ -199,7 +187,7 @@
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"இணைப்பை நீக்கு"</string>
     <string name="add_account" msgid="3071396624500839020">"கணக்கைச் சேர்"</string>
     <string name="add_new_account" msgid="573368229646104110">"புதிய கணக்கைச் சேர்"</string>
-    <string name="menu_export_database" msgid="1658249125751926885">"தரவுத்தள கோப்புகளை ஏற்றுமதி செய்"</string>
+    <string name="menu_export_database" msgid="1658249125751926885">"தரவுத்தள ஃபைல்களை ஏற்றுமதி செய்"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"புதிய தொடர்பை உருவாக்கும்"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"மேலும் காட்டு"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"குறைவாகக் காட்டு"</string>
@@ -380,15 +368,9 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"இறக்கிய தொடர்புகளை இதில் சேமிக்கவும்:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"சிம் கார்டு"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"<xliff:g id="SIM_NAME">%1$s</xliff:g> சிம்"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="other">%1$d தொடர்புகள்</item>
-      <item quantity="one">1 தொடர்பு</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> தொடர்புகள் • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> தொடர்பு • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
-    </plurals>
-    <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf கோப்பு"</string>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# தொடர்பு}other{# தொடர்புகள்}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# தொடர்பு • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}other{# தொடர்புகள் • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
+    <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ஃபைல்"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"இறக்குவதற்கு எதுவுமில்லை"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard இலிருந்து தொடர்புகளை இறக்கவா?"</string>
     <string name="cancel_import_confirmation_message" msgid="1007412828398265611">"<xliff:g id="FILENAME">%s</xliff:g> இன் இறக்குமதியை ரத்துசெய்யவா?"</string>
@@ -401,7 +383,7 @@
     <string name="missing_required_permission" msgid="1308037728470791436">"தேவைப்படும் அனுமதியை முடக்கியுள்ளீர்கள்."</string>
     <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"ஏற்றுமதி செய்யும்போது பிழை: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O பிழை"</string>
-    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"போதுமான நினைவகம் இல்லை. கோப்பு மிகவும் பெரியதாக இருக்கலாம்."</string>
+    <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"போதுமான நினைவகம் இல்லை. ஃபைல் மிகவும் பெரியதாக இருக்கலாம்."</string>
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"வடிவம் ஆதரிக்கப்படவில்லை."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> ஏற்றப்பட்டது."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"தொடர்புகள் ஏற்றப்பட்டன."</string>
@@ -420,7 +402,7 @@
     <string name="importing_vcard_finished_title" msgid="2274644947000264322">"vCard <xliff:g id="FILENAME">%s</xliff:g> இறக்கப்பட்டது"</string>
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"<xliff:g id="FILENAME">%s</xliff:g> ஐ இறக்குமதிசெய்வது ரத்துசெய்யப்பட்டது"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> விரைவில் இறக்குமதி செய்யப்படும்."</string>
-    <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"கோப்பு விரைவில் இறக்குமதி செய்யப்படும்."</string>
+    <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"ஃபைல் விரைவில் இறக்குமதி செய்யப்படும்."</string>
     <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard இன் இறக்குமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"கூடிய விரைவில் தொடர்புகள் ஏற்றப்படும்."</string>
     <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard இன் ஏற்றுமதி கோரிக்கை நிராகரிக்கப்பட்டது. பிறகு முயற்சிக்கவும்."</string>
@@ -430,7 +412,7 @@
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"NFC வழியாக தொடர்பு பெறப்பட்டது"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"தற்காலிகமாகச் சேமித்தல்"</string>
     <string name="progress_notifier_message" msgid="8522060892889599746">"<xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g> ஐ இறக்குமதி செய்கிறது: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf கோப்பிற்கு ஏற்று"</string>
+    <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf ஃபைலிற்கு ஏற்று"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"இதன்படி வரிசைப்படுத்து:"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"ஒலிப்புமுறைப் பெயர்"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"எப்போதும் காட்டு"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"தொடர்புகளைத் தேர்ந்தெடு"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"சிம் கார்டில் தொடர்புகள் இல்லை"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"தொடர்பு ஏற்கனவே உங்கள் பட்டியலில் உள்ளது"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> சிம் தொடர்புகள் இறக்கப்பட்டன</item>
-      <item quantity="one">1 சிம் தொடர்பு இறக்கப்பட்டது</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# சிம் தொடர்பு இறக்கப்பட்டது}other{# சிம் தொடர்புகள் இறக்கப்பட்டன}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"சிம் தொடர்புகளை இறக்க முடியவில்லை"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"சிம்மிலிருந்து இறக்கு"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"ரத்துசெய்யும்"</string>

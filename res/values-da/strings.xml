@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> blev slettet"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> og <xliff:g id="NAME_1">%2$s</xliff:g> blev slettet"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… blev slettet"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">Kontaktpersonen blev slettet</item>
-      <item quantity="other">Kontaktpersonerne blev slettet</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> kontakt</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> kontakter</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakt · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> kontakter · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{Kontakten blev slettet.}one{Kontakten blev slettet.}other{Kontakterne blev slettet.}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# kontakt}one{# kontakt}other{# kontakter}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# kontakt · {account}}one{# kontakt · {account}}other{# kontakter · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Fra Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"Fra <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"Angiv ringetone"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"Del"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Føj til kontakter"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Tilføj"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">Del kontaktpersonen via</item>
-      <item quantity="other">Del kontaktpersonerne via</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{Del kontakt via}one{Del kontakt via}other{Del kontakter via}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"Vælg konto"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"Opret etiket"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"Omdøb etiket"</string>
@@ -216,7 +204,7 @@
     <string name="header_name_entry" msgid="2516776099121101578">"Navn"</string>
     <string name="header_email_entry" msgid="8653569770962542178">"Mail"</string>
     <string name="header_phone_entry" msgid="7092868248113091293">"Telefon"</string>
-    <string name="content_description_directions" msgid="860179347986211929">"rutevejledning til placering"</string>
+    <string name="content_description_directions" msgid="860179347986211929">"rutevejledning til lokation"</string>
     <string name="editor_more_fields" msgid="6158558083947445518">"Flere felter"</string>
     <string name="editor_change_photo_content_description" msgid="8146896029044539032">"Skift kontaktpersonens billede"</string>
     <string name="editor_add_photo_content_description" msgid="8457486801272200575">"Tilføj et billede af kontaktpersonen"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Gem importerede kontakter på:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM-kort"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM-kort <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d kontakt</item>
-      <item quantity="other">%1$d kontakter</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> kontakt • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> kontakter • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# kontakt}one{# kontakt}other{# kontakter}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# kontakt • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# kontakt • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# kontakter • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf-fil"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Der er intet at importere"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Vil du importere kontakter fra vCard?"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Vælg kontakter"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"Der er ingen kontakter på dit SIM-kort"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"Kontaktpersonen findes allerede på din liste over kontakter"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> kontakt på SIM-kortet blev importeret</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> kontakter på SIM-kortet blev importeret</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{# kontakt på SIM-kortet blev importeret}one{# kontakt på SIM-kortet blev importeret}other{# kontakter på SIM-kortet blev importeret}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Kontaktpersonerne på SIM-kortet kan ikke importeres"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Importér fra SIM-kort"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Annuller"</string>
