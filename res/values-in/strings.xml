@@ -381,7 +381,7 @@
     <string name="fail_reason_could_not_initialize_exporter" msgid="4145819808407973981">"Tidak dapat memulai pengeskpor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_no_exportable_contact" msgid="487925011719622851">"Tidak ada kontak yang dapat diekspor."</string>
     <string name="missing_required_permission" msgid="1308037728470791436">"Anda telah menonaktifkan izin yang diperlukan."</string>
-    <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"Terjadi kesalahan saat ekspor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
+    <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"Terjadi error saat ekspor: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_io_error" msgid="6364839914349999408">"Kesalahan I/O"</string>
     <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"Memori tidak cukup. File mungkin terlalu besar."</string>
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"Format tidak didukung."</string>
