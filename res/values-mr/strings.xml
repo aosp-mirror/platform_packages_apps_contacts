@@ -384,7 +384,7 @@
     <string name="fail_reason_error_occurred_during_export" msgid="6179270404825288837">"एक्सपोर्ट दरम्‍यान एरर आलीt: \"<xliff:g id="EXACT_REASON">%s</xliff:g>\"."</string>
     <string name="fail_reason_io_error" msgid="6364839914349999408">"I/O एरर"</string>
     <string name="fail_reason_low_memory_during_import" msgid="4525361860523306991">"पुरेशी मेमरी नाही. फाइल कदाचित खूप मोठी असू शकते."</string>
-    <string name="fail_reason_not_supported" msgid="6449916670421646290">"स्वरूपन समर्थित नाही."</string>
+    <string name="fail_reason_not_supported" msgid="6449916670421646290">"फॉरमॅटला सपोर्ट नाही."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> एक्सपोर्ट करणे समाप्त झाले."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"संपर्क इंपोर्ट करणे समाप्त झाले"</string>
     <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"संपर्क एक्सपोर्ट करणे समाप्त झाले, संपर्क शेअर करण्यासाठी सूचनेवर क्लिक करा."</string>
