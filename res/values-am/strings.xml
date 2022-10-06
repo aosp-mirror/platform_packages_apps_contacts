@@ -166,7 +166,7 @@
     <string name="copy_text" msgid="6835250673373028909">"ወደ ቅንጥብ ሰሌዳ ገልብጥ"</string>
     <string name="set_default" msgid="3704074175618702225">"ነባሪ አዘጋጅ"</string>
     <string name="clear_default" msgid="2055883863621491533">"ነባሪ አጽዳ"</string>
-    <string name="toast_text_copied" msgid="845906090076228771">"ጽሁፍ ገልብጧል"</string>
+    <string name="toast_text_copied" msgid="845906090076228771">"ፅሁፍ ገልብጧል"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"ለውጦች ይወገዱ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"አስወግድ"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"ተወው"</string>
@@ -256,22 +256,22 @@
     <string name="sms_mobile" msgid="433949735070334192">"የ ተንቀሳቃሽፅሁፍ"</string>
     <string name="sms_work" msgid="7784676780449153911">"የፅሁፍ ሥራ"</string>
     <string name="sms_fax_work" msgid="8239716828120939345">"የፅሁፍ ሥራፋክስ"</string>
-    <string name="sms_fax_home" msgid="6887675360794775735">"የመነሻ ጽሁፍ ፋክስ"</string>
+    <string name="sms_fax_home" msgid="6887675360794775735">"የመነሻ ፅሁፍ ፋክስ"</string>
     <string name="sms_pager" msgid="1052540072760129272">"የፅሁፍ ምልክት  ማድረጊያ"</string>
-    <string name="sms_other" msgid="3584200156296349098">"ጽሁፍ"</string>
-    <string name="sms_callback" msgid="6932315941997609031">"የተዘዋዋሪ ጥሪ ጽሁፍ"</string>
+    <string name="sms_other" msgid="3584200156296349098">"ፅሁፍ"</string>
+    <string name="sms_callback" msgid="6932315941997609031">"የተዘዋዋሪ ጥሪ ፅሁፍ"</string>
     <string name="sms_car" msgid="6051606941547979352">"የፅሁፍ ማሽን"</string>
     <string name="sms_company_main" msgid="4801585186677340070">"የኩባንያ ዋናፅሁፍ"</string>
-    <string name="sms_isdn" msgid="8093269429091061478">"የ ISDN ጽሁፍ"</string>
-    <string name="sms_main" msgid="624730854551629076">"የዋና ጽሁፍ"</string>
-    <string name="sms_other_fax" msgid="8272996838482574564">"የፋክስ ጽሁፍ"</string>
+    <string name="sms_isdn" msgid="8093269429091061478">"የ ISDN ፅሁፍ"</string>
+    <string name="sms_main" msgid="624730854551629076">"የዋና ፅሁፍ"</string>
+    <string name="sms_other_fax" msgid="8272996838482574564">"የፋክስ ፅሁፍ"</string>
     <string name="sms_radio" msgid="3703466526430351408">"የፅሁፍ ሬዲዮ"</string>
     <string name="sms_telex" msgid="5926595248188984691">"የፅሁፍ ቴሌክስ"</string>
-    <string name="sms_tty_tdd" msgid="5517202384458721064">"TTY/TDD ጽሁፍ"</string>
+    <string name="sms_tty_tdd" msgid="5517202384458721064">"TTY/TDD ፅሁፍ"</string>
     <string name="sms_work_mobile" msgid="1170012557483816931">"የፅሁፍ ሥራ ተንቀሳቃሽ"</string>
     <string name="sms_work_pager" msgid="8827367747655005608">"የፅሁፍ ሥራ ምልክት  ማድረጊያ"</string>
-    <string name="sms_assistant" msgid="245045451580096547">"ጽሁፍ <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
-    <string name="sms_mms" msgid="7395133080765833725">"የMMS ጽሁፍ"</string>
+    <string name="sms_assistant" msgid="245045451580096547">"ፅሁፍ <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
+    <string name="sms_mms" msgid="7395133080765833725">"የMMS ፅሁፍ"</string>
     <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (መልዕክት)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"የቪዲዮ ጥሪ ያድርጉ"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"በተደጋጋሚ ያገኝዋቸው ይጽዱ?"</string>
@@ -450,7 +450,7 @@
     <string name="select_account_dialog_title" msgid="5047523441152129207">"መለያ"</string>
     <string name="set_default_account" msgid="9194321110211682396">"ለጥሪዎች ሁልጊዜ ይህንን ተጠቀም"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"ከማስታወሻ ጋር ደውል"</string>
-    <string name="call_subject_hint" msgid="7056652101889538157">"ከውይይት ጋር ለመላክ የማስታወሻ ጽሁፍ ይተይቡ…"</string>
+    <string name="call_subject_hint" msgid="7056652101889538157">"ከውይይት ጋር ለመላክ የማስታወሻ ጽሑፍ ይተይቡ…"</string>
     <string name="send_and_call_button" msgid="4851257959568592699">"ላክ እና ደውል"</string>
     <string name="call_subject_limit" msgid="5679166729627777474">"<xliff:g id="COUNT">%1$s</xliff:g> / <xliff:g id="LIMIT">%2$s</xliff:g>"</string>
     <string name="call_subject_type_and_number" msgid="134754147019287616">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
