@@ -47,7 +47,7 @@ public class SuggestionEditConfirmationDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(R.string.aggregation_suggestion_edit_dialog_message)
-                .setPositiveButton(android.R.string.yes,
+                .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int whichButton) {
@@ -61,7 +61,7 @@ public class SuggestionEditConfirmationDialogFragment extends DialogFragment {
                             }
                         }
                 )
-                .setNegativeButton(android.R.string.no, null)
+                .setNegativeButton(android.R.string.cancel, null)
                 .create();
     }
 }
