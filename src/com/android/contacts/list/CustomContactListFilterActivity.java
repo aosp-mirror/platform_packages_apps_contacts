@@ -982,8 +982,8 @@ public class CustomContactListFilterActivity extends Activity implements
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return new AlertDialog.Builder(getActivity(), getTheme())
                     .setMessage(R.string.leave_customize_confirmation_dialog_message)
-                    .setNegativeButton(android.R.string.no, null)
-                    .setPositiveButton(android.R.string.yes, this)
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(android.R.string.ok, this)
                     .create();
         }
 
