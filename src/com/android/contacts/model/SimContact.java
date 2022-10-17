@@ -172,11 +172,7 @@ public class SimContact implements Parcelable {
 
     @Override
     public int hashCode() {
-        int result = (int) (mRecordNumber ^ (mRecordNumber >>> 32));
-        result = 31 * result + (mName != null ? mName.hashCode() : 0);
-        result = 31 * result + (mPhone != null ? mPhone.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(mEmails);
-        return result;
+        return Objects.hash(mRecordNumber, mName, mPhone, Arrays.hashCode(mEmails));
     }
 
     @Override
