@@ -68,7 +68,7 @@ public class ImportVCardDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setIconAttribute(android.R.attr.alertDialogIcon)
                 .setMessage(R.string.import_from_vcf_file_confirmation_message)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton) {
                         final Listener listener = (Listener) getActivity();
@@ -77,7 +77,7 @@ public class ImportVCardDialogFragment extends DialogFragment {
                         }
                     }
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton) {
                         final Listener listener = (Listener) getActivity();

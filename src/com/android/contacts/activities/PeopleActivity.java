@@ -421,6 +421,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         getWindow().setBackgroundDrawable(null);
     }
 
+    @SuppressWarnings("MissingSuperCall") // TODO: Fix me
     @Override
     protected void onNewIntent(Intent intent) {
         final String action = intent.getAction();
@@ -603,6 +604,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         onSyncStateUpdated();
     }
 
+    @SuppressWarnings("MissingSuperCall") // TODO: Fix me
     @Override
     public void onMultiWindowModeChanged(boolean entering) {
         initializeHomeVisibility();
