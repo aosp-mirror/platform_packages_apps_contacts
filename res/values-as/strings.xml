@@ -84,8 +84,8 @@
     <string name="deleteConfirmation" msgid="3727809366015979585">"এই সম্পৰ্কটো মচিবনে?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"মচক"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"এই সম্পৰ্কটো নাই।"</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"সম্পৰ্কক গৃহ স্ক্ৰীণত যোগ কৰা হ’ল।"</string>
-    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g>ক গৃহ স্ক্ৰীণত যোগ কৰা হ’ল।"</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"সম্পৰ্কক গৃহ স্ক্ৰীনত যোগ কৰা হ’ল।"</string>
+    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g>ক গৃহ স্ক্ৰীনত যোগ কৰা হ’ল।"</string>
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"এই ডিভাইচত কোনো চিত্ৰ নাই।"</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"সম্পৰ্ক ব্য়ক্তিৰ ফট\'"</string>
     <string name="customLabelPickerTitle" msgid="816694850254307154">"উপযোগিতা অনুসৰি লেবেলৰ নাম"</string>
@@ -170,7 +170,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"সলনি কৰা কার্যসমূহ প্ৰত্য়াখ্য়ান কৰিবনে?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"প্ৰত্যাখ্যান কৰক"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"বাতিল কৰক"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"উপযোগিতা অনুসৰি সৃষ্টি কৰা স্ক্ৰীণ প্ৰত্যাখ্যান কৰিবনে?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"উপযোগিতা অনুসৰি সৃষ্টি কৰা স্ক্ৰীন প্ৰত্যাখ্যান কৰিবনে?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"সম্পৰ্কসূচীত সন্ধান কৰক"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"সম্পৰ্কসমূহ আঁতৰাওক"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"মোৰ স্থানীয় প্ৰ\'ফাইল"</string>
@@ -403,9 +403,9 @@
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"<xliff:g id="FILENAME">%s</xliff:g>ৰ আমদানি কৰা কাৰ্য বাতিল কৰা হ’ল"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> শীঘ্ৰেই আমদানি কৰা হ\'ব।"</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"এই ফাইলটো শীঘ্ৰেই আমদানি কৰা হ\'ব।"</string>
-    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"ভি-কাৰ্ড আমদানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পিছত আকৌ চেষ্টা কৰক।"</string>
+    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"ভি-কাৰ্ড আমদানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পাছত আকৌ চেষ্টা কৰক।"</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"সম্পৰ্কসমূহক সোনকালে ৰপ্তানি কৰা হ\'ব।"</string>
-    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"ভি-কাৰ্ড ৰপ্তানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পিছত আকৌ চেষ্টা কৰক।"</string>
+    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"ভি-কাৰ্ড ৰপ্তানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পাছত আকৌ চেষ্টা কৰক।"</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"সম্পৰ্ক"</string>
     <string name="caching_vcard_message" msgid="1879339732783666517">"ভি-কাৰ্ড(বোৰ)ক ডিভাইচৰ অস্থায়ী ষ্ট’ৰেজত কেশ্ব কৰি থকা হৈছে। আচল ইমপ’ৰ্ট কৰা কাৰ্য সোনকালে আৰম্ভ হ’ব।"</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCard আমদানি কৰিব পৰা নগ\'ল।"</string>
