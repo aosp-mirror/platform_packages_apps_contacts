@@ -354,7 +354,7 @@
     <string name="announce_expanded_fields" msgid="8410808184164186871">"विस्तृत किया गया"</string>
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"संक्षिप्त किया गया"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"सभी संपर्क"</string>
-    <string name="list_filter_all_starred" msgid="2582865760150432568">"तारांकित"</string>
+    <string name="list_filter_all_starred" msgid="2582865760150432568">"स्टार के निशान वाले"</string>
     <string name="list_filter_customize" msgid="2368900508906139537">"पसंद के मुताबिक"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"संपर्क"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"अन्य सभी संपर्क"</string>
