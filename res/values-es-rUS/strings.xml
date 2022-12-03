@@ -344,7 +344,7 @@
     <string name="chat_icq" msgid="4289041376069626281">"Chat mediante ICQ"</string>
     <string name="chat_jabber" msgid="1097960594943864847">"Chat mediante Jabber"</string>
     <string name="chat" msgid="8390862712584830532">"Chat"</string>
-    <string name="description_minus_button" msgid="1305985971158054217">"Eliminar"</string>
+    <string name="description_minus_button" msgid="1305985971158054217">"borrar"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"Mostrar más campos de nombre"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"Contraer campos de nombre"</string>
     <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"Mostrar más campos de nombre fonético"</string>

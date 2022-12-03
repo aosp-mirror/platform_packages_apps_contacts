@@ -18,7 +18,7 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="8908212014470937609">"ଯୋଗାଯୋଗ"</string>
     <string name="contactsList" msgid="4456188358262700898">"ଯୋଗାଯୋଗ"</string>
-    <string name="shortcut_add_contact" msgid="7949342235528657981">"ଯୋଗାଯୋଗଙ୍କୁ ଯୋଡ଼ନ୍ତୁ"</string>
+    <string name="shortcut_add_contact" msgid="7949342235528657981">"ଯୋଗାଯୋଗକୁ ଯୋଗ କରନ୍ତୁ"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"ଯୋଗାଯୋଗ"</string>
     <string name="shortcutDialContact" msgid="155367248069127153">"ଡାଇରେକ୍ଟ କଲ୍ କରନ୍ତୁ"</string>
     <string name="shortcutMessageContact" msgid="9123517151981679277">"ଡାଇରେକ୍ଟ ମେସେଜ୍‍ ପଠାନ୍ତୁ"</string>
@@ -149,8 +149,8 @@
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"ବନ୍ଦ କରନ୍ତୁ"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"ଚୟନିତ ଯୋଗାଯୋଗ ଏଡିଟ୍ କରିବା ପାଇଁ ସ୍ୱିଚ୍ କରିବେ? ଏପର୍ଯ୍ୟନ୍ତ ଆପଣ ଦେଇଥିବା ସୂଚନାକୁ କପୀ କରାଯିବ।"</string>
     <string name="contact_directory_description" msgid="1773630547110881835">"ଡାଇରେକ୍ଟୋରୀ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="activity_title_settings" msgid="4004290638426915162">"ସେଟିଙ୍ଗ"</string>
-    <string name="menu_settings" msgid="3524924670246877187">"ସେଟିଙ୍ଗ"</string>
+    <string name="activity_title_settings" msgid="4004290638426915162">"ସେଟିଂସ"</string>
+    <string name="menu_settings" msgid="3524924670246877187">"ସେଟିଂସ"</string>
     <string name="menu_help" msgid="287801702920372292">"ସହାୟତା ଓ ମତାମତ"</string>
     <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
