@@ -295,14 +295,14 @@
     <string name="nameLabelsGroup" msgid="513809148312046843">"नाम"</string>
     <string name="nicknameLabelsGroup" msgid="794390116782033956">"प्रचलित नाम"</string>
     <string name="name_given" msgid="3883661251894628431">"पहला नाम"</string>
-    <string name="name_family" msgid="2907432135923624482">"उपनाम"</string>
+    <string name="name_family" msgid="2907432135923624482">"सरनेम"</string>
     <string name="name_prefix" msgid="8857117624713905211">"नाम के पहले का टाइटल"</string>
     <string name="name_middle" msgid="7330498948136181042">"मध्य नाम"</string>
     <string name="name_suffix" msgid="4502958221763936999">"नाम का आखिरी भाग"</string>
     <string name="name_phonetic" msgid="4746541275769990740">"फ़ोनेटिक नाम"</string>
     <string name="name_phonetic_given" msgid="425534279190047812">"फ़ोनेटिक नाम"</string>
     <string name="name_phonetic_middle" msgid="6528822054594516485">"फ़ोनेटिक मध्य नाम"</string>
-    <string name="name_phonetic_family" msgid="1690852801039809448">"फ़ोनेटिक उपनाम"</string>
+    <string name="name_phonetic_family" msgid="1690852801039809448">"फ़ोनेटिक सरनेम"</string>
     <string name="phoneLabelsGroup" msgid="2746758650001801885">"फ़ोन"</string>
     <string name="emailLabelsGroup" msgid="3360719560200449554">"ईमेल"</string>
     <string name="postalLabelsGroup" msgid="7534317297587527570">"पता"</string>
@@ -354,7 +354,7 @@
     <string name="announce_expanded_fields" msgid="8410808184164186871">"विस्तृत किया गया"</string>
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"संक्षिप्त किया गया"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"सभी संपर्क"</string>
-    <string name="list_filter_all_starred" msgid="2582865760150432568">"तारांकित"</string>
+    <string name="list_filter_all_starred" msgid="2582865760150432568">"स्टार के निशान वाले"</string>
     <string name="list_filter_customize" msgid="2368900508906139537">"पसंद के मुताबिक"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"संपर्क"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"अन्य सभी संपर्क"</string>
@@ -418,10 +418,10 @@
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"हमेशा दिखाएं"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"अगर खाली है तो छिपाएं"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"पहला नाम"</string>
-    <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"उपनाम"</string>
+    <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"सरनेम"</string>
     <string name="display_options_view_names_as" msgid="4060686468465916565">"नाम का फ़ॉर्मैट"</string>
     <string name="display_options_view_given_name_first" msgid="383885125505521383">"पहला नाम पहले"</string>
-    <string name="display_options_view_family_name_first" msgid="6597077054231296007">"उपनाम पहले"</string>
+    <string name="display_options_view_family_name_first" msgid="6597077054231296007">"सरनेम पहले"</string>
     <string name="settings_accounts" msgid="119582613811929994">"खाते"</string>
     <string name="default_editor_account" msgid="4810392921888877149">"नए संपर्कों के लिए डिफ़ॉल्ट खाता"</string>
     <string name="settings_my_info_title" msgid="6236848378653551341">"मेरी जानकारी"</string>

@@ -403,9 +403,9 @@
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"A importação de <xliff:g id="FILENAME">%s</xliff:g> foi cancelada"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> será importado em breve."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"O ficheiro será importado em breve."</string>
-    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"O pedido de importação do vCard foi rejeitado. Tente novamente mais tarde."</string>
+    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"O pedido de importação do vCard foi rejeitado. Tente mais tarde."</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"Os contactos serão exportados em breve."</string>
-    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"O pedido de exportação do vCard foi rejeitado. Tente novamente mais tarde."</string>
+    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"O pedido de exportação do vCard foi rejeitado. Tente mais tarde."</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"contacto"</string>
     <string name="caching_vcard_message" msgid="1879339732783666517">"A colocar vCard(s) em cache no armazenamento temporário local. A importação efetiva começará brevemente."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"Não foi possível importar o vCard."</string>

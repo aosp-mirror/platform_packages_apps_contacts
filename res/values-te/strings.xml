@@ -123,7 +123,7 @@
     <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"మునుపటి స్క్రీన్‌కి తిరిగి రావడానికి క్లిక్ చేయండి"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"ఫోన్ నంబర్‌ను జోడించండి"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"ఈమెయిల్‌ జోడించండి"</string>
-    <string name="missing_app" msgid="5674389915738964148">"ఈ చర్యను నిర్వహించడానికి యాప్‌ ఏదీ కనుగొనబడలేదు."</string>
+    <string name="missing_app" msgid="5674389915738964148">"ఈ చర్యను మేనేజ్ చేయడానికి యాప్‌ ఏదీ కనుగొనబడలేదు."</string>
     <string name="menu_share" msgid="6343022811796001773">"షేర్ చేయి"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"కాంటాక్ట్‌లకు జోడించండి"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"జోడించండి"</string>
