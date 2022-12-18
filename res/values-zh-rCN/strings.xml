@@ -332,7 +332,7 @@
     <string name="postal_postcode" msgid="33077708757232659">"邮编"</string>
     <string name="postal_country" msgid="6642804283917549861">"国家/地区"</string>
     <string name="map_home" msgid="2169053372466501148">"查看住宅地址"</string>
-    <string name="map_work" msgid="8296916987749726461">"查看单位地址"</string>
+    <string name="map_work" msgid="8296916987749726461">"查看工作地址"</string>
     <string name="map_other" msgid="4009931029322619674">"查看地址"</string>
     <string name="map_custom" msgid="7797812861927817335">"查看<xliff:g id="CUSTOM_LABEL">%s</xliff:g>地址"</string>
     <string name="chat_aim" msgid="2044861410748519265">"使用 AIM 聊天"</string>
