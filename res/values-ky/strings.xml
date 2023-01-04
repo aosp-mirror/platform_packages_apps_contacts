@@ -425,7 +425,7 @@
     <string name="settings_accounts" msgid="119582613811929994">"Аккаунттар"</string>
     <string name="default_editor_account" msgid="4810392921888877149">"Жаңы байланыштар үчүн демейки аккаунт"</string>
     <string name="settings_my_info_title" msgid="6236848378653551341">"Өзүм жөнүндө маалымат"</string>
-    <string name="set_up_profile" msgid="3554999219868611431">"Профилди жөндөө"</string>
+    <string name="set_up_profile" msgid="3554999219868611431">"Профилди тууралоо"</string>
     <string name="setting_about" msgid="2941859292287597555">"Байланыштар жөнүндө"</string>
     <string name="share_favorite_contacts" msgid="8208444020721686178">"Сүйүктүү байланыштарды бөлүшүү"</string>
     <string name="share_contacts" msgid="2377773269568609796">"Бардык байланыштарды бөлүшүү"</string>
