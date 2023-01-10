@@ -474,7 +474,8 @@
         <!-- Service to import contacts from the SIM card -->
         <service
             android:name=".SimImportService"
-            android:exported="false"/>
+            android:exported="false"
+            android:foregroundServiceType="shortService" />
 
         <!-- Attaches a photo to a contact. Started from external applications -->
         <activity
