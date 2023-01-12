@@ -120,7 +120,7 @@
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"കോൺടാക്റ്റുകളൊന്നുമില്ല"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"കോൺടാക്റ്റുകളിലേക്ക് \"<xliff:g id="EMAIL">%s</xliff:g>\" ചേർക്കണോ?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"നിങ്ങളുടെ കോൺടാക്റ്റുകളുടെ പേരുകൾ"</string>
-    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"മുമ്പത്തെ സ്‌ക്രീനിലേക്ക് മടങ്ങാൻ ക്ലിക്ക് ചെയ്യുക"</string>
+    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"മുമ്പത്തെ സ്‌ക്രീനിലേക്ക് മടങ്ങാൻ ക്ലിക്കുചെയ്യുക"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"ഫോണ്‍ നമ്പര്‍ ചേര്‍ക്കുക"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"ഇമെയില്‍‌ ചേര്‍‌ക്കുക"</string>
     <string name="missing_app" msgid="5674389915738964148">"ഈ പ്രവർത്തനം കൈകാര്യം ചെയ്യാൻ അപ്ലിക്കേഷനുകളൊന്നും കണ്ടെത്തിയില്ല."</string>
@@ -387,7 +387,7 @@
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"ഫോർമാറ്റിനെ പിന്തുണയ്‌ക്കില്ല."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി, കോൺടാക്റ്റുകൾ പങ്കിടുന്നതിന് അറിയിപ്പിൽ ക്ലിക്ക് ചെയ്യുക."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"കോൺടാക്റ്റുകൾ എക്‌സ്‌പോർട്ടുചെയ്യൽ പൂർത്തിയായി, കോൺടാക്റ്റുകൾ പങ്കിടുന്നതിന് അറിയിപ്പിൽ ക്ലിക്കുചെയ്യുക."</string>
     <string name="touch_to_share_contacts" msgid="7678194978416052577">"കോൺടാക്റ്റുകൾ പങ്കിടാൻ ടാപ്പുചെയ്യുക."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"<xliff:g id="FILENAME">%s</xliff:g> എക്‌സ്‌പോർട്ടുചെയ്യൽ റദ്ദാക്കി."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"കോൺടാക്റ്റ് ഡാറ്റ എക്‌സ്‌പോർട്ടുചെയ്യുന്നു"</string>
