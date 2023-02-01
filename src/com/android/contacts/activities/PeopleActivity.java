@@ -16,6 +16,7 @@
 
 package com.android.contacts.activities;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -90,6 +91,7 @@ import com.android.contacts.util.AccountFilterUtil;
 import com.android.contacts.util.Constants;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.util.MaterialColorMapUtils;
+import com.android.contacts.util.PermissionsUtil;
 import com.android.contacts.util.SharedPreferenceUtil;
 import com.android.contacts.util.SyncUtil;
 import com.android.contacts.util.ViewUtil;
@@ -409,12 +411,17 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         createViewsAndFragments();
 
+        if (!PermissionsUtil.hasPermission(this, Manifest.permission.POST_NOTIFICATIONS)) {
+            requestPermissions(new String[] { Manifest.permission.POST_NOTIFICATIONS }, 1);
+        }
+
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
         getWindow().setBackgroundDrawable(null);
     }
 
+    @SuppressWarnings("MissingSuperCall") // TODO: Fix me
     @Override
     protected void onNewIntent(Intent intent) {
         final String action = intent.getAction();
@@ -597,6 +604,7 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         onSyncStateUpdated();
     }
 
+    @SuppressWarnings("MissingSuperCall") // TODO: Fix me
     @Override
     public void onMultiWindowModeChanged(boolean entering) {
         initializeHomeVisibility();

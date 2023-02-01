@@ -16,6 +16,7 @@
 package com.android.contacts.vcard;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaScannerConnection;
@@ -129,6 +130,10 @@ public class VCardService extends Service {
                     VCardCommonArguments.ARG_CALLING_ACTIVITY);
         } else {
             mCallingActivity = null;
+            // The intent will be null if the service is restarted after the app
+            // is killed but the notification may still exist so remove it.
+            NotificationManager nm = getSystemService(NotificationManager.class);
+            nm.cancelAll();
         }
         return START_STICKY;
     }
@@ -255,6 +260,9 @@ public class VCardService extends Service {
                 }
             }
         } else {
+            // In case notification of import is still present and app is killed remove it
+            NotificationManager nm = getSystemService(NotificationManager.class);
+            nm.cancel(NotificationImportExportListener.DEFAULT_NOTIFICATION_TAG, jobId);
             Log.w(LOG_TAG, String.format("Tried to remove unknown job (id: %d)", jobId));
         }
         stopServiceIfAppropriate();

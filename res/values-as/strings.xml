@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> মচা হ’ল"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> আৰু <xliff:g id="NAME_1">%2$s</xliff:g> মচা হ’ল"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… মচা হ’ল"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">সম্পৰ্কবোৰ মচা হ’ল</item>
-      <item quantity="other">সম্পৰ্কবোৰ মচা হ’ল</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g>টা সম্পৰ্ক</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g>টা সম্পৰ্ক</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g>টা সম্পৰ্ক · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g>টা সম্পৰ্ক · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{সম্পৰ্ক মচা হ’ল}one{সম্পৰ্ক মচা হ’ল}other{সম্পৰ্ক মচা হ’ল}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# টা সম্পৰ্ক}one{# টা সম্পৰ্ক}other{# টা সম্পৰ্ক}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# টা সম্পৰ্ক · {account}}one{# টা সম্পৰ্ক · {account}}other{# টা সম্পৰ্ক · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Googleৰ পৰা"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g>ৰ পৰা"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"ৰিংট\'ন ছেট কৰক"</string>
@@ -93,8 +84,8 @@
     <string name="deleteConfirmation" msgid="3727809366015979585">"এই সম্পৰ্কটো মচিবনে?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"মচক"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"এই সম্পৰ্কটো নাই।"</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"সম্পৰ্কক গৃহ স্ক্ৰীণত যোগ কৰা হ’ল।"</string>
-    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g>ক গৃহ স্ক্ৰীণত যোগ কৰা হ’ল।"</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"সম্পৰ্কক গৃহ স্ক্ৰীনত যোগ কৰা হ’ল।"</string>
+    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g>ক গৃহ স্ক্ৰীনত যোগ কৰা হ’ল।"</string>
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"এই ডিভাইচত কোনো চিত্ৰ নাই।"</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"সম্পৰ্ক ব্য়ক্তিৰ ফট\'"</string>
     <string name="customLabelPickerTitle" msgid="816694850254307154">"উপযোগিতা অনুসৰি লেবেলৰ নাম"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"শ্বেয়াৰ কৰক"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"সর্ম্পক সূচীত যোগ কৰক"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"যোগ কৰক"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">ইয়াৰ জৰিয়তে সম্পৰ্কসমূহ শ্বেয়াৰ কৰক</item>
-      <item quantity="other">ইয়াৰ জৰিয়তে সম্পৰ্কসমূহ শ্বেয়াৰ কৰক</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{ইয়াৰ জৰিয়তে সম্পৰ্ক শ্বেয়াৰ কৰক}one{ইয়াৰ জৰিয়তে সম্পৰ্ক শ্বেয়াৰ কৰক}other{ইয়াৰ জৰিয়তে সম্পৰ্ক শ্বেয়াৰ কৰক}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"একাউণ্ট বাছনি কৰক"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"লেবেল সৃষ্টি কৰক"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"লেবেলৰ নতুন নাম দিয়ক"</string>
@@ -182,7 +170,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"সলনি কৰা কার্যসমূহ প্ৰত্য়াখ্য়ান কৰিবনে?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"প্ৰত্যাখ্যান কৰক"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"বাতিল কৰক"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"উপযোগিতা অনুসৰি সৃষ্টি কৰা স্ক্ৰীণ প্ৰত্যাখ্যান কৰিবনে?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"উপযোগিতা অনুসৰি সৃষ্টি কৰা স্ক্ৰীন প্ৰত্যাখ্যান কৰিবনে?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"সম্পৰ্কসূচীত সন্ধান কৰক"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"সম্পৰ্কসমূহ আঁতৰাওক"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"মোৰ স্থানীয় প্ৰ\'ফাইল"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"আমদানি কৰা সম্পৰ্কবোৰ ইয়াত ছেভ কৰক:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"ছিম কাৰ্ড"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"ছিম <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$dটা সম্পৰ্ক</item>
-      <item quantity="other">%1$dটা সম্পৰ্ক</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g>টা সম্পৰ্ক• <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g>টা সম্পৰ্ক• <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# টা সম্পৰ্ক}one{# টা সম্পৰ্ক}other{# টা সম্পৰ্ক}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# টা সম্পৰ্ক • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# টা সম্পৰ্ক • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# টা সম্পৰ্ক • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf ফাইল"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"আমদানি কৰিবলৈ একো নাই"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"ভি-কাৰ্ডৰ পৰা সম্পৰ্কসমূহ আমদানি কৰিবনে?"</string>
@@ -421,9 +403,9 @@
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"<xliff:g id="FILENAME">%s</xliff:g>ৰ আমদানি কৰা কাৰ্য বাতিল কৰা হ’ল"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> শীঘ্ৰেই আমদানি কৰা হ\'ব।"</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"এই ফাইলটো শীঘ্ৰেই আমদানি কৰা হ\'ব।"</string>
-    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"ভি-কাৰ্ড আমদানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পিছত আকৌ চেষ্টা কৰক।"</string>
+    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"ভি-কাৰ্ড আমদানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পাছত আকৌ চেষ্টা কৰক।"</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"সম্পৰ্কসমূহক সোনকালে ৰপ্তানি কৰা হ\'ব।"</string>
-    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"ভি-কাৰ্ড ৰপ্তানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পিছত আকৌ চেষ্টা কৰক।"</string>
+    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"ভি-কাৰ্ড ৰপ্তানি কৰা অনুৰোধ অগ্ৰাহ্য় কৰা হ’ল। পাছত আকৌ চেষ্টা কৰক।"</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"সম্পৰ্ক"</string>
     <string name="caching_vcard_message" msgid="1879339732783666517">"ভি-কাৰ্ড(বোৰ)ক ডিভাইচৰ অস্থায়ী ষ্ট’ৰেজত কেশ্ব কৰি থকা হৈছে। আচল ইমপ’ৰ্ট কৰা কাৰ্য সোনকালে আৰম্ভ হ’ব।"</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCard আমদানি কৰিব পৰা নগ\'ল।"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"সম্পৰ্কসমূহ বাছনি কৰক"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"আপোনাৰ ছিম কাৰ্ডত কোনো সম্পৰ্ক সূচী নাই"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"সম্পৰ্কটো ইতিমধ্যে আপোনাৰ সূচীত আছে"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g>টা ছিমৰ সম্পৰ্ক আমদানি কৰা হ’ল</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g>টা ছিমৰ সম্পৰ্ক আমদানি কৰা হ’ল</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{ছিমত থকা # টা সম্পৰ্ক আমদানি কৰা হ’ল}one{ছিমত থকা # টা সম্পৰ্ক আমদানি কৰা হ’ল}other{ছিমত থকা # টা সম্পৰ্ক আমদানি কৰা হ’ল}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"ছিমৰ সম্পৰ্কবোৰ আমদানি কৰিবপৰা নগ\'ল"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"ছিমৰপৰা আমদানি কৰক"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"বাতিল কৰক"</string>
