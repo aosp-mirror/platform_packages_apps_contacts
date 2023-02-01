@@ -274,6 +274,7 @@ public class CallSubjectDialog extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setHideOverlayWindows(true);
         mAnimationDuration = getResources().getInteger(R.integer.call_subject_animation_duration);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         mPhotoSize = getResources().getDimensionPixelSize(

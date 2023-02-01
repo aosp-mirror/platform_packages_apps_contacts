@@ -98,6 +98,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -132,11 +133,10 @@ public class ContactEditorFragment extends Fragment implements
     private static final String KEY_PHOTO_RAW_CONTACT_ID = "photo_raw_contact_id";
     private static final String KEY_UPDATED_PHOTOS = "updated_photos";
 
-    private static final List<String> VALID_INTENT_ACTIONS = new ArrayList<String>() {{
-        add(Intent.ACTION_EDIT);
-        add(Intent.ACTION_INSERT);
-        add(ContactEditorActivity.ACTION_SAVE_COMPLETED);
-    }};
+    private static final List<String> VALID_INTENT_ACTIONS = Arrays.asList(
+            Intent.ACTION_EDIT,
+            Intent.ACTION_INSERT,
+            ContactEditorActivity.ACTION_SAVE_COMPLETED);
 
     private static final String KEY_ACTION = "action";
     private static final String KEY_URI = "uri";

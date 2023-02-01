@@ -314,6 +314,8 @@ public class ContactEditorActivity extends AppCompatContactsActivity implements
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
 
+        getWindow().setHideOverlayWindows(true);
+
         RequestPermissionsActivity.startPermissionActivityIfNeeded(this);
 
         final Intent intent = getIntent();
