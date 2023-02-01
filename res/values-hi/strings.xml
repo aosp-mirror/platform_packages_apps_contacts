@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> को हटाया गया"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> और <xliff:g id="NAME_1">%2$s</xliff:g> को हटाया गया"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>… को हटाया गया"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="one">संपर्क हटा दिए गए</item>
-      <item quantity="other">संपर्क हटा दिए गए</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="one"><xliff:g id="COUNT_1">%d</xliff:g> संपर्क</item>
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> संपर्क</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="one"><xliff:g id="COUNT_2">%1$d</xliff:g> संपर्क · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> संपर्क · <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{संपर्क को मिटाया गया}one{संपर्क को मिटाया गया}other{संपर्क मिटाए गए}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# संपर्क}one{# संपर्क}other{# संपर्क}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# संपर्क · {account}}one{# संपर्क · {account}}other{# संपर्क · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"Google से"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> से"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"रिंगटोन सेट करें"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"शेयर करें"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"संपर्कों में जोड़ें"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"जोड़ें"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="one">इससे संपर्क शेयर करें</item>
-      <item quantity="other">इससे संपर्क शेयर करें</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{इसका इस्तेमाल करके, संपर्क शेयर करें}one{इसका इस्तेमाल करके, संपर्क शेयर करें}other{इसका इस्तेमाल करके, संपर्कों को शेयर करें}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"खाता चुनें"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"लेबल बनाएं"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"लेबल का नाम बदलें"</string>
@@ -307,14 +295,14 @@
     <string name="nameLabelsGroup" msgid="513809148312046843">"नाम"</string>
     <string name="nicknameLabelsGroup" msgid="794390116782033956">"प्रचलित नाम"</string>
     <string name="name_given" msgid="3883661251894628431">"पहला नाम"</string>
-    <string name="name_family" msgid="2907432135923624482">"उपनाम"</string>
+    <string name="name_family" msgid="2907432135923624482">"सरनेम"</string>
     <string name="name_prefix" msgid="8857117624713905211">"नाम के पहले का टाइटल"</string>
     <string name="name_middle" msgid="7330498948136181042">"मध्य नाम"</string>
     <string name="name_suffix" msgid="4502958221763936999">"नाम का आखिरी भाग"</string>
     <string name="name_phonetic" msgid="4746541275769990740">"फ़ोनेटिक नाम"</string>
     <string name="name_phonetic_given" msgid="425534279190047812">"फ़ोनेटिक नाम"</string>
     <string name="name_phonetic_middle" msgid="6528822054594516485">"फ़ोनेटिक मध्य नाम"</string>
-    <string name="name_phonetic_family" msgid="1690852801039809448">"फ़ोनेटिक उपनाम"</string>
+    <string name="name_phonetic_family" msgid="1690852801039809448">"फ़ोनेटिक सरनेम"</string>
     <string name="phoneLabelsGroup" msgid="2746758650001801885">"फ़ोन"</string>
     <string name="emailLabelsGroup" msgid="3360719560200449554">"ईमेल"</string>
     <string name="postalLabelsGroup" msgid="7534317297587527570">"पता"</string>
@@ -366,7 +354,7 @@
     <string name="announce_expanded_fields" msgid="8410808184164186871">"विस्तृत किया गया"</string>
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"संक्षिप्त किया गया"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"सभी संपर्क"</string>
-    <string name="list_filter_all_starred" msgid="2582865760150432568">"तारांकित"</string>
+    <string name="list_filter_all_starred" msgid="2582865760150432568">"स्टार के निशान वाले"</string>
     <string name="list_filter_customize" msgid="2368900508906139537">"पसंद के मुताबिक"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"संपर्क"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"अन्य सभी संपर्क"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"आयातित संपर्कों को इसमें सेव करें:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM कार्ड"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"सिम <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="one">%1$d संपर्क</item>
-      <item quantity="other">%1$d संपर्क</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="one"><xliff:g id="COUNT_2">^1</xliff:g> संपर्क • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> संपर्क • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# संपर्क}one{# संपर्क}other{# संपर्क}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# संपर्क • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# संपर्क • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# संपर्क • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">".vcf फ़ाइल"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"आयात करने के लिए कुछ नहीं है"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"vCard से संपर्कों को आयात करना चाहते हैं?"</string>
@@ -436,10 +418,10 @@
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"हमेशा दिखाएं"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"अगर खाली है तो छिपाएं"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"पहला नाम"</string>
-    <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"उपनाम"</string>
+    <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"सरनेम"</string>
     <string name="display_options_view_names_as" msgid="4060686468465916565">"नाम का फ़ॉर्मैट"</string>
     <string name="display_options_view_given_name_first" msgid="383885125505521383">"पहला नाम पहले"</string>
-    <string name="display_options_view_family_name_first" msgid="6597077054231296007">"उपनाम पहले"</string>
+    <string name="display_options_view_family_name_first" msgid="6597077054231296007">"सरनेम पहले"</string>
     <string name="settings_accounts" msgid="119582613811929994">"खाते"</string>
     <string name="default_editor_account" msgid="4810392921888877149">"नए संपर्कों के लिए डिफ़ॉल्ट खाता"</string>
     <string name="settings_my_info_title" msgid="6236848378653551341">"मेरी जानकारी"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"संपर्कों को चुनें"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"आपके सिम कार्ड पर कोई संपर्क नहीं है"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"संपर्क पहले से ही आपकी सूची में मौजूद है"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="one"><xliff:g id="COUNT">%d</xliff:g> सिम संपर्क आयात किए गए</item>
-      <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> सिम संपर्क आयात किए गए</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{सिम में सेव किया गया # संपर्क इंपोर्ट किया गया}one{सिम में सेव किया गया # संपर्क इंपोर्ट किया गया}other{सिम में सेव किए गए # संपर्क इंपोर्ट किए गए}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"सिम संपर्कों को आयात करने में विफल रहा"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"सिम से आयात करें"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"रद्द करें"</string>

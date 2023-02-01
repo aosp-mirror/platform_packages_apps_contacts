@@ -65,18 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"<xliff:g id="NAME">%1$s</xliff:g> حذف ہو گیا"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> اور <xliff:g id="NAME_1">%2$s</xliff:g> حذف ہو گئے"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>، <xliff:g id="NAME_1">%2$s</xliff:g>، <xliff:g id="NAME_2">%3$s</xliff:g>… حذف ہو گئے"</string>
-    <plurals name="contacts_deleted_toast" formatted="false" msgid="198534700386623765">
-      <item quantity="other">رابطے حذف ہو گئے</item>
-      <item quantity="one">رابطہ حذف ہو گیا</item>
-    </plurals>
-    <plurals name="contacts_count" formatted="false" msgid="8804860300387044572">
-      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> رابطے</item>
-      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> رابطہ</item>
-    </plurals>
-    <plurals name="contacts_count_with_account" formatted="false" msgid="1025146902085751375">
-      <item quantity="other"><xliff:g id="COUNT_2">%1$d</xliff:g> رابطے ۔ <xliff:g id="ACCOUNT_3">%2$s</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> رابطہ ۔ <xliff:g id="ACCOUNT_1">%2$s</xliff:g></item>
-    </plurals>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{حذف کردہ رابطہ}other{حذف کردہ رابطے}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{# رابطہ}other{# رابطے}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# رابطہ · {account}}other{# رابطے · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"‏Google سے"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> سے"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"رنگ ٹون سیٹ کریں"</string>
@@ -136,10 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"اشتراک کریں"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"رابطوں میں شامل کریں"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"شامل کریں"</string>
-    <plurals name="title_share_via" formatted="false" msgid="3868648642107664607">
-      <item quantity="other">رابطوں کا اشتراک کریں بذریعہ</item>
-      <item quantity="one">رابطہ کا اشتراک کریں بذریعہ</item>
-    </plurals>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{رابطے کا اشتراک کریں بذریعہ}other{رابطوں کا اشتراک کریں بذریعہ}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"اکاؤنٹ منتخب کریں"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"لیبل تخلیق کریں"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"لیبل کا نام تبدیل کریں"</string>
@@ -263,7 +251,7 @@
     <string name="call_assistant" msgid="8556909944379826616">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> کو کال کریں"</string>
     <string name="call_mms" msgid="1760746475672950386">"‏MMS نمبر پر کال کریں"</string>
     <string name="call_by_shortcut" msgid="5707329943368933423">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (کال کریں)"</string>
-    <string name="sms_custom" msgid="3684453744622817362">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> پر متنی پیغام بھیجیں"</string>
+    <string name="sms_custom" msgid="3684453744622817362">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> پر ٹیکسٹ پیغام بھیجیں"</string>
     <string name="sms_home" msgid="6132392861245316613">"گھر کے نمبر پر متن بھیجیں"</string>
     <string name="sms_mobile" msgid="433949735070334192">"موبائل پر متن بھیجیں"</string>
     <string name="sms_work" msgid="7784676780449153911">"دفتر کے نمبر پر متن بھیجیں"</string>
@@ -322,7 +310,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"تنظیم"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"رشتہ"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"خاص تاریخ"</string>
-    <string name="sms" msgid="4246338112764847384">"متنی پیغام"</string>
+    <string name="sms" msgid="4246338112764847384">"ٹیکسٹ پیغام"</string>
     <string name="postal_address" msgid="5031809899673855074">"پتہ"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"کمپنی"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"محکمہ"</string>
@@ -380,14 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"درآمد کردہ رابطے اس میں محفوظ کریں:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"‏SIM کارڈ"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <plurals name="import_from_sim_secondary_contact_count_fmt" formatted="false" msgid="8737770002554878728">
-      <item quantity="other">‏%1$d رابطے</item>
-      <item quantity="one">1 رابطہ</item>
-    </plurals>
-    <plurals name="import_from_sim_secondary_template" formatted="false" msgid="6698670511061586532">
-      <item quantity="other"><xliff:g id="COUNT_2">^1</xliff:g> رابطے • <xliff:g id="PHONE_NUMBER_3">^2</xliff:g></item>
-      <item quantity="one"><xliff:g id="COUNT_0">^1</xliff:g> رابطہ • <xliff:g id="PHONE_NUMBER_1">^2</xliff:g></item>
-    </plurals>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# رابطہ}other{# رابطے}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# رابطہ • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}other{# رابطے • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"‏‎.vcf فائل"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"درآمد کرنے کیلئے کچھ نہیں ہے"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"‏‎vCard‎ سے رابطے درآمد کریں؟"</string>
@@ -490,10 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"رابطے منتخب کریں"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"‏آپ کے SIM کارڈ پر کوئی رابطے نہیں ہیں"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"رابطہ پہلے سے آپ کی فہرست میں موجود ہے"</string>
-    <plurals name="sim_import_success_toast_fmt" formatted="false" msgid="422539156156042210">
-      <item quantity="other">‏<xliff:g id="COUNT">%d</xliff:g> SIM رابطے درآمد ہو گئے</item>
-      <item quantity="one">‏1 SIM رابطہ درآمد ہو گیا</item>
-    </plurals>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{‏# SIM کا رابطہ درآمد کیا گیا}other{‏# SIM کے رابطے در آمد کیے گئے}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"‏SIM رابطے درآمد کرنے میں ناکام"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"‏SIM سے درآمد کریں"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"منسوخ کریں"</string>

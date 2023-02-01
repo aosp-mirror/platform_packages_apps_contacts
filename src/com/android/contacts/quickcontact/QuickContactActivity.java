@@ -45,6 +45,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.icu.text.MessageFormat;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -174,6 +175,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -1482,6 +1484,11 @@ public class QuickContactActivity extends ContactsActivity {
             final String dataString = event.buildDataStringForDisplay(context, kind);
             final Calendar cal = DateUtils.parseDate(dataString, false);
             if (cal != null) {
+                final int eventType = event.getContentValues().getAsInteger(Event.TYPE);
+                if (eventType == Event.TYPE_ANNIVERSARY || eventType == Event.TYPE_BIRTHDAY) {
+                    // setting the year to 0 makes a click open the coming birthday
+                    cal.set(Calendar.YEAR, 0);
+                }
                 final Date nextAnniversary =
                         DateUtils.getNextAnnualDate(cal);
                 final Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
@@ -2219,8 +2226,12 @@ public class QuickContactActivity extends ContactsActivity {
         intent.putExtra(Intent.EXTRA_STREAM, shareUri);
 
         // Launch chooser to share contact via
-        final CharSequence chooseTitle = getResources().getQuantityString(
-                R.plurals.title_share_via, /* quantity */ 1);
+        MessageFormat msgFormat = new MessageFormat(
+            getResources().getString(R.string.title_share_via),
+            Locale.getDefault());
+        Map<String, Object> arguments = new HashMap<>();
+        arguments.put("count", 1);
+        CharSequence chooseTitle = msgFormat.format(arguments);
         final Intent chooseIntent = Intent.createChooser(intent, chooseTitle);
 
         try {
