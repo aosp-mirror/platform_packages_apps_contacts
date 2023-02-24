@@ -71,8 +71,8 @@
     <string name="title_from_google" msgid="2554633992366572820">"ከGoogle"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"ከ<xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"የጥሪ ድምፅ አዘጋጅ"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"ወደ ድምጽ መልዕክት አስተላልፍ"</string>
-    <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"ወደ ድምጽ መልዕክት መተላለፍን አስቀር"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"ወደ ድምፅ መልዕክት አስተላልፍ"</string>
+    <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"ወደ ድምፅ መልዕክት መተላለፍን አስቀር"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"ይህ እውቂያ ተበባቢ-ብቻ ነው። መሰረዝ አይችልም። ነገር ግን ሊደብቁት ይችላሉ።"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"እውቂያ ደብቅ"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"በዚህ እውቂያ ውስጥ ያሉ ተነባቢ-ብቻ መለያዎች ይደበቃሉ፣ ወይም ይሰረዛሉ።"</string>
