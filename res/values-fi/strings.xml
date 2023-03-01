@@ -230,7 +230,7 @@
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"Pidä yhteystiedot järjestettynä ja hyödyllisinä"</string>
     <string name="undo" msgid="2446931036220975026">"Kumoa"</string>
     <string name="call_custom" msgid="2844900154492073207">"Soita: <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
-    <string name="call_home" msgid="2443904771140750492">"Soita kotinumeroon"</string>
+    <string name="call_home" msgid="2443904771140750492">"Soita kotiin"</string>
     <string name="call_mobile" msgid="6504312789160309832">"Soita matkapuhelimeen"</string>
     <string name="call_work" msgid="2414313348547560346">"Soita työnumeroon"</string>
     <string name="call_fax_work" msgid="5026843006300760797">"Soita faksinumeroon (työ)"</string>
