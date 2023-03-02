@@ -117,7 +117,7 @@
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"Надіслати повідомлення"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"Вибрати контакти"</string>
     <string name="send_to_selection" msgid="3655197947726443720">"Надіслати"</string>
-    <string name="listFoundAllContactsZero" msgid="1933842282916988563">"Контактів немає"</string>
+    <string name="listFoundAllContactsZero" msgid="1933842282916988563">"Немає контактів"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"Додати в контакти <xliff:g id="EMAIL">%s</xliff:g>?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"Імена ваших контактів"</string>
     <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"Натисніть, щоб повернутися на попередній екран"</string>
