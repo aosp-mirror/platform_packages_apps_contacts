@@ -28,18 +28,18 @@
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"ఎంచుకోండి"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"కొత్త కాంటాక్ట్‌ క్రియేట్ చేయి"</string>
     <string name="searchHint" msgid="1487501532610025473">"కాంటాక్ట్‌లను సెర్చ్ చేయండి"</string>
-    <string name="menu_addStar" msgid="4903812703386825130">"ఇష్టమైనవాటికి జోడించు"</string>
+    <string name="menu_addStar" msgid="4903812703386825130">"ఇష్టమైనవాటికి జోడించండి"</string>
     <string name="menu_removeStar" msgid="3707373931808303701">"ఇష్టమైనవాటి నుండి తీసివేయండి"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"ఇష్టమైనవి నుండి తీసివేయబడింది"</string>
     <string name="description_action_menu_add_star" msgid="7316521132809388851">"ఇష్టమైనవికి జోడించబడింది"</string>
     <string name="menu_editContact" msgid="5039663761025630208">"ఎడిట్"</string>
-    <string name="menu_deleteContact" msgid="15161764025276217">"తొలగించు"</string>
+    <string name="menu_deleteContact" msgid="15161764025276217">"తొలగించండి"</string>
     <string name="menu_change_photo" msgid="4911246106907208055">"ఫోటోను మార్చు"</string>
     <string name="menu_create_contact_shortcut" msgid="8983436328557825860">"షార్ట్‌కట్‌ను క్రియేట్ చేయండి"</string>
     <string name="menu_splitAggregate" msgid="2062290275288905833">"వేరు చేయి"</string>
     <string name="menu_editGroup" msgid="8706562583754054622">"కాంటాక్ట్‌లను తీసివేయండి"</string>
     <string name="menu_renameGroup" msgid="2685886609399776475">"లేబుల్ పేరును మార్చు"</string>
-    <string name="menu_deleteGroup" msgid="1180215594530228294">"లేబుల్‌ను తొలగించు"</string>
+    <string name="menu_deleteGroup" msgid="1180215594530228294">"లేబుల్‌ను తొలగించండి"</string>
     <string name="menu_addToGroup" msgid="5034813446697655310">"కాంటాక్ట్‌ను జోడించండి"</string>
     <string name="menu_selectForGroup" msgid="6386553337569514850">"కాంటాక్ట్‌లను ఎంచుకోండి"</string>
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"కాంటాక్ట్‌లను జోడించండి"</string>
@@ -55,7 +55,7 @@
     <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"అన్‌లింక్ చేస్తున్నాము"</string>
     <string name="menu_joinAggregate" msgid="3116395302755287038">"లింక్ చేయి"</string>
     <string name="menu_linkedContacts" msgid="6363718333551613063">"లింక్ చేసిన కాంటాక్ట్‌లను చూడండి"</string>
-    <string name="menu_save" msgid="7204524700499687371">"సేవ్ చేయి"</string>
+    <string name="menu_save" msgid="7204524700499687371">"సేవ్ చేయండి"</string>
     <string name="titleJoinContactDataWith" msgid="7342386037654890242">"కాంటాక్ట్‌లను లింక్ చేయండి"</string>
     <string name="blurbJoinContactDataWith" msgid="132105056919797709">"మీరు <xliff:g id="NAME">%s</xliff:g>తో లింక్ చేయాలనుకునే కాంటాక్ట్‌ను ఎంచుకోండి:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="8347769365870796983">"సూచిత కాంటాక్ట్‌లు"</string>
@@ -82,7 +82,7 @@
     <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"తొలగించాల్సిన కాంటాక్ట్‌లు పలు ఖాతాల నుండి వివరాలను కలిగి ఉన్నాయి. చదవడానికి మాత్రమే ఖాతాల నుండి వివరాలు దాచబడతాయి, తొలగించబడవు."</string>
     <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"ఈ కాంటాక్ట్‌ను తొలగించడం వలన పలు ఖాతాల నుండి వివరాలు తొలగించబడతాయి."</string>
     <string name="deleteConfirmation" msgid="3727809366015979585">"ఈ కాంటాక్ట్‌ను తొలగించాలా?"</string>
-    <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"తొలగించు"</string>
+    <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"తొలగించండి"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"కాంటాక్ట్ ఉనికిలో లేదు."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"కాంటాక్ట్ హోమ్ స్క్రీన్‌కు జోడించబడింది."</string>
     <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g> హోమ్ స్క్రీన్‌కు జోడించబడింది."</string>
@@ -158,7 +158,7 @@
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"కాంటాక్ట్‌లకు జోడించండి"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"మూసివేయి"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"సంవత్సరాన్ని చేర్చు"</string>
-    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"ఖాతాను జోడించు"</string>
+    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"ఖాతాను జోడించండి"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"దిగుమతి చేయండి"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"కొత్తది క్రియేట్ చేయండి…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" లేబుల్‌ని తొలగించాలా? (కాంటాక్ట్‌లు వాటంతట అవే తొలగించబడవు.)"</string>
@@ -169,7 +169,7 @@
     <string name="toast_text_copied" msgid="845906090076228771">"వచనం కాపీ చేయబడింది"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"మార్పులను విస్మరించాలా?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"విస్మరించు"</string>
-    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"రద్దు చేయి"</string>
+    <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"రద్దు చేయండి"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"అనుకూలీకరణలను విస్మరించాలా?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"కాంటాక్ట్‌లను సెర్చ్ చేయండి"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"కాంటాక్ట్‌లను తీసివేయండి"</string>
@@ -185,8 +185,8 @@
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"లింక్ చేయబడిన కాంటాక్ట్‌లు"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"జోడించండి"</string>
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"అన్‌లింక్ చేయి"</string>
-    <string name="add_account" msgid="3071396624500839020">"ఖాతాను జోడించు"</string>
-    <string name="add_new_account" msgid="573368229646104110">"కొత్త ఖాతాను జోడించు"</string>
+    <string name="add_account" msgid="3071396624500839020">"ఖాతాను జోడించండి"</string>
+    <string name="add_new_account" msgid="573368229646104110">"కొత్త ఖాతాను జోడించండి"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"డేటాబేస్ ఫైళ్లను ఎగుమతి చేయి"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"కొత్త కాంటాక్ట్‌ను క్రియేట్ చేయండి"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"మరిన్ని చూడండి"</string>
@@ -213,7 +213,7 @@
     <string name="editor_account_selector_title" msgid="3190515989740696043">"దీనికి సేవ్ చేయబడుతోంది"</string>
     <string name="editor_account_selector_read_only_title" msgid="4870485850053962114">"<xliff:g id="ACCOUNT">%s</xliff:g>లోని సంప్రదింపు సమాచారం సవరించగలిగే విధంగా లేదు"</string>
     <string name="quickcontact_suggestion_link_button" msgid="3485212664301802371">"కాంటాక్ట్‌లను లింక్ చేయండి"</string>
-    <string name="quickcontact_suggestion_cancel_button" msgid="8851156850681440055">"రద్దు చేయి"</string>
+    <string name="quickcontact_suggestion_cancel_button" msgid="8851156850681440055">"రద్దు చేయండి"</string>
     <string name="suggestion_card_this_contact_title" msgid="8851257599121989253">"ఈ కాంటాక్ట్"</string>
     <string name="suggestion_card_duplicates_title" msgid="2623890874933696454">"సంభావ్య నకిలీలు"</string>
     <string name="suggestion_card_help_message" msgid="8367379652312412794">"ఈ కాంటాక్ట్‌లు ఒకే వ్యక్తికి సంబంధించినవి అయ్యి ఉండవచ్చు. మీరు వాటిని ఒకే కాంటాక్ట్‌గా లింక్ చేయవచ్చు."</string>
@@ -228,7 +228,7 @@
     <string name="menu_title_filters" msgid="349866121417914494">"ఖాతాలు"</string>
     <string name="hamburger_feature_highlight_header" msgid="1786641424099282909">"సూచనలు"</string>
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"మీ కాంటాక్ట్‌లను ఉత్తమంగా నిర్వహించండి మరియు ఉపయోగించండి"</string>
-    <string name="undo" msgid="2446931036220975026">"చర్య రద్దు చేయి"</string>
+    <string name="undo" msgid="2446931036220975026">"చర్య రద్దు చేయండి"</string>
     <string name="call_custom" msgid="2844900154492073207">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g>కి కాల్ చేయి"</string>
     <string name="call_home" msgid="2443904771140750492">"ఇంటికి కాల్ చేయండి"</string>
     <string name="call_mobile" msgid="6504312789160309832">"మొబైల్‌కు కాల్ చేయండి"</string>
@@ -344,7 +344,7 @@
     <string name="chat_icq" msgid="4289041376069626281">"ICQని ఉపయోగించి చాట్ చేయండి"</string>
     <string name="chat_jabber" msgid="1097960594943864847">"Jabberని ఉపయోగించి చాట్ చేయండి"</string>
     <string name="chat" msgid="8390862712584830532">"చాట్ చేయండి"</string>
-    <string name="description_minus_button" msgid="1305985971158054217">"తొలగించు"</string>
+    <string name="description_minus_button" msgid="1305985971158054217">"తొలగించండి"</string>
     <string name="expand_name_fields_description" msgid="6059558159338959487">"మరిన్ని పేరు ఫీల్డ్‌లను చూపుతుంది"</string>
     <string name="collapse_name_fields_description" msgid="7950435675716414477">"పేరు ఫీల్డ్‌లను కుదిస్తుంది"</string>
     <string name="expand_phonetic_name_fields_description" msgid="7414340689396399173">"మరిన్ని ఉచ్ఛారణ ఆధారిత పేరు ఫీల్డ్‌లను చూపుతుంది"</string>
@@ -365,7 +365,7 @@
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"సింక్‌ నుండి \"<xliff:g id="GROUP">%s</xliff:g>\"ని తీసివేయడం వలన సింక్‌ నుండి గ్రూప్ చేయబడని కాంటాక్ట్‌లు కూడా తీసివేయబడతాయి."</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ప్రదర్శన ఎంపికలను సేవ్ చేస్తోంది…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"అనుకూలీకృత వీక్షణ"</string>
-    <string name="dialog_new_contact_account" msgid="5652018124788855057">"దిగుమతి చేసిన కాంటాక్ట్‌లను దీనిలో సేవ్ చేయి:"</string>
+    <string name="dialog_new_contact_account" msgid="5652018124788855057">"దిగుమతి చేసిన కాంటాక్ట్‌లను దీనిలో సేవ్ చేయండి:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM కార్డ్"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# కాంటాక్ట్}other{# కాంటాక్ట్‌లు}}"</string>
@@ -437,7 +437,7 @@
     <string name="menu_contacts_filter" msgid="5854584270038139275">"డిస్‌ప్లే చేయాల్సిన కాంటాక్ట్‌లు"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"డిస్‌ప్లే చేయాల్సిన కాంటాక్ట్‌లు"</string>
     <string name="custom_list_filter" msgid="2544327670202891979">"అనుకూలంగా మార్చిన వీక్షణ"</string>
-    <string name="menu_custom_filter_save" msgid="2412959737200856930">"సేవ్ చేయి"</string>
+    <string name="menu_custom_filter_save" msgid="2412959737200856930">"సేవ్ చేయండి"</string>
     <string name="hint_findContacts" msgid="5554298639062659655">"కాంటాక్ట్‌లను సెర్చ్ చేయండి"</string>
     <string name="contactsFavoritesLabel" msgid="8339645684721732714">"ఇష్టమైనవి"</string>
     <string name="menu_import" msgid="2206768098740726906">"దిగుమతి చేయండి"</string>
@@ -448,7 +448,7 @@
     <string name="action_menu_back_from_search" msgid="683765774264585732">"సెర్చ్ చేయడం ఆపివేస్తుంది"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"సెర్చ్‌ను క్లియర్ చేయండి"</string>
     <string name="select_account_dialog_title" msgid="5047523441152129207">"ఖాతా"</string>
-    <string name="set_default_account" msgid="9194321110211682396">"కాల్స్‌ల కోసం ఎప్పుడూ ఇది ఉపయోగించు"</string>
+    <string name="set_default_account" msgid="9194321110211682396">"కాల్స్‌ల కోసం ఎప్పుడూ ఇది ఉపయోగించండి"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"గమనికతో కాల్ చేయి"</string>
     <string name="call_subject_hint" msgid="7056652101889538157">"కాల్‌తో పాటు పంపడానికి గమనికను టైప్ చేయండి…"</string>
     <string name="send_and_call_button" msgid="4851257959568592699">"పంపు &amp; కాల్ చేయి"</string>
