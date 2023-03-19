@@ -20,7 +20,7 @@
     <string name="contactsList" msgid="4456188358262700898">"Contactos"</string>
     <string name="shortcut_add_contact" msgid="7949342235528657981">"Adicionar contacto"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"Contacto"</string>
-    <string name="shortcutDialContact" msgid="155367248069127153">"Marcação direta"</string>
+    <string name="shortcutDialContact" msgid="155367248069127153">"Reserva direta"</string>
     <string name="shortcutMessageContact" msgid="9123517151981679277">"Mensagem direta"</string>
     <string name="shortcutActivityTitle" msgid="5407832911005090417">"Escolher contacto"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Adicionar ao contacto"</string>
