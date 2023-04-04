@@ -407,7 +407,7 @@
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"కాంటాక్ట్‌లు కొద్ది సేపట్లో ఎగుమతి చేయబడతాయి."</string>
     <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard ఎగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"కాంటాక్ట్"</string>
-    <string name="caching_vcard_message" msgid="1879339732783666517">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
+    <string name="caching_vcard_message" msgid="1879339732783666517">"vCard(ల)ను స్థానిక తాత్కాలిక స్టోరేజ్‌కు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCardని దిగుమతి చేయడం సాధ్యపడలేదు."</string>
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"కాంటాక్ట్ NFC ద్వారా స్వీకరించబడింది"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"కాష్ చేస్తోంది"</string>
