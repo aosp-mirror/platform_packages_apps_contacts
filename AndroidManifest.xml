@@ -547,7 +547,8 @@
 
         <service
             android:name=".vcard.VCardService"
-            android:exported="false"/>
+            android:exported="false"
+            android:foregroundServiceType="dataSync"/>
         <!-- end vCard related -->
 
         <!-- Intercept Dialer Intents for devices without a phone.
