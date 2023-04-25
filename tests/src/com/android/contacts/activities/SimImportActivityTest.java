@@ -42,9 +42,6 @@ import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
 import android.provider.SimPhonebookContract;
 import android.provider.SimPhonebookContract.SimRecords;
-import android.support.test.uiautomator.By;
-import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.Until;
 import android.telephony.TelephonyManager;
 import android.test.mock.MockContentResolver;
 
@@ -53,6 +50,9 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.filters.SdkSuppress;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.Until;
 
 import com.android.contacts.SimImportService;
 import com.android.contacts.database.SimContactDao;
