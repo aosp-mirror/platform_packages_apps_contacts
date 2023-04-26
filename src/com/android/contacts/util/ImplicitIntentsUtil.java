@@ -30,8 +30,6 @@ import android.provider.ContactsContract.QuickContact;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import androidx.core.os.BuildCompat;
-
 import com.android.contacts.logging.ScreenEvent.ScreenType;
 import com.android.contacts.model.account.GoogleAccountType;
 import com.android.contacts.quickcontact.QuickContactActivity;
@@ -142,9 +140,6 @@ public class ImplicitIntentsUtil {
     public static Intent getIntentForAddingAccount() {
         final Intent intent = new Intent(Settings.ACTION_SYNC_SETTINGS);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-        if (BuildCompat.isAtLeastU()) {
-            intent.setData(Uri.fromParts("package", "com.android.contacts", null));
-        }
         intent.putExtra(Settings.EXTRA_AUTHORITIES,
                 new String[]{ContactsContract.AUTHORITY});
         return intent;
