@@ -403,9 +403,9 @@
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"<xliff:g id="FILENAME">%s</xliff:g>ని దిగుమతి చేయడం రద్దు చేయబడింది"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> కొద్దిసేపట్లో దిగుమతి చేయబడుతుంది."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"ఫైల్ కొద్దిసేపట్లో దిగుమతి చేయబడుతుంది."</string>
-    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard దిగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
+    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard దిగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ట్రై చేయండి."</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"కాంటాక్ట్‌లు కొద్ది సేపట్లో ఎగుమతి చేయబడతాయి."</string>
-    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard ఎగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
+    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard ఎగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ట్రై చేయండి."</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"కాంటాక్ట్"</string>
     <string name="caching_vcard_message" msgid="1879339732783666517">"vCard(ల)ను స్థానిక తాత్కాలిక స్టోరేజ్‌కు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCardని దిగుమతి చేయడం సాధ్యపడలేదు."</string>
