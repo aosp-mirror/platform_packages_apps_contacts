@@ -482,7 +482,7 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"همگام‌سازی خودکار را فعال می‌کنید؟"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"‏تغییراتی که در همه برنامه‌ها و حساب‌ها، نه فقط در «مخاطبین Google»، ایجاد می‌کنید، بین وب و دستگاه‌هایتان به‌روز نگه داشته می‌شوند."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"فعال کردن"</string>
-    <string name="connection_error_message" msgid="7446131881946138093">"اتصال برقرار نیست"</string>
+    <string name="connection_error_message" msgid="7446131881946138093">"اتصال اینترنت موجود نیست"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"سیم کارت"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"بیشتر ببینید"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"وارد کردن سیم کارت تمام شد"</string>
