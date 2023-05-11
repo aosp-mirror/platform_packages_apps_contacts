@@ -40,7 +40,7 @@
     <string name="menu_editGroup" msgid="8706562583754054622">"Отстрани контакти"</string>
     <string name="menu_renameGroup" msgid="2685886609399776475">"Преименувај ја етикетата"</string>
     <string name="menu_deleteGroup" msgid="1180215594530228294">"Избриши ја етикетата"</string>
-    <string name="menu_addToGroup" msgid="5034813446697655310">"Додај контакт"</string>
+    <string name="menu_addToGroup" msgid="5034813446697655310">"Додајте контакт"</string>
     <string name="menu_selectForGroup" msgid="6386553337569514850">"Избери контакти"</string>
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"Додај контакти"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"Отстрани од етикетата"</string>
