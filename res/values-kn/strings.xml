@@ -45,7 +45,7 @@
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"ಸಂಪರ್ಕಗಳನ್ನು ಸೇರಿಸಿ"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"ಲೇಬಲ್‌ನಿಂದ ತೆಗೆದುಹಾಕಿ"</string>
     <string name="menu_new_group_action_bar" msgid="1670312283925872483">"ಲೇಬಲ್‌ ರಚಿಸಿ"</string>
-    <string name="splitConfirmation" msgid="4750158900636307469">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡುವುದೇ?"</string>
+    <string name="splitConfirmation" msgid="4750158900636307469">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಬೇಕೆ?"</string>
     <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"ಅನ್‌ಲಿಂಕ್‌"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"ಉಳಿಸಿ ಮತ್ತು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ"</string>
@@ -193,7 +193,7 @@
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"ಕಡಿಮೆ ನೋಡಿ"</string>
     <string name="about_card_title" msgid="6635849009952435700">"ಕುರಿತು"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"ವೈಯಕ್ತಿಕ ಪ್ರತಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ…"</string>
-    <string name="date_time_set" msgid="8526160894146496334">"ಹೊಂದಿಸಿ"</string>
+    <string name="date_time_set" msgid="8526160894146496334">"ಸೆಟ್ ಮಾಡಿ"</string>
     <string name="header_im_entry" msgid="3581797653862294826">"IM"</string>
     <string name="header_organization_entry" msgid="7428066442988227441">"ಸಂಸ್ಥೆ"</string>
     <string name="header_nickname_entry" msgid="1110276804512795150">"ಅಡ್ಡಹೆಸರು"</string>
@@ -479,7 +479,7 @@
     <string name="auto_sync_off" msgid="7039314601316227882">"ಸ್ವಯಂಚಾಲಿತ ಸಿಂಕ್ ಆಫ್‌ ಆಗಿದೆ. ಆನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"ವಜಾಗೊಳಿಸಿ"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"ಖಾತೆಯ ಸಿಂಕ್ ಆಫ್‌ ಆಗಿದೆ. ಆನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
-    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"ಸ್ವಯಂ-ಸಿಂಕ್‌ ಆನ್ ಮಾಡುವುದೇ?"</string>
+    <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"ಸ್ವಯಂ-ಸಿಂಕ್‌ ಆನ್ ಮಾಡಬೇಕೆ?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"ಎಲ್ಲಾ ಅಪ್ಲಿಕೇಶನ್‌ಗಳು ಮತ್ತು ಖಾತೆಗಳಿಗೆ ನೀವು ಮಾಡುವ ಬದಲಾವಣೆಗಳು Google ಸಂಪರ್ಕಗಳಿಗೆ ಮಾತ್ರವಲ್ಲದೇ, ವೆಬ್ ಮತ್ತು ನಿಮ್ಮ ಸಾಧನಗಳ ನಡುವೆ ನವೀಕೃತವಾಗಿ ಇರಿಸಲಾಗುತ್ತದೆ."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"ಆನ್ ಮಾಡಿ"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"ಯಾವುದೇ ಸಂಪರ್ಕವಿಲ್ಲ"</string>
