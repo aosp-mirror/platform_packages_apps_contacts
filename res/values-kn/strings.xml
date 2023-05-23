@@ -387,7 +387,7 @@
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"ಈ ಫಾರ್ಮ್ಯಾಟ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮುಗಿದಿದೆ."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"ಸಂಪರ್ಕಗಳ ರಫ್ತು ಮಾಡುವಿಕೆ ಮುಗಿದಿದೆ."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"ಸಂಪರ್ಕಗಳನ್ನು ರಪ್ತು ಮಾಡುವುದನ್ನು ಮುಕ್ತಾಯಗೊಳಿಸಲಾಗಿದೆ, ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅಧಿಸೂಚನೆ ಕ್ಲಿಕ್ ಮಾಡಿ."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"ಸಂಪರ್ಕಗಳನ್ನು ರಪ್ತು ಮಾಡುವುದನ್ನು ಮುಕ್ತಾಯಗೊಳಿಸಲಾಗಿದೆ, ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ನೋಟಿಫಿಕೇಶನ್ ಕ್ಲಿಕ್ ಮಾಡಿ."</string>
     <string name="touch_to_share_contacts" msgid="7678194978416052577">"ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತುಮಾಡಲಾಗುತ್ತಿದೆ"</string>
