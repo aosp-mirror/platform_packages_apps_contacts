@@ -204,7 +204,7 @@
     <string name="header_name_entry" msgid="2516776099121101578">"Naam"</string>
     <string name="header_email_entry" msgid="8653569770962542178">"E-mail"</string>
     <string name="header_phone_entry" msgid="7092868248113091293">"Telefoon"</string>
-    <string name="content_description_directions" msgid="860179347986211929">"routebeschrijving naar locatie"</string>
+    <string name="content_description_directions" msgid="860179347986211929">"route naar locatie"</string>
     <string name="editor_more_fields" msgid="6158558083947445518">"Meer velden"</string>
     <string name="editor_change_photo_content_description" msgid="8146896029044539032">"Contactfoto wijzigen"</string>
     <string name="editor_add_photo_content_description" msgid="8457486801272200575">"Contactfoto toevoegen"</string>

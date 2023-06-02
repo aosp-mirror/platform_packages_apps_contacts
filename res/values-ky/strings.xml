@@ -149,8 +149,8 @@
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"жабуу"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"Тандалган байланышты түзөтүүгө өтөсүзбү? Буга чейин киргизилген маалыматтар көчүрүлөт."</string>
     <string name="contact_directory_description" msgid="1773630547110881835">"<xliff:g id="TYPE">%1$s</xliff:g> каталогу"</string>
-    <string name="activity_title_settings" msgid="4004290638426915162">"Жөндөөлөр"</string>
-    <string name="menu_settings" msgid="3524924670246877187">"Жөндөөлөр"</string>
+    <string name="activity_title_settings" msgid="4004290638426915162">"Параметрлер"</string>
+    <string name="menu_settings" msgid="3524924670246877187">"Параметрлер"</string>
     <string name="menu_help" msgid="287801702920372292">"Жардам жана пикир билдирүү"</string>
     <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
@@ -363,7 +363,7 @@
     <string name="dialog_sync_add" msgid="8012361965908515959">"Шайкештирүү тобуна кошуу"</string>
     <string name="display_more_groups" msgid="8398232980355188133">"Дагы топтор…"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"\"<xliff:g id="GROUP">%s</xliff:g>\" тобун шайкештирүүдөн алып салуу топко кирбеген башка байланыштарды дагы шайкештирүүдөн чыгарып салат."</string>
-    <string name="savingDisplayGroups" msgid="6779839417901711381">"Жөндөөлөр сакталууда…"</string>
+    <string name="savingDisplayGroups" msgid="6779839417901711381">"Параметрлер сакталууда…"</string>
     <string name="listCustomView" msgid="5782275477737032610">"Ылайыкташтырылган көрүнүш"</string>
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"Өткөрүлүп алынган байланыштар төмөнкүгө сакталсын:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM-карта"</string>
