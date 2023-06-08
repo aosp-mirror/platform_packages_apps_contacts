@@ -23,7 +23,7 @@
     <string name="shortcutDialContact" msgid="155367248069127153">"Quay số trực tiếp"</string>
     <string name="shortcutMessageContact" msgid="9123517151981679277">"Tin nhắn trực tiếp"</string>
     <string name="shortcutActivityTitle" msgid="5407832911005090417">"Chọn liên hệ"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Thêm vào liên hệ"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Thêm vào danh bạ"</string>
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"Chọn người liên hệ"</string>
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"Chọn"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"Tạo người liên hệ mới"</string>

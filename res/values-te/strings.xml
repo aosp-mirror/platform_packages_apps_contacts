@@ -407,7 +407,7 @@
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"కాంటాక్ట్‌లు కొద్ది సేపట్లో ఎగుమతి చేయబడతాయి."</string>
     <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard ఎగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"కాంటాక్ట్"</string>
-    <string name="caching_vcard_message" msgid="1879339732783666517">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
+    <string name="caching_vcard_message" msgid="1879339732783666517">"vCard(ల)ను స్థానిక తాత్కాలిక స్టోరేజ్‌కు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCardని దిగుమతి చేయడం సాధ్యపడలేదు."</string>
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"కాంటాక్ట్ NFC ద్వారా స్వీకరించబడింది"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"కాష్ చేస్తోంది"</string>
@@ -458,7 +458,7 @@
     <string name="about_open_source_licenses" msgid="1617836621315557445">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"ఓపెన్ సోర్స్ సాఫ్ట్‌వేర్ యొక్క లైసెన్స్ వివరాలు"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"గోప్యతా పాలసీ"</string>
-    <string name="about_terms_of_service" msgid="7419670771785057738">"సేవా నిబంధనలు"</string>
+    <string name="about_terms_of_service" msgid="7419670771785057738">"సర్వీస్ నియమాలు"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"urlని తెరవడంలో విఫలమైంది."</string>
     <string name="account_filter_view_checked" msgid="4740544238806346376">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడింది"</string>
