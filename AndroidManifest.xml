@@ -630,6 +630,17 @@
             android:name="android.nfc.disable_beam_default"
             android:value="true"/>
 
+        <provider
+            android:name="com.android.contacts.sdn.SdnProvider"
+            android:authorities="@string/contacts_sdn_provider_authority"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="android.permission.BIND_DIRECTORY_SEARCH">
+            <meta-data
+                android:name="android.content.ContactDirectory"
+                android:value="true" />
+        </provider>
+
     </application>
 
     <!-- Allows the contacts app to see the activities and services needed
