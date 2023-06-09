@@ -70,6 +70,7 @@ public class RequestPermissionsActivity extends RequestPermissionsActivityBase {
                 permissions.add(permission.CALL_PHONE);
                 permissions.add(permission.READ_PHONE_NUMBERS);
                 permissions.add(permission.READ_PHONE_STATE);
+                permissions.add(permission.READ_CALL_LOG);
             }
             sRequiredPermissions = permissions.toArray(new String[0]);
         }
