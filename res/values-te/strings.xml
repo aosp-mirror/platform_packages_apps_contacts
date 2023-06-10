@@ -310,7 +310,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"సంస్థ"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"సంబంధం"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"ప్రత్యేక తేదీ"</string>
-    <string name="sms" msgid="4246338112764847384">"వచన మెసేజ్‌"</string>
+    <string name="sms" msgid="4246338112764847384">"టెక్స్ట్ మెసేజ్‌"</string>
     <string name="postal_address" msgid="5031809899673855074">"అడ్రస్‌"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"కంపెనీ"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"విభాగం"</string>
