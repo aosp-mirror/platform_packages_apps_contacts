@@ -16,6 +16,7 @@
 package com.android.contacts.util;
 
 import android.telephony.PhoneNumberUtils;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -94,5 +95,25 @@ public class PhoneNumberHelper {
             return number;
         }
         return number.substring(0, delimiterIndex);
+    }
+
+    /** Returns true if the given string is dialable by the user from Phone/Dialer app. */
+    public static boolean isDialablePhoneNumber(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+
+        for (int i = 0, count = str.length(); i < count; i++) {
+            if (!(PhoneNumberUtils.isDialable(str.charAt(i))
+                || str.charAt(i) == ' '
+                || str.charAt(i) == '-'
+                || str.charAt(i) == '('
+                || str.charAt(i) == ')'
+                || str.charAt(i) == '.'
+                || str.charAt(i) == '/')) {
+                return false;
+            }
+        }
+        return true;
     }
 }
