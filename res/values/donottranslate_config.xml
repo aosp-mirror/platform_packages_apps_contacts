@@ -28,6 +28,10 @@
 
     <!-- File Authority for AOSP Contacts files -->
     <string name="contacts_file_provider_authority">com.android.contacts.files</string>
+
+    <!-- SDN Authority for carrier SDN -->
+    <string name="contacts_sdn_provider_authority">com.android.contacts.sdn</string>
+
     <!-- Flag indicating whether Contacts app is allowed to import contacts -->
     <bool name="config_allow_import_from_vcf_file">true</bool>
 
