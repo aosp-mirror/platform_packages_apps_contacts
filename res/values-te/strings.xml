@@ -116,7 +116,7 @@
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"ఈమెయిల్‌ను పంపు"</string>
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"మెసేజ్‌ను పంపు"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"కాంటాక్ట్‌లను ఎంచుకోండి"</string>
-    <string name="send_to_selection" msgid="3655197947726443720">"పంపు"</string>
+    <string name="send_to_selection" msgid="3655197947726443720">"పంపండి"</string>
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"కాంటాక్ట్‌లు లేవు"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"\"<xliff:g id="EMAIL">%s</xliff:g>\"ని కాంటాక్ట్‌లకు జోడించాలా?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"మీ కాంటాక్ట్‌ల పేర్లు"</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"నోటిఫికేషన్‌లు"</string>
     <string name="yes_button" msgid="1120514817091581293">"అవును"</string>
     <string name="no_button" msgid="8965841385742548947">"కాదు"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"క్యారియర్ సర్వీస్ నంబర్‌లు"</string>
 </resources>
