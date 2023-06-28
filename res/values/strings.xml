@@ -1549,4 +1549,7 @@
     <!-- Text of Negative Button in dialog -->
     <string name="no_button">No</string>
 
+    <!-- The label to display as a section header in the contact list for an SDN directory [CHAR LIMIT=40] -->
+    <string name="sdn_contacts_directory_search_label">Carrier service numbers</string>
+
 </resources>
