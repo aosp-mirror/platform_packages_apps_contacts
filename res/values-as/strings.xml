@@ -91,8 +91,8 @@
     <string name="customLabelPickerTitle" msgid="816694850254307154">"উপযোগিতা অনুসৰি লেবেলৰ নাম"</string>
     <string name="removePhoto" msgid="1190099414600730001">"ফট\' আঁতৰাওক"</string>
     <string name="noContacts" msgid="3030512741779213810">"আপোনাৰ সম্পৰ্কসূচী খালী আছে"</string>
-    <string name="emptyGroup" msgid="8598261660865081152">"এই লেবেলত কোনো সম্পৰ্ক ব্য়ক্তি নাই"</string>
-    <string name="emptyAccount" msgid="7450843210977018582">"এই একাউণ্টত কোনো সম্পৰ্ক ব্য়ক্তি নাই"</string>
+    <string name="emptyGroup" msgid="8598261660865081152">"এই লেবেলত কোনো সম্পৰ্ক ব্যক্তি নাই"</string>
+    <string name="emptyAccount" msgid="7450843210977018582">"এই একাউণ্টত কোনো সম্পৰ্ক ব্যক্তি নাই"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"আপোনাৰ সম্পৰ্কসূচী খালী আছে"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> ছেভ কৰা হ’ল"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"সম্পৰ্ক ছেভ কৰা হ’ল"</string>
@@ -192,7 +192,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"অধিক চাওক"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"কম চাওক"</string>
     <string name="about_card_title" msgid="6635849009952435700">"ইয়াৰ বিষয়ে"</string>
-    <string name="toast_making_personal_copy" msgid="9053129410039312386">"ব্য়ক্তিগত প্ৰতিলিপ সৃষ্টি কৰিথকা হৈছে…"</string>
+    <string name="toast_making_personal_copy" msgid="9053129410039312386">"ব্যক্তিগত প্ৰতিলিপ সৃষ্টি কৰিথকা হৈছে…"</string>
     <string name="date_time_set" msgid="8526160894146496334">"ছেট কৰক"</string>
     <string name="header_im_entry" msgid="3581797653862294826">"IM"</string>
     <string name="header_organization_entry" msgid="7428066442988227441">"সংস্থা"</string>
