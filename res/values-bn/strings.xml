@@ -482,7 +482,7 @@
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"স্বতঃ-সিঙ্ক চালু করবেন?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Google পরিচিতিগুলি ছাড়াও, সমস্ত অ্যাপ এবং অ্যাকাউন্টে আপনার করা পরিবর্তনগুলি, ওয়েব এবং আপনার ডিভাইসগুলির মধ্যে আপ টু ডেট রাখা হবে।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"চালু করুন"</string>
-    <string name="connection_error_message" msgid="7446131881946138093">"কোনো সংযোগ নেই"</string>
+    <string name="connection_error_message" msgid="7446131881946138093">"কোনও কানেকশন নেই"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"সিম"</string>
     <string name="show_more_content_description" msgid="6298277298495491712">"আরও দেখান"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"সিম কার্ড আমদানি করা সমাপ্ত হয়েছে"</string>
