@@ -230,7 +230,7 @@
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"Упарадкуйце свае кантакты для зручнага выкарыстання"</string>
     <string name="undo" msgid="2446931036220975026">"Адрабіць"</string>
     <string name="call_custom" msgid="2844900154492073207">"Выклікаць <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
-    <string name="call_home" msgid="2443904771140750492">"Патэлефанаваць на хатні нумар"</string>
+    <string name="call_home" msgid="2443904771140750492">"Выклік дамоў"</string>
     <string name="call_mobile" msgid="6504312789160309832">"Набраць нумар мабільнага тэлефону"</string>
     <string name="call_work" msgid="2414313348547560346">"Выклікаць працоўны нумар тэлефона"</string>
     <string name="call_fax_work" msgid="5026843006300760797">"Набраць нумар працоўнага факса"</string>

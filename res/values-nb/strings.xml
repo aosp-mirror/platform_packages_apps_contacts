@@ -413,7 +413,7 @@
     <string name="caching_vcard_title" msgid="6333926052524937628">"Bufrer"</string>
     <string name="progress_notifier_message" msgid="8522060892889599746">"Importerer <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="3096479544575798192">"Eksportér til .vcf-fil"</string>
-    <string name="display_options_sort_list_by" msgid="4333658089057400431">"Sortér etter"</string>
+    <string name="display_options_sort_list_by" msgid="4333658089057400431">"Sorter etter"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"Fonetisk navn"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Vis alltid"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"Skjul hvis feltet er tomt"</string>
