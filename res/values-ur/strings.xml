@@ -251,7 +251,7 @@
     <string name="call_assistant" msgid="8556909944379826616">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> کو کال کریں"</string>
     <string name="call_mms" msgid="1760746475672950386">"‏MMS نمبر پر کال کریں"</string>
     <string name="call_by_shortcut" msgid="5707329943368933423">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (کال کریں)"</string>
-    <string name="sms_custom" msgid="3684453744622817362">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> پر متنی پیغام بھیجیں"</string>
+    <string name="sms_custom" msgid="3684453744622817362">"<xliff:g id="CUSTOM_LABEL">%s</xliff:g> پر ٹیکسٹ پیغام بھیجیں"</string>
     <string name="sms_home" msgid="6132392861245316613">"گھر کے نمبر پر متن بھیجیں"</string>
     <string name="sms_mobile" msgid="433949735070334192">"موبائل پر متن بھیجیں"</string>
     <string name="sms_work" msgid="7784676780449153911">"دفتر کے نمبر پر متن بھیجیں"</string>
@@ -310,7 +310,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"تنظیم"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"رشتہ"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"خاص تاریخ"</string>
-    <string name="sms" msgid="4246338112764847384">"متنی پیغام"</string>
+    <string name="sms" msgid="4246338112764847384">"ٹیکسٹ پیغام"</string>
     <string name="postal_address" msgid="5031809899673855074">"پتہ"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"کمپنی"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"محکمہ"</string>
