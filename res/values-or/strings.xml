@@ -117,7 +117,7 @@
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"ମେସେଜ୍‌ ପଠାନ୍ତୁ"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"ଯୋଗାଯୋଗ ବାଛନ୍ତୁ"</string>
     <string name="send_to_selection" msgid="3655197947726443720">"ପଠାନ୍ତୁ"</string>
-    <string name="listFoundAllContactsZero" msgid="1933842282916988563">"କୌଣସି ଯୋଗାଯୋଗ ନାହାନ୍ତି"</string>
+    <string name="listFoundAllContactsZero" msgid="1933842282916988563">"କୌଣସି କଣ୍ଟାକ୍ଟ ନାହିଁ"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"\"<xliff:g id="EMAIL">%s</xliff:g>\"କୁ ଯୋଗାଯୋଗ ସହ ଯୋଡ଼ିବେ?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"ଆପଣଙ୍କ ଯୋଗାଯୋଗଙ୍କର ନାମ"</string>
     <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"ପୂର୍ବବର୍ତ୍ତୀ ସ୍କ୍ରୀନ୍‌କୁ ଫେରିବା ପାଇଁ କ୍ଲିକ୍ କରନ୍ତୁ"</string>
@@ -149,8 +149,8 @@
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"ବନ୍ଦ କରନ୍ତୁ"</string>
     <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"ଚୟନିତ ଯୋଗାଯୋଗ ଏଡିଟ୍ କରିବା ପାଇଁ ସ୍ୱିଚ୍ କରିବେ? ଏପର୍ଯ୍ୟନ୍ତ ଆପଣ ଦେଇଥିବା ସୂଚନାକୁ କପୀ କରାଯିବ।"</string>
     <string name="contact_directory_description" msgid="1773630547110881835">"ଡାଇରେକ୍ଟୋରୀ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
-    <string name="activity_title_settings" msgid="4004290638426915162">"ସେଟିଙ୍ଗ"</string>
-    <string name="menu_settings" msgid="3524924670246877187">"ସେଟିଙ୍ଗ"</string>
+    <string name="activity_title_settings" msgid="4004290638426915162">"ସେଟିଂସ"</string>
+    <string name="menu_settings" msgid="3524924670246877187">"ସେଟିଂସ"</string>
     <string name="menu_help" msgid="287801702920372292">"ସହାୟତା ଓ ମତାମତ"</string>
     <string name="organization_entry_two_field" msgid="6034934619269052455">"<xliff:g id="FIRST">%1$s</xliff:g> • <xliff:g id="SECOND">%2$s</xliff:g>"</string>
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>

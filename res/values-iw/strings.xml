@@ -65,9 +65,9 @@
     <string name="contacts_deleted_one_named_toast" msgid="2707266264779781309">"מחקת את <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="contacts_deleted_two_named_toast" msgid="6908761620236434380">"<xliff:g id="NAME_0">%1$s</xliff:g> ו-<xliff:g id="NAME_1">%2$s</xliff:g> נמחקו"</string>
     <string name="contacts_deleted_many_named_toast" msgid="4879197068250337298">"<xliff:g id="NAME_0">%1$s</xliff:g>, <xliff:g id="NAME_1">%2$s</xliff:g>, <xliff:g id="NAME_2">%3$s</xliff:g>... נמחקו"</string>
-    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{איש הקשר נמחק}two{אנשי הקשר נמחקו}many{אנשי הקשר נמחקו}other{אנשי הקשר נמחקו}}"</string>
-    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{איש קשר אחד}two{# אנשי קשר}many{# אנשי קשר}other{# אנשי קשר}}"</string>
-    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{איש קשר אחד · {account}}two{# אנשי קשר · {account}}many{# אנשי קשר · {account}}other{# אנשי קשר · {account}}}"</string>
+    <string name="contacts_deleted_toast" msgid="3185825083067357305">"{count,plural, =1{איש הקשר נמחק}one{אנשי הקשר נמחקו}two{אנשי הקשר נמחקו}other{אנשי הקשר נמחקו}}"</string>
+    <string name="contacts_count" msgid="92227640680327707">"{count,plural, =1{איש קשר אחד}one{# אנשי קשר}two{# אנשי קשר}other{# אנשי קשר}}"</string>
+    <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{איש קשר אחד · {account}}one{# אנשי קשר · {account}}two{# אנשי קשר · {account}}other{# אנשי קשר · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"‏מ-Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"מ-<xliff:g id="ACCOUNT">%s</xliff:g>"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"בחירת רינגטון"</string>
@@ -127,7 +127,7 @@
     <string name="menu_share" msgid="6343022811796001773">"שיתוף"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"הוספה לאנשי הקשר"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"הוספה"</string>
-    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{שיתוף איש הקשר באמצעות}two{שיתוף אנשי הקשר באמצעות}many{שיתוף אנשי הקשר באמצעות}other{שיתוף אנשי הקשר באמצעות}}"</string>
+    <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{שיתוף איש הקשר באמצעות}one{שיתוף אנשי הקשר באמצעות}two{שיתוף אנשי הקשר באמצעות}other{שיתוף אנשי הקשר באמצעות}}"</string>
     <string name="dialog_new_group_account" msgid="4326402875327788728">"בחירת חשבון"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"יצירת תווית"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"שינוי שם התווית"</string>
@@ -368,8 +368,8 @@
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"איפה יישמרו אנשי הקשר שמיובאים:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"‏כרטיס SIM"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"‏כרטיס SIM‏ <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
-    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{איש קשר אחד}two{# אנשי קשר}many{# אנשי קשר}other{# אנשי קשר}}"</string>
-    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{איש קשר אחד · <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}two{# אנשי קשר · <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}many{# אנשי קשר · <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# אנשי קשר · <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
+    <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{איש קשר אחד}one{# אנשי קשר}two{# אנשי קשר}other{# אנשי קשר}}"</string>
+    <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{איש קשר אחד · <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}one{# אנשי קשר · <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}two{# אנשי קשר · <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}other{# אנשי קשר · <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"‏קובץ vcf."</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"אין מה לייבא"</string>
     <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"‏האם לייבא את אנשי הקשר מ-vCard?"</string>
@@ -472,7 +472,7 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"בחירת אנשי קשר"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"‏אין אף איש קשר בכרטיס ה-SIM"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"איש הקשר כבר קיים ברשימה"</string>
-    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{‏איש קשר אחד יובא מכרטיס ה-SIM}two{‏# אנשי קשר יובאו מכרטיס ה-SIM}many{‏# אנשי קשר יובאו מכרטיס ה-SIM}other{‏# אנשי קשר יובאו מכרטיס ה-SIM}}"</string>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{‏איש קשר אחד יובא מכרטיס ה-SIM}one{‏# אנשי קשר יובאו מכרטיס ה-SIM}two{‏# אנשי קשר יובאו מכרטיס ה-SIM}other{‏# אנשי קשר יובאו מכרטיס ה-SIM}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"‏לא ניתן היה לייבא את אנשי הקשר מכרטיס ה-SIM"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"‏ייבוא מכרטיס SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"ביטול"</string>
