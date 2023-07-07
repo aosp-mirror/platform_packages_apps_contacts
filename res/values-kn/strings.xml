@@ -193,7 +193,7 @@
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"ಕಡಿಮೆ ನೋಡಿ"</string>
     <string name="about_card_title" msgid="6635849009952435700">"ಕುರಿತು"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"ವೈಯಕ್ತಿಕ ಪ್ರತಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ…"</string>
-    <string name="date_time_set" msgid="8526160894146496334">"ಹೊಂದಿಸಿ"</string>
+    <string name="date_time_set" msgid="8526160894146496334">"ಸೆಟ್ ಮಾಡಿ"</string>
     <string name="header_im_entry" msgid="3581797653862294826">"IM"</string>
     <string name="header_organization_entry" msgid="7428066442988227441">"ಸಂಸ್ಥೆ"</string>
     <string name="header_nickname_entry" msgid="1110276804512795150">"ಅಡ್ಡಹೆಸರು"</string>
@@ -387,7 +387,7 @@
     <string name="fail_reason_not_supported" msgid="6449916670421646290">"ಈ ಫಾರ್ಮ್ಯಾಟ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ."</string>
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮುಗಿದಿದೆ."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"ಸಂಪರ್ಕಗಳ ರಫ್ತು ಮಾಡುವಿಕೆ ಮುಗಿದಿದೆ."</string>
-    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"ಸಂಪರ್ಕಗಳನ್ನು ರಪ್ತು ಮಾಡುವುದನ್ನು ಮುಕ್ತಾಯಗೊಳಿಸಲಾಗಿದೆ, ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅಧಿಸೂಚನೆ ಕ್ಲಿಕ್ ಮಾಡಿ."</string>
+    <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"ಸಂಪರ್ಕಗಳನ್ನು ರಪ್ತು ಮಾಡುವುದನ್ನು ಮುಕ್ತಾಯಗೊಳಿಸಲಾಗಿದೆ, ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ನೋಟಿಫಿಕೇಶನ್ ಕ್ಲಿಕ್ ಮಾಡಿ."</string>
     <string name="touch_to_share_contacts" msgid="7678194978416052577">"ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಟ್ಯಾಪ್ ಮಾಡಿ."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"<xliff:g id="FILENAME">%s</xliff:g> ರಫ್ತು ಮಾಡುವುದನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"ಸಂಪರ್ಕ ಡೇಟಾವನ್ನು ರಫ್ತುಮಾಡಲಾಗುತ್ತಿದೆ"</string>

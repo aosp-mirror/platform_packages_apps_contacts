@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="applicationLabel" msgid="8908212014470937609">"सम्पर्कहरू"</string>
+    <string name="applicationLabel" msgid="8908212014470937609">"कन्ट्याक्टहरू"</string>
     <string name="contactsList" msgid="4456188358262700898">"सम्पर्क"</string>
     <string name="shortcut_add_contact" msgid="7949342235528657981">"सम्पर्क थप्नुहोस्"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"ठेगाना"</string>
