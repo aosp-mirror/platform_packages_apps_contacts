@@ -415,7 +415,7 @@
     <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf ఫైల్‌కు ఎగుమతి చేయి"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"ఇలా వ‌ర్గీక‌రించు"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"ఫొనెటిక్ పేరు"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"ఎల్లప్పుడూ చూపు"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"ఎల్లప్పుడూ చూపండి"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"ఖాళీగా ఉంటే దాచు"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"మొదటి పేరు"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"చివరి పేరు"</string>
