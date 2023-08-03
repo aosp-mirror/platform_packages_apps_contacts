@@ -45,7 +45,7 @@
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"Adicionar contactos"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"Remover da etiqueta"</string>
     <string name="menu_new_group_action_bar" msgid="1670312283925872483">"Criar etiqueta"</string>
-    <string name="splitConfirmation" msgid="4750158900636307469">"Pretende desassociar este contacto em vários contactos?"</string>
+    <string name="splitConfirmation" msgid="4750158900636307469">"Quer desassociar este contacto em vários contactos?"</string>
     <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"Desassociar"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"Gostaria de guardar as alterações já efetuadas e desassociar este contacto em vários contactos?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"Guardar e desassociar"</string>
@@ -57,7 +57,7 @@
     <string name="menu_linkedContacts" msgid="6363718333551613063">"Ver contactos associados"</string>
     <string name="menu_save" msgid="7204524700499687371">"Guardar"</string>
     <string name="titleJoinContactDataWith" msgid="7342386037654890242">"Associar contactos"</string>
-    <string name="blurbJoinContactDataWith" msgid="132105056919797709">"Escolha o contacto que pretende associar a <xliff:g id="NAME">%s</xliff:g>:"</string>
+    <string name="blurbJoinContactDataWith" msgid="132105056919797709">"Escolha o contacto que quer associar a <xliff:g id="NAME">%s</xliff:g>:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="8347769365870796983">"Contactos sugeridos"</string>
     <string name="separatorJoinAggregateAll" msgid="5378346138684490784">"Todos os contactos"</string>
     <string name="contactsJoinedNamedMessage" msgid="8732933595873458166">"Contacto associado: <xliff:g id="NAME">%s</xliff:g>"</string>
@@ -170,7 +170,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Rejeitar alterações?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"Rejeitar"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"Cancelar"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Pretende rejeitar as personalizações?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Quer rejeitar as personalizações?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"Pesquisar contactos"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"Remover contactos"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"O meu perfil local"</string>
@@ -372,7 +372,7 @@
     <string name="import_from_sim_secondary_template" msgid="7574306746844258362">"{count,plural, =1{# contacto • <xliff:g id="PHONE_NUMBER_0">^1</xliff:g>}other{# contactos • <xliff:g id="PHONE_NUMBER_1">^1</xliff:g>}}"</string>
     <string name="import_from_vcf_file" msgid="6776403212804361301">"Ficheiro .vcf"</string>
     <string name="nothing_to_import_message" msgid="2594519620375509783">"Nada para importar"</string>
-    <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Pretende importar contactos do vCard?"</string>
+    <string name="import_from_vcf_file_confirmation_message" msgid="8579284961401472204">"Quer importar contactos do vCard?"</string>
     <string name="cancel_import_confirmation_message" msgid="1007412828398265611">"Cancelar a importação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_export_confirmation_message" msgid="370693160959236239">"Cancelar a exportação de <xliff:g id="FILENAME">%s</xliff:g>?"</string>
     <string name="cancel_vcard_import_or_export_failed" msgid="3041814872516288484">"Imposs. cancel. import./export. do vCard"</string>
