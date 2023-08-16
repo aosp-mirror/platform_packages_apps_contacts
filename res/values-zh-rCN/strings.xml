@@ -75,12 +75,12 @@
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"取消转接到语音信箱"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"这是只读联系人信息。您无法删除此联系人，但可以将其隐藏。"</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"隐藏联系人"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"此联系人的只读帐号将被隐藏，而不会被删除。"</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"此联系人的只读账号将被隐藏，而不会被删除。"</string>
     <string name="single_delete_confirmation" msgid="8260949300855537648">"要删除此联系人吗？"</string>
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"要删除所选联系人吗？"</string>
-    <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"系统无法删除来自只读帐号的联系人信息，但可以将这些信息隐藏。"</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"您要删除的联系人信息包含来自多个帐号的详细信息。系统将隐藏来自只读帐号的详细信息，而不会删除这些信息。"</string>
-    <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"删除此联系人也将删除多个帐号中的相关详细信息。"</string>
+    <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"系统无法删除来自只读账号的联系人信息，但可以将这些信息隐藏。"</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"您要删除的联系人信息包含来自多个账号的详细信息。系统将隐藏来自只读账号的详细信息，而不会删除这些信息。"</string>
+    <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"删除此联系人也将删除多个账号中的相关详细信息。"</string>
     <string name="deleteConfirmation" msgid="3727809366015979585">"要删除此联系人吗？"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"删除"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"该联系人不存在。"</string>
@@ -92,7 +92,7 @@
     <string name="removePhoto" msgid="1190099414600730001">"移除照片"</string>
     <string name="noContacts" msgid="3030512741779213810">"联系人列表是空的"</string>
     <string name="emptyGroup" msgid="8598261660865081152">"此标签下没有联系人"</string>
-    <string name="emptyAccount" msgid="7450843210977018582">"此帐号中没有联系人"</string>
+    <string name="emptyAccount" msgid="7450843210977018582">"此账号中没有联系人"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"联系人列表是空的"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"已保存<xliff:g id="DISPLAY_NAME">%s</xliff:g>"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"联系人已保存"</string>
@@ -128,7 +128,7 @@
     <string name="menu_add_contact" msgid="5822356185421997656">"添加到通讯录"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"添加"</string>
     <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{通过以下应用分享联系人}other{通过以下应用分享联系人}}"</string>
-    <string name="dialog_new_group_account" msgid="4326402875327788728">"选择帐号"</string>
+    <string name="dialog_new_group_account" msgid="4326402875327788728">"选择账号"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"创建标签"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"重命名标签"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"标签名称"</string>
@@ -136,7 +136,7 @@
     <string name="audio_chat" msgid="5921525823973697372">"语音聊天"</string>
     <string name="video_chat" msgid="2477295971622477433">"视频聊天"</string>
     <string name="account_type_format" msgid="4926968760755013450">"<xliff:g id="SOURCE">%1$s</xliff:g> 联系人"</string>
-    <string name="google_account_type_format" msgid="4046692740262396811">"<xliff:g id="SOURCE">%1$s</xliff:g>帐号"</string>
+    <string name="google_account_type_format" msgid="4046692740262396811">"<xliff:g id="SOURCE">%1$s</xliff:g>账号"</string>
     <string name="take_photo" msgid="820071555236547516">"拍照"</string>
     <string name="take_new_photo" msgid="4383091978116875778">"拍摄新照片"</string>
     <string name="pick_photo" msgid="2050859661654812588">"选择照片"</string>
@@ -158,7 +158,7 @@
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"添加到通讯录"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"关闭"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"包含年份"</string>
-    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"添加帐号"</string>
+    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"添加账号"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"导入"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"新建…"</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"要删除“<xliff:g id="GROUP_LABEL">%1$s</xliff:g>”标签吗？（系统不会删除联系人。）"</string>
@@ -175,9 +175,9 @@
     <string name="title_edit_group" msgid="4246193439931854759">"移除联系人"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"我的本地个人资料"</string>
     <string name="external_profile_title" msgid="2706282819025406927">"我的<xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g>个人资料"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"请花一点时间添加帐号，以便将联系人备份到 Google。"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"请花一点时间添加账号，以便将联系人备份到 Google。"</string>
     <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"新建的联系人将保存到 <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>。"</string>
-    <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"选择用来保存新建联系人的默认帐号："</string>
+    <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"选择用来保存新建联系人的默认账号："</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"创建新联系人"</string>
     <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"修改联系人"</string>
     <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"只能查看"</string>
@@ -185,8 +185,8 @@
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"已关联的联系人"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"添加"</string>
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"取消关联"</string>
-    <string name="add_account" msgid="3071396624500839020">"添加帐号"</string>
-    <string name="add_new_account" msgid="573368229646104110">"添加新帐号"</string>
+    <string name="add_account" msgid="3071396624500839020">"添加账号"</string>
+    <string name="add_new_account" msgid="573368229646104110">"添加新账号"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"导出数据库文件"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"创建新联系人"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"查看更多"</string>
@@ -225,7 +225,7 @@
     <string name="navigation_drawer_close" msgid="3052989100471689722">"关闭抽屉式导航栏"</string>
     <string name="navigation_drawer_label" msgid="8391863484838783638">"“<xliff:g id="LABEL_NAME">%s</xliff:g>”标签"</string>
     <string name="menu_title_groups" msgid="3722199658759568221">"标签"</string>
-    <string name="menu_title_filters" msgid="349866121417914494">"帐号"</string>
+    <string name="menu_title_filters" msgid="349866121417914494">"账号"</string>
     <string name="hamburger_feature_highlight_header" msgid="1786641424099282909">"建议"</string>
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"让您的通讯录井井有条，方便使用"</string>
     <string name="undo" msgid="2446931036220975026">"撤消"</string>
@@ -422,8 +422,8 @@
     <string name="display_options_view_names_as" msgid="4060686468465916565">"姓名格式"</string>
     <string name="display_options_view_given_name_first" msgid="383885125505521383">"名字在前"</string>
     <string name="display_options_view_family_name_first" msgid="6597077054231296007">"姓氏在前"</string>
-    <string name="settings_accounts" msgid="119582613811929994">"帐号"</string>
-    <string name="default_editor_account" msgid="4810392921888877149">"用于保存新联系人的默认帐号"</string>
+    <string name="settings_accounts" msgid="119582613811929994">"账号"</string>
+    <string name="default_editor_account" msgid="4810392921888877149">"用于保存新联系人的默认账号"</string>
     <string name="settings_my_info_title" msgid="6236848378653551341">"我的信息"</string>
     <string name="set_up_profile" msgid="3554999219868611431">"设置您的个人资料"</string>
     <string name="setting_about" msgid="2941859292287597555">"关于通讯录"</string>
@@ -447,7 +447,7 @@
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"时间：<xliff:g id="DATE">%1$s</xliff:g>，来源：<xliff:g id="SOURCE">%2$s</xliff:g>"</string>
     <string name="action_menu_back_from_search" msgid="683765774264585732">"停止搜索"</string>
     <string name="description_clear_search" msgid="1852934085825794095">"清除搜索内容"</string>
-    <string name="select_account_dialog_title" msgid="5047523441152129207">"帐号"</string>
+    <string name="select_account_dialog_title" msgid="5047523441152129207">"账号"</string>
     <string name="set_default_account" msgid="9194321110211682396">"一律使用这张卡进行通话"</string>
     <string name="call_with_a_note" msgid="2463785820399287281">"拨打电话并发送备注"</string>
     <string name="call_subject_hint" msgid="7056652101889538157">"输入要在拨打电话时发送的备注…"</string>
@@ -478,9 +478,9 @@
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"取消"</string>
     <string name="auto_sync_off" msgid="7039314601316227882">"自动同步功能已关闭。点按即可开启。"</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"关闭"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"帐号同步功能已关闭。点按即可开启。"</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"账号同步功能已关闭。点按即可开启。"</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"要开启自动同步功能吗？"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"您对所有应用和帐号（不只是 Google 通讯录）所做的更改都会在网络和您的设备之间保持同步。"</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"您对所有应用和账号（不只是 Google 通讯录）所做的更改都会在网络和您的设备之间保持同步。"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"开启"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"无网络连接"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM 卡"</string>
