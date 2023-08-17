@@ -472,9 +472,9 @@
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"အဆက်အသွယ်များကို ရွေးပါ"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"ဆင်းမ်ကဒ်ထဲတွင် လိပ်စာ မရှိပါ"</string>
     <string name="sim_import_contact_exists_toast" msgid="8423212007841229749">"အဆက်အသွယ်က သင့်စာရင်းတွင် ရှိနှင့်နေပါပြီ"</string>
-    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{ဆင်းမ်ကတ်ထဲရှိ အဆက်အသွယ် # ခုကို ထည့်သွင်းလိုက်ပါပြီ}other{ဆင်းမ်ကတ်ထဲရှိ အဆက်အသွယ် # ခုကို ထည့်သွင်းလိုက်ပါပြီ}}"</string>
+    <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{ဆင်းမ်ထဲရှိ အဆက်အသွယ် # ခုကို ထည့်သွင်းလိုက်ပါပြီ}other{ဆင်းမ်ထဲရှိ အဆက်အသွယ် # ခုကို ထည့်သွင်းလိုက်ပါပြီ}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"ဆင်းမ်အဆက်အသွယ်များကို တင်သွင်း၍မရပါ"</string>
-    <string name="sim_import_title" msgid="8202961146093040684">"ဆင်းမ်ကတ်မှ တင်သွင်းပါ"</string>
+    <string name="sim_import_title" msgid="8202961146093040684">"ဆင်းမ်ကဒ်မှ တင်သွင်းပါ"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"မလုပ်တော့"</string>
     <string name="auto_sync_off" msgid="7039314601316227882">"အလိုအလျောက်စင့်ခ်လုပ်ခြင်းကို ပိတ်ထားသည်။ ဖွင့်ရန်အတွက် တို့ပါ။"</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"ပယ်ရန်"</string>
@@ -487,7 +487,7 @@
     <string name="show_more_content_description" msgid="6298277298495491712">"ပိုပြပါ"</string>
     <string name="importing_sim_finished_title" msgid="6436721150882268416">"ဆင်းမ်ကဒ်ကို တင်သွင်းပြီးပါပြီ"</string>
     <string name="importing_sim_failed_title" msgid="1046154274170241788">"တင်သွင်း၍မရပါ"</string>
-    <string name="importing_sim_failed_message" msgid="55568522164349044">"ဆင်းမ်ကတ်မှ အဆက်အသွယ်များကို တင်သွင်း၍မရပါ"</string>
+    <string name="importing_sim_failed_message" msgid="55568522164349044">"ဆင်းမ်ကဒ်မှ အဆက်အသွယ်များကို တင်သွင်း၍မရပါ"</string>
     <string name="importing_sim_in_progress_title" msgid="7647907413920018595">"ဆင်းမ်ကဒ်ကို တင်သွင်းနေသည်"</string>
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"အကြောင်းကြားချက်များ"</string>
     <string name="yes_button" msgid="1120514817091581293">"Yes"</string>

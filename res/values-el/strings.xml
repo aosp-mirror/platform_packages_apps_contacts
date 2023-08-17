@@ -331,7 +331,7 @@
     <string name="postal_region" msgid="6130239447563491435">"Πολιτεία"</string>
     <string name="postal_postcode" msgid="33077708757232659">"Ταχυδρομικός κώδικας"</string>
     <string name="postal_country" msgid="6642804283917549861">"Χώρα"</string>
-    <string name="map_home" msgid="2169053372466501148">"Προβολή διεύθυνσης σπιτιού"</string>
+    <string name="map_home" msgid="2169053372466501148">"Προβολή διεύθυνσης οικίας"</string>
     <string name="map_work" msgid="8296916987749726461">"Προβολή διεύθυνσης εργασίας"</string>
     <string name="map_other" msgid="4009931029322619674">"Προβολή διεύθυνσης"</string>
     <string name="map_custom" msgid="7797812861927817335">"Προβολή διεύθυνσης <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>

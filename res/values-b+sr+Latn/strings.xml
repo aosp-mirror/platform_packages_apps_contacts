@@ -475,7 +475,7 @@
     <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{Uvezen je # kontakt sa SIM-a}one{Uvezen je # kontakt sa SIM-a}few{Uvezena su # kontakta sa SIM-a}other{Uvezeno je # kontakata sa SIM-a}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Uvoz kontakata sa SIM kartice nije uspeo"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Uvezite sa SIM-a"</string>
-    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Otkaži"</string>
+    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Otkažite"</string>
     <string name="auto_sync_off" msgid="7039314601316227882">"Automatska sinhronizacija je isključena. Dodirnite da biste je uključili."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Odbacite"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Sinhronizacija naloga je isključena. Dodirnite da biste je uključili."</string>
