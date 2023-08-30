@@ -314,7 +314,7 @@
     <string name="postal_address" msgid="5031809899673855074">"Adres"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Şirket"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"Bölüm"</string>
-    <string name="ghostData_title" msgid="8584897460662904533">"Unvan"</string>
+    <string name="ghostData_title" msgid="8584897460662904533">"Ünvan"</string>
     <string name="label_notes" msgid="7134226125644463585">"Notlar"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Özel"</string>
     <string name="label_sip_address" msgid="8876347942587537552">"SIP"</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Bildirimler"</string>
     <string name="yes_button" msgid="1120514817091581293">"Evet"</string>
     <string name="no_button" msgid="8965841385742548947">"Hayır"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Operatör hizmet numaraları"</string>
 </resources>

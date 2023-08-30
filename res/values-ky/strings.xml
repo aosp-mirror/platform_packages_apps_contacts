@@ -79,7 +79,7 @@
     <string name="single_delete_confirmation" msgid="8260949300855537648">"Бул байланыш жок кылынсынбы?"</string>
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"Тандалган байланыштар жок кылынсынбы?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Окуу үчүн гана арналган аккаунтуңуздан байланыштарды жок кылуу мүмкүн эмес, бирок аларды жашырып койсо болот."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Жок кылына турган байланыштарда бир нече аккаунтунун чоо-жайы бар. Окуу үчүн гана арналган аккаунттарынын чоо-жайы жашырылып, өчпөйт."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Өчүрүлө турган байланыштарда бир нече аккаунтунун чоо-жайы бар. Окуу үчүн гана арналган аккаунттарынын чоо-жайы жашырылып, өчпөйт."</string>
     <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"Бул байланыш өчүрүлсө, анын бир нече аккаунтундагы чоо-жайы өчүп калат."</string>
     <string name="deleteConfirmation" msgid="3727809366015979585">"Бул байланыш жок кылынсынбы?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"Жок кылуу"</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Билдирмелер"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ооба"</string>
     <string name="no_button" msgid="8965841385742548947">"Жок"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Оператордун кызмат номерлери"</string>
 </resources>
