@@ -364,7 +364,7 @@
     <string name="display_more_groups" msgid="8398232980355188133">"ተጨማሪቡድኖች..."</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"\'<xliff:g id="GROUP">%s</xliff:g>\'  ከአሳምር ማስወገድ እንዲሁ ማንኛውም በተነጣጥል ያሉ ዕውቅያዎችን ከአሳምር ያስወግዳል።"</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ማሳያ አማራጮችን በማስቀመጥ ላይ..."</string>
-    <string name="listCustomView" msgid="5782275477737032610">"ብጁ እይታ"</string>
+    <string name="listCustomView" msgid="5782275477737032610">"ብጁ ዕይታ"</string>
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"እንዲመጡ የተደረጉ እውቂያዎችን አስቀምጥ ወደ፦"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"ሲም ካርድ"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"ሲም <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
