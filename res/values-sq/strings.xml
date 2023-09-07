@@ -433,7 +433,7 @@
     <string name="dialog_export" msgid="3497435010655060068">"Eksporto kontaktet"</string>
     <string name="dialog_import" msgid="4590232235052756593">"Importo kontaktet nga"</string>
     <string name="share_error" msgid="4854612167186185739">"Ky kontakt nuk mund të shpërndahet"</string>
-    <string name="no_contact_to_share" msgid="6285287228557175749">"Nuk ka kontakte për të shpërndarë"</string>
+    <string name="no_contact_to_share" msgid="6285287228557175749">"Nuk ka kontakte për të ndarë"</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"Kontakte për t\'u shfaqur"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"Kontakte për t\'u shfaqur"</string>
     <string name="custom_list_filter" msgid="2544327670202891979">"Personalizo pamjen"</string>
