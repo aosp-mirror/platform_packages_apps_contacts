@@ -75,7 +75,7 @@
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"Κατάργηση δρομ. σε τηλεφωνητή"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"Αυτή η επαφή είναι μόνο για ανάγνωση. Δεν μπορεί να διαγραφεί, αλλά μπορείτε να την αποκρύψετε."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"Απόκρυψη επαφής"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"Οι λογαριασμοί μόνο για ανάγνωση σε αυτήν την επαφή θα είναι κρυφοί, δεν θα διαγραφούν."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"Οι λογαριασμοί μόνο για ανάγνωση σε αυτή την επαφή θα είναι κρυφοί, δεν θα διαγραφούν."</string>
     <string name="single_delete_confirmation" msgid="8260949300855537648">"Να διαγραφεί αυτή η επαφή;"</string>
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"Να διαγραφούν οι επιλεγμένες επαφές;"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Δεν είναι δυνατή η διαγραφή επαφών από λογαριασμούς που προορίζονται μόνο για ανάγνωση, αλλά είναι δυνατή η απόκρυψή τους."</string>
@@ -91,7 +91,7 @@
     <string name="customLabelPickerTitle" msgid="816694850254307154">"Προσαρμοσμένο όνομα ετικέτας"</string>
     <string name="removePhoto" msgid="1190099414600730001">"Κατάργηση εικόνας"</string>
     <string name="noContacts" msgid="3030512741779213810">"Η λίστα επαφών σας είναι άδεια"</string>
-    <string name="emptyGroup" msgid="8598261660865081152">"Δεν υπάρχουν επαφές με αυτήν την εκτικέτα"</string>
+    <string name="emptyGroup" msgid="8598261660865081152">"Δεν υπάρχουν επαφές με αυτή την εκτικέτα"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"Δεν υπάρχουν επαφές σε αυτόν το λογαριασμό"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"Η λίστα επαφών σας είναι άδεια"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"Η επαφή \"<xliff:g id="DISPLAY_NAME">%s</xliff:g>\" αποθηκεύτηκε"</string>
