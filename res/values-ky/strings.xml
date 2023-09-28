@@ -457,7 +457,7 @@
     <string name="about_build_version" msgid="5870642814752351712">"Курама версиясы"</string>
     <string name="about_open_source_licenses" msgid="1617836621315557445">"Баштапкы коду ачык программалардын уруксаттамалары"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Баштапкы коду ачык программалардын уруксаттамаларынын чоо-жайы"</string>
-    <string name="about_privacy_policy" msgid="4581488375200402678">"Купуялык саясаты"</string>
+    <string name="about_privacy_policy" msgid="4581488375200402678">"Купуялык эрежелери"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"Тейлөө шарттары"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"Баштапкы коду ачык программалардын уруксаттамалары"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"URL ачылбай койду."</string>
