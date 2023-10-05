@@ -546,8 +546,7 @@ public class ImportVCardActivity extends Activity implements ImportVCardDialogFr
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        getWindow().addSystemFlags(android.view.WindowManager.LayoutParams
-            .SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS);
+        getWindow().setHideOverlayWindows(true);
 
         Uri sourceUri = getIntent().getData();
 
@@ -587,29 +586,37 @@ public class ImportVCardActivity extends Activity implements ImportVCardDialogFr
         String accountName = null;
         String accountType = null;
         String dataSet = null;
+        boolean isNullAccount = false;
         final Intent intent = getIntent();
-        if (intent != null) {
+        if (intent != null
+            && intent.hasExtra(SelectAccountActivity.ACCOUNT_NAME)
+            && intent.hasExtra(SelectAccountActivity.ACCOUNT_TYPE)
+            && intent.hasExtra(SelectAccountActivity.DATA_SET)) {
             accountName = intent.getStringExtra(SelectAccountActivity.ACCOUNT_NAME);
             accountType = intent.getStringExtra(SelectAccountActivity.ACCOUNT_TYPE);
             dataSet = intent.getStringExtra(SelectAccountActivity.DATA_SET);
+            isNullAccount = TextUtils.isEmpty(accountName) && TextUtils.isEmpty(accountType)
+                && TextUtils.isEmpty(dataSet);
         } else {
             Log.e(LOG_TAG, "intent does not exist");
         }
 
-        if (!TextUtils.isEmpty(accountName) && !TextUtils.isEmpty(accountType)) {
-            mAccount = new AccountWithDataSet(accountName, accountType, dataSet);
-        } else {
-            final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
-            final List<AccountWithDataSet> accountList = accountTypes.blockForWritableAccounts();
-            if (accountList.size() == 0) {
-                mAccount = null;
-            } else if (accountList.size() == 1) {
-                mAccount = accountList.get(0);
-            } else {
-                startActivityForResult(new Intent(this, SelectAccountActivity.class),
-                        SELECT_ACCOUNT);
-                return;
+        final AccountTypeManager accountTypes = AccountTypeManager.getInstance(this);
+        final List<AccountWithDataSet> accountList = accountTypes.blockForWritableAccounts();
+        if ((!TextUtils.isEmpty(accountName) && !TextUtils.isEmpty(accountType)) || isNullAccount) {
+            AccountWithDataSet selected = new AccountWithDataSet(accountName, accountType,
+                dataSet);
+            if (accountList.contains(selected)) {
+                mAccount = selected;
             }
+        }
+
+        if (accountList.isEmpty()) {
+            mAccount = null;
+        } else if (mAccount == null) {
+            startActivityForResult(new Intent(this, SelectAccountActivity.class),
+                SELECT_ACCOUNT);
+            return;
         }
 
         if (isCallerSelf(this)) {
