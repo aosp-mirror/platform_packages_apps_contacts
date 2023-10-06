@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Mga Notification"</string>
     <string name="yes_button" msgid="1120514817091581293">"Oo"</string>
     <string name="no_button" msgid="8965841385742548947">"Hindi"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Mga numero ng serbisyo ng carrier"</string>
 </resources>

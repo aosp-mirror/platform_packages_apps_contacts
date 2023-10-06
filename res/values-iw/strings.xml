@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"הודעות"</string>
     <string name="yes_button" msgid="1120514817091581293">"כן"</string>
     <string name="no_button" msgid="8965841385742548947">"לא"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"מספרי השירות של ספק הסלולר"</string>
 </resources>

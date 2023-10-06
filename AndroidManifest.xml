@@ -46,7 +46,6 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.SET_DEFAULT_ACCOUNT_FOR_CONTACTS"/>
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
     <!-- Following used for Contact metadata syncing -->
@@ -56,7 +55,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- Required in P to run Service.startForeground() -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS" />
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- Required in U to run Service.startForeground() under DATA_SYNC type -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
@@ -478,7 +477,8 @@
         <!-- Service to import contacts from the SIM card -->
         <service
             android:name=".SimImportService"
-            android:exported="false"/>
+            android:exported="false"
+            android:foregroundServiceType="shortService" />
 
         <!-- Attaches a photo to a contact. Started from external applications -->
         <activity
