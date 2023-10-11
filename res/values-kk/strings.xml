@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Хабарландырулар"</string>
     <string name="yes_button" msgid="1120514817091581293">"Иә"</string>
     <string name="no_button" msgid="8965841385742548947">"Жоқ"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Оператордың қызмет көрсету нөмірлері"</string>
 </resources>
