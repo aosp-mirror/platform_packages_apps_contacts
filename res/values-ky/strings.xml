@@ -467,7 +467,7 @@
     <string name="description_delete_contact" msgid="8110643050235441400">"Жок кылуу"</string>
     <string name="description_no_name_header" msgid="8596201864512339003">"Эллипс"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Кыска жол өчүрүлдү"</string>
-    <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Байланыш алынып салынган"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Байланыш өчүрүлгөн"</string>
     <string name="sim_import_button_text" msgid="2845608246304396009">"Өткөрүп алуу"</string>
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Байланыштарды тандоо"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"SIM картаңызда байланыштар жок."</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Билдирмелер"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ооба"</string>
     <string name="no_button" msgid="8965841385742548947">"Жок"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Оператордун кызмат номерлери"</string>
 </resources>
