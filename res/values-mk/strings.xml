@@ -40,7 +40,7 @@
     <string name="menu_editGroup" msgid="8706562583754054622">"Отстрани контакти"</string>
     <string name="menu_renameGroup" msgid="2685886609399776475">"Преименувај ја етикетата"</string>
     <string name="menu_deleteGroup" msgid="1180215594530228294">"Избриши ја етикетата"</string>
-    <string name="menu_addToGroup" msgid="5034813446697655310">"Додајте контакт"</string>
+    <string name="menu_addToGroup" msgid="5034813446697655310">"Додај контакт"</string>
     <string name="menu_selectForGroup" msgid="6386553337569514850">"Избери контакти"</string>
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"Додај контакти"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"Отстрани од етикетата"</string>
@@ -416,7 +416,7 @@
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"Подреди по"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"Фонетско име"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"Секогаш прикажувај"</string>
-    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"Скриј ако е празно"</string>
+    <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"Сокриј ако е празно"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"Име"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"Презиме"</string>
     <string name="display_options_view_names_as" msgid="4060686468465916565">"Формат на име"</string>
@@ -492,5 +492,4 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Известувања"</string>
     <string name="yes_button" msgid="1120514817091581293">"Да"</string>
     <string name="no_button" msgid="8965841385742548947">"Не"</string>
-    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Броеви за услуги на операторот"</string>
 </resources>
