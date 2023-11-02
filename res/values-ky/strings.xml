@@ -457,7 +457,7 @@
     <string name="about_build_version" msgid="5870642814752351712">"Курама версиясы"</string>
     <string name="about_open_source_licenses" msgid="1617836621315557445">"Баштапкы коду ачык программалардын уруксаттамалары"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Баштапкы коду ачык программалардын уруксаттамаларынын чоо-жайы"</string>
-    <string name="about_privacy_policy" msgid="4581488375200402678">"Купуялык саясаты"</string>
+    <string name="about_privacy_policy" msgid="4581488375200402678">"Купуялык эрежелери"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"Тейлөө шарттары"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"Баштапкы коду ачык программалардын уруксаттамалары"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"URL ачылбай койду."</string>
@@ -467,7 +467,7 @@
     <string name="description_delete_contact" msgid="8110643050235441400">"Жок кылуу"</string>
     <string name="description_no_name_header" msgid="8596201864512339003">"Эллипс"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Кыска жол өчүрүлдү"</string>
-    <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Байланыш алынып салынган"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Байланыш өчүрүлгөн"</string>
     <string name="sim_import_button_text" msgid="2845608246304396009">"Өткөрүп алуу"</string>
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Байланыштарды тандоо"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"SIM картаңызда байланыштар жок."</string>
