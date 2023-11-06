@@ -124,7 +124,7 @@
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"Shto një numër telefoni"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"Shto një email"</string>
     <string name="missing_app" msgid="5674389915738964148">"Nuk u gjet asnjë aplikacion për të menaxhuar këtë veprim"</string>
-    <string name="menu_share" msgid="6343022811796001773">"Shpërndaj"</string>
+    <string name="menu_share" msgid="6343022811796001773">"Ndaj"</string>
     <string name="menu_add_contact" msgid="5822356185421997656">"Shto te kontaktet"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"Shto"</string>
     <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{Ndaje kontaktin nëpërmjet}other{Ndaji kontaktet nëpërmjet}}"</string>
@@ -318,7 +318,7 @@
     <string name="label_notes" msgid="7134226125644463585">"Shënimet"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"E personalizuar"</string>
     <string name="label_sip_address" msgid="8876347942587537552">"SIP"</string>
-    <string name="websiteLabelsGroup" msgid="114754928100220315">"Faqja e internetit"</string>
+    <string name="websiteLabelsGroup" msgid="114754928100220315">"Uebsajti"</string>
     <string name="groupsLabel" msgid="5622154133880646122">"Emërtimet"</string>
     <string name="email_home" msgid="1102791500866910269">"Dërgoji mail shtëpisë"</string>
     <string name="email_mobile" msgid="6461172430397598705">"Dërgoji mail celularit"</string>
@@ -432,8 +432,8 @@
     <string name="share_contacts_failure" msgid="1348777470180064086">"Ndarja e kontakteve dështoi."</string>
     <string name="dialog_export" msgid="3497435010655060068">"Eksporto kontaktet"</string>
     <string name="dialog_import" msgid="4590232235052756593">"Importo kontaktet nga"</string>
-    <string name="share_error" msgid="4854612167186185739">"Ky kontakt nuk mund të shpërndahet"</string>
-    <string name="no_contact_to_share" msgid="6285287228557175749">"Nuk ka kontakte për të shpërndarë"</string>
+    <string name="share_error" msgid="4854612167186185739">"Ky kontakt nuk mund të ndahet"</string>
+    <string name="no_contact_to_share" msgid="6285287228557175749">"Nuk ka kontakte për të ndarë"</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"Kontakte për t\'u shfaqur"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"Kontakte për t\'u shfaqur"</string>
     <string name="custom_list_filter" msgid="2544327670202891979">"Personalizo pamjen"</string>
