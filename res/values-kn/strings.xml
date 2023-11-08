@@ -84,8 +84,8 @@
     <string name="deleteConfirmation" msgid="3727809366015979585">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸುವುದೇ?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"ಅಳಿಸಿ"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"ಸಂಪರ್ಕವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"ಸಂಪರ್ಕವನ್ನು ಮುಖಪುಟ ಪರದೆಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
-    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g> ಅನ್ನು ಮುಖಪುಟ ಪರದೆಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"ಸಂಪರ್ಕವನ್ನು ಹೋಮ್ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
+    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g> ಅನ್ನು ಹೋಮ್ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಚಿತ್ರಗಳು ಲಭ್ಯವಿಲ್ಲ."</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"ಸಂಪರ್ಕ ಫೋಟೋ"</string>
     <string name="customLabelPickerTitle" msgid="816694850254307154">"ಕಸ್ಟಮ್ ಲೇಬಲ್ ಹೆಸರು"</string>
