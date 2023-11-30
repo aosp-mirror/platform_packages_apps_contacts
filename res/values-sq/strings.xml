@@ -191,7 +191,7 @@
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Krijo një kontakt të ri"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Shiko më shumë"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Shiko më pak"</string>
-    <string name="about_card_title" msgid="6635849009952435700">"Informacion rreth"</string>
+    <string name="about_card_title" msgid="6635849009952435700">"Informacione"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Po krijon një kopje personale..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Cakto"</string>
     <string name="header_im_entry" msgid="3581797653862294826">"IM"</string>
