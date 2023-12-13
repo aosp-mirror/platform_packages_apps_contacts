@@ -16,7 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="applicationLabel" msgid="8908212014470937609">"कन्ट्याक्टहरू"</string>
+    <string name="applicationLabel" msgid="8908212014470937609">"सम्पर्कहरू"</string>
     <string name="contactsList" msgid="4456188358262700898">"सम्पर्क"</string>
     <string name="shortcut_add_contact" msgid="7949342235528657981">"सम्पर्क थप्नुहोस्"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"ठेगाना"</string>
@@ -114,7 +114,7 @@
     <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"केही सम्पर्कहरूका इमेल ठेगाना छैनन्"</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"केही सम्पर्कहरूका फोन नम्बर छैनन्"</string>
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"इमेल पठाउनुहोस्"</string>
-    <string name="menu_sendMessageOption" msgid="8051852013078110910">"म्यासेज पठाउनुहोस्"</string>
+    <string name="menu_sendMessageOption" msgid="8051852013078110910">"सन्देश पठाउनुहोस्"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"सम्पर्कहरू छान्नुहोस्"</string>
     <string name="send_to_selection" msgid="3655197947726443720">"पठाउनुहोस्"</string>
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"कुनै सम्पर्कहरू छैनन्।"</string>
@@ -272,7 +272,7 @@
     <string name="sms_work_pager" msgid="8827367747655005608">"पाठ कार्य पेजर"</string>
     <string name="sms_assistant" msgid="245045451580096547">"पाठ <xliff:g id="ASSISTANT">%s</xliff:g>"</string>
     <string name="sms_mms" msgid="7395133080765833725">"पाठ MMS"</string>
-    <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (म्यासेज पठाउनुहोस्)"</string>
+    <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (सन्देश पठाउनुहोस्)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"भिडियो कल बनाउनुहोस्"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"प्रायः सम्पर्क गरिएकाहरूलाई हटाउने हो?"</string>
     <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"तपाईंले सम्पर्कहरू र फोन एपहरूमा बारम्बार सम्पर्क गरेको सूची खाली गर्नुहुनेछ र स्क्रयाचबाट तपाईंको ठेगाना प्राथमिकताहरू सिक्नको लागि इमेल एपहरूलाई दबाब दिनुहुनेछ।"</string>
@@ -492,5 +492,4 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"सूचनाहरू"</string>
     <string name="yes_button" msgid="1120514817091581293">"हुन्छ"</string>
     <string name="no_button" msgid="8965841385742548947">"हुँदैन"</string>
-    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"मोबाइल सेवा प्रदायकका सर्भिस नम्बरहरू"</string>
 </resources>
