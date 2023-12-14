@@ -63,7 +63,7 @@ class SdnRepository constructor(private val context: Context) {
   @SuppressLint("MissingPermission")
   fun getSimCardInformation(): List<SimCard> {
     val subscriptionManager = context.getSystemService(SubscriptionManager::class.java)
-    return subscriptionManager.activeSubscriptionInfoList?.filterNotNull()?.mapNotNull {
+    return subscriptionManager?.activeSubscriptionInfoList?.filterNotNull()?.mapNotNull {
       if (it.subscriptionId == SubscriptionManager.INVALID_SUBSCRIPTION_ID) {
         null
       } else {
@@ -77,7 +77,7 @@ class SdnRepository constructor(private val context: Context) {
   private fun fetchSdnFromCarrierConfig(simCard: SimCard): List<Sdn> {
     val carrierConfigManager = context.getSystemService(CarrierConfigManager::class.java)
     val carrierConfig =
-      carrierConfigManager.getConfigForSubId(simCard.subscriptionId) ?: return emptyList()
+      carrierConfigManager?.getConfigForSubId(simCard.subscriptionId) ?: return emptyList()
     val nameList: List<String> =
       carrierConfig
         .getStringArray(CarrierConfigManager.KEY_CARRIER_SERVICE_NAME_STRING_ARRAY)
