@@ -57,4 +57,7 @@ android_app {
 
     sdk_version: "system_current",
     min_sdk_version: "21",
+    lint: {
+        baseline_filename: "lint-baseline.xml",
+    },
 }
