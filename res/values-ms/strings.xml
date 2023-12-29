@@ -480,7 +480,7 @@
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Ketepikan"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Penyegerakan akaun dimatikan. Ketik untuk menghidupkannya."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Hidupkan autosegerak?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Perubahan yang anda buat kepada semua apl dan akaun, bukan hanya Kenalan Google, akan dikemas kini antara web dengan peranti anda."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Perubahan yang anda buat kepada semua apl dan akaun, bukan hanya Google Contacts, akan dikemas kini antara web dengan peranti anda."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Hidupkan"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Tiada sambungan"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>
