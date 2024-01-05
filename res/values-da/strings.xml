@@ -111,7 +111,7 @@
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"Føjet til etiket"</string>
     <string name="groupSavedErrorToast" msgid="8456912862816145318">"Ændringerne af etiketten kan ikke gemmes"</string>
     <string name="groupExistsErrorMessage" msgid="912222525098791136">"Etiketten findes allerede"</string>
-    <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"Nogle kontakter har ikke e-mails."</string>
+    <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"Nogle kontakter har ikke mails."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"Nogle kontakter har ikke telefonnumre."</string>
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"Send mail"</string>
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"Send besked"</string>
