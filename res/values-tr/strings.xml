@@ -314,7 +314,7 @@
     <string name="postal_address" msgid="5031809899673855074">"Adres"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Şirket"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"Bölüm"</string>
-    <string name="ghostData_title" msgid="8584897460662904533">"Unvan"</string>
+    <string name="ghostData_title" msgid="8584897460662904533">"Ünvan"</string>
     <string name="label_notes" msgid="7134226125644463585">"Notlar"</string>
     <string name="label_custom_field" msgid="4160584225306364924">"Özel"</string>
     <string name="label_sip_address" msgid="8876347942587537552">"SIP"</string>
