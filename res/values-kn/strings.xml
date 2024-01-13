@@ -94,8 +94,8 @@
     <string name="emptyGroup" msgid="8598261660865081152">"ಈ ಲೇಬಲ್‌ನ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"ಈ ಖಾತೆಯಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯು ಖಾಲಿಯಾಗಿದೆ"</string>
-    <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> ಸಂಪರ್ಕವನ್ನು ಉಳಿಸಲಾಗಿದೆ"</string>
-    <string name="contactSavedToast" msgid="4370392215196995301">"ಸಂಪರ್ಕ‌ವನ್ನು ಉಳಿಸಲಾಗಿದೆ"</string>
+    <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> ಸಂಪರ್ಕವನ್ನು ಸೇವ್ ಮಾಡಲಾಗಿದೆ"</string>
+    <string name="contactSavedToast" msgid="4370392215196995301">"ಸಂಪರ್ಕ‌ವನ್ನು ಸೇವ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="contactUnlinkedToast" msgid="6791720274141804377">"ಸಂಪರ್ಕಗಳನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"ಸಂಪರ್ಕ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ"</string>
     <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"ಸಂಪರ್ಕದ ಲಿಂಕ್ ರದ್ದು ಮಾಡಲಾಗಲಿಲ್ಲ"</string>
