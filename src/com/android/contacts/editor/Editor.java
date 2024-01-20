@@ -114,4 +114,10 @@ public interface Editor {
      */
     public void editNewlyAddedField();
 
+    /**
+     * Marks the Editor field as a legacy field. Legacy fields are deprecated MIME types
+     * which are not fully supported in the editor.
+     * Adding or editing legacy field are not supported.
+     */
+    void setLegacyField(boolean isLegacyField);
 }
