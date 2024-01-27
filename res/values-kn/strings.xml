@@ -50,7 +50,7 @@
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"ಉಳಿಸಿ ಮತ್ತು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕದ ಜೊತೆಗೆ ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
-    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡು"</string>
+    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"ಸೇವ್ ಮಾಡಿ ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"ಅನ್‌ಲಿಂಕ್ ಮಾಡುತ್ತಿದೆ"</string>
     <string name="menu_joinAggregate" msgid="3116395302755287038">"ಲಿಂಕ್‌"</string>
