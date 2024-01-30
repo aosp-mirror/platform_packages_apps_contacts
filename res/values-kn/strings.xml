@@ -50,7 +50,7 @@
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"ಉಳಿಸಿ ಮತ್ತು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕದ ಜೊತೆಗೆ ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
-    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡು"</string>
+    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"ಸೇವ್ ಮಾಡಿ ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"ಅನ್‌ಲಿಂಕ್ ಮಾಡುತ್ತಿದೆ"</string>
     <string name="menu_joinAggregate" msgid="3116395302755287038">"ಲಿಂಕ್‌"</string>
@@ -144,6 +144,8 @@
     <string name="search_results_searching" msgid="1373859095361975648">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"ದಿನಾಂಕ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"ಲೇಬಲ್"</string>
+    <!-- no translation found for editor_uneditable_section_title (4022820593578859556) -->
+    <skip />
     <string name="cancel_button_content_description" msgid="7407595608883650004">"ರದ್ದುಮಾಡಿ"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"ಹಿಂದೆ"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"ಮುಚ್ಚು"</string>
