@@ -432,8 +432,8 @@
     <string name="share_contacts_failure" msgid="1348777470180064086">"Ndarja e kontakteve dështoi."</string>
     <string name="dialog_export" msgid="3497435010655060068">"Eksporto kontaktet"</string>
     <string name="dialog_import" msgid="4590232235052756593">"Importo kontaktet nga"</string>
-    <string name="share_error" msgid="4854612167186185739">"Ky kontakt nuk mund të ndahet"</string>
-    <string name="no_contact_to_share" msgid="6285287228557175749">"Nuk ka kontakte për të ndarë"</string>
+    <string name="share_error" msgid="4854612167186185739">"Ky kontakt nuk mund të shpërndahet"</string>
+    <string name="no_contact_to_share" msgid="6285287228557175749">"Nuk ka kontakte për të shpërndarë"</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"Kontakte për t\'u shfaqur"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"Kontakte për t\'u shfaqur"</string>
     <string name="custom_list_filter" msgid="2544327670202891979">"Personalizo pamjen"</string>
@@ -492,5 +492,4 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Njoftime"</string>
     <string name="yes_button" msgid="1120514817091581293">"Po"</string>
     <string name="no_button" msgid="8965841385742548947">"Jo"</string>
-    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Numrat e shërbimit të operatorit celular"</string>
 </resources>
