@@ -25,6 +25,7 @@ android_app {
 
     srcs: [
         "src/**/*.java",
+        "src/**/*.kt",
         "src-bind/**/*.java",
     ],
 

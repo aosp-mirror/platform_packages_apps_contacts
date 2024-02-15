@@ -48,4 +48,29 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/legacy_fields_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?attr/textAppearanceOverline"
+            android:singleLine="true"
+            android:layout_marginBottom="24dp"
+            android:textSize="11sp"
+            android:text="@string/editor_uneditable_section_title" />
+
+        <LinearLayout
+            android:id="@+id/legacy_section_views"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </LinearLayout>
+
 </merge>

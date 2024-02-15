@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"ਖੋਜ ਰਿਹਾ ਹੈ..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"ਤਾਰੀਖ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"ਲੇਬਲ ਲਗਾਓ"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"ਇਸ ਜਾਣਕਾਰੀ ਨੂੰ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"ਰੱਦ ਕਰੋ"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"ਪਿੱਛੇ"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"ਬੰਦ ਕਰੋ"</string>
@@ -199,7 +200,7 @@
     <string name="header_nickname_entry" msgid="1110276804512795150">"ਉਪਨਾਮ"</string>
     <string name="header_note_entry" msgid="339680292368016788">"ਸੂਚਨਾ"</string>
     <string name="header_website_entry" msgid="3618691707215428785">"ਵੈੱਬਸਾਈਟ"</string>
-    <string name="header_event_entry" msgid="70962228694476731">"ਵਰਤਾਰਾ"</string>
+    <string name="header_event_entry" msgid="70962228694476731">"ਇਵੈਂਟ"</string>
     <string name="header_relation_entry" msgid="993618132732521944">"ਰਿਸ਼ਤਾ"</string>
     <string name="header_name_entry" msgid="2516776099121101578">"ਨਾਮ"</string>
     <string name="header_email_entry" msgid="8653569770962542178">"ਈਮੇਲ"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"ਸੂਚਨਾਵਾਂ"</string>
     <string name="yes_button" msgid="1120514817091581293">"ਹਾਂ"</string>
     <string name="no_button" msgid="8965841385742548947">"ਨਹੀਂ"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"ਕੈਰੀਅਰ ਸੇਵਾ ਨੰਬਰ"</string>
 </resources>

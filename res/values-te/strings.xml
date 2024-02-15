@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"శోధిస్తోంది..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"తేదీ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"లేబుల్"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"ఈ సమాచారాన్ని అప్‌డేట్ చేయడం సాధ్యం కాదు"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"రద్దు చేస్తుంది"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"వెనుకకు వెళ్తుంది"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"మూసివేస్తుంది"</string>
@@ -415,7 +416,7 @@
     <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf ఫైల్‌కు ఎగుమతి చేయి"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"ఇలా వ‌ర్గీక‌రించు"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"ఫొనెటిక్ పేరు"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"ఎల్లప్పుడూ చూపు"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"ఎల్లప్పుడూ చూపండి"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"ఖాళీగా ఉంటే దాచు"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"మొదటి పేరు"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"చివరి పేరు"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"నోటిఫికేషన్‌లు"</string>
     <string name="yes_button" msgid="1120514817091581293">"అవును"</string>
     <string name="no_button" msgid="8965841385742548947">"కాదు"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"క్యారియర్ సర్వీస్ నంబర్‌లు"</string>
 </resources>

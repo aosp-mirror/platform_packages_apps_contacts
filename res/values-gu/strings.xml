@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"શોધી રહ્યું છે..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"તારીખ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"લેબલ"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"આ માહિતી અપડેટ કરી શકાતી નથી"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"રદ કરો"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"પાછળ"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"બંધ કરો"</string>
@@ -221,8 +222,8 @@
     <string name="editor_delete_view_description_short" msgid="6471032197042328181">"<xliff:g id="DATA_KIND">%s</xliff:g> કાઢી નાખો"</string>
     <string name="menu_assistant" msgid="3980364519724237934">"સૂચનો"</string>
     <string name="menu_assistant_new_badge" msgid="1992049406019853898">"નવું"</string>
-    <string name="navigation_drawer_open" msgid="3428713515765555712">"નેવિગેશન ડ્રોઅર ખોલો"</string>
-    <string name="navigation_drawer_close" msgid="3052989100471689722">"નેવિગેશન ડ્રોઅર બંધ કરો"</string>
+    <string name="navigation_drawer_open" msgid="3428713515765555712">"નૅવિગેશન ડ્રોઅર ખોલો"</string>
+    <string name="navigation_drawer_close" msgid="3052989100471689722">"નૅવિગેશન ડ્રોઅર બંધ કરો"</string>
     <string name="navigation_drawer_label" msgid="8391863484838783638">"<xliff:g id="LABEL_NAME">%s</xliff:g> લેબલ"</string>
     <string name="menu_title_groups" msgid="3722199658759568221">"લેબલ્સ"</string>
     <string name="menu_title_filters" msgid="349866121417914494">"એકાઉન્ટ્સ"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"સૂચનાઓ"</string>
     <string name="yes_button" msgid="1120514817091581293">"હા"</string>
     <string name="no_button" msgid="8965841385742548947">"ના"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"મોબાઇલ ઑપરેટરના ફોન નંબર"</string>
 </resources>
