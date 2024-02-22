@@ -2,7 +2,8 @@ package com.android.contacts.util;
 
 import android.net.Uri;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 /**
  * Test cases for {@link ContactPhotoUtils}.

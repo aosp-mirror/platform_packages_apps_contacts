@@ -19,7 +19,8 @@ package com.android.contacts.util;
 import static android.provider.ContactsContract.CommonDataKinds.Phone;
 
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.R;
 import com.android.contacts.preference.ContactsPreferences;
