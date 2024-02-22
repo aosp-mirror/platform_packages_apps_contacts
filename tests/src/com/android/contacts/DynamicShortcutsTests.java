@@ -38,9 +38,9 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Contacts;
 import android.test.AndroidTestCase;
 import android.test.mock.MockContentResolver;
-import android.test.suitebuilder.annotation.SmallTest;
 
 import androidx.test.filters.SdkSuppress;
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.test.mocks.MockContentProvider;
 
