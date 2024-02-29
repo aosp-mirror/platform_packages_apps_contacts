@@ -17,8 +17,9 @@
 package com.android.contacts.format;
 
 import android.graphics.Typeface;
-import android.test.suitebuilder.annotation.SmallTest;
 import android.text.SpannableString;
+
+import androidx.test.filters.SmallTest;
 
 import junit.framework.TestCase;
 

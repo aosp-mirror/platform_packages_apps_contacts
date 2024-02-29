@@ -20,7 +20,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.test.AndroidTestCase;
 import android.test.MoreAsserts;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.list.ContactsSectionIndexer;
 
