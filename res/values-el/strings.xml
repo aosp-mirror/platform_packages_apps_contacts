@@ -91,7 +91,7 @@
     <string name="customLabelPickerTitle" msgid="816694850254307154">"Προσαρμοσμένο όνομα ετικέτας"</string>
     <string name="removePhoto" msgid="1190099414600730001">"Κατάργηση εικόνας"</string>
     <string name="noContacts" msgid="3030512741779213810">"Η λίστα επαφών σας είναι άδεια"</string>
-    <string name="emptyGroup" msgid="8598261660865081152">"Δεν υπάρχουν επαφές με αυτή την εκτικέτα"</string>
+    <string name="emptyGroup" msgid="8598261660865081152">"Δεν υπάρχουν επαφές με αυτή την ετικέτα"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"Δεν υπάρχουν επαφές σε αυτόν το λογαριασμό"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"Η λίστα επαφών σας είναι άδεια"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"Η επαφή \"<xliff:g id="DISPLAY_NAME">%s</xliff:g>\" αποθηκεύτηκε"</string>
