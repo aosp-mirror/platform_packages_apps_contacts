@@ -75,7 +75,7 @@
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"Κατάργηση δρομ. σε τηλεφωνητή"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"Αυτή η επαφή είναι μόνο για ανάγνωση. Δεν μπορεί να διαγραφεί, αλλά μπορείτε να την αποκρύψετε."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"Απόκρυψη επαφής"</string>
-    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"Οι λογαριασμοί μόνο για ανάγνωση σε αυτήν την επαφή θα είναι κρυφοί, δεν θα διαγραφούν."</string>
+    <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"Οι λογαριασμοί μόνο για ανάγνωση σε αυτή την επαφή θα είναι κρυφοί, δεν θα διαγραφούν."</string>
     <string name="single_delete_confirmation" msgid="8260949300855537648">"Να διαγραφεί αυτή η επαφή;"</string>
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"Να διαγραφούν οι επιλεγμένες επαφές;"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Δεν είναι δυνατή η διαγραφή επαφών από λογαριασμούς που προορίζονται μόνο για ανάγνωση, αλλά είναι δυνατή η απόκρυψή τους."</string>
@@ -91,7 +91,7 @@
     <string name="customLabelPickerTitle" msgid="816694850254307154">"Προσαρμοσμένο όνομα ετικέτας"</string>
     <string name="removePhoto" msgid="1190099414600730001">"Κατάργηση εικόνας"</string>
     <string name="noContacts" msgid="3030512741779213810">"Η λίστα επαφών σας είναι άδεια"</string>
-    <string name="emptyGroup" msgid="8598261660865081152">"Δεν υπάρχουν επαφές με αυτήν την εκτικέτα"</string>
+    <string name="emptyGroup" msgid="8598261660865081152">"Δεν υπάρχουν επαφές με αυτή την εκτικέτα"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"Δεν υπάρχουν επαφές σε αυτόν το λογαριασμό"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"Η λίστα επαφών σας είναι άδεια"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"Η επαφή \"<xliff:g id="DISPLAY_NAME">%s</xliff:g>\" αποθηκεύτηκε"</string>
@@ -331,7 +331,7 @@
     <string name="postal_region" msgid="6130239447563491435">"Πολιτεία"</string>
     <string name="postal_postcode" msgid="33077708757232659">"Ταχυδρομικός κώδικας"</string>
     <string name="postal_country" msgid="6642804283917549861">"Χώρα"</string>
-    <string name="map_home" msgid="2169053372466501148">"Προβολή διεύθυνσης οικίας"</string>
+    <string name="map_home" msgid="2169053372466501148">"Προβολή διεύθυνσης σπιτιού"</string>
     <string name="map_work" msgid="8296916987749726461">"Προβολή διεύθυνσης εργασίας"</string>
     <string name="map_other" msgid="4009931029322619674">"Προβολή διεύθυνσης"</string>
     <string name="map_custom" msgid="7797812861927817335">"Προβολή διεύθυνσης <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Ειδοποιήσεις"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ναι"</string>
     <string name="no_button" msgid="8965841385742548947">"Όχι"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Αριθμοί εταιρείας κινητής τηλεφωνίας"</string>
 </resources>
