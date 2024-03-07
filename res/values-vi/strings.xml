@@ -332,7 +332,7 @@
     <string name="postal_postcode" msgid="33077708757232659">"Mã ZIP"</string>
     <string name="postal_country" msgid="6642804283917549861">"Quốc gia"</string>
     <string name="map_home" msgid="2169053372466501148">"Xem địa chỉ nhà riêng"</string>
-    <string name="map_work" msgid="8296916987749726461">"Xem địa chỉ cơ quan"</string>
+    <string name="map_work" msgid="8296916987749726461">"Xem địa chỉ nơi làm việc"</string>
     <string name="map_other" msgid="4009931029322619674">"Xem địa chỉ"</string>
     <string name="map_custom" msgid="7797812861927817335">"Xem địa chỉ <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="chat_aim" msgid="2044861410748519265">"Trò chuyện sử dụng AIM"</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Thông báo"</string>
     <string name="yes_button" msgid="1120514817091581293">"Có"</string>
     <string name="no_button" msgid="8965841385742548947">"Không"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Số dịch vụ của nhà mạng"</string>
 </resources>
