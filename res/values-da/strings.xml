@@ -120,7 +120,7 @@
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"Ingen kontakter"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"Føj \"<xliff:g id="EMAIL">%s</xliff:g>\" til kontakter?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"Navne på dine kontakter"</string>
-    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"Klik for at gå tilbage til forrige skærmbillede"</string>
+    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"Klik for at gå tilbage til forrige skærm"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"Tilføj telefonnummer"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"Tilføj mail"</string>
     <string name="missing_app" msgid="5674389915738964148">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
