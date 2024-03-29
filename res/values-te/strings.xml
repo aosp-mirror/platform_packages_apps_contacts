@@ -28,7 +28,7 @@
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"ఎంచుకోండి"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"కొత్త కాంటాక్ట్‌ క్రియేట్ చేయి"</string>
     <string name="searchHint" msgid="1487501532610025473">"కాంటాక్ట్‌లను సెర్చ్ చేయండి"</string>
-    <string name="menu_addStar" msgid="4903812703386825130">"ఇష్టమైనవాటికి జోడించండి"</string>
+    <string name="menu_addStar" msgid="4903812703386825130">"ఫేవరెట్స్‌కు జోడించండి"</string>
     <string name="menu_removeStar" msgid="3707373931808303701">"ఇష్టమైనవాటి నుండి తీసివేయండి"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"ఇష్టమైనవి నుండి తీసివేయబడింది"</string>
     <string name="description_action_menu_add_star" msgid="7316521132809388851">"ఇష్టమైనవికి జోడించబడింది"</string>
@@ -188,7 +188,7 @@
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"అన్‌లింక్ చేయి"</string>
     <string name="add_account" msgid="3071396624500839020">"ఖాతాను జోడించండి"</string>
     <string name="add_new_account" msgid="573368229646104110">"కొత్త ఖాతాను జోడించండి"</string>
-    <string name="menu_export_database" msgid="1658249125751926885">"డేటాబేస్ ఫైళ్లను ఎగుమతి చేయి"</string>
+    <string name="menu_export_database" msgid="1658249125751926885">"డేటాబేస్ ఫైళ్లను ఎగుమతి చేయండి"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"కొత్త కాంటాక్ట్‌ను క్రియేట్ చేయండి"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"మరిన్ని చూడండి"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"తక్కువ చూడండి"</string>
@@ -413,7 +413,7 @@
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"కాంటాక్ట్ NFC ద్వారా స్వీకరించబడింది"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"కాష్ చేస్తోంది"</string>
     <string name="progress_notifier_message" msgid="8522060892889599746">"<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>లో <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g> దిగుమతి చేయబడుతోంది: <xliff:g id="NAME">%3$s</xliff:g>"</string>
-    <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf ఫైల్‌కు ఎగుమతి చేయి"</string>
+    <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf ఫైల్‌కు ఎగుమతి చేయండి"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"ఇలా వ‌ర్గీక‌రించు"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"ఫొనెటిక్ పేరు"</string>
     <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"ఎల్లప్పుడూ చూపండి"</string>
@@ -442,7 +442,7 @@
     <string name="hint_findContacts" msgid="5554298639062659655">"కాంటాక్ట్‌లను సెర్చ్ చేయండి"</string>
     <string name="contactsFavoritesLabel" msgid="8339645684721732714">"ఇష్టమైనవి"</string>
     <string name="menu_import" msgid="2206768098740726906">"దిగుమతి చేయండి"</string>
-    <string name="menu_export" msgid="1217402092617629429">"ఎగుమతి చేయి"</string>
+    <string name="menu_export" msgid="1217402092617629429">"ఎగుమతి చేయండి"</string>
     <string name="menu_blocked_numbers" msgid="7064680515202657609">"బ్లాక్ చేయబడిన నంబర్‌లు"</string>
     <string name="contact_status_update_attribution" msgid="5051874518046969847">"<xliff:g id="SOURCE">%1$s</xliff:g> ద్వారా"</string>
     <string name="contact_status_update_attribution_with_date" msgid="2195847657702455703">"<xliff:g id="SOURCE">%2$s</xliff:g> ద్వారా <xliff:g id="DATE">%1$s</xliff:g>"</string>
