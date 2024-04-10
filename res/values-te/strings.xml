@@ -157,7 +157,7 @@
     <string name="organization_entry_all_field" msgid="6724345890324437167">"<xliff:g id="COMPANY">%1$s</xliff:g> • <xliff:g id="DEPARTMENT">%2$s</xliff:g> • <xliff:g id="TITLE">%3$s</xliff:g>"</string>
     <string name="non_phone_caption" msgid="7343449684187013327">"ఫోన్ నంబర్"</string>
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"కాంటాక్ట్‌లకు జోడించండి"</string>
-    <string name="non_phone_close" msgid="2792373584950696532">"మూసివేయి"</string>
+    <string name="non_phone_close" msgid="2792373584950696532">"మూసివేయండి"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"సంవత్సరాన్ని చేర్చు"</string>
     <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"ఖాతాను జోడించండి"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"దిగుమతి చేయండి"</string>
