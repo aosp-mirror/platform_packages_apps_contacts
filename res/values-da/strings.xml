@@ -259,7 +259,7 @@
     <string name="sms_fax_home" msgid="6887675360794775735">"Sms til hjemmefax"</string>
     <string name="sms_pager" msgid="1052540072760129272">"Sms til personsøger"</string>
     <string name="sms_other" msgid="3584200156296349098">"Send sms"</string>
-    <string name="sms_callback" msgid="6932315941997609031">"Send sms til mistede opkald"</string>
+    <string name="sms_callback" msgid="6932315941997609031">"Send sms til ubesvarede opkald"</string>
     <string name="sms_car" msgid="6051606941547979352">"Sms til bil"</string>
     <string name="sms_company_main" msgid="4801585186677340070">"Sms til arbejde (hovednummer)"</string>
     <string name="sms_isdn" msgid="8093269429091061478">"Send sms til ISDN"</string>
