@@ -18,7 +18,8 @@ package com.android.contacts.format;
 
 import android.database.CharArrayBuffer;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 /**
  * Test cases for format utility methods.
