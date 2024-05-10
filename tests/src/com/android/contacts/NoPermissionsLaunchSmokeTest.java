@@ -8,15 +8,15 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.test.uiautomator.By;
-import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject2;
-import android.support.test.uiautomator.Until;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.Suppress;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject2;
+import androidx.test.uiautomator.Until;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,6 +54,7 @@ public class NoPermissionsLaunchSmokeTest {
         assumeTrue(!hasPermission(mTargetContext, Manifest.permission.GET_ACCOUNTS));
         assumeTrue(!hasPermission(mTargetContext, Manifest.permission.READ_PHONE_STATE));
         assumeTrue(!hasPermission(mTargetContext, Manifest.permission.CALL_PHONE));
+        assumeTrue(!hasPermission(mTargetContext, Manifest.permission.READ_CALL_LOG));
 
         // remove state that might exist outside of the app
         // (e.g. launcher shortcuts and scheduled jobs)
@@ -72,14 +73,20 @@ public class NoPermissionsLaunchSmokeTest {
 
         device.waitForIdle();
 
-        device.wait(Until.hasObject(By.textStartsWith("Allow Contacts")), TIMEOUT);
+        final PackageManager packageManager = mTargetContext.getPackageManager();
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            device.wait(Until.hasObject(By.textEndsWith("your phone call logs?")), TIMEOUT);
+            final UiObject2 grantCallLogPermissionButton = device.findObject(By.text("ALLOW"));
+            grantCallLogPermissionButton.click();
+        }
+
+        device.wait(Until.hasObject(By.textEndsWith("access your contacts?")), TIMEOUT);
         final UiObject2 grantContactsPermissionButton = device.findObject(By.text("ALLOW"));
 
         grantContactsPermissionButton.click();
 
         device.wait(Until.hasObject(By.textEndsWith("make and manage phone calls?")), TIMEOUT);
 
-        final PackageManager packageManager = mTargetContext.getPackageManager();
         if (!packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
             device.waitForIdle();
             return;

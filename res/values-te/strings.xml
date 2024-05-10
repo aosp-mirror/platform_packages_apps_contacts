@@ -116,7 +116,7 @@
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"ఈమెయిల్‌ను పంపు"</string>
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"మెసేజ్‌ను పంపు"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"కాంటాక్ట్‌లను ఎంచుకోండి"</string>
-    <string name="send_to_selection" msgid="3655197947726443720">"పంపు"</string>
+    <string name="send_to_selection" msgid="3655197947726443720">"పంపండి"</string>
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"కాంటాక్ట్‌లు లేవు"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"\"<xliff:g id="EMAIL">%s</xliff:g>\"ని కాంటాక్ట్‌లకు జోడించాలా?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"మీ కాంటాక్ట్‌ల పేర్లు"</string>
@@ -310,7 +310,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"సంస్థ"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"సంబంధం"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"ప్రత్యేక తేదీ"</string>
-    <string name="sms" msgid="4246338112764847384">"వచన మెసేజ్‌"</string>
+    <string name="sms" msgid="4246338112764847384">"టెక్స్ట్ మెసేజ్‌"</string>
     <string name="postal_address" msgid="5031809899673855074">"అడ్రస్‌"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"కంపెనీ"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"విభాగం"</string>
@@ -403,11 +403,11 @@
     <string name="importing_vcard_canceled_title" msgid="8165471996631186776">"<xliff:g id="FILENAME">%s</xliff:g>ని దిగుమతి చేయడం రద్దు చేయబడింది"</string>
     <string name="vcard_import_will_start_message" msgid="4514702035621833178">"<xliff:g id="FILENAME">%s</xliff:g> కొద్దిసేపట్లో దిగుమతి చేయబడుతుంది."</string>
     <string name="vcard_import_will_start_message_with_default_name" msgid="8205422202924103470">"ఫైల్ కొద్దిసేపట్లో దిగుమతి చేయబడుతుంది."</string>
-    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard దిగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
+    <string name="vcard_import_request_rejected_message" msgid="4754292694777189540">"vCard దిగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ట్రై చేయండి."</string>
     <string name="contacts_export_will_start_message" msgid="6428126265599715944">"కాంటాక్ట్‌లు కొద్ది సేపట్లో ఎగుమతి చేయబడతాయి."</string>
-    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard ఎగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ప్రయత్నించండి."</string>
+    <string name="vcard_export_request_rejected_message" msgid="6455336845734884740">"vCard ఎగుమతి రిక్వెస్ట్‌ తిరస్కరించబడింది. తర్వాత మళ్లీ ట్రై చేయండి."</string>
     <string name="vcard_unknown_filename" msgid="8320954544777782497">"కాంటాక్ట్"</string>
-    <string name="caching_vcard_message" msgid="1879339732783666517">"vCard(ల)ను స్థానిక తాత్కాలిక నిల్వకు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
+    <string name="caching_vcard_message" msgid="1879339732783666517">"vCard(ల)ను స్థానిక తాత్కాలిక స్టోరేజ్‌కు కాష్ చేస్తోంది. అసలు దిగుమతి కొద్దిసేపట్లో ప్రారంభమవుతుంది."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"vCardని దిగుమతి చేయడం సాధ్యపడలేదు."</string>
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"కాంటాక్ట్ NFC ద్వారా స్వీకరించబడింది"</string>
     <string name="caching_vcard_title" msgid="6333926052524937628">"కాష్ చేస్తోంది"</string>
@@ -415,7 +415,7 @@
     <string name="export_to_vcf_file" msgid="3096479544575798192">".vcf ఫైల్‌కు ఎగుమతి చేయి"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"ఇలా వ‌ర్గీక‌రించు"</string>
     <string name="display_options_phonetic_name_fields" msgid="1857564544755287298">"ఫొనెటిక్ పేరు"</string>
-    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"ఎల్లప్పుడూ చూపు"</string>
+    <string name="editor_options_always_show_phonetic_names" msgid="3612488836474257715">"ఎల్లప్పుడూ చూపండి"</string>
     <string name="editor_options_hide_phonetic_names_if_empty" msgid="2693314301550366143">"ఖాళీగా ఉంటే దాచు"</string>
     <string name="display_options_sort_by_given_name" msgid="893781924536349248">"మొదటి పేరు"</string>
     <string name="display_options_sort_by_family_name" msgid="1282763552330910876">"చివరి పేరు"</string>
@@ -458,7 +458,7 @@
     <string name="about_open_source_licenses" msgid="1617836621315557445">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"ఓపెన్ సోర్స్ సాఫ్ట్‌వేర్ యొక్క లైసెన్స్ వివరాలు"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"గోప్యతా పాలసీ"</string>
-    <string name="about_terms_of_service" msgid="7419670771785057738">"సేవా నిబంధనలు"</string>
+    <string name="about_terms_of_service" msgid="7419670771785057738">"సర్వీస్ నియమాలు"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"ఓపెన్ సోర్స్ లైసెన్స్‌లు"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"urlని తెరవడంలో విఫలమైంది."</string>
     <string name="account_filter_view_checked" msgid="4740544238806346376">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> ఎంచుకోబడింది"</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"నోటిఫికేషన్‌లు"</string>
     <string name="yes_button" msgid="1120514817091581293">"అవును"</string>
     <string name="no_button" msgid="8965841385742548947">"కాదు"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"క్యారియర్ సర్వీస్ నంబర్‌లు"</string>
 </resources>
