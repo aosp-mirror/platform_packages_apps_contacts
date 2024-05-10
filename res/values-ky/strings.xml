@@ -79,7 +79,7 @@
     <string name="single_delete_confirmation" msgid="8260949300855537648">"Бул байланыш жок кылынсынбы?"</string>
     <string name="batch_delete_confirmation" msgid="4149615167210863403">"Тандалган байланыштар жок кылынсынбы?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"Окуу үчүн гана арналган аккаунтуңуздан байланыштарды жок кылуу мүмкүн эмес, бирок аларды жашырып койсо болот."</string>
-    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Жок кылына турган байланыштарда бир нече аккаунтунун чоо-жайы бар. Окуу үчүн гана арналган аккаунттарынын чоо-жайы жашырылып, өчпөйт."</string>
+    <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"Өчүрүлө турган байланыштарда бир нече аккаунтунун чоо-жайы бар. Окуу үчүн гана арналган аккаунттарынын чоо-жайы жашырылып, өчпөйт."</string>
     <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"Бул байланыш өчүрүлсө, анын бир нече аккаунтундагы чоо-жайы өчүп калат."</string>
     <string name="deleteConfirmation" msgid="3727809366015979585">"Бул байланыш жок кылынсынбы?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"Жок кылуу"</string>
@@ -457,7 +457,7 @@
     <string name="about_build_version" msgid="5870642814752351712">"Курама версиясы"</string>
     <string name="about_open_source_licenses" msgid="1617836621315557445">"Баштапкы коду ачык программалардын уруксаттамалары"</string>
     <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Баштапкы коду ачык программалардын уруксаттамаларынын чоо-жайы"</string>
-    <string name="about_privacy_policy" msgid="4581488375200402678">"Купуялык саясаты"</string>
+    <string name="about_privacy_policy" msgid="4581488375200402678">"Купуялык эрежелери"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"Тейлөө шарттары"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"Баштапкы коду ачык программалардын уруксаттамалары"</string>
     <string name="url_open_error_toast" msgid="4885855620824048385">"URL ачылбай койду."</string>
@@ -467,7 +467,7 @@
     <string name="description_delete_contact" msgid="8110643050235441400">"Жок кылуу"</string>
     <string name="description_no_name_header" msgid="8596201864512339003">"Эллипс"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Кыска жол өчүрүлдү"</string>
-    <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Байланыш алынып салынган"</string>
+    <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Байланыш өчүрүлгөн"</string>
     <string name="sim_import_button_text" msgid="2845608246304396009">"Өткөрүп алуу"</string>
     <string name="sim_import_title_none_selected" msgid="3527680774575468781">"Байланыштарды тандоо"</string>
     <string name="sim_import_empty_message" msgid="7238368542566545854">"SIM картаңызда байланыштар жок."</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Билдирмелер"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ооба"</string>
     <string name="no_button" msgid="8965841385742548947">"Жок"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Оператордун кызмат номерлери"</string>
 </resources>

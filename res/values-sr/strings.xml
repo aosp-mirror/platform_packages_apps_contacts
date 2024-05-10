@@ -475,7 +475,7 @@
     <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{Увезен је # контакт са SIM-а}one{Увезен је # контакт са SIM-а}few{Увезена су # контакта са SIM-а}other{Увезено је # контаката са SIM-а}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Увоз контаката са SIM картице није успео"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Увезите са SIM-а"</string>
-    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Откажите"</string>
+    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Откажи"</string>
     <string name="auto_sync_off" msgid="7039314601316227882">"Аутоматска синхронизација је искључена. Додирните да бисте је укључили."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Одбаците"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Синхронизација налога је искључена. Додирните да бисте је укључили."</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Обавештења"</string>
     <string name="yes_button" msgid="1120514817091581293">"Да"</string>
     <string name="no_button" msgid="8965841385742548947">"Не"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Услужни бројеви мобилног оператера"</string>
 </resources>

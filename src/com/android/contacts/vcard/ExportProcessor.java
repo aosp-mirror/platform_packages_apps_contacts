@@ -81,6 +81,12 @@ public class ExportProcessor extends ProcessorBase {
         mExportRequest = exportRequest;
         mJobId = jobId;
         mCallingActivity = callingActivity;
+        try {
+            mResolver.takePersistableUriPermission(exportRequest.destUri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } catch (SecurityException e) {
+            Log.w(LOG_TAG, "SecurityException error", e);
+        }
     }
 
     @Override

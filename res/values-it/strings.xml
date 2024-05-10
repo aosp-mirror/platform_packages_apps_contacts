@@ -279,7 +279,7 @@
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Cancellazione contattati di frequente…"</string>
     <string name="status_available" msgid="8081626460682959098">"Disponibile"</string>
     <string name="status_away" msgid="2677693194455091315">"Assente"</string>
-    <string name="status_busy" msgid="2759339190187696727">"Occupato"</string>
+    <string name="status_busy" msgid="2759339190187696727">"Non disponibile"</string>
     <string name="local_invisible_directory" msgid="5936234374879813300">"Altro"</string>
     <string name="directory_search_label" msgid="2602118204885565153">"Directory"</string>
     <string name="directory_search_label_work" msgid="2392128956332931231">"Directory di lavoro"</string>
@@ -492,4 +492,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Notifiche"</string>
     <string name="yes_button" msgid="1120514817091581293">"Sì"</string>
     <string name="no_button" msgid="8965841385742548947">"No"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Numeri di servizio degli operatori"</string>
 </resources>
