@@ -17,7 +17,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="applicationLabel" msgid="8908212014470937609">"Névjegyek"</string>
-    <string name="contactsList" msgid="4456188358262700898">"Címtár"</string>
+    <string name="contactsList" msgid="4456188358262700898">"Névjegyek"</string>
     <string name="shortcut_add_contact" msgid="7949342235528657981">"Névjegy hozzáadása"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"Névjegy"</string>
     <string name="shortcutDialContact" msgid="155367248069127153">"Közvetlen tárcsázás"</string>
