@@ -88,12 +88,12 @@
     <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"<xliff:g id="NAME">%s</xliff:g> गृह स्क्रिनमा थपियो।"</string>
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"यन्त्रमा कुनै पनि फोटोहरू उपलब्ध छैनन्।"</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"सम्पर्क फोटो"</string>
-    <string name="customLabelPickerTitle" msgid="816694850254307154">"आफू अनुकूल पारिएको लेबलको नाम"</string>
+    <string name="customLabelPickerTitle" msgid="816694850254307154">" कस्टम पारिएको लेबलको नाम"</string>
     <string name="removePhoto" msgid="1190099414600730001">"फोटो मेट्नुहोस्"</string>
-    <string name="noContacts" msgid="3030512741779213810">"तपाईंको सम्पर्क ठेगानाहरूको सूची खाली छ"</string>
+    <string name="noContacts" msgid="3030512741779213810">"तपाईंको कन्ट्याक्टको सूची खाली छ"</string>
     <string name="emptyGroup" msgid="8598261660865081152">"यो लेबल अन्तर्गत कुनै कन्ट्याक्टहरू छैनन्"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"यस खातामा कुनै कन्ट्याक्टहरू छैनन्"</string>
-    <string name="emptyMainList" msgid="3266182207039677163">"तपाईंको सम्पर्क ठेगानाहरूको सूची खाली छ"</string>
+    <string name="emptyMainList" msgid="3266182207039677163">"तपाईंको कन्ट्याक्टको सूची खाली छ"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> सेभ गरियो"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"सम्पर्क बचत गरियो।"</string>
     <string name="contactUnlinkedToast" msgid="6791720274141804377">"कन्ट्याक्टहरू अनलिंक गरियो"</string>
@@ -171,7 +171,7 @@
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"परिवर्तनहरू खारेज गर्ने हो?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"खारेज गर्नुहोस्"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"रद्द गर्नुहोस्"</string>
-    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"आफू अनुकूल पारिएका कुरालाई खारेज गर्ने हो?"</string>
+    <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">" कस्टम पारिएका कुरालाई खारेज गर्ने हो?"</string>
     <string name="enter_contact_name" msgid="521859148893732679">"कन्ट्याक्टहरू खोज्नुहोस्"</string>
     <string name="title_edit_group" msgid="4246193439931854759">"कन्ट्याक्टहरू हटाउनुहोस्"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"मेरो स्थानीय प्रोफाइल"</string>
@@ -317,7 +317,7 @@
     <string name="ghostData_department" msgid="8610642449404163799">"विभाग"</string>
     <string name="ghostData_title" msgid="8584897460662904533">"शीर्षक"</string>
     <string name="label_notes" msgid="7134226125644463585">"टिप्पणीहरू"</string>
-    <string name="label_custom_field" msgid="4160584225306364924">"आफू अनुकूल"</string>
+    <string name="label_custom_field" msgid="4160584225306364924">" कस्टम"</string>
     <string name="label_sip_address" msgid="8876347942587537552">"SIP"</string>
     <string name="websiteLabelsGroup" msgid="114754928100220315">"वेबसाइट"</string>
     <string name="groupsLabel" msgid="5622154133880646122">"लेबलहरू"</string>
@@ -356,7 +356,7 @@
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"संक्षिप्त गरियो"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"सबै कन्ट्याक्टहरू"</string>
     <string name="list_filter_all_starred" msgid="2582865760150432568">"ताराङ्कित"</string>
-    <string name="list_filter_customize" msgid="2368900508906139537">"आफू अनुकूल बनाउनुहोस्"</string>
+    <string name="list_filter_customize" msgid="2368900508906139537">" कस्टम बनाउनुहोस्"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"ठेगाना"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"अन्य सबै कन्ट्याक्टहरू"</string>
     <string name="display_all_contacts" msgid="1281067776483704512">"सबै कन्ट्याक्टहरू"</string>
@@ -365,7 +365,7 @@
     <string name="display_more_groups" msgid="8398232980355188133">"अधिक समूहहरू"</string>
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"\" <xliff:g id="GROUP">%s</xliff:g> \" लाई सिङ्कबाट हटाउनाले समूहमा नरहेका सम्पर्कहरूलाई पनि हटाउने छ।"</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"प्रदर्शन विकल्पहरू बचत‍ गर्दै ..."</string>
-    <string name="listCustomView" msgid="5782275477737032610">"आफू अनुकूल पारिएको दृश्य"</string>
+    <string name="listCustomView" msgid="5782275477737032610">" कस्टम पारिएको दृश्य"</string>
     <string name="dialog_new_contact_account" msgid="5652018124788855057">"आयातीत कन्ट्याक्टहरू निम्नमा सेभ गर्नुहोस्:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"SIM कार्ड"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"SIM <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
@@ -437,7 +437,7 @@
     <string name="no_contact_to_share" msgid="6285287228557175749">"आदान प्रदान गर्न कुनै कन्ट्याक्टहरू छैनन्।"</string>
     <string name="menu_contacts_filter" msgid="5854584270038139275">"प्रदर्शन गर्नका लागि सम्पर्क"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"प्रदर्शन गर्नका लागि सम्पर्क"</string>
-    <string name="custom_list_filter" msgid="2544327670202891979">"दृश्यलाई आफू अनुकूल पार्नुहोस्"</string>
+    <string name="custom_list_filter" msgid="2544327670202891979">"दृश्यलाई  कस्टम पार्नुहोस्"</string>
     <string name="menu_custom_filter_save" msgid="2412959737200856930">"सुरक्षित गर्ने"</string>
     <string name="hint_findContacts" msgid="5554298639062659655">"कन्ट्याक्टहरू खोज्नुहोस्"</string>
     <string name="contactsFavoritesLabel" msgid="8339645684721732714">"मन पर्ने"</string>
