@@ -311,7 +311,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"Organizacija"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"Odnos"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"Posebni datum"</string>
-    <string name="sms" msgid="4246338112764847384">"SMS"</string>
+    <string name="sms" msgid="4246338112764847384">"Poruka"</string>
     <string name="postal_address" msgid="5031809899673855074">"Adresa"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Kompanija"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"Odjel"</string>
