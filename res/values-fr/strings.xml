@@ -284,7 +284,7 @@
     <string name="directory_search_label" msgid="2602118204885565153">"Annuaire"</string>
     <string name="directory_search_label_work" msgid="2392128956332931231">"Annuaire professionnel"</string>
     <string name="local_search_label" msgid="6692495405531144805">"Tous les contacts"</string>
-    <string name="description_quick_contact_for" msgid="6364906818231956042">"Liens rapides vers <xliff:g id="NAME">%1$s</xliff:g>"</string>
+    <string name="description_quick_contact_for" msgid="6364906818231956042">"Contact rapide pour <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="7970183292521946492">"(Sans nom)"</string>
     <string name="favoritesFrequentContacted" msgid="2885862854079966676">"Contacts fréquents"</string>
     <string name="list_filter_phones" msgid="6839133198968393843">"Tous les contacts disposant d\'un numéro de téléphone"</string>
