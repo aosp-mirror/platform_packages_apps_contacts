@@ -23,7 +23,7 @@
     <string name="shortcutDialContact" msgid="155367248069127153">"Ring"</string>
     <string name="shortcutMessageContact" msgid="9123517151981679277">"Send melding"</string>
     <string name="shortcutActivityTitle" msgid="5407832911005090417">"Velg en kontakt"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Legg til kontakt"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Legg til i kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"Velg en kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"Velg"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"Opprett ny kontakt"</string>
@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Søker …"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Dato"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Etikett"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Kan ikke oppdatere denne informasjonen"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Avbryt"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Tilbake"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"lukk"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Varsler"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ja"</string>
     <string name="no_button" msgid="8965841385742548947">"Nei"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Operatørtjenestenumre"</string>
 </resources>

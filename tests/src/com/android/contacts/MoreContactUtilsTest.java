@@ -1,7 +1,8 @@
 package com.android.contacts;
 
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import junit.framework.TestCase;
 

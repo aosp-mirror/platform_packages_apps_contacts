@@ -29,11 +29,12 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
-import android.test.suitebuilder.annotation.Suppress;
 
-import com.android.contacts.tests.R;
+import androidx.test.filters.SmallTest;
+import androidx.test.filters.Suppress;
+
 import com.android.contacts.model.dataitem.DataKind;
+import com.android.contacts.tests.R;
 
 import com.google.common.base.Objects;
 

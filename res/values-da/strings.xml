@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Søger..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Dato"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Etiket"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"DIsse oplysninger kan ikke opdateres"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Annuller"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Tilbage"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"luk"</string>
@@ -259,7 +260,7 @@
     <string name="sms_fax_home" msgid="6887675360794775735">"Sms til hjemmefax"</string>
     <string name="sms_pager" msgid="1052540072760129272">"Sms til personsøger"</string>
     <string name="sms_other" msgid="3584200156296349098">"Send sms"</string>
-    <string name="sms_callback" msgid="6932315941997609031">"Send sms til mistede opkald"</string>
+    <string name="sms_callback" msgid="6932315941997609031">"Send sms til ubesvarede opkald"</string>
     <string name="sms_car" msgid="6051606941547979352">"Sms til bil"</string>
     <string name="sms_company_main" msgid="4801585186677340070">"Sms til arbejde (hovednummer)"</string>
     <string name="sms_isdn" msgid="8093269429091061478">"Send sms til ISDN"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Notifikationer"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ja"</string>
     <string name="no_button" msgid="8965841385742548947">"Nej"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Mobilselskabs servicenumre"</string>
 </resources>

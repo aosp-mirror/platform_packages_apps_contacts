@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"جارٍ البحث..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"التاريخ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"التصنيف"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"لا يمكن تعديل هذه المعلومات"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"إلغاء"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"رجوع"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"إغلاق"</string>
@@ -288,7 +289,7 @@
     <string name="missing_name" msgid="7970183292521946492">"(بلا اسم)"</string>
     <string name="favoritesFrequentContacted" msgid="2885862854079966676">"يتم الاتصال بهم بشكل متكرر"</string>
     <string name="list_filter_phones" msgid="6839133198968393843">"جميع جهات الاتصال التي لها أرقام هواتف"</string>
-    <string name="list_filter_phones_work" msgid="5583425697781385616">"جهات الاتصال للملف الشخصي للعمل"</string>
+    <string name="list_filter_phones_work" msgid="5583425697781385616">"جهات الاتصال لملف العمل"</string>
     <string name="view_updates_from_group" msgid="6233444629074835594">"عرض التحديثات"</string>
     <string name="account_phone" msgid="8044426231251817556">"الجهاز"</string>
     <string name="account_sim" msgid="3200457113308694663">"SIM"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"الإشعارات"</string>
     <string name="yes_button" msgid="1120514817091581293">"نعم"</string>
     <string name="no_button" msgid="8965841385742548947">"لا"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"أرقام خدمات مشغّلي شبكة الجوّال"</string>
 </resources>

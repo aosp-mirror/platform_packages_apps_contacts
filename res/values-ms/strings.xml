@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Mencari..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Tarikh"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Label"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Tidak dapat mengemaskinikan maklumat ini"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Batal"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Kembali"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"tutup"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Pemberitahuan"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ya"</string>
     <string name="no_button" msgid="8965841385742548947">"Tidak"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Nombor perkhidmatan operator"</string>
 </resources>

@@ -50,6 +50,7 @@ import android.widget.LinearLayout;
 import android.widget.ListPopupWindow;
 import android.widget.TextView;
 
+import com.android.contacts.editor.KindSectionView;
 import com.android.contacts.GeoUtil;
 import com.android.contacts.R;
 import com.android.contacts.compat.PhoneNumberUtilsCompat;
@@ -80,7 +81,8 @@ import java.util.TreeSet;
 /**
  * View to display information from multiple {@link RawContactDelta}s grouped together.
  */
-public class RawContactEditorView extends LinearLayout implements View.OnClickListener {
+public class RawContactEditorView extends LinearLayout implements View.OnClickListener,
+    KindSectionView.Listener {
 
     static final String TAG = "RawContactEditorView";
 
@@ -218,6 +220,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
     private PhotoEditorView mPhotoView;
     private ViewGroup mKindSectionViews;
+    private LinearLayout mLegacySectionLinearLayout;
+    private ViewGroup mLegacyKindSectionViews;
     private Map<String, KindSectionView> mKindSectionViewMap = new HashMap<>();
     private View mMoreFields;
 
@@ -259,6 +263,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
         mPhotoView = (PhotoEditorView) findViewById(R.id.photo_editor);
         mKindSectionViews = (LinearLayout) findViewById(R.id.kind_section_views);
+        mLegacySectionLinearLayout = (LinearLayout) findViewById(R.id.legacy_fields_container);
+        mLegacyKindSectionViews = (LinearLayout) findViewById(R.id.legacy_section_views);
         mMoreFields = findViewById(R.id.more_fields);
         mMoreFields.setOnClickListener(this);
     }
@@ -276,6 +282,10 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         final int childCount = mKindSectionViews.getChildCount();
         for (int i = 0; i < childCount; i++) {
             mKindSectionViews.getChildAt(i).setEnabled(enabled);
+        }
+        final int legacyChildCount = mLegacyKindSectionViews.getChildCount();
+        for (int i = 0; i < legacyChildCount; i++) {
+            mLegacyKindSectionViews.getChildAt(i).setEnabled(false);
         }
     }
 
@@ -447,6 +457,8 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
 
         mKindSectionViewMap.clear();
         mKindSectionViews.removeAllViews();
+        mLegacySectionLinearLayout.setVisibility(View.GONE);
+        mLegacyKindSectionViews.removeAllViews();
         mMoreFields.setVisibility(View.VISIBLE);
 
         mMaterialPalette = materialPalette;
@@ -531,7 +543,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         addKindSectionViews();
 
         mMoreFields.setVisibility(hasMoreFields() ? View.VISIBLE : View.GONE);
-
+        addLegacyKindSectionViews();
         if (mIsExpanded) showAllFields();
     }
 
@@ -874,6 +886,9 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         int i = -1;
 
         for (String mimeType : mSortedMimetypes) {
+            if(EditorUiUtils.LEGACY_MIME_TYPE.contains(mimeType)) {
+                continue;
+            }
             i++;
             // Ignore mime types that we've already handled
             if (Photo.CONTENT_ITEM_TYPE.equals(mimeType)) {
@@ -910,7 +925,7 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
         // they will be the only types you add new values to initially for new contacts
         kindSectionView.setShowOneEmptyEditor(true);
 
-        kindSectionView.setState(kindSectionData, mViewIdGenerator, mListener);
+        kindSectionView.setState(kindSectionData, mViewIdGenerator, mListener, this);
 
         return kindSectionView;
     }
@@ -936,6 +951,55 @@ public class RawContactEditorView extends LinearLayout implements View.OnClickLi
             }
         }
         return false;
+    }
+
+    private void addLegacyKindSectionViews() {
+        boolean hasLegacyData = false;
+        for (String mimeType : EditorUiUtils.LEGACY_MIME_TYPE) {
+
+            KindSectionData kindSectionData = mKindSectionDataMap.get(mimeType);
+            if (kindSectionData != null && !kindSectionData.getVisibleValuesDeltas().isEmpty()) {
+                hasLegacyData = true;
+                KindSectionView kindSectionView =
+                    inflateLegacyKindSectionView(mKindSectionViews, kindSectionData);
+                mLegacyKindSectionViews.addView(kindSectionView);
+
+                // Keep a pointer to the KindSectionView for each mimeType
+                mKindSectionViewMap.put(mimeType, kindSectionView);
+            }
+        }
+
+        if (hasLegacyData) {
+            mLegacySectionLinearLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private KindSectionView inflateLegacyKindSectionView(
+        ViewGroup viewGroup, KindSectionData kindSectionData) {
+        KindSectionView kindSectionView =
+            (KindSectionView)
+                mLayoutInflater.inflate(
+                    R.layout.item_kind_section, viewGroup, /* attachToRoot =*/ false);
+        kindSectionView.setLegacyField(true);
+
+        kindSectionView.setState(kindSectionData, mViewIdGenerator, mListener, this);
+
+        return kindSectionView;
+    }
+
+    @Override
+    public void onEmptyLegacyKindSectionView() {
+        for (int i = mLegacyKindSectionViews.getChildCount() - 1; i >= 0; i--) {
+            View childView = mLegacyKindSectionViews.getChildAt(i);
+            if (childView instanceof KindSectionView
+                && ((KindSectionView) childView).isEditorEmpty()) {
+                mLegacyKindSectionViews.removeViewAt(i);
+            }
+        }
+
+        if (mLegacyKindSectionViews.getChildCount() == 0) {
+            mLegacySectionLinearLayout.setVisibility(View.GONE);
+        }
     }
 
     private static void wlog(String message) {

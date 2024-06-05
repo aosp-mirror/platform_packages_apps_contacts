@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Söker …"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Datum"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Etikett"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Det går inte att uppdatera den här informationen"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Avbryt"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Tillbaka"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"stäng"</string>
@@ -456,7 +457,7 @@
     <string name="call_subject_type_and_number" msgid="134754147019287616">"<xliff:g id="TYPE">%1$s</xliff:g> • <xliff:g id="NUMBER">%2$s</xliff:g>"</string>
     <string name="about_build_version" msgid="5870642814752351712">"Programversion"</string>
     <string name="about_open_source_licenses" msgid="1617836621315557445">"Licenser, öppen källkod"</string>
-    <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Licensinformation för programvara med öppen källkod"</string>
+    <string name="about_open_source_licenses_summary" msgid="4843627659117423491">"Licensinformation för mjukvara med öppen källkod"</string>
     <string name="about_privacy_policy" msgid="4581488375200402678">"Integritetspolicy"</string>
     <string name="about_terms_of_service" msgid="7419670771785057738">"Användarvillkor"</string>
     <string name="activity_title_licenses" msgid="6434398894019119709">"Licenser, öppen källkod"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Meddelanden"</string>
     <string name="yes_button" msgid="1120514817091581293">"Ja"</string>
     <string name="no_button" msgid="8965841385742548947">"Nej"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Operatörens tjänstenummer"</string>
 </resources>

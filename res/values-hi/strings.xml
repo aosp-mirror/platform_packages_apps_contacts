@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"खोज रहा है…"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"तारीख"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"लेबल"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"इस जानकारी में बदलाव नहीं किया जा सकता"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"रद्द करें"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"वापस जाएं"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"बंद करें"</string>
@@ -281,7 +282,7 @@
     <string name="status_away" msgid="2677693194455091315">"दूर"</string>
     <string name="status_busy" msgid="2759339190187696727">"व्यस्त"</string>
     <string name="local_invisible_directory" msgid="5936234374879813300">"अन्य"</string>
-    <string name="directory_search_label" msgid="2602118204885565153">"निर्देशिका"</string>
+    <string name="directory_search_label" msgid="2602118204885565153">"डायरेक्ट्री"</string>
     <string name="directory_search_label_work" msgid="2392128956332931231">"दफ़्तर की निर्देशिका"</string>
     <string name="local_search_label" msgid="6692495405531144805">"सभी संपर्क"</string>
     <string name="description_quick_contact_for" msgid="6364906818231956042">"<xliff:g id="NAME">%1$s</xliff:g> के लिए त्‍वरित संपर्क"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"सूचनाएं"</string>
     <string name="yes_button" msgid="1120514817091581293">"हां"</string>
     <string name="no_button" msgid="8965841385742548947">"नहीं"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"मोबाइल और इंटरनेट सेवा वाली कंपनी के नंबर"</string>
 </resources>
