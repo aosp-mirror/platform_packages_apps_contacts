@@ -20,8 +20,9 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.widget.TextView;
+
+import androidx.test.filters.LargeTest;
 
 import com.android.contacts.format.SpannedTestUtils;
 import com.android.contacts.preference.ContactsPreferences;

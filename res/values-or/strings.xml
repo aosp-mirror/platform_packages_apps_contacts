@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"ସର୍ଚ୍ଚ କରାଯାଉଛି…"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"ତାରିଖ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"ଲେବଲ୍"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"ଏହି ସୂଚନା ଅପଡେଟ୍ କରାଯାଇପାରିବ ନାହିଁ"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"ବାତିଲ୍‍ କରନ୍ତୁ"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"ପଛକୁ ଫେରନ୍ତୁ"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"ବନ୍ଦ କରନ୍ତୁ"</string>
@@ -280,7 +281,7 @@
     <string name="status_available" msgid="8081626460682959098">"ଉପଲବ୍ଧ"</string>
     <string name="status_away" msgid="2677693194455091315">"ନାହାନ୍ତି"</string>
     <string name="status_busy" msgid="2759339190187696727">"ବ୍ୟସ୍ତ ଅଛନ୍ତି"</string>
-    <string name="local_invisible_directory" msgid="5936234374879813300">"ଅନ୍ୟାନ୍ୟ"</string>
+    <string name="local_invisible_directory" msgid="5936234374879813300">"ଅନ୍ୟ"</string>
     <string name="directory_search_label" msgid="2602118204885565153">"ଡାଇରେକ୍ଟୋରୀ"</string>
     <string name="directory_search_label_work" msgid="2392128956332931231">"କାର୍ଯ୍ୟ ଡାଇରେକ୍ଟୋରୀ"</string>
     <string name="local_search_label" msgid="6692495405531144805">"ସମସ୍ତ ଯୋଗାଯୋଗ"</string>

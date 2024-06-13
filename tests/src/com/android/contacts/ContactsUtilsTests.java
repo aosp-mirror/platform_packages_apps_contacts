@@ -22,8 +22,9 @@ import android.net.Uri;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
 import android.util.Pair;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.model.dataitem.DataItem;
 import com.android.contacts.model.dataitem.EmailDataItem;

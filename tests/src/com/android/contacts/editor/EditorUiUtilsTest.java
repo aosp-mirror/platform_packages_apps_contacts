@@ -22,7 +22,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.R;
 import com.android.contacts.model.account.AccountDisplayInfo;
