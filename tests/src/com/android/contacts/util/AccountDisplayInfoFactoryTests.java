@@ -20,7 +20,8 @@ import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.model.AccountTypeManager;
 import com.android.contacts.model.account.AccountDisplayInfo;

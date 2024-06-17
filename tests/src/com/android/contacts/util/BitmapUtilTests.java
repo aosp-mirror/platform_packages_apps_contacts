@@ -18,7 +18,8 @@ package com.android.contacts.util;
 
 import android.graphics.Bitmap;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

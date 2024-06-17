@@ -50,12 +50,12 @@
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"ಉಳಿಸಿ ಮತ್ತು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕದ ಜೊತೆಗೆ ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
-    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"ಉಳಿಸು ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡು"</string>
+    <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"ಸೇವ್ ಮಾಡಿ ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
     <string name="contacts_unlinking_progress_bar" msgid="5696679068872394167">"ಅನ್‌ಲಿಂಕ್ ಮಾಡುತ್ತಿದೆ"</string>
     <string name="menu_joinAggregate" msgid="3116395302755287038">"ಲಿಂಕ್‌"</string>
     <string name="menu_linkedContacts" msgid="6363718333551613063">"ಲಿಂಕ್ ಮಾಡಲಾದ ಸಂಪರ್ಕ ವೀಕ್ಷಿಸಿ"</string>
-    <string name="menu_save" msgid="7204524700499687371">"ಉಳಿಸು"</string>
+    <string name="menu_save" msgid="7204524700499687371">"ಸೇವ್ ಮಾಡಿ"</string>
     <string name="titleJoinContactDataWith" msgid="7342386037654890242">"ಲಿಂಕ್ ಸಂಪರ್ಕಗಳು"</string>
     <string name="blurbJoinContactDataWith" msgid="132105056919797709">"ನೀವು <xliff:g id="NAME">%s</xliff:g> ಅವರೊಂದಿಗೆ ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವ ಸಂಪರ್ಕವನ್ನು ಆಯ್ಕೆಮಾಡಿ:"</string>
     <string name="separatorJoinAggregateSuggestions" msgid="8347769365870796983">"ಸೂಚಿಸಲಾದ ಸಂಪರ್ಕಗಳು"</string>
@@ -94,8 +94,8 @@
     <string name="emptyGroup" msgid="8598261660865081152">"ಈ ಲೇಬಲ್‌ನ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
     <string name="emptyAccount" msgid="7450843210977018582">"ಈ ಖಾತೆಯಲ್ಲಿ ಯಾವುದೇ ಸಂಪರ್ಕಗಳಿಲ್ಲ"</string>
     <string name="emptyMainList" msgid="3266182207039677163">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯು ಖಾಲಿಯಾಗಿದೆ"</string>
-    <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> ಸಂಪರ್ಕವನ್ನು ಉಳಿಸಲಾಗಿದೆ"</string>
-    <string name="contactSavedToast" msgid="4370392215196995301">"ಸಂಪರ್ಕ‌ವನ್ನು ಉಳಿಸಲಾಗಿದೆ"</string>
+    <string name="contactSavedNamedToast" msgid="3067050290584834386">"<xliff:g id="DISPLAY_NAME">%s</xliff:g> ಸಂಪರ್ಕವನ್ನು ಸೇವ್ ಮಾಡಲಾಗಿದೆ"</string>
+    <string name="contactSavedToast" msgid="4370392215196995301">"ಸಂಪರ್ಕ‌ವನ್ನು ಸೇವ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="contactUnlinkedToast" msgid="6791720274141804377">"ಸಂಪರ್ಕಗಳನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"ಸಂಪರ್ಕ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ"</string>
     <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"ಸಂಪರ್ಕದ ಲಿಂಕ್ ರದ್ದು ಮಾಡಲಾಗಲಿಲ್ಲ"</string>
@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"ಹುಡುಕಲಾಗುತ್ತಿದೆ…"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"ದಿನಾಂಕ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"ಲೇಬಲ್"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"ಈ ಮಾಹಿತಿಯನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"ರದ್ದುಮಾಡಿ"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"ಹಿಂದೆ"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"ಮುಚ್ಚು"</string>
@@ -437,7 +438,7 @@
     <string name="menu_contacts_filter" msgid="5854584270038139275">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
     <string name="activity_title_contacts_filter" msgid="6340531582631006680">"ಪ್ರದರ್ಶಿಸಲು ಸಂಪರ್ಕಗಳು"</string>
     <string name="custom_list_filter" msgid="2544327670202891979">"ವೀಕ್ಷಣೆಯನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ"</string>
-    <string name="menu_custom_filter_save" msgid="2412959737200856930">"ಉಳಿಸು"</string>
+    <string name="menu_custom_filter_save" msgid="2412959737200856930">"ಸೇವ್ ಮಾಡಿ"</string>
     <string name="hint_findContacts" msgid="5554298639062659655">"ಸಂಪರ್ಕಗಳನ್ನು ಹುಡುಕಿ"</string>
     <string name="contactsFavoritesLabel" msgid="8339645684721732714">"ಮೆಚ್ಚಿನವುಗಳು"</string>
     <string name="menu_import" msgid="2206768098740726906">"ಆಮದು ಮಾಡಿ"</string>
