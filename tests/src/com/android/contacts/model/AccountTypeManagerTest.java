@@ -16,16 +16,20 @@
 
 package com.android.contacts.model;
 
+import static org.mockito.Mockito.when;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.SharedPreferences;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.model.account.AccountType;
 import com.android.contacts.model.account.AccountTypeWithDataSet;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.model.account.GoogleAccountType;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -37,8 +41,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.mockito.Mockito.when;
 
 /**
  * Test case for {@link com.android.contacts.model.AccountTypeManager}.

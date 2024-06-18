@@ -22,6 +22,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds.Im;
+import android.provider.ContactsContract.CommonDataKinds.SipAddress;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
 import android.text.Editable;
 import android.text.InputType;
@@ -49,6 +51,7 @@ import com.android.contacts.model.ValuesDelta;
 import com.android.contacts.model.account.AccountType.EditField;
 import com.android.contacts.model.dataitem.DataKind;
 import com.android.contacts.util.PhoneNumberFormatter;
+import com.android.contacts.ClipboardUtils;
 
 /**
  * Simple editor that handles labels and any {@link EditField} defined for the
@@ -57,7 +60,6 @@ import com.android.contacts.util.PhoneNumberFormatter;
  */
 public class TextFieldsEditorView extends LabeledEditorView {
     private static final String TAG = TextFieldsEditorView.class.getSimpleName();
-
     private EditText[] mFieldEditTexts = null;
     private ViewGroup mFields = null;
     protected View mExpansionViewContainer;
@@ -75,6 +77,12 @@ public class TextFieldsEditorView extends LabeledEditorView {
     private String mFixedDisplayName = "";
     private boolean needInputInitialize;
 
+    private final OnLongClickListener mOnLongClickListener =
+        v -> {
+            ClipboardUtils.copyText(
+                getContext(), /* label= */ null, (CharSequence) v.getTag(R.id.text_to_copy), true);
+            return true;
+        };
 
     public TextFieldsEditorView(Context context) {
         super(context);
@@ -164,12 +172,32 @@ public class TextFieldsEditorView extends LabeledEditorView {
 
         if (mFieldEditTexts != null) {
             for (int index = 0; index < mFieldEditTexts.length; index++) {
-                mFieldEditTexts[index].setEnabled(!isReadOnly() && enabled);
+                mFieldEditTexts[index].setEnabled(!isReadOnly() && enabled && !mIsLegacyField);
+                if (mIsLegacyField) {
+                    mFieldEditTexts[index].setFocusable(false);
+                    mFieldEditTexts[index].setClickable(false);
+                    mFieldEditTexts[index].setLongClickable(false);
+                }
+            }
+            if (mIsLegacyField && mFieldEditTexts.length > 0) {
+                setOnLongClickListenerOnContainer();
             }
         }
         if (mExpansionView != null) {
             mExpansionView.setEnabled(!isReadOnly() && enabled);
         }
+    }
+
+    /**
+     * Attaches OnLongClickLister to fields LinearLayout that allow user copy the EditText text on
+     * long press.
+     */
+    private void setOnLongClickListenerOnContainer() {
+      mFields.setFocusable(true);
+      mFields.setLongClickable(true);
+      // Current legacy mimetypes support exactly 1 field
+      mFields.setTag(R.id.text_to_copy, mFieldEditTexts[0].getText().toString());
+      mFields.setOnLongClickListener(mOnLongClickListener);
     }
 
     private OnFocusChangeListener mTextFocusChangeListener = new OnFocusChangeListener() {

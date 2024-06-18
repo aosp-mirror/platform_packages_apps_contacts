@@ -30,7 +30,8 @@ import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.Intents.Insert;
 import android.provider.ContactsContract.RawContacts;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.LargeTest;
+
+import androidx.test.filters.LargeTest;
 
 import com.android.contacts.R;
 import com.android.contacts.compat.CompatUtils;
