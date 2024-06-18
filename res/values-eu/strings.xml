@@ -84,8 +84,8 @@
     <string name="deleteConfirmation" msgid="3727809366015979585">"Kontaktua ezabatu nahi duzu?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"Ezabatu"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"Ez dago horrelako kontakturik."</string>
-    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"Hasierako pantailan gehitu da kontaktua."</string>
-    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"Hasierako pantailan gehitu da <xliff:g id="NAME">%s</xliff:g>."</string>
+    <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"Orri nagusian gehitu da kontaktua."</string>
+    <string name="createContactShortcutSuccessful" msgid="6980032407920515698">"Orri nagusian gehitu da <xliff:g id="NAME">%s</xliff:g>."</string>
     <string name="photoPickerNotFoundText" msgid="6535222297923110991">"Ez dago irudi erabilgarririk gailuan."</string>
     <string name="attach_photo_dialog_title" msgid="7948754072673745235">"Kontaktuaren argazkia"</string>
     <string name="customLabelPickerTitle" msgid="816694850254307154">"Etiketa pertsonalizatuaren izena"</string>
@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Bilatzen…"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Data"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Etiketa"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Ezin da eguneratu informazioa"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Utzi"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Atzera"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"itxi"</string>

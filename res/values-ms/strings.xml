@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Mencari..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Tarikh"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Label"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Tidak dapat mengemaskinikan maklumat ini"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Batal"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Kembali"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"tutup"</string>
@@ -480,7 +481,7 @@
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Ketepikan"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Penyegerakan akaun dimatikan. Ketik untuk menghidupkannya."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Hidupkan autosegerak?"</string>
-    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Perubahan yang anda buat kepada semua apl dan akaun, bukan hanya Kenalan Google, akan dikemas kini antara web dengan peranti anda."</string>
+    <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Perubahan yang anda buat kepada semua apl dan akaun, bukan hanya Google Contacts, akan dikemas kini antara web dengan peranti anda."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"Hidupkan"</string>
     <string name="connection_error_message" msgid="7446131881946138093">"Tiada sambungan"</string>
     <string name="single_sim_display_label" msgid="264062966309455515">"SIM"</string>

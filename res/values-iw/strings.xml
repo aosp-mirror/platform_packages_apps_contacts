@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"מחפש..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"תאריך"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"תווית"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"אי אפשר לשנות את המידע הזה"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"ביטול"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"הקודם"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"סגירה"</string>
