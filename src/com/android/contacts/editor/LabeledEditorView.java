@@ -81,6 +81,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     private boolean mIsDeletable = true;
     private boolean mIsAttachedToWindow;
 
+    protected boolean mIsLegacyField;
+
     private EditType mType;
 
     private ViewIdGenerator mViewIdGenerator;
@@ -264,8 +266,8 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        mLabel.setEnabled(!mReadOnly && enabled);
-        mDelete.setEnabled(!mReadOnly && enabled);
+        mLabel.setEnabled(!mReadOnly && enabled && !mIsLegacyField);
+        mDelete.setEnabled((!mReadOnly && enabled) || mIsLegacyField);
     }
 
     public Spinner getLabel() {
@@ -340,6 +342,10 @@ public abstract class LabeledEditorView extends LinearLayout implements Editor, 
     @Override
     public String getPhonetic(String column){
         return "";
+    }
+
+    public void setLegacyField(boolean mIsLegacyField) {
+        this.mIsLegacyField = mIsLegacyField;
     }
 
     protected void saveValue(String column, String value) {

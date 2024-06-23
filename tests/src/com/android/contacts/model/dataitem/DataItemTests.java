@@ -30,11 +30,14 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.provider.ContactsContract.Contacts.Data;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
+
 import com.android.contacts.Collapser;
 import com.android.contacts.model.account.AccountType.EditType;
 import com.android.contacts.model.account.BaseAccountType;
 import com.android.contacts.model.account.GoogleAccountType;
+
 import java.util.ArrayList;
 import java.util.List;
 

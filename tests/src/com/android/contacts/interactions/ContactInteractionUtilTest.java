@@ -16,9 +16,8 @@
 package com.android.contacts.interactions;
 
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
-import java.util.Calendar;
-import java.util.Locale;
+
+import androidx.test.filters.SmallTest;
 
 /**
  * Tests for utility functions in {@link ContactInteractionUtil}

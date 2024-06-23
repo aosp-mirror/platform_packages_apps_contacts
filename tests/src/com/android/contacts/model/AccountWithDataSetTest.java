@@ -19,7 +19,8 @@ package com.android.contacts.model;
 import android.os.Bundle;
 import android.test.AndroidTestCase;
 import android.test.MoreAsserts;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.model.account.AccountWithDataSet;
 

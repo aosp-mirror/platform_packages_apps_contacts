@@ -18,10 +18,11 @@ package com.android.contacts.widget;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.test.AndroidTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+
+import androidx.test.filters.SmallTest;
 
 import com.google.common.collect.Lists;
 

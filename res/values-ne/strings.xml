@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"खोजिँदै छ..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"मिति"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"लेबल"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"यो जानकारी सम्पादन गर्न सकिँदैन"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"रद्द गर्नुहोस्"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"पछाडि"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"बन्द गर्नुहोस्"</string>
@@ -158,7 +159,7 @@
     <string name="non_phone_add_to_contacts" msgid="5472784294274676663">"सम्पर्कहरूमा जोड्नुहोस्"</string>
     <string name="non_phone_close" msgid="2792373584950696532">"बन्द गर्नुहोस्"</string>
     <string name="date_year_toggle" msgid="8930759990426623823">"वर्ष सामेल गर्नुहोस्"</string>
-    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"खाता थप्नुहोस्"</string>
+    <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"खाता हाल्नुहोस्"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"आयात गर्नुहोस्"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"नयाँ लेबल सिर्जना गर्नुहोस्..."</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" लेबललाई हटाउने हो? (सम्पर्कहरू मेटिने छैनन्।)"</string>
@@ -175,7 +176,7 @@
     <string name="title_edit_group" msgid="4246193439931854759">"सम्पर्कहरू हटाउनुहोस्"</string>
     <string name="local_profile_title" msgid="1613784248702623410">"मेरो स्थानीय प्रोफाइल"</string>
     <string name="external_profile_title" msgid="2706282819025406927">"मेरो <xliff:g id="EXTERNAL_SOURCE">%1$s</xliff:g> प्रोफाइल"</string>
-    <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"एक मिनेट जति लगाएर एउटा खाता थप्नुहोस् जसले तपाईंका सम्पर्कहरूलाई Google मा ब्याक अप गर्ने छ।"</string>
+    <string name="contact_editor_prompt_zero_accounts" msgid="4468363031413457746">"एक मिनेट जति लगाएर एउटा खाता हाल्नुहोस् जसले तपाईंका सम्पर्कहरूलाई Google मा ब्याक अप गर्ने छ।"</string>
     <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"नयाँ सम्पर्कहरू <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g> मा सुरक्षित गरिनेछन्।"</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"नयाँ सम्पर्क ठेगानाहरूका लागि डिफल्ट खाता छान्‍नुहोस्:"</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"नयाँ सम्पर्क बनाउने"</string>
@@ -185,8 +186,8 @@
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"लिंक गरिएका सम्पर्कहरू"</string>
     <string name="contact_editor_add_linked_contact" msgid="2895453741206196138">"थप्नुहोस्"</string>
     <string name="contact_editor_unlink_contacts" msgid="8399419729744305687">"अनलिंक गर्ने"</string>
-    <string name="add_account" msgid="3071396624500839020">"खाता थप्नुहोस्"</string>
-    <string name="add_new_account" msgid="573368229646104110">"नयाँ खाता थप्नुहोस्"</string>
+    <string name="add_account" msgid="3071396624500839020">"खाता हाल्नुहोस्"</string>
+    <string name="add_new_account" msgid="573368229646104110">"नयाँ खाता हाल्नुहोस्"</string>
     <string name="menu_export_database" msgid="1658249125751926885">"डेटाबेस फाइलहरू निर्यात गर्नुहोस्"</string>
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"नयाँ सम्पर्क सिर्जना गर्नुहोस्"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"थप हेर्नुहोस्"</string>

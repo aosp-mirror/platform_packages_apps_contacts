@@ -111,7 +111,7 @@
     <string name="groupMembersAddedToast" msgid="1939782548900157287">"Føjet til etiket"</string>
     <string name="groupSavedErrorToast" msgid="8456912862816145318">"Ændringerne af etiketten kan ikke gemmes"</string>
     <string name="groupExistsErrorMessage" msgid="912222525098791136">"Etiketten findes allerede"</string>
-    <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"Nogle kontakter har ikke e-mails."</string>
+    <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"Nogle kontakter har ikke mails."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"Nogle kontakter har ikke telefonnumre."</string>
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"Send mail"</string>
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"Send besked"</string>
@@ -120,7 +120,7 @@
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"Ingen kontakter"</string>
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"Føj \"<xliff:g id="EMAIL">%s</xliff:g>\" til kontakter?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"Navne på dine kontakter"</string>
-    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"Klik for at gå tilbage til forrige skærmbillede"</string>
+    <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"Klik for at gå tilbage til forrige skærm"</string>
     <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"Tilføj telefonnummer"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"Tilføj mail"</string>
     <string name="missing_app" msgid="5674389915738964148">"Der blev ikke fundet nogen app, der kan håndtere denne handling."</string>
@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Søger..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Dato"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Etiket"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"DIsse oplysninger kan ikke opdateres"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Annuller"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Tilbage"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"luk"</string>
