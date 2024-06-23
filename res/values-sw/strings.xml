@@ -112,7 +112,7 @@
     <string name="groupSavedErrorToast" msgid="8456912862816145318">"Imeshindwa kuhifadhi mabadiliko ya lebo"</string>
     <string name="groupExistsErrorMessage" msgid="912222525098791136">"Lebo hiyo tayari ipo"</string>
     <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"Baadhi ya watu hawana anwani za barua pepe."</string>
-    <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"Baadhi ya anwani hazina nambari za simu."</string>
+    <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"Baadhi ya anwani hazina namba za simu."</string>
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"Tuma barua pepe"</string>
     <string name="menu_sendMessageOption" msgid="8051852013078110910">"Tuma ujumbe"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"Chagua Anwani"</string>
@@ -121,7 +121,7 @@
     <string name="add_contact_dlg_message_fmt" msgid="7498024710169591375">"Ongeza \"<xliff:g id="EMAIL">%s</xliff:g>\" kwa anwani?"</string>
     <string name="search_settings_description" msgid="5630675648560839920">"Majina ya anwani zako"</string>
     <string name="quickcontact_transparent_view_description" msgid="7783027850792852265">"Bofya ili urudi kwenye skrini iliyotangulia"</string>
-    <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"Ongeza nambari ya simu"</string>
+    <string name="quickcontact_add_phone_number" msgid="1683577288080727862">"Ongeza namba ya simu"</string>
     <string name="quickcontact_add_email" msgid="1442894568471116797">"Ongeza anwani ya barua pepe"</string>
     <string name="missing_app" msgid="5674389915738964148">"Hakuna programu iliyopatikana ya kushughulikia tendo hili."</string>
     <string name="menu_share" msgid="6343022811796001773">"Shiriki"</string>
@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Inatafuta…"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Tarehe"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Lebo"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Huwezi kusasisha maelezo haya"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Ghairi"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Rudi nyuma"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"funga"</string>
@@ -239,7 +240,7 @@
     <string name="call_other" msgid="2264440725373659661">"Piga simu"</string>
     <string name="call_callback" msgid="1226584395279365027">"Mpigie"</string>
     <string name="call_car" msgid="4102050357690774180">"Piga simu kwa gari"</string>
-    <string name="call_company_main" msgid="7922526725703041965">"Pigia nambari kuu ya simu ya kampuni"</string>
+    <string name="call_company_main" msgid="7922526725703041965">"Pigia namba kuu ya simu ya kampuni"</string>
     <string name="call_isdn" msgid="6313441227468730170">"Piga simu kwa ISDN"</string>
     <string name="call_main" msgid="3732801640247896775">"Piga simu kuu"</string>
     <string name="call_other_fax" msgid="4273636173311108108">"Piga simu ya faksi"</string>
@@ -287,7 +288,7 @@
     <string name="description_quick_contact_for" msgid="6364906818231956042">"Wasiliana kwa haraka na <xliff:g id="NAME">%1$s</xliff:g>"</string>
     <string name="missing_name" msgid="7970183292521946492">"(Hakuna jina)"</string>
     <string name="favoritesFrequentContacted" msgid="2885862854079966676">"Unaowasiliana nao zaidi"</string>
-    <string name="list_filter_phones" msgid="6839133198968393843">"Anwani zote zilizo na nambari za simu"</string>
+    <string name="list_filter_phones" msgid="6839133198968393843">"Anwani zote zilizo na namba za simu"</string>
     <string name="list_filter_phones_work" msgid="5583425697781385616">"Anwani za watu wa kazini"</string>
     <string name="view_updates_from_group" msgid="6233444629074835594">"Tazama masasisho"</string>
     <string name="account_phone" msgid="8044426231251817556">"Kifaa"</string>

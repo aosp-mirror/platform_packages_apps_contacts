@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"تلاش کر رہا ہے…"</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"تاریخ"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"لیبل"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"اس معلومات کو اپ ڈیٹ نہیں کر سکتے"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"منسوخ کریں"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"پیچھے"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"بند کریں"</string>

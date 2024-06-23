@@ -21,7 +21,8 @@ import android.content.ContentValues;
 import android.os.Build;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.compat.CompatUtils;
 
