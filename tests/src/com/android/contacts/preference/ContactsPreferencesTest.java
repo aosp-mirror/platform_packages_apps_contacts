@@ -20,9 +20,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
 
 import androidx.test.InstrumentationRegistry;
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.model.account.AccountWithDataSet;
 

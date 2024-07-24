@@ -425,6 +425,9 @@
     <!-- The button to add an label field to a contact in the Raw Contact Editor [CHAR LIMIT=15] -->
     <string name="group_edit_field_hint_text">Label</string>
 
+    <!-- Editor section title to show below shown editor fields are not editable. Users are only allowed to delete them. [CHAR LIMIT=NONE] -->
+    <string name="editor_uneditable_section_title">Can’t update this info</string>
+
     <!-- Content description for a cancel button. [CHAR LIMIT=NONE] -->
     <string name="cancel_button_content_description">Cancel</string>
 

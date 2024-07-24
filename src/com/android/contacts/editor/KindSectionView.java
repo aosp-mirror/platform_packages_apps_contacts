@@ -48,6 +48,13 @@ import java.util.List;
  */
 public class KindSectionView extends LinearLayout {
 
+    /** Callbacks for hosts of {@link KindSectionView}s. */
+    public interface Listener {
+
+        /** Invoked when all fields in a legacy {@link KindSectionView} are removed. */
+        void onEmptyLegacyKindSectionView();
+    }
+
     /**
      * Marks a name as super primary when it is changed.
      *
@@ -58,21 +65,21 @@ public class KindSectionView extends LinearLayout {
 
         private final ValuesDelta mValuesDelta;
         private final long mRawContactId;
-        private final RawContactEditorView.Listener mListener;
+        private final RawContactEditorView.Listener mEditorViewListener;
 
         public StructuredNameEditorListener(ValuesDelta valuesDelta, long rawContactId,
-                RawContactEditorView.Listener listener) {
+            RawContactEditorView.Listener editorViewListener) {
             mValuesDelta = valuesDelta;
             mRawContactId = rawContactId;
-            mListener = listener;
+            mEditorViewListener = editorViewListener;
         }
 
         @Override
         public void onRequest(int request) {
             if (request == Editor.EditorListener.FIELD_CHANGED) {
                 mValuesDelta.setSuperPrimary(true);
-                if (mListener != null) {
-                    mListener.onNameFieldChanged(mRawContactId, mValuesDelta);
+                if (mEditorViewListener != null) {
+                    mEditorViewListener.onNameFieldChanged(mRawContactId, mValuesDelta);
                 }
             } else if (request == Editor.EditorListener.FIELD_TURNED_EMPTY) {
                 mValuesDelta.setSuperPrimary(false);
@@ -119,6 +126,11 @@ public class KindSectionView extends LinearLayout {
 
         @Override
         public void onDeleteRequested(Editor editor) {
+            if (mIsLegacyField && mEditors.getChildCount() == 1) {
+                editor.deleteEditor();
+                mListener.onEmptyLegacyKindSectionView();
+                return;
+            }
             if (mShowOneEmptyEditor && mEditors.getChildCount() == 1) {
                 // If there is only 1 editor in the section, then don't allow the user to
                 // delete it.  Just clear the fields in the editor.
@@ -152,11 +164,13 @@ public class KindSectionView extends LinearLayout {
 
     private KindSectionData mKindSectionData;
     private ViewIdGenerator mViewIdGenerator;
-    private RawContactEditorView.Listener mListener;
+    private RawContactEditorView.Listener mEditorViewListener;
+    private Listener mListener;
 
     private boolean mIsUserProfile;
     private boolean mShowOneEmptyEditor = false;
     private boolean mHideIfEmpty = true;
+    private boolean mIsLegacyField = false;
 
     private LayoutInflater mLayoutInflater;
     private ViewGroup mEditors;
@@ -227,6 +241,13 @@ public class KindSectionView extends LinearLayout {
     }
 
     /**
+     * When {@code isLegacyField} is true, prevent users from editing the field.
+     */
+    void setLegacyField(boolean isLegacyField) {
+        this.mIsLegacyField = isLegacyField;
+    }
+
+    /**
      * Whether this is a name kind section view and all name fields (structured, phonetic,
      * and nicknames) are empty.
      */
@@ -277,10 +298,14 @@ public class KindSectionView extends LinearLayout {
      * Empty name editors are never added and at least one structured name editor is always
      * displayed, even if it is empty.
      */
-    public void setState(KindSectionData kindSectionData,
-            ViewIdGenerator viewIdGenerator, RawContactEditorView.Listener listener) {
+    public void setState(
+        KindSectionData kindSectionData,
+        ViewIdGenerator viewIdGenerator,
+        RawContactEditorView.Listener editorViewListener,
+        Listener listener) {
         mKindSectionData = kindSectionData;
         mViewIdGenerator = viewIdGenerator;
+        mEditorViewListener = editorViewListener;
         mListener = listener;
 
         // Set the icon using the DataKind
@@ -291,6 +316,9 @@ public class KindSectionView extends LinearLayout {
             if (mIcon.getDrawable() != null) {
                 mIcon.setContentDescription(dataKind.titleRes == -1 || dataKind.titleRes == 0
                         ? "" : getResources().getString(dataKind.titleRes));
+            }
+            if (mIsLegacyField) {
+                mIcon.setEnabled(false);
             }
         }
 
@@ -359,7 +387,7 @@ public class KindSectionView extends LinearLayout {
         if (!mIsUserProfile) {
             // Don't set super primary for the me contact
             nameView.setEditorListener(new StructuredNameEditorListener(
-                    nameValuesDelta, rawContactDelta.getRawContactId(), mListener));
+                    nameValuesDelta, rawContactDelta.getRawContactId(), mEditorViewListener));
         }
         nameView.setDeletable(false);
         nameView.setValues(accountType.getKindForMimetype(DataKind.PSEUDO_MIME_TYPE_NAME),
@@ -414,6 +442,7 @@ public class KindSectionView extends LinearLayout {
         view.setEnabled(isEnabled());
         if (view instanceof Editor) {
             final Editor editor = (Editor) view;
+            editor.setLegacyField(mIsLegacyField);
             editor.setDeletable(true);
             editor.setEditorListener(editorListener);
             editor.setValues(dataKind, valuesDelta, rawContactDelta, !dataKind.editable,
@@ -592,5 +621,9 @@ public class KindSectionView extends LinearLayout {
             }
         }
         return emptyEditors;
+    }
+
+    public boolean isEditorEmpty() {
+        return mKindSectionData.getVisibleValuesDeltas().isEmpty();
     }
 }

@@ -144,10 +144,11 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Pesquisando..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Data"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Marcador"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Não é possível atualizar a informação"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Cancelar"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Voltar"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"fechar"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"Alternar para a edição do contato selecionado? As informações inseridas até agora serão copiadas."</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"Mudar para a edição do contato selecionado? As informações inseridas até agora serão copiadas."</string>
     <string name="contact_directory_description" msgid="1773630547110881835">"Diretório <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="4004290638426915162">"Configurações"</string>
     <string name="menu_settings" msgid="3524924670246877187">"Configurações"</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Notificações"</string>
     <string name="yes_button" msgid="1120514817091581293">"Sim"</string>
     <string name="no_button" msgid="8965841385742548947">"Não"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Números de serviço da operadora"</string>
 </resources>
