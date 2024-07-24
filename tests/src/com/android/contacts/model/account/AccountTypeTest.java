@@ -18,7 +18,8 @@ package com.android.contacts.model.account;
 
 import android.content.Context;
 import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
+
+import androidx.test.filters.SmallTest;
 
 import com.android.contacts.tests.R;
 

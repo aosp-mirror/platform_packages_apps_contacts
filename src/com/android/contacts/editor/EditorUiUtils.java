@@ -57,6 +57,7 @@ import com.android.contacts.util.ContactPhotoUtils;
 import com.android.contacts.util.MaterialColorMapUtils.MaterialPalette;
 import com.android.contacts.widget.QuickContactImageView;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
 import java.io.FileNotFoundException;
@@ -94,6 +95,9 @@ public class EditorUiUtils {
         mimetypeLayoutMap.put(Photo.CONTENT_ITEM_TYPE, -1);
         mimetypeLayoutMap.put(Event.CONTENT_ITEM_TYPE, R.layout.event_field_editor_view);
     }
+
+    public static final ImmutableList<String> LEGACY_MIME_TYPE =
+        ImmutableList.of(Im.CONTENT_ITEM_TYPE, SipAddress.CONTENT_ITEM_TYPE);
 
     /**
      * Fetches a layout for a given mimetype.

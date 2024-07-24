@@ -144,6 +144,7 @@
     <string name="search_results_searching" msgid="1373859095361975648">"Pretražuje se..."</string>
     <string name="event_edit_field_hint_text" msgid="1720286136507504896">"Datum"</string>
     <string name="group_edit_field_hint_text" msgid="1159504474053684478">"Oznaka"</string>
+    <string name="editor_uneditable_section_title" msgid="4022820593578859556">"Ne možete da ažurirate ove informacije"</string>
     <string name="cancel_button_content_description" msgid="7407595608883650004">"Otkaži"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"Nazad"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"zatvorite"</string>
@@ -475,7 +476,7 @@
     <string name="sim_import_success_toast_fmt" msgid="7645974841482481503">"{count,plural, =1{Uvezen je # kontakt sa SIM-a}one{Uvezen je # kontakt sa SIM-a}few{Uvezena su # kontakta sa SIM-a}other{Uvezeno je # kontakata sa SIM-a}}"</string>
     <string name="sim_import_failed_toast" msgid="358117391138073786">"Uvoz kontakata sa SIM kartice nije uspeo"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"Uvezite sa SIM-a"</string>
-    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Otkažite"</string>
+    <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Otkaži"</string>
     <string name="auto_sync_off" msgid="7039314601316227882">"Automatska sinhronizacija je isključena. Dodirnite da biste je uključili."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"Odbacite"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Sinhronizacija naloga je isključena. Dodirnite da biste je uključili."</string>
@@ -492,4 +493,5 @@
     <string name="contacts_default_notification_channel" msgid="5116916969874075866">"Obaveštenja"</string>
     <string name="yes_button" msgid="1120514817091581293">"Da"</string>
     <string name="no_button" msgid="8965841385742548947">"Ne"</string>
+    <string name="sdn_contacts_directory_search_label" msgid="9146122809408008443">"Uslužni brojevi mobilnog operatera"</string>
 </resources>
