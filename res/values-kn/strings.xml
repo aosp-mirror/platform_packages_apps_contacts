@@ -48,7 +48,7 @@
     <string name="splitConfirmation" msgid="4750158900636307469">"ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡಬೇಕೆ?"</string>
     <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"ಅನ್‌ಲಿಂಕ್‌"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಬಹು ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಈ ಸಂಪರ್ಕವನ್ನು ಲಿಂಕ್ ರದ್ದುಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
-    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"ಉಳಿಸಿ ಮತ್ತು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ"</string>
+    <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"ಸೇವ್ ಮಾಡಿ ಮತ್ತು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"ನೀವು ಈಗಾಗಲೇ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಮತ್ತು ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕದ ಜೊತೆಗೆ ಲಿಂಕ್ ಮಾಡಲು ಬಯಸುವಿರಾ?"</string>
     <string name="joinConfirmation_positive_button" msgid="8300713422725610480">"ಸೇವ್ ಮಾಡಿ ಮತ್ತು ಲಿಂಕ್‌ ಮಾಡಿ"</string>
     <string name="contacts_linking_progress_bar" msgid="7922930766022513619">"ಲಿಂಕ್ ಮಾಡಲಾಗುತ್ತಿದೆ"</string>
@@ -366,7 +366,7 @@
     <string name="display_warn_remove_ungrouped" msgid="522866344738506017">"ಸಿಂಕ್‌ನಿಂದ \"<xliff:g id="GROUP">%s</xliff:g>\" ಅನ್ನು ತೆಗೆದುಹಾಕುವುದರಿಂದ ಸಿಂಕ್‌ನಿಂದ ಯಾವುದೇ ಗುಂಪು ಮಾಡದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಸಹ ತೆಗೆದುಹಾಕುತ್ತದೆ."</string>
     <string name="savingDisplayGroups" msgid="6779839417901711381">"ಪ್ರದರ್ಶನ ಆಯ್ಕೆಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ..."</string>
     <string name="listCustomView" msgid="5782275477737032610">"ಕಸ್ಟಮೈಸ್ ವೀಕ್ಷಣೆ"</string>
-    <string name="dialog_new_contact_account" msgid="5652018124788855057">"ಆಮದಾದ ಸಂಪರ್ಕಗಳನ್ನು ಇಲ್ಲಿ ಉಳಿಸಿ:"</string>
+    <string name="dialog_new_contact_account" msgid="5652018124788855057">"ಆಮದಾದ ಸಂಪರ್ಕಗಳನ್ನು ಇಲ್ಲಿ ಸೇವ್ ಮಾಡಿ:"</string>
     <string name="import_from_sim" msgid="7825280799813847991">"ಸಿಮ್‌ ಕಾರ್ಡ್"</string>
     <string name="import_from_sim_summary_fmt" msgid="4234771828377985321">"ಸಿಮ್ <xliff:g id="SIM_NAME">%1$s</xliff:g>"</string>
     <string name="import_from_sim_secondary_contact_count_fmt" msgid="4406774701661271748">"{count,plural, =1{# ಸಂಪರ್ಕ}one{# ಸಂಪರ್ಕಗಳು}other{# ಸಂಪರ್ಕಗಳು}}"</string>
