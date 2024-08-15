@@ -45,8 +45,8 @@
     <string name="menu_addContactsToGroup" msgid="4549318978482280577">"Дадаць кантакты"</string>
     <string name="menu_removeFromGroup" msgid="8753799091967887958">"Выдаліць з меткі"</string>
     <string name="menu_new_group_action_bar" msgid="1670312283925872483">"Стварыць метку"</string>
-    <string name="splitConfirmation" msgid="4750158900636307469">"Раз\'яднаць гэты кантакт на некалькі кантактаў?"</string>
-    <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"Раз\'яднаць"</string>
+    <string name="splitConfirmation" msgid="4750158900636307469">"Раз’яднаць гэты кантакт на некалькі кантактаў?"</string>
+    <string name="splitConfirmation_positive_button" msgid="3109235536045409854">"Раз’яднаць"</string>
     <string name="splitConfirmationWithPendingChanges" msgid="8617395780141069527">"Жадаеце захаваць змяненні, якія вы ўжо зрабілі, і развязаць гэты кантакт на некалькі кантактаў?"</string>
     <string name="splitConfirmationWithPendingChanges_positive_button" msgid="131293000921403021">"Захаваць і развязаць"</string>
     <string name="joinConfirmation" msgid="1245184431169363397">"Жадаеце захаваць змяненні, якія вы ўжо зрабілі, і спасылку на выбраны кантакт?"</string>
@@ -96,7 +96,7 @@
     <string name="emptyMainList" msgid="3266182207039677163">"Ваш спіс кантактаў пусты"</string>
     <string name="contactSavedNamedToast" msgid="3067050290584834386">"Кантакт <xliff:g id="DISPLAY_NAME">%s</xliff:g> захаваны"</string>
     <string name="contactSavedToast" msgid="4370392215196995301">"Кантакт захаваны"</string>
-    <string name="contactUnlinkedToast" msgid="6791720274141804377">"Кантакты раз\'яднаны"</string>
+    <string name="contactUnlinkedToast" msgid="6791720274141804377">"Кантакты раз’яднаны"</string>
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"Не ўдалося захаваць змены кантакту"</string>
     <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"Не ўдалося скасаваць сувязь з кантактам"</string>
     <string name="contactJoinErrorToast" msgid="1222155997933362787">"Не ўдалося звязаць кантакт"</string>
@@ -466,7 +466,7 @@
     <string name="account_filter_view_not_checked" msgid="5782705545786455847">"<xliff:g id="ACCOUNT_INFO">%s</xliff:g> - не пазначана"</string>
     <string name="description_search_video_call" msgid="1768558141309418755">"Пачаць відэавыклік"</string>
     <string name="description_delete_contact" msgid="8110643050235441400">"Выдаліць"</string>
-    <string name="description_no_name_header" msgid="8596201864512339003">"Шматкроп\'е"</string>
+    <string name="description_no_name_header" msgid="8596201864512339003">"Шматкроп’е"</string>
     <string name="dynamic_shortcut_disabled_message" msgid="8770462908102469878">"Гэта спалучэнне клавіш было адключана"</string>
     <string name="dynamic_shortcut_contact_removed_message" msgid="8331735243566193974">"Кантакт быў выдалены"</string>
     <string name="sim_import_button_text" msgid="2845608246304396009">"Імпартаваць"</string>
