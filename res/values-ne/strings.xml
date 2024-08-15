@@ -164,7 +164,7 @@
     <string name="create_group_item_label" msgid="921929508079162463">"नयाँ लेबल सिर्जना गर्नुहोस्..."</string>
     <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" लेबललाई हटाउने हो? (कन्ट्याक्टहरू मेटिने छैनन्।)"</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"अर्कोसँग लिंक हुनुअघि सम्पर्क नाम टाइप गर्नुहोस्।"</string>
-    <string name="copy_text" msgid="6835250673373028909">"क्लिपबोर्डमा प्रतिलिपि गर्नुहोस्"</string>
+    <string name="copy_text" msgid="6835250673373028909">"क्लिपबोर्डमा कपी गर्नुहोस्"</string>
     <string name="set_default" msgid="3704074175618702225">"डिफल्ट मिलाउनुहोस्"</string>
     <string name="clear_default" msgid="2055883863621491533">"डिफल्ट हटाउनुहोस्"</string>
     <string name="toast_text_copied" msgid="845906090076228771">"पाठको प्रतिलिपि  गरियो"</string>
