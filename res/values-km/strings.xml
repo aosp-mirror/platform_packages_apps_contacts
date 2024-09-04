@@ -128,7 +128,7 @@
     <string name="menu_add_contact" msgid="5822356185421997656">"បញ្ចូល​ទៅក្នុងទំនាក់ទំនង"</string>
     <string name="menu_add_contacts" msgid="7114262784903366463">"បន្ថែម"</string>
     <string name="title_share_via" msgid="3300082736229182956">"{count,plural, =1{ចែលរំលែក​ទំនាក់ទំនង​តាមរយៈ}other{ចែលរំលែក​ទំនាក់ទំនង​តាមរយៈ}}"</string>
-    <string name="dialog_new_group_account" msgid="4326402875327788728">"ជ្រើសគណនី"</string>
+    <string name="dialog_new_group_account" msgid="4326402875327788728">"ជ្រើសរើសគណនី"</string>
     <string name="group_name_dialog_insert_title" msgid="5495572488613178283">"បង្កើតស្លាក"</string>
     <string name="group_name_dialog_update_title" msgid="3955919589366745101">"ប្ដូរឈ្មោះស្លាក"</string>
     <string name="group_name_dialog_hint" msgid="6023999218213062973">"ឈ្មោះស្លាក"</string>
