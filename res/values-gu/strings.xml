@@ -21,7 +21,7 @@
     <string name="shortcut_add_contact" msgid="7949342235528657981">"સંપર્ક ઉમેરો"</string>
     <string name="shortcutContact" msgid="8009736387364461511">"સંપર્ક"</string>
     <string name="shortcutDialContact" msgid="155367248069127153">"સીધું જ ડાયલ"</string>
-    <string name="shortcutMessageContact" msgid="9123517151981679277">"સીધો જ સંદેશ"</string>
+    <string name="shortcutMessageContact" msgid="9123517151981679277">"ડિરેક્ટ મેસેજ"</string>
     <string name="shortcutActivityTitle" msgid="5407832911005090417">"સંપર્ક પસંદ કરો"</string>
     <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"સંપર્કમાં ઉમેરો"</string>
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"સંપર્ક પસંદ કરો"</string>
@@ -114,7 +114,7 @@
     <string name="groupSomeContactsNoEmailsToast" msgid="2142963883699535155">"કેટલાક સંપર્કોની પાસે ઇમેઇલ્સ નથી."</string>
     <string name="groupSomeContactsNoPhonesToast" msgid="2454029254458875746">"કેટલાક સંપર્કોની પાસે ફોન નંબર્સ નથી."</string>
     <string name="menu_sendEmailOption" msgid="8600335923636486825">"ઇમેઇલ મોકલો"</string>
-    <string name="menu_sendMessageOption" msgid="8051852013078110910">"સંદેશ મોકલો"</string>
+    <string name="menu_sendMessageOption" msgid="8051852013078110910">"મેસેજ મોકલો"</string>
     <string name="pickerSelectContactsActivityTitle" msgid="8265907544009447967">"સંપર્કો પસંદ કરો"</string>
     <string name="send_to_selection" msgid="3655197947726443720">"મોકલો"</string>
     <string name="listFoundAllContactsZero" msgid="1933842282916988563">"સંપર્કો નથી"</string>
@@ -273,7 +273,7 @@
     <string name="sms_work_pager" msgid="8827367747655005608">"કાર્યાલયના પેજર પર ટેક્સ્ટ કરો"</string>
     <string name="sms_assistant" msgid="245045451580096547">"<xliff:g id="ASSISTANT">%s</xliff:g> ને ટેક્સ્ટ કરો"</string>
     <string name="sms_mms" msgid="7395133080765833725">"MMS પર ટેક્સ્ટ કરો"</string>
-    <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (સંદેશ મોકલો)"</string>
+    <string name="sms_by_shortcut" msgid="4682340916268521006">"<xliff:g id="CONTACT_NAME">%s</xliff:g> (મેસેજ મોકલો)"</string>
     <string name="description_video_call" msgid="4956825008907720371">"વિડિઓ કૉલ કરો"</string>
     <string name="clearFrequentsConfirmation_title" msgid="9194415661170740437">"વારંવાર સંપર્ક કરેલા સાફ કરીએ?"</string>
     <string name="clearFrequentsConfirmation" msgid="2120741757522063938">"તમે સંપર્કો અને ફોન ઍપ્લિકેશનોમાં વારંવાર સંપર્ક કરેલ સૂચિને સાફ કરશો અને ઇમેઇલ ઍપ્લિકેશનોને તમારી સંબોધન પસંદગીઓને શરૂઆતથી જાણવા માટે ફરજ પાડશો."</string>
