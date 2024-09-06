@@ -23,7 +23,7 @@
     <string name="shortcutDialContact" msgid="155367248069127153">"Ring"</string>
     <string name="shortcutMessageContact" msgid="9123517151981679277">"Send melding"</string>
     <string name="shortcutActivityTitle" msgid="5407832911005090417">"Velg en kontakt"</string>
-    <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Legg til kontakt"</string>
+    <string name="contactInsertOrEditActivityTitle" msgid="1788154962629911262">"Legg til i kontakt"</string>
     <string name="contactPickerActivityTitle" msgid="1842634991247618890">"Velg en kontakt"</string>
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"Velg"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"Opprett ny kontakt"</string>
