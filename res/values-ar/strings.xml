@@ -289,7 +289,7 @@
     <string name="missing_name" msgid="7970183292521946492">"(بلا اسم)"</string>
     <string name="favoritesFrequentContacted" msgid="2885862854079966676">"يتم الاتصال بهم بشكل متكرر"</string>
     <string name="list_filter_phones" msgid="6839133198968393843">"جميع جهات الاتصال التي لها أرقام هواتف"</string>
-    <string name="list_filter_phones_work" msgid="5583425697781385616">"جهات الاتصال للملف الشخصي للعمل"</string>
+    <string name="list_filter_phones_work" msgid="5583425697781385616">"جهات الاتصال لملف العمل"</string>
     <string name="view_updates_from_group" msgid="6233444629074835594">"عرض التحديثات"</string>
     <string name="account_phone" msgid="8044426231251817556">"الجهاز"</string>
     <string name="account_sim" msgid="3200457113308694663">"SIM"</string>
