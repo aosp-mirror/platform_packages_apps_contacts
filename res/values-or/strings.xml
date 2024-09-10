@@ -148,7 +148,7 @@
     <string name="cancel_button_content_description" msgid="7407595608883650004">"ବାତିଲ୍‍ କରନ୍ତୁ"</string>
     <string name="back_arrow_content_description" msgid="6727142616775523605">"ପଛକୁ ଫେରନ୍ତୁ"</string>
     <string name="action_menu_back_from_edit_select" msgid="7911226757462657242">"ବନ୍ଦ କରନ୍ତୁ"</string>
-    <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"ଚୟନିତ ଯୋଗାଯୋଗ ଏଡିଟ୍ କରିବା ପାଇଁ ସ୍ୱିଚ୍ କରିବେ? ଏପର୍ଯ୍ୟନ୍ତ ଆପଣ ଦେଇଥିବା ସୂଚନାକୁ କପୀ କରାଯିବ।"</string>
+    <string name="aggregation_suggestion_edit_dialog_message" msgid="4339333746086996062">"ଚୟନିତ କଣ୍ଟାକ୍ଟ ଏଡିଟ କରିବା ପାଇଁ ସୁଇଚ କରିବେ? ଏପର୍ଯ୍ୟନ୍ତ ଆପଣ ଦେଇଥିବା ସୂଚନାକୁ କପି କରାଯିବ।"</string>
     <string name="contact_directory_description" msgid="1773630547110881835">"ଡାଇରେକ୍ଟୋରୀ <xliff:g id="TYPE">%1$s</xliff:g>"</string>
     <string name="activity_title_settings" msgid="4004290638426915162">"ସେଟିଂସ"</string>
     <string name="menu_settings" msgid="3524924670246877187">"ସେଟିଂସ"</string>
@@ -167,7 +167,7 @@
     <string name="copy_text" msgid="6835250673373028909">"କ୍ଲିପ୍‌ବୋର୍ଡକୁ କପି କରନ୍ତୁ"</string>
     <string name="set_default" msgid="3704074175618702225">"ଡିଫଲ୍ଟ ସେଟ୍‍ କରନ୍ତୁ"</string>
     <string name="clear_default" msgid="2055883863621491533">"ଡିଫଲ୍ଟକୁ ଖାଲି କରନ୍ତୁ"</string>
-    <string name="toast_text_copied" msgid="845906090076228771">"ଟେକ୍ସଟ୍ କପୀ କରାଗଲା"</string>
+    <string name="toast_text_copied" msgid="845906090076228771">"ଟେକ୍ସଟ କପି ହୋଇଛି"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"ପରିବର୍ତ୍ତନଗୁଡ଼ିକୁ ଖାରଜ କରିବେ?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"ଖାରଜ କରନ୍ତୁ"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"ବାତିଲ୍‍ କରନ୍ତୁ"</string>
@@ -193,7 +193,7 @@
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"ଅଧିକ ଦେଖନ୍ତୁ"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"କମ୍‌ ଦେଖନ୍ତୁ"</string>
     <string name="about_card_title" msgid="6635849009952435700">"ବିଷୟରେ"</string>
-    <string name="toast_making_personal_copy" msgid="9053129410039312386">"ଏକ ବ୍ୟକ୍ତିଗତ କପୀ ତିଆରି କରାଯାଉଛି…"</string>
+    <string name="toast_making_personal_copy" msgid="9053129410039312386">"ଏକ ବ୍ୟକ୍ତିଗତ କପି ତିଆରି କରାଯାଉଛି…"</string>
     <string name="date_time_set" msgid="8526160894146496334">"ସେଟ୍‌ କରନ୍ତୁ"</string>
     <string name="header_im_entry" msgid="3581797653862294826">"IM"</string>
     <string name="header_organization_entry" msgid="7428066442988227441">"ସଂସ୍ଥା"</string>
