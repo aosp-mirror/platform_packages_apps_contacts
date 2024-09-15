@@ -229,7 +229,7 @@
     <string name="menu_title_filters" msgid="349866121417914494">"Računi"</string>
     <string name="hamburger_feature_highlight_header" msgid="1786641424099282909">"Prijedlozi"</string>
     <string name="hamburger_feature_highlight_body" msgid="782935036630531528">"Neka vaši kontakti budu organizirani i korisni"</string>
-    <string name="undo" msgid="2446931036220975026">"Poništavanje"</string>
+    <string name="undo" msgid="2446931036220975026">"Poništi"</string>
     <string name="call_custom" msgid="2844900154492073207">"Nazovite <xliff:g id="CUSTOM_LABEL">%s</xliff:g>"</string>
     <string name="call_home" msgid="2443904771140750492">"Nazovi kućni"</string>
     <string name="call_mobile" msgid="6504312789160309832">"Nazovi mobitel"</string>

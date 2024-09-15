@@ -299,7 +299,7 @@
     <string name="name_family" msgid="2907432135923624482">"Nazwisko"</string>
     <string name="name_prefix" msgid="8857117624713905211">"Przedrostek nazwiska"</string>
     <string name="name_middle" msgid="7330498948136181042">"Drugie imię"</string>
-    <string name="name_suffix" msgid="4502958221763936999">"Przyrostek nazwiska"</string>
+    <string name="name_suffix" msgid="4502958221763936999">"Tytuł po nazwisku"</string>
     <string name="name_phonetic" msgid="4746541275769990740">"Nazwisko (fonetycznie)"</string>
     <string name="name_phonetic_given" msgid="425534279190047812">"Imię (fonetycznie)"</string>
     <string name="name_phonetic_middle" msgid="6528822054594516485">"Drugie imię (fonetycznie)"</string>
