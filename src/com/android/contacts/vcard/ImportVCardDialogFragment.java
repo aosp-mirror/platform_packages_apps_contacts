@@ -57,6 +57,7 @@ public class ImportVCardDialogFragment extends DialogFragment {
 
         final ImportVCardDialogFragment dialog = new ImportVCardDialogFragment();
         dialog.setArguments(args);
+        dialog.setCancelable(false);
         dialog.show(activity.getFragmentManager(), TAG);
     }
 
