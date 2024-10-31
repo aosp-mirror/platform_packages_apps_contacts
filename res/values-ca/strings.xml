@@ -100,7 +100,7 @@
     <string name="contactSavedErrorToast" msgid="3213619905154956918">"No s\'han pogut desar els canvis al contacte"</string>
     <string name="contactUnlinkErrorToast" msgid="7289356996668886841">"No s\'ha pogut desenllaçar el contacte"</string>
     <string name="contactJoinErrorToast" msgid="1222155997933362787">"No s\'ha pogut enllaçar el contacte"</string>
-    <string name="contactGenericErrorToast" msgid="5689457475864876100">"S\'ha produït un error en desar el contacte"</string>
+    <string name="contactGenericErrorToast" msgid="5689457475864876100">"Hi ha hagut un error en desar el contacte"</string>
     <string name="contactPhotoSavedErrorToast" msgid="8568460180541397272">"No s\'han pogut desar els canvis de la foto de contacte"</string>
     <string name="groupLoadErrorToast" msgid="4141488223976370583">"L\'etiqueta no s\'ha pogut carregar"</string>
     <string name="groupDeletedToast" msgid="7774363940327847515">"L\'etiqueta s\'ha suprimit"</string>
