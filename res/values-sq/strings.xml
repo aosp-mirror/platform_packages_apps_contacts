@@ -168,7 +168,7 @@
     <string name="set_default" msgid="3704074175618702225">"Vendos të parazgjedhurën"</string>
     <string name="clear_default" msgid="2055883863621491533">"Pastro të paracaktuarin"</string>
     <string name="toast_text_copied" msgid="845906090076228771">"Teksti u kopjua"</string>
-    <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Të injorohen ndryshimet?"</string>
+    <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"Të hiqen ndryshimet?"</string>
     <string name="cancel_confirmation_dialog_cancel_editing_button" msgid="8280294641821133477">"Hiq"</string>
     <string name="cancel_confirmation_dialog_keep_editing_button" msgid="7117943783437253341">"Anulo"</string>
     <string name="leave_customize_confirmation_dialog_message" msgid="5330853530872707231">"Të hiqen personalizimet?"</string>
