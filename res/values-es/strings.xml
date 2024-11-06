@@ -70,7 +70,7 @@
     <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# contacto · {account}}other{# contactos · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"De Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"De <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
-    <string name="menu_set_ring_tone" msgid="8876328286439724181">"Establecer tono"</string>
+    <string name="menu_set_ring_tone" msgid="8876328286439724181">"Establecer tono de llamada"</string>
     <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"Redirigir al buzón de voz"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"No redirigir al buzón de voz"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"Este contacto es de solo lectura. No se puede eliminar, pero sí ocultar."</string>
