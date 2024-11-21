@@ -477,9 +477,9 @@
     <string name="sim_import_failed_toast" msgid="358117391138073786">"SIM को कन्ट्याक्टहरू इम्पोर्ट गर्न सकिएन"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"SIM बाट इम्पोर्ट गर्नुहोस्"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"रद्द गर्नुहोस्"</string>
-    <string name="auto_sync_off" msgid="7039314601316227882">"स्वत:सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय गर्न ट्याप गर्नुहोस्।"</string>
+    <string name="auto_sync_off" msgid="7039314601316227882">"स्वत:सिङ्क गर्ने सेवा अफ छ। सक्रिय गर्न ट्याप गर्नुहोस्।"</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"खारेज गर्नुहोस्"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"खाता सिङ्क गर्ने सेवा निष्क्रिय छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"खाता सिङ्क गर्ने सेवा अफ छ। सक्रिय पार्न ट्याप गर्नुहोस्।"</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"स्वत: सिंक सेवा सक्रिय गर्ने हो?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"तपाईंले Google सम्पर्कहरूमा मात्र नभई, सबै एप र खाताहरूमा गरेका परिवर्तनहरू वेब र तपाईंका अन्य यन्त्रहरूका बीचमा अद्यावधिक हुने छन्।"</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"अन गर्नुहोस्"</string>
