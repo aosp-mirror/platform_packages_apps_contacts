@@ -70,7 +70,7 @@
     <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# kontaktpersona · {account}}zero{# kontaktpersonu · {account}}one{# kontaktpersona · {account}}other{# kontaktpersonas · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"No Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"No konta <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
-    <string name="menu_set_ring_tone" msgid="8876328286439724181">"Iestatīt zv. signālu"</string>
+    <string name="menu_set_ring_tone" msgid="8876328286439724181">"Iestatīt zvana signālu"</string>
     <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"Maršrutēt uz balss pastu"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"Atcelt maršrutēšanu"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"Šī kontaktpersona ir tikai lasāma. To nevar dzēst, bet var paslēpt."</string>
