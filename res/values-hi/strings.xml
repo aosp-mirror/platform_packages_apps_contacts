@@ -71,7 +71,7 @@
     <string name="title_from_google" msgid="2554633992366572820">"Google से"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> से"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"रिंगटोन सेट करें"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"वॉइसमेल पर रूट करें"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"वॉइसमेल पर डायरेक्ट करें"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"वॉइसमेल से रूट हटाएं"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"यह संपर्क केवल पढ़ने के लिए है. इसे हटाया नहीं जा सकता है, लेकिन आप इसे छिपा सकते हैं."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"संपर्क छिपाएं"</string>
