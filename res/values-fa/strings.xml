@@ -389,7 +389,7 @@
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> پایان یافت."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"صادر کردن مخاطبین تمام شد."</string>
     <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"مخاطبین صادر شدند؛ برای هم‌رسانی مخاطبین، روی اعلان کلیک کنید."</string>
-    <string name="touch_to_share_contacts" msgid="7678194978416052577">"برای هم‌رسانی مخاطبین ضربه بزنید."</string>
+    <string name="touch_to_share_contacts" msgid="7678194978416052577">"برای هم‌رسانی مخاطبین تک‌ضرب بزنید."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"صادر کردن <xliff:g id="FILENAME">%s</xliff:g> لغو شد."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"صدور اطلاعات مخاطب"</string>
     <string name="exporting_contact_list_message" msgid="6253904938452184387">"داده‌های مخاطب در حال صادر شدن است."</string>
@@ -411,7 +411,7 @@
     <string name="caching_vcard_message" msgid="1879339732783666517">"در حال ذخیره کارت‌های ویزیت در حافظه موقت محلی است. وارد کردن واقعی به زودی آغاز خواهد شد."</string>
     <string name="vcard_import_failed" msgid="37313715326741013">"وارد کردن کارت ویزیت انجام نشد."</string>
     <string name="nfc_vcard_file_name" msgid="2113518216329123152">"‏مخاطب از طریق NFC رسید"</string>
-    <string name="caching_vcard_title" msgid="6333926052524937628">"در حال ذخیره در حافظهٔ پنهان"</string>
+    <string name="caching_vcard_title" msgid="6333926052524937628">"در حال ذخیره در حافظه نهان"</string>
     <string name="progress_notifier_message" msgid="8522060892889599746">"وارد کردن <xliff:g id="CURRENT_NUMBER">%1$s</xliff:g>/<xliff:g id="TOTAL_NUMBER">%2$s</xliff:g>: <xliff:g id="NAME">%3$s</xliff:g>"</string>
     <string name="export_to_vcf_file" msgid="3096479544575798192">"‏صادر کردن به فایل ‎.vcf"</string>
     <string name="display_options_sort_list_by" msgid="4333658089057400431">"به‌ترتیب"</string>
@@ -477,9 +477,9 @@
     <string name="sim_import_failed_toast" msgid="358117391138073786">"مخاطبین سیم کارت وارد نشدند"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"وارد کردن از سیم کارت"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"لغو"</string>
-    <string name="auto_sync_off" msgid="7039314601316227882">"همگام‌سازی خودکار غیرفعال است. برای فعال کردن ضربه بزنید."</string>
+    <string name="auto_sync_off" msgid="7039314601316227882">"همگام‌سازی خودکار غیرفعال است. برای فعال کردن تک‌ضرب بزنید."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"نپذیرفتن"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"همگام‌سازی خودکار غیرفعال است. برای فعال کردن ضربه بزنید."</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"همگام‌سازی خودکار غیرفعال است. برای فعال کردن تک‌ضرب بزنید."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"همگام‌سازی خودکار را فعال می‌کنید؟"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"‏تغییراتی که در همه برنامه‌ها و حساب‌ها، نه فقط در «مخاطبین Google»، ایجاد می‌کنید، بین وب و دستگاه‌هایتان به‌روز نگه داشته می‌شوند."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"فعال کردن"</string>

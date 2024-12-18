@@ -70,7 +70,7 @@
     <string name="contacts_count_with_account" msgid="3921405666045433256">"{count,plural, =1{# kontaktpersona · {account}}zero{# kontaktpersonu · {account}}one{# kontaktpersona · {account}}other{# kontaktpersonas · {account}}}"</string>
     <string name="title_from_google" msgid="2554633992366572820">"No Google"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"No konta <xliff:g id="ACCOUNT">%s</xliff:g>"</string>
-    <string name="menu_set_ring_tone" msgid="8876328286439724181">"Iestatīt zv. signālu"</string>
+    <string name="menu_set_ring_tone" msgid="8876328286439724181">"Iestatīt zvana signālu"</string>
     <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"Maršrutēt uz balss pastu"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"Atcelt maršrutēšanu"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"Šī kontaktpersona ir tikai lasāma. To nevar dzēst, bet var paslēpt."</string>
@@ -201,7 +201,7 @@
     <string name="header_note_entry" msgid="339680292368016788">"Piezīme"</string>
     <string name="header_website_entry" msgid="3618691707215428785">"Vietne"</string>
     <string name="header_event_entry" msgid="70962228694476731">"Pasākums"</string>
-    <string name="header_relation_entry" msgid="993618132732521944">"Saistība"</string>
+    <string name="header_relation_entry" msgid="993618132732521944">"Radinieks"</string>
     <string name="header_name_entry" msgid="2516776099121101578">"Nosaukums"</string>
     <string name="header_email_entry" msgid="8653569770962542178">"E-pasta adrese"</string>
     <string name="header_phone_entry" msgid="7092868248113091293">"Tālrunis"</string>
@@ -297,9 +297,9 @@
     <string name="nicknameLabelsGroup" msgid="794390116782033956">"Segvārds"</string>
     <string name="name_given" msgid="3883661251894628431">"Vārds"</string>
     <string name="name_family" msgid="2907432135923624482">"Uzvārds"</string>
-    <string name="name_prefix" msgid="8857117624713905211">"Uzruna"</string>
+    <string name="name_prefix" msgid="8857117624713905211">"Tituls"</string>
     <string name="name_middle" msgid="7330498948136181042">"Otrais vārds"</string>
-    <string name="name_suffix" msgid="4502958221763936999">"Uzruna"</string>
+    <string name="name_suffix" msgid="4502958221763936999">"Piebilde aiz vārda"</string>
     <string name="name_phonetic" msgid="4746541275769990740">"Vārda izruna"</string>
     <string name="name_phonetic_given" msgid="425534279190047812">"Vārda izruna"</string>
     <string name="name_phonetic_middle" msgid="6528822054594516485">"Otrā vārda izruna"</string>
