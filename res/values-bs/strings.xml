@@ -280,7 +280,7 @@
     <string name="clearFrequentsProgress_title" msgid="8271935295080659743">"Brisanje često kontaktiranih osoba…"</string>
     <string name="status_available" msgid="8081626460682959098">"Dostupno"</string>
     <string name="status_away" msgid="2677693194455091315">"Odsutan"</string>
-    <string name="status_busy" msgid="2759339190187696727">"Zauzeto"</string>
+    <string name="status_busy" msgid="2759339190187696727">"Zauzet/a"</string>
     <string name="local_invisible_directory" msgid="5936234374879813300">"Ostalo"</string>
     <string name="directory_search_label" msgid="2602118204885565153">"Direktorij"</string>
     <string name="directory_search_label_work" msgid="2392128956332931231">"Poslovni imenik"</string>
@@ -311,7 +311,7 @@
     <string name="organizationLabelsGroup" msgid="2342482097897299099">"Organizacija"</string>
     <string name="relationLabelsGroup" msgid="8931615792208307291">"Odnos"</string>
     <string name="eventLabelsGroup" msgid="8625868552164376823">"Posebni datum"</string>
-    <string name="sms" msgid="4246338112764847384">"SMS"</string>
+    <string name="sms" msgid="4246338112764847384">"Poruka"</string>
     <string name="postal_address" msgid="5031809899673855074">"Adresa"</string>
     <string name="ghostData_company" msgid="3873500610390675876">"Kompanija"</string>
     <string name="ghostData_department" msgid="8610642449404163799">"Odjel"</string>

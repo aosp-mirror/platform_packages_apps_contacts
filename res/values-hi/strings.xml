@@ -71,7 +71,7 @@
     <string name="title_from_google" msgid="2554633992366572820">"Google से"</string>
     <string name="title_from_other_accounts" msgid="7813596336566711843">"<xliff:g id="ACCOUNT">%s</xliff:g> से"</string>
     <string name="menu_set_ring_tone" msgid="8876328286439724181">"रिंगटोन सेट करें"</string>
-    <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"वॉइसमेल पर रूट करें"</string>
+    <string name="menu_redirect_calls_to_vm" msgid="3027178444991878913">"वॉइसमेल पर डायरेक्ट करें"</string>
     <string name="menu_unredirect_calls_to_vm" msgid="2294919685954790892">"वॉइसमेल से रूट हटाएं"</string>
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"यह संपर्क केवल पढ़ने के लिए है. इसे हटाया नहीं जा सकता है, लेकिन आप इसे छिपा सकते हैं."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"संपर्क छिपाएं"</string>
@@ -282,7 +282,7 @@
     <string name="status_away" msgid="2677693194455091315">"दूर"</string>
     <string name="status_busy" msgid="2759339190187696727">"व्यस्त"</string>
     <string name="local_invisible_directory" msgid="5936234374879813300">"अन्य"</string>
-    <string name="directory_search_label" msgid="2602118204885565153">"निर्देशिका"</string>
+    <string name="directory_search_label" msgid="2602118204885565153">"डायरेक्ट्री"</string>
     <string name="directory_search_label_work" msgid="2392128956332931231">"दफ़्तर की निर्देशिका"</string>
     <string name="local_search_label" msgid="6692495405531144805">"सभी संपर्क"</string>
     <string name="description_quick_contact_for" msgid="6364906818231956042">"<xliff:g id="NAME">%1$s</xliff:g> के लिए त्‍वरित संपर्क"</string>

@@ -428,7 +428,7 @@
     <string name="settings_my_info_title" msgid="6236848378653551341">"Meine Daten"</string>
     <string name="set_up_profile" msgid="3554999219868611431">"Profil einrichten"</string>
     <string name="setting_about" msgid="2941859292287597555">"Über \"Kontakte\""</string>
-    <string name="share_favorite_contacts" msgid="8208444020721686178">"Lieblingskontakte teilen"</string>
+    <string name="share_favorite_contacts" msgid="8208444020721686178">"Bevorzugte Kontakte teilen"</string>
     <string name="share_contacts" msgid="2377773269568609796">"Alle Kontakte teilen"</string>
     <string name="share_contacts_failure" msgid="1348777470180064086">"Kontakte konnten nicht geteilt werden."</string>
     <string name="dialog_export" msgid="3497435010655060068">"Kontakte exportieren"</string>
