@@ -1038,10 +1038,30 @@ public class RawContactModifier {
             return;
         }
 
+        boolean supportPrefix = false;
+        boolean supportFamilyName = false;
+        boolean supportMiddleName = false;
+        boolean supportGivenName = false;
+        boolean supportSuffix = false;
         boolean supportPhoneticFamilyName = false;
         boolean supportPhoneticMiddleName = false;
         boolean supportPhoneticGivenName = false;
         for (EditField editField : newDataKind.fieldList) {
+            if (StructuredName.PREFIX.equals(editField.column)) {
+                supportPrefix = true;
+            }
+            if (StructuredName.FAMILY_NAME.equals(editField.column)) {
+                supportFamilyName = true;
+            }
+            if (StructuredName.MIDDLE_NAME.equals(editField.column)) {
+                supportMiddleName = true;
+            }
+            if (StructuredName.GIVEN_NAME.equals(editField.column)) {
+                supportGivenName = true;
+            }
+            if (StructuredName.SUFFIX.equals(editField.column)) {
+                supportSuffix = true;
+            }
             if (StructuredName.PHONETIC_FAMILY_NAME.equals(editField.column)) {
                 supportPhoneticFamilyName = true;
             }
@@ -1053,6 +1073,21 @@ public class RawContactModifier {
             }
         }
 
+        if (!supportPrefix) {
+            values.remove(StructuredName.PREFIX);
+        }
+        if (!supportFamilyName) {
+            values.remove(StructuredName.FAMILY_NAME);
+        }
+        if (!supportMiddleName) {
+            values.remove(StructuredName.MIDDLE_NAME);
+        }
+        if (!supportGivenName) {
+            values.remove(StructuredName.GIVEN_NAME);
+        }
+        if (!supportSuffix) {
+            values.remove(StructuredName.SUFFIX);
+        }
         if (!supportPhoneticFamilyName) {
             values.remove(StructuredName.PHONETIC_FAMILY_NAME);
         }
