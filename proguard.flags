@@ -107,13 +107,19 @@
 -keep class com.android.common.widget.CompositeCursorAdapter { *; }
 
 # Any class or method annotated with NeededForReflection.
--keep @com.android.contacts.test.NeededForReflection class *
+# TODO(b/373579455): Evaluate if <init> needs to be kept.
+-keep @com.android.contacts.test.NeededForReflection class * {
+  void <init>();
+}
 -keepclassmembers class * {
-@com.android.contacts.test.NeededForReflection *;
+  @com.android.contacts.test.NeededForReflection *;
 }
 
 # Keep classes and methods that have the guava @VisibleForTesting annotation
--keep @com.google.common.annotations.VisibleForTesting class *
+# TODO(b/373579455): Evaluate if <init> needs to be kept.
+-keep @com.google.common.annotations.VisibleForTesting class * {
+  void <init>();
+}
 -keepclassmembers class * {
   @com.google.common.annotations.VisibleForTesting *;
 }
