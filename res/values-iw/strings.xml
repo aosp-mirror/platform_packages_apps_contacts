@@ -389,7 +389,7 @@
     <string name="exporting_vcard_finished_title" msgid="1984393609140969504">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> הסתיים."</string>
     <string name="exporting_vcard_finished_title_fallback" msgid="9029067439586573959">"הייצוא של אנשי הקשר הסתיים."</string>
     <string name="exporting_vcard_finished_toast" msgid="5463125514187187782">"היצוא של אנשי הקשר הסתיים. לחץ על ההודעה כדי לשתף אנשי קשר."</string>
-    <string name="touch_to_share_contacts" msgid="7678194978416052577">"הקש כדי לשתף אנשי קשר."</string>
+    <string name="touch_to_share_contacts" msgid="7678194978416052577">"יש ללחוץ כדי לשתף אנשי קשר."</string>
     <string name="exporting_vcard_canceled_title" msgid="1287529222628052526">"הייצוא של <xliff:g id="FILENAME">%s</xliff:g> בוטל."</string>
     <string name="exporting_contact_list_title" msgid="6599904516394311592">"מייצא נתונים של אנשי קשר"</string>
     <string name="exporting_contact_list_message" msgid="6253904938452184387">"ייצוא הנתונים של אנשי הקשר מתבצע."</string>
@@ -477,9 +477,9 @@
     <string name="sim_import_failed_toast" msgid="358117391138073786">"‏לא ניתן היה לייבא את אנשי הקשר מכרטיס ה-SIM"</string>
     <string name="sim_import_title" msgid="8202961146093040684">"‏ייבוא מכרטיס SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"ביטול"</string>
-    <string name="auto_sync_off" msgid="7039314601316227882">"הסינכרון האוטומטי מושבת. הקש כדי להפעיל אותו."</string>
+    <string name="auto_sync_off" msgid="7039314601316227882">"הסינכרון האוטומטי מושבת. יש ללחוץ כדי להפעיל אותו."</string>
     <string name="dismiss_sync_alert" msgid="4057176963960104786">"ביטול"</string>
-    <string name="account_sync_off" msgid="6187683798342006021">"סנכרון החשבון מושבת. הקש כדי להפעיל אותו."</string>
+    <string name="account_sync_off" msgid="6187683798342006021">"סנכרון החשבון מושבת. יש ללחוץ כדי להפעיל אותו."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"האם להשבית את הסנכרון האוטומטי?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"‏השינויים שתבצע בכל האפליקציות והחשבונות, לא רק באנשי הקשר מחשבון Google, יסונכרנו בין האינטרנט לבין המכשירים שלך."</string>
     <string name="turn_auto_sync_on_dialog_confirm_btn" msgid="5575717918836806519">"הפעלה"</string>
