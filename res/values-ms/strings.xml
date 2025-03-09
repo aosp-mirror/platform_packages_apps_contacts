@@ -58,7 +58,7 @@
     <string name="menu_save" msgid="7204524700499687371">"Simpan"</string>
     <string name="titleJoinContactDataWith" msgid="7342386037654890242">"Paut kenalan"</string>
     <string name="blurbJoinContactDataWith" msgid="132105056919797709">"Pilih kenalan yang anda mahu pautkan dengan <xliff:g id="NAME">%s</xliff:g>:"</string>
-    <string name="separatorJoinAggregateSuggestions" msgid="8347769365870796983">"Kenalan cadangan"</string>
+    <string name="separatorJoinAggregateSuggestions" msgid="8347769365870796983">"Cadangan kenalan"</string>
     <string name="separatorJoinAggregateAll" msgid="5378346138684490784">"Semua kenalan"</string>
     <string name="contactsJoinedNamedMessage" msgid="8732933595873458166">"<xliff:g id="NAME">%s</xliff:g> dipaut"</string>
     <string name="contactsJoinedMessage" msgid="7605856897709458707">"Kenalan dipaut"</string>
