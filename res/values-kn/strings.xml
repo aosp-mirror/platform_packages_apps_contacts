@@ -76,12 +76,12 @@
     <string name="readOnlyContactWarning" msgid="4158660823025751201">"ಈ ಸಂಪರ್ಕವು ಓದಲು-ಮಾತ್ರ ಆಗಿದೆ. ಇದನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ್ಲ ಆದರೆ ನೀವು ಇದನ್ನು ಮರೆಮಾಡಬಹುದಾಗಿದೆ."</string>
     <string name="readOnlyContactWarning_positive_button" msgid="2602676689104338036">"ಸಂಪರ್ಕವನ್ನು ಮರೆಮಾಡಿ"</string>
     <string name="readOnlyContactDeleteConfirmation" msgid="2759786078454970110">"ಈ ಸಂಪರ್ಕದಲ್ಲಿ ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳನ್ನು ಮರೆಮಾಡಲಾಗುತ್ತದೆ, ಅಳಿಸಲಾಗುವುದಿಲ್ಲ."</string>
-    <string name="single_delete_confirmation" msgid="8260949300855537648">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸುವುದೇ?"</string>
-    <string name="batch_delete_confirmation" msgid="4149615167210863403">"ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸುವುದೇ?"</string>
+    <string name="single_delete_confirmation" msgid="8260949300855537648">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಬೇಕೆ?"</string>
+    <string name="batch_delete_confirmation" msgid="4149615167210863403">"ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಬೇಕೆ?"</string>
     <string name="batch_delete_read_only_contact_confirmation" msgid="381691735715182700">"ನಿಮ್ಮ ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ್ಲ, ಆದರೆ ಅವುಗಳನ್ನು ಮರೆಮಾಡಬಹುದು."</string>
     <string name="batch_delete_multiple_accounts_confirmation" msgid="4547718538924570984">"ಬಹು ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಹೊಂದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತದೆ. ಓದಲು-ಮಾತ್ರ ಖಾತೆಗಳಿಂದ ವಿವರಗಳನ್ನು ಮರೆಮಾಡಲಾಗುತ್ತದೆ, ಅಳಿಸಲಾಗುವುದಿಲ್ಲ."</string>
     <string name="multipleContactDeleteConfirmation" msgid="2970218685653877287">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸುವುದರಿಂದ ಅದಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ವಿವರಗಳನ್ನು ಬಹು ಖಾತೆಗಳಿಂದ ಅಳಿಸಲಾಗುತ್ತದೆ."</string>
-    <string name="deleteConfirmation" msgid="3727809366015979585">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸುವುದೇ?"</string>
+    <string name="deleteConfirmation" msgid="3727809366015979585">"ಈ ಸಂಪರ್ಕವನ್ನು ಅಳಿಸಬೇಕೆ?"</string>
     <string name="deleteConfirmation_positive_button" msgid="1604511403421785160">"ಅಳಿಸಿ"</string>
     <string name="invalidContactMessage" msgid="6204402264821083362">"ಸಂಪರ್ಕವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."</string>
     <string name="createContactShortcutSuccessful_NoName" msgid="532242135930208299">"ಸಂಪರ್ಕವನ್ನು ಹೋಮ್ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ."</string>
@@ -162,10 +162,10 @@
     <string name="contacts_unavailable_add_account" msgid="5196453892411710750">"ಖಾತೆ ಸೇರಿಸಿ"</string>
     <string name="contacts_unavailable_import_contacts" msgid="4914180876114104054">"ಆಮದು ಮಾಡಿ"</string>
     <string name="create_group_item_label" msgid="921929508079162463">"ಹೊಸದನ್ನು ರಚಿಸಿ…"</string>
-    <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ಲೇಬಲ್ ಅಳಿಸುವುದೇ? (ಸಂಪರ್ಕಗಳು ತಾವಾಗಿ ಅಳಿಸಿ ಹೋಗುವುದಿಲ್ಲ.)"</string>
+    <string name="delete_group_dialog_message" msgid="754082019928025404">"\"<xliff:g id="GROUP_LABEL">%1$s</xliff:g>\" ಲೇಬಲ್ ಅಳಿಸಬೇಕೆ? (ಸಂಪರ್ಕಗಳು ತಾವಾಗಿ ಅಳಿಸಿ ಹೋಗುವುದಿಲ್ಲ.)"</string>
     <string name="toast_join_with_empty_contact" msgid="3886468280665325350">"ಮತ್ತೊಬ್ಬರೊಂದಿಗೆ ಲಿಂಕ್ ಮಾಡುವ ಮೊದಲು ಸಂಪರ್ಕದ ಹೆಸರನ್ನು ಟೈಪ್‌ ಮಾಡಿ."</string>
     <string name="copy_text" msgid="6835250673373028909">"ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸಿ"</string>
-    <string name="set_default" msgid="3704074175618702225">"ಡೀಫಾಲ್ಟ್ ಹೊಂದಿಸಿ"</string>
+    <string name="set_default" msgid="3704074175618702225">"ಡೀಫಾಲ್ಟ್ ಸೆಟ್ ಮಾಡಿ"</string>
     <string name="clear_default" msgid="2055883863621491533">"ಡಿಫಾಲ್ಟ್‌ ತೆರವುಗೊಳಿಸಿ"</string>
     <string name="toast_text_copied" msgid="845906090076228771">"ಪಠ್ಯವನ್ನು ನಕಲಿಸಲಾಗಿದೆ"</string>
     <string name="cancel_confirmation_dialog_message" msgid="7486892574762212762">"ಬದಲಾವಣೆಗಳನ್ನು ತ್ಯಜಿಸುವುದೇ?"</string>
@@ -426,7 +426,7 @@
     <string name="settings_accounts" msgid="119582613811929994">"ಖಾತೆಗಳು"</string>
     <string name="default_editor_account" msgid="4810392921888877149">"ಹೊಸ ಸಂಪರ್ಕಗಳಿಗೆ ಡಿಫಾಲ್ಟ್‌ ಖಾತೆ"</string>
     <string name="settings_my_info_title" msgid="6236848378653551341">"ನನ್ನ ಮಾಹಿತಿ"</string>
-    <string name="set_up_profile" msgid="3554999219868611431">"ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೊಂದಿಸಿ"</string>
+    <string name="set_up_profile" msgid="3554999219868611431">"ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಸೆಟಪ್ ಮಾಡಿ"</string>
     <string name="setting_about" msgid="2941859292287597555">"ಸಂಪರ್ಕಗಳ ಕುರಿತು"</string>
     <string name="share_favorite_contacts" msgid="8208444020721686178">"ಮೆಚ್ಚಿನ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"</string>
     <string name="share_contacts" msgid="2377773269568609796">"ಎಲ್ಲ ಸಂಪರ್ಕಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ"</string>

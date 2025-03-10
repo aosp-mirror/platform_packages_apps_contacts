@@ -180,7 +180,7 @@
     <string name="contact_editor_prompt_one_account" msgid="765343809177951169">"Mase-save ang mga bagong contact sa <xliff:g id="ACCOUNT_NAME">%1$s</xliff:g>."</string>
     <string name="contact_editor_prompt_multiple_accounts" msgid="1543322760761168351">"Pumili ng default na account para sa mga bagong contact:"</string>
     <string name="contact_editor_title_new_contact" msgid="7534775011591770343">"Gumawa ng bagong contact"</string>
-    <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"I-edit"</string>
+    <string name="contact_editor_title_existing_contact" msgid="3647774955741654029">"I-edit ang contact"</string>
     <string name="contact_editor_title_read_only_contact" msgid="5494810291515292596">"Pagtingin lang"</string>
     <string name="contact_editor_pick_raw_contact_to_edit_dialog_title" msgid="4478782370280424187">"Pumili ng contact upang i-edit"</string>
     <string name="contact_editor_pick_linked_contact_dialog_title" msgid="3332134735168016293">"Mga naka-link na contact"</string>
