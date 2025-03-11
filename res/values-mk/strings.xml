@@ -192,7 +192,7 @@
     <string name="action_menu_add_new_contact_button" msgid="1201339383074001291">"Создај нов контакт"</string>
     <string name="expanding_entry_card_view_see_more" msgid="6636033205952561590">"Прикажи повеќе"</string>
     <string name="expanding_entry_card_view_see_less" msgid="6399603072579278030">"Погледни помалку"</string>
-    <string name="about_card_title" msgid="6635849009952435700">"За"</string>
+    <string name="about_card_title" msgid="6635849009952435700">"Информации"</string>
     <string name="toast_making_personal_copy" msgid="9053129410039312386">"Се создава лична копија..."</string>
     <string name="date_time_set" msgid="8526160894146496334">"Постави"</string>
     <string name="header_im_entry" msgid="3581797653862294826">"IM"</string>
@@ -478,7 +478,7 @@
     <string name="sim_import_title" msgid="8202961146093040684">"Увоз од SIM"</string>
     <string name="sim_import_cancel_content_description" msgid="4746065462808862682">"Откажи"</string>
     <string name="auto_sync_off" msgid="7039314601316227882">"Автоматското синхронизирање е исклучено. Допрете за да го вклучите."</string>
-    <string name="dismiss_sync_alert" msgid="4057176963960104786">"Отфрлете"</string>
+    <string name="dismiss_sync_alert" msgid="4057176963960104786">"Отфрли"</string>
     <string name="account_sync_off" msgid="6187683798342006021">"Автоматското синхронизирање е исклучено. Допрете за да го вклучите."</string>
     <string name="turn_auto_sync_on_dialog_title" msgid="3812155064863594938">"Да се вклучи автоматско синхронизирање?"</string>
     <string name="turn_auto_sync_on_dialog_body" msgid="5386810641905184682">"Промените што ги правите на сите апликации и сметки, не само на „Контакти на Google“, ќе се ажурираат и на интернет и на вашите уреди."</string>

@@ -28,7 +28,7 @@
     <string name="groupMemberPickerActivityTitle" msgid="8745419913947478380">"選取"</string>
     <string name="header_entry_contact_list_adapter_header_title" msgid="4098233078586958762">"建立新聯絡人"</string>
     <string name="searchHint" msgid="1487501532610025473">"搜尋聯絡人"</string>
-    <string name="menu_addStar" msgid="4903812703386825130">"加到我的收藏"</string>
+    <string name="menu_addStar" msgid="4903812703386825130">"新增至我的最愛"</string>
     <string name="menu_removeStar" msgid="3707373931808303701">"從我的收藏中移除"</string>
     <string name="description_action_menu_remove_star" msgid="4044390281910122890">"已從我的最愛中移除"</string>
     <string name="description_action_menu_add_star" msgid="7316521132809388851">"已加到我的最愛"</string>
