@@ -355,7 +355,7 @@
     <string name="announce_expanded_fields" msgid="8410808184164186871">"વિસ્તૃત કર્યું"</string>
     <string name="announce_collapsed_fields" msgid="7611318715383228182">"સંકુચિત કર્યું"</string>
     <string name="list_filter_all_accounts" msgid="6173785387972096770">"તમામ સંપર્કો"</string>
-    <string name="list_filter_all_starred" msgid="2582865760150432568">"તારાંકિત કરેલ"</string>
+    <string name="list_filter_all_starred" msgid="2582865760150432568">"સ્ટાર આપેલા"</string>
     <string name="list_filter_customize" msgid="2368900508906139537">"કસ્ટમાઇઝ કરો"</string>
     <string name="list_filter_single" msgid="6003845379327432129">"સંપર્ક"</string>
     <string name="display_ungrouped" msgid="4823012484407759332">"તમામ અન્ય સંપર્કો"</string>
