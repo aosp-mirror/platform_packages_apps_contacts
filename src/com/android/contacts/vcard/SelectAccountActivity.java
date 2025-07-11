@@ -65,15 +65,6 @@ public class SelectAccountActivity extends Activity {
             Log.w(LOG_TAG, "Account does not exist");
             finish();
             return;
-        } else if (accountList.size() == 1) {
-            final AccountWithDataSet account = accountList.get(0);
-            final Intent intent = new Intent();
-            intent.putExtra(ACCOUNT_NAME, account.name);
-            intent.putExtra(ACCOUNT_TYPE, account.type);
-            intent.putExtra(DATA_SET, account.dataSet);
-            setResult(RESULT_OK, intent);
-            finish();
-            return;
         }
 
         Log.i(LOG_TAG, "The number of available accounts: " + accountList.size());
